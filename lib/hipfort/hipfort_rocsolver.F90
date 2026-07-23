@@ -26657,6 +26657,16637 @@ module hipfort_rocsolver
 #endif
   end interface
 
+  !>  \brief The SET_ALG_MODE function sets the algorithm mode to be used by the specified function.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     func        `rocsolver_function`.
+  !>                 The function that will use the selected algorithm mode.
+  !>     @param[in]
+  !>     mode        `rocsolver_alg_mode`.
+  !>                 The algorithm mode that will be used by the specified function.
+  !>                 rocsolver_alg_mode_mixed is not supported.
+  interface rocsolver_set_alg_mode
+    function rocsolver_set_alg_mode_(handle,func,mode) bind(c, name="rocsolver_set_alg_mode")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_set_alg_mode_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_function_bdsqr)),value :: func
+      integer(kind(rocsolver_alg_mode_gpu)),value :: mode
+    end function
+  end interface
+
+  !>  \brief The GET_ALG_MODE function gets the algorithm mode being used by the specified function.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     func        `rocsolver_function`.
+  !>                 The specified function.
+  !>     @param[out]
+  !>     mode        pointer to `rocsolver_alg_mode`.
+  !>                 On exit, the value is overwritten by the algorithm mode used
+  !>                 by the specified function.
+  interface rocsolver_get_alg_mode
+    function rocsolver_get_alg_mode_(handle,func,mode) bind(c, name="rocsolver_get_alg_mode")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_get_alg_mode_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_function_bdsqr)),value :: func
+      type(c_ptr),value :: mode
+    end function
+  end interface
+
+  interface rocsolver_clacgv_64
+    function rocsolver_clacgv_64_(handle,n,x,incx) bind(c, name="rocsolver_clacgv_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clacgv_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface rocsolver_zlacgv_64
+    function rocsolver_zlacgv_64_(handle,n,x,incx) bind(c, name="rocsolver_zlacgv_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlacgv_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  !>     \brief The LANGE functions compute the norm of a general ``m``-by-``n`` matrix ``A``.
+  !>
+  !>     \details
+  !>     The norm computed is specified by ``norm_type`` as follows:
+  !>
+  !>     - ``rocsolver_norm_type_one``: the 1-norm (maximum column sum),
+  !>     - ``rocsolver_norm_type_frobenius``: the Frobenius norm (square root of sum of squares),
+  !>     - ``rocsolver_norm_type_infinity``: the infinity-norm (maximum row sum), or
+  !>     - ``rocsolver_norm_type_max``: the maximum absolute value of any element.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     norm_type   rocsolver_norm_type.
+  !>                 Specifies the type of norm to compute.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of the matrix A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of the matrix A.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 The m-by-n matrix A.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A.
+  !>     @param[out]
+  !>     norm       pointer to real type. Scalar on the GPU.
+  !>                 The computed norm of the matrix A.
+  interface rocsolver_slange
+    function rocsolver_slange_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_slange")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slange_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_dlange
+    function rocsolver_dlange_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_dlange")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlange_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_clange
+    function rocsolver_clange_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_clange")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clange_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_zlange
+    function rocsolver_zlange_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_zlange")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlange_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_slange_64
+    function rocsolver_slange_64_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_slange_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slange_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_dlange_64
+    function rocsolver_dlange_64_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_dlange_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlange_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_clange_64
+    function rocsolver_clange_64_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_clange_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clange_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  interface rocsolver_zlange_64
+    function rocsolver_zlange_64_(handle,norm_type,m,n,A,lda,norm) bind(c, name="rocsolver_zlange_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlange_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: norm
+    end function
+  end interface
+
+  !>     \brief GECON estimates the reciprocal of the condition number of a general n-by-n matrix A
+  !>     in the 1-norm or infinity-norm.
+  !>
+  !>     \details
+  !>     The reciprocal condition number is computed as
+  !>
+  !>     \f[
+  !>         \text{rcond} = \frac{1}{\|A\| \cdot \|A^{-1}\|}
+  !>     \f]
+  !>
+  !>     where A is the matrix in its factorized form as returned by \ref rocsolver_sgetrf "GETRF",
+  !>     and the
+  !>     norm can be the 1-norm or the infinity-norm.
+  !>
+  !>     The computed rcond will be a lower bound on the actual rcond. When rcond is close to zero,
+  !>     the matrix
+  !>     A is poorly conditioned (nearly singular). When rcond is close to 1, the matrix A is well
+  !>     conditioned.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     norm_type   rocsolver_norm_type.
+  !>                 Specifies the norm to be used. The 1-norm and the infinity-norm
+  !>                 are supported, specified by values of rocsolver_norm_type_one and
+  !>                 rocsolver_norm_type_infinity.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of the matrix A.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 The factors L and U of the factorization \f$A = PLU\f$ as returned by \ref
+  !>                 rocsolver_sgetrf "GETRF".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of A.
+  !>     @param[in]
+  !>     anorm       pointer to real type. Scalar on the GPU.
+  !>                 The norm of the original matrix A (before factorization) as returned by \ref
+  !>                 rocsolver_slange "LANGE".
+  !>     @param[out]
+  !>     rcond       pointer to real type. Scalar on the GPU.
+  !>                 The reciprocal condition number estimate.
+  interface rocsolver_sgecon
+    function rocsolver_sgecon_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_sgecon")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgecon_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_dgecon
+    function rocsolver_dgecon_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_dgecon")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgecon_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_cgecon
+    function rocsolver_cgecon_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_cgecon")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgecon_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_zgecon
+    function rocsolver_zgecon_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_zgecon")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgecon_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_sgecon_64
+    function rocsolver_sgecon_64_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_sgecon_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgecon_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_dgecon_64
+    function rocsolver_dgecon_64_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_dgecon_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgecon_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_cgecon_64
+    function rocsolver_cgecon_64_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_cgecon_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgecon_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_zgecon_64
+    function rocsolver_zgecon_64_(handle,norm_type,n,A,lda,anorm,rcond) bind(c, name="rocsolver_zgecon_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgecon_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_norm_type_one)),value :: norm_type
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: anorm
+      type(c_ptr),value :: rcond
+    end function
+  end interface
+
+  interface rocsolver_slarfg_64
+    function rocsolver_slarfg_64_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_slarfg_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: tau
+    end function
+  end interface
+
+  interface rocsolver_dlarfg_64
+    function rocsolver_dlarfg_64_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_dlarfg_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: tau
+    end function
+  end interface
+
+  interface rocsolver_clarfg_64
+    function rocsolver_clarfg_64_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_clarfg_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: tau
+    end function
+  end interface
+
+  interface rocsolver_zlarfg_64
+    function rocsolver_zlarfg_64_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_zlarfg_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: tau
+    end function
+  end interface
+
+  interface rocsolver_slarf_64
+    function rocsolver_slarf_64_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_slarf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_dlarf_64
+    function rocsolver_dlarf_64_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_dlarf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_clarf_64
+    function rocsolver_clarf_64_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_clarf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_zlarf_64
+    function rocsolver_zlarf_64_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_zlarf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  !>     \brief The LASR functions apply a sequence of Givens plane rotations, represented as a
+  !>     transformation P,
+  !>     to a general ``m``-by-``n`` matrix ``A``.
+  !>
+  !>     \details
+  !>     The transformation P is applied in one of the following forms, depending on
+  !>     the value of ``side``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         PA & \: \text{(No transpose from the left),}\\%
+  !>         AP^T & \: \text{(Transpose from the right).}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     P is defined as the product of k plane rotations, with k = ``m`` - 1 when applied from the
+  !>     left, and
+  !>     k = ``n`` - 1 when applied from the right, as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         P = P(1)P(2)\cdots P(k) & \: \text{if direct indicates backward direction, or} \\%
+  !>         P = P(k)\cdots P(2)P(1) & \: \text{if direct indicates forward direction}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Each P(i) is defined by a Givens rotation
+  !>
+  !>     \f[
+  !>         R(i) = \left[\begin{array}{cc}
+  !>         c_i & s_i \\%
+  !>         -s_i & c_i
+  !>         \end{array}\right],
+  !>     \f]
+  !>
+  !>     where the \f$c_i\f$ and \f$s_i\f$ are the corresponding cosine and sine factors.
+  !>
+  !>     The rotations are performed on different planes depending on the value of ``pivot``. If
+  !>     ``pivot`` is
+  !>     ``variable``, the rotation R(i) is performed on plane (i,i+1), that is, P(i) appears as a
+  !>     rank-2
+  !>     modification to the identity matrix in the i-th and (i+1)-th rows and columns. If ``pivot``
+  !>     is
+  !>     ``top``, then the modification appears in the first and (i+1)-th rows and columns of P(i),
+  !>     and if ``pivot`` is ``bottom``, then the modification appears in the i-th and last rows and
+  !>     columns of P(i).
+  !>
+  !>     All rotations are applied directly without ever forming P(i) explicitly.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply P.
+  !>     @param[in]
+  !>     pivot       `rocblas_pivot`.
+  !>                 Specifies the planes on which the rotations are applied.
+  !>     @param[in]
+  !>     direct      `rocblas_direct`.
+  !>                 Specifies the direction in which the plane rotations are to be applied to
+  !>                 generate P.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix A.
+  !>     @param[in]
+  !>     C           pointer to real type. Array on the GPU of size n-1 if side is right, or m-1
+  !>                 if side is left.
+  !>                 Contains the series of cosine factors defining the Givens rotations.
+  !>     @param[in]
+  !>     S           pointer to real type. Array on the GPU of size n-1 if side is right, or m-1
+  !>                 if side is left.
+  !>                 Contains the series of sine factors defining the Givens rotations.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of size lda*n.
+  !>                 On entry, the matrix A. On exit, it is overwritten with
+  !>                 \f$PA\f$, or \f$AP^T\f$.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A.
+  interface rocsolver_slasr
+    function rocsolver_slasr_(handle,side,pivot,myDirect,m,n,C,S,A,lda) bind(c, name="rocsolver_slasr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slasr_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_pivot_variable)),value :: pivot
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: C
+      type(c_ptr),value :: S
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_dlasr
+    function rocsolver_dlasr_(handle,side,pivot,myDirect,m,n,C,S,A,lda) bind(c, name="rocsolver_dlasr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlasr_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_pivot_variable)),value :: pivot
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: C
+      type(c_ptr),value :: S
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_clasr
+    function rocsolver_clasr_(handle,side,pivot,myDirect,m,n,C,S,A,lda) bind(c, name="rocsolver_clasr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clasr_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_pivot_variable)),value :: pivot
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: C
+      type(c_ptr),value :: S
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_zlasr
+    function rocsolver_zlasr_(handle,side,pivot,myDirect,m,n,C,S,A,lda) bind(c, name="rocsolver_zlasr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlasr_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_pivot_variable)),value :: pivot
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: C
+      type(c_ptr),value :: S
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  !>     \brief The LAUUM functions compute the product of the upper (or lower) triangular part U
+  !>     (or L) of a
+  !>     symmetric/Hemitian matrix ``A`` with its transpose.
+  !>
+  !>     \details
+  !>     If ``uplo`` indicates upper, then \f$U U^H\f$ is computed. If ``uplo`` indicates lower,
+  !>     then \f$L^H L\f$ is computed instead.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower triangular part of A will be used.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A is not referenced.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns and rows of the matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, it contains the upper (or lower) part of the symmetric/Hermitian
+  !>                 matrix.
+  !>                 On exit, the upper (or lower) part is overwritten with the result of \f$U
+  !>                 U^H\f$ (or \f$L^H L\f$).
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of the array A.
+  interface rocsolver_slauum
+    function rocsolver_slauum_(handle,uplo,n,A,lda) bind(c, name="rocsolver_slauum")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slauum_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_dlauum
+    function rocsolver_dlauum_(handle,uplo,n,A,lda) bind(c, name="rocsolver_dlauum")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlauum_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_clauum
+    function rocsolver_clauum_(handle,uplo,n,A,lda) bind(c, name="rocsolver_clauum")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clauum_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  interface rocsolver_zlauum
+    function rocsolver_zlauum_(handle,uplo,n,A,lda) bind(c, name="rocsolver_zlauum")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlauum_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+    end function
+  end interface
+
+  !>     \brief The STEBZ functions compute a set of eigenvalues of a symmetric tridiagonal matrix
+  !>     T.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of T, all the eigenvalues in the half-open
+  !>     interval (``vl``, ``vu`` ],
+  !>     or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``.
+  !>
+  !>     The eigenvalues are returned in increasing order either for the entire matrix or grouped by
+  !>     independent
+  !>     diagonal blocks (if they exist), depending on the value of ``eorder``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     eorder      `rocblas_eorder`.
+  !>                 Specifies whether the computed eigenvalues will be ordered by their position in
+  !>                 the
+  !>                 entire spectrum or grouped by independent diagonal (split off) blocks.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the tridiagonal matrix T.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if erange indicates to
+  !>                 look
+  !>                 for all the eigenvalues of T or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if erange indicates to
+  !>                 look
+  !>                 for all the eigenvalues of T or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if erange
+  !>                 indicates to look
+  !>                 for all the eigenvalues of T or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if erange indicates
+  !>                 to look
+  !>                 for all the eigenvalues of T or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[in]
+  !>     D           pointer to real type. Array on the GPU of dimension n.
+  !>                 The diagonal elements of the tridiagonal matrix.
+  !>     @param[in]
+  !>     E           pointer to real type. Array on the GPU of dimension n-1.
+  !>                 The off-diagonal elements of the tridiagonal matrix.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found.
+  !>     @param[out]
+  !>     nsplit      pointer to a rocblas_int on the GPU.
+  !>                 The number of split off blocks in the matrix.
+  !>     @param[out]
+  !>     W           pointer to real type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     iblock      pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The block indices corresponding to each eigenvalue. When matrix T has
+  !>                 split off blocks (nsplit > 1), then if iblock[i] = k, the
+  !>                 eigenvalue W[i] belongs to the k-th diagonal block from the top.
+  !>     @param[out]
+  !>     isplit      pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The splitting indices that divide the tridiagonal matrix into
+  !>                 diagonal blocks. The k-th block stretches from the end of the (k-1)-th
+  !>                 block (or the top left corner of the tridiagonal matrix,
+  !>                 in the case of the 1st block) to the isplit[k]-th row/column.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = 1, the bisection did not converge for some eigenvalues, that is, the
+  !>                 returned
+  !>                 values are not as accurate as the given tolerance. The non-converged
+  !>                 eigenvalues
+  !>                 are flagged by negative entries in iblock.
+  interface rocsolver_sstebz
+    function rocsolver_sstebz_(handle,erange,eorder,n,vl,vu,il,iu,abstol,D,E,nev,nsplit,W,iblock,isplit,myInfo) bind(c, name="rocsolver_sstebz")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sstebz_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_eorder_blocks)),value :: eorder
+      integer(c_int),value :: n
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: nsplit
+      type(c_ptr),value :: W
+      type(c_ptr),value :: iblock
+      type(c_ptr),value :: isplit
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dstebz
+    function rocsolver_dstebz_(handle,erange,eorder,n,vl,vu,il,iu,abstol,D,E,nev,nsplit,W,iblock,isplit,myInfo) bind(c, name="rocsolver_dstebz")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dstebz_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_eorder_blocks)),value :: eorder
+      integer(c_int),value :: n
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: nsplit
+      type(c_ptr),value :: W
+      type(c_ptr),value :: iblock
+      type(c_ptr),value :: isplit
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The STEIN functions compute the eigenvectors associated with a set of
+  !>     provided eigenvalues of a symmetric tridiagonal matrix.
+  !>
+  !>     \details
+  !>     The eigenvectors of the symmetric tridiagonal matrix are computed using
+  !>     inverse iteration.
+  !>
+  !>     The matrix is not represented explicitly, but rather as the array of
+  !>     diagonal elements ``D`` and the array of symmetric off-diagonal elements ``E``.
+  !>     The eigenvalues must be provided in the array ``W``, as returned by \ref rocsolver_sstebz
+  !>     "STEBZ".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of the tridiagonal matrix.
+  !>     @param[in]
+  !>     D           pointer to real type. Array on the GPU of dimension n.
+  !>                 The diagonal elements of the tridiagonal matrix.
+  !>     @param[in]
+  !>     E           pointer to real type. Array on the GPU of dimension n-1.
+  !>                 The off-diagonal elements of the tridiagonal matrix.
+  !>     @param[in]
+  !>     nev         pointer to a rocblas_int on the GPU. 0 <= nev <= n.
+  !>                 The number of provided eigenvalues and the number of eigenvectors
+  !>                 to be computed.
+  !>     @param[in]
+  !>     W           pointer to real type. Array on the GPU of dimension >= nev.
+  !>                 A subset of nev eigenvalues of the tridiagonal matrix, as returned
+  !>                 by \ref rocsolver_sstebz "STEBZ".
+  !>     @param[in]
+  !>     iblock      pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The block indices corresponding to each eigenvalue, as
+  !>                 returned by \ref rocsolver_sstebz "STEBZ". If iblock[i] = k,
+  !>                 then eigenvalue W[i] belongs to the k-th block from the top.
+  !>     @param[in]
+  !>     isplit      pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The splitting indices that divide the tridiagonal matrix into
+  !>                 diagonal blocks, as returned by \ref rocsolver_sstebz "STEBZ".
+  !>                 The k-th block stretches from the end of the (k-1)-th
+  !>                 block (or the top left corner of the tridiagonal matrix,
+  !>                 in the case of the 1st block) to the isplit[k]-th row/column.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, contains the eigenvectors of the tridiagonal matrix
+  !>                 corresponding to the provided eigenvalues, stored by columns.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of Z.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 If info = 0, the first nev elements of ifail are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, i eigenvectors did not converge. Their indices are stored in
+  !>                 ifail.
+  interface rocsolver_sstein
+    function rocsolver_sstein_(handle,n,D,E,nev,W,iblock,isplit,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_sstein")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sstein_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: iblock
+      type(c_ptr),value :: isplit
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dstein
+    function rocsolver_dstein_(handle,n,D,E,nev,W,iblock,isplit,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_dstein")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dstein_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: iblock
+      type(c_ptr),value :: isplit
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cstein
+    function rocsolver_cstein_(handle,n,D,E,nev,W,iblock,isplit,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_cstein")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cstein_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: iblock
+      type(c_ptr),value :: isplit
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zstein
+    function rocsolver_zstein_(handle,n,D,E,nev,W,iblock,isplit,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_zstein")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zstein_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: iblock
+      type(c_ptr),value :: isplit
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The BDSVDX functions compute a set of singular values of a bidiagonal matrix B.
+  !>
+  !>     \details
+  !>     This function computes all the singular values of B, all the singular values in the
+  !>     half-open interval
+  !>     \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the
+  !>     value of ``srange``.
+  !>
+  !>     Depending on the value of ``svect``, the corresponding singular vectors will be computed
+  !>     and stored as blocks
+  !>     in the output matrix ``Z``. That is,
+  !>
+  !>     \f[
+  !>         Z = \left[\begin{array}{c}
+  !>         U\\%
+  !>         V
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     where U contains the corresponding left singular vectors of B and V contains the
+  !>     corresponding right
+  !>     singular vectors.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether B is upper or lower bidiagonal.
+  !>     @param[in]
+  !>     svect       `rocblas_svect`.
+  !>                 Specifies how the singular vectors are computed. Only rocblas_svect_none and
+  !>                 rocblas_svect_singular are accepted.
+  !>     @param[in]
+  !>     srange      `rocblas_srange`.
+  !>                 Specifies the type of range or interval of the singular values to be computed.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the bidiagonal matrix B.
+  !>     @param[in]
+  !>     D           pointer to real type. Array on the GPU of dimension n.
+  !>                 The diagonal elements of the bidiagonal matrix.
+  !>     @param[in]
+  !>     E           pointer to real type. Array on the GPU of dimension n-1.
+  !>                 The off-diagonal elements of the bidiagonal matrix.
+  !>     @param[in]
+  !>     vl          real type. 0 <= vl < vu.
+  !>                 The lower bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of B or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     vu          real type. 0 <= vl < vu.
+  !>                 The upper bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of B or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of B or the singular values in a half-open
+  !>                 interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of B or the singular values in a half-open
+  !>                 interval.
+  !>     @param[out]
+  !>     nsv         pointer to a rocblas_int on the GPU.
+  !>                 The total number of singular values found. If srange is rocblas_srange_all, nsv
+  !>                 = n.
+  !>                 If srange is rocblas_srange_index, nsv = iu - il + 1. Otherwise, 0 <= nsv <= n.
+  !>     @param[out]
+  !>     S           pointer to real type. Array on the GPU of dimension nsv.
+  !>                 The first nsv elements contain the computed singular values in descending
+  !>                 order.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that S is large enough to hold n values.
+  !>     @param[out]
+  !>     Z           pointer to real type. Array on the GPU of dimension ldz*nsv.
+  !>                 If info = 0, the first nsv columns contain the computed singular vectors
+  !>                 corresponding to the
+  !>                 singular values in S. The first n rows of Z contain the matrix U, and the next
+  !>                 n rows contain
+  !>                 the matrix V. Not referenced if svect is rocblas_svect_none.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that Z is large enough to hold n columns.
+  !>     @param[in]
+  !>     ldz rocblas_int. ldz >= 2*n if svect is rocblas_svect_singular and ldz >= 1 otherwise.
+  !>                 Specifies the leading dimension of Z.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 If info = 0, the first nsv elements of ifail are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge, as returned by \ref rocsolver_sstein "STEIN".
+  !>                 Not referenced if svect is rocblas_svect_none.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, i eigenvectors did not converge in \ref rocsolver_sstein
+  !>                 "STEIN". Their
+  !>                 indices are stored in ifail.
+  interface rocsolver_sbdsvdx
+    function rocsolver_sbdsvdx_(handle,uplo,svect,srange,n,D,E,vl,vu,il,iu,nsv,S,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_sbdsvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sbdsvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_svect_all)),value :: svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: n
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dbdsvdx
+    function rocsolver_dbdsvdx_(handle,uplo,svect,srange,n,D,E,vl,vu,il,iu,nsv,S,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_dbdsvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dbdsvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_svect_all)),value :: svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: n
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_sgetf2_npvt_64
+    function rocsolver_sgetf2_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_sgetf2_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgetf2_npvt_64
+    function rocsolver_dgetf2_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_dgetf2_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgetf2_npvt_64
+    function rocsolver_cgetf2_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_cgetf2_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgetf2_npvt_64
+    function rocsolver_zgetf2_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_zgetf2_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_sgetf2_npvt_batched_64
+    function rocsolver_sgetf2_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetf2_npvt_batched_64
+    function rocsolver_dgetf2_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetf2_npvt_batched_64
+    function rocsolver_cgetf2_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetf2_npvt_batched_64
+    function rocsolver_zgetf2_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetf2_npvt_strided_batched_64
+    function rocsolver_sgetf2_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetf2_npvt_strided_batched_64
+    function rocsolver_dgetf2_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetf2_npvt_strided_batched_64
+    function rocsolver_cgetf2_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetf2_npvt_strided_batched_64
+    function rocsolver_zgetf2_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrf_npvt_64
+    function rocsolver_sgetrf_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_sgetrf_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgetrf_npvt_64
+    function rocsolver_dgetrf_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_dgetrf_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgetrf_npvt_64
+    function rocsolver_cgetrf_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_cgetrf_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgetrf_npvt_64
+    function rocsolver_zgetrf_npvt_64_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_zgetrf_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_npvt_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_sgetrf_npvt_batched_64
+    function rocsolver_sgetrf_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrf_npvt_batched_64
+    function rocsolver_dgetrf_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_dgetrf_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrf_npvt_batched_64
+    function rocsolver_cgetrf_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_cgetrf_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrf_npvt_batched_64
+    function rocsolver_zgetrf_npvt_batched_64_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_zgetrf_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrf_npvt_strided_batched_64
+    function rocsolver_sgetrf_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrf_npvt_strided_batched_64
+    function rocsolver_dgetrf_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_dgetrf_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrf_npvt_strided_batched_64
+    function rocsolver_cgetrf_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_cgetrf_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrf_npvt_strided_batched_64
+    function rocsolver_zgetrf_npvt_strided_batched_64_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_zgetrf_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetf2_64
+    function rocsolver_sgetf2_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgetf2_64
+    function rocsolver_dgetf2_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dgetf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgetf2_64
+    function rocsolver_cgetf2_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_cgetf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgetf2_64
+    function rocsolver_zgetf2_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zgetf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_sgetf2_batched_64
+    function rocsolver_sgetf2_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetf2_batched_64
+    function rocsolver_dgetf2_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetf2_batched_64
+    function rocsolver_cgetf2_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetf2_batched_64
+    function rocsolver_zgetf2_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetf2_strided_batched_64
+    function rocsolver_sgetf2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetf2_strided_batched_64
+    function rocsolver_dgetf2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetf2_strided_batched_64
+    function rocsolver_cgetf2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetf2_strided_batched_64
+    function rocsolver_zgetf2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrf_64
+    function rocsolver_sgetrf_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgetrf_64
+    function rocsolver_dgetrf_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dgetrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgetrf_64
+    function rocsolver_cgetrf_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_cgetrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgetrf_64
+    function rocsolver_zgetrf_64_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zgetrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_sgetrf_batched_64
+    function rocsolver_sgetrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrf_batched_64
+    function rocsolver_dgetrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrf_batched_64
+    function rocsolver_cgetrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrf_batched_64
+    function rocsolver_zgetrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrf_strided_batched_64
+    function rocsolver_sgetrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrf_strided_batched_64
+    function rocsolver_dgetrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrf_strided_batched_64
+    function rocsolver_cgetrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrf_strided_batched_64
+    function rocsolver_zgetrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgeqr2_64
+    function rocsolver_sgeqr2_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgeqr2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqr2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_dgeqr2_64
+    function rocsolver_dgeqr2_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_dgeqr2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqr2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_cgeqr2_64
+    function rocsolver_cgeqr2_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_cgeqr2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqr2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_zgeqr2_64
+    function rocsolver_zgeqr2_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_zgeqr2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqr2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_sgeqr2_batched_64
+    function rocsolver_sgeqr2_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqr2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqr2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeqr2_batched_64
+    function rocsolver_dgeqr2_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_dgeqr2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqr2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeqr2_batched_64
+    function rocsolver_cgeqr2_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_cgeqr2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqr2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeqr2_batched_64
+    function rocsolver_zgeqr2_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_zgeqr2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqr2_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgeqr2_strided_batched_64
+    function rocsolver_sgeqr2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqr2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqr2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeqr2_strided_batched_64
+    function rocsolver_dgeqr2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_dgeqr2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqr2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeqr2_strided_batched_64
+    function rocsolver_cgeqr2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_cgeqr2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqr2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeqr2_strided_batched_64
+    function rocsolver_zgeqr2_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_zgeqr2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqr2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgeqrf_64
+    function rocsolver_sgeqrf_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgeqrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_dgeqrf_64
+    function rocsolver_dgeqrf_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_dgeqrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_cgeqrf_64
+    function rocsolver_cgeqrf_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_cgeqrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_zgeqrf_64
+    function rocsolver_zgeqrf_64_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_zgeqrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqrf_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+  end interface
+
+  interface rocsolver_sgeqrf_batched_64
+    function rocsolver_sgeqrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeqrf_batched_64
+    function rocsolver_dgeqrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_dgeqrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeqrf_batched_64
+    function rocsolver_cgeqrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_cgeqrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeqrf_batched_64
+    function rocsolver_zgeqrf_batched_64_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_zgeqrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgeqrf_strided_batched_64
+    function rocsolver_sgeqrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeqrf_strided_batched_64
+    function rocsolver_dgeqrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_dgeqrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeqrf_strided_batched_64
+    function rocsolver_cgeqrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_cgeqrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeqrf_strided_batched_64
+    function rocsolver_zgeqrf_strided_batched_64_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_zgeqrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrs_64
+    function rocsolver_sgetrs_64_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_sgetrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_64
+    function rocsolver_dgetrs_64_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_dgetrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_64
+    function rocsolver_cgetrs_64_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_cgetrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_64
+    function rocsolver_zgetrs_64_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_zgetrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_sgetrs_batched_64
+    function rocsolver_sgetrs_batched_64_(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_sgetrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_batched_64
+    function rocsolver_dgetrs_batched_64_(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_dgetrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_batched_64
+    function rocsolver_cgetrs_batched_64_(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_cgetrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_batched_64
+    function rocsolver_zgetrs_batched_64_(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_zgetrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrs_strided_batched_64
+    function rocsolver_sgetrs_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_sgetrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_strided_batched_64
+    function rocsolver_dgetrs_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dgetrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_strided_batched_64
+    function rocsolver_cgetrs_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_cgetrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_strided_batched_64
+    function rocsolver_zgetrs_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zgetrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYTRS functions solve a system of ``n`` linear equations on ``n`` variables in
+  !>     its factorized form.
+  !>
+  !>     \details
+  !>     It solves the linear system \f$ A X = B \f$, where the n-by-n matrix A is symmetric and
+  !>     maybe indefinite,
+  !>     using one of the following factorizations that depends on the value of ``uplo``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = B & \: \text{where} \\%
+  !>         A = U D U^T & \: \text{ U is upper triangular or}\\%
+  !>         A = L D L^T & \: \text{ L is lower triangular}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Matrix \f$A\f$ is defined by its triangular factors, as returned by \ref rocsolver_ssytrf
+  !>     "SYTRF".
+  !>     Matrix \f$D\f$ is a symmetric block diagonal matrix with 1-by-1 or 2-by-2 diagonal blocks.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the factorization of matrix \f$ A \f$ is upper or lower
+  !>                 triangular.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the system, that is, the number of columns and rows of A.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns
+  !>                 of the matrix B.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 The factors L (or U) and D of the factorization A returned by \ref
+  !>                 rocsolver_ssytrf "SYTRF".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of A.
+  !>     @param[in]
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The pivot indices returned by \ref rocsolver_ssytrf "SYTRF".
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>                 On entry, the right hand side matrix B.
+  !>                 On exit, the solution matrix X.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of B.
+  interface rocsolver_ssytrs
+    function rocsolver_ssytrs_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_ssytrs")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrs_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_dsytrs
+    function rocsolver_dsytrs_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_dsytrs")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrs_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_csytrs
+    function rocsolver_csytrs_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_csytrs")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrs_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_zsytrs
+    function rocsolver_zsytrs_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_zsytrs")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrs_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_ssytrs_64
+    function rocsolver_ssytrs_64_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_ssytrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_dsytrs_64
+    function rocsolver_dsytrs_64_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_dsytrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_csytrs_64
+    function rocsolver_csytrs_64_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_csytrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_zsytrs_64
+    function rocsolver_zsytrs_64_(handle,uplo,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_zsytrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  !>     \brief The SYTRS_BATCHED functions solve a batch of systems of ``n`` linear equations on
+  !>     ``n``
+  !>     variables in its factorized forms.
+  !>
+  !>     \details
+  !>     For each instance \f$ l \f$ in the batch, it solves the linear system \f$ A_l X_l = B_l
+  !>     \f$,
+  !>     where the n-by-n matrix A is symmetric and maybe indefinite,
+  !>     using one of the following factorization, depending on the value of ``uplo``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = B_l & \: \text{where} \\%
+  !>         A_l = U_l D_l U_l^T & \: \text{U is upper triangular, or}\\%
+  !>         A_l = L_l D_l L_l^T & \: \text{L is lower triangular }
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Matrix \f$A_l\f$ is defined by its triangular factors as returned by
+  !>     \ref rocsolver_ssytrf_batched "SYTRF_BATCHED".
+  !>     Note matrix \f$ D_l \f$ contains 1-by-1 or 2-by-2 blocks on the main diagonal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the factorization of matrix \f$ A \f$ is upper or lower
+  !>                 triangular.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the system, that is, the number of columns and rows of all A_l
+  !>                 matrices.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns
+  !>                 of all the matrices B_l.
+  !>     @param[in]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 The factors L_l (or U_l) and D_l of the factorization A_l returned by \ref
+  !>                 rocsolver_ssytrf_batched "SYTRF_BATCHED".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     ipiv pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).
+  !>                 Contains the vectors ipiv_l of pivot indices returned by \ref
+  !>                 rocsolver_ssytrf_batched "SYTRF_BATCHED".
+  !>     @param[in]
+  !>     strideP     rocblas_stride.
+  !>                 Stride from the start of one vector ipiv_l to the next one ipiv_(l+1).
+  !>                 There is no restriction for the value of strideP. The normal use case is
+  !>                 strideP >= n.
+  !>     @param[inout]
+  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldb*nrhs.
+  !>                 On entry, the right hand side matrices B_l.
+  !>                 On exit, the solution matrix X_l of each system in the batch.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of matrices B_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of instances (systems) in the batch.
+  interface rocsolver_ssytrs_batched
+    function rocsolver_ssytrs_batched_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_ssytrs_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrs_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsytrs_batched
+    function rocsolver_dsytrs_batched_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_dsytrs_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrs_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_csytrs_batched
+    function rocsolver_csytrs_batched_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_csytrs_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrs_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zsytrs_batched
+    function rocsolver_zsytrs_batched_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_zsytrs_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrs_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ssytrs_batched_64
+    function rocsolver_ssytrs_batched_64_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_ssytrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsytrs_batched_64
+    function rocsolver_dsytrs_batched_64_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_dsytrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_csytrs_batched_64
+    function rocsolver_csytrs_batched_64_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_csytrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zsytrs_batched_64
+    function rocsolver_zsytrs_batched_64_(handle,uplo,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_zsytrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYTRS_STRIDED_BATCHED functions solve a batch of systems of ``n`` linear
+  !>     equations
+  !>     on ``n`` variables in its factorized forms.
+  !>
+  !>     \details
+  !>     For each instance \f$ l \f$ in the batch, it solves the linear system \f$ A_l X_l = B_l
+  !>     \f$,
+  !>     where the n-by-n matrix A is symmetric and maybe indefinite,
+  !>     using one of the following factorizations, depending on the value of ``uplo``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = B_l & \: \text{where} \\%
+  !>         A_l = U_l D_l U_l^T & \: \text{U is upper triangular, or}\\%
+  !>         A_l = L_l D_l L_l^T & \: \text{L is lower triangular }
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Matrix \f$A_l\f$ is defined by its triangular factors as returned by
+  !>     \ref rocsolver_ssytrf_strided_batched "SYTRF_STRIDED_BATCHED".
+  !>     Note matrix \f$ D_l \f$ contains 1-by-1 or 2-by-2 blocks on the main diagonal.
+  !>
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the factorization of matrix \f$ A \f$ is upper or lower
+  !>                 triangular.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the system, that is, the number of columns and rows of all A_l
+  !>                 matrices.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns
+  !>                 of all the matrices B_l.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 The factors L_l (or U_l) and D_l of the factorization A_l returned by \ref
+  !>                 rocsolver_ssytrf_strided_batched "SYTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     ipiv pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).
+  !>                 Contains the vectors ipiv_l of pivot indices returned by \ref
+  !>                 rocsolver_ssytrf_strided_batched "SYTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     strideP     rocblas_stride.
+  !>                 Stride from the start of one vector ipiv_l to the next one ipiv_(l+1).
+  !>                 There is no restriction for the value of strideP. The normal use case is
+  !>                 strideP >= n.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (size depends on the value of strideB).
+  !>                 On entry, the right hand side matrices B_l.
+  !>                 On exit, the solution matrix X_l of each system in the batch.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of matrices B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. The normal use case is
+  !>                 strideB >= ldb*nrhs.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of instances (systems) in the batch.
+  interface rocsolver_ssytrs_strided_batched
+    function rocsolver_ssytrs_strided_batched_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_ssytrs_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrs_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsytrs_strided_batched
+    function rocsolver_dsytrs_strided_batched_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dsytrs_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrs_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_csytrs_strided_batched
+    function rocsolver_csytrs_strided_batched_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_csytrs_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrs_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zsytrs_strided_batched
+    function rocsolver_zsytrs_strided_batched_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zsytrs_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrs_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ssytrs_strided_batched_64
+    function rocsolver_ssytrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_ssytrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsytrs_strided_batched_64
+    function rocsolver_dsytrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dsytrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_csytrs_strided_batched_64
+    function rocsolver_csytrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_csytrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zsytrs_strided_batched_64
+    function rocsolver_zsytrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zsytrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GETRS_NPVT functions solve a system of n linear equations on ``n`` variables in
+  !>     its factorized form.
+  !>
+  !>     \details
+  !>     It solves one of the following systems, depending on the value of ``trans``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = B & \: \text{not transposed,}\\%
+  !>         A^T X = B & \: \text{transposed, or}\\%
+  !>         A^H X = B & \: \text{conjugate transposed.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Matrix ``A`` is defined by its triangular factors, as returned by \ref
+  !>     rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>
+  !>     @param[in]
+  !>     trans       rocblas_operation.
+  !>                 Specifies the form of the system of equations.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the system, that is, the number of columns and rows of A.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns
+  !>                 of the matrix B.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 The factors L and U of the factorization \f$A = LU\f$ returned by \ref
+  !>                 rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of A.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>                 On entry, the right hand side matrix B.
+  !>                 On exit, the solution matrix X.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of B.
+  interface rocsolver_sgetrs_npvt
+    function rocsolver_sgetrs_npvt_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_sgetrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_npvt_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_npvt
+    function rocsolver_dgetrs_npvt_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_dgetrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_npvt_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_npvt
+    function rocsolver_cgetrs_npvt_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_cgetrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_npvt_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_npvt
+    function rocsolver_zgetrs_npvt_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_zgetrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_npvt_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_sgetrs_npvt_64
+    function rocsolver_sgetrs_npvt_64_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_sgetrs_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_npvt_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_npvt_64
+    function rocsolver_dgetrs_npvt_64_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_dgetrs_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_npvt_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_npvt_64
+    function rocsolver_cgetrs_npvt_64_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_cgetrs_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_npvt_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_npvt_64
+    function rocsolver_zgetrs_npvt_64_(handle,trans,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_zgetrs_npvt_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_npvt_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  !>     \brief The GETRS_NPVT_BATCHED functions solve a batch of systems of ``n`` linear equations
+  !>     on ``n``
+  !>     variables in its factorized forms.
+  !>
+  !>     \details
+  !>     For each instance l in the batch, it solves one of the following systems, depending on the
+  !>     value of ``trans``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = B_l & \: \text{not transposed,}\\%
+  !>         A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\%
+  !>         A_l^H X_l^{} = B_l^{} & \: \text{conjugate transposed.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Matrix \f$A_l\f$ is defined by its triangular factors as returned by \ref
+  !>     rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>
+  !>     @param[in]
+  !>     trans       rocblas_operation.
+  !>                 Specifies the form of the system of equations of each instance in the batch.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the system, that is, the number of columns and rows of all A_l
+  !>                 matrices.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns
+  !>                 of all the matrices B_l.
+  !>     @param[in]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 The factors L_l and U_l of the factorization A_l = L_l*U_l returned by \ref
+  !>                 rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of matrices A_l.
+  !>     @param[inout]
+  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldb*nrhs.
+  !>                 On entry, the right hand side matrices B_l.
+  !>                 On exit, the solution matrix X_l of each system in the batch.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of matrices B_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of instances (systems) in the batch.
+  interface rocsolver_sgetrs_npvt_batched
+    function rocsolver_sgetrs_npvt_batched_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_sgetrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_npvt_batched
+    function rocsolver_dgetrs_npvt_batched_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_dgetrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_npvt_batched
+    function rocsolver_cgetrs_npvt_batched_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_cgetrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_npvt_batched
+    function rocsolver_zgetrs_npvt_batched_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_zgetrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrs_npvt_batched_64
+    function rocsolver_sgetrs_npvt_batched_64_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_sgetrs_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_npvt_batched_64
+    function rocsolver_dgetrs_npvt_batched_64_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_dgetrs_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_npvt_batched_64
+    function rocsolver_cgetrs_npvt_batched_64_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_cgetrs_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_npvt_batched_64
+    function rocsolver_zgetrs_npvt_batched_64_(handle,trans,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_zgetrs_npvt_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_npvt_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GETRS_NPVT_STRIDED_BATCHED functions solve a batch of systems of ``n`` linear
+  !>     equations
+  !>     on ``n`` variables in its factorized forms.
+  !>
+  !>     \details
+  !>     For each instance l in the batch, it solves one of the following systems, depending on the
+  !>     value of ``trans``:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = B_l & \: \text{not transposed,}\\%
+  !>         A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\%
+  !>         A_l^H X_l^{} = B_l^{} & \: \text{conjugate transposed.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     Matrix \f$A_l\f$ is defined by its triangular factors, as returned by \ref
+  !>     rocsolver_sgetrf_npvt_strided_batched "GETRF_NPVT_STRIDED_BATCHED".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>
+  !>     @param[in]
+  !>     trans       rocblas_operation.
+  !>                 Specifies the form of the system of equations of each instance in the batch.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order of the system, that is, the number of columns and rows of all A_l
+  !>                 matrices.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns
+  !>                 of all the matrices B_l.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 The factors L_l and U_l of the factorization A_l = L_l*U_l returned by \ref
+  !>                 rocsolver_sgetrf_npvt_strided_batched "GETRF_NPVT_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (size depends on the value of strideB).
+  !>                 On entry, the right hand side matrices B_l.
+  !>                 On exit, the solution matrix X_l of each system in the batch.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of matrices B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. The normal use case is
+  !>                 strideB >= ldb*nrhs.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of instances (systems) in the batch.
+  interface rocsolver_sgetrs_npvt_strided_batched
+    function rocsolver_sgetrs_npvt_strided_batched_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_sgetrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_npvt_strided_batched
+    function rocsolver_dgetrs_npvt_strided_batched_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dgetrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_npvt_strided_batched
+    function rocsolver_cgetrs_npvt_strided_batched_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_cgetrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_npvt_strided_batched
+    function rocsolver_zgetrs_npvt_strided_batched_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zgetrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_sgetrs_npvt_strided_batched_64
+    function rocsolver_sgetrs_npvt_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_sgetrs_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgetrs_npvt_strided_batched_64
+    function rocsolver_dgetrs_npvt_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dgetrs_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgetrs_npvt_strided_batched_64
+    function rocsolver_cgetrs_npvt_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_cgetrs_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgetrs_npvt_strided_batched_64
+    function rocsolver_zgetrs_npvt_strided_batched_64_(handle,trans,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zgetrs_npvt_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_npvt_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_spotf2_64
+    function rocsolver_spotf2_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotf2_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dpotf2_64
+    function rocsolver_dpotf2_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_dpotf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotf2_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cpotf2_64
+    function rocsolver_cpotf2_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_cpotf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zpotf2_64
+    function rocsolver_zpotf2_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_zpotf2_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_spotf2_batched_64
+    function rocsolver_spotf2_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dpotf2_batched_64
+    function rocsolver_dpotf2_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_dpotf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cpotf2_batched_64
+    function rocsolver_cpotf2_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_cpotf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zpotf2_batched_64
+    function rocsolver_zpotf2_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_zpotf2_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_spotf2_strided_batched_64
+    function rocsolver_spotf2_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dpotf2_strided_batched_64
+    function rocsolver_dpotf2_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_dpotf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cpotf2_strided_batched_64
+    function rocsolver_cpotf2_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_cpotf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zpotf2_strided_batched_64
+    function rocsolver_zpotf2_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_zpotf2_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_spotrf_64
+    function rocsolver_spotrf_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dpotrf_64
+    function rocsolver_dpotrf_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_dpotrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cpotrf_64
+    function rocsolver_cpotrf_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_cpotrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zpotrf_64
+    function rocsolver_zpotrf_64_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_zpotrf_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_spotrf_batched_64
+    function rocsolver_spotrf_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dpotrf_batched_64
+    function rocsolver_dpotrf_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_dpotrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cpotrf_batched_64
+    function rocsolver_cpotrf_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_cpotrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zpotrf_batched_64
+    function rocsolver_zpotrf_batched_64_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_zpotrf_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_spotrf_strided_batched_64
+    function rocsolver_spotrf_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dpotrf_strided_batched_64
+    function rocsolver_dpotrf_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_dpotrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cpotrf_strided_batched_64
+    function rocsolver_cpotrf_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_cpotrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zpotrf_strided_batched_64
+    function rocsolver_zpotrf_strided_batched_64_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_zpotrf_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t) :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_spotrs_64
+    function rocsolver_spotrs_64_(handle,uplo,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_spotrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_dpotrs_64
+    function rocsolver_dpotrs_64_(handle,uplo,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_dpotrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_cpotrs_64
+    function rocsolver_cpotrs_64_(handle,uplo,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_cpotrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_zpotrs_64
+    function rocsolver_zpotrs_64_(handle,uplo,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_zpotrs_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrs_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface rocsolver_spotrs_batched_64
+    function rocsolver_spotrs_batched_64_(handle,uplo,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_spotrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dpotrs_batched_64
+    function rocsolver_dpotrs_batched_64_(handle,uplo,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_dpotrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cpotrs_batched_64
+    function rocsolver_cpotrs_batched_64_(handle,uplo,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_cpotrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zpotrs_batched_64
+    function rocsolver_zpotrs_batched_64_(handle,uplo,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_zpotrs_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrs_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_spotrs_strided_batched_64
+    function rocsolver_spotrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_spotrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dpotrs_strided_batched_64
+    function rocsolver_dpotrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dpotrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cpotrs_strided_batched_64
+    function rocsolver_cpotrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_cpotrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zpotrs_strided_batched_64
+    function rocsolver_zpotrs_strided_batched_64_(handle,uplo,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zpotrs_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrs_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief GESDD computes the singular values and optionally the singular
+  !>     vectors of a general m-by-n matrix A (Singular Value Decomposition).
+  !>
+  !>     \details
+  !>     The SVD of matrix A is given by:
+  !>
+  !>     \f[
+  !>         A = U  S  V^H
+  !>     \f]
+  !>
+  !>     where the m-by-n matrix S is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of A. U and V are orthogonal
+  !>     (unitary) matrices. The first min(m,n) columns of U and V are the left and
+  !>     right singular vectors of A, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and it is controlled by
+  !>     the function arguments left_svect and right_svect as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, i.e. the rows of \f$V^H\f$.
+  !>
+  !>     left_svect and right_svect are `rocblas_svect` enums that can take the
+  !>     following values:
+  !>
+  !>     - rocblas_svect_all: the entire matrix U (or \f$V^H\f$) is computed,
+  !>     - rocblas_svect_singular: the singular vectors (first min(m,n)
+  !>       columns of U or rows of \f$V^H\f$) are computed, or
+  !>     - rocblas_svect_none: no columns (or rows) of U (or \f$V^H\f$) are computed, i.e.
+  !>       no singular vectors.
+  !>
+  !>     The singular values are computed by applying QR factorization to \f$AV\f$ if \f$m &ge; n\f$
+  !>     (resp. LQ factorization to \f$U^H A\f$ if \f$m < n\f$), where \f$V\f$ (resp. \f$U\f$) is
+  !>     found as the
+  !>     eigenvectors of \f$A^H A\f$ (resp. \f$A A^H\f$) using the Divide-and-Conquer eigensolver.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies how the left singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies how the right singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of matrix A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A.
+  !>                 On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A.
+  !>     @param[out]
+  !>     S           pointer to real type. Array on the GPU of dimension min(m,n).
+  !>                 The singular values of A in decreasing order.
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU of dimension ldu*min(m,n) if
+  !>                 left_svect is set to singular, or ldu*m when left_svect is equal to all.
+  !>                 The matrix of left singular vectors stored as columns. Not
+  !>                 referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu rocblas_int. ldu >= m if left_svect is set to all or singular; ldu >= 1 otherwise.
+  !>                 The leading dimension of U.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU of dimension ldv*n.
+  !>                 The matrix of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= n if right_svect is set to all; ldv >= min(m,n) if right_svect is
+  !>                 set to singular; or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  interface rocsolver_sgesdd
+    function rocsolver_sgesdd_(handle,left_svect,right_svect,m,n,A,lda,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_sgesdd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesdd_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgesdd
+    function rocsolver_dgesdd_(handle,left_svect,right_svect,m,n,A,lda,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_dgesdd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesdd_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgesdd
+    function rocsolver_cgesdd_(handle,left_svect,right_svect,m,n,A,lda,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_cgesdd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesdd_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgesdd
+    function rocsolver_zgesdd_(handle,left_svect,right_svect,m,n,A,lda,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_zgesdd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesdd_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief GESDD_BATCHED computes the singular values and optionally the
+  !>     singular vectors of a batch of general m-by-n matrix A (Singular Value
+  !>     Decomposition).
+  !>
+  !>     \details
+  !>     The SVD of matrix A_l in the batch is given by:
+  !>
+  !>     \f[
+  !>         A_l = U_l  S_l  V_l^H
+  !>     \f]
+  !>
+  !>     where the m-by-n matrix \f$S_l\f$ is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of \f$A_l\f$. \f$U_l\f$ and \f$V_l\f$ are
+  !>     orthogonal (unitary) matrices. The first min(m,n) columns of \f$U_l\f$ and \f$V_l\f$ are
+  !>     the left and right singular vectors of \f$A_l\f$, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and it is controlled by
+  !>     the function arguments left_svect and right_svect as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, i.e. the rows of \f$V_l^H\f$.
+  !>
+  !>     left_svect and right_svect are `rocblas_svect` enums that can take the
+  !>     following values:
+  !>
+  !>     - rocblas_svect_all: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
+  !>     - rocblas_svect_singular: the singular vectors (first min(m,n)
+  !>       columns of \f$U_l\f$ or rows of \f$V_l^H\f$) are computed, or
+  !>     - rocblas_svect_none: no columns (or rows) of \f$U_l\f$ (or \f$V_l^H\f$) are computed,
+  !>       i.e. no singular vectors.
+  !>
+  !>     The singular values are computed by applying QR factorization to \f$A_lV_l\f$ if m >= n
+  !>     (resp. LQ factorization to \f$U_l^H A_l\f$ if m < n), where \f$V_l\f$ (resp. \f$U_l\f$) is
+  !>     found as the eigenvectors of \f$A_l^H A_l\f$ (resp. \f$A_l A_l^H\f$) using the
+  !>     Divide-and-Conquer
+  !>     eigensolver.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies how the left singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies how the right singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of all matrices A_l in the batch.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of all matrices A_l in the batch.
+  !>     @param[inout]
+  !>     A           Array of pointers to type. Each pointer points to an array on
+  !>                 the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l.
+  !>                 On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A_l.
+  !>     @param[out]
+  !>     S pointer to real type. Array on the GPU (the size depends on the value of strideS).
+  !>                 The singular values of A_l in decreasing order.
+  !>     @param[in]
+  !>     strideS     rocblas_stride.
+  !>                 Stride from the start of one vector S_l to the next one S(l+1).
+  !>                 There is no restriction for the value of strideS.
+  !>                 Normal use case is strideS >= min(m,n).
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU (the side depends on the value of strideU).
+  !>                 The matrices U_l of left singular vectors stored as columns.
+  !>                 Not referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu rocblas_int. ldu >= m if left_svect is set to all or singular; ldu >= 1 otherwise.
+  !>                 The leading dimension of U_l.
+  !>     @param[in]
+  !>     strideU     rocblas_stride.
+  !>                 Stride from the start of one matrix U_l to the next one U(l+1).
+  !>                 There is no restriction for the value of strideU.
+  !>                 Normal use case is strideU >= ldu*min(m,n) if left_svect is set to singular,
+  !>                 or strideU >= ldu*m when left_svect is equal to all.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV).
+  !>                 The matrices V_l of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= n if right_svect is set to all; ldv >= min(m,n) if right_svect is
+  !>                 set to singular; or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>     @param[in]
+  !>     strideV     rocblas_stride.
+  !>                 Stride from the start of one matrix V_l to the next one V(l+1).
+  !>                 There is no restriction for the value of strideV.
+  !>                 Normal use case is strideV >= ldv*n.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgesdd_batched
+    function rocsolver_sgesdd_batched_(handle,left_svect,right_svect,m,n,A,lda,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_sgesdd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesdd_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgesdd_batched
+    function rocsolver_dgesdd_batched_(handle,left_svect,right_svect,m,n,A,lda,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_dgesdd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesdd_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgesdd_batched
+    function rocsolver_cgesdd_batched_(handle,left_svect,right_svect,m,n,A,lda,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_cgesdd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesdd_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgesdd_batched
+    function rocsolver_zgesdd_batched_(handle,left_svect,right_svect,m,n,A,lda,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_zgesdd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesdd_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief GESDD_STRIDED_BATCHED computes the singular values and optionally the
+  !>     singular vectors of a batch of general m-by-n matrix A (Singular Value
+  !>     Decomposition).
+  !>
+  !>     \details
+  !>     The SVD of matrix A_l in the batch is given by:
+  !>
+  !>     \f[
+  !>         A_l = U_l  S_l  V_l^H
+  !>     \f]
+  !>
+  !>     where the m-by-n matrix \f$S_l\f$ is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of \f$A_l\f$. \f$U_l\f$ and \f$V_l\f$ are
+  !>     orthogonal (unitary) matrices. The first min(m,n) columns of \f$U_l\f$ and \f$V_l\f$ are
+  !>     the left and right singular vectors of \f$A_l\f$, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and it is controlled by
+  !>     the function arguments left_svect and right_svect as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, i.e. the rows of \f$V_l^H\f$.
+  !>
+  !>     left_svect and right_svect are `rocblas_svect` enums that can take the
+  !>     following values:
+  !>
+  !>     - rocblas_svect_all: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
+  !>     - rocblas_svect_singular: the singular vectors (first min(m,n)
+  !>       columns of \f$U_l\f$ or rows of \f$V_l^H\f$) are computed, or
+  !>     - rocblas_svect_none: no columns (or rows) of \f$U_l\f$ (or \f$V_l^H\f$) are computed,
+  !>       i.e. no singular vectors.
+  !>
+  !>     The singular values are computed by applying QR factorization to \f$A_lV_l\f$ if m >= n
+  !>     (resp. LQ factorization to \f$U_l^H A_l\f$ if m < n), where \f$V_l\f$ (resp. \f$U_l\f$) is
+  !>     found as the eigenvectors of \f$A_l^H A_l\f$ (resp. \f$A_l A_l^H\f$) using the
+  !>     Divide-and-Conquer
+  !>     eigensolver.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies how the left singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies how the right singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of all matrices A_l in the batch.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of all matrices A_l in the batch.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l.
+  !>                 On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA.
+  !>                 Normal use case is strideA >= lda*n.
+  !>     @param[out]
+  !>     S pointer to real type. Array on the GPU (the size depends on the value of strideS).
+  !>                 The singular values of A_l in decreasing order.
+  !>     @param[in]
+  !>     strideS     rocblas_stride.
+  !>                 Stride from the start of one vector S_l to the next one S_(j+1).
+  !>                 There is no restriction for the value of strideS.
+  !>                 Normal use case is strideS >= min(m,n).
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU (the side depends on the value of strideU).
+  !>                 The matrices U_l of left singular vectors stored as columns.
+  !>                 Not referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu rocblas_int. ldu >= m if left_svect is set to all or singular; ldu >= 1 otherwise.
+  !>                 The leading dimension of U_l.
+  !>     @param[in]
+  !>     strideU     rocblas_stride.
+  !>                 Stride from the start of one matrix U_l to the next one U_(j+1).
+  !>                 There is no restriction for the value of strideU.
+  !>                 Normal use case is strideU >= ldu*min(m,n) if left_svect is set to singular,
+  !>                 or strideU >= ldu*m when left_svect is equal to all.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV).
+  !>                 The matrices V_l of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= n if right_svect is set to all; ldv >= min(m,n) if right_svect is
+  !>                 set to singular; or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>     @param[in]
+  !>     strideV     rocblas_stride.
+  !>                 Stride from the start of one matrix V_l to the next one V_(j+1).
+  !>                 There is no restriction for the value of strideV.
+  !>                 Normal use case is strideV >= ldv*n.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgesdd_strided_batched
+    function rocsolver_sgesdd_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_sgesdd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesdd_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgesdd_strided_batched
+    function rocsolver_dgesdd_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_dgesdd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesdd_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgesdd_strided_batched
+    function rocsolver_cgesdd_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_cgesdd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesdd_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgesdd_strided_batched
+    function rocsolver_zgesdd_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_zgesdd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesdd_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GESVDJ functions compute the singular values and optionally the singular
+  !>     vectors of a general ``m``-by-``n`` matrix ``A`` (Singular Value Decomposition).
+  !>
+  !>     \details
+  !>     The SVD of matrix ``A`` is given by:
+  !>
+  !>     \f[
+  !>         A = U  S  V^H
+  !>     \f]
+  !>
+  !>     where the ``m``-by-``n`` matrix S is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of ``A``. ``U`` and ``V`` are orthogonal
+  !>     (unitary) matrices. The first min(m,n) columns of ``U`` and ``V`` are the left and
+  !>     right singular vectors of ``A``, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and is controlled by
+  !>     the function arguments ``left_svect`` and ``right_svect``, as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, that is, the rows of \f$V^H\f$.
+  !>
+  !>     ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
+  !>     following values:
+  !>
+  !>     - ``rocblas_svect_all``: the entire matrix ``U`` (or \f$V^H\f$) is computed,
+  !>     - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
+  !>       columns of ``U`` or rows of \f$V^H\f$) are computed, or
+  !>     - ``rocblas_svect_none``: no columns (or rows) of ``U`` (or \f$V^H\f$) are computed, that
+  !>     is,
+  !>       no singular vectors.
+  !>
+  !>     The singular values are computed by applying QR factorization to \f$AV\f$ if \f$m &ge; n\f$
+  !>     (resp. LQ factorization to \f$U^H A\f$ if \f$m < n\f$), where \f$V\f$ (resp. \f$U\f$) is
+  !>     found as the
+  !>     eigenvectors of \f$A^H A\f$ (resp. \f$A A^H\f$) using the Jacobi eigenvalue algorithm.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies how the left singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies how the right singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of matrix A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A.
+  !>                 On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 \f$\mathrm{off}(A^H A) &le; \mathrm{norm}(A^H A) \cdot \mathrm{abstol}\f$
+  !>                 [resp. \f$\mathrm{off}(A A^H) &le; \mathrm{norm}(A A^H) \cdot
+  !>                 \mathrm{abstol}\f$]. If abstol <= 0,
+  !>                 then the tolerance will be set to machine precision.
+  !>     @param[out]
+  !>     residual    pointer to real type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of \f$A^H A\f$ (resp. \f$A
+  !>                 A^H\f$) at the final
+  !>                 iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to a rocblas_int on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm.
+  !>     @param[out]
+  !>     S           pointer to real type. Array on the GPU of dimension min(m,n).
+  !>                 The singular values of A in decreasing order.
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU of dimension ldu*min(m,n) if
+  !>                 left_svect is set to singular, or ldu*m when left_svect is equal to all.
+  !>                 The matrix of left singular vectors stored as columns. Not
+  !>                 referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu rocblas_int. ldu >= m if left_svect is set to all or singular, and ldu >= 1 otherwise.
+  !>                 The leading dimension of U.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU of dimension ldv*n.
+  !>                 The matrix of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= n if right_svect is set to all, and ldv >= min(m,n) if right_svect
+  !>     is
+  !>                 set to singular; or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  interface rocsolver_sgesvdj
+    function rocsolver_sgesvdj_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_sgesvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgesvdj
+    function rocsolver_dgesvdj_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_dgesvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgesvdj
+    function rocsolver_cgesvdj_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_cgesvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgesvdj
+    function rocsolver_zgesvdj_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,U,ldu,V,ldv,myInfo) bind(c, name="rocsolver_zgesvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The GESVDJ_BATCHED functions compute the singular values and optionally the
+  !>     singular vectors of a batch of general ``m``-by-``n`` matrices ``A`` (Singular Value
+  !>     Decomposition).
+  !>
+  !>     \details
+  !>     The SVD of matrix A_l in the batch is given by:
+  !>
+  !>     \f[
+  !>         A_l = U_l  S_l  V_l^H
+  !>     \f]
+  !>
+  !>     where the ``m``-by-``n`` matrix \f$S_l\f$ is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of \f$A_l\f$. \f$U_l\f$ and \f$V_l\f$ are
+  !>     orthogonal (unitary) matrices. The first min(m,n) columns of \f$U_l\f$ and \f$V_l\f$ are
+  !>     the left and right singular vectors of \f$A_l\f$, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and is controlled by
+  !>     the function arguments ``left_svect`` and ``right_svect``, as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, that is, the rows of \f$V_l^H\f$.
+  !>
+  !>     ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
+  !>     following values:
+  !>
+  !>     - ``rocblas_svect_all``: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
+  !>     - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
+  !>       columns of \f$U_l\f$ or rows of \f$V_l^H\f$) are computed, or
+  !>     - ``rocblas_svect_none``: no columns (or rows) of \f$U_l\f$ (or \f$V_l^H\f$) are computed,
+  !>       that is, no singular vectors.
+  !>
+  !>     The singular values are computed by applying QR factorization to \f$A_lV_l\f$ if ``m`` >=
+  !>     ``n``
+  !>     (resp. LQ factorization to \f$U_l^H A_l\f$ if ``m`` < ``n`` ), where \f$V_l\f$ (resp.
+  !>     \f$U_l\f$) is
+  !>     found as the eigenvectors of \f$A_l^H A_l\f$ (resp. \f$A_l A_l^H\f$) using the Jacobi
+  !>     eigenvalue algorithm.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies how the left singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies how the right singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of all matrices A_l in the batch.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of all matrices A_l in the batch.
+  !>     @param[inout]
+  !>     A           Array of pointers to type. Each pointer points to an array on
+  !>                 the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l.
+  !>                 On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A_l.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 \f$\mathrm{off}(A_l^H A_l) &le; \mathrm{norm}(A_l^H A_l) \cdot
+  !>                 \mathrm{abstol}\f$
+  !>                 [resp. \f$\mathrm{off}(A_l A_l^H) &le; \mathrm{norm}(A_l A_l^H) \cdot
+  !>                 \mathrm{abstol}\f$]. If abstol <= 0,
+  !>                 then the tolerance will be set to machine precision.
+  !>     @param[out]
+  !>     residual    pointer to real type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of \f$A_l^H A_l\f$ (resp.
+  !>                 \f$A_l A_l^H\f$) at the final
+  !>                 iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     S pointer to real type. Array on the GPU (the size depends on the value of strideS).
+  !>                 The singular values of A_l in decreasing order.
+  !>     @param[in]
+  !>     strideS     rocblas_stride.
+  !>                 Stride from the start of one vector S_l to the next one S(l+1).
+  !>                 There is no restriction for the value of strideS.
+  !>                 The normal use case is strideS >= min(m,n).
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU (the side depends on the value of strideU).
+  !>                 The matrices U_l of left singular vectors stored as columns.
+  !>                 Not referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu rocblas_int. ldu >= m if left_svect is set to all or singular, and ldu >= 1 otherwise.
+  !>                 The leading dimension of U_l.
+  !>     @param[in]
+  !>     strideU     rocblas_stride.
+  !>                 Stride from the start of one matrix U_l to the next one U(l+1).
+  !>                 There is no restriction for the value of strideU.
+  !>                 The normal use case is strideU >= ldu*min(m,n) if left_svect is set to
+  !>                 singular,
+  !>                 or strideU >= ldu*m when left_svect is equal to all.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV).
+  !>                 The matrices V_l of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= n if right_svect is set to all, and ldv >= min(m,n) if right_svect
+  !>     is
+  !>                 set to singular, or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>     @param[in]
+  !>     strideV     rocblas_stride.
+  !>                 Stride from the start of one matrix V_l to the next one V(l+1).
+  !>                 There is no restriction for the value of strideV.
+  !>                 The normal use case is strideV >= ldv*n.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgesvdj_batched
+    function rocsolver_sgesvdj_batched_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_sgesvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgesvdj_batched
+    function rocsolver_dgesvdj_batched_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_dgesvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgesvdj_batched
+    function rocsolver_cgesvdj_batched_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_cgesvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgesvdj_batched
+    function rocsolver_zgesvdj_batched_(handle,left_svect,right_svect,m,n,A,lda,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_zgesvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GESVDJ_STRIDED_BATCHED functions compute the singular values and optionally the
+  !>     singular vectors of a batch of general ``m``-by-``n`` matrices ``A`` (Singular Value
+  !>     Decomposition).
+  !>
+  !>     \details
+  !>     The SVD of matrix A_l in the batch is given by:
+  !>
+  !>     \f[
+  !>         A_l = U_l  S_l  V_l^H
+  !>     \f]
+  !>
+  !>     where the ``m``-by-``n`` matrix \f$S_l\f$ is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of \f$A_l\f$. \f$U_l\f$ and \f$V_l\f$ are
+  !>     orthogonal (unitary) matrices. The first min(m,n) columns of \f$U_l\f$ and \f$V_l\f$ are
+  !>     the left and right singular vectors of \f$A_l\f$, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and is controlled by
+  !>     the function arguments ``left_svect`` and ``right_svect``, as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, that is, the rows of \f$V_l^H\f$.
+  !>
+  !>     ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
+  !>     following values:
+  !>
+  !>     - ``rocblas_svect_all``: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
+  !>     - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
+  !>       columns of \f$U_l\f$ or rows of \f$V_l^H\f$) are computed, or
+  !>     - ``rocblas_svect_none``: no columns (or rows) of \f$U_l\f$ (or \f$V_l^H\f$) are computed,
+  !>       that is, no singular vectors.
+  !>
+  !>     The singular values are computed by applying QR factorization to \f$A_lV_l\f$ if ``m`` >=
+  !>     ``n``
+  !>     (resp. LQ factorization to \f$U_l^H A_l\f$ if ``m`` < ``n`` ), where \f$V_l\f$ (resp.
+  !>     \f$U_l\f$) is
+  !>     found as the eigenvectors of \f$A_l^H A_l\f$ (resp. \f$A_l A_l^H\f$) using the Jacobi
+  !>     eigenvalue algorithm.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies how the left singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies how the right singular vectors are computed.
+  !>                 rocblas_svect_overwrite is not supported.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of all matrices A_l in the batch.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of all matrices A_l in the batch.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l.
+  !>                 On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA.
+  !>                 The normal use case is strideA >= lda*n.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 \f$\mathrm{off}(A_l^H A_l) &le; \mathrm{norm}(A_l^H A_l) \cdot
+  !>                 \mathrm{abstol}\f$
+  !>                 [resp. \f$\mathrm{off}(A_l A_l^H) &le; \mathrm{norm}(A_l A_l^H) \cdot
+  !>                 \mathrm{abstol}\f$]. If abstol <= 0,
+  !>                 then the tolerance will be set to machine precision.
+  !>     @param[out]
+  !>     residual    pointer to real type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of \f$A_l^H A_l\f$ (resp.
+  !>                 \f$A_l A_l^H\f$) at the final
+  !>                 iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     S pointer to real type. Array on the GPU (the size depends on the value of strideS).
+  !>                 The singular values of A_l in decreasing order.
+  !>     @param[in]
+  !>     strideS     rocblas_stride.
+  !>                 Stride from the start of one vector S_l to the next one S_(j+1).
+  !>                 There is no restriction for the value of strideS.
+  !>                 The normal use case is strideS >= min(m,n).
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU (the side depends on the value of strideU).
+  !>                 The matrices U_l of left singular vectors stored as columns.
+  !>                 Not referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu rocblas_int. ldu >= m if left_svect is set to all or singular, and ldu >= 1 otherwise.
+  !>                 The leading dimension of U_l.
+  !>     @param[in]
+  !>     strideU     rocblas_stride.
+  !>                 Stride from the start of one matrix U_l to the next one U_(j+1).
+  !>                 There is no restriction for the value of strideU.
+  !>                 The normal use case is strideU >= ldu*min(m,n) if left_svect is set to
+  !>                 singular,
+  !>                 or strideU >= ldu*m when left_svect is equal to all.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV).
+  !>                 The matrices V_l of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= n if right_svect is set to all, and ldv >= min(m,n) if right_svect
+  !>     is
+  !>                 set to singular, or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>     @param[in]
+  !>     strideV     rocblas_stride.
+  !>                 Stride from the start of one matrix V_l to the next one V_(j+1).
+  !>                 There is no restriction for the value of strideV.
+  !>                 The normal use case is strideV >= ldv*n.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgesvdj_strided_batched
+    function rocsolver_sgesvdj_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_sgesvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgesvdj_strided_batched
+    function rocsolver_dgesvdj_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_dgesvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgesvdj_strided_batched
+    function rocsolver_cgesvdj_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_cgesvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgesvdj_strided_batched
+    function rocsolver_zgesvdj_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,S,strideS,U,ldu,strideU,V,ldv,strideV,myInfo,batch_count) bind(c, name="rocsolver_zgesvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GESVDX functions compute a set of singular values and optionally the
+  !>     corresponding singular
+  !>     vectors of a general ``m``-by-``n`` matrix ``A`` (partial Singular Value Decomposition).
+  !>
+  !>     \details
+  !>     This function computes all the singular values of ``A``, all the singular values in the
+  !>     half-open interval
+  !>     \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the
+  !>     value of ``srange``.
+  !>
+  !>     The full SVD of matrix ``A`` is given by:
+  !>
+  !>     \f[
+  !>         A = U  S  V^H
+  !>     \f]
+  !>
+  !>     where the ``m``-by-``n`` matrix ``S`` is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of ``A``. ``U`` and ``V`` are orthogonal
+  !>     (unitary) matrices. The first min(m,n) columns of ``U`` and ``V`` are the left and
+  !>     right singular vectors of ``A``, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and is controlled by
+  !>     the function arguments ``left_svect`` and ``right_svect``, as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, that is, the rows of \f$V^H\f$.
+  !>
+  !>     ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that, for this function, can
+  !>     take the
+  !>     following values:
+  !>
+  !>     - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
+  !>       columns of ``U`` or rows of \f$V^H\f$) corresponding to the computed singular values are
+  !>       computed,
+  !>     - ``rocblas_svect_none``: no columns (or rows) of ``U`` (or \f$V^H\f$) are computed, that
+  !>     is,
+  !>       no singular vectors.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies if the left singular vectors are computed.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies if the right singular vectors are computed.
+  !>     @param[in]
+  !>     srange      `rocblas_srange`.
+  !>                 Specifies the type of range or interval of the singular values to be computed.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of matrix A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A.
+  !>                 On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A.
+  !>     @param[in]
+  !>     vl          real type. 0 <= vl < vu.
+  !>                 The lower bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of A or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     vu          real type. 0 <= vl < vu.
+  !>                 The upper bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of A or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of A or the singular values in a half-open
+  !>                 interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of A or the singular values in a half-open
+  !>                 interval.
+  !>     @param[out]
+  !>     nsv         pointer to a rocblas_int on the GPU.
+  !>                 The total number of singular values found. If srange is rocblas_srange_all, nsv
+  !>                 = min(m,n).
+  !>                 If srange is rocblas_srange_index, nsv = iu - il + 1. Otherwise, 0 <= nsv <=
+  !>                 min(m,n).
+  !>     @param[out]
+  !>     S           pointer to real type. Array on the GPU of dimension nsv.
+  !>                 The first nsv elements contain the computed singular values in descending
+  !>                 order.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that S is large enough to hold min(m,n)
+  !>                 values.
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU of dimension ldu*nsv.
+  !>                 The matrix of left singular vectors stored as columns. Not
+  !>                 referenced if left_svect is set to none.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that U is large enough to hold min(m,n)
+  !>                 columns.
+  !>     @param[in]
+  !>     ldu         rocblas_int. ldu >= m if left_svect singular, and ldu >= 1 otherwise.
+  !>                 The leading dimension of U.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU of dimension ldv*n.
+  !>                 The matrix of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= nsv if right_svect is set to singular, or ldv >= 1 otherwise.
+  !>                 The leading dimension of V.
+  !>                 Note: If srange is rocblas_srange_value, then the value of nsv is not known in
+  !>                 advance.
+  !>                 In this case, the user should ensure that V is large enough to hold min(m,n)
+  !>                 rows.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension min(m,n).
+  !>                 If info = 0, the first nsv elements of ifail are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge, as returned by \ref rocsolver_sbdsvdx "BDSVDX".
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, i eigenvectors did not converge in \ref rocsolver_sbdsvdx
+  !>                 "BDSVDX". Their
+  !>                 indices are stored in ifail.
+  interface rocsolver_sgesvdx
+    function rocsolver_sgesvdx_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,U,ldu,V,ldv,ifail,myInfo) bind(c, name="rocsolver_sgesvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgesvdx
+    function rocsolver_dgesvdx_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,U,ldu,V,ldv,ifail,myInfo) bind(c, name="rocsolver_dgesvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgesvdx
+    function rocsolver_cgesvdx_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,U,ldu,V,ldv,ifail,myInfo) bind(c, name="rocsolver_cgesvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgesvdx
+    function rocsolver_zgesvdx_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,U,ldu,V,ldv,ifail,myInfo) bind(c, name="rocsolver_zgesvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The GESVDX_BATCHED functions compute a set of singular values and optionally the
+  !>     corresponding singular
+  !>     vectors of a batch of general ``m`` -by-``n`` matrices \f$A_l\f$ (partial Singular Value
+  !>     Decomposition).
+  !>
+  !>     \details
+  !>     This function computes all the singular values of \f$A_l\f$, all the singular values in the
+  !>     half-open interval
+  !>     \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the
+  !>     value of ``srange``.
+  !>
+  !>     The full SVD of matrix \f$A_l\f$  is given by:
+  !>
+  !>     \f[
+  !>         A_l = U_l  S_l  V_l^H
+  !>     \f]
+  !>
+  !>     where the ``m``-by-``n`` matrix \f$S_l\f$  is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of \f$A_l\f$. \f$U_l\f$ and \f$V_l\f$ are
+  !>     orthogonal
+  !>     (unitary) matrices. The first min(m,n) columns of \f$U_l\f$ and \f$V_l\f$ are the left and
+  !>     right singular vectors of \f$A_l\f$, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and is controlled by
+  !>     the function arguments ``left_svect`` and ``right_svect`` as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, that is, the rows of \f$V_l^H\f$.
+  !>
+  !>     ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that, for this function, can
+  !>     take the
+  !>     following values:
+  !>
+  !>     - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
+  !>       columns of \f$U_l\f$ or rows of \f$V_l^H\f$ ) corresponding to the computed singular
+  !>       values are computed,
+  !>     - ``rocblas_svect_none``: no columns (or rows) of \f$U_l\f$ (or \f$V_l^H\f$ ) are computed,
+  !>     that is,
+  !>       no singular vectors.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies if the left singular vectors are computed.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies if the right singular vectors are computed.
+  !>     @param[in]
+  !>     srange      `rocblas_srange`.
+  !>                 Specifies the type of range or interval of the singular values to be computed.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of matrix A_l.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of matrix A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l.
+  !>                 On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A_l.
+  !>     @param[in]
+  !>     vl          real type. 0 <= vl < vu.
+  !>                 The lower bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of A_l or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     vu          real type. 0 <= vl < vu.
+  !>                 The upper bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of A_l or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of A_l or the singular values in a half-open
+  !>                 interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of A_l or the singular values in a half-open
+  !>                 interval.
+  !>     @param[out]
+  !>     nsv         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of singular values found. If srange is rocblas_srange_all,
+  !>                 nsv[l] = min(m,n).
+  !>                 If srange is rocblas_srange_index, nsv[l] = iu - il + 1. Otherwise, 0 <= nsv[l]
+  !>                 <= min(m,n).
+  !>     @param[out]
+  !>     S pointer to real type. Array on the GPU (the size depends on the value of strideS).
+  !>                 The first nsv_l elements contain the computed singular values in descending
+  !>                 order.
+  !>                 (The remaining elements can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideS     rocblas_stride.
+  !>                 Stride from the start of one vector S_l to the next one S_(l+1).
+  !>                 There is no restriction for the value of strideS. The normal use case is
+  !>                 strideS >= nsv_l.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv_l is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that S_l is large enough to hold min(m,n)
+  !>                 values.
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU (the size depends on the value of strideU).
+  !>                 The matrix U_l of left singular vectors stored as columns. Not
+  !>                 referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu         rocblas_int. ldu >= m if left_svect singular, and ldu >= 1 otherwise.
+  !>                 The leading dimension of U_l.
+  !>     @param[in]
+  !>     strideU     rocblas_stride.
+  !>                 Stride from the start of one matrix U_l to the next one U_(l+1).
+  !>                 There is no restriction for the value of strideU. The normal use case is
+  !>                 strideU >= ldu*nsv_l.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv_l is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that U_l is large enough to hold min(m,n)
+  !>                 columns.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV).
+  !>                 The matrix V_l of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= nsv_l if right_svect is set to singular, or ldv >= 1 otherwise.
+  !>                 The leading dimension of V_l.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv_l is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that V_l is large enough to hold min(m,n)
+  !>                 rows.
+  !>     @param[in]
+  !>     strideV     rocblas_stride.
+  !>                 Stride from the start of one matrix V_l to the next one V_(l+1).
+  !>                 There is no restriction for the value of strideV. The normal use case is
+  !>                 strideV >= ldv*n.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nsv[l] elements of ifail_l are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge, as returned by \ref rocsolver_sbdsvdx "BDSVDX".
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= min(m,n).
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info[l] = 0, successful exit.
+  !>                 If info[l] = i > 0, i eigenvectors did not converge in \ref rocsolver_sbdsvdx
+  !>                 "BDSVDX". Their
+  !>                 indices are stored in ifail_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgesvdx_batched
+    function rocsolver_sgesvdx_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_sgesvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgesvdx_batched
+    function rocsolver_dgesvdx_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_dgesvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgesvdx_batched
+    function rocsolver_cgesvdx_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_cgesvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgesvdx_batched
+    function rocsolver_zgesvdx_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_zgesvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GESVDX_STRIDED_BATCHED functions compute a set of singular values and optionally
+  !>     the corresponding singular
+  !>     vectors of a batch of general ``m`` -by-``n`` matrices \f$A_l\f$ (partial Singular Value
+  !>     Decomposition).
+  !>
+  !>     \details
+  !>     This function computes all the singular values of \f$A_l\f$, all the singular values in the
+  !>     half-open interval
+  !>     \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the
+  !>     value of ``srange``.
+  !>
+  !>     The full SVD of matrix \f$A_l\f$  is given by:
+  !>
+  !>     \f[
+  !>         A_l = U_l  S_l  V_l^H
+  !>     \f]
+  !>
+  !>     where the ``m``-by-``n`` matrix \f$S_l\f$ is zero except, possibly, for its min(m,n)
+  !>     diagonal elements, which are the singular values of \f$A_l\f$. \f$U_l\f$ and \f$V_l\f$ are
+  !>     orthogonal
+  !>     (unitary) matrices. The first min(m,n) columns of \f$U_l\f$ and \f$V_l\f$ are the left and
+  !>     right singular vectors of \f$A_l\f$, respectively.
+  !>
+  !>     The computation of the singular vectors is optional and it is controlled by
+  !>     the function arguments ``left_svect`` and ``right_svect``, as described below. When
+  !>     computed, this function returns the transpose (or transpose conjugate) of the
+  !>     right singular vectors, that is, the rows of \f$V_l^H\f$.
+  !>
+  !>     ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that, for this function, can
+  !>     take the
+  !>     following values:
+  !>
+  !>     - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
+  !>       columns of \f$U_l\f$ or rows of \f$V_l^H\f$ ) corresponding to the computed singular
+  !>       values are computed,
+  !>     - ``rocblas_svect_none``: no columns (or rows) of \f$U_l\f$ (or \f$V_l^H\f$ ) are computed,
+  !>     that is,
+  !>       no singular vectors.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     left_svect  `rocblas_svect`.
+  !>                 Specifies if the left singular vectors are computed.
+  !>     @param[in]
+  !>     right_svect `rocblas_svect`.
+  !>                 Specifies if the right singular vectors are computed.
+  !>     @param[in]
+  !>     srange      `rocblas_srange`.
+  !>                 Specifies the type of range or interval of the singular values to be computed.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of matrix A_l.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of matrix A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l.
+  !>                 On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     vl          real type. 0 <= vl < vu.
+  !>                 The lower bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of A_l or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     vu          real type. 0 <= vl < vu.
+  !>                 The upper bound of the search interval [vl, vu). Ignored if srange indicates to
+  !>                 look
+  !>                 for all the singular values of A_l or the singular values within a set of
+  !>                 indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of A_l or the singular values in a half-open
+  !>                 interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest singular value to be computed. Ignored if srange
+  !>                 indicates to look
+  !>                 for all the singular values of A_l or the singular values in a half-open
+  !>                 interval.
+  !>     @param[out]
+  !>     nsv         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of singular values found. If srange is rocblas_srange_all,
+  !>                 nsv[l] = min(m,n).
+  !>                 If srange is rocblas_srange_index, nsv[l] = iu - il + 1. Otherwise, 0 <= nsv[l]
+  !>                 <= min(m,n).
+  !>     @param[out]
+  !>     S pointer to real type. Array on the GPU (the size depends on the value of strideS).
+  !>                 The first nsv_l elements contain the computed singular values in descending
+  !>                 order.
+  !>                 (The remaining elements can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideS     rocblas_stride.
+  !>                 Stride from the start of one vector S_l to the next one S_(l+1).
+  !>                 There is no restriction for the value of strideS. The normal use case is
+  !>                 strideS >= nsv_l.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv_l is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that S_l is large enough to hold min(m,n)
+  !>                 values.
+  !>     @param[out]
+  !>     U           pointer to type. Array on the GPU (the size depends on the value of strideU).
+  !>                 The matrix U_l of left singular vectors stored as columns. Not
+  !>                 referenced if left_svect is set to none.
+  !>     @param[in]
+  !>     ldu         rocblas_int. ldu >= m if left_svect singular, and ldu >= 1 otherwise.
+  !>                 The leading dimension of U_l.
+  !>     @param[in]
+  !>     strideU     rocblas_stride.
+  !>                 Stride from the start of one matrix U_l to the next one U_(l+1).
+  !>                 There is no restriction for the value of strideU. The normal use case is
+  !>                 strideU >= ldu*nsv_l.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv_l is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that U_l is large enough to hold min(m,n)
+  !>                 columns.
+  !>     @param[out]
+  !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV).
+  !>                 The matrix V_l of right singular vectors stored as rows (transposed /
+  !>                 conjugate-transposed).
+  !>                 Not referenced if right_svect is set to none.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= nsv_l if right_svect is set to singular, or ldv >= 1 otherwise.
+  !>                 The leading dimension of V_l.
+  !>                 - Note: If srange is rocblas_srange_value, then the value of nsv_l is not known
+  !>                 in advance.
+  !>                 In this case, the user should ensure that V_l is large enough to hold min(m,n)
+  !>                 rows.
+  !>     @param[in]
+  !>     strideV     rocblas_stride.
+  !>                 Stride from the start of one matrix V_l to the next one V_(l+1).
+  !>                 There is no restriction for the value of strideV. The normal use case is
+  !>                 strideV >= ldv*n.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nsv[l] elements of ifail_l are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge, as returned by \ref rocsolver_sbdsvdx "BDSVDX".
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= min(m,n).
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info[l] = 0, successful exit.
+  !>                 If info[l] = i > 0, i eigenvectors did not converge in \ref rocsolver_sbdsvdx
+  !>                 "BDSVDX". Their
+  !>                 indices are stored in ifail_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgesvdx_strided_batched
+    function rocsolver_sgesvdx_strided_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,strideA,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_sgesvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgesvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgesvdx_strided_batched
+    function rocsolver_dgesvdx_strided_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,strideA,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_dgesvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgesvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgesvdx_strided_batched
+    function rocsolver_cgesvdx_strided_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,strideA,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_cgesvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgesvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgesvdx_strided_batched
+    function rocsolver_zgesvdx_strided_batched_(handle,left_svect,right_svect,srange,m,n,A,lda,strideA,vl,vu,il,iu,nsv,S,strideS,U,ldu,strideU,V,ldv,strideV,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_zgesvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgesvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_svect_all)),value :: left_svect
+      integer(kind(rocblas_svect_all)),value :: right_svect
+      integer(kind(rocblas_srange_all)),value :: srange
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nsv
+      type(c_ptr),value :: S
+      integer(c_int64_t),value :: strideS
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      integer(c_int64_t),value :: strideU
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int64_t),value :: strideV
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVDJ functions compute the eigenvalues and optionally the eigenvectors of a
+  !>     real symmetric
+  !>     matrix ``A``.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and are returned in
+  !>     ascending order.
+  !>     The eigenvectors are computed using a divide-and-conquer approach depending on the value of
+  !>     ``evect``.
+  !>     The computed eigenvectors are orthonormal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed
+  !>                 and
+  !>                 the algorithm converged. Otherwise, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[out]
+  !>     D           pointer to type. Array on the GPU of dimension n.
+  !>                 The eigenvalues of A in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  interface rocsolver_ssyevdj
+    function rocsolver_ssyevdj_(handle,evect,uplo,n,A,lda,D,myInfo) bind(c, name="rocsolver_ssyevdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsyevdj
+    function rocsolver_dsyevdj_(handle,evect,uplo,n,A,lda,D,myInfo) bind(c, name="rocsolver_dsyevdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEEVDJ functions compute the eigenvalues and optionally the eigenvectors of a
+  !>     complex Hermitian
+  !>     matrix A.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and are returned in
+  !>     ascending order.
+  !>     The eigenvectors are computed using a divide-and-conquer approach depending on the value of
+  !>     ``evect``.
+  !>     The computed eigenvectors are orthonormal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the Hermitian matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed
+  !>                 and
+  !>                 the algorithm converged. Otherwise, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[out]
+  !>     D           pointer to real type. Array on the GPU of dimension n.
+  !>                 The eigenvalues of A in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  interface rocsolver_cheevdj
+    function rocsolver_cheevdj_(handle,evect,uplo,n,A,lda,D,myInfo) bind(c, name="rocsolver_cheevdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zheevdj
+    function rocsolver_zheevdj_(handle,evect,uplo,n,A,lda,D,myInfo) bind(c, name="rocsolver_zheevdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYEVDJ_BATCHED functions compute the eigenvalues and optionally the eigenvectors
+  !>     of a
+  !>     batch of real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and are returned in
+  !>     ascending order.
+  !>     The eigenvectors are computed using a divide-and-conquer approach depending on the value of
+  !>     ``evect``.
+  !>     The computed eigenvectors are orthonormal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[out]
+  !>     D           pointer to type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. The normal use case is
+  !>                 strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for A_l. If info[l] = 1, the algorithm did not
+  !>                 converge for A_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevdj_batched
+    function rocsolver_ssyevdj_batched_(handle,evect,uplo,n,A,lda,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_ssyevdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevdj_batched
+    function rocsolver_dsyevdj_batched_(handle,evect,uplo,n,A,lda,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_dsyevdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVDJ_BATCHED functions computes the eigenvalues and optionally the
+  !>     eigenvectors of a
+  !>     batch of complex Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and are returned in
+  !>     ascending order.
+  !>     The eigenvectors are computed using a divide-and-conquer approach depending on the value of
+  !>     ``evect``.
+  !>     The computed eigenvectors are orthonormal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the Hermitian matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[out]
+  !>     D pointer to real type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. The normal use case is
+  !>                 strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for A_l. If info[l] = 1, the algorithm did not
+  !>                 converge for A_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevdj_batched
+    function rocsolver_cheevdj_batched_(handle,evect,uplo,n,A,lda,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_cheevdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevdj_batched
+    function rocsolver_zheevdj_batched_(handle,evect,uplo,n,A,lda,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_zheevdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVDJ_STRIDED_BATCHED functions compute the eigenvalues and optionally the
+  !>     eigenvectors of a
+  !>     batch of real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and are returned in
+  !>     ascending order.
+  !>     The eigenvectors are computed using a divide-and-conquer approach depending on the value of
+  !>     ``evect``.
+  !>     The computed eigenvectors are orthonormal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           Pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[out]
+  !>     D           pointer to type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. The normal use case is
+  !>                 strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for A_l. If info[l] = 1, the algorithm did not
+  !>                 converge for A_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevdj_strided_batched
+    function rocsolver_ssyevdj_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_ssyevdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevdj_strided_batched
+    function rocsolver_dsyevdj_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_dsyevdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVDJ_STRIDED_BATCHED functions compute the eigenvalues and optionally the
+  !>     eigenvectors of a
+  !>     batch of complex Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and are returned in
+  !>     ascending order.
+  !>     The eigenvectors are computed using a divide-and-conquer approach depending on the value of
+  !>     ``evect``.
+  !>     The computed eigenvectors are orthonormal.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the Hermitian matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           Pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[out]
+  !>     D pointer to real type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. The normal use case is
+  !>                 strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for A_l. If info[l] = 1, the algorithm did not
+  !>                 converge for A_l.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevdj_strided_batched
+    function rocsolver_cheevdj_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_cheevdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevdj_strided_batched
+    function rocsolver_zheevdj_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_zheevdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVDJ functions compute the eigenvalues and (optionally) eigenvectors of
+  !>     a real generalized symmetric-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative Jacobi
+  !>     algorithm
+  !>     and returned in ascending order. The eigenvectors are computed using a divide-and-conquer
+  !>     algorithm,
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^T B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices A and B are stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) parts of A and B
+  !>                 are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the normalized matrix Z of eigenvectors if
+  !>                 they were computed
+  !>                 and the algorithm converged. Otherwise, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrix B. On exit,
+  !>                 the triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of matrix B.
+  !>     @param[out]
+  !>     D           pointer to type. Array on the GPU of dimension n.
+  !>                 The eigenvalues in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not positive definite.
+  interface rocsolver_ssygvdj
+    function rocsolver_ssygvdj_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,myInfo) bind(c, name="rocsolver_ssygvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsygvdj
+    function rocsolver_dsygvdj_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,myInfo) bind(c, name="rocsolver_dsygvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEGVDJ functions compute the eigenvalues and (optionally) eigenvectors of
+  !>     a complex generalized Hermitian-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative Jacobi
+  !>     algorithm
+  !>     and returned in ascending order. The eigenvectors are computed using a divide-and-conquer
+  !>     algorithm,
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^H B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices A and B are stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) parts of A and B
+  !>                 are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the normalized matrix Z of eigenvectors if
+  !>                 they were computed
+  !>                 and the algorithm converged. Otherwise, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrix B. On exit,
+  !>                 the triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of matrix B.
+  !>     @param[out]
+  !>     D           pointer to real type. Array on the GPU of dimension n.
+  !>                 The eigenvalues in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not positive definite.
+  interface rocsolver_chegvdj
+    function rocsolver_chegvdj_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,myInfo) bind(c, name="rocsolver_chegvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zhegvdj
+    function rocsolver_zhegvdj_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,myInfo) bind(c, name="rocsolver_zhegvdj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYGVDJ_BATCHED functions compute the eigenvalues and (optionally) eigenvectors
+  !>     of a
+  !>     batch of real generalized symmetric-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative Jacobi
+  !>     algorithm
+  !>     and returned in ascending order. The eigenvectors are computed using a divide-and-conquer
+  !>     algorithm,
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z_l of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^T_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^T_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices A_l and B_l are
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) parts of A_l and
+  !>                 B_l
+  !>                 are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A_l.
+  !>     @param[inout]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the normalized matrices Z_l of
+  !>                 eigenvectors if they were computed
+  !>                 and the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[inout]
+  !>     B array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit,
+  !>                 the triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of matrices B_l.
+  !>     @param[out]
+  !>     D           pointer to type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. Normal usage is strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not converge
+  !>                 for matrix A_l.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not positive
+  !>                 definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of eigenproblems in the batch.
+  interface rocsolver_ssygvdj_batched
+    function rocsolver_ssygvdj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_ssygvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvdj_batched
+    function rocsolver_dsygvdj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_dsygvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVDJ_BATCHED functions compute the eigenvalues and (optionally) eigenvectors
+  !>     of a
+  !>     batch of complex generalized Hermitian-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative Jacobi
+  !>     algorithm
+  !>     and returned in ascending order. The eigenvectors are computed using a divide-and-conquer
+  !>     algorithm,
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z_l of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^H_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^H_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices A_l and B_l are
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) parts of A_l and
+  !>                 B_l
+  !>                 are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A_l.
+  !>     @param[inout]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the normalized matrices Z_l of
+  !>                 eigenvectors if they were computed
+  !>                 and the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[inout]
+  !>     B array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit,
+  !>                 the triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of matrices B_l.
+  !>     @param[out]
+  !>     D pointer to real type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. Normal usage is strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not converge
+  !>                 for matrix A_l.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not positive
+  !>                 definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of eigenproblems in the batch.
+  interface rocsolver_chegvdj_batched
+    function rocsolver_chegvdj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_chegvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvdj_batched
+    function rocsolver_zhegvdj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_zhegvdj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVDJ_STRIDED_BATCHED functions compute the eigenvalues and (optionally)
+  !>     eigenvectors of a
+  !>     batch of real generalized symmetric-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative Jacobi
+  !>     algorithm
+  !>     and returned in ascending order. The eigenvectors are computed using a divide-and-conquer
+  !>     algorithm,
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z_l of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^T_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^T_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices A_l and B_l are
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) parts of A_l and
+  !>                 B_l
+  !>                 are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the normalized matrices Z_l of
+  !>                 eigenvectors if they were computed
+  !>                 and the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. Normal usage is strideA >=
+  !>                 lda*n.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit,
+  !>                 the triangular factor of B_l as returned by \ref
+  !>                 rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of matrices B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. Normal usage is strideB >=
+  !>                 ldb*n.
+  !>     @param[out]
+  !>     D           pointer to type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. Normal usage is strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not converge
+  !>                 for matrix A_l.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not positive
+  !>                 definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of eigenproblems in the batch.
+  interface rocsolver_ssygvdj_strided_batched
+    function rocsolver_ssygvdj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_ssygvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvdj_strided_batched
+    function rocsolver_dsygvdj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_dsygvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVDJ_STRIDED_BATCHED functions compute the eigenvalues and (optionally)
+  !>     eigenvectors of a
+  !>     batch of complex generalized Hermitian-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative Jacobi
+  !>     algorithm
+  !>     and returned in ascending order. The eigenvectors are computed using a divide-and-conquer
+  !>     algorithm,
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z_l of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^H_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^H_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices A_l and B_l are
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) parts of A_l and
+  !>                 B_l
+  !>                 are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the normalized matrices Z_l of
+  !>                 eigenvectors if they were computed
+  !>                 and the algorithm converged. Otherwise, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. Normal usage is strideA >=
+  !>                 lda*n.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit,
+  !>                 the triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of matrices B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. Normal usage is strideB >=
+  !>                 ldb*n.
+  !>     @param[out]
+  !>     D pointer to real type. Array on the GPU (the size depends on the value of strideD).
+  !>                 The eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideD     rocblas_stride.
+  !>                 Stride from the start of one vector D_l to the next one D_(l+1).
+  !>                 There is no restriction for the value of strideD. Normal usage is strideD >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit. If info[l] = 1, the algorithm did not converge
+  !>                 for matrix A_l.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not positive
+  !>                 definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of eigenproblems in the batch.
+  interface rocsolver_chegvdj_strided_batched
+    function rocsolver_chegvdj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_chegvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvdj_strided_batched
+    function rocsolver_zhegvdj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,myInfo,batch_count) bind(c, name="rocsolver_zhegvdj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVJ functions compute the eigenvalues and optionally the eigenvectors of a
+  !>     real symmetric
+  !>     matrix ``A``.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and returned in an order
+  !>     that
+  !>     depends on the value of ``esort``.
+  !>     The eigenvectors are computed depending on the value of ``evect``. The computed
+  !>     eigenvectors are orthonormal.
+  !>
+  !>     At the \f$k\f$-th iteration (or "sweep"), \f$A\f$ is transformed by a product of Jacobi
+  !>     rotations \f$V\f$ as
+  !>
+  !>     \f[
+  !>         A^{(k)} = V^H A^{(k-1)} V
+  !>     \f]
+  !>
+  !>     such that \f$off(A^{(k)}) < off(A^{(k-1)})\f$, where \f$A^{(0)} = A\f$ and
+  !>     \f$off(A^{(k)})\f$ is the
+  !>     Frobenius norm of the off-diagonal elements of \f$A^{(k)}\f$. As \f$off(A^{(k)})
+  !>     \rightarrow 0\f$, the
+  !>     diagonal elements of \f$A^{(k)}\f$ increasingly resemble the eigenvalues of \f$A\f$.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     esort       `rocblas_esort`.
+  !>                 Specifies the order of the returned eigenvalues. If esort is
+  !>                 rocblas_esort_ascending, then the eigenvalues are sorted and returned in
+  !>                 ascending order.
+  !>                 If esort is rocblas_esort_none, then the order of the returned eigenvalues is
+  !>                 unspecified.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed
+  !>                 and
+  !>                 the algorithm converged. Otherwise, the contents of A are unchanged.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 off(A)
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of A (that is, off(A)) at the
+  !>                 final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to a rocblas_int on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU of dimension n.
+  !>                 The eigenvalues of A in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  interface rocsolver_ssyevj
+    function rocsolver_ssyevj_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_ssyevj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsyevj
+    function rocsolver_dsyevj_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_dsyevj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEEVJ functions compute the eigenvalues and optionally the eigenvectors of a
+  !>     complex Hermitian
+  !>     matrix ``A``.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and returned in an order
+  !>     that
+  !>     depends on the value of ``esort``.
+  !>     The eigenvectors are computed depending on the value of ``evect``. The computed
+  !>     eigenvectors are orthonormal.
+  !>
+  !>     At the \f$k\f$-th iteration (or "sweep"), \f$A\f$ is transformed by a product of Jacobi
+  !>     rotations \f$V\f$ as
+  !>
+  !>     \f[
+  !>         A^{(k)} = V^H A^{(k-1)} V
+  !>     \f]
+  !>
+  !>     such that \f$off(A^{(k)}) < off(A^{(k-1)})\f$, where \f$A^{(0)} = A\f$ and
+  !>     \f$off(A^{(k)})\f$ is the
+  !>     Frobenius norm of the off-diagonal elements of \f$A^{(k)}\f$. As \f$off(A^{(k)})
+  !>     \rightarrow 0\f$, the
+  !>     diagonal elements of \f$A^{(k)}\f$ increasingly resemble the eigenvalues of \f$A\f$.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     esort       `rocblas_esort`.
+  !>                 Specifies the order of the returned eigenvalues. If esort is
+  !>                 rocblas_esort_ascending, then the eigenvalues are sorted and returned in
+  !>                 ascending order.
+  !>                 If esort is rocblas_esort_none, then the order of the returned eigenvalues is
+  !>                 unspecified.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the Hermitian matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed
+  !>                 and
+  !>                 the algorithm converged. Otherwise, the contents of A are unchanged.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 off(A)
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to real type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of A (that is, off(A)) at the
+  !>                 final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to a rocblas_int on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm.
+  !>     @param[out]
+  !>     W           pointer to real type. Array on the GPU of dimension n.
+  !>                 The eigenvalues of A in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit. If info = 1, the algorithm did not converge.
+  interface rocsolver_cheevj
+    function rocsolver_cheevj_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_cheevj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zheevj
+    function rocsolver_zheevj_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_zheevj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYEVJ_BATCHED functions compute the eigenvalues and optionally the eigenvectors
+  !>     of a batch of
+  !>     real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and returned in an order
+  !>     that
+  !>     depends on the value of ``esort``.
+  !>     The eigenvectors are computed depending on the value of ``evect``. The computed
+  !>     eigenvectors are orthonormal.
+  !>
+  !>     At the \f$k\f$-th iteration (or "sweep"), \f$A_l\f$ is transformed by a product of Jacobi
+  !>     rotations \f$V_l\f$ as
+  !>
+  !>     \f[
+  !>         A_l^{(k)} = V_l^H A_l^{(k-1)} V_l^{}
+  !>     \f]
+  !>
+  !>     such that \f$off(A_l^{(k)}) < off(A_l^{(k-1)})\f$, where \f$A_l^{(0)} = A_l\f$ and
+  !>     \f$off(A_l^{(k)})\f$ is the
+  !>     Frobenius norm of the off-diagonal elements of \f$A_l^{(k)}\f$. As \f$off(A_l^{(k)})
+  !>     \rightarrow 0\f$, the
+  !>     diagonal elements of \f$A_l^{(k)}\f$ increasingly resemble the eigenvalues of \f$A_l\f$.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     esort       `rocblas_esort`.
+  !>                 Specifies the order of the returned eigenvalues. If esort is
+  !>                 rocblas_esort_ascending, then the eigenvalues are sorted and returned in
+  !>                 ascending order.
+  !>                 If esort is rocblas_esort_none, then the order of the returned eigenvalues is
+  !>                 unspecified.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are unchanged.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 off(A_l)
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of A_l (that is, off(A_l)) at
+  !>                 the final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l. If info[l] = 1, the algorithm
+  !>                 did not converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevj_batched
+    function rocsolver_ssyevj_batched_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_ssyevj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevj_batched
+    function rocsolver_dsyevj_batched_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_dsyevj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVJ_BATCHED functions compute the eigenvalues and optionally the eigenvectors
+  !>     of a batch of
+  !>     complex Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and returned in an order
+  !>     that
+  !>     depends on the value of ``esort``.
+  !>     The eigenvectors are computed depending on the value of ``evect``. The computed
+  !>     eigenvectors are orthonormal.
+  !>
+  !>     At the \f$k\f$-th iteration (or "sweep"), \f$A_l\f$ is transformed by a product of Jacobi
+  !>     rotations \f$V_l\f$ as
+  !>
+  !>     \f[
+  !>         A_l^{(k)} = V_l^H A_l^{(k-1)} V_l^{}
+  !>     \f]
+  !>
+  !>     such that \f$off(A_l^{(k)}) < off(A_l^{(k-1)})\f$, where \f$A_l^{(0)} = A_l\f$ and
+  !>     \f$off(A_l^{(k)})\f$ is the
+  !>     Frobenius norm of the off-diagonal elements of \f$A_l^{(k)}\f$. As \f$off(A_l^{(k)})
+  !>     \rightarrow 0\f$, the
+  !>     diagonal elements of \f$A_l^{(k)}\f$ increasingly resemble the eigenvalues of \f$A_l\f$.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     esort       `rocblas_esort`.
+  !>                 Specifies the order of the returned eigenvalues. If esort is
+  !>                 rocblas_esort_ascending, then the eigenvalues are sorted and returned in
+  !>                 ascending order.
+  !>                 If esort is rocblas_esort_none, then the order of the returned eigenvalues is
+  !>                 unspecified.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the Hermitian matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are unchanged.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 off(A_l)
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to real type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of A_l (that is, off(A_l)) at
+  !>                 the final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l. If info[l] = 1, the algorithm
+  !>                 did not converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevj_batched
+    function rocsolver_cheevj_batched_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_cheevj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevj_batched
+    function rocsolver_zheevj_batched_(handle,esort,evect,uplo,n,A,lda,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_zheevj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVJ_STRIDED_BATCHED functions compute the eigenvalues and optionally the
+  !>     eigenvectors of a batch of
+  !>     real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and returned in an order
+  !>     that
+  !>     depends on the value of ``esort``.
+  !>     The eigenvectors are computed depending on the value of ``evect``. The computed
+  !>     eigenvectors are orthonormal.
+  !>
+  !>     At the \f$k\f$-th iteration (or "sweep"), \f$A_l\f$ is transformed by a product of Jacobi
+  !>     rotations \f$V_l\f$ as
+  !>
+  !>     \f[
+  !>         A_l^{(k)} = V_l^H A_l^{(k-1)} V_l^{}
+  !>     \f]
+  !>
+  !>     such that \f$off(A_l^{(k)}) < off(A_l^{(k-1)})\f$, where \f$A_l^{(0)} = A_l\f$ and
+  !>     \f$off(A_l^{(k)})\f$ is the
+  !>     Frobenius norm of the off-diagonal elements of \f$A_l^{(k)}\f$. As \f$off(A_l^{(k)})
+  !>     \rightarrow 0\f$, the
+  !>     diagonal elements of \f$A_l^{(k)}\f$ increasingly resemble the eigenvalues of \f$A_l\f$.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     esort       `rocblas_esort`.
+  !>                 Specifies the order of the returned eigenvalues. If esort is
+  !>                 rocblas_esort_ascending, then the eigenvalues are sorted and returned in
+  !>                 ascending order.
+  !>                 If esort is rocblas_esort_none, then the order of the returned eigenvalues is
+  !>                 unspecified.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are unchanged.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 off(A_l)
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of A_l (that is, off(A_l)) at
+  !>                 the final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l. If info[l] = 1, the algorithm
+  !>                 did not converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevj_strided_batched
+    function rocsolver_ssyevj_strided_batched_(handle,esort,evect,uplo,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_ssyevj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevj_strided_batched
+    function rocsolver_dsyevj_strided_batched_(handle,esort,evect,uplo,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_dsyevj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVJ_STRIDED_BATCHED functions compute the eigenvalues and optionally the
+  !>     eigenvectors of a batch of
+  !>     complex Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     The eigenvalues are found using the iterative Jacobi algorithm and returned in an order
+  !>     that
+  !>     depends on the value of ``esort``.
+  !>     The eigenvectors are computed depending on the value of ``evect``. The computed
+  !>     eigenvectors are orthonormal.
+  !>
+  !>     At the \f$k\f$-th iteration (or "sweep"), \f$A_l\f$ is transformed by a product of Jacobi
+  !>     rotations \f$V_l\f$ as
+  !>
+  !>     \f[
+  !>         A_l^{(k)} = V_l^H A_l^{(k-1)} V_l^{}
+  !>     \f]
+  !>
+  !>     such that \f$off(A_l^{(k)}) < off(A_l^{(k-1)})\f$, where \f$A_l^{(0)} = A_l\f$ and
+  !>     \f$off(A_l^{(k)})\f$ is the
+  !>     Frobenius norm of the off-diagonal elements of \f$A_l^{(k)}\f$. As \f$off(A_l^{(k)})
+  !>     \rightarrow 0\f$, the
+  !>     diagonal elements of \f$A_l^{(k)}\f$ increasingly resemble the eigenvalues of \f$A_l\f$.
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     esort       `rocblas_esort`.
+  !>                 Specifies the order of the returned eigenvalues. If esort is
+  !>                 rocblas_esort_ascending, then the eigenvalues are sorted and returned in
+  !>                 ascending order.
+  !>                 If esort is rocblas_esort_none, then the order of the returned eigenvalues is
+  !>                 unspecified.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the Hermitian matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the eigenvectors of A_l if they were
+  !>                 computed and
+  !>                 the algorithm converged. Otherwise, the contents of A_l are unchanged.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once
+  !>                 off(A_l)
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to real type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements of A_l (that is, off(A_l)) at
+  !>                 the final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The eigenvalues of A_l in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l. If info[l] = 1, the algorithm
+  !>                 did not converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevj_strided_batched
+    function rocsolver_cheevj_strided_batched_(handle,esort,evect,uplo,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_cheevj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevj_strided_batched
+    function rocsolver_zheevj_strided_batched_(handle,esort,evect,uplo,n,A,lda,strideA,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_zheevj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_esort_none)),value :: esort
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of a
+  !>     real symmetric matrix ``A``.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is rocblas_evect_original,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 If info = 0, the first nev elements of ifail are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge. Not referenced if evect is rocblas_evect_none.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, the algorithm did not converge. i columns of Z did not
+  !>                 converge.
+  interface rocsolver_ssyevx
+    function rocsolver_ssyevx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_ssyevx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsyevx
+    function rocsolver_dsyevx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_dsyevx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEEVX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of a
+  !>     Hermitian matrix ``A``.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is rocblas_evect_original,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to real type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 If info = 0, the first nev elements of ifail are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge. Not referenced if evect is rocblas_evect_none.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, the algorithm did not converge. i columns of Z did not
+  !>                 converge.
+  interface rocsolver_cheevx
+    function rocsolver_cheevx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_cheevx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zheevx
+    function rocsolver_zheevx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_zheevx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYEVX_BATCHED functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors
+  !>     of a batch of real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is rocblas_evect_original,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge. Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevx_batched
+    function rocsolver_ssyevx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_ssyevx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevx_batched
+    function rocsolver_dsyevx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_dsyevx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVX_BATCHED functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors
+  !>     of a batch of Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is rocblas_evect_original,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge. Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevx_batched
+    function rocsolver_cheevx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_cheevx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevx_batched
+    function rocsolver_zheevx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_zheevx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors
+  !>     of a batch of real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is rocblas_evect_original,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge. Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevx_strided_batched
+    function rocsolver_ssyevx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_ssyevx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevx_strided_batched
+    function rocsolver_dsyevx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_dsyevx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors
+  !>     of a batch of Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is rocblas_evect_original,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 Otherwise, contains the indices of those eigenvectors that failed
+  !>                 to converge. Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevx_strided_batched
+    function rocsolver_cheevx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_cheevx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevx_strided_batched
+    function rocsolver_zheevx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_zheevx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVJ functions compute the eigenvalues and (optionally) eigenvectors of
+  !>     a real generalized symmetric-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative
+  !>     Jacobi algorithm and returned in ascending order. The eigenvectors are computed
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^T B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A and B are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A and B are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the symmetric matrix A. On exit, if evect is original,
+  !>                 the normalized matrix Z of eigenvectors. If evect is none, then the upper or
+  !>                 lower triangular
+  !>                 part of the matrix A (including the diagonal) is destroyed,
+  !>                 depending on the value of uplo.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrix B. On exit, the
+  !>                 triangular factor of B, as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once the
+  !>                 residual
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements at the final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to a rocblas_int on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU of dimension n.
+  !>                 On exit, the eigenvalues in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = 1, the algorithm did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not
+  !>                 positive definite.
+  interface rocsolver_ssygvj
+    function rocsolver_ssygvj_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_ssygvj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsygvj
+    function rocsolver_dsygvj_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_dsygvj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEGVJ functions compute the eigenvalues and (optionally) eigenvectors of
+  !>     a complex generalized Hermitian-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative
+  !>     Jacobi algorithm and returned in ascending order. The eigenvectors are computed
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^H B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     \note
+  !>     In order to carry out calculations, this method could potentially synchronize the stream
+  !>     contained within the
+  !>     ``rocblas_handle``.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A and B are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A and B are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the Hermitian matrix A. On exit, if evect is original,
+  !>                 the normalized matrix Z of eigenvectors. If evect is none, then the upper or
+  !>                 lower triangular
+  !>                 part of the matrix A (including the diagonal) is destroyed,
+  !>                 depending on the value of uplo.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrix B. On exit, the
+  !>                 triangular factor of B, as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once the
+  !>                 residual
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to real type on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements at the final iteration.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to a rocblas_int on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm.
+  !>     @param[out]
+  !>     W           pointer to real type. Array on the GPU of dimension n.
+  !>                 On exit, the eigenvalues in increasing order.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = 1, the algorithm did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not
+  !>                 positive definite.
+  interface rocsolver_chegvj
+    function rocsolver_chegvj_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_chegvj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zhegvj
+    function rocsolver_zhegvj_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,myInfo) bind(c, name="rocsolver_zhegvj")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvj_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYGVJ_BATCHED functions compute the eigenvalues and (optionally)
+  !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative
+  !>     Jacobi algorithm and returned in ascending order. The eigenvectors are computed
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the symmetric matrices A_l. On exit, if evect is original,
+  !>                 the normalized matrix Z_l of eigenvectors. If evect is none, then the upper or
+  !>                 lower triangular
+  !>                 part of the matrices A_l (including the diagonal) are destroyed,
+  !>                 depending on the value of uplo.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A_l.
+  !>     @param[out]
+  !>     B array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l, as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once the
+  !>                 residual
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements at the final iteration for each
+  !>                 batch instance.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 On exit, the eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. Normal usage is strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch instance l.
+  !>                 If info[l] = 1, the algorithm did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssygvj_batched
+    function rocsolver_ssygvj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_ssygvj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvj_batched
+    function rocsolver_dsygvj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_dsygvj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVJ_BATCHED functions compute the eigenvalues and (optionally)
+  !>     eigenvectors of a batch of complex generalized Hermitian-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative
+  !>     Jacobi algorithm and returned in ascending order. The eigenvectors are computed
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the Hermitian matrices A_l. On exit, if evect is original,
+  !>                 the normalized matrix Z_l of eigenvectors. If evect is none, then the upper or
+  !>                 lower triangular
+  !>                 part of the matrices A_l (including the diagonal) are destroyed,
+  !>                 depending on the value of uplo.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A_l.
+  !>     @param[out]
+  !>     B array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l, as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once the
+  !>                 residual
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to real type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements at the final iteration for each
+  !>                 batch instance.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 On exit, the eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. Normal usage is strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = 1, the algorithm did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_chegvj_batched
+    function rocsolver_chegvj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_chegvj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvj_batched
+    function rocsolver_zhegvj_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_zhegvj_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvj_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVJ_STRIDED_BATCHED functions compute the eigenvalues and (optionally)
+  !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative
+  !>     Jacobi algorithm and returned in ascending order. The eigenvectors are computed
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the symmetric matrices A_l. On exit, if evect is original,
+  !>                 the normalized matrix Z_l of eigenvectors. If evect is none, then the upper or
+  !>                 lower triangular
+  !>                 part of the matrices A_l (including the diagonal) are destroyed,
+  !>                 depending on the value of uplo.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. Normal use is strideA >=
+  !>                 lda*n.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l, as returned by \ref rocsolver_spotrf_strided_batched
+  !>                 "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. Normal usage is strideB >=
+  !>                 ldb*n.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once the
+  !>                 residual
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements at the final iteration for each
+  !>                 batch instance.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 On exit, the eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. Normal usage is strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = 1, the algorithm did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssygvj_strided_batched
+    function rocsolver_ssygvj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_ssygvj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvj_strided_batched
+    function rocsolver_dsygvj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_dsygvj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVJ_STRIDED_BATCHED functions compute the eigenvalues and (optionally)
+  !>     eigenvectors of a batch of complex generalized Hermitian-definite eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvalues are found using the iterative
+  !>     Jacobi algorithm and returned in ascending order. The eigenvectors are computed
+  !>     depending on the value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the Hermitian matrices A_l. On exit, if evect is original,
+  !>                 the normalized matrix Z_l of eigenvectors. If evect is none, then the upper or
+  !>                 lower triangular
+  !>                 part of the matrices A_l (including the diagonal) are destroyed,
+  !>                 depending on the value of uplo.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. Normal usage is strideA >=
+  !>                 lda*n.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l, as returned by \ref rocsolver_spotrf_strided_batched
+  !>                 "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. Normal usage is strideB >=
+  !>                 ldb*n.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. The algorithm is considered to have converged once the
+  !>                 residual
+  !>                 is <= abstol. If abstol <= 0, then the tolerance will be set to machine
+  !>                 precision.
+  !>     @param[out]
+  !>     residual    pointer to real type. Array of batch_count scalars on the GPU.
+  !>                 The Frobenius norm of the off-diagonal elements at the final iteration for each
+  !>                 batch instance.
+  !>     @param[in]
+  !>     max_sweeps  rocblas_int. max_sweeps > 0.
+  !>                 Maximum number of sweeps (iterations) to be used by the algorithm.
+  !>     @param[out]
+  !>     n_sweeps    pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The actual number of sweeps (iterations) used by the algorithm for each batch
+  !>                 instance.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 On exit, the eigenvalues in increasing order.
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. Normal usage is strideW >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = 1, the algorithm did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_chegvj_strided_batched
+    function rocsolver_chegvj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_chegvj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvj_strided_batched
+    function rocsolver_zhegvj_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,abstol,residual,max_sweeps,n_sweeps,W,strideW,myInfo,batch_count) bind(c, name="rocsolver_zhegvj_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvj_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double),value :: abstol
+      type(c_ptr),value :: residual
+      integer(c_int),value :: max_sweeps
+      type(c_ptr),value :: n_sweeps
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of
+  !>     a real generalized symmetric-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^T B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A and B are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A and B are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrix B. On exit, the
+  !>                 triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 If info = 0, the first nev elements of ifail are zero.
+  !>                 If info = i <= n, ifail contains the indices of the i eigenvectors that failed
+  !>                 to converge.
+  !>                 Not referenced if evect is rocblas_evect_none.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i <= n, i columns of Z did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not
+  !>                 positive definite.
+  interface rocsolver_ssygvx
+    function rocsolver_ssygvx_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_ssygvx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsygvx
+    function rocsolver_dsygvx_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_dsygvx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEGVX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of
+  !>     a complex generalized Hermitian-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^H B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A and B are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A and B are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrix B. On exit, the
+  !>                 triangular factor of B, as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to real type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     ifail       pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 If info = 0, the first nev elements of ifail are zero.
+  !>                 If info = i <= n, ifail contains the indices of the i eigenvectors that failed
+  !>                 to converge.
+  !>                 Not referenced if evect is rocblas_evect_none.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i <= n, i columns of Z did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not
+  !>                 positive definite.
+  interface rocsolver_chegvx
+    function rocsolver_chegvx_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_chegvx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zhegvx
+    function rocsolver_zhegvx_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,Z,ldz,ifail,myInfo) bind(c, name="rocsolver_zhegvx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYGVX_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of real generalized symmetric-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[out]
+  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 If info[l] = i <= n, ifail_l contains the indices of the i eigenvectors that
+  !>                 failed
+  !>                 to converge.
+  !>                 Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch instance l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssygvx_batched
+    function rocsolver_ssygvx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_ssygvx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvx_batched
+    function rocsolver_dsygvx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_dsygvx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVX_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of complex generalized Hermitian-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[out]
+  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 If info[l] = i <= n, ifail_l contains the indices of the i eigenvectors that
+  !>                 failed
+  !>                 to converge.
+  !>                 Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch instance l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_chegvx_batched
+    function rocsolver_chegvx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_chegvx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvx_batched
+    function rocsolver_zhegvx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_zhegvx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of real generalized symmetric-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_strided_batched
+  !>                 "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. The normal use case is
+  !>                 strideB >= ldb*n.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 If info[l] = i <= n, ifail_l contains the indices of the i eigenvectors that
+  !>                 failed
+  !>                 to converge.
+  !>                 Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssygvx_strided_batched
+    function rocsolver_ssygvx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_ssygvx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvx_strided_batched
+    function rocsolver_dsygvx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_dsygvx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of complex generalized Hermitian-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_strided_batched
+  !>                 "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. The normal use case is
+  !>                 strideB >= ldb*n.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     abstol      real type.
+  !>                 The absolute tolerance. An eigenvalue is considered to be located if it lies
+  !>                 in an interval whose width is <= abstol. If abstol is negative, then
+  !>                 machine-epsilon times
+  !>                 the 1-norm of the tridiagonal form of A_l will be used as the tolerance. If
+  !>                 abstol=0, then the tolerance will be set
+  !>                 to twice the underflow threshold. This is the tolerance that could get the most
+  !>                 accurate results.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, as all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     ifail pointer to rocblas_int. Array on the GPU (the size depends on the value of strideF).
+  !>                 If info[l] = 0, the first nev[l] elements of ifail_l are zero.
+  !>                 If info[l] = i <= n, ifail_l contains the indices of the i eigenvectors that
+  !>                 failed
+  !>                 to converge.
+  !>                 Not referenced if evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     strideF     rocblas_stride.
+  !>                 Stride from the start of one vector ifail_l to the next one ifail_(l+1).
+  !>                 There is no restriction for the value of strideF. The normal use case is
+  !>                 strideF >= n.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_chegvx_strided_batched
+    function rocsolver_chegvx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_chegvx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_float),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvx_strided_batched
+    function rocsolver_zhegvx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,abstol,nev,W,strideW,Z,ldz,strideZ,ifail,strideF,myInfo,batch_count) bind(c, name="rocsolver_zhegvx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      real(c_double),value :: abstol
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: ifail
+      integer(c_int64_t),value :: strideF
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !> //!
+  !>
+  !>     \brief The GEBLTTRF_NPVT functions compute the LU factorization of a block tridiagonal
+  !>     matrix without partial pivoting.
+  !>
+  !>     \details The LU factorization of a block tridiagonal matrix
+  !>
+  !>     \f[
+  !>         M = \left[\begin{array}{ccccc}
+  !>         B_1 & C_1    &         &         &        \\%
+  !>         A_1 & B_2    & C_2     &         &        \\%
+  !>             & \ddots & \ddots  & \ddots  &        \\%
+  !>             &        & A_{n-2} & B_{n-1} & C_{n-1}\\%
+  !>             &        &         & A_{n-1} & B_n
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     with \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, can be represented as
+  !>
+  !>     \f[
+  !>         M = \left[\begin{array}{cccc}
+  !>         E_1 &        &         &    \\%
+  !>         A_1 & E_2    &         &    \\%
+  !>             & \ddots & \ddots  &    \\%
+  !>             &        & A_{n-1} & E_n
+  !>         \end{array}\right] \left[\begin{array}{cccc}
+  !>         I & F_1    &        &        \\%
+  !>           & \ddots & \ddots &        \\%
+  !>           &        & I      & F_{n-1}\\%
+  !>           &        &        & I
+  !>         \end{array}\right] = LU
+  !>     \f]
+  !>
+  !>     where the blocks \f$E_i\f$ and \f$F_i\f$ are general blocks of size ``nb``. This function
+  !>     returns
+  !>     diagonal blocks \f$E_i\f$ in factorized form, i.e. \f$E_i=(L_i+I)U_i\f$ where \f$L_i\f$ is
+  !>     strictly lower triangular
+  !>     and \f$U_i\f$ is upper triangular.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of the matrix.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of dimension lda*nb*(nblocks-1).
+  !>                 Contains the blocks A_i, arranged one after the other.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= nb.
+  !>                 Specifies the leading dimension of blocks A_i.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nb*nblocks.
+  !>                 On entry, contains the blocks B_i, arranged one after the other.
+  !>                 On exit, it is overwritten by L_i + U_i, where L_i and U_i are the factors of
+  !>                 E_i as returned by
+  !>                 \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= nb.
+  !>                 Specifies the leading dimension of blocks B_i.
+  !>     @param[inout]
+  !>     C           pointer to type. Array on the GPU of dimension ldc*nb*(nblocks-1).
+  !>                 On entry, contains the blocks C_i, arranged one after the other.
+  !>                 On exit, it is overwritten by blocks F_i.
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= nb.
+  !>                 Specifies the leading dimension of blocks C_i.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, the matrix is singular.
+  interface rocsolver_sgeblttrf_npvt
+    function rocsolver_sgeblttrf_npvt_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo) bind(c, name="rocsolver_sgeblttrf_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrf_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrf_npvt
+    function rocsolver_dgeblttrf_npvt_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo) bind(c, name="rocsolver_dgeblttrf_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrf_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrf_npvt
+    function rocsolver_cgeblttrf_npvt_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo) bind(c, name="rocsolver_cgeblttrf_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrf_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrf_npvt
+    function rocsolver_zgeblttrf_npvt_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo) bind(c, name="rocsolver_zgeblttrf_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrf_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRF_NPVT_BATCHED functions compute the LU factorization of a batch of block
+  !>     tridiagonal matrices without
+  !>     partial pivoting.
+  !>
+  !>     \details The LU factorization of a block tridiagonal matrix \f$M_l\f$ in the batch
+  !>
+  !>     \f[
+  !>         M_l = \left[\begin{array}{ccccc}
+  !>         B_{l1} & C_{l1} &            &            &            \\%
+  !>         A_{l1} & B_{l2} & C_{l2}     &            &            \\%
+  !>                & \ddots & \ddots     & \ddots     &            \\%
+  !>                &        & A_{l(n-2)} & B_{l(n-1)} & C_{l(l-1)} \\%
+  !>                &        &            & A_{l(n-1)} & B_{ln}
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     with \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, can be represented as
+  !>
+  !>     \f[
+  !>         M_l = \left[\begin{array}{cccc}
+  !>         E_{l1} &        &            &      \\%
+  !>         A_{l1} & E_{l2} &            &      \\%
+  !>                & \ddots & \ddots     &      \\%
+  !>                &        & A_{l(n-1)} & E_{ln}
+  !>         \end{array}\right] \left[\begin{array}{cccc}
+  !>         I & F_{l1}  &          &            \\%
+  !>           & \ddots  & \ddots   &            \\%
+  !>           &         & I        & F_{l(n-1)} \\%
+  !>           &         &          & I
+  !>         \end{array}\right] = L_l U_l
+  !>     \f]
+  !>
+  !>     where the blocks \f$E_{li}\f$ and \f$F_{li}\f$ are general blocks of size ``nb``. This
+  !>     function returns
+  !>     diagonal blocks \f$E_{li}\f$ in factorized form, i.e. \f$E_{li}=(L_{li}+I)U_{li}\f$ where
+  !>     \f$L_{li}\f$ is strictly lower triangular
+  !>     and \f$U_{li}\f$ is upper triangular.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of each matrix in the batch.
+  !>     @param[in]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 lda*nb*(nblocks-1).
+  !>                 Contains the blocks A_{li}, arranged one after the other.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= nb.
+  !>                 Specifies the leading dimension of blocks A_{li}.
+  !>     @param[inout]
+  !>     B array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 ldb*nb*nblocks.
+  !>                 On entry, contains the blocks B_{li}, arranged one after the other.
+  !>                 On exit, it is overwritten by L_{li} + U_{li}, where L_{li} and U_{li} are the
+  !>                 factors of E_{li} as returned by
+  !>                 \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= nb.
+  !>                 Specifies the leading dimension of blocks B_{li}.
+  !>     @param[inout]
+  !>     C array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 ldc*nb*(nblocks-1).
+  !>                 On entry, contains the blocks C_{li}, arranged one after the other.
+  !>                 On exit, it is overwritten by blocks F_{li}.
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= nb.
+  !>                 Specifies the leading dimension of blocks C_{li}.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of l-th batch instance.
+  !>                 If info[l] = i > 0, the l-th batch instance is singular.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgeblttrf_npvt_batched
+    function rocsolver_sgeblttrf_npvt_batched_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo,batch_count) bind(c, name="rocsolver_sgeblttrf_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrf_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrf_npvt_batched
+    function rocsolver_dgeblttrf_npvt_batched_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo,batch_count) bind(c, name="rocsolver_dgeblttrf_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrf_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrf_npvt_batched
+    function rocsolver_cgeblttrf_npvt_batched_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo,batch_count) bind(c, name="rocsolver_cgeblttrf_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrf_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrf_npvt_batched
+    function rocsolver_zgeblttrf_npvt_batched_(handle,nb,nblocks,A,lda,B,ldb,C,ldc,myInfo,batch_count) bind(c, name="rocsolver_zgeblttrf_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrf_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRF_NPVT_STRIDED_BATCHED functions compute the LU factorization of a batch
+  !>     of block tridiagonal
+  !>     matrices without partial pivoting.
+  !>
+  !>     \details The LU factorization of a block tridiagonal matrix \f$M_l\f$ in the batch
+  !>
+  !>     \f[
+  !>         M_l = \left[\begin{array}{ccccc}
+  !>         B_{l1} & C_{l1}     &            &            &             \\%
+  !>         A_{l1} & B_{l2}     & C_{l2}     &            &             \\%
+  !>                & \ddots     & \ddots     & \ddots     &             \\%
+  !>                &            & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}  \\%
+  !>                &            &            & A_{l(n-1)} & B_{ln}
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     with \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, can be represented as
+  !>
+  !>     \f[
+  !>         M_l = \left[\begin{array}{cccc}
+  !>         E_{l1} &        &            &       \\%
+  !>         A_{l1} & E_{l2} &            &       \\%
+  !>                & \ddots & \ddots     &       \\%
+  !>                &        & A_{l(n-1)} & E_{ln}
+  !>         \end{array}\right] \left[\begin{array}{cccc}
+  !>         I & F_{l1} &         &             \\%
+  !>           & \ddots & \ddots  &             \\%
+  !>           &        & I       & F_{l(n-1)}  \\%
+  !>           &        &         & I
+  !>         \end{array}\right] = L_l U_l
+  !>     \f]
+  !>
+  !>     where the blocks \f$E_{li}\f$ and \f$F_{li}\f$ are general blocks of size ``nb``. This
+  !>     function returns
+  !>     diagonal blocks \f$E_{li}\f$ in factorized form, i.e. \f$E_{li}=(L_{li}+I)U_{li}\f$ where
+  !>     \f$L_{li}\f$ is strictly lower triangular
+  !>     and \f$U_{li}\f$ is upper triangular.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of each matrix in the batch.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 Contains the blocks A_{li}, arranged one after the other.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= nb.
+  !>                 Specifies the leading dimension of blocks A_{li}.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one block A_{li} to the same block in the next batch
+  !>                 instance A_{(l+1)i}.
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >=
+  !>                 lda*nb*(nblocks-1).
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, contains the blocks B_{li}, arranged one after the other.
+  !>                 On exit, it is overwritten by L_{li} + U_{li}, where L_{li} and U_{li} are the
+  !>                 factors of E_{li} as returned by
+  !>                 \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= nb.
+  !>                 Specifies the leading dimension of matrix blocks B_{li}.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one block B_{li} to the same block in the next batch
+  !>                 instance B_{(l+1)i}.
+  !>                 There is no restriction for the value of strideB. The normal use case is
+  !>                 strideB >=
+  !>                 ldb*nb*nblocks.
+  !>     @param[inout]
+  !>     C           pointer to type. Array on the GPU (the size depends on the value of strideC).
+  !>                 On entry, contains the blocks C_{li}, arranged one after the other.
+  !>                 On exit, it is overwritten by blocks F_{li}.
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= nb.
+  !>                 Specifies the leading dimension of matrix blocks C_{li}.
+  !>     @param[in]
+  !>     strideC     rocblas_stride.
+  !>                 Stride from the start of one block C_{li} to the same block in the next batch
+  !>                 instance C_{(l+1)i}.
+  !>                 There is no restriction for the value of strideC. The normal use case is
+  !>                 strideC >=
+  !>                 ldc*nb*(nblocks-1).
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of l-th batch instance.
+  !>                 If info[l] = i > 0, the l-th batch instance is singular.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgeblttrf_npvt_strided_batched
+    function rocsolver_sgeblttrf_npvt_strided_batched_(handle,nb,nblocks,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_sgeblttrf_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrf_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrf_npvt_strided_batched
+    function rocsolver_dgeblttrf_npvt_strided_batched_(handle,nb,nblocks,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_dgeblttrf_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrf_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrf_npvt_strided_batched
+    function rocsolver_cgeblttrf_npvt_strided_batched_(handle,nb,nblocks,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_cgeblttrf_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrf_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrf_npvt_strided_batched
+    function rocsolver_zgeblttrf_npvt_strided_batched_(handle,nb,nblocks,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_zgeblttrf_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrf_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRF_NPVT_INTERLEAVED_BATCHED functions compute the LU factorization of a
+  !>     batch of block tridiagonal
+  !>     matrices without partial pivoting.
+  !>
+  !>     \details The LU factorization of a block tridiagonal matrix \f$M_l\f$ in the batch
+  !>
+  !>     \f[
+  !>         M_l = \left[\begin{array}{ccccc}
+  !>         B_{l1} & C_{l1}   &            &            &           \\%
+  !>         A_{l1} & B_{l2}   & C_{l2}     &            &           \\%
+  !>                & \ddots   & \ddots     & \ddots     &           \\%
+  !>                &          & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\%
+  !>                &          &            & A_{l(n-1)} & B_{ln}
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     with \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, can be represented as
+  !>
+  !>     \f[
+  !>         M_l = \left[\begin{array}{cccc}
+  !>         E_{l1} &         &            &     \\%
+  !>         A_{l1} & E_{l2}  &            &     \\%
+  !>                & \ddots  & \ddots     &     \\%
+  !>                &         & A_{l(n-1)} & E_{ln}
+  !>         \end{array}\right] \left[\begin{array}{cccc}
+  !>         I & F_{l1}  &        &            \\%
+  !>           & \ddots  & \ddots &            \\%
+  !>           &         & I      & F_{l(n-1)} \\%
+  !>           &         &        & I
+  !>         \end{array}\right] = L_l U_l
+  !>     \f]
+  !>
+  !>     where the blocks \f$E_{li}\f$ and \f$F_{li}\f$ are general blocks of size ``nb``. This
+  !>     function returns
+  !>     diagonal blocks \f$E_{li}\f$ in factorized form, i.e. \f$E_{li}=(L_{li}+I)U_{li}\f$ where
+  !>     \f$L_{li}\f$ is strictly lower triangular
+  !>     and \f$U_{li}\f$ is upper triangular.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of each matrix in the batch.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 Contains the blocks A_{li}, arranged one after the other.
+  !>     @param[in]
+  !>     inca        rocblas_int. inca > 0.
+  !>                 Stride from the start of one row of A_{li} to the next. The normal use cases
+  !>                 are
+  !>                 inca = 1 (equivalent to the strided batched case) or inca = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= inca * nb.
+  !>                 Specifies the leading dimension of blocks A_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of A_{li} to the next.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one block A_{li} to the same block in the next batch
+  !>                 instance A_{(l+1)i}.
+  !>                 There is no restriction for the value of strideA. The normal use cases are
+  !>                 strideA >=
+  !>                 lda*nb*(nblocks-1) (equivalent to the strided batched case) or strideA = 1 (for
+  !>                 an interleaved batched case).
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, contains the blocks B_{li}, arranged one after the other.
+  !>                 On exit, it is overwritten by L_{li} + U_{li}, where L_{li} and U_{li} are the
+  !>                 factors of E_{li} as returned by
+  !>                 \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     @param[in]
+  !>     incb        rocblas_int. incb > 0.
+  !>                 Stride from the start of one row of B_{li} to the next. The normal use cases
+  !>                 are
+  !>                 incb = 1 (equivalent to the strided batched case) or incb = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= incb * nb.
+  !>                 Specifies the leading dimension of blocks B_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of B_{li} to the next.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one block B_{li} to the same block in the next batch
+  !>                 instance B_{(l+1)i}.
+  !>                 There is no restriction for the value of strideB. The normal use cases are
+  !>                 strideB >=
+  !>                 ldb*nb*nblocks (equivalent to the strided batched case) or strideB = 1 (for an
+  !>                 interleaved batched case).
+  !>     @param[inout]
+  !>     C           pointer to type. Array on the GPU (the size depends on the value of strideC).
+  !>                 On entry, contains the blocks C_{li}, arranged one after the other.
+  !>                 On exit, it is overwritten by blocks F_{li}.
+  !>     @param[in]
+  !>     incc        rocblas_int. incc > 0.
+  !>                 Stride from the start of one row of C_{li} to the next. The normal use cases
+  !>                 are
+  !>                 incc = 1 (equivalent to the strided batched case) or incc = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= incc * nb.
+  !>                 Specifies the leading dimension of blocks C_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of C_{li} to the next.
+  !>     @param[in]
+  !>     strideC     rocblas_stride.
+  !>                 Stride from the start of one block C_{li} to the same block in the next batch
+  !>                 instance C_{(l+1)i}.
+  !>                 There is no restriction for the value of strideC. The normal use cases are
+  !>                 strideC >=
+  !>                 ldc*nb*(nblocks-1) (equivalent to the strided batched case) or strideC = 1 (for
+  !>                 an interleaved batched case).
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of l-th batch instance.
+  !>                 If info[l] = i > 0, the l-th batch instance is singular.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgeblttrf_npvt_interleaved_batched
+    function rocsolver_sgeblttrf_npvt_interleaved_batched_(handle,nb,nblocks,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_sgeblttrf_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrf_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrf_npvt_interleaved_batched
+    function rocsolver_dgeblttrf_npvt_interleaved_batched_(handle,nb,nblocks,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_dgeblttrf_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrf_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrf_npvt_interleaved_batched
+    function rocsolver_cgeblttrf_npvt_interleaved_batched_(handle,nb,nblocks,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_cgeblttrf_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrf_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrf_npvt_interleaved_batched
+    function rocsolver_zgeblttrf_npvt_interleaved_batched_(handle,nb,nblocks,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_zgeblttrf_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrf_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRS_NPVT functions solve a system of linear equations given by a block
+  !>     tridiagonal matrix
+  !>     in its factorized form (without partial pivoting).
+  !>
+  !>     \details The linear system has the form
+  !>
+  !>     \f[
+  !>         MX = \left[\begin{array}{ccccc}
+  !>         B_1 & C_1    &         &         &         \\%
+  !>         A_1 & B_2    & C_2     &         &         \\%
+  !>             & \ddots & \ddots  & \ddots  &         \\%
+  !>             &        & A_{n-2} & B_{n-1} & C_{n-1} \\%
+  !>             &        &         & A_{n-1} & B_n
+  !>         \end{array}\right]\left[\begin{array}{c}
+  !>         X_1\\%
+  !>         X_2\\%
+  !>         X_3\\%
+  !>         \vdots\\%
+  !>         X_n
+  !>         \end{array}\right]=\left[\begin{array}{c}
+  !>         R_1\\%
+  !>         R_2\\%
+  !>         R_3\\%
+  !>         \vdots\\%
+  !>         R_n
+  !>         \end{array}\right]=R
+  !>     \f]
+  !>
+  !>     where matrix M has \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, and the
+  !>     right-hand-side
+  !>     blocks \f$R_i\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix M
+  !>     should be in
+  !>     the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt "GEBLTTRF_NPVT".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of the matrix.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns of blocks R_i.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of dimension lda*nb*(nblocks-1).
+  !>                 Contains the blocks A_i, as returned by \ref rocsolver_sgeblttrf_npvt
+  !>                 "GEBLTTRF_NPVT".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= nb.
+  !>                 Specifies the leading dimension of blocks A_i.
+  !>     @param[in]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nb*nblocks.
+  !>                 Contains the blocks B_i, as returned by \ref rocsolver_sgeblttrf_npvt
+  !>                 "GEBLTTRF_NPVT".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= nb.
+  !>                 Specifies the leading dimension of blocks B_i.
+  !>     @param[in]
+  !>     C           pointer to type. Array on the GPU of dimension ldc*nb*(nblocks-1).
+  !>                 Contains the blocks C_i, as returned by \ref rocsolver_sgeblttrf_npvt
+  !>                 "GEBLTTRF_NPVT".
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= nb.
+  !>                 Specifies the leading dimension of blocks C_i.
+  !>     @param[inout]
+  !>     X           pointer to type. Array on the GPU of dimension ldx*nblocks*nrhs.
+  !>                 On entry, X contains the right-hand-side blocks R_i. It is overwritten by
+  !>                 solution
+  !>                 vectors X_i on exit.
+  !>     @param[in]
+  !>     ldx         rocblas_int. ldx >= nb.
+  !>                 Specifies the leading dimension of blocks X_i.
+  interface rocsolver_sgeblttrs_npvt
+    function rocsolver_sgeblttrs_npvt_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx) bind(c, name="rocsolver_sgeblttrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrs_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrs_npvt
+    function rocsolver_dgeblttrs_npvt_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx) bind(c, name="rocsolver_dgeblttrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrs_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrs_npvt
+    function rocsolver_cgeblttrs_npvt_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx) bind(c, name="rocsolver_cgeblttrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrs_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrs_npvt
+    function rocsolver_zgeblttrs_npvt_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx) bind(c, name="rocsolver_zgeblttrs_npvt")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrs_npvt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRS_NPVT_BATCHED functions solve a batch of system of linear equations
+  !>     given by block tridiagonal
+  !>     matrices in its factorized form (without partial pivoting).
+  !>
+  !>     \details Each linear system has the form
+  !>
+  !>     \f[
+  !>         M_l X_l = \left[\begin{array}{ccccc}
+  !>         B_{l1} & C_{l1} &            &            &            \\%
+  !>         A_{l1} & B_{l2} & C_{l2}     &            &            \\%
+  !>                & \ddots & \ddots     & \ddots     &            \\%
+  !>                &        & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)} \\%
+  !>                &        &            & A_{l(n-1)} & B_{ln}
+  !>         \end{array}\right]\left[\begin{array}{c}
+  !>         X_{l1}\\%
+  !>         X_{l2}\\%
+  !>         X_{l3}\\%
+  !>         \vdots\\%
+  !>         X_{ln}
+  !>         \end{array}\right]=\left[\begin{array}{c}
+  !>         R_{l1}\\%
+  !>         R_{l2}\\%
+  !>         R_{l3}\\%
+  !>         \vdots\\%
+  !>         R_{ln}
+  !>         \end{array}\right]=R_l
+  !>     \f]
+  !>
+  !>     where matrix \f$M_l\f$ has \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, and the
+  !>     right-hand-side
+  !>     blocks \f$R_{li}\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix
+  !>     \f$M_l\f$ should be in
+  !>     the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt_batched
+  !>     "GEBLTTRF_NPVT_BATCHED".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of each matrix in the batch.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns of blocks
+  !>                 R_{li}.
+  !>     @param[in]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 lda*nb*(nblocks-1).
+  !>                 Contains the blocks A_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_batched "GEBLTTRF_NPVT_BATCHED".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= nb.
+  !>                 Specifies the leading dimension of blocks A_{li}.
+  !>     @param[in]
+  !>     B array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 lda*nb*nblocks.
+  !>                 Contains the blocks B_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_batched "GEBLTTRF_NPVT_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= nb.
+  !>                 Specifies the leading dimension of blocks B_{li}.
+  !>     @param[in]
+  !>     C array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 ldc*nb*(nblocks-1).
+  !>                 Contains the blocks C_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_batched "GEBLTTRF_NPVT_BATCHED".
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= nb.
+  !>                 Specifies the leading dimension of blocks C_{li}.
+  !>     @param[inout]
+  !>     X array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>                 ldx*nblocks*nrhs.
+  !>                 On entry, X contains the right-hand-side blocks R_{li}. It is overwritten by
+  !>                 solution
+  !>                 vectors X_{li} on exit.
+  !>     @param[in]
+  !>     ldx         rocblas_int. ldx >= nb.
+  !>                 Specifies the leading dimension of blocks X_{li}.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgeblttrs_npvt_batched
+    function rocsolver_sgeblttrs_npvt_batched_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx,batch_count) bind(c, name="rocsolver_sgeblttrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr) :: X
+      integer(c_int),value :: ldx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrs_npvt_batched
+    function rocsolver_dgeblttrs_npvt_batched_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx,batch_count) bind(c, name="rocsolver_dgeblttrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr) :: X
+      integer(c_int),value :: ldx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrs_npvt_batched
+    function rocsolver_cgeblttrs_npvt_batched_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx,batch_count) bind(c, name="rocsolver_cgeblttrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr) :: X
+      integer(c_int),value :: ldx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrs_npvt_batched
+    function rocsolver_zgeblttrs_npvt_batched_(handle,nb,nblocks,nrhs,A,lda,B,ldb,C,ldc,X,ldx,batch_count) bind(c, name="rocsolver_zgeblttrs_npvt_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrs_npvt_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr) :: X
+      integer(c_int),value :: ldx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRS_NPVT_STRIDED_BATCHED functions solve a batch of system of linear
+  !>     equations given by block
+  !>     tridiagonal matrices in its factorized form (without partial pivoting).
+  !>
+  !>     \details Each linear system has the form
+  !>
+  !>     \f[
+  !>         M_l X_l = \left[\begin{array}{ccccc}
+  !>         B_{l1} & C_{l1}  &            &            &            \\%
+  !>         A_{l1} & B_{l2}  & C_{l2}     &            &            \\%
+  !>                & \ddots  & \ddots     & \ddots     &            \\%
+  !>                &         & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)} \\%
+  !>                &         &            & A_{l(n-1)} & B_{ln}
+  !>         \end{array}\right]\left[\begin{array}{c}
+  !>         X_{l1}\\%
+  !>         X_{l2}\\%
+  !>         X_{l3}\\%
+  !>         \vdots\\%
+  !>         X_{ln}
+  !>         \end{array}\right]=\left[\begin{array}{c}
+  !>         R_{l1}\\%
+  !>         R_{l2}\\%
+  !>         R_{l3}\\%
+  !>         \vdots\\%
+  !>         R_{ln}
+  !>         \end{array}\right]=R_l
+  !>     \f]
+  !>
+  !>     where matrix \f$M_l\f$ has \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, and the
+  !>     right-hand-side
+  !>     blocks \f$R_{li}\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix
+  !>     \f$M_l\f$ should be in
+  !>     the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt_strided_batched
+  !>     "GEBLTTRF_NPVT_STRIDED_BATCHED".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of each matrix in the batch.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns of blocks
+  !>                 R_{li}.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 Contains the blocks A_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_strided_batched "GEBLTTRF_NPVT_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= nb.
+  !>                 Specifies the leading dimension of blocks A_{li}.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one block A_{li} to the same block in the next batch
+  !>                 instance A_{(l+1)i}.
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >=
+  !>                 lda*nb*(nblocks-1).
+  !>     @param[in]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 Contains the blocks B_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_strided_batched "GEBLTTRF_NPVT_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= nb.
+  !>                 Specifies the leading dimension of blocks B_{li}.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one block B_{li} to the same block in the next batch
+  !>                 instance B_{(l+1)i}.
+  !>                 There is no restriction for the value of strideB. The normal use case is
+  !>                 strideB >=
+  !>                 ldb*nb*nblocks.
+  !>     @param[in]
+  !>     C           pointer to type. Array on the GPU (the size depends on the value of strideC).
+  !>                 Contains the blocks C_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_strided_batched "GEBLTTRF_NPVT_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= nb.
+  !>                 Specifies the leading dimension of blocks C_{li}.
+  !>     @param[in]
+  !>     strideC     rocblas_stride.
+  !>                 Stride from the start of one block C_{li} to the same block in the next batch
+  !>                 instance C_{(l+1)i}.
+  !>                 There is no restriction for the value of strideC. The normal use case is
+  !>                 strideC >=
+  !>                 ldc*nb*(nblocks-1).
+  !>     @param[inout]
+  !>     X           pointer to type. Array on the GPU (the size depends on the value of strideX).
+  !>                 On entry, X contains the right-hand-side blocks R_{li}. It is overwritten by
+  !>                 solution
+  !>                 vectors X_{li} on exit.
+  !>     @param[in]
+  !>     ldx         rocblas_int. ldx >= nb.
+  !>                 Specifies the leading dimension of blocks X_{li}.
+  !>     @param[in]
+  !>     strideX     rocblas_stride.
+  !>                 Stride from the start of one block X_{li} to the same block in the next batch
+  !>                 instance X_{(l+1)i}.
+  !>                 There is no restriction for the value of strideX. The normal use case is
+  !>                 strideX >=
+  !>                 ldx*nblocks*nrhs.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgeblttrs_npvt_strided_batched
+    function rocsolver_sgeblttrs_npvt_strided_batched_(handle,nb,nblocks,nrhs,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,X,ldx,strideX,batch_count) bind(c, name="rocsolver_sgeblttrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrs_npvt_strided_batched
+    function rocsolver_dgeblttrs_npvt_strided_batched_(handle,nb,nblocks,nrhs,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,X,ldx,strideX,batch_count) bind(c, name="rocsolver_dgeblttrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrs_npvt_strided_batched
+    function rocsolver_cgeblttrs_npvt_strided_batched_(handle,nb,nblocks,nrhs,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,X,ldx,strideX,batch_count) bind(c, name="rocsolver_cgeblttrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrs_npvt_strided_batched
+    function rocsolver_zgeblttrs_npvt_strided_batched_(handle,nb,nblocks,nrhs,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,X,ldx,strideX,batch_count) bind(c, name="rocsolver_zgeblttrs_npvt_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrs_npvt_strided_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The GEBLTTRS_NPVT_INTERLEAVED_BATCHED functions solve a batch of system of linear
+  !>     equations given by block
+  !>     tridiagonal matrices in its factorized form (without partial pivoting).
+  !>
+  !>     \details Each linear system has the form
+  !>
+  !>     \f[
+  !>         M_l X_l = \left[\begin{array}{ccccc}
+  !>         B_{l1} & C_{ll} &            &            &            \\%
+  !>         A_{l1} & B_{ll} & C_{ll}     &            &            \\%
+  !>                & \ddots & \ddots     & \ddots     &            \\%
+  !>                &        & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)} \\%
+  !>                &        &            & A_{l(n-1)} & B_{ln}
+  !>         \end{array}\right]\left[\begin{array}{c}
+  !>         X_{l1}\\%
+  !>         X_{l2}\\%
+  !>         X_{l3}\\%
+  !>         \vdots\\%
+  !>         X_{ln}
+  !>         \end{array}\right]=\left[\begin{array}{c}
+  !>         R_{l1}\\%
+  !>         R_{l2}\\%
+  !>         R_{l3}\\%
+  !>         \vdots\\%
+  !>         R_{ln}
+  !>         \end{array}\right]=R_l
+  !>     \f]
+  !>
+  !>     where matrix \f$M_l\f$ has \f$n = \f$ ``nblocks`` diagonal blocks of size ``nb``, and the
+  !>     right-hand-side
+  !>     blocks \f$R_{li}\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix
+  !>     \f$M_l\f$ should be in
+  !>     the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt_interleaved_batched
+  !>     "GEBLTTRF_NPVT_INTERLEAVED_BATCHED".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     nb          rocblas_int. nb >= 0.
+  !>                 The number of rows and columns of each block.
+  !>     @param[in]
+  !>     nblocks     rocblas_int. nblocks >= 0.
+  !>                 The number of blocks along the diagonal of each matrix in the batch.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns of blocks
+  !>                 R_{li}.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 Contains the blocks A_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_interleaved_batched
+  !>                 "GEBLTTRF_NPVT_INTERLEAVED_BATCHED".
+  !>     @param[in]
+  !>     inca        rocblas_int. inca > 0.
+  !>                 Stride from the start of one row of A_{li} to the next. The normal use cases
+  !>                 are
+  !>                 inca = 1 (equivalent to the strided batched case) or inca = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= inca * nb.
+  !>                 Specifies the leading dimension of blocks A_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of A_{li} to the next.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one block A_{li} to the same block in the next batch
+  !>                 instance A_{(l+1)i}.
+  !>                 There is no restriction for the value of strideA. The normal use cases are
+  !>                 strideA >=
+  !>                 lda*nb*(nblocks-1) (equivalent to the strided batched case) or strideA = 1 (for
+  !>                 an interleaved batched case).
+  !>     @param[in]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 Contains the blocks B_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_interleaved_batched
+  !>                 "GEBLTTRF_NPVT_INTERLEAVED_BATCHED".
+  !>     @param[in]
+  !>     incb        rocblas_int. incb > 0.
+  !>                 Stride from the start of one row of B_{li} to the next. The normal use cases
+  !>                 are
+  !>                 incb = 1 (equivalent to the strided batched case) or incb = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= incb * nb.
+  !>                 Specifies the leading dimension of blocks B_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of B_{li} to the next.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one block B_{li} to the same block in the next batch
+  !>                 instance B_{(l+1)i}.
+  !>                 There is no restriction for the value of strideB. The normal use cases are
+  !>                 strideB >=
+  !>                 ldb*nb*nblocks (equivalent to the strided batched case) or strideB = 1 (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     C           pointer to type. Array on the GPU (the size depends on the value of strideC).
+  !>                 Contains the blocks C_{li}, as returned by \ref
+  !>                 rocsolver_sgeblttrf_npvt_interleaved_batched
+  !>                 "GEBLTTRF_NPVT_INTERLEAVED_BATCHED".
+  !>     @param[in]
+  !>     incc        rocblas_int. incc > 0.
+  !>                 Stride from the start of one row of C_{li} to the next. The normal use cases
+  !>                 are
+  !>                 incc = 1 (equivalent to the strided batched case) or incc = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= incc * nb.
+  !>                 Specifies the leading dimension of blocks C_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of C_{li} to the next.
+  !>     @param[in]
+  !>     strideC     rocblas_stride.
+  !>                 Stride from the start of one block C_{li} to the same block in the next batch
+  !>                 instance C_{(l+1)i}.
+  !>                 There is no restriction for the value of strideC. The normal use cases are
+  !>                 strideC >=
+  !>                 ldc*nb*(nblocks-1) (equivalent to the strided batched case) or strideC = 1 (for
+  !>                 an interleaved batched case).
+  !>     @param[inout]
+  !>     X           pointer to type. Array on the GPU (the size depends on the value of strideX).
+  !>                 On entry, X contains the right-hand-side blocks R_{li}. It is overwritten by
+  !>                 solution
+  !>                 vectors X_{li} on exit.
+  !>     @param[in]
+  !>     incx        rocblas_int. incx > 0.
+  !>                 Stride from the start of one row of X_{li} to the next. The normal use cases
+  !>                 are
+  !>                 incx = 1 (equivalent to the strided batched case) or incx = batch_count (for an
+  !>                 interleaved batched case).
+  !>     @param[in]
+  !>     ldx         rocblas_int. ldx >= incx * nb.
+  !>                 Specifies the leading dimension of blocks X_{li}, that is, the stride from the
+  !>                 start
+  !>                 of one column of X_{li} to the next.
+  !>     @param[in]
+  !>     strideX     rocblas_stride.
+  !>                 Stride from the start of one block X_{li} to the same block in the next batch
+  !>                 instance X_{(l+1)i}.
+  !>                 There is no restriction for the value of strideX. The normal use cases are
+  !>                 strideX >=
+  !>                 ldx*nrhs*nblocks (equivalent to the strided batched case) or strideX = 1 (for
+  !>                 an interleaved batched case).
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_sgeblttrs_npvt_interleaved_batched
+    function rocsolver_sgeblttrs_npvt_interleaved_batched_(handle,nb,nblocks,nrhs,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,X,incx,ldx,strideX,batch_count) bind(c, name="rocsolver_sgeblttrs_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeblttrs_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: incx
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dgeblttrs_npvt_interleaved_batched
+    function rocsolver_dgeblttrs_npvt_interleaved_batched_(handle,nb,nblocks,nrhs,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,X,incx,ldx,strideX,batch_count) bind(c, name="rocsolver_dgeblttrs_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeblttrs_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: incx
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cgeblttrs_npvt_interleaved_batched
+    function rocsolver_cgeblttrs_npvt_interleaved_batched_(handle,nb,nblocks,nrhs,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,X,incx,ldx,strideX,batch_count) bind(c, name="rocsolver_cgeblttrs_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeblttrs_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: incx
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zgeblttrs_npvt_interleaved_batched
+    function rocsolver_zgeblttrs_npvt_interleaved_batched_(handle,nb,nblocks,nrhs,A,inca,lda,strideA,B,incb,ldb,strideB,C,incc,ldc,strideC,X,incx,ldx,strideX,batch_count) bind(c, name="rocsolver_zgeblttrs_npvt_interleaved_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeblttrs_npvt_interleaved_batched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nb
+      integer(c_int),value :: nblocks
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: inca
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: incb
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: incc
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      type(c_ptr),value :: X
+      integer(c_int),value :: incx
+      integer(c_int),value :: ldx
+      integer(c_int64_t),value :: strideX
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>  \brief The CREATE_RFINFO function initializes the structure ``rfinfo`` that contains the meta
+  !>  data and descriptors of the specific matrices
+  !>     required by the refactorization functions
+  !>     \ref rocsolver_scsrrf_refactlu "CSRRF_REFACTLU" and \ref rocsolver_scsrrf_refactchol
+  !>     "CSRRF_REFACTCHOL" and
+  !>     by the direct solver \ref rocsolver_scsrrf_solve "CSRRF_SOLVE".
+  !>
+  !>     \details
+  !>     @param[out]
+  !>     rfinfo      `rocsolver_rfinfo`.
+  !>                 The pointer to the rfinfo struct to be initialized.
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  interface rocsolver_create_rfinfo
+    function rocsolver_create_rfinfo_(rfinfo,handle) bind(c, name="rocsolver_create_rfinfo")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_create_rfinfo_
+      type(c_ptr) :: rfinfo
+      type(c_ptr),value :: handle
+    end function
+  end interface
+
+  !>  \brief The DESTROY_RFINFO function destroys the structure ``rfinfo`` used by the
+  !>  refactorization functions
+  !>     \ref rocsolver_scsrrf_refactlu "CSRRF_REFACTLU" and \ref rocsolver_scsrrf_refactchol
+  !>     "CSRRF_REFACTCHOL" and
+  !>     by the direct solver \ref rocsolver_scsrrf_solve "CSRRF_SOLVE".
+  !>
+  !>     \details
+  !>     @param[in]
+  !>     rfinfo      `rocsolver_rfinfo`.
+  !>                 The rfinfo struct to be destroyed.
+  interface rocsolver_destroy_rfinfo
+    function rocsolver_destroy_rfinfo_(rfinfo) bind(c, name="rocsolver_destroy_rfinfo")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_destroy_rfinfo_
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  !>  \brief The SET_RFINFO_MODE function sets the mode of the structure ``rfinfo`` required by the
+  !>  refactorization functions
+  !>     \ref rocsolver_scsrrf_refactlu "CSRRF_REFACTLU" and \ref rocsolver_scsrrf_refactchol
+  !>     "CSRRF_REFACTCHOL" and
+  !>     by the direct solver \ref rocsolver_scsrrf_solve "CSRRF_SOLVE".
+  !>
+  !>     \details
+  !>     @param[in]
+  !>     rfinfo      `rocsolver_rfinfo`.
+  !>                 The rfinfo struct to be set up.
+  !>     @param[in]
+  !>     mode        `rocsolver_rfinfo_mode`.
+  !>                 Use rocsolver_rfinfo_mode_cholesky when the Cholesky factorization is required.
+  interface rocsolver_set_rfinfo_mode
+    function rocsolver_set_rfinfo_mode_(rfinfo,mode) bind(c, name="rocsolver_set_rfinfo_mode")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_set_rfinfo_mode_
+      type(c_ptr),value :: rfinfo
+      integer(kind(rocsolver_rfinfo_mode_lu)),value :: mode
+    end function
+  end interface
+
+  !>  \brief The GET_RFINFO_MODE function gets the mode of the structure ``rfinfo`` required by the
+  !>  refactorization functions
+  !>     \ref rocsolver_scsrrf_refactlu "CSRRF_REFACTLU" and \ref rocsolver_scsrrf_refactchol
+  !>     "CSRRF_REFACTCHOL" and
+  !>     by the direct solver \ref rocsolver_scsrrf_solve "CSRRF_SOLVE".
+  !>
+  !>     \details
+  !>     @param[in]
+  !>     rfinfo      `rocsolver_rfinfo`.
+  !>                 The referenced rfinfo struct.
+  !>     @param[out]
+  !>     mode        `rocsolver_rfinfo_mode`.
+  !>                 The queried mode.
+  interface rocsolver_get_rfinfo_mode
+    function rocsolver_get_rfinfo_mode_(rfinfo,mode) bind(c, name="rocsolver_get_rfinfo_mode")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_get_rfinfo_mode_
+      type(c_ptr),value :: rfinfo
+      type(c_ptr),value :: mode
+    end function
+  end interface
+
+  !>     \brief The CSRRF_SUMLU functions bundle the factors \f$L\f$ and \f$U\f$, associated with
+  !>     the LU factorization
+  !>      of a sparse matrix \f$A\f$, into a single sparse matrix \f$T=(L-I)+U\f$.
+  !>
+  !>     \details Factor \f$L\f$ is a sparse lower triangular matrix with unit diagonal elements,
+  !>     and
+  !>     \f$U\f$ is a sparse upper triangular matrix. The resulting sparse matrix \f$T\f$ combines
+  !>     both
+  !>     sparse factors without storing the unit diagonal. In other words, the number of non-zero
+  !>     elements of T, ``nnzT``, is given by ``nnzT`` = ``nnzL`` - ``n`` + ``nnzU``.
+  !>
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows (and columns) of matrix A.
+  !>     @param[in]
+  !>     nnzL        rocblas_int. nnzL >= n.
+  !>                 The number of non-zero elements in L.
+  !>     @param[in]
+  !>     ptrL        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indL and valL.
+  !>                 The last element of ptrL is equal to nnzL.
+  !>     @param[in]
+  !>     indL        pointer to rocblas_int. Array on the GPU of dimension nnzL.
+  !>                 It contains the column indices of the non-zero elements of L. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valL        pointer to type. Array on the GPU of dimension nnzL.
+  !>                 The values of the non-zero elements of L.
+  !>     @param[in]
+  !>     nnzU        rocblas_int. nnzU >= 0.
+  !>                 The number of non-zero elements in U.
+  !>     @param[in]
+  !>     ptrU        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indU and valU.
+  !>                 The last element of ptrU is equal to nnzU.
+  !>     @param[in]
+  !>     indU        pointer to rocblas_int. Array on the GPU of dimension nnzU.
+  !>                 It contains the column indices of the non-zero elements of U. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valU        pointer to type. Array on the GPU of dimension nnzU.
+  !>                 The values of the non-zero elements of U.
+  !>     @param[out]
+  !>     ptrT        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indT and valT.
+  !>                 The last element of ptrT is equal to nnzT.
+  !>     @param[out]
+  !>     indT        pointer to rocblas_int. Array on the GPU of dimension nnzT.
+  !>                 It contains the column indices of the non-zero elements of T. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[out]
+  !>     valT        pointer to type. Array on the GPU of dimension nnzT.
+  !>                 The values of the non-zero elements of T.
+  interface rocsolver_scsrrf_sumlu
+    function rocsolver_scsrrf_sumlu_(handle,n,nnzL,ptrL,indL,valL,nnzU,ptrU,indU,valU,ptrT,indT,valT) bind(c, name="rocsolver_scsrrf_sumlu")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scsrrf_sumlu_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzL
+      type(c_ptr),value :: ptrL
+      type(c_ptr),value :: indL
+      type(c_ptr),value :: valL
+      integer(c_int),value :: nnzU
+      type(c_ptr),value :: ptrU
+      type(c_ptr),value :: indU
+      type(c_ptr),value :: valU
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+    end function
+  end interface
+
+  interface rocsolver_dcsrrf_sumlu
+    function rocsolver_dcsrrf_sumlu_(handle,n,nnzL,ptrL,indL,valL,nnzU,ptrU,indU,valU,ptrT,indT,valT) bind(c, name="rocsolver_dcsrrf_sumlu")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcsrrf_sumlu_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzL
+      type(c_ptr),value :: ptrL
+      type(c_ptr),value :: indL
+      type(c_ptr),value :: valL
+      integer(c_int),value :: nnzU
+      type(c_ptr),value :: ptrU
+      type(c_ptr),value :: indU
+      type(c_ptr),value :: valU
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+    end function
+  end interface
+
+  !>     \brief The CSRRF_SPLITLU functions split the factors \f$L\f$ and \f$U\f$, associated with
+  !>     the LU factorization
+  !>      of a sparse matrix \f$A\f$, from a bundled matrix \f$T=(L-I)+U\f$.
+  !>
+  !>     \details Factor \f$L\f$ is a sparse lower triangular matrix with unit diagonal elements,
+  !>     and
+  !>     \f$U\f$ is a sparse upper triangular matrix. Conceptually, on input, U is stored on the
+  !>     diagonal
+  !>     and upper part of \f$T\f$, while the non-diagonal elements of \f$L\f$ are stored on the
+  !>     strictly
+  !>     lower part of \f$T\f$.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows (and columns) of matrix A.
+  !>     @param[in]
+  !>     nnzT        rocblas_int. nnzT >= 0.
+  !>                 The number of non-zero elements in T.
+  !>     @param[in]
+  !>     ptrT        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indT and valT.
+  !>                 The last element of ptrT is equal to nnzT.
+  !>     @param[in]
+  !>     indT        pointer to rocblas_int. Array on the GPU of dimension nnzT.
+  !>                 It contains the column indices of the non-zero elements of T. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valT        pointer to type. Array on the GPU of dimension nnzT.
+  !>                 The values of the non-zero elements of T.
+  !>     @param[out]
+  !>     ptrL        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indL and valL.
+  !>                 The last element of ptrL is equal to nnzL.
+  !>     @param[out]
+  !>     indL        pointer to rocblas_int. Array on the GPU of dimension nnzL.
+  !>                 It contains the column indices of the non-zero elements of L. Indices are
+  !>                 sorted by row and by column within each row. (If nnzL is not known in advance,
+  !>                 the size of this array could be set to nnzT + n as an upper bound.)
+  !>     @param[out]
+  !>     valL        pointer to type. Array on the GPU of dimension nnzL.
+  !>                 The values of the non-zero elements of L. (If nnzL is not known in advance,
+  !>                 the size of this array could be set to nnzT + n as an upper bound.)
+  !>     @param[out]
+  !>     ptrU        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indU and valU.
+  !>                 The last element of ptrU is equal to nnzU.
+  !>     @param[out]
+  !>     indU        pointer to rocblas_int. Array on the GPU of dimension nnzU.
+  !>                 It contains the column indices of the non-zero elements of U. Indices are
+  !>                 sorted by row and by column within each row. (If nnzU is not known in advance,
+  !>                 the size of this array could be set to nnzT as an upper bound.)
+  !>     @param[out]
+  !>     valU        pointer to type. Array on the GPU of dimension nnzU.
+  !>                 The values of the non-zero elements of U. (If nnzU is not known in advance,
+  !>                 the size of this array could be set to nnzT as an upper bound.)
+  interface rocsolver_scsrrf_splitlu
+    function rocsolver_scsrrf_splitlu_(handle,n,nnzT,ptrT,indT,valT,ptrL,indL,valL,ptrU,indU,valU) bind(c, name="rocsolver_scsrrf_splitlu")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scsrrf_splitlu_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: ptrL
+      type(c_ptr),value :: indL
+      type(c_ptr),value :: valL
+      type(c_ptr),value :: ptrU
+      type(c_ptr),value :: indU
+      type(c_ptr),value :: valU
+    end function
+  end interface
+
+  interface rocsolver_dcsrrf_splitlu
+    function rocsolver_dcsrrf_splitlu_(handle,n,nnzT,ptrT,indT,valT,ptrL,indL,valL,ptrU,indU,valU) bind(c, name="rocsolver_dcsrrf_splitlu")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcsrrf_splitlu_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: ptrL
+      type(c_ptr),value :: indL
+      type(c_ptr),value :: valL
+      type(c_ptr),value :: ptrU
+      type(c_ptr),value :: indU
+      type(c_ptr),value :: valU
+    end function
+  end interface
+
+  !>     \brief The CSRRF_ANALYSIS functions perform the analysis phase required by the
+  !>     refactorization functions
+  !>     \ref rocsolver_scsrrf_refactlu "CSRRF_REFACTLU" and \ref rocsolver_scsrrf_refactchol
+  !>     "CSRRF_REFACTCHOL" and
+  !>     by the direct solver \ref rocsolver_scsrrf_solve "CSRRF_SOLVE".
+  !>
+  !>     \details Consider a sparse matrix \f$M\f$ previously factorized as
+  !>
+  !>     \f[
+  !>         Q^TMQ = L_ML_M^T
+  !>     \f]
+  !>
+  !>     (Cholesky factorization for the symmetric positive definite case), or
+  !>
+  !>     \f[
+  !>         PMQ = L_MU_M
+  !>     \f]
+  !>
+  !>     (LU factorization for the general case)
+  !>
+  !>     where \f$L_M\f$ is lower triangular (with unit diagonal in the general case), \f$U_M\f$ is
+  !>     upper triangular, and \f$P\f$
+  !>     and \f$Q\f$ are permutation matrices associated with pivoting and reordering (to minimize
+  !>     fill-in), respectively. The metadata generated by this routine is collected in the output
+  !>     parameter
+  !>     ``rfinfo``. This information will allow the fast refactorization of another sparse matrix
+  !>     \f$A\f$ as
+  !>
+  !>     \f[
+  !>         Q^TAQ = L_AL_A^T, \quad \text{or}
+  !>     \f]
+  !>
+  !>     \f[
+  !>         PAQ = L_AU_A,
+  !>     \f]
+  !>
+  !>     and, eventually, the computation of the solution vector \f$X\f$ of any linear system of the
+  !>     form
+  !>
+  !>     \f[
+  !>         AX = B
+  !>     \f]
+  !>
+  !>     as long as \f$A\f$ has the same sparsity pattern as the previous matrix \f$M\f$.
+  !>
+  !>     This function supposes that the ``rfinfo`` struct has been initialized by \ref
+  !>     rocsolver_create_rfinfo "RFINFO_CREATE".
+  !>     By default, ``rfinfo`` is set up to work with the LU factorization (general matrices). If
+  !>     the matrix is symmetric positive definite,
+  !>     and the Cholesky factorization is
+  !>     desired, then the corresponding mode must be manually set up by \ref
+  !>     rocsolver_set_rfinfo_mode "SET_RFINFO_MODE". This function
+  !>     does not automatically detect symmetry.
+  !>
+  !>     For the LU factorization mode, the LU factors \f$L_M\f$ and \f$U_M\f$ must be passed in a
+  !>     bundle
+  !>     matrix \f$T=(L_M-I)+U_M\f$, as returned by \ref rocsolver_scsrrf_sumlu "CSRRF_SUMLU". For
+  !>     the Cholesky mode,
+  !>     the lower triangular part of \f$T\f$ must contain the Cholesky factor \f$L_M\f$, and the
+  !>     strictly upper triangular
+  !>     part of \f$T\f$ will be ignored. Similarly, the strictly upper triangular part of \f$M\f$
+  !>     is ignored when working
+  !>     in Cholesky mode.
+  !>
+  !>     \note
+  !>     If only a refactorization will be executed (that is, without a solver phase), then ``nrhs``
+  !>     can be set to zero
+  !>     and ``B`` can be null.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows (and columns) of matrix M.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right-hand-sides (columns of matrix B). Set nrhs to zero when
+  !>                 only the
+  !>                 refactorization is needed.
+  !>     @param[in]
+  !>     nnzM        rocblas_int. nnzM >= 0.
+  !>                 The number of non-zero elements in M.
+  !>     @param[in]
+  !>     ptrM        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indM and valM.
+  !>                 The last element of ptrM is equal to nnzM.
+  !>     @param[in]
+  !>     indM        pointer to rocblas_int. Array on the GPU of dimension nnzM.
+  !>                 It contains the column indices of the non-zero elements of M. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valM        pointer to type. Array on the GPU of dimension nnzM.
+  !>                 The values of the non-zero elements of M. The strictly upper triangular entries
+  !>                 are
+  !>                 not referenced when working in Cholesky mode.
+  !>     @param[in]
+  !>     nnzT        rocblas_int. nnzT >= 0.
+  !>                 The number of non-zero elements in T.
+  !>     @param[in]
+  !>     ptrT        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indT and valT.
+  !>                 The last element of ptrT is equal to nnzT.
+  !>     @param[in]
+  !>     indT        pointer to rocblas_int. Array on the GPU of dimension nnzT.
+  !>                 It contains the column indices of the non-zero elements of T. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valT        pointer to type. Array on the GPU of dimension nnzT.
+  !>                 The values of the non-zero elements of T. The strictly upper triangular entries
+  !>                 are
+  !>                 not referenced when working in Cholesky mode.
+  !>     @param[in]
+  !>     pivP        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix P, that is, the
+  !>                 order in which the rows of matrix M were rearranged. When working in Cholesky
+  !>                 mode,
+  !>                 this array is not referenced and can be null.
+  !>     @param[in]
+  !>     pivQ        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix Q, that is, the
+  !>                 order in which the columns of matrix M were rearranged.
+  !>     @param[in]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>                 The right hand side matrix B. It can be null if only the refactorization is
+  !>                 needed.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of B.
+  !>     @param[out]
+  !>     rfinfo      rocsolver_rfinfo.
+  !>                 Structure that holds the meta data generated in the analysis phase.
+  interface rocsolver_scsrrf_analysis
+    function rocsolver_scsrrf_analysis_(handle,n,nrhs,nnzM,ptrM,indM,valM,nnzT,ptrT,indT,valT,pivP,pivQ,B,ldb,rfinfo) bind(c, name="rocsolver_scsrrf_analysis")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scsrrf_analysis_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      integer(c_int),value :: nnzM
+      type(c_ptr),value :: ptrM
+      type(c_ptr),value :: indM
+      type(c_ptr),value :: valM
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivP
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  interface rocsolver_dcsrrf_analysis
+    function rocsolver_dcsrrf_analysis_(handle,n,nrhs,nnzM,ptrM,indM,valM,nnzT,ptrT,indT,valT,pivP,pivQ,B,ldb,rfinfo) bind(c, name="rocsolver_dcsrrf_analysis")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcsrrf_analysis_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      integer(c_int),value :: nnzM
+      type(c_ptr),value :: ptrM
+      type(c_ptr),value :: indM
+      type(c_ptr),value :: valM
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivP
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  !>     \brief The CSRRF_REFACTLU functions perform a fast LU factorization of a sparse matrix
+  !>     \f$A\f$ based on the
+  !>     information from the factorization of a previous matrix \f$M\f$ with the same sparsity
+  !>     pattern
+  !>     (refactorization).
+  !>
+  !>     \details Consider a sparse matrix \f$M\f$ previously factorized as
+  !>
+  !>     \f[
+  !>         PMQ = L_MU_M
+  !>     \f]
+  !>
+  !>     where \f$L_M\f$ is lower triangular with unit diagonal, \f$U_M\f$ is upper triangular, and
+  !>     \f$P\f$
+  !>     and \f$Q\f$ are permutation matrices associated with pivoting and reordering (to minimize
+  !>     fill-in), respectively. If \f$A\f$ has the same sparsity pattern as \f$M\f$, then the
+  !>     refactorization
+  !>
+  !>     \f[
+  !>         PAQ = L_AU_A
+  !>     \f]
+  !>
+  !>     can be computed numerically without a symbolic analysis phase.
+  !>
+  !>     This function supposes that ``rfinfo`` has been updated, by function \ref
+  !>     rocsolver_scsrrf_analysis "CSRRF_ANALYSIS",
+  !>     after the analysis phase of the previous matrix M and its initial factorization. Both
+  !>     functions, CSRRF_ANALYSIS and
+  !>     CSRRF_REFACTLU must be run with the same ``rfinfo`` mode (LU factorization, the default
+  !>     mode), otherwise, the workflow will
+  !>     result in an error.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows (and columns) of matrix A.
+  !>     @param[in]
+  !>     nnzA        rocblas_int. nnzA >= 0.
+  !>                 The number of non-zero elements in A.
+  !>     @param[in]
+  !>     ptrA        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indA and valA.
+  !>                 The last element of ptrM is equal to nnzA.
+  !>     @param[in]
+  !>     indA        pointer to rocblas_int. Array on the GPU of dimension nnzA.
+  !>                 It contains the column indices of the non-zero elements of M. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valA        pointer to type. Array on the GPU of dimension nnzA.
+  !>                 The values of the non-zero elements of A.
+  !>     @param[in]
+  !>     nnzT        rocblas_int. nnzT >= 0.
+  !>                 The number of non-zero elements in T.
+  !>     @param[in]
+  !>     ptrT        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indT and valT.
+  !>                 The last element of ptrT is equal to nnzT.
+  !>     @param[in]
+  !>     indT        pointer to rocblas_int. Array on the GPU of dimension nnzT.
+  !>                 It contains the column indices of the non-zero elements of T. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[out]
+  !>     valT        pointer to type. Array on the GPU of dimension nnzT.
+  !>                 The values of the non-zero elements of the new bundle matrix (L_A - I) + U_A.
+  !>     @param[in]
+  !>     pivP        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix P, that is, the
+  !>                 order in which the rows of matrix M were rearranged.
+  !>     @param[in]
+  !>     pivQ        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix Q, that is, the
+  !>                 order in which the columns of matrix M were rearranged.
+  !>     @param[in]
+  !>     rfinfo      rocsolver_rfinfo.
+  !>                 Structure that holds the meta data generated in the analysis phase.
+  interface rocsolver_scsrrf_refactlu
+    function rocsolver_scsrrf_refactlu_(handle,n,nnzA,ptrA,indA,valA,nnzT,ptrT,indT,valT,pivP,pivQ,rfinfo) bind(c, name="rocsolver_scsrrf_refactlu")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scsrrf_refactlu_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: ptrA
+      type(c_ptr),value :: indA
+      type(c_ptr),value :: valA
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivP
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  interface rocsolver_dcsrrf_refactlu
+    function rocsolver_dcsrrf_refactlu_(handle,n,nnzA,ptrA,indA,valA,nnzT,ptrT,indT,valT,pivP,pivQ,rfinfo) bind(c, name="rocsolver_dcsrrf_refactlu")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcsrrf_refactlu_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: ptrA
+      type(c_ptr),value :: indA
+      type(c_ptr),value :: valA
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivP
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  !>     \brief The CSRRF_REFACTCHOL functions perform a fast Cholesky factorization of a sparse
+  !>     symmetric positive definite matrix \f$A\f$
+  !>     based on the information from the factorization of a previous matrix \f$M\f$ with the same
+  !>     sparsity pattern
+  !>     (refactorization).
+  !>
+  !>     \details Consider a sparse matrix \f$M\f$ previously factorized as
+  !>
+  !>     \f[
+  !>         Q^TMQ = L_ML_M^T
+  !>     \f]
+  !>
+  !>     where \f$L_M\f$ is lower triangular, and \f$Q\f$ is a permutation matrix associated with
+  !>     reordering to minimize
+  !>     fill-in. If \f$A\f$ has the same sparsity pattern as \f$M\f$, then the refactorization
+  !>
+  !>     \f[
+  !>         Q^TAQ = L_AL_A^T
+  !>     \f]
+  !>
+  !>     can be computed numerically without a symbolic analysis phase.
+  !>
+  !>     This function supposes that ``rfinfo`` has been updated by function \ref
+  !>     rocsolver_scsrrf_analysis "CSRRF_ANALYSIS",
+  !>     after the analysis phase of the previous matrix M and its initial factorization. Both
+  !>     functions, CSRRF_ANALYSIS and
+  !>     CSRRF_REFACTCHOL, must be run with the same ``rfinfo`` mode (Cholesky factorization),
+  !>     otherwise, the workflow will
+  !>     result in an error.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows (and columns) of matrix A.
+  !>     @param[in]
+  !>     nnzA        rocblas_int. nnzA >= 0.
+  !>                 The number of non-zero elements in A.
+  !>     @param[in]
+  !>     ptrA        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indA and valA.
+  !>                 The last element of ptrM is equal to nnzA.
+  !>     @param[in]
+  !>     indA        pointer to rocblas_int. Array on the GPU of dimension nnzA.
+  !>                 It contains the column indices of the non-zero elements of M. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valA        pointer to type. Array on the GPU of dimension nnzA.
+  !>                 The values of the non-zero elements of A. The strictly upper triangular entries
+  !>                 are
+  !>                 not referenced.
+  !>     @param[in]
+  !>     nnzT        rocblas_int. nnzT >= 0.
+  !>                 The number of non-zero elements in T.
+  !>     @param[in]
+  !>     ptrT        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indT and valT.
+  !>                 The last element of ptrT is equal to nnzT.
+  !>     @param[in]
+  !>     indT        pointer to rocblas_int. Array on the GPU of dimension nnzT.
+  !>                 It contains the column indices of the non-zero elements of T. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[out]
+  !>     valT        pointer to type. Array on the GPU of dimension nnzT.
+  !>                 The values of the non-zero elements of the new Cholesky factor L_A.
+  !>                 The strictly upper triangular entries of this array are not referenced.
+  !>     @param[in]
+  !>     pivQ        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix Q, that is, the
+  !>                 order in which the columns of matrix M were rearranged.
+  !>     @param[in]
+  !>     rfinfo      `rocsolver_rfinfo`.
+  !>                 Structure that holds the meta data generated in the analysis phase.
+  interface rocsolver_scsrrf_refactchol
+    function rocsolver_scsrrf_refactchol_(handle,n,nnzA,ptrA,indA,valA,nnzT,ptrT,indT,valT,pivQ,rfinfo) bind(c, name="rocsolver_scsrrf_refactchol")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scsrrf_refactchol_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: ptrA
+      type(c_ptr),value :: indA
+      type(c_ptr),value :: valA
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  interface rocsolver_dcsrrf_refactchol
+    function rocsolver_dcsrrf_refactchol_(handle,n,nnzA,ptrA,indA,valA,nnzT,ptrT,indT,valT,pivQ,rfinfo) bind(c, name="rocsolver_dcsrrf_refactchol")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcsrrf_refactchol_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: ptrA
+      type(c_ptr),value :: indA
+      type(c_ptr),value :: valA
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  !>     \brief The CSRRF_SOLVE functions solve a linear system with sparse coefficient matrix
+  !>     \f$A\f$ in its
+  !>     factorized form.
+  !>
+  !>     \details The linear system is of the form
+  !>
+  !>     \f[
+  !>         AX = B
+  !>     \f]
+  !>
+  !>     where the sparse matrix \f$A\f$ is factorized as
+  !>
+  !>     \f[
+  !>         Q^TAQ = L_AL_A^T
+  !>     \f]
+  !>
+  !>     (Cholesky factorization for the symmetric positive definite case), or
+  !>
+  !>     \f[
+  !>         PAQ = L_AU_A
+  !>     \f]
+  !>
+  !>     (LU factorization for the general case),
+  !>
+  !>     and \f$B\f$ is a dense matrix of right hand sides.
+  !>
+  !>     This function supposes that ``rfinfo`` has been updated by function \ref
+  !>     rocsolver_scsrrf_analysis "CSRRF_ANALYSIS"
+  !>     after the analysis phase. Both functions, CSRRF_ANALYSIS and
+  !>     CSRRF_SOLVE, must be run with the same ``rfinfo`` mode (LU or Cholesky factorization),
+  !>     otherwise, the workflow will
+  !>     result in an error.
+  !>
+  !>     For the LU factorization mode, the LU factors \f$L_A\f$ and \f$U_A\f$ must be passed in a
+  !>     bundle matrix \f$T=(L_A-I)+U_A\f$,
+  !>     as returned by \ref rocsolver_scsrrf_refactlu "CSRRF_REFACTLU" or \ref
+  !>     rocsolver_scsrrf_sumlu "CSRRF_SUMLU". For the Cholesky mode,
+  !>     the lower triangular part of \f$T\f$ must contain the Cholesky factor \f$L_A\f$, and the
+  !>     strictly upper triangular
+  !>     part of \f$T\f$ will be ignored.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows (and columns) of matrix A.
+  !>     @param[in]
+  !>     nrhs        rocblas_int. nrhs >= 0.
+  !>                 The number of right hand sides, that is, the number of columns of matrix B.
+  !>     @param[in]
+  !>     nnzT        rocblas_int. nnzT >= 0.
+  !>                 The number of non-zero elements in T.
+  !>     @param[in]
+  !>     ptrT        pointer to rocblas_int. Array on the GPU of dimension n+1.
+  !>                 It contains the positions of the beginning of each row in indT and valT.
+  !>                 The last element of ptrT is equal to nnzT.
+  !>     @param[in]
+  !>     indT        pointer to rocblas_int. Array on the GPU of dimension nnzT.
+  !>                 It contains the column indices of the non-zero elements of T. Indices are
+  !>                 sorted by row and by column within each row.
+  !>     @param[in]
+  !>     valT        pointer to type. Array on the GPU of dimension nnzT.
+  !>                 The values of the non-zero elements of T. The strictly upper triangular entries
+  !>                 are
+  !>                 not referenced when working in Cholesky mode.
+  !>     @param[in]
+  !>     pivP        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix P, that is, the
+  !>                 order in which the rows of matrix A were rearranged. When working in Cholesky
+  !>                 mode,
+  !>                 this array is not referenced and can be null.
+  !>     @param[in]
+  !>     pivQ        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 Contains the pivot indices representing the permutation matrix Q, that is, the
+  !>                 order in which the columns of matrix A were rearranged.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>                 On entry the right hand side matrix B. On exit, the solution matrix X.
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 The leading dimension of B.
+  !>     @param[in]
+  !>     rfinfo      rocsolver_rfinfo.
+  !>                 Structure that holds the metadata generated in the analysis phase.
+  interface rocsolver_scsrrf_solve
+    function rocsolver_scsrrf_solve_(handle,n,nrhs,nnzT,ptrT,indT,valT,pivP,pivQ,B,ldb,rfinfo) bind(c, name="rocsolver_scsrrf_solve")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scsrrf_solve_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivP
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  interface rocsolver_dcsrrf_solve
+    function rocsolver_dcsrrf_solve_(handle,n,nrhs,nnzT,ptrT,indT,valT,pivP,pivQ,B,ldb,rfinfo) bind(c, name="rocsolver_dcsrrf_solve")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcsrrf_solve_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      integer(c_int),value :: nnzT
+      type(c_ptr),value :: ptrT
+      type(c_ptr),value :: indT
+      type(c_ptr),value :: valT
+      type(c_ptr),value :: pivP
+      type(c_ptr),value :: pivQ
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: rfinfo
+    end function
+  end interface
+
+  !>     \brief The SYEVDX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of a
+  !>     real symmetric matrix ``A``.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise..
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, because all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, the algorithm did not converge. i columns of Z did not
+  !>                 converge.
+  interface rocsolver_ssyevdx
+    function rocsolver_ssyevdx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,Z,ldz,myInfo) bind(c, name="rocsolver_ssyevdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsyevdx
+    function rocsolver_dsyevdx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,Z,ldz,myInfo) bind(c, name="rocsolver_dsyevdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The HEEVDX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of a
+  !>     Hermitian matrix ``A``.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrix A.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to real type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, because all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, the algorithm did not converge. i columns of Z did not
+  !>                 converge.
+  interface rocsolver_cheevdx
+    function rocsolver_cheevdx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,Z,ldz,myInfo) bind(c, name="rocsolver_cheevdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zheevdx
+    function rocsolver_zheevdx_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,Z,ldz,myInfo) bind(c, name="rocsolver_zheevdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYEVDX_BATCHED functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors
+  !>     of a batch of real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevdx_batched
+    function rocsolver_ssyevdx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_ssyevdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevdx_batched
+    function rocsolver_dsyevdx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_dsyevdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVDX_BATCHED functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors
+  !>     of a batch of Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevdx_batched
+    function rocsolver_cheevdx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_cheevdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevdx_batched
+    function rocsolver_zheevdx_batched_(handle,evect,erange,uplo,n,A,lda,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_zheevdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYEVDX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors
+  !>     of a batch of real symmetric matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssyevdx_strided_batched
+    function rocsolver_ssyevdx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_ssyevdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevdx_strided_batched
+    function rocsolver_dsyevdx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_dsyevdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEEVDX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors
+  !>     of a batch of Hermitian matrices A_l.
+  !>
+  !>     \details
+  !>     This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
+  !>     interval \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the symmetric matrices A_l is
+  !>                 stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower) part of A_l
+  !>                 is not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of rows and columns of matrices A_l.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for matrix A_l.
+  !>                 If info[l] = i > 0, the algorithm did not converge. i columns of Z_l did not
+  !>                 converge.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_cheevdx_strided_batched
+    function rocsolver_cheevdx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_cheevdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevdx_strided_batched
+    function rocsolver_zheevdx_strided_batched_(handle,evect,erange,uplo,n,A,lda,strideA,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_zheevdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVDX functions compute a set of the eigenvalues and optionally the
+  !>     corresponding eigenvectors of
+  !>     a real generalized symmetric-definite eigenproblem.
+  !>
+  !>     \details
+  !>     The problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = \lambda B X & \: \text{1st form,}\\%
+  !>         A B X = \lambda X & \: \text{2nd form, or}\\%
+  !>         B A X = \lambda X & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix Z of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z^T B^{-1} Z=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblem.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A and B are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A and B are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A. On exit, the contents of A are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrix B. On exit, the
+  !>                 triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to a rocblas_int on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev =
+  !>                 n.
+  !>                 If erange is rocblas_erange_index, nev = iu - il + 1. Otherwise, 0 <= nev <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU of dimension n.
+  !>                 The first nev elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU of dimension ldz*nev.
+  !>                 On exit, if evect is not rocblas_evect_none and info = 0, the first nev columns
+  !>                 contain
+  !>                 the eigenvectors of A corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev are not known
+  !>                 in advance.
+  !>                 The user should ensure that Z is large enough to hold n columns, because all n
+  !>                 columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrix Z.
+  !>     @param[out]
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i <= n, i columns of Z did not converge.
+  !>                 If info = n + i, the leading minor of order i of B is not
+  !>                 positive definite.
+  interface rocsolver_ssygvdx
+    function rocsolver_ssygvdx_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,Z,ldz,myInfo) bind(c, name="rocsolver_ssygvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsygvdx
+    function rocsolver_dsygvdx_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,Z,ldz,myInfo) bind(c, name="rocsolver_dsygvdx")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvdx_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  !>     \brief The SYGVDX_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of real generalized symmetric-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[out]
+  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch instance l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssygvdx_batched
+    function rocsolver_ssygvdx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_ssygvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvdx_batched
+    function rocsolver_dsygvdx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_dsygvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVDX_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of complex generalized Hermitian-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[out]
+  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_batched
+  !>                 "POTRF_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z Array of pointers to type. Each pointer points to an array on the GPU of dimension
+  !>     ldz*nev[l].
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch instance l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_chegvdx_batched
+    function rocsolver_chegvdx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_chegvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvdx_batched
+    function rocsolver_zhegvdx_batched_(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,strideW,Z,ldz,myInfo,batch_count) bind(c, name="rocsolver_zhegvdx_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr) :: Z
+      integer(c_int),value :: ldz
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The SYGVDX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of real generalized symmetric-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the symmetric positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l, as returned by \ref rocsolver_spotrf_strided_batched
+  !>                 "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. The normal use is strideB >=
+  !>                 ldb*n.
+  !>     @param[in]
+  !>     vl          type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W           pointer to type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_ssygvdx_strided_batched
+    function rocsolver_ssygvdx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_ssygvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssygvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsygvdx_strided_batched
+    function rocsolver_dsygvdx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_dsygvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsygvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief The HEGVDX_STRIDED_BATCHED functions compute a set of the eigenvalues and optionally
+  !>     the corresponding eigenvectors of a batch of complex generalized Hermitian-definite
+  !>     eigenproblems.
+  !>
+  !>     \details
+  !>     For each instance in the batch, the problem solved by this function is either of the form
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+  !>         A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
+  !>         B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     depending on the value of ``itype``. The eigenvectors are computed depending on the
+  !>     value of ``evect``.
+  !>
+  !>     When computed, the matrix \f$Z_l\f$ of eigenvectors is normalized as follows:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
+  !>         Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     This function computes all the eigenvalues, all the eigenvalues in the half-open interval
+  !>     \f$(vl, vu]\f$,
+  !>     or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
+  !>     ``evect`` is ``rocblas_evect_original``,
+  !>     the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
+  !>     computed using a
+  !>     divide-and-conquer approach.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     itype       `rocblas_eform`.
+  !>                 Specifies the form of the generalized eigenproblems.
+  !>     @param[in]
+  !>     evect       `rocblas_evect`.
+  !>                 Specifies whether the eigenvectors are to be computed.
+  !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
+  !>                 rocblas_evect_tridiagonal is not supported.
+  !>     @param[in]
+  !>     erange      `rocblas_erange`.
+  !>                 Specifies the type of range or interval of the eigenvalues to be computed.
+  !>     @param[in]
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower parts of the matrices
+  !>                 A_l and B_l are stored. If uplo indicates lower (or upper),
+  !>                 then the upper (or lower) parts of A_l and B_l are not used.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The matrix dimensions.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the matrices A_l. On exit, the contents of A_l are destroyed.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
+  !>     @param[in]
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
+  !>     @param[out]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 On entry, the Hermitian positive definite matrices B_l. On exit, the
+  !>                 triangular factor of B_l as returned by \ref rocsolver_spotrf_strided_batched
+  !>                 "POTRF_STRIDED_BATCHED".
+  !>     @param[in]
+  !>     ldb         rocblas_int. ldb >= n.
+  !>                 Specifies the leading dimension of B_l.
+  !>     @param[in]
+  !>     strideB     rocblas_stride.
+  !>                 Stride from the start of one matrix B_l to the next one B_(l+1).
+  !>                 There is no restriction for the value of strideB. The normal use is strideB >=
+  !>                 ldb*n.
+  !>     @param[in]
+  !>     vl          real type. vl < vu.
+  !>                 The lower bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     vu          real type. vl < vu.
+  !>                 The upper bound of the search interval (vl, vu]. Ignored if range indicates to
+  !>                 look
+  !>                 for all the eigenvalues of A_l or the eigenvalues within a set of indices.
+  !>     @param[in]
+  !>     il          rocblas_int. il = 1 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the smallest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[in]
+  !>     iu          rocblas_int. iu = 0 if n = 0, and 1 <= il <= iu otherwise.
+  !>                 The index of the largest eigenvalue to be computed. Ignored if range indicates
+  !>                 to look
+  !>                 for all the eigenvalues of A_l or the eigenvalues in a half-open interval.
+  !>     @param[out]
+  !>     nev         pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 The total number of eigenvalues found. If erange is rocblas_erange_all, nev[l]
+  !>                 = n.
+  !>                 If erange is rocblas_erange_index, nev[l] = iu - il + 1. Otherwise, 0 <= nev[l]
+  !>                 <= n.
+  !>     @param[out]
+  !>     W pointer to real type. Array on the GPU (the size depends on the value of strideW).
+  !>                 The first nev[l] elements contain the computed eigenvalues. (The remaining
+  !>                 elements
+  !>                 can be used as workspace for internal computations.)
+  !>     @param[in]
+  !>     strideW     rocblas_stride.
+  !>                 Stride from the start of one vector W_l to the next one W_(l+1).
+  !>                 There is no restriction for the value of strideW. The normal use case is
+  !>                 strideW >= n.
+  !>     @param[out]
+  !>     Z           pointer to type. Array on the GPU (the size depends on the value of strideZ).
+  !>                 On exit, if evect is not rocblas_evect_none and info[l] = 0, the first nev[l]
+  !>                 columns contain
+  !>                 the eigenvectors of A_l corresponding to the output eigenvalues. Not referenced
+  !>                 if
+  !>                 evect is rocblas_evect_none.
+  !>     @param[in]
+  !>     ldz         rocblas_int. ldz >= n.
+  !>                 Specifies the leading dimension of matrices Z_l.
+  !>     @param[in]
+  !>     strideZ     rocblas_stride.
+  !>                 Stride from the start of one matrix Z_l to the next one Z_(l+1).
+  !>                 There is no restriction for the value of strideZ. The normal use case is
+  !>                 strideZ >= ldz*nev[l].
+  !>                 - Note: If erange is rocblas_range_value, then the values of nev[l] are not
+  !>                 known in advance.
+  !>                 The user should ensure that Z_l is large enough to hold n columns, because all
+  !>                 n columns
+  !>                 can be used as workspace for internal computations.
+  !>     @param[out]
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit of batch l.
+  !>                 If info[l] = i <= n, i columns of Z_l did not converge.
+  !>                 If info[l] = n + i, the leading minor of order i of B_l is not
+  !>                 positive definite.
+  !>     @param[in]
+  !>     batch_count rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_chegvdx_strided_batched
+    function rocsolver_chegvdx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_chegvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zhegvdx_strided_batched
+    function rocsolver_zhegvdx_strided_batched_(handle,itype,evect,erange,uplo,n,A,lda,strideA,B,ldb,strideB,vl,vu,il,iu,nev,W,strideW,Z,ldz,strideZ,myInfo,batch_count) bind(c, name="rocsolver_zhegvdx_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_eform_ax)),value :: itype
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_erange_all)),value :: erange
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      type(c_ptr),value :: nev
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: Z
+      integer(c_int),value :: ldz
+      integer(c_int64_t),value :: strideZ
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+
 #ifdef USE_FPOINTER_INTERFACES
   contains
     function rocsolver_clacgv_rank_0(handle,n,x,incx)

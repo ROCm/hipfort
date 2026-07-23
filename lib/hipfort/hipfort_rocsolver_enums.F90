@@ -76,4 +76,60 @@ module hipfort_rocsolver_enums
 
   
 #endif
+  ! rocblas_eorder_
+  enum, bind(c)
+    enumerator :: rocblas_eorder_blocks = 241
+    enumerator :: rocblas_eorder_entire = 242
+  end enum
+
+  ! rocblas_esort_
+  enum, bind(c)
+    enumerator :: rocblas_esort_none = 251
+    enumerator :: rocblas_esort_ascending = 252
+  end enum
+
+  ! rocblas_srange_
+  enum, bind(c)
+    enumerator :: rocblas_srange_all = 261
+    enumerator :: rocblas_srange_value = 262
+    enumerator :: rocblas_srange_index = 263
+  end enum
+
+  ! rocsolver_rfinfo_mode_
+  enum, bind(c)
+    enumerator :: rocsolver_rfinfo_mode_lu = 271
+    enumerator :: rocsolver_rfinfo_mode_cholesky = 272
+  end enum
+
+  ! rocblas_pivot_
+  enum, bind(c)
+    enumerator :: rocblas_pivot_variable = 281
+    enumerator :: rocblas_pivot_top = 282
+    enumerator :: rocblas_pivot_bottom = 283
+  end enum
+
+  ! rocsolver_alg_mode_
+  enum, bind(c)
+    enumerator :: rocsolver_alg_mode_gpu = 291
+    enumerator :: rocsolver_alg_mode_hybrid = 292
+    enumerator :: rocsolver_alg_mode_mixed = 293
+  end enum
+
+  ! rocsolver_norm_type_
+  enum, bind(c)
+    enumerator :: rocsolver_norm_type_one = 301
+    enumerator :: rocsolver_norm_type_frobenius = 302
+    enumerator :: rocsolver_norm_type_infinity = 303
+    enumerator :: rocsolver_norm_type_max = 304
+  end enum
+
+  ! rocsolver_function_
+  enum, bind(c)
+    enumerator :: rocsolver_function_bdsqr = 401
+    enumerator :: rocsolver_function_gesvd = 402
+    enumerator :: rocsolver_function_sterf = 403
+    enumerator :: rocsolver_function_steqr = 404
+    enumerator :: rocsolver_function_syev_heev = 405
+  end enum
+
 end module hipfort_rocsolver_enums
