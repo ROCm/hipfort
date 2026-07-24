@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="rocDecode API reference">
-  <meta name="keywords" content="API reference, rocDecode, AMD, ROCm">
+  <meta name="description" content="hipFORT API reference">
+  <meta name="keywords" content="API reference, hipFORT, AMD, ROCm">
 </head>
 
 # API reference
@@ -11,6 +11,7 @@ This section provides technical descriptions and important information about the
 - {doc}`/doxygen/html/md_input_supported_api_hip`
 - {doc}`/doxygen/html/md_input_supported_api_hipblas`
 - {doc}`/doxygen/html/md_input_supported_api_hipfft`
+- {doc}`/doxygen/html/md_input_supported_api_hipfftw`
 - {doc}`/doxygen/html/md_input_supported_api_hiprand`
 - {doc}`/doxygen/html/md_input_supported_api_hipsolver`
 - {doc}`/doxygen/html/md_input_supported_api_hipsparse`
