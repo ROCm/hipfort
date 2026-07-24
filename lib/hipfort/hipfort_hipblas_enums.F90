@@ -198,23 +198,4 @@ module hipfort_hipblas_enums
   integer(c_int), parameter :: hipblasVersionMinor = 2
   integer(c_int), parameter :: hipblasVersionPatch = 0
 
-  enum, bind(c)
-    enumerator :: HIPBLAS_R_16F = 150
-    enumerator :: HIPBLAS_R_32F = 151
-    enumerator :: HIPBLAS_R_64F = 152
-    enumerator :: HIPBLAS_C_16F = 153
-    enumerator :: HIPBLAS_C_32F = 154
-    enumerator :: HIPBLAS_C_64F = 155
-    enumerator :: HIPBLAS_R_8I = 160
-    enumerator :: HIPBLAS_R_8U = 161
-    enumerator :: HIPBLAS_R_32I = 162
-    enumerator :: HIPBLAS_R_32U = 163
-    enumerator :: HIPBLAS_C_8I = 164
-    enumerator :: HIPBLAS_C_8U = 165
-    enumerator :: HIPBLAS_C_32I = 166
-    enumerator :: HIPBLAS_C_32U = 167
-    enumerator :: HIPBLAS_R_16B = 168
-    enumerator :: HIPBLAS_C_16B = 169
-  end enum
-
 end module hipfort_hipblas_enums
