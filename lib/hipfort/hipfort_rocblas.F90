@@ -8598,8 +8598,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_stpmv_rank_0,&
-      rocblas_stpmv_rank_1,&
-      rocblas_stpmv_full_rank
+      rocblas_stpmv_rank_1
 #endif
   end interface
 
@@ -8622,8 +8621,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_dtpmv_rank_0,&
-      rocblas_dtpmv_rank_1,&
-      rocblas_dtpmv_full_rank
+      rocblas_dtpmv_rank_1
 #endif
   end interface
 
@@ -8646,8 +8644,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_ctpmv_rank_0,&
-      rocblas_ctpmv_rank_1,&
-      rocblas_ctpmv_full_rank
+      rocblas_ctpmv_rank_1
 #endif
   end interface
 
@@ -8670,8 +8667,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_ztpmv_rank_0,&
-      rocblas_ztpmv_rank_1,&
-      rocblas_ztpmv_full_rank
+      rocblas_ztpmv_rank_1
 #endif
   end interface
 
@@ -8761,8 +8757,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_stpmv_strided_batched_rank_0,&
-      rocblas_stpmv_strided_batched_rank_1,&
-      rocblas_stpmv_strided_batched_full_rank
+      rocblas_stpmv_strided_batched_rank_1
 #endif
   end interface
 
@@ -8788,8 +8783,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_dtpmv_strided_batched_rank_0,&
-      rocblas_dtpmv_strided_batched_rank_1,&
-      rocblas_dtpmv_strided_batched_full_rank
+      rocblas_dtpmv_strided_batched_rank_1
 #endif
   end interface
 
@@ -8815,8 +8809,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_ctpmv_strided_batched_rank_0,&
-      rocblas_ctpmv_strided_batched_rank_1,&
-      rocblas_ctpmv_strided_batched_full_rank
+      rocblas_ctpmv_strided_batched_rank_1
 #endif
   end interface
 
@@ -8842,8 +8835,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_ztpmv_strided_batched_rank_0,&
-      rocblas_ztpmv_strided_batched_rank_1,&
-      rocblas_ztpmv_strided_batched_full_rank
+      rocblas_ztpmv_strided_batched_rank_1
 #endif
   end interface
 
@@ -11321,8 +11313,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_sspmv_rank_0,&
-      rocblas_sspmv_rank_1,&
-      rocblas_sspmv_full_rank
+      rocblas_sspmv_rank_1
 #endif
   end interface
 
@@ -11347,8 +11338,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_dspmv_rank_0,&
-      rocblas_dspmv_rank_1,&
-      rocblas_dspmv_full_rank
+      rocblas_dspmv_rank_1
 #endif
   end interface
 
@@ -11518,8 +11508,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_sspmv_strided_batched_rank_0,&
-      rocblas_sspmv_strided_batched_rank_1,&
-      rocblas_sspmv_strided_batched_full_rank
+      rocblas_sspmv_strided_batched_rank_1
 #endif
   end interface
 
@@ -11548,8 +11537,7 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocblas_dspmv_strided_batched_rank_0,&
-      rocblas_dspmv_strided_batched_rank_1,&
-      rocblas_dspmv_strided_batched_full_rank
+      rocblas_dspmv_strided_batched_rank_1
 #endif
   end interface
 
@@ -44297,23 +44285,6 @@ module hipfort_rocblas
       rocblas_stpmv_rank_1 = rocblas_stpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_stpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stpmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      !
-      rocblas_stpmv_full_rank = rocblas_stpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
-    end function
-
     function rocblas_dtpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44346,23 +44317,6 @@ module hipfort_rocblas
       integer(c_int) :: incx
       !
       rocblas_dtpmv_rank_1 = rocblas_dtpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
-    end function
-
-    function rocblas_dtpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtpmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      !
-      rocblas_dtpmv_full_rank = rocblas_dtpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
     function rocblas_ctpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
@@ -44399,23 +44353,6 @@ module hipfort_rocblas
       rocblas_ctpmv_rank_1 = rocblas_ctpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ctpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctpmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      !
-      rocblas_ctpmv_full_rank = rocblas_ctpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
-    end function
-
     function rocblas_ztpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44448,23 +44385,6 @@ module hipfort_rocblas
       integer(c_int) :: incx
       !
       rocblas_ztpmv_rank_1 = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
-    end function
-
-    function rocblas_ztpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztpmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      !
-      rocblas_ztpmv_full_rank = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
     function rocblas_stpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
@@ -44507,26 +44427,6 @@ module hipfort_rocblas
       rocblas_stpmv_strided_batched_rank_1 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stpmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stride_A
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      integer(c_int) :: batch_count
-      !
-      rocblas_stpmv_strided_batched_full_rank = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
-    end function
-
     function rocblas_dtpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44565,26 +44465,6 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_dtpmv_strided_batched_rank_1 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
-    end function
-
-    function rocblas_dtpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtpmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stride_A
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      integer(c_int) :: batch_count
-      !
-      rocblas_dtpmv_strided_batched_full_rank = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ctpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
@@ -44627,26 +44507,6 @@ module hipfort_rocblas
       rocblas_ctpmv_strided_batched_rank_1 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctpmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      integer(c_int) :: batch_count
-      !
-      rocblas_ctpmv_strided_batched_full_rank = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
-    end function
-
     function rocblas_ztpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44685,26 +44545,6 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_ztpmv_strided_batched_rank_1 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
-    end function
-
-    function rocblas_ztpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztpmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      integer(c_int) :: batch_count
-      !
-      rocblas_ztpmv_strided_batched_full_rank = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_stbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -47021,25 +46861,6 @@ module hipfort_rocblas
       rocblas_sspmv_rank_1 = rocblas_sspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
-    function rocblas_sspmv_full_rank(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_sspmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      !
-      rocblas_sspmv_full_rank = rocblas_sspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
-    end function
-
     function rocblas_dspmv_rank_0(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47076,25 +46897,6 @@ module hipfort_rocblas
       integer(c_int) :: incy
       !
       rocblas_dspmv_rank_1 = rocblas_dspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
-    end function
-
-    function rocblas_dspmv_full_rank(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dspmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      !
-      rocblas_dspmv_full_rank = rocblas_dspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_sspmv_strided_batched_rank_0(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
@@ -47143,29 +46945,6 @@ module hipfort_rocblas
       rocblas_sspmv_strided_batched_rank_1 = rocblas_sspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_sspmv_strided_batched_full_rank(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_sspmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      integer(c_int64_t) :: stridey
-      integer(c_int) :: batch_count
-      !
-      rocblas_sspmv_strided_batched_full_rank = rocblas_sspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
-    end function
-
     function rocblas_dspmv_strided_batched_rank_0(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47210,29 +46989,6 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_dspmv_strided_batched_rank_1 = rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
-    end function
-
-    function rocblas_dspmv_strided_batched_full_rank(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dspmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      integer(c_int64_t) :: stridey
-      integer(c_int) :: batch_count
-      !
-      rocblas_dspmv_strided_batched_full_rank = rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_ssbmv_rank_0(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
