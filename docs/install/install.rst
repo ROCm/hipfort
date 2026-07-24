@@ -27,9 +27,10 @@ Building and testing hipFORT from source
 
       git clone https://github.com/ROCm/hipfort.git
       cd hipfort
-      cmake -S. -Bbuild -DHIPFORT_INSTALL_DIR=/tmp/hipfort -DBUILD_TESTING=ON
-      make -C build
-      make -C build check
+      cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+      cmake --build build
+      cmake --install build
+      ctest --test-dir build
 
    .. note::
 
@@ -51,46 +52,18 @@ or by setting the CMake cache variables:
 *  ``CMAKE_RANLIB``: The ``ranlib`` used to create the static archive
 *  ``CMAKE_INSTALL_PREFIX``: The install directory
 
-hipfc wrapper compiler and Makefile.hipfort
-================================================
+Linking against hipFORT
+========================
 
-Along with Fortran interfaces for the HIP and ROCm libraries, hipFORT ships the hipfc wrapper compiler
-and a ``Makefile.fort`` file that can be included in a project's build system.
-hipfc can be found in the ``bin/`` directory, while ``Makefile.hipfort`` is in the ``share/hipfort`` directory
-of the repository.
+To use hipFORT in your project, invoke your Fortran and HIP compilers directly and link
+against the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
+``hipfort::hip``, ``hipfort::rocblas``, and ``hipfort::hipblas``) to make this straightforward:
 
-Both build mechanisms can be configured using a number of environment variables, but hipfc
-includes a greater number of command-line options. You can list these options using the following command:
+.. code-block:: cmake
 
-.. code-block:: shell
-
-   hipfc -h
-
-.. note::
-
-   The hipfc wrapper compiler is deprecated and will be removed in a future release. Users are
-   encouraged to call the Fortran or HIP compilers directly instead of relying on the hipfc wrapper.
-   The hipFORT component provides exported CMake targets that can be used to link to the appropriate
-   ROCm libraries.
-
-The following table lists the most important environment variables:
-
-.. list-table::
-   :widths: 25 25 50
-   :header-rows: 1
-
-   * - Environment variable
-     - Description
-     - Default
-   * - ``HIP_PLATFORM``
-     - The platform to compile for
-     - ``amd``
-   * - ``ROCM_PATH``
-     - Path to the ROCm installation
-     - ``/opt/rocm``
-   * - ``FC``
-     -  Fortran compiler to use
-     - ``gfortran``
+   find_package(hipfort REQUIRED)
+   add_executable(my_app main.f03)
+   target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 
 
 Examples and tests
@@ -102,54 +75,24 @@ Fortran compiler to support the Fortran 2008 standard or newer.
 The ``f2003`` tests only require support for the Fortran 2003 (`f2003`) standard.
 The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various hip* and roc* libraries.
 
-Building a single test
------------------------
-
-To compile for AMD devices, call the ``make`` command from within the test directories.
-
-.. note::
-
-   The ``make`` targets append the linker flags for AMD devices to the ``CFLAGS`` variable by default.
-
-To compile using hipfc, run the following command:
-
-.. code-block:: shell
-
-   hipfc <CFLAGS> <test_name>.f03 -o <test_name>
-
-
-The ``vecadd`` test is the only exception. It also requires the HIP C++ source.
-
-.. code-block:: shell
-
-   hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
-
-
-Building and running all tests
+Building and running the tests
 -------------------------------
 
-You can build and run the whole test collection from the ``build/`` folder
-(see :ref:`build-test-hipfort-from-source`) or
-from the ``test/`` folder.
+The tests are driven by CTest. Configure the build with ``-DBUILD_TESTING=ON``,
+build hipFORT, and run the suite with ``ctest``
+(see :ref:`build-test-hipfort-from-source`).
 
-The command to run all tests, as shown below, expects the ROCm math libraries to be found at ``/opt/rocm``.
+The commands below expect the ROCm math libraries to be found at ``/opt/rocm``.
 To specify a different ROCm location, use the ``ROCM_PATH`` environment variable.
 
-.. note::
+.. code-block:: shell
 
-   When using older ROCm versions, you might need to manually set the environment variable ``HIP_PLATFORM``
-   to ``hcc`` before running the tests.
+   cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+   cmake --build build
+   ctest --test-dir build
 
-To run the tests from the ``build`` subdirectory, use these commands:
+To run a single test, pass its name to ``ctest`` using the ``-R`` filter:
 
 .. code-block:: shell
 
-   cd build/
-   make all-tests-run
-
-Alternatively, run the following commands from the ``test`` directory:
-
-.. code-block:: shell
-
-   cd test/
-   make run_all
+   ctest --test-dir build -R hipfort_test_f2008_hipblas_dgemm

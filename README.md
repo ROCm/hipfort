@@ -116,26 +116,18 @@ The following tables list the supported API:
 You may further find it convenient to directly use the search function on
 [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface
 
-## hipfc wrapper compiler and Makefile.hipfort
+## Linking against hipfort
 
-The hipfc wrapper compiler is deprecated and will be removed in a future release. Users are
-encouraged to call their Fortran or HIP compilers directly instead of relying on the hipfc wrapper.
-The hipfort project provides exported CMake targets that can be used for linking to the appropriate
-ROCm libraries.
+To use hipfort in your project, invoke your Fortran and HIP compilers directly and
+link against the appropriate ROCm libraries. hipfort provides exported CMake targets
+(such as `hipfort::hip`, `hipfort::rocblas`, and `hipfort::hipblas`) to make this
+straightforward:
 
-hipfort currently ships the `hipfc` wrapper compiler and a `Makefile.hipfort` that can be included
-in a project's build system. hipfc is located in the `bin/` subdirectory and Makefile.hipfort in
-share/hipfort of the repository. While both can be configured via a number of environment variables,
-`hipfc` also understands a greater number of command line options that you can print to the screen via
-`hipfc -h`.
-
-Among the environment variables, the most important are:
-
-| Variable | Description | Default |
-|---|---|---|
-| `HIP_PLATFORM` | The platform to compile for | `amd` |
-| `ROCM_PATH` | Path to ROCm installation | `/opt/rocm` |
-| `CMAKE_Fortran_COMPILER` | Fortran compiler to be used | `gfortran` | 
+```cmake
+find_package(hipfort REQUIRED)
+add_executable(my_app main.f03)
+target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
+```
 
 ## Examples and tests
 
@@ -145,46 +137,24 @@ Both test collections implement the same tests but require
 that the used Fortran compiler supports at least the respective Fortran standard.
 There are further subcategories per `hip*` or `roc*` library that is tested.
 
-### Building a single test
+### Building and running the tests
 
-> **NOTE**: The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
+The tests are driven by CTest. Configure the build with `-DBUILD_TESTING=ON`,
+build hipfort, and run the suite with `ctest`.
 
-To compile for AMD devices you can simply call `make` in the test directories.
-
-Compilation typically boils down to calling `hipfc` as follows:
-
-```shell
-hipfc <CFLAGS> <test_name>.f03 -o <test_name>
-```
-
-The `vecadd` test is the exception as the additional HIP C++ source must be supplied too:
-
-```shell
-hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
-```
-
-### Building and running all tests
-
-You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](#build-and-test-hipfort-from-source)) or
-from the `test/` folder. The instructions are given below.
-
-#### AMD devices
-
-> **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
+> **NOTE**: Running the tests requires that all ROCm math libraries can be found at `/opt/rocm`.
 Specify a different ROCm location via the `ROCM_PATH` environment variable.
-> **NOTE**: When using older ROCm versions, you might need to manually set the environment variable `HIP_PLATFORM` to `hcc`
-before running the tests.
 
 ```shell
-cd build/
-make all-tests-run
+cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+cmake --build build
+ctest --test-dir build
 ```
 
-Alternatively:
+To run a single test, pass its name to `ctest` via the `-R` filter, for example:
 
 ```shell
-cd test/
-make run_all
+ctest --test-dir build -R hipfort_test_f2008_hipblas_dgemm
 ```
 
 ## Copyright, License, and Disclaimer

@@ -1,6 +1,6 @@
 .. meta::
   :description: How to use hipFORT
-  :keywords: fortran, hipFORT, hipfc, compiler, AMD, ROCm, usage guide
+  :keywords: fortran, hipFORT, compiler, AMD, ROCm, usage guide
 
 ***********************************
 Using hipFORT in your application
