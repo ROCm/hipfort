@@ -184,7 +184,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 specifies the number of batches in x.
   interface rocblas_sscal_batched
-    function rocblas_sscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_sscal_batched")
+    function rocblas_sscal_batched_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_sscal_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -199,7 +200,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dscal_batched
-    function rocblas_dscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_dscal_batched")
+    function rocblas_dscal_batched_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_dscal_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -214,7 +216,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cscal_batched
-    function rocblas_cscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_cscal_batched")
+    function rocblas_cscal_batched_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_cscal_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -229,7 +232,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zscal_batched
-    function rocblas_zscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_zscal_batched")
+    function rocblas_zscal_batched_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_zscal_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -244,7 +248,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csscal_batched
-    function rocblas_csscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_csscal_batched")
+    function rocblas_csscal_batched_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_csscal_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -259,7 +264,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdscal_batched
-    function rocblas_zdscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_zdscal_batched")
+    function rocblas_zdscal_batched_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_zdscal_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -306,7 +312,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 specifies the number of batches in x.
   interface rocblas_sscal_strided_batched
-    function rocblas_sscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_sscal_strided_batched")
+    function rocblas_sscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_sscal_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -328,7 +335,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dscal_strided_batched
-    function rocblas_dscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_dscal_strided_batched")
+    function rocblas_dscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_dscal_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -350,7 +358,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cscal_strided_batched
-    function rocblas_cscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_cscal_strided_batched")
+    function rocblas_cscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_cscal_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -372,7 +381,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zscal_strided_batched
-    function rocblas_zscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_zscal_strided_batched")
+    function rocblas_zscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_zscal_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -394,7 +404,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csscal_strided_batched
-    function rocblas_csscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_csscal_strided_batched")
+    function rocblas_csscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_csscal_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -416,7 +427,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdscal_strided_batched
-    function rocblas_zdscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_zdscal_strided_batched")
+    function rocblas_zdscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_zdscal_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -575,7 +587,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_scopy_batched
-    function rocblas_scopy_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_scopy_batched")
+    function rocblas_scopy_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_scopy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -591,7 +604,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dcopy_batched
-    function rocblas_dcopy_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_dcopy_batched")
+    function rocblas_dcopy_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_dcopy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -607,7 +621,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ccopy_batched
-    function rocblas_ccopy_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_ccopy_batched")
+    function rocblas_ccopy_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_ccopy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -623,7 +638,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zcopy_batched
-    function rocblas_zcopy_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_zcopy_batched")
+    function rocblas_zcopy_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_zcopy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -681,7 +697,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_scopy_strided_batched
-    function rocblas_scopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_scopy_strided_batched")
+    function rocblas_scopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_scopy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -705,7 +722,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dcopy_strided_batched
-    function rocblas_dcopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_dcopy_strided_batched")
+    function rocblas_dcopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dcopy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -729,7 +747,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ccopy_strided_batched
-    function rocblas_ccopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_ccopy_strided_batched")
+    function rocblas_ccopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_ccopy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -753,7 +772,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zcopy_strided_batched
-    function rocblas_zcopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zcopy_strided_batched")
+    function rocblas_zcopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zcopy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1012,7 +1032,8 @@ module hipfort_rocblas
   !>               batch.
   !>               Return 0.0 for each element if n <= 0.
   interface rocblas_sdot_batched
-    function rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_sdot_batched")
+    function rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_sdot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1036,7 +1057,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddot_batched
-    function rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_ddot_batched")
+    function rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_ddot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1060,7 +1082,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hdot_batched
-    function rocblas_hdot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_hdot_batched")
+    function rocblas_hdot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_hdot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1077,7 +1100,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_bfdot_batched
-    function rocblas_bfdot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_bfdot_batched")
+    function rocblas_bfdot_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_bfdot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1094,7 +1118,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotu_batched
-    function rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_cdotu_batched")
+    function rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_cdotu_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1118,7 +1143,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotu_batched
-    function rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_zdotu_batched")
+    function rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_zdotu_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1142,7 +1168,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotc_batched
-    function rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_cdotc_batched")
+    function rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_cdotc_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1166,7 +1193,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotc_batched
-    function rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_zdotc_batched")
+    function rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_zdotc_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1236,7 +1264,9 @@ module hipfort_rocblas
   !>               batch.
   !>               Return 0.0 for each element if n <= 0.
   interface rocblas_sdot_strided_batched
-    function rocblas_sdot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_sdot_strided_batched")
+    function rocblas_sdot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_sdot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1261,7 +1291,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddot_strided_batched
-    function rocblas_ddot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_ddot_strided_batched")
+    function rocblas_ddot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_ddot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1286,7 +1318,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hdot_strided_batched
-    function rocblas_hdot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_hdot_strided_batched")
+    function rocblas_hdot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_hdot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1305,7 +1339,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_bfdot_strided_batched
-    function rocblas_bfdot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_bfdot_strided_batched")
+    function rocblas_bfdot_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_bfdot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1324,7 +1360,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotu_strided_batched
-    function rocblas_cdotu_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_cdotu_strided_batched")
+    function rocblas_cdotu_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_cdotu_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1349,7 +1387,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotu_strided_batched
-    function rocblas_zdotu_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_zdotu_strided_batched")
+    function rocblas_zdotu_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_zdotu_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1374,7 +1414,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotc_strided_batched
-    function rocblas_cdotc_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_cdotc_strided_batched")
+    function rocblas_cdotc_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_cdotc_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1399,7 +1441,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotc_strided_batched
-    function rocblas_zdotc_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_zdotc_strided_batched")
+    function rocblas_zdotc_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_zdotc_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1548,7 +1592,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sswap_batched
-    function rocblas_sswap_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_sswap_batched")
+    function rocblas_sswap_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_sswap_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1564,7 +1609,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dswap_batched
-    function rocblas_dswap_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_dswap_batched")
+    function rocblas_dswap_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_dswap_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1580,7 +1626,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cswap_batched
-    function rocblas_cswap_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_cswap_batched")
+    function rocblas_cswap_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_cswap_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1596,7 +1643,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zswap_batched
-    function rocblas_zswap_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_zswap_batched")
+    function rocblas_zswap_batched_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_zswap_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1652,7 +1700,8 @@ module hipfort_rocblas
   !>      batch_count [rocblas_int]
   !>                  number of instances in the batch.
   interface rocblas_sswap_strided_batched
-    function rocblas_sswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_sswap_strided_batched")
+    function rocblas_sswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_sswap_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1676,7 +1725,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dswap_strided_batched
-    function rocblas_dswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_dswap_strided_batched")
+    function rocblas_dswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dswap_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1700,7 +1750,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cswap_strided_batched
-    function rocblas_cswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_cswap_strided_batched")
+    function rocblas_cswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_cswap_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1724,7 +1775,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zswap_strided_batched
-    function rocblas_zswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zswap_strided_batched")
+    function rocblas_zswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zswap_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1904,7 +1956,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch.
   interface rocblas_haxpy_batched
-    function rocblas_haxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_haxpy_batched")
+    function rocblas_haxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_haxpy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1921,7 +1974,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_saxpy_batched
-    function rocblas_saxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_saxpy_batched")
+    function rocblas_saxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_saxpy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1938,7 +1992,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_daxpy_batched
-    function rocblas_daxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_daxpy_batched")
+    function rocblas_daxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_daxpy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1955,7 +2010,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_caxpy_batched
-    function rocblas_caxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_caxpy_batched")
+    function rocblas_caxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_caxpy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -1972,7 +2028,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zaxpy_batched
-    function rocblas_zaxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_zaxpy_batched")
+    function rocblas_zaxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_zaxpy_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2022,7 +2079,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch.
   interface rocblas_haxpy_strided_batched
-    function rocblas_haxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_haxpy_strided_batched")
+    function rocblas_haxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_haxpy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2041,7 +2100,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_saxpy_strided_batched
-    function rocblas_saxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_saxpy_strided_batched")
+    function rocblas_saxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_saxpy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2066,7 +2127,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_daxpy_strided_batched
-    function rocblas_daxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_daxpy_strided_batched")
+    function rocblas_daxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_daxpy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2091,7 +2154,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_caxpy_strided_batched
-    function rocblas_caxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_caxpy_strided_batched")
+    function rocblas_caxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_caxpy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2116,7 +2181,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zaxpy_strided_batched
-    function rocblas_zaxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zaxpy_strided_batched")
+    function rocblas_zaxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_zaxpy_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2258,7 +2325,8 @@ module hipfort_rocblas
   !>               device array or host array of batch_count size for results.
   !>               Return value is 0.0 if n, incx<=0.
   interface rocblas_sasum_batched
-    function rocblas_sasum_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_sasum_batched")
+    function rocblas_sasum_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_sasum_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2280,7 +2348,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dasum_batched
-    function rocblas_dasum_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dasum_batched")
+    function rocblas_dasum_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dasum_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2302,7 +2371,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scasum_batched
-    function rocblas_scasum_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_scasum_batched")
+    function rocblas_scasum_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_scasum_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2324,7 +2394,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dzasum_batched
-    function rocblas_dzasum_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dzasum_batched")
+    function rocblas_dzasum_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dzasum_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2380,7 +2451,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch.
   interface rocblas_sasum_strided_batched
-    function rocblas_sasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_sasum_strided_batched")
+    function rocblas_sasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_sasum_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2402,7 +2474,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dasum_strided_batched
-    function rocblas_dasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dasum_strided_batched")
+    function rocblas_dasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dasum_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2424,7 +2497,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scasum_strided_batched
-    function rocblas_scasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_scasum_strided_batched")
+    function rocblas_scasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_scasum_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2446,7 +2520,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dzasum_strided_batched
-    function rocblas_dzasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dzasum_strided_batched")
+    function rocblas_dzasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dzasum_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2586,7 +2661,8 @@ module hipfort_rocblas
   !>               device pointer or host pointer to array of batch_count size for nrm2 results.
   !>               Return value is 0.0 for each element if n <= 0, incx<=0.
   interface rocblas_snrm2_batched
-    function rocblas_snrm2_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_snrm2_batched")
+    function rocblas_snrm2_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_snrm2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2608,7 +2684,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dnrm2_batched
-    function rocblas_dnrm2_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dnrm2_batched")
+    function rocblas_dnrm2_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dnrm2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2630,7 +2707,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scnrm2_batched
-    function rocblas_scnrm2_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_scnrm2_batched")
+    function rocblas_scnrm2_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_scnrm2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2652,7 +2730,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dznrm2_batched
-    function rocblas_dznrm2_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dznrm2_batched")
+    function rocblas_dznrm2_batched_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dznrm2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2708,7 +2787,8 @@ module hipfort_rocblas
   !>               results.
   !>               Return value is 0.0 for each element if n <= 0, incx<=0.
   interface rocblas_snrm2_strided_batched
-    function rocblas_snrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_snrm2_strided_batched")
+    function rocblas_snrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_snrm2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2730,7 +2810,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dnrm2_strided_batched
-    function rocblas_dnrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dnrm2_strided_batched")
+    function rocblas_dnrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dnrm2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2752,7 +2833,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scnrm2_strided_batched
-    function rocblas_scnrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_scnrm2_strided_batched")
+    function rocblas_scnrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_scnrm2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2774,7 +2856,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dznrm2_strided_batched
-    function rocblas_dznrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dznrm2_strided_batched")
+    function rocblas_dznrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dznrm2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2909,7 +2992,8 @@ module hipfort_rocblas
   !>               device or host array of pointers of batch_count size for results.
   !>               Return is 0 if n, incx<=0.
   interface rocblas_isamax_batched
-    function rocblas_isamax_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_isamax_batched")
+    function rocblas_isamax_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_isamax_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2931,7 +3015,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamax_batched
-    function rocblas_idamax_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_idamax_batched")
+    function rocblas_idamax_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_idamax_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2953,7 +3038,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamax_batched
-    function rocblas_icamax_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_icamax_batched")
+    function rocblas_icamax_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_icamax_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -2975,7 +3061,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamax_batched
-    function rocblas_izamax_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_izamax_batched")
+    function rocblas_izamax_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_izamax_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3024,7 +3111,8 @@ module hipfort_rocblas
   !>               device or host pointer for storing contiguous batch_count results.
   !>               Return is 0 if n <= 0, incx<=0.
   interface rocblas_isamax_strided_batched
-    function rocblas_isamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_isamax_strided_batched")
+    function rocblas_isamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_isamax_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3046,7 +3134,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamax_strided_batched
-    function rocblas_idamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_idamax_strided_batched")
+    function rocblas_idamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_idamax_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3068,7 +3157,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamax_strided_batched
-    function rocblas_icamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_icamax_strided_batched")
+    function rocblas_icamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_icamax_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3090,7 +3180,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamax_strided_batched
-    function rocblas_izamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_izamax_strided_batched")
+    function rocblas_izamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_izamax_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3225,7 +3316,8 @@ module hipfort_rocblas
   !>               device or host pointers to array of batch_count size for results.
   !>               Return is 0 if n, incx<=0.
   interface rocblas_isamin_batched
-    function rocblas_isamin_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_isamin_batched")
+    function rocblas_isamin_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_isamin_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3247,7 +3339,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamin_batched
-    function rocblas_idamin_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_idamin_batched")
+    function rocblas_idamin_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_idamin_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3269,7 +3362,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamin_batched
-    function rocblas_icamin_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_icamin_batched")
+    function rocblas_icamin_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_icamin_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3291,7 +3385,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamin_batched
-    function rocblas_izamin_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_izamin_batched")
+    function rocblas_izamin_batched_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_izamin_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3340,7 +3435,8 @@ module hipfort_rocblas
   !>               device or host pointer to array for storing contiguous batch_count results.
   !>               Return is 0 if n <= 0, incx<=0.
   interface rocblas_isamin_strided_batched
-    function rocblas_isamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_isamin_strided_batched")
+    function rocblas_isamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_isamin_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3362,7 +3458,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamin_strided_batched
-    function rocblas_idamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_idamin_strided_batched")
+    function rocblas_idamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_idamin_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3384,7 +3481,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamin_strided_batched
-    function rocblas_icamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_icamin_strided_batched")
+    function rocblas_icamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_icamin_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3406,7 +3504,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamin_strided_batched
-    function rocblas_izamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_izamin_strided_batched")
+    function rocblas_izamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_izamin_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3627,7 +3726,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 the number of x and y arrays, that is, the number of batches.
   interface rocblas_srot_batched
-    function rocblas_srot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_srot_batched")
+    function rocblas_srot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_srot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3645,7 +3745,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drot_batched
-    function rocblas_drot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_drot_batched")
+    function rocblas_drot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_drot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3663,7 +3764,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crot_batched
-    function rocblas_crot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_crot_batched")
+    function rocblas_crot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_crot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3681,7 +3783,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csrot_batched
-    function rocblas_csrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_csrot_batched")
+    function rocblas_csrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_csrot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3699,7 +3802,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrot_batched
-    function rocblas_zrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_zrot_batched")
+    function rocblas_zrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_zrot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3717,7 +3821,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdrot_batched
-    function rocblas_zdrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_zdrot_batched")
+    function rocblas_zdrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_zdrot_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3773,7 +3878,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>             the number of x and y arrays, that is, the number of batches.
   interface rocblas_srot_strided_batched
-    function rocblas_srot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_srot_strided_batched")
+    function rocblas_srot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_srot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3799,7 +3906,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drot_strided_batched
-    function rocblas_drot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_drot_strided_batched")
+    function rocblas_drot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_drot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3825,7 +3934,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crot_strided_batched
-    function rocblas_crot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_crot_strided_batched")
+    function rocblas_crot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_crot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3851,7 +3962,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csrot_strided_batched
-    function rocblas_csrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_csrot_strided_batched")
+    function rocblas_csrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_csrot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3877,7 +3990,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrot_strided_batched
-    function rocblas_zrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_zrot_strided_batched")
+    function rocblas_zrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_zrot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -3903,7 +4018,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdrot_strided_batched
-    function rocblas_zdrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_zdrot_strided_batched")
+    function rocblas_zdrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_zdrot_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4045,7 +4162,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of batches (length of arrays a, b, c, and s).
   interface rocblas_srotg_batched
-    function rocblas_srotg_batched_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_srotg_batched")
+    function rocblas_srotg_batched_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_srotg_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4060,7 +4178,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotg_batched
-    function rocblas_drotg_batched_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_drotg_batched")
+    function rocblas_drotg_batched_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_drotg_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4075,7 +4194,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crotg_batched
-    function rocblas_crotg_batched_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_crotg_batched")
+    function rocblas_crotg_batched_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_crotg_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4090,7 +4210,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrotg_batched
-    function rocblas_zrotg_batched_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_zrotg_batched")
+    function rocblas_zrotg_batched_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_zrotg_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4139,7 +4260,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of batches (length of arrays a, b, c, and s).
   interface rocblas_srotg_strided_batched
-    function rocblas_srotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_srotg_strided_batched")
+    function rocblas_srotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_srotg_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4158,7 +4281,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotg_strided_batched
-    function rocblas_drotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_drotg_strided_batched")
+    function rocblas_drotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_drotg_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4177,7 +4302,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crotg_strided_batched
-    function rocblas_crotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_crotg_strided_batched")
+    function rocblas_crotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_crotg_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4196,7 +4323,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrotg_strided_batched
-    function rocblas_zrotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_zrotg_strided_batched")
+    function rocblas_zrotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_zrotg_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4342,7 +4471,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 the number of x and y arrays, that is, the number of batches.
   interface rocblas_srotm_batched
-    function rocblas_srotm_batched_(handle,n,x,incx,y,incy,param,batch_count) bind(c, name="rocblas_srotm_batched")
+    function rocblas_srotm_batched_(handle,n,x,incx,y,incy,param,batch_count) &
+        bind(c, name="rocblas_srotm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4359,7 +4489,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotm_batched
-    function rocblas_drotm_batched_(handle,n,x,incx,y,incy,param,batch_count) bind(c, name="rocblas_drotm_batched")
+    function rocblas_drotm_batched_(handle,n,x,incx,y,incy,param,batch_count) &
+        bind(c, name="rocblas_drotm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4431,7 +4562,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 the number of x and y arrays, that is, the number of batches.
   interface rocblas_srotm_strided_batched
-    function rocblas_srotm_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count) bind(c, name="rocblas_srotm_strided_batched")
+    function rocblas_srotm_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count) &
+        bind(c, name="rocblas_srotm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4457,7 +4590,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotm_strided_batched
-    function rocblas_drotm_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count) bind(c, name="rocblas_drotm_strided_batched")
+    function rocblas_drotm_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count) &
+        bind(c, name="rocblas_drotm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4597,7 +4732,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 the number of instances in the batch.
   interface rocblas_srotmg_batched
-    function rocblas_srotmg_batched_(handle,d1,d2,x1,y1,param,batch_count) bind(c, name="rocblas_srotmg_batched")
+    function rocblas_srotmg_batched_(handle,d1,d2,x1,y1,param,batch_count) &
+        bind(c, name="rocblas_srotmg_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4613,7 +4749,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotmg_batched
-    function rocblas_drotmg_batched_(handle,d1,d2,x1,y1,param,batch_count) bind(c, name="rocblas_drotmg_batched")
+    function rocblas_drotmg_batched_(handle,d1,d2,x1,y1,param,batch_count) &
+        bind(c, name="rocblas_drotmg_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4695,7 +4832,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 the number of instances in the batch.
   interface rocblas_srotmg_strided_batched
-    function rocblas_srotmg_strided_batched_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1,stride_y1,param,stride_param,batch_count) bind(c, name="rocblas_srotmg_strided_batched")
+    function rocblas_srotmg_strided_batched_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1, &
+        stride_y1,param,stride_param,batch_count) &
+        bind(c, name="rocblas_srotmg_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4716,7 +4855,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotmg_strided_batched
-    function rocblas_drotmg_strided_batched_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1,stride_y1,param,stride_param,batch_count) bind(c, name="rocblas_drotmg_strided_batched")
+    function rocblas_drotmg_strided_batched_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1, &
+        stride_y1,param,stride_param,batch_count) &
+        bind(c, name="rocblas_drotmg_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4803,7 +4944,8 @@ module hipfort_rocblas
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   interface rocblas_sgbmv
-    function rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_sgbmv")
+    function rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_sgbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4833,7 +4975,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgbmv
-    function rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dgbmv")
+    function rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dgbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4863,7 +5006,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgbmv
-    function rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_cgbmv")
+    function rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_cgbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4893,7 +5037,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgbmv
-    function rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zgbmv")
+    function rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zgbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -4994,7 +5139,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
   interface rocblas_sgbmv_batched
-    function rocblas_sgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_sgbmv_batched")
+    function rocblas_sgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_sgbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5018,7 +5165,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgbmv_batched
-    function rocblas_dgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dgbmv_batched")
+    function rocblas_dgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_dgbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5042,7 +5191,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgbmv_batched
-    function rocblas_cgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_cgbmv_batched")
+    function rocblas_cgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_cgbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5066,7 +5217,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgbmv_batched
-    function rocblas_zgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zgbmv_batched")
+    function rocblas_zgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_zgbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5170,7 +5323,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
   interface rocblas_sgbmv_strided_batched
-    function rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_sgbmv_strided_batched")
+    function rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_sgbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5204,7 +5359,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgbmv_strided_batched
-    function rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_dgbmv_strided_batched")
+    function rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_dgbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5238,7 +5395,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgbmv_strided_batched
-    function rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_cgbmv_strided_batched")
+    function rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_cgbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5272,7 +5431,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgbmv_strided_batched
-    function rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zgbmv_strided_batched")
+    function rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zgbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5349,7 +5510,8 @@ module hipfort_rocblas
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   interface rocblas_sgemv
-    function rocblas_sgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_sgemv")
+    function rocblas_sgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_sgemv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5377,7 +5539,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemv
-    function rocblas_dgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dgemv")
+    function rocblas_dgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dgemv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5405,7 +5568,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemv
-    function rocblas_cgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_cgemv")
+    function rocblas_cgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_cgemv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5433,7 +5597,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemv
-    function rocblas_zgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zgemv")
+    function rocblas_zgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zgemv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5508,7 +5673,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sgemv_batched
-    function rocblas_sgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_sgemv_batched")
+    function rocblas_sgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_sgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5530,7 +5696,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemv_batched
-    function rocblas_dgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dgemv_batched")
+    function rocblas_dgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5552,7 +5719,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemv_batched
-    function rocblas_cgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_cgemv_batched")
+    function rocblas_cgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_cgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5574,7 +5742,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemv_batched
-    function rocblas_zgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zgemv_batched")
+    function rocblas_zgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5659,7 +5828,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sgemv_strided_batched
-    function rocblas_sgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_sgemv_strided_batched")
+    function rocblas_sgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_sgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5691,7 +5862,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemv_strided_batched
-    function rocblas_dgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dgemv_strided_batched")
+    function rocblas_dgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5723,7 +5896,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemv_strided_batched
-    function rocblas_cgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_cgemv_strided_batched")
+    function rocblas_cgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_cgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5755,7 +5930,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemv_strided_batched
-    function rocblas_zgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_zgemv_strided_batched")
+    function rocblas_zgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5859,7 +6036,8 @@ module hipfort_rocblas
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   interface rocblas_chbmv
-    function rocblas_chbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_chbmv")
+    function rocblas_chbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_chbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5887,7 +6065,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhbmv
-    function rocblas_zhbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhbmv")
+    function rocblas_zhbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zhbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -5991,7 +6170,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chbmv_batched
-    function rocblas_chbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chbmv_batched")
+    function rocblas_chbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_chbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6013,7 +6193,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhbmv_batched
-    function rocblas_zhbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhbmv_batched")
+    function rocblas_zhbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zhbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6120,7 +6301,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chbmv_strided_batched
-    function rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chbmv_strided_batched")
+    function rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_chbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6152,7 +6335,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhbmv_strided_batched
-    function rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhbmv_strided_batched")
+    function rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zhbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6238,7 +6423,8 @@ module hipfort_rocblas
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   interface rocblas_chemv
-    function rocblas_chemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_chemv")
+    function rocblas_chemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_chemv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6265,7 +6451,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemv
-    function rocblas_zhemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhemv")
+    function rocblas_zhemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zhemv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6349,7 +6536,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chemv_batched
-    function rocblas_chemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chemv_batched")
+    function rocblas_chemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_chemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6370,7 +6558,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemv_batched
-    function rocblas_zhemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhemv_batched")
+    function rocblas_zhemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zhemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6457,7 +6646,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chemv_strided_batched
-    function rocblas_chemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chemv_strided_batched")
+    function rocblas_chemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_chemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6488,7 +6679,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemv_strided_batched
-    function rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhemv_strided_batched")
+    function rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zhemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6663,7 +6856,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cher_batched
-    function rocblas_cher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_cher_batched")
+    function rocblas_cher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_cher_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6681,7 +6875,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher_batched
-    function rocblas_zher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zher_batched")
+    function rocblas_zher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_zher_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6753,7 +6948,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cher_strided_batched
-    function rocblas_cher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_cher_strided_batched")
+    function rocblas_cher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_cher_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6780,7 +6977,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher_strided_batched
-    function rocblas_zher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher_strided_batched")
+    function rocblas_zher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_zher_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6962,7 +7161,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cher2_batched
-    function rocblas_cher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cher2_batched")
+    function rocblas_cher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_cher2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -6982,7 +7182,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2_batched
-    function rocblas_zher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zher2_batched")
+    function rocblas_zher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zher2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7068,7 +7269,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cher2_strided_batched
-    function rocblas_cher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_cher2_strided_batched")
+    function rocblas_cher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A, &
+        lda,stride_A,batch_count) &
+        bind(c, name="rocblas_cher2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7098,7 +7301,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2_strided_batched
-    function rocblas_zher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher2_strided_batched")
+    function rocblas_zher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A, &
+        lda,stride_A,batch_count) &
+        bind(c, name="rocblas_zher2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7321,7 +7526,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chpmv_batched
-    function rocblas_chpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chpmv_batched")
+    function rocblas_chpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_chpmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7341,7 +7547,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpmv_batched
-    function rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhpmv_batched")
+    function rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zhpmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7445,7 +7652,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chpmv_strided_batched
-    function rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chpmv_strided_batched")
+    function rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta, &
+        y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_chpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7474,7 +7683,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpmv_strided_batched
-    function rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhpmv_strided_batched")
+    function rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta, &
+        y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zhpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7673,7 +7884,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chpr_batched
-    function rocblas_chpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_chpr_batched")
+    function rocblas_chpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_chpr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7690,7 +7902,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr_batched
-    function rocblas_zhpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zhpr_batched")
+    function rocblas_zhpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_zhpr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7778,7 +7991,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chpr_strided_batched
-    function rocblas_chpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_chpr_strided_batched")
+    function rocblas_chpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_chpr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -7803,7 +8018,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr_strided_batched
-    function rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr_strided_batched")
+    function rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_zhpr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8012,7 +8229,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chpr2_batched
-    function rocblas_chpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_chpr2_batched")
+    function rocblas_chpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_chpr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8031,7 +8249,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr2_batched
-    function rocblas_zhpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_zhpr2_batched")
+    function rocblas_zhpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_zhpr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8130,7 +8349,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chpr2_strided_batched
-    function rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_chpr2_strided_batched")
+    function rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y, &
+        AP,stride_A,batch_count) &
+        bind(c, name="rocblas_chpr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8158,7 +8379,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr2_strided_batched
-    function rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr2_strided_batched")
+    function rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y, &
+        AP,stride_A,batch_count) &
+        bind(c, name="rocblas_zhpr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8407,7 +8630,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               The number of batched matrices/vectors.
   interface rocblas_strmv_strided_batched
-    function rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_strmv_strided_batched")
+    function rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_strmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8435,7 +8660,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmv_strided_batched
-    function rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtrmv_strided_batched")
+    function rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtrmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8463,7 +8690,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmv_strided_batched
-    function rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctrmv_strided_batched")
+    function rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctrmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8491,7 +8720,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmv_strided_batched
-    function rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztrmv_strided_batched")
+    function rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztrmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8736,7 +8967,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>             The number of batched matrices/vectors.
   interface rocblas_stpmv_strided_batched
-    function rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stpmv_strided_batched")
+    function rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_stpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8762,7 +8995,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpmv_strided_batched
-    function rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtpmv_strided_batched")
+    function rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_dtpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8788,7 +9023,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpmv_strided_batched
-    function rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctpmv_strided_batched")
+    function rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_ctpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8814,7 +9051,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpmv_strided_batched
-    function rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztpmv_strided_batched")
+    function rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_ztpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9103,7 +9342,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_stbmv_batched
-    function rocblas_stbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_stbmv_batched")
+    function rocblas_stbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_stbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9123,7 +9363,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbmv_batched
-    function rocblas_dtbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtbmv_batched")
+    function rocblas_dtbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9143,7 +9384,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbmv_batched
-    function rocblas_ctbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctbmv_batched")
+    function rocblas_ctbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9163,7 +9405,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbmv_batched
-    function rocblas_ztbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbmv_batched")
+    function rocblas_ztbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9273,7 +9516,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_stbmv_strided_batched
-    function rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stbmv_strided_batched")
+    function rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_stbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9302,7 +9547,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbmv_strided_batched
-    function rocblas_dtbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtbmv_strided_batched")
+    function rocblas_dtbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9331,7 +9578,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbmv_strided_batched
-    function rocblas_ctbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctbmv_strided_batched")
+    function rocblas_ctbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9360,7 +9609,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbmv_strided_batched
-    function rocblas_ztbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztbmv_strided_batched")
+    function rocblas_ztbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9617,7 +9868,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_stbsv_batched
-    function rocblas_stbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_stbsv_batched")
+    function rocblas_stbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_stbsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9637,7 +9889,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbsv_batched
-    function rocblas_dtbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtbsv_batched")
+    function rocblas_dtbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtbsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9657,7 +9910,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbsv_batched
-    function rocblas_ctbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctbsv_batched")
+    function rocblas_ctbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctbsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9677,7 +9931,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbsv_batched
-    function rocblas_ztbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbsv_batched")
+    function rocblas_ztbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztbsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9769,7 +10024,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_stbsv_strided_batched
-    function rocblas_stbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stbsv_strided_batched")
+    function rocblas_stbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_stbsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9798,7 +10055,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbsv_strided_batched
-    function rocblas_dtbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtbsv_strided_batched")
+    function rocblas_dtbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtbsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9827,7 +10086,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbsv_strided_batched
-    function rocblas_ctbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctbsv_strided_batched")
+    function rocblas_ctbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctbsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9856,7 +10117,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbsv_strided_batched
-    function rocblas_ztbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztbsv_strided_batched")
+    function rocblas_ztbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztbsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10099,7 +10362,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_strsv_batched
-    function rocblas_strsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_strsv_batched")
+    function rocblas_strsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_strsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10118,7 +10382,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsv_batched
-    function rocblas_dtrsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtrsv_batched")
+    function rocblas_dtrsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtrsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10137,7 +10402,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsv_batched
-    function rocblas_ctrsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctrsv_batched")
+    function rocblas_ctrsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctrsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10156,7 +10422,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsv_batched
-    function rocblas_ztrsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztrsv_batched")
+    function rocblas_ztrsv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztrsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10243,7 +10510,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_strsv_strided_batched
-    function rocblas_strsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_strsv_strided_batched")
+    function rocblas_strsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_strsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10271,7 +10540,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsv_strided_batched
-    function rocblas_dtrsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtrsv_strided_batched")
+    function rocblas_dtrsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtrsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10299,7 +10570,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsv_strided_batched
-    function rocblas_ctrsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctrsv_strided_batched")
+    function rocblas_ctrsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctrsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10327,7 +10600,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsv_strided_batched
-    function rocblas_ztrsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztrsv_strided_batched")
+    function rocblas_ztrsv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztrsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10551,7 +10826,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
   interface rocblas_stpsv_batched
-    function rocblas_stpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_stpsv_batched")
+    function rocblas_stpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_stpsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10569,7 +10845,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpsv_batched
-    function rocblas_dtpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_dtpsv_batched")
+    function rocblas_dtpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_dtpsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10587,7 +10864,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpsv_batched
-    function rocblas_ctpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_ctpsv_batched")
+    function rocblas_ctpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_ctpsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10605,7 +10883,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpsv_batched
-    function rocblas_ztpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_ztpsv_batched")
+    function rocblas_ztpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_ztpsv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10684,7 +10963,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
   interface rocblas_stpsv_strided_batched
-    function rocblas_stpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stpsv_strided_batched")
+    function rocblas_stpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_stpsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10710,7 +10991,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpsv_strided_batched
-    function rocblas_dtpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtpsv_strided_batched")
+    function rocblas_dtpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_dtpsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10736,7 +11019,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpsv_strided_batched
-    function rocblas_ctpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctpsv_strided_batched")
+    function rocblas_ctpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_ctpsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10762,7 +11047,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpsv_strided_batched
-    function rocblas_ztpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztpsv_strided_batched")
+    function rocblas_ztpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x, &
+        batch_count) &
+        bind(c, name="rocblas_ztpsv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10831,7 +11118,8 @@ module hipfort_rocblas
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   interface rocblas_ssymv
-    function rocblas_ssymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_ssymv")
+    function rocblas_ssymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_ssymv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10858,7 +11146,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymv
-    function rocblas_dsymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dsymv")
+    function rocblas_dsymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dsymv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10885,7 +11174,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymv
-    function rocblas_csymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_csymv")
+    function rocblas_csymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_csymv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10912,7 +11202,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymv
-    function rocblas_zsymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zsymv")
+    function rocblas_zsymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zsymv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -10986,7 +11277,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssymv_batched
-    function rocblas_ssymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_ssymv_batched")
+    function rocblas_ssymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_ssymv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11007,7 +11299,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymv_batched
-    function rocblas_dsymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dsymv_batched")
+    function rocblas_dsymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dsymv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11028,7 +11321,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymv_batched
-    function rocblas_csymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_csymv_batched")
+    function rocblas_csymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_csymv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11049,7 +11343,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymv_batched
-    function rocblas_zsymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zsymv_batched")
+    function rocblas_zsymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zsymv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11132,7 +11427,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssymv_strided_batched
-    function rocblas_ssymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_ssymv_strided_batched")
+    function rocblas_ssymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta, &
+        y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_ssymv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11163,7 +11460,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymv_strided_batched
-    function rocblas_dsymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dsymv_strided_batched")
+    function rocblas_dsymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta, &
+        y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dsymv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11194,7 +11493,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymv_strided_batched
-    function rocblas_csymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_csymv_strided_batched")
+    function rocblas_csymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta, &
+        y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_csymv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11225,7 +11526,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymv_strided_batched
-    function rocblas_zsymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_zsymv_strided_batched")
+    function rocblas_zsymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta, &
+        y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zsymv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11386,7 +11689,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sspmv_batched
-    function rocblas_sspmv_batched_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_sspmv_batched")
+    function rocblas_sspmv_batched_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_sspmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11406,7 +11710,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspmv_batched
-    function rocblas_dspmv_batched_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dspmv_batched")
+    function rocblas_dspmv_batched_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dspmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11484,7 +11789,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sspmv_strided_batched
-    function rocblas_sspmv_strided_batched_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_sspmv_strided_batched")
+    function rocblas_sspmv_strided_batched_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y, &
+        incy,stridey,batch_count) &
+        bind(c, name="rocblas_sspmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11513,7 +11820,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspmv_strided_batched
-    function rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dspmv_strided_batched")
+    function rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y, &
+        incy,stridey,batch_count) &
+        bind(c, name="rocblas_dspmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11585,7 +11894,8 @@ module hipfort_rocblas
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   interface rocblas_ssbmv
-    function rocblas_ssbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_ssbmv")
+    function rocblas_ssbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_ssbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11613,7 +11923,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsbmv
-    function rocblas_dsbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dsbmv")
+    function rocblas_dsbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dsbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11641,7 +11952,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsbmv_batched
-    function rocblas_dsbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dsbmv_batched")
+    function rocblas_dsbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dsbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11712,7 +12024,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssbmv_batched
-    function rocblas_ssbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_ssbmv_batched")
+    function rocblas_ssbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_ssbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11798,7 +12111,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssbmv_strided_batched
-    function rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_ssbmv_strided_batched")
+    function rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_ssbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -11830,7 +12145,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsbmv_strided_batched
-    function rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dsbmv_strided_batched")
+    function rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dsbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12099,7 +12416,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sger_batched
-    function rocblas_sger_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_sger_batched")
+    function rocblas_sger_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_sger_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12119,7 +12437,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dger_batched
-    function rocblas_dger_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_dger_batched")
+    function rocblas_dger_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_dger_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12139,7 +12458,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeru_batched
-    function rocblas_cgeru_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cgeru_batched")
+    function rocblas_cgeru_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_cgeru_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12159,7 +12479,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeru_batched
-    function rocblas_zgeru_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zgeru_batched")
+    function rocblas_zgeru_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zgeru_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12179,7 +12500,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgerc_batched
-    function rocblas_cgerc_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cgerc_batched")
+    function rocblas_cgerc_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_cgerc_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12199,7 +12521,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgerc_batched
-    function rocblas_zgerc_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zgerc_batched")
+    function rocblas_zgerc_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zgerc_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12277,7 +12600,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sger_strided_batched
-    function rocblas_sger_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_sger_strided_batched")
+    function rocblas_sger_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda, &
+        strideA,batch_count) &
+        bind(c, name="rocblas_sger_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12307,7 +12632,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dger_strided_batched
-    function rocblas_dger_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_dger_strided_batched")
+    function rocblas_dger_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda, &
+        strideA,batch_count) &
+        bind(c, name="rocblas_dger_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12337,7 +12664,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeru_strided_batched
-    function rocblas_cgeru_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_cgeru_strided_batched")
+    function rocblas_cgeru_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda, &
+        strideA,batch_count) &
+        bind(c, name="rocblas_cgeru_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12367,7 +12696,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeru_strided_batched
-    function rocblas_zgeru_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zgeru_strided_batched")
+    function rocblas_zgeru_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda, &
+        strideA,batch_count) &
+        bind(c, name="rocblas_zgeru_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12397,7 +12728,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgerc_strided_batched
-    function rocblas_cgerc_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_cgerc_strided_batched")
+    function rocblas_cgerc_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda, &
+        strideA,batch_count) &
+        bind(c, name="rocblas_cgerc_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12427,7 +12760,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgerc_strided_batched
-    function rocblas_zgerc_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zgerc_strided_batched")
+    function rocblas_zgerc_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda, &
+        strideA,batch_count) &
+        bind(c, name="rocblas_zgerc_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12671,7 +13006,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sspr_batched
-    function rocblas_sspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_sspr_batched")
+    function rocblas_sspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_sspr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12688,7 +13024,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr_batched
-    function rocblas_dspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_dspr_batched")
+    function rocblas_dspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_dspr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12705,7 +13042,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cspr_batched
-    function rocblas_cspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_cspr_batched")
+    function rocblas_cspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_cspr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12722,7 +13060,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zspr_batched
-    function rocblas_zspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zspr_batched")
+    function rocblas_zspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_zspr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12809,7 +13148,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sspr_strided_batched
-    function rocblas_sspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_sspr_strided_batched")
+    function rocblas_sspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_sspr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12834,7 +13175,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr_strided_batched
-    function rocblas_dspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_dspr_strided_batched")
+    function rocblas_dspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_dspr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12859,7 +13202,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cspr_strided_batched
-    function rocblas_cspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_cspr_strided_batched")
+    function rocblas_cspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_cspr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -12884,7 +13229,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zspr_strided_batched
-    function rocblas_zspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zspr_strided_batched")
+    function rocblas_zspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_zspr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13093,7 +13440,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sspr2_batched
-    function rocblas_sspr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_sspr2_batched")
+    function rocblas_sspr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_sspr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13112,7 +13460,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr2_batched
-    function rocblas_dspr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_dspr2_batched")
+    function rocblas_dspr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_dspr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13209,7 +13558,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sspr2_strided_batched
-    function rocblas_sspr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_sspr2_strided_batched")
+    function rocblas_sspr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y, &
+        AP,stride_A,batch_count) &
+        bind(c, name="rocblas_sspr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13237,7 +13588,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr2_strided_batched
-    function rocblas_dspr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_dspr2_strided_batched")
+    function rocblas_dspr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y, &
+        AP,stride_A,batch_count) &
+        bind(c, name="rocblas_dspr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13433,7 +13786,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyr_batched
-    function rocblas_ssyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_ssyr_batched")
+    function rocblas_ssyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_ssyr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13451,7 +13805,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr_batched
-    function rocblas_dsyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_dsyr_batched")
+    function rocblas_dsyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_dsyr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13469,7 +13824,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr_batched
-    function rocblas_csyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_csyr_batched")
+    function rocblas_csyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_csyr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13487,7 +13843,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr_batched
-    function rocblas_zsyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zsyr_batched")
+    function rocblas_zsyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_zsyr_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13548,7 +13905,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch.
   interface rocblas_ssyr_strided_batched
-    function rocblas_ssyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_ssyr_strided_batched")
+    function rocblas_ssyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_ssyr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13575,7 +13934,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr_strided_batched
-    function rocblas_dsyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_dsyr_strided_batched")
+    function rocblas_dsyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_dsyr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13602,7 +13963,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr_strided_batched
-    function rocblas_csyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_csyr_strided_batched")
+    function rocblas_csyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_csyr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13629,7 +13992,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr_strided_batched
-    function rocblas_zsyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_zsyr_strided_batched")
+    function rocblas_zsyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_zsyr_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13842,7 +14207,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyr2_batched
-    function rocblas_ssyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_ssyr2_batched")
+    function rocblas_ssyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_ssyr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13862,7 +14228,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2_batched
-    function rocblas_dsyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_dsyr2_batched")
+    function rocblas_dsyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_dsyr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13882,7 +14249,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2_batched
-    function rocblas_csyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_csyr2_batched")
+    function rocblas_csyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_csyr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13902,7 +14270,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2_batched
-    function rocblas_zsyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zsyr2_batched")
+    function rocblas_zsyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zsyr2_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -13973,7 +14342,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch.
   interface rocblas_ssyr2_strided_batched
-    function rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_ssyr2_strided_batched")
+    function rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_ssyr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14003,7 +14374,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2_strided_batched
-    function rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_dsyr2_strided_batched")
+    function rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_dsyr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14033,7 +14406,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2_strided_batched
-    function rocblas_csyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_csyr2_strided_batched")
+    function rocblas_csyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_csyr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14063,7 +14438,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2_strided_batched
-    function rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zsyr2_strided_batched")
+    function rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_zsyr2_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14164,7 +14541,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   interface rocblas_chemm
-    function rocblas_chemm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_chemm")
+    function rocblas_chemm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_chemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14193,7 +14571,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemm
-    function rocblas_zhemm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zhemm")
+    function rocblas_zhemm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zhemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14298,7 +14677,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chemm_batched
-    function rocblas_chemm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_chemm_batched")
+    function rocblas_chemm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_chemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14321,7 +14701,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemm_batched
-    function rocblas_zhemm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zhemm_batched")
+    function rocblas_zhemm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_zhemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14432,7 +14813,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_chemm_strided_batched
-    function rocblas_chemm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_chemm_strided_batched")
+    function rocblas_chemm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_chemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14465,7 +14848,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemm_strided_batched
-    function rocblas_zhemm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zhemm_strided_batched")
+    function rocblas_zhemm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zhemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14565,7 +14950,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface rocblas_cherk
-    function rocblas_cherk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_cherk")
+    function rocblas_cherk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_cherk")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14592,7 +14978,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherk
-    function rocblas_zherk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_zherk")
+    function rocblas_zherk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_zherk")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14688,7 +15075,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cherk_batched
-    function rocblas_cherk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_cherk_batched")
+    function rocblas_cherk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_cherk_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14709,7 +15097,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherk_batched
-    function rocblas_zherk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_zherk_batched")
+    function rocblas_zherk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_zherk_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14809,7 +15198,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cherk_strided_batched
-    function rocblas_cherk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cherk_strided_batched")
+    function rocblas_cherk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cherk_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14839,7 +15230,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherk_strided_batched
-    function rocblas_zherk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zherk_strided_batched")
+    function rocblas_zherk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zherk_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14949,7 +15342,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface rocblas_cher2k
-    function rocblas_cher2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cher2k")
+    function rocblas_cher2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cher2k")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -14978,7 +15372,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2k
-    function rocblas_zher2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zher2k")
+    function rocblas_zher2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zher2k")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15087,7 +15482,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cher2k_batched
-    function rocblas_cher2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cher2k_batched")
+    function rocblas_cher2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cher2k_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15110,7 +15507,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2k_batched
-    function rocblas_zher2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zher2k_batched")
+    function rocblas_zher2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zher2k_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15228,7 +15627,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cher2k_strided_batched
-    function rocblas_cher2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cher2k_strided_batched")
+    function rocblas_cher2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cher2k_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15261,7 +15662,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2k_strided_batched
-    function rocblas_zher2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zher2k_strided_batched")
+    function rocblas_zher2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zher2k_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15376,7 +15779,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface rocblas_cherkx
-    function rocblas_cherkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cherkx")
+    function rocblas_cherkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cherkx")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15405,7 +15809,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherkx
-    function rocblas_zherkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zherkx")
+    function rocblas_zherkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zherkx")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15520,7 +15925,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cherkx_batched
-    function rocblas_cherkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cherkx_batched")
+    function rocblas_cherkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cherkx_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15543,7 +15950,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherkx_batched
-    function rocblas_zherkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zherkx_batched")
+    function rocblas_zherkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zherkx_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15664,7 +16073,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_cherkx_strided_batched
-    function rocblas_cherkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cherkx_strided_batched")
+    function rocblas_cherkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cherkx_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15697,7 +16108,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherkx_strided_batched
-    function rocblas_zherkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zherkx_strided_batched")
+    function rocblas_zherkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zherkx_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15800,7 +16213,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   interface rocblas_ssymm
-    function rocblas_ssymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_ssymm")
+    function rocblas_ssymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_ssymm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15829,7 +16243,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymm
-    function rocblas_dsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dsymm")
+    function rocblas_dsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dsymm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15858,7 +16273,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymm
-    function rocblas_csymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_csymm")
+    function rocblas_csymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_csymm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15887,7 +16303,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymm
-    function rocblas_zsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsymm")
+    function rocblas_zsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zsymm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -15991,7 +16408,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssymm_batched
-    function rocblas_ssymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_ssymm_batched")
+    function rocblas_ssymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_ssymm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16014,7 +16432,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymm_batched
-    function rocblas_dsymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dsymm_batched")
+    function rocblas_dsymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_dsymm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16037,7 +16456,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymm_batched
-    function rocblas_csymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_csymm_batched")
+    function rocblas_csymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_csymm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16060,7 +16480,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymm_batched
-    function rocblas_zsymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsymm_batched")
+    function rocblas_zsymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_zsymm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16167,7 +16588,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssymm_strided_batched
-    function rocblas_ssymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssymm_strided_batched")
+    function rocblas_ssymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssymm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16200,7 +16623,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymm_strided_batched
-    function rocblas_dsymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsymm_strided_batched")
+    function rocblas_dsymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsymm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16233,7 +16658,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymm_strided_batched
-    function rocblas_csymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csymm_strided_batched")
+    function rocblas_csymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csymm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16266,7 +16693,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymm_strided_batched
-    function rocblas_zsymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsymm_strided_batched")
+    function rocblas_zsymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsymm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16368,7 +16797,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface rocblas_ssyrk
-    function rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_ssyrk")
+    function rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_ssyrk")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16395,7 +16825,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrk
-    function rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_dsyrk")
+    function rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_dsyrk")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16422,7 +16853,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrk
-    function rocblas_csyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_csyrk")
+    function rocblas_csyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_csyrk")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16449,7 +16881,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrk
-    function rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_zsyrk")
+    function rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_zsyrk")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16547,7 +16980,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyrk_batched
-    function rocblas_ssyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_ssyrk_batched")
+    function rocblas_ssyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_ssyrk_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16568,7 +17002,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrk_batched
-    function rocblas_dsyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_dsyrk_batched")
+    function rocblas_dsyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_dsyrk_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16589,7 +17024,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrk_batched
-    function rocblas_csyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_csyrk_batched")
+    function rocblas_csyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_csyrk_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16610,7 +17046,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrk_batched
-    function rocblas_zsyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyrk_batched")
+    function rocblas_zsyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_zsyrk_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16711,7 +17148,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyrk_strided_batched
-    function rocblas_ssyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssyrk_strided_batched")
+    function rocblas_ssyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssyrk_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16741,7 +17180,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrk_strided_batched
-    function rocblas_dsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsyrk_strided_batched")
+    function rocblas_dsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsyrk_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16771,7 +17212,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrk_strided_batched
-    function rocblas_csyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csyrk_strided_batched")
+    function rocblas_csyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csyrk_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16801,7 +17244,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrk_strided_batched
-    function rocblas_zsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyrk_strided_batched")
+    function rocblas_zsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsyrk_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16913,7 +17358,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface rocblas_ssyr2k
-    function rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_ssyr2k")
+    function rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_ssyr2k")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16942,7 +17388,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2k
-    function rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dsyr2k")
+    function rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dsyr2k")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -16971,7 +17418,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2k
-    function rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_csyr2k")
+    function rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_csyr2k")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17000,7 +17448,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2k
-    function rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsyr2k")
+    function rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zsyr2k")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17110,7 +17559,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyr2k_batched
-    function rocblas_ssyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_ssyr2k_batched")
+    function rocblas_ssyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ssyr2k_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17133,7 +17584,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2k_batched
-    function rocblas_dsyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dsyr2k_batched")
+    function rocblas_dsyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dsyr2k_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17156,7 +17609,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2k_batched
-    function rocblas_csyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_csyr2k_batched")
+    function rocblas_csyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_csyr2k_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17179,7 +17634,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2k_batched
-    function rocblas_zsyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyr2k_batched")
+    function rocblas_zsyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zsyr2k_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17299,7 +17756,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyr2k_strided_batched
-    function rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssyr2k_strided_batched")
+    function rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssyr2k_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17332,7 +17791,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2k_strided_batched
-    function rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsyr2k_strided_batched")
+    function rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsyr2k_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17365,7 +17826,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2k_strided_batched
-    function rocblas_csyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csyr2k_strided_batched")
+    function rocblas_csyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csyr2k_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17398,7 +17861,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2k_strided_batched
-    function rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyr2k_strided_batched")
+    function rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsyr2k_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17516,7 +17981,8 @@ module hipfort_rocblas
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface rocblas_ssyrkx
-    function rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_ssyrkx")
+    function rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_ssyrkx")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17545,7 +18011,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrkx
-    function rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dsyrkx")
+    function rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dsyrkx")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17574,7 +18041,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrkx
-    function rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_csyrkx")
+    function rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_csyrkx")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17603,7 +18071,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrkx
-    function rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsyrkx")
+    function rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zsyrkx")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17721,7 +18190,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>             number of instances in the batch.
   interface rocblas_ssyrkx_batched
-    function rocblas_ssyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_ssyrkx_batched")
+    function rocblas_ssyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ssyrkx_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17744,7 +18215,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrkx_batched
-    function rocblas_dsyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dsyrkx_batched")
+    function rocblas_dsyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dsyrkx_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17767,7 +18240,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrkx_batched
-    function rocblas_csyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_csyrkx_batched")
+    function rocblas_csyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_csyrkx_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17790,7 +18265,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrkx_batched
-    function rocblas_zsyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyrkx_batched")
+    function rocblas_zsyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zsyrkx_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17914,7 +18391,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_ssyrkx_strided_batched
-    function rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssyrkx_strided_batched")
+    function rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssyrkx_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17947,7 +18426,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrkx_strided_batched
-    function rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsyrkx_strided_batched")
+    function rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsyrkx_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -17980,7 +18461,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrkx_strided_batched
-    function rocblas_csyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csyrkx_strided_batched")
+    function rocblas_csyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csyrkx_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18013,7 +18496,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrkx_strided_batched
-    function rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyrkx_strided_batched")
+    function rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsyrkx_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18164,7 +18649,8 @@ module hipfort_rocblas
   !>           If B and C are pointers to the same matrix, ldc must equal ldb or
   !>           rocblas_status_invalid_value will be returned.
   interface rocblas_strmm
-    function rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_strmm")
+    function rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_strmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18194,7 +18680,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmm
-    function rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_dtrmm")
+    function rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_dtrmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18224,7 +18711,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmm
-    function rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ctrmm")
+    function rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_ctrmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18254,7 +18742,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmm
-    function rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ztrmm")
+    function rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_ztrmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18406,7 +18895,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
   interface rocblas_strmm_batched
-    function rocblas_strmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_strmm_batched")
+    function rocblas_strmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_strmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18430,7 +18921,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmm_batched
-    function rocblas_dtrmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_dtrmm_batched")
+    function rocblas_dtrmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dtrmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18454,7 +18947,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmm_batched
-    function rocblas_ctrmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_ctrmm_batched")
+    function rocblas_ctrmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ctrmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18478,7 +18973,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmm_batched
-    function rocblas_ztrmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_ztrmm_batched")
+    function rocblas_ztrmm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ztrmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18639,7 +19136,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
   interface rocblas_strmm_strided_batched
-    function rocblas_strmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_strmm_strided_batched")
+    function rocblas_strmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_strmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18666,7 +19165,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmm_strided_batched
-    function rocblas_dtrmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dtrmm_strided_batched")
+    function rocblas_dtrmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dtrmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18693,7 +19194,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmm_strided_batched
-    function rocblas_ctrmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ctrmm_strided_batched")
+    function rocblas_ctrmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ctrmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18720,7 +19223,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmm_strided_batched
-    function rocblas_ztrmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ztrmm_strided_batched")
+    function rocblas_ztrmm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ztrmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18920,7 +19425,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               numbers of matrices in the batch.
   interface rocblas_strtri_batched
-    function rocblas_strtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="rocblas_strtri_batched")
+    function rocblas_strtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) &
+        bind(c, name="rocblas_strtri_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18938,7 +19444,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrtri_batched
-    function rocblas_dtrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="rocblas_dtrtri_batched")
+    function rocblas_dtrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) &
+        bind(c, name="rocblas_dtrtri_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18956,7 +19463,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrtri_batched
-    function rocblas_ctrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="rocblas_ctrtri_batched")
+    function rocblas_ctrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) &
+        bind(c, name="rocblas_ctrtri_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18974,7 +19482,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrtri_batched
-    function rocblas_ztrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="rocblas_ztrtri_batched")
+    function rocblas_ztrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) &
+        bind(c, name="rocblas_ztrtri_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19039,7 +19548,9 @@ module hipfort_rocblas
   !>     batch_count  [rocblas_int]
   !>                  numbers of matrices in the batch.
   interface rocblas_strtri_strided_batched
-    function rocblas_strtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count) bind(c, name="rocblas_strtri_strided_batched")
+    function rocblas_strtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count) &
+        bind(c, name="rocblas_strtri_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19066,7 +19577,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrtri_strided_batched
-    function rocblas_dtrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count) bind(c, name="rocblas_dtrtri_strided_batched")
+    function rocblas_dtrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count) &
+        bind(c, name="rocblas_dtrtri_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19093,7 +19606,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrtri_strided_batched
-    function rocblas_ctrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count) bind(c, name="rocblas_ctrtri_strided_batched")
+    function rocblas_ctrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count) &
+        bind(c, name="rocblas_ctrtri_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19120,7 +19635,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrtri_strided_batched
-    function rocblas_ztrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count) bind(c, name="rocblas_ztrtri_strided_batched")
+    function rocblas_ztrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count) &
+        bind(c, name="rocblas_ztrtri_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19228,7 +19745,8 @@ module hipfort_rocblas
   !>     ldb    [rocblas_int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
   interface rocblas_strsm
-    function rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_strsm")
+    function rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_strsm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19256,7 +19774,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsm
-    function rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_dtrsm")
+    function rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_dtrsm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19284,7 +19803,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsm
-    function rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ctrsm")
+    function rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_ctrsm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19312,7 +19832,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsm
-    function rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ztrsm")
+    function rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_ztrsm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19412,7 +19933,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of trsm operatons in the batch.
   interface rocblas_strsm_batched
-    function rocblas_strsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_strsm_batched")
+    function rocblas_strsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_strsm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19434,7 +19957,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsm_batched
-    function rocblas_dtrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_dtrsm_batched")
+    function rocblas_dtrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_dtrsm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19456,7 +19981,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsm_batched
-    function rocblas_ctrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_ctrsm_batched")
+    function rocblas_ctrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_ctrsm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19478,7 +20005,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsm_batched
-    function rocblas_ztrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_ztrsm_batched")
+    function rocblas_ztrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_ztrsm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19579,7 +20108,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of trsm operatons in the batch.
   interface rocblas_strsm_strided_batched
-    function rocblas_strsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_strsm_strided_batched")
+    function rocblas_strsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_strsm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19610,7 +20141,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsm_strided_batched
-    function rocblas_dtrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_dtrsm_strided_batched")
+    function rocblas_dtrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_dtrsm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19641,7 +20174,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsm_strided_batched
-    function rocblas_ctrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_ctrsm_strided_batched")
+    function rocblas_ctrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_ctrsm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19672,7 +20207,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsm_strided_batched
-    function rocblas_ztrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_ztrsm_strided_batched")
+    function rocblas_ztrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_ztrsm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19761,7 +20298,8 @@ module hipfort_rocblas
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C.
   interface rocblas_sgemm
-    function rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_sgemm")
+    function rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_sgemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19791,7 +20329,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemm
-    function rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dgemm")
+    function rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dgemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19821,7 +20360,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hgemm
-    function rocblas_hgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_hgemm")
+    function rocblas_hgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_hgemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19844,7 +20384,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemm
-    function rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cgemm")
+    function rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cgemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19874,7 +20415,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemm
-    function rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zgemm")
+    function rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zgemm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19964,7 +20506,9 @@ module hipfort_rocblas
   !>               [rocblas_int]
   !>               number of gemm operations in the batch.
   interface rocblas_sgemm_batched
-    function rocblas_sgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_sgemm_batched")
+    function rocblas_sgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_sgemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -19988,7 +20532,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemm_batched
-    function rocblas_dgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dgemm_batched")
+    function rocblas_dgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dgemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20012,7 +20558,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hgemm_batched
-    function rocblas_hgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_hgemm_batched")
+    function rocblas_hgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_hgemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20036,7 +20584,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemm_batched
-    function rocblas_cgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cgemm_batched")
+    function rocblas_cgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cgemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20060,7 +20610,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemm_batched
-    function rocblas_zgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zgemm_batched")
+    function rocblas_zgemm_batched_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zgemm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20154,7 +20706,9 @@ module hipfort_rocblas
   !>               [rocblas_int]
   !>               number of gemm operatons in the batch.
   interface rocblas_sgemm_strided_batched
-    function rocblas_sgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_sgemm_strided_batched")
+    function rocblas_sgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb, &
+        stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_sgemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20188,7 +20742,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemm_strided_batched
-    function rocblas_dgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_dgemm_strided_batched")
+    function rocblas_dgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb, &
+        stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_dgemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20222,7 +20778,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hgemm_strided_batched
-    function rocblas_hgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_hgemm_strided_batched")
+    function rocblas_hgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb, &
+        stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_hgemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20249,7 +20807,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemm_strided_batched
-    function rocblas_cgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_cgemm_strided_batched")
+    function rocblas_cgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb, &
+        stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_cgemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20283,7 +20843,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemm_strided_batched
-    function rocblas_zgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zgemm_strided_batched")
+    function rocblas_zgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb, &
+        stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_zgemm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20511,7 +21073,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   interface rocblas_sdgmm_batched
-    function rocblas_sdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_sdgmm_batched")
+    function rocblas_sdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_sdgmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20531,7 +21094,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddgmm_batched
-    function rocblas_ddgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_ddgmm_batched")
+    function rocblas_ddgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_ddgmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20551,7 +21115,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdgmm_batched
-    function rocblas_cdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_cdgmm_batched")
+    function rocblas_cdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_cdgmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20571,7 +21136,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdgmm_batched
-    function rocblas_zdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_zdgmm_batched")
+    function rocblas_zdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_zdgmm_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20648,7 +21214,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
   interface rocblas_sdgmm_strided_batched
-    function rocblas_sdgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_sdgmm_strided_batched")
+    function rocblas_sdgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc, &
+        stride_C,batch_count) &
+        bind(c, name="rocblas_sdgmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20678,7 +21246,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddgmm_strided_batched
-    function rocblas_ddgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ddgmm_strided_batched")
+    function rocblas_ddgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc, &
+        stride_C,batch_count) &
+        bind(c, name="rocblas_ddgmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20708,7 +21278,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdgmm_strided_batched
-    function rocblas_cdgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cdgmm_strided_batched")
+    function rocblas_cdgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc, &
+        stride_C,batch_count) &
+        bind(c, name="rocblas_cdgmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20738,7 +21310,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdgmm_strided_batched
-    function rocblas_zdgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zdgmm_strided_batched")
+    function rocblas_zdgmm_strided_batched_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc, &
+        stride_C,batch_count) &
+        bind(c, name="rocblas_zdgmm_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20819,7 +21393,8 @@ module hipfort_rocblas
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C.
   interface rocblas_sgeam
-    function rocblas_sgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_sgeam")
+    function rocblas_sgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_sgeam")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20848,7 +21423,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgeam
-    function rocblas_dgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_dgeam")
+    function rocblas_dgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_dgeam")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20877,7 +21453,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeam
-    function rocblas_cgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_cgeam")
+    function rocblas_cgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_cgeam")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20906,7 +21483,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeam
-    function rocblas_zgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_zgeam")
+    function rocblas_zgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_zgeam")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -20994,7 +21572,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
   interface rocblas_sgeam_batched
-    function rocblas_sgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_sgeam_batched")
+    function rocblas_sgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_sgeam_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21017,7 +21597,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgeam_batched
-    function rocblas_dgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_dgeam_batched")
+    function rocblas_dgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dgeam_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21040,7 +21622,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeam_batched
-    function rocblas_cgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_cgeam_batched")
+    function rocblas_cgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cgeam_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21063,7 +21647,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeam_batched
-    function rocblas_zgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_zgeam_batched")
+    function rocblas_zgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zgeam_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21169,7 +21755,9 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
   interface rocblas_sgeam_strided_batched
-    function rocblas_sgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_sgeam_strided_batched")
+    function rocblas_sgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B, &
+        ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_sgeam_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21202,7 +21790,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgeam_strided_batched
-    function rocblas_dgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dgeam_strided_batched")
+    function rocblas_dgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B, &
+        ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dgeam_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21235,7 +21825,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeam_strided_batched
-    function rocblas_cgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cgeam_strided_batched")
+    function rocblas_cgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B, &
+        ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cgeam_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21268,7 +21860,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeam_strided_batched
-    function rocblas_zgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zgeam_strided_batched")
+    function rocblas_zgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B, &
+        ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zgeam_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21423,7 +22017,9 @@ module hipfort_rocblas
   !>     flags     [uint32_t]
   !>               optional gemm flags.
   interface rocblas_gemm_ex
-    function rocblas_gemm_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,d,d_type,ldd,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_ex")
+    function rocblas_gemm_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c, &
+        c_type,ldc,d,d_type,ldd,compute_type,algo,solution_index,flags) &
+        bind(c, name="rocblas_gemm_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21579,7 +22175,9 @@ module hipfort_rocblas
   !>     flags     [uint32_t]
   !>               optional gemm flags.
   interface rocblas_gemm_batched_ex
-    function rocblas_gemm_batched_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,d,d_type,ldd,batch_count,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_batched_ex")
+    function rocblas_gemm_batched_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb, &
+        beta,c,c_type,ldc,d,d_type,ldd,batch_count,compute_type,algo,solution_index,flags) &
+        bind(c, name="rocblas_gemm_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21751,7 +22349,10 @@ module hipfort_rocblas
   !>     flags     [uint32_t]
   !>               optional gemm flags.
   interface rocblas_gemm_strided_batched_ex
-    function rocblas_gemm_strided_batched_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,stride_a,b,b_type,ldb,stride_b,beta,c,c_type,ldc,stride_c,d,d_type,ldd,stride_d,batch_count,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_strided_batched_ex")
+    function rocblas_gemm_strided_batched_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda, &
+        stride_a,b,b_type,ldb,stride_b,beta,c,c_type,ldc,stride_c,d,d_type,ldd,stride_d, &
+        batch_count,compute_type,algo,solution_index,flags) &
+        bind(c, name="rocblas_gemm_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -21913,7 +22514,9 @@ module hipfort_rocblas
   !>     compute_type [rocblas_datatype]
   !>             specifies the datatype of computation.
   interface rocblas_trsm_ex
-    function rocblas_trsm_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="rocblas_trsm_ex")
+    function rocblas_trsm_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size, &
+        compute_type) &
+        bind(c, name="rocblas_trsm_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22069,7 +22672,9 @@ module hipfort_rocblas
   !>     compute_type [rocblas_datatype]
   !>             specifies the datatype of computation.
   interface rocblas_trsm_batched_ex
-    function rocblas_trsm_batched_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="rocblas_trsm_batched_ex")
+    function rocblas_trsm_batched_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count,invA,invA_size,compute_type) &
+        bind(c, name="rocblas_trsm_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22238,7 +22843,9 @@ module hipfort_rocblas
   !>     compute_type [rocblas_datatype]
   !>             specifies the datatype of computation.
   interface rocblas_trsm_strided_batched_ex
-    function rocblas_trsm_strided_batched_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="rocblas_trsm_strided_batched_ex")
+    function rocblas_trsm_strided_batched_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) &
+        bind(c, name="rocblas_trsm_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22319,7 +22926,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_axpy_ex
-    function rocblas_axpy_ex_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy,execution_type) bind(c, name="rocblas_axpy_ex")
+    function rocblas_axpy_ex_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy, &
+        execution_type) &
+        bind(c, name="rocblas_axpy_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22396,7 +23005,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_axpy_batched_ex
-    function rocblas_axpy_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy,batch_count,execution_type) bind(c, name="rocblas_axpy_batched_ex")
+    function rocblas_axpy_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy, &
+        batch_count,execution_type) &
+        bind(c, name="rocblas_axpy_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22487,7 +23098,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_axpy_strided_batched_ex
-    function rocblas_axpy_strided_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,y,y_type,incy,stridey,batch_count,execution_type) bind(c, name="rocblas_axpy_strided_batched_ex")
+    function rocblas_axpy_strided_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,y, &
+        y_type,incy,stridey,batch_count,execution_type) &
+        bind(c, name="rocblas_axpy_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22568,7 +23181,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_dot_ex
-    function rocblas_dot_ex_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type,execution_type) bind(c, name="rocblas_dot_ex")
+    function rocblas_dot_ex_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type, &
+        execution_type) &
+        bind(c, name="rocblas_dot_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22588,7 +23203,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dotc_ex
-    function rocblas_dotc_ex_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type,execution_type) bind(c, name="rocblas_dotc_ex")
+    function rocblas_dotc_ex_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type, &
+        execution_type) &
+        bind(c, name="rocblas_dotc_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22674,7 +23291,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_dot_batched_ex
-    function rocblas_dot_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dot_batched_ex")
+    function rocblas_dot_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult, &
+        result_type,execution_type) &
+        bind(c, name="rocblas_dot_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22695,7 +23314,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dotc_batched_ex
-    function rocblas_dotc_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dotc_batched_ex")
+    function rocblas_dotc_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult, &
+        result_type,execution_type) &
+        bind(c, name="rocblas_dotc_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22783,7 +23404,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_dot_strided_batched_ex
-    function rocblas_dot_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dot_strided_batched_ex")
+    function rocblas_dot_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy, &
+        stride_y,batch_count,myResult,result_type,execution_type) &
+        bind(c, name="rocblas_dot_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22874,7 +23497,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_dotc_strided_batched_ex
-    function rocblas_dotc_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dotc_strided_batched_ex")
+    function rocblas_dotc_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy, &
+        stride_y,batch_count,myResult,result_type,execution_type) &
+        bind(c, name="rocblas_dotc_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -22942,7 +23567,8 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_nrm2_ex
-    function rocblas_nrm2_ex_(handle,n,x,x_type,incx,results,result_type,execution_type) bind(c, name="rocblas_nrm2_ex")
+    function rocblas_nrm2_ex_(handle,n,x,x_type,incx,results,result_type,execution_type) &
+        bind(c, name="rocblas_nrm2_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23007,7 +23633,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_nrm2_batched_ex
-    function rocblas_nrm2_batched_ex_(handle,n,x,x_type,incx,batch_count,results,result_type,execution_type) bind(c, name="rocblas_nrm2_batched_ex")
+    function rocblas_nrm2_batched_ex_(handle,n,x,x_type,incx,batch_count,results,result_type, &
+        execution_type) &
+        bind(c, name="rocblas_nrm2_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23081,7 +23709,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_nrm2_strided_batched_ex
-    function rocblas_nrm2_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,batch_count,results,result_type,execution_type) bind(c, name="rocblas_nrm2_strided_batched_ex")
+    function rocblas_nrm2_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,batch_count,results, &
+        result_type,execution_type) &
+        bind(c, name="rocblas_nrm2_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23165,7 +23795,8 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
   interface rocblas_rot_ex
-    function rocblas_rot_ex_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,execution_type) bind(c, name="rocblas_rot_ex")
+    function rocblas_rot_ex_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,execution_type) &
+        bind(c, name="rocblas_rot_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23254,7 +23885,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
   interface rocblas_rot_batched_ex
-    function rocblas_rot_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,batch_count,execution_type) bind(c, name="rocblas_rot_batched_ex")
+    function rocblas_rot_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,batch_count, &
+        execution_type) &
+        bind(c, name="rocblas_rot_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23351,7 +23984,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
   interface rocblas_rot_strided_batched_ex
-    function rocblas_rot_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,c,s,cs_type,batch_count,execution_type) bind(c, name="rocblas_rot_strided_batched_ex")
+    function rocblas_rot_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy, &
+        stride_y,c,s,cs_type,batch_count,execution_type) &
+        bind(c, name="rocblas_rot_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23422,7 +24057,8 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
   interface rocblas_scal_ex
-    function rocblas_scal_ex_(handle,n,alpha,alpha_type,x,x_type,incx,execution_type) bind(c, name="rocblas_scal_ex")
+    function rocblas_scal_ex_(handle,n,alpha,alpha_type,x,x_type,incx,execution_type) &
+        bind(c, name="rocblas_scal_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23489,7 +24125,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
   interface rocblas_scal_batched_ex
-    function rocblas_scal_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,batch_count,execution_type) bind(c, name="rocblas_scal_batched_ex")
+    function rocblas_scal_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,batch_count, &
+        execution_type) &
+        bind(c, name="rocblas_scal_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23565,7 +24203,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
   interface rocblas_scal_strided_batched_ex
-    function rocblas_scal_strided_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,batch_count,execution_type) bind(c, name="rocblas_scal_strided_batched_ex")
+    function rocblas_scal_strided_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,stridex, &
+        batch_count,execution_type) &
+        bind(c, name="rocblas_scal_strided_batched_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23631,7 +24271,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     handle          rocblas handle
   interface rocblas_start_device_memory_size_query
-    function rocblas_start_device_memory_size_query_(handle) bind(c, name="rocblas_start_device_memory_size_query")
+    function rocblas_start_device_memory_size_query_(handle) &
+        bind(c, name="rocblas_start_device_memory_size_query")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23652,7 +24293,8 @@ module hipfort_rocblas
   !>     @param[out]
   !>     size            maximum of the optimal sizes collected
   interface rocblas_stop_device_memory_size_query
-    function rocblas_stop_device_memory_size_query_(handle,mySize) bind(c, name="rocblas_stop_device_memory_size_query")
+    function rocblas_stop_device_memory_size_query_(handle,mySize) &
+        bind(c, name="rocblas_stop_device_memory_size_query")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23706,7 +24348,8 @@ module hipfort_rocblas
   !>     @param[out]
   !>     size            current device memory size for the handle
   interface rocblas_get_device_memory_size
-    function rocblas_get_device_memory_size_(handle,mySize) bind(c, name="rocblas_get_device_memory_size")
+    function rocblas_get_device_memory_size_(handle,mySize) &
+        bind(c, name="rocblas_get_device_memory_size")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23732,7 +24375,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     size            size of allocated device memory
   interface rocblas_set_device_memory_size
-    function rocblas_set_device_memory_size_(handle,mySize) bind(c, name="rocblas_set_device_memory_size")
+    function rocblas_set_device_memory_size_(handle,mySize) &
+        bind(c, name="rocblas_set_device_memory_size")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23872,7 +24516,8 @@ module hipfort_rocblas
 
   !>  Function to set start/stop event handlers (for internal use only)
   interface rocblas_set_start_stop_events
-    function rocblas_set_start_stop_events_(handle,startEvent,stopEvent) bind(c, name="rocblas_set_start_stop_events")
+    function rocblas_set_start_stop_events_(handle,startEvent,stopEvent) &
+        bind(c, name="rocblas_set_start_stop_events")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23884,7 +24529,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_solution_fitness_query
-    function rocblas_set_solution_fitness_query_(handle,fitness) bind(c, name="rocblas_set_solution_fitness_query")
+    function rocblas_set_solution_fitness_query_(handle,fitness) &
+        bind(c, name="rocblas_set_solution_fitness_query")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23909,7 +24555,8 @@ module hipfort_rocblas
   !>     metric      [rocblas_performance_metric]
   !>                 the performance metric to be used
   interface rocblas_set_performance_metric
-    function rocblas_set_performance_metric_(handle,metric) bind(c, name="rocblas_set_performance_metric")
+    function rocblas_set_performance_metric_(handle,metric) &
+        bind(c, name="rocblas_set_performance_metric")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23930,7 +24577,8 @@ module hipfort_rocblas
   !>     metric      [rocblas_performance_metric*]
   !>                 pointer to where the metric will be stored
   interface rocblas_get_performance_metric
-    function rocblas_get_performance_metric_(handle,metric) bind(c, name="rocblas_get_performance_metric")
+    function rocblas_get_performance_metric_(handle,metric) &
+        bind(c, name="rocblas_get_performance_metric")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23950,7 +24598,8 @@ module hipfort_rocblas
   !> Warning this is a modal like state in the handle. Restore to value 0 if no longer applicable to
   !> later function calls.
   interface rocblas_set_batch_alpha_stride
-    function rocblas_set_batch_alpha_stride_(handle,alpha_stride) bind(c, name="rocblas_set_batch_alpha_stride")
+    function rocblas_set_batch_alpha_stride_(handle,alpha_stride) &
+        bind(c, name="rocblas_set_batch_alpha_stride")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23962,7 +24611,8 @@ module hipfort_rocblas
 
   !>  \brief Get batch alpha stride from the handle.
   interface rocblas_get_batch_alpha_stride
-    function rocblas_get_batch_alpha_stride_(handle,alpha_stride) bind(c, name="rocblas_get_batch_alpha_stride")
+    function rocblas_get_batch_alpha_stride_(handle,alpha_stride) &
+        bind(c, name="rocblas_get_batch_alpha_stride")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23982,7 +24632,8 @@ module hipfort_rocblas
   !> Warning this is a modal like state in the handle. Restore to value 0 if no longer applicable to
   !> later function calls.
   interface rocblas_set_batch_beta_stride
-    function rocblas_set_batch_beta_stride_(handle,beta_stride) bind(c, name="rocblas_set_batch_beta_stride")
+    function rocblas_set_batch_beta_stride_(handle,beta_stride) &
+        bind(c, name="rocblas_set_batch_beta_stride")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -23994,7 +24645,8 @@ module hipfort_rocblas
 
   !>  \brief Get batch beta stride from the handle.
   interface rocblas_get_batch_beta_stride
-    function rocblas_get_batch_beta_stride_(handle,beta_stride) bind(c, name="rocblas_get_batch_beta_stride")
+    function rocblas_get_batch_beta_stride_(handle,beta_stride) &
+        bind(c, name="rocblas_get_batch_beta_stride")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24170,7 +24822,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_matrix_64
-    function rocblas_set_matrix_64_(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocblas_set_matrix_64")
+    function rocblas_set_matrix_64_(rows,cols,elem_size,a,lda,b,ldb) &
+        bind(c, name="rocblas_set_matrix_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24222,7 +24875,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_matrix_64
-    function rocblas_get_matrix_64_(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocblas_get_matrix_64")
+    function rocblas_get_matrix_64_(rows,cols,elem_size,a,lda,b,ldb) &
+        bind(c, name="rocblas_get_matrix_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24262,7 +24916,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     stream      specifies the stream into which this transfer request is queued
   interface rocblas_set_vector_async
-    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_set_vector_async")
+    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) &
+        bind(c, name="rocblas_set_vector_async")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24278,7 +24933,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_vector_async_64
-    function rocblas_set_vector_async_64_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_set_vector_async_64")
+    function rocblas_set_vector_async_64_(n,elem_size,x,incx,y,incy,stream) &
+        bind(c, name="rocblas_set_vector_async_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24318,7 +24974,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     stream      specifies the stream into which this transfer request is queued
   interface rocblas_get_vector_async
-    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_get_vector_async")
+    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) &
+        bind(c, name="rocblas_get_vector_async")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24334,7 +24991,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_vector_async_64
-    function rocblas_get_vector_async_64_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_get_vector_async_64")
+    function rocblas_get_vector_async_64_(n,elem_size,x,incx,y,incy,stream) &
+        bind(c, name="rocblas_get_vector_async_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24377,7 +25035,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     stream      specifies the stream into which this transfer request is queued
   interface rocblas_set_matrix_async
-    function rocblas_set_matrix_async_(rows,cols,elem_size,a,lda,b,ldb,stream) bind(c, name="rocblas_set_matrix_async")
+    function rocblas_set_matrix_async_(rows,cols,elem_size,a,lda,b,ldb,stream) &
+        bind(c, name="rocblas_set_matrix_async")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24394,7 +25053,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_matrix_async_64
-    function rocblas_set_matrix_async_64_(rows,cols,elem_size,a,lda,b,ldb,stream) bind(c, name="rocblas_set_matrix_async_64")
+    function rocblas_set_matrix_async_64_(rows,cols,elem_size,a,lda,b,ldb,stream) &
+        bind(c, name="rocblas_set_matrix_async_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24438,7 +25098,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     stream      specifies the stream into which this transfer request is queued
   interface rocblas_get_matrix_async
-    function rocblas_get_matrix_async_(rows,cols,elem_size,a,lda,b,ldb,stream) bind(c, name="rocblas_get_matrix_async")
+    function rocblas_get_matrix_async_(rows,cols,elem_size,a,lda,b,ldb,stream) &
+        bind(c, name="rocblas_get_matrix_async")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24455,7 +25116,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_matrix_async_64
-    function rocblas_get_matrix_async_64_(rows,cols,elem_size,a,lda,b,ldb,stream) bind(c, name="rocblas_get_matrix_async_64")
+    function rocblas_get_matrix_async_64_(rows,cols,elem_size,a,lda,b,ldb,stream) &
+        bind(c, name="rocblas_get_matrix_async_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24556,7 +25218,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sscal_batched_64
-    function rocblas_sscal_batched_64_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_sscal_batched_64")
+    function rocblas_sscal_batched_64_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_sscal_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24571,7 +25234,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dscal_batched_64
-    function rocblas_dscal_batched_64_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_dscal_batched_64")
+    function rocblas_dscal_batched_64_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_dscal_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24586,7 +25250,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cscal_batched_64
-    function rocblas_cscal_batched_64_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_cscal_batched_64")
+    function rocblas_cscal_batched_64_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_cscal_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24601,7 +25266,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zscal_batched_64
-    function rocblas_zscal_batched_64_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_zscal_batched_64")
+    function rocblas_zscal_batched_64_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_zscal_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24616,7 +25282,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csscal_batched_64
-    function rocblas_csscal_batched_64_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_csscal_batched_64")
+    function rocblas_csscal_batched_64_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_csscal_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24631,7 +25298,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdscal_batched_64
-    function rocblas_zdscal_batched_64_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_zdscal_batched_64")
+    function rocblas_zdscal_batched_64_(handle,n,alpha,x,incx,batch_count) &
+        bind(c, name="rocblas_zdscal_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24646,7 +25314,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sscal_strided_batched_64
-    function rocblas_sscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_sscal_strided_batched_64")
+    function rocblas_sscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_sscal_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24662,7 +25331,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dscal_strided_batched_64
-    function rocblas_dscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_dscal_strided_batched_64")
+    function rocblas_dscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_dscal_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24678,7 +25348,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cscal_strided_batched_64
-    function rocblas_cscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_cscal_strided_batched_64")
+    function rocblas_cscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_cscal_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24694,7 +25365,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zscal_strided_batched_64
-    function rocblas_zscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_zscal_strided_batched_64")
+    function rocblas_zscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_zscal_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24710,7 +25382,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csscal_strided_batched_64
-    function rocblas_csscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_csscal_strided_batched_64")
+    function rocblas_csscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_csscal_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24726,7 +25399,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdscal_strided_batched_64
-    function rocblas_zdscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_zdscal_strided_batched_64")
+    function rocblas_zdscal_strided_batched_64_(handle,n,alpha,x,incx,stride_x,batch_count) &
+        bind(c, name="rocblas_zdscal_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24802,7 +25476,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scopy_batched_64
-    function rocblas_scopy_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_scopy_batched_64")
+    function rocblas_scopy_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_scopy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24818,7 +25493,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dcopy_batched_64
-    function rocblas_dcopy_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_dcopy_batched_64")
+    function rocblas_dcopy_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_dcopy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24834,7 +25510,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ccopy_batched_64
-    function rocblas_ccopy_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_ccopy_batched_64")
+    function rocblas_ccopy_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_ccopy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24850,7 +25527,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zcopy_batched_64
-    function rocblas_zcopy_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_zcopy_batched_64")
+    function rocblas_zcopy_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_zcopy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24866,7 +25544,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scopy_strided_batched_64
-    function rocblas_scopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_scopy_strided_batched_64")
+    function rocblas_scopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_scopy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24884,7 +25563,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dcopy_strided_batched_64
-    function rocblas_dcopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_dcopy_strided_batched_64")
+    function rocblas_dcopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dcopy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24902,7 +25582,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ccopy_strided_batched_64
-    function rocblas_ccopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_ccopy_strided_batched_64")
+    function rocblas_ccopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_ccopy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -24920,7 +25601,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zcopy_strided_batched_64
-    function rocblas_zcopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zcopy_strided_batched_64")
+    function rocblas_zcopy_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zcopy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25066,7 +25748,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sdot_batched_64
-    function rocblas_sdot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_sdot_batched_64")
+    function rocblas_sdot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_sdot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25083,7 +25766,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddot_batched_64
-    function rocblas_ddot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_ddot_batched_64")
+    function rocblas_ddot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_ddot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25100,7 +25784,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hdot_batched_64
-    function rocblas_hdot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_hdot_batched_64")
+    function rocblas_hdot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_hdot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25117,7 +25802,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_bfdot_batched_64
-    function rocblas_bfdot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_bfdot_batched_64")
+    function rocblas_bfdot_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_bfdot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25134,7 +25820,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotu_batched_64
-    function rocblas_cdotu_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_cdotu_batched_64")
+    function rocblas_cdotu_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_cdotu_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25151,7 +25838,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotu_batched_64
-    function rocblas_zdotu_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_zdotu_batched_64")
+    function rocblas_zdotu_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_zdotu_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25168,7 +25856,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotc_batched_64
-    function rocblas_cdotc_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_cdotc_batched_64")
+    function rocblas_cdotc_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_cdotc_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25185,7 +25874,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotc_batched_64
-    function rocblas_zdotc_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_zdotc_batched_64")
+    function rocblas_zdotc_batched_64_(handle,n,x,incx,y,incy,batch_count,myResult) &
+        bind(c, name="rocblas_zdotc_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25202,7 +25892,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sdot_strided_batched_64
-    function rocblas_sdot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_sdot_strided_batched_64")
+    function rocblas_sdot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_sdot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25221,7 +25913,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddot_strided_batched_64
-    function rocblas_ddot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_ddot_strided_batched_64")
+    function rocblas_ddot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_ddot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25240,7 +25934,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hdot_strided_batched_64
-    function rocblas_hdot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_hdot_strided_batched_64")
+    function rocblas_hdot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_hdot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25259,7 +25955,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_bfdot_strided_batched_64
-    function rocblas_bfdot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_bfdot_strided_batched_64")
+    function rocblas_bfdot_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_bfdot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25278,7 +25976,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotu_strided_batched_64
-    function rocblas_cdotu_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_cdotu_strided_batched_64")
+    function rocblas_cdotu_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_cdotu_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25297,7 +25997,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotu_strided_batched_64
-    function rocblas_zdotu_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_zdotu_strided_batched_64")
+    function rocblas_zdotu_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_zdotu_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25316,7 +26018,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdotc_strided_batched_64
-    function rocblas_cdotc_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_cdotc_strided_batched_64")
+    function rocblas_cdotc_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_cdotc_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25335,7 +26039,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdotc_strided_batched_64
-    function rocblas_zdotc_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_zdotc_strided_batched_64")
+    function rocblas_zdotc_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count, &
+        myResult) &
+        bind(c, name="rocblas_zdotc_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25414,7 +26120,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sswap_batched_64
-    function rocblas_sswap_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_sswap_batched_64")
+    function rocblas_sswap_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_sswap_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25430,7 +26137,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dswap_batched_64
-    function rocblas_dswap_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_dswap_batched_64")
+    function rocblas_dswap_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_dswap_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25446,7 +26154,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cswap_batched_64
-    function rocblas_cswap_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_cswap_batched_64")
+    function rocblas_cswap_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_cswap_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25462,7 +26171,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zswap_batched_64
-    function rocblas_zswap_batched_64_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_zswap_batched_64")
+    function rocblas_zswap_batched_64_(handle,n,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_zswap_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25478,7 +26188,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sswap_strided_batched_64
-    function rocblas_sswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_sswap_strided_batched_64")
+    function rocblas_sswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_sswap_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25496,7 +26207,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dswap_strided_batched_64
-    function rocblas_dswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_dswap_strided_batched_64")
+    function rocblas_dswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dswap_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25514,7 +26226,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cswap_strided_batched_64
-    function rocblas_cswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_cswap_strided_batched_64")
+    function rocblas_cswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_cswap_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25532,7 +26245,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zswap_strided_batched_64
-    function rocblas_zswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zswap_strided_batched_64")
+    function rocblas_zswap_strided_batched_64_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zswap_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25630,7 +26344,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_haxpy_batched_64
-    function rocblas_haxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_haxpy_batched_64")
+    function rocblas_haxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_haxpy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25647,7 +26362,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_saxpy_batched_64
-    function rocblas_saxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_saxpy_batched_64")
+    function rocblas_saxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_saxpy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25664,7 +26380,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_daxpy_batched_64
-    function rocblas_daxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_daxpy_batched_64")
+    function rocblas_daxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_daxpy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25681,7 +26398,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_caxpy_batched_64
-    function rocblas_caxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_caxpy_batched_64")
+    function rocblas_caxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_caxpy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25698,7 +26416,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zaxpy_batched_64
-    function rocblas_zaxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_zaxpy_batched_64")
+    function rocblas_zaxpy_batched_64_(handle,n,alpha,x,incx,y,incy,batch_count) &
+        bind(c, name="rocblas_zaxpy_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25715,7 +26434,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_haxpy_strided_batched_64
-    function rocblas_haxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_haxpy_strided_batched_64")
+    function rocblas_haxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_haxpy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25734,7 +26455,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_saxpy_strided_batched_64
-    function rocblas_saxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_saxpy_strided_batched_64")
+    function rocblas_saxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_saxpy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25753,7 +26476,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_daxpy_strided_batched_64
-    function rocblas_daxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_daxpy_strided_batched_64")
+    function rocblas_daxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_daxpy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25772,7 +26497,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_caxpy_strided_batched_64
-    function rocblas_caxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_caxpy_strided_batched_64")
+    function rocblas_caxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_caxpy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25791,7 +26518,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zaxpy_strided_batched_64
-    function rocblas_zaxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zaxpy_strided_batched_64")
+    function rocblas_zaxpy_strided_batched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count) &
+        bind(c, name="rocblas_zaxpy_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25866,7 +26595,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sasum_batched_64
-    function rocblas_sasum_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_sasum_batched_64")
+    function rocblas_sasum_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_sasum_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25881,7 +26611,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dasum_batched_64
-    function rocblas_dasum_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dasum_batched_64")
+    function rocblas_dasum_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dasum_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25896,7 +26627,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scasum_batched_64
-    function rocblas_scasum_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_scasum_batched_64")
+    function rocblas_scasum_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_scasum_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25911,7 +26643,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dzasum_batched_64
-    function rocblas_dzasum_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dzasum_batched_64")
+    function rocblas_dzasum_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dzasum_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25926,7 +26659,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sasum_strided_batched_64
-    function rocblas_sasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_sasum_strided_batched_64")
+    function rocblas_sasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_sasum_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25942,7 +26676,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dasum_strided_batched_64
-    function rocblas_dasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dasum_strided_batched_64")
+    function rocblas_dasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dasum_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25958,7 +26693,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scasum_strided_batched_64
-    function rocblas_scasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_scasum_strided_batched_64")
+    function rocblas_scasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_scasum_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -25974,7 +26710,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dzasum_strided_batched_64
-    function rocblas_dzasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dzasum_strided_batched_64")
+    function rocblas_dzasum_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dzasum_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26046,7 +26783,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_snrm2_batched_64
-    function rocblas_snrm2_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_snrm2_batched_64")
+    function rocblas_snrm2_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_snrm2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26061,7 +26799,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dnrm2_batched_64
-    function rocblas_dnrm2_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dnrm2_batched_64")
+    function rocblas_dnrm2_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dnrm2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26076,7 +26815,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scnrm2_batched_64
-    function rocblas_scnrm2_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_scnrm2_batched_64")
+    function rocblas_scnrm2_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_scnrm2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26091,7 +26831,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dznrm2_batched_64
-    function rocblas_dznrm2_batched_64_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dznrm2_batched_64")
+    function rocblas_dznrm2_batched_64_(handle,n,x,incx,batch_count,results) &
+        bind(c, name="rocblas_dznrm2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26106,7 +26847,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_snrm2_strided_batched_64
-    function rocblas_snrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_snrm2_strided_batched_64")
+    function rocblas_snrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_snrm2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26122,7 +26864,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dnrm2_strided_batched_64
-    function rocblas_dnrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dnrm2_strided_batched_64")
+    function rocblas_dnrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dnrm2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26138,7 +26881,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scnrm2_strided_batched_64
-    function rocblas_scnrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_scnrm2_strided_batched_64")
+    function rocblas_scnrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_scnrm2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26154,7 +26898,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dznrm2_strided_batched_64
-    function rocblas_dznrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dznrm2_strided_batched_64")
+    function rocblas_dznrm2_strided_batched_64_(handle,n,x,incx,stridex,batch_count,results) &
+        bind(c, name="rocblas_dznrm2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26226,7 +26971,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_isamax_batched_64
-    function rocblas_isamax_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_isamax_batched_64")
+    function rocblas_isamax_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_isamax_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26241,7 +26987,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamax_batched_64
-    function rocblas_idamax_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_idamax_batched_64")
+    function rocblas_idamax_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_idamax_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26256,7 +27003,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamax_batched_64
-    function rocblas_icamax_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_icamax_batched_64")
+    function rocblas_icamax_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_icamax_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26271,7 +27019,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamax_batched_64
-    function rocblas_izamax_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_izamax_batched_64")
+    function rocblas_izamax_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_izamax_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26286,7 +27035,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_isamax_strided_batched_64
-    function rocblas_isamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_isamax_strided_batched_64")
+    function rocblas_isamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_isamax_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26302,7 +27052,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamax_strided_batched_64
-    function rocblas_idamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_idamax_strided_batched_64")
+    function rocblas_idamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_idamax_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26318,7 +27069,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamax_strided_batched_64
-    function rocblas_icamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_icamax_strided_batched_64")
+    function rocblas_icamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_icamax_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26334,7 +27086,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamax_strided_batched_64
-    function rocblas_izamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_izamax_strided_batched_64")
+    function rocblas_izamax_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_izamax_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26406,7 +27159,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_isamin_batched_64
-    function rocblas_isamin_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_isamin_batched_64")
+    function rocblas_isamin_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_isamin_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26421,7 +27175,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamin_batched_64
-    function rocblas_idamin_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_idamin_batched_64")
+    function rocblas_idamin_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_idamin_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26436,7 +27191,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamin_batched_64
-    function rocblas_icamin_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_icamin_batched_64")
+    function rocblas_icamin_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_icamin_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26451,7 +27207,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamin_batched_64
-    function rocblas_izamin_batched_64_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_izamin_batched_64")
+    function rocblas_izamin_batched_64_(handle,n,x,incx,batch_count,myResult) &
+        bind(c, name="rocblas_izamin_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26466,7 +27223,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_isamin_strided_batched_64
-    function rocblas_isamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_isamin_strided_batched_64")
+    function rocblas_isamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_isamin_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26482,7 +27240,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_idamin_strided_batched_64
-    function rocblas_idamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_idamin_strided_batched_64")
+    function rocblas_idamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_idamin_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26498,7 +27257,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_icamin_strided_batched_64
-    function rocblas_icamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_icamin_strided_batched_64")
+    function rocblas_icamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_icamin_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26514,7 +27274,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_izamin_strided_batched_64
-    function rocblas_izamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_izamin_strided_batched_64")
+    function rocblas_izamin_strided_batched_64_(handle,n,x,incx,stridex,batch_count,myResult) &
+        bind(c, name="rocblas_izamin_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26632,7 +27393,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srot_batched_64
-    function rocblas_srot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_srot_batched_64")
+    function rocblas_srot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_srot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26650,7 +27412,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drot_batched_64
-    function rocblas_drot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_drot_batched_64")
+    function rocblas_drot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_drot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26668,7 +27431,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crot_batched_64
-    function rocblas_crot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_crot_batched_64")
+    function rocblas_crot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_crot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26686,7 +27450,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csrot_batched_64
-    function rocblas_csrot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_csrot_batched_64")
+    function rocblas_csrot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_csrot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26704,7 +27469,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrot_batched_64
-    function rocblas_zrot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_zrot_batched_64")
+    function rocblas_zrot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_zrot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26722,7 +27488,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdrot_batched_64
-    function rocblas_zdrot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_zdrot_batched_64")
+    function rocblas_zdrot_batched_64_(handle,n,x,incx,y,incy,c,s,batch_count) &
+        bind(c, name="rocblas_zdrot_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26740,7 +27507,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srot_strided_batched_64
-    function rocblas_srot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_srot_strided_batched_64")
+    function rocblas_srot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_srot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26760,7 +27529,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drot_strided_batched_64
-    function rocblas_drot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_drot_strided_batched_64")
+    function rocblas_drot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_drot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26780,7 +27551,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crot_strided_batched_64
-    function rocblas_crot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_crot_strided_batched_64")
+    function rocblas_crot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_crot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26800,7 +27573,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csrot_strided_batched_64
-    function rocblas_csrot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_csrot_strided_batched_64")
+    function rocblas_csrot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_csrot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26820,7 +27595,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrot_strided_batched_64
-    function rocblas_zrot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_zrot_strided_batched_64")
+    function rocblas_zrot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_zrot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26840,7 +27617,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdrot_strided_batched_64
-    function rocblas_zdrot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_zdrot_strided_batched_64")
+    function rocblas_zdrot_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count) &
+        bind(c, name="rocblas_zdrot_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26916,7 +27695,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srotg_batched_64
-    function rocblas_srotg_batched_64_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_srotg_batched_64")
+    function rocblas_srotg_batched_64_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_srotg_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26931,7 +27711,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotg_batched_64
-    function rocblas_drotg_batched_64_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_drotg_batched_64")
+    function rocblas_drotg_batched_64_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_drotg_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26946,7 +27727,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crotg_batched_64
-    function rocblas_crotg_batched_64_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_crotg_batched_64")
+    function rocblas_crotg_batched_64_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_crotg_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26961,7 +27743,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrotg_batched_64
-    function rocblas_zrotg_batched_64_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_zrotg_batched_64")
+    function rocblas_zrotg_batched_64_(handle,a,b,c,s,batch_count) &
+        bind(c, name="rocblas_zrotg_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26976,7 +27759,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srotg_strided_batched_64
-    function rocblas_srotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_srotg_strided_batched_64")
+    function rocblas_srotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_srotg_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -26995,7 +27780,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotg_strided_batched_64
-    function rocblas_drotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_drotg_strided_batched_64")
+    function rocblas_drotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_drotg_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27014,7 +27801,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_crotg_strided_batched_64
-    function rocblas_crotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_crotg_strided_batched_64")
+    function rocblas_crotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_crotg_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27033,7 +27822,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zrotg_strided_batched_64
-    function rocblas_zrotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_zrotg_strided_batched_64")
+    function rocblas_zrotg_strided_batched_64_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s, &
+        batch_count) &
+        bind(c, name="rocblas_zrotg_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27084,7 +27875,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srotm_batched_64
-    function rocblas_srotm_batched_64_(handle,n,x,incx,y,incy,param,batch_count) bind(c, name="rocblas_srotm_batched_64")
+    function rocblas_srotm_batched_64_(handle,n,x,incx,y,incy,param,batch_count) &
+        bind(c, name="rocblas_srotm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27101,7 +27893,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotm_batched_64
-    function rocblas_drotm_batched_64_(handle,n,x,incx,y,incy,param,batch_count) bind(c, name="rocblas_drotm_batched_64")
+    function rocblas_drotm_batched_64_(handle,n,x,incx,y,incy,param,batch_count) &
+        bind(c, name="rocblas_drotm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27118,7 +27911,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srotm_strided_batched_64
-    function rocblas_srotm_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count) bind(c, name="rocblas_srotm_strided_batched_64")
+    function rocblas_srotm_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count) &
+        bind(c, name="rocblas_srotm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27138,7 +27933,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotm_strided_batched_64
-    function rocblas_drotm_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count) bind(c, name="rocblas_drotm_strided_batched_64")
+    function rocblas_drotm_strided_batched_64_(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count) &
+        bind(c, name="rocblas_drotm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27188,7 +27985,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srotmg_batched_64
-    function rocblas_srotmg_batched_64_(handle,d1,d2,x1,y1,param,batch_count) bind(c, name="rocblas_srotmg_batched_64")
+    function rocblas_srotmg_batched_64_(handle,d1,d2,x1,y1,param,batch_count) &
+        bind(c, name="rocblas_srotmg_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27204,7 +28002,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotmg_batched_64
-    function rocblas_drotmg_batched_64_(handle,d1,d2,x1,y1,param,batch_count) bind(c, name="rocblas_drotmg_batched_64")
+    function rocblas_drotmg_batched_64_(handle,d1,d2,x1,y1,param,batch_count) &
+        bind(c, name="rocblas_drotmg_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27220,7 +28019,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_srotmg_strided_batched_64
-    function rocblas_srotmg_strided_batched_64_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1,stride_y1,param,stride_param,batch_count) bind(c, name="rocblas_srotmg_strided_batched_64")
+    function rocblas_srotmg_strided_batched_64_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1, &
+        stride_y1,param,stride_param,batch_count) &
+        bind(c, name="rocblas_srotmg_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27241,7 +28042,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_drotmg_strided_batched_64
-    function rocblas_drotmg_strided_batched_64_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1,stride_y1,param,stride_param,batch_count) bind(c, name="rocblas_drotmg_strided_batched_64")
+    function rocblas_drotmg_strided_batched_64_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1, &
+        stride_y1,param,stride_param,batch_count) &
+        bind(c, name="rocblas_drotmg_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27262,7 +28065,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgbmv_64
-    function rocblas_sgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_sgbmv_64")
+    function rocblas_sgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_sgbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27285,7 +28089,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgbmv_64
-    function rocblas_dgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dgbmv_64")
+    function rocblas_dgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dgbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27308,7 +28113,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgbmv_64
-    function rocblas_cgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_cgbmv_64")
+    function rocblas_cgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_cgbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27331,7 +28137,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgbmv_64
-    function rocblas_zgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zgbmv_64")
+    function rocblas_zgbmv_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zgbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27354,7 +28161,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgbmv_batched_64
-    function rocblas_sgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_sgbmv_batched_64")
+    function rocblas_sgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_sgbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27378,7 +28187,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgbmv_batched_64
-    function rocblas_dgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dgbmv_batched_64")
+    function rocblas_dgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_dgbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27402,7 +28213,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgbmv_batched_64
-    function rocblas_cgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_cgbmv_batched_64")
+    function rocblas_cgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_cgbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27426,7 +28239,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgbmv_batched_64
-    function rocblas_zgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zgbmv_batched_64")
+    function rocblas_zgbmv_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_zgbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27450,7 +28265,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgbmv_strided_batched_64
-    function rocblas_sgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_sgbmv_strided_batched_64")
+    function rocblas_sgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_sgbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27477,7 +28294,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgbmv_strided_batched_64
-    function rocblas_dgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_dgbmv_strided_batched_64")
+    function rocblas_dgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_dgbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27504,7 +28323,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgbmv_strided_batched_64
-    function rocblas_cgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_cgbmv_strided_batched_64")
+    function rocblas_cgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_cgbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27531,7 +28352,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgbmv_strided_batched_64
-    function rocblas_zgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zgbmv_strided_batched_64")
+    function rocblas_zgbmv_strided_batched_64_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zgbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27558,7 +28381,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemv_64
-    function rocblas_sgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_sgemv_64")
+    function rocblas_sgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_sgemv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27579,7 +28403,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemv_64
-    function rocblas_dgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dgemv_64")
+    function rocblas_dgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dgemv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27600,7 +28425,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemv_64
-    function rocblas_cgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_cgemv_64")
+    function rocblas_cgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_cgemv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27621,7 +28447,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemv_64
-    function rocblas_zgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zgemv_64")
+    function rocblas_zgemv_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zgemv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27642,7 +28469,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hshgemv_batched
-    function rocblas_hshgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_hshgemv_batched")
+    function rocblas_hshgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_hshgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27664,7 +28492,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hssgemv_batched
-    function rocblas_hssgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_hssgemv_batched")
+    function rocblas_hssgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_hssgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27686,7 +28515,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tstgemv_batched
-    function rocblas_tstgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_tstgemv_batched")
+    function rocblas_tstgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_tstgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27708,7 +28538,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tssgemv_batched
-    function rocblas_tssgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_tssgemv_batched")
+    function rocblas_tssgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_tssgemv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27730,7 +28561,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemv_batched_64
-    function rocblas_sgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_sgemv_batched_64")
+    function rocblas_sgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_sgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27752,7 +28585,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemv_batched_64
-    function rocblas_dgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dgemv_batched_64")
+    function rocblas_dgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_dgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27774,7 +28609,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemv_batched_64
-    function rocblas_cgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_cgemv_batched_64")
+    function rocblas_cgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_cgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27796,7 +28633,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemv_batched_64
-    function rocblas_zgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zgemv_batched_64")
+    function rocblas_zgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_zgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27818,7 +28657,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hshgemv_batched_64
-    function rocblas_hshgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_hshgemv_batched_64")
+    function rocblas_hshgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_hshgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27840,7 +28681,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hssgemv_batched_64
-    function rocblas_hssgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_hssgemv_batched_64")
+    function rocblas_hssgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_hssgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27862,7 +28705,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tstgemv_batched_64
-    function rocblas_tstgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_tstgemv_batched_64")
+    function rocblas_tstgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_tstgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27884,7 +28729,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tssgemv_batched_64
-    function rocblas_tssgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_tssgemv_batched_64")
+    function rocblas_tssgemv_batched_64_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy, &
+        batch_count) &
+        bind(c, name="rocblas_tssgemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27906,7 +28753,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hshgemv_strided_batched
-    function rocblas_hshgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hshgemv_strided_batched")
+    function rocblas_hshgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_hshgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27931,7 +28780,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hssgemv_strided_batched
-    function rocblas_hssgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hssgemv_strided_batched")
+    function rocblas_hssgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_hssgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27956,7 +28807,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tstgemv_strided_batched
-    function rocblas_tstgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tstgemv_strided_batched")
+    function rocblas_tstgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_tstgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -27981,7 +28834,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tssgemv_strided_batched
-    function rocblas_tssgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tssgemv_strided_batched")
+    function rocblas_tssgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_tssgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28006,7 +28861,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemv_strided_batched_64
-    function rocblas_sgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_sgemv_strided_batched_64")
+    function rocblas_sgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_sgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28031,7 +28888,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemv_strided_batched_64
-    function rocblas_dgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dgemv_strided_batched_64")
+    function rocblas_dgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28056,7 +28915,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemv_strided_batched_64
-    function rocblas_cgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_cgemv_strided_batched_64")
+    function rocblas_cgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_cgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28081,7 +28942,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemv_strided_batched_64
-    function rocblas_zgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_zgemv_strided_batched_64")
+    function rocblas_zgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28106,7 +28969,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hshgemv_strided_batched_64
-    function rocblas_hshgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hshgemv_strided_batched_64")
+    function rocblas_hshgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_hshgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28131,7 +28996,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hssgemv_strided_batched_64
-    function rocblas_hssgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hssgemv_strided_batched_64")
+    function rocblas_hssgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_hssgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28156,7 +29023,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tstgemv_strided_batched_64
-    function rocblas_tstgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tstgemv_strided_batched_64")
+    function rocblas_tstgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_tstgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28181,7 +29050,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_tssgemv_strided_batched_64
-    function rocblas_tssgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tssgemv_strided_batched_64")
+    function rocblas_tssgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_tssgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28206,7 +29077,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chbmv_64
-    function rocblas_chbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_chbmv_64")
+    function rocblas_chbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_chbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28227,7 +29099,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhbmv_64
-    function rocblas_zhbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhbmv_64")
+    function rocblas_zhbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zhbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28248,7 +29121,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chbmv_batched_64
-    function rocblas_chbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chbmv_batched_64")
+    function rocblas_chbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_chbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28270,7 +29144,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhbmv_batched_64
-    function rocblas_zhbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhbmv_batched_64")
+    function rocblas_zhbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zhbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28292,7 +29167,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chbmv_strided_batched_64
-    function rocblas_chbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chbmv_strided_batched_64")
+    function rocblas_chbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_chbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28317,7 +29194,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhbmv_strided_batched_64
-    function rocblas_zhbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhbmv_strided_batched_64")
+    function rocblas_zhbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zhbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28342,7 +29221,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chemv_64
-    function rocblas_chemv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_chemv_64")
+    function rocblas_chemv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_chemv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28362,7 +29242,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemv_64
-    function rocblas_zhemv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhemv_64")
+    function rocblas_zhemv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zhemv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28382,7 +29263,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chemv_batched_64
-    function rocblas_chemv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chemv_batched_64")
+    function rocblas_chemv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_chemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28403,7 +29285,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemv_batched_64
-    function rocblas_zhemv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhemv_batched_64")
+    function rocblas_zhemv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zhemv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28424,7 +29307,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chemv_strided_batched_64
-    function rocblas_chemv_strided_batched_64_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chemv_strided_batched_64")
+    function rocblas_chemv_strided_batched_64_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_chemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28448,7 +29333,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemv_strided_batched_64
-    function rocblas_zhemv_strided_batched_64_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhemv_strided_batched_64")
+    function rocblas_zhemv_strided_batched_64_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zhemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28506,7 +29393,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher_batched_64
-    function rocblas_cher_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_cher_batched_64")
+    function rocblas_cher_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_cher_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28524,7 +29412,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher_batched_64
-    function rocblas_zher_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zher_batched_64")
+    function rocblas_zher_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_zher_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28542,7 +29431,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher_strided_batched_64
-    function rocblas_cher_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_cher_strided_batched_64")
+    function rocblas_cher_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_cher_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28562,7 +29453,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher_strided_batched_64
-    function rocblas_zher_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher_strided_batched_64")
+    function rocblas_zher_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_zher_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28582,7 +29475,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher2_64
-    function rocblas_cher2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_cher2_64")
+    function rocblas_cher2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_cher2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28601,7 +29495,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2_64
-    function rocblas_zher2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zher2_64")
+    function rocblas_zher2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_zher2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28620,7 +29515,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher2_batched_64
-    function rocblas_cher2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cher2_batched_64")
+    function rocblas_cher2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_cher2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28640,7 +29536,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2_batched_64
-    function rocblas_zher2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zher2_batched_64")
+    function rocblas_zher2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zher2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28660,7 +29557,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher2_strided_batched_64
-    function rocblas_cher2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_cher2_strided_batched_64")
+    function rocblas_cher2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count) &
+        bind(c, name="rocblas_cher2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28683,7 +29582,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2_strided_batched_64
-    function rocblas_zher2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher2_strided_batched_64")
+    function rocblas_zher2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count) &
+        bind(c, name="rocblas_zher2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28706,7 +29607,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpmv_64
-    function rocblas_chpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="rocblas_chpmv_64")
+    function rocblas_chpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_chpmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28725,7 +29627,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpmv_64
-    function rocblas_zhpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="rocblas_zhpmv_64")
+    function rocblas_zhpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zhpmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28744,7 +29647,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpmv_batched_64
-    function rocblas_chpmv_batched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chpmv_batched_64")
+    function rocblas_chpmv_batched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_chpmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28764,7 +29668,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpmv_batched_64
-    function rocblas_zhpmv_batched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhpmv_batched_64")
+    function rocblas_zhpmv_batched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zhpmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28784,7 +29689,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpmv_strided_batched_64
-    function rocblas_chpmv_strided_batched_64_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chpmv_strided_batched_64")
+    function rocblas_chpmv_strided_batched_64_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_chpmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28807,7 +29714,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpmv_strided_batched_64
-    function rocblas_zhpmv_strided_batched_64_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhpmv_strided_batched_64")
+    function rocblas_zhpmv_strided_batched_64_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count) &
+        bind(c, name="rocblas_zhpmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28862,7 +29771,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpr_batched_64
-    function rocblas_chpr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_chpr_batched_64")
+    function rocblas_chpr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_chpr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28879,7 +29789,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr_batched_64
-    function rocblas_zhpr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zhpr_batched_64")
+    function rocblas_zhpr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_zhpr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28896,7 +29807,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpr_strided_batched_64
-    function rocblas_chpr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_chpr_strided_batched_64")
+    function rocblas_chpr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_chpr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28915,7 +29828,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr_strided_batched_64
-    function rocblas_zhpr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr_strided_batched_64")
+    function rocblas_zhpr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_zhpr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28934,7 +29849,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpr2_64
-    function rocblas_chpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_chpr2_64")
+    function rocblas_chpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) &
+        bind(c, name="rocblas_chpr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28952,7 +29868,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr2_64
-    function rocblas_zhpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_zhpr2_64")
+    function rocblas_zhpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) &
+        bind(c, name="rocblas_zhpr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28970,7 +29887,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpr2_batched_64
-    function rocblas_chpr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_chpr2_batched_64")
+    function rocblas_chpr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_chpr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -28989,7 +29907,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr2_batched_64
-    function rocblas_zhpr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_zhpr2_batched_64")
+    function rocblas_zhpr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_zhpr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29008,7 +29927,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chpr2_strided_batched_64
-    function rocblas_chpr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_chpr2_strided_batched_64")
+    function rocblas_chpr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count) &
+        bind(c, name="rocblas_chpr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29030,7 +29951,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhpr2_strided_batched_64
-    function rocblas_zhpr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr2_strided_batched_64")
+    function rocblas_zhpr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count) &
+        bind(c, name="rocblas_zhpr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29052,7 +29975,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strmv_64
-    function rocblas_strmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_strmv_64")
+    function rocblas_strmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_strmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29070,7 +29994,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmv_64
-    function rocblas_dtrmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_dtrmv_64")
+    function rocblas_dtrmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_dtrmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29088,7 +30013,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmv_64
-    function rocblas_ctrmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_ctrmv_64")
+    function rocblas_ctrmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_ctrmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29106,7 +30032,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmv_64
-    function rocblas_ztrmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_ztrmv_64")
+    function rocblas_ztrmv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_ztrmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29182,7 +30109,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               The number of batched matrices/vectors.
   interface rocblas_strmv_batched
-    function rocblas_strmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_strmv_batched")
+    function rocblas_strmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_strmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29201,7 +30129,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmv_batched
-    function rocblas_dtrmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtrmv_batched")
+    function rocblas_dtrmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtrmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29220,7 +30149,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmv_batched
-    function rocblas_ctrmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctrmv_batched")
+    function rocblas_ctrmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctrmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29239,7 +30169,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmv_batched
-    function rocblas_ztrmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztrmv_batched")
+    function rocblas_ztrmv_batched_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztrmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29258,7 +30189,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strmv_batched_64
-    function rocblas_strmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_strmv_batched_64")
+    function rocblas_strmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_strmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29277,7 +30209,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmv_batched_64
-    function rocblas_dtrmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtrmv_batched_64")
+    function rocblas_dtrmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtrmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29296,7 +30229,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmv_batched_64
-    function rocblas_ctrmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctrmv_batched_64")
+    function rocblas_ctrmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctrmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29315,7 +30249,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmv_batched_64
-    function rocblas_ztrmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztrmv_batched_64")
+    function rocblas_ztrmv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztrmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29334,7 +30269,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strmv_strided_batched_64
-    function rocblas_strmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_strmv_strided_batched_64")
+    function rocblas_strmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_strmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29355,7 +30292,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmv_strided_batched_64
-    function rocblas_dtrmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtrmv_strided_batched_64")
+    function rocblas_dtrmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtrmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29376,7 +30315,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmv_strided_batched_64
-    function rocblas_ctrmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctrmv_strided_batched_64")
+    function rocblas_ctrmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctrmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29397,7 +30338,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmv_strided_batched_64
-    function rocblas_ztrmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztrmv_strided_batched_64")
+    function rocblas_ztrmv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztrmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29540,7 +30483,8 @@ module hipfort_rocblas
   !>     batch_count [rocblas_int]
   !>               The number of batched matrices/vectors.
   interface rocblas_stpmv_batched
-    function rocblas_stpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_stpmv_batched")
+    function rocblas_stpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_stpmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29558,7 +30502,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpmv_batched
-    function rocblas_dtpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_dtpmv_batched")
+    function rocblas_dtpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_dtpmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29576,7 +30521,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpmv_batched
-    function rocblas_ctpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_ctpmv_batched")
+    function rocblas_ctpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_ctpmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29594,7 +30540,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpmv_batched
-    function rocblas_ztpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_ztpmv_batched")
+    function rocblas_ztpmv_batched_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_ztpmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29612,7 +30559,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stpmv_batched_64
-    function rocblas_stpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_stpmv_batched_64")
+    function rocblas_stpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_stpmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29630,7 +30578,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpmv_batched_64
-    function rocblas_dtpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_dtpmv_batched_64")
+    function rocblas_dtpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_dtpmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29648,7 +30597,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpmv_batched_64
-    function rocblas_ctpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_ctpmv_batched_64")
+    function rocblas_ctpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_ctpmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29666,7 +30616,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpmv_batched_64
-    function rocblas_ztpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) bind(c, name="rocblas_ztpmv_batched_64")
+    function rocblas_ztpmv_batched_64_(handle,uplo,transA,diag,n,A,x,incx,batch_count) &
+        bind(c, name="rocblas_ztpmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29684,7 +30635,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stpmv_strided_batched_64
-    function rocblas_stpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stpmv_strided_batched_64")
+    function rocblas_stpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_stpmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29704,7 +30657,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpmv_strided_batched_64
-    function rocblas_dtpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtpmv_strided_batched_64")
+    function rocblas_dtpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtpmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29724,7 +30679,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpmv_strided_batched_64
-    function rocblas_ctpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctpmv_strided_batched_64")
+    function rocblas_ctpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctpmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29744,7 +30701,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpmv_strided_batched_64
-    function rocblas_ztpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztpmv_strided_batched_64")
+    function rocblas_ztpmv_strided_batched_64_(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztpmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29764,7 +30723,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stbmv_64
-    function rocblas_stbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_stbmv_64")
+    function rocblas_stbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_stbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29783,7 +30743,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbmv_64
-    function rocblas_dtbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_dtbmv_64")
+    function rocblas_dtbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_dtbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29802,7 +30763,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbmv_64
-    function rocblas_ctbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ctbmv_64")
+    function rocblas_ctbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_ctbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29821,7 +30783,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbmv_64
-    function rocblas_ztbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ztbmv_64")
+    function rocblas_ztbmv_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_ztbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29840,7 +30803,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stbmv_batched_64
-    function rocblas_stbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_stbmv_batched_64")
+    function rocblas_stbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_stbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29860,7 +30824,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbmv_batched_64
-    function rocblas_dtbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtbmv_batched_64")
+    function rocblas_dtbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29880,7 +30845,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbmv_batched_64
-    function rocblas_ctbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctbmv_batched_64")
+    function rocblas_ctbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29900,7 +30866,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbmv_batched_64
-    function rocblas_ztbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbmv_batched_64")
+    function rocblas_ztbmv_batched_64_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29920,7 +30887,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stbmv_strided_batched_64
-    function rocblas_stbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stbmv_strided_batched_64")
+    function rocblas_stbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_stbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29942,7 +30911,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbmv_strided_batched_64
-    function rocblas_dtbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtbmv_strided_batched_64")
+    function rocblas_dtbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29964,7 +30935,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbmv_strided_batched_64
-    function rocblas_ctbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctbmv_strided_batched_64")
+    function rocblas_ctbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -29986,7 +30959,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbmv_strided_batched_64
-    function rocblas_ztbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztbmv_strided_batched_64")
+    function rocblas_ztbmv_strided_batched_64_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30008,7 +30983,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stbsv_64
-    function rocblas_stbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_stbsv_64")
+    function rocblas_stbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_stbsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30027,7 +31003,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbsv_64
-    function rocblas_dtbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_dtbsv_64")
+    function rocblas_dtbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_dtbsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30046,7 +31023,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbsv_64
-    function rocblas_ctbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ctbsv_64")
+    function rocblas_ctbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_ctbsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30065,7 +31043,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbsv_64
-    function rocblas_ztbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ztbsv_64")
+    function rocblas_ztbsv_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx) &
+        bind(c, name="rocblas_ztbsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30084,7 +31063,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stbsv_batched_64
-    function rocblas_stbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_stbsv_batched_64")
+    function rocblas_stbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_stbsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30104,7 +31084,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbsv_batched_64
-    function rocblas_dtbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtbsv_batched_64")
+    function rocblas_dtbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtbsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30124,7 +31105,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbsv_batched_64
-    function rocblas_ctbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctbsv_batched_64")
+    function rocblas_ctbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctbsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30144,7 +31126,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbsv_batched_64
-    function rocblas_ztbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbsv_batched_64")
+    function rocblas_ztbsv_batched_64_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztbsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30164,7 +31147,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stbsv_strided_batched_64
-    function rocblas_stbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stbsv_strided_batched_64")
+    function rocblas_stbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_stbsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30186,7 +31171,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtbsv_strided_batched_64
-    function rocblas_dtbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtbsv_strided_batched_64")
+    function rocblas_dtbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtbsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30208,7 +31195,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctbsv_strided_batched_64
-    function rocblas_ctbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctbsv_strided_batched_64")
+    function rocblas_ctbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctbsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30230,7 +31219,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztbsv_strided_batched_64
-    function rocblas_ztbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztbsv_strided_batched_64")
+    function rocblas_ztbsv_strided_batched_64_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztbsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30252,7 +31243,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strsv_64
-    function rocblas_strsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_strsv_64")
+    function rocblas_strsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_strsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30270,7 +31262,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsv_64
-    function rocblas_dtrsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_dtrsv_64")
+    function rocblas_dtrsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_dtrsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30288,7 +31281,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsv_64
-    function rocblas_ctrsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_ctrsv_64")
+    function rocblas_ctrsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_ctrsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30306,7 +31300,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsv_64
-    function rocblas_ztrsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_ztrsv_64")
+    function rocblas_ztrsv_64_(handle,uplo,transA,diag,n,A,lda,x,incx) &
+        bind(c, name="rocblas_ztrsv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30324,7 +31319,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strsv_batched_64
-    function rocblas_strsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_strsv_batched_64")
+    function rocblas_strsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_strsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30343,7 +31339,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsv_batched_64
-    function rocblas_dtrsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtrsv_batched_64")
+    function rocblas_dtrsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_dtrsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30362,7 +31359,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsv_batched_64
-    function rocblas_ctrsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctrsv_batched_64")
+    function rocblas_ctrsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ctrsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30381,7 +31379,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsv_batched_64
-    function rocblas_ztrsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztrsv_batched_64")
+    function rocblas_ztrsv_batched_64_(handle,uplo,transA,diag,n,A,lda,x,incx,batch_count) &
+        bind(c, name="rocblas_ztrsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30400,7 +31399,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strsv_strided_batched_64
-    function rocblas_strsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_strsv_strided_batched_64")
+    function rocblas_strsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_strsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30421,7 +31422,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsv_strided_batched_64
-    function rocblas_dtrsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtrsv_strided_batched_64")
+    function rocblas_dtrsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtrsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30442,7 +31445,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsv_strided_batched_64
-    function rocblas_ctrsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctrsv_strided_batched_64")
+    function rocblas_ctrsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctrsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30463,7 +31468,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsv_strided_batched_64
-    function rocblas_ztrsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztrsv_strided_batched_64")
+    function rocblas_ztrsv_strided_batched_64_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztrsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30552,7 +31559,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stpsv_batched_64
-    function rocblas_stpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_stpsv_batched_64")
+    function rocblas_stpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_stpsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30570,7 +31578,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpsv_batched_64
-    function rocblas_dtpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_dtpsv_batched_64")
+    function rocblas_dtpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_dtpsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30588,7 +31597,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpsv_batched_64
-    function rocblas_ctpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_ctpsv_batched_64")
+    function rocblas_ctpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_ctpsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30606,7 +31616,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpsv_batched_64
-    function rocblas_ztpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_ztpsv_batched_64")
+    function rocblas_ztpsv_batched_64_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) &
+        bind(c, name="rocblas_ztpsv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30624,7 +31635,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_stpsv_strided_batched_64
-    function rocblas_stpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stpsv_strided_batched_64")
+    function rocblas_stpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_stpsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30644,7 +31657,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtpsv_strided_batched_64
-    function rocblas_dtpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtpsv_strided_batched_64")
+    function rocblas_dtpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_dtpsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30664,7 +31679,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctpsv_strided_batched_64
-    function rocblas_ctpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctpsv_strided_batched_64")
+    function rocblas_ctpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ctpsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30684,7 +31701,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztpsv_strided_batched_64
-    function rocblas_ztpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztpsv_strided_batched_64")
+    function rocblas_ztpsv_strided_batched_64_(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count) &
+        bind(c, name="rocblas_ztpsv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30704,7 +31723,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssymv_64
-    function rocblas_ssymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_ssymv_64")
+    function rocblas_ssymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_ssymv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30724,7 +31744,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymv_64
-    function rocblas_dsymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dsymv_64")
+    function rocblas_dsymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dsymv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30744,7 +31765,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymv_64
-    function rocblas_csymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_csymv_64")
+    function rocblas_csymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_csymv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30764,7 +31786,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymv_64
-    function rocblas_zsymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zsymv_64")
+    function rocblas_zsymv_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_zsymv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30784,7 +31807,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssymv_batched_64
-    function rocblas_ssymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_ssymv_batched_64")
+    function rocblas_ssymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_ssymv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30805,7 +31829,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymv_batched_64
-    function rocblas_dsymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dsymv_batched_64")
+    function rocblas_dsymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dsymv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30826,7 +31851,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymv_batched_64
-    function rocblas_csymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_csymv_batched_64")
+    function rocblas_csymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_csymv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30847,7 +31873,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymv_batched_64
-    function rocblas_zsymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zsymv_batched_64")
+    function rocblas_zsymv_batched_64_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_zsymv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30868,7 +31895,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssymv_strided_batched_64
-    function rocblas_ssymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_ssymv_strided_batched_64")
+    function rocblas_ssymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_ssymv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30892,7 +31921,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymv_strided_batched_64
-    function rocblas_dsymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dsymv_strided_batched_64")
+    function rocblas_dsymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dsymv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30916,7 +31947,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymv_strided_batched_64
-    function rocblas_csymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_csymv_strided_batched_64")
+    function rocblas_csymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_csymv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30940,7 +31973,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymv_strided_batched_64
-    function rocblas_zsymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_zsymv_strided_batched_64")
+    function rocblas_zsymv_strided_batched_64_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_zsymv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30964,7 +31999,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspmv_64
-    function rocblas_sspmv_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy) bind(c, name="rocblas_sspmv_64")
+    function rocblas_sspmv_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_sspmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -30983,7 +32019,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspmv_64
-    function rocblas_dspmv_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy) bind(c, name="rocblas_dspmv_64")
+    function rocblas_dspmv_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dspmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31002,7 +32039,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspmv_batched_64
-    function rocblas_sspmv_batched_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_sspmv_batched_64")
+    function rocblas_sspmv_batched_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_sspmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31022,7 +32060,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspmv_batched_64
-    function rocblas_dspmv_batched_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dspmv_batched_64")
+    function rocblas_dspmv_batched_64_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dspmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31042,7 +32081,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspmv_strided_batched_64
-    function rocblas_sspmv_strided_batched_64_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_sspmv_strided_batched_64")
+    function rocblas_sspmv_strided_batched_64_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta, &
+        y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_sspmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31065,7 +32106,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspmv_strided_batched_64
-    function rocblas_dspmv_strided_batched_64_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dspmv_strided_batched_64")
+    function rocblas_dspmv_strided_batched_64_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta, &
+        y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dspmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31088,7 +32131,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssbmv_64
-    function rocblas_ssbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_ssbmv_64")
+    function rocblas_ssbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_ssbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31109,7 +32153,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsbmv_64
-    function rocblas_dsbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dsbmv_64")
+    function rocblas_dsbmv_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) &
+        bind(c, name="rocblas_dsbmv_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31130,7 +32175,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssbmv_batched_64
-    function rocblas_ssbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_ssbmv_batched_64")
+    function rocblas_ssbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_ssbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31152,7 +32198,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsbmv_batched_64
-    function rocblas_dsbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dsbmv_batched_64")
+    function rocblas_dsbmv_batched_64_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) &
+        bind(c, name="rocblas_dsbmv_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31174,7 +32221,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssbmv_strided_batched_64
-    function rocblas_ssbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_ssbmv_strided_batched_64")
+    function rocblas_ssbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_ssbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31199,7 +32248,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsbmv_strided_batched_64
-    function rocblas_dsbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dsbmv_strided_batched_64")
+    function rocblas_dsbmv_strided_batched_64_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count) &
+        bind(c, name="rocblas_dsbmv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31262,7 +32313,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeru_64
-    function rocblas_cgeru_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_cgeru_64")
+    function rocblas_cgeru_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_cgeru_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31281,7 +32333,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeru_64
-    function rocblas_zgeru_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zgeru_64")
+    function rocblas_zgeru_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_zgeru_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31300,7 +32353,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgerc_64
-    function rocblas_cgerc_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_cgerc_64")
+    function rocblas_cgerc_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_cgerc_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31319,7 +32373,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgerc_64
-    function rocblas_zgerc_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zgerc_64")
+    function rocblas_zgerc_64_(handle,m,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_zgerc_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31338,7 +32393,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sger_batched_64
-    function rocblas_sger_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_sger_batched_64")
+    function rocblas_sger_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_sger_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31358,7 +32414,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dger_batched_64
-    function rocblas_dger_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_dger_batched_64")
+    function rocblas_dger_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_dger_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31378,7 +32435,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeru_batched_64
-    function rocblas_cgeru_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cgeru_batched_64")
+    function rocblas_cgeru_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_cgeru_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31398,7 +32456,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeru_batched_64
-    function rocblas_zgeru_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zgeru_batched_64")
+    function rocblas_zgeru_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zgeru_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31418,7 +32477,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgerc_batched_64
-    function rocblas_cgerc_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cgerc_batched_64")
+    function rocblas_cgerc_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_cgerc_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31438,7 +32498,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgerc_batched_64
-    function rocblas_zgerc_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zgerc_batched_64")
+    function rocblas_zgerc_batched_64_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zgerc_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31458,7 +32519,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sger_strided_batched_64
-    function rocblas_sger_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_sger_strided_batched_64")
+    function rocblas_sger_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_sger_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31481,7 +32544,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dger_strided_batched_64
-    function rocblas_dger_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_dger_strided_batched_64")
+    function rocblas_dger_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_dger_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31504,7 +32569,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeru_strided_batched_64
-    function rocblas_cgeru_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_cgeru_strided_batched_64")
+    function rocblas_cgeru_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_cgeru_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31527,7 +32594,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeru_strided_batched_64
-    function rocblas_zgeru_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zgeru_strided_batched_64")
+    function rocblas_zgeru_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_zgeru_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31550,7 +32619,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgerc_strided_batched_64
-    function rocblas_cgerc_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_cgerc_strided_batched_64")
+    function rocblas_cgerc_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_cgerc_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31573,7 +32644,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgerc_strided_batched_64
-    function rocblas_zgerc_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zgerc_strided_batched_64")
+    function rocblas_zgerc_strided_batched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count) &
+        bind(c, name="rocblas_zgerc_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31660,7 +32733,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspr_batched_64
-    function rocblas_sspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_sspr_batched_64")
+    function rocblas_sspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_sspr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31677,7 +32751,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr_batched_64
-    function rocblas_dspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_dspr_batched_64")
+    function rocblas_dspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_dspr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31694,7 +32769,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cspr_batched_64
-    function rocblas_cspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_cspr_batched_64")
+    function rocblas_cspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_cspr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31711,7 +32787,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zspr_batched_64
-    function rocblas_zspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zspr_batched_64")
+    function rocblas_zspr_batched_64_(handle,uplo,n,alpha,x,incx,AP,batch_count) &
+        bind(c, name="rocblas_zspr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31728,7 +32805,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspr_strided_batched_64
-    function rocblas_sspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_sspr_strided_batched_64")
+    function rocblas_sspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_sspr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31747,7 +32826,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr_strided_batched_64
-    function rocblas_dspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_dspr_strided_batched_64")
+    function rocblas_dspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_dspr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31766,7 +32847,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cspr_strided_batched_64
-    function rocblas_cspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_cspr_strided_batched_64")
+    function rocblas_cspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_cspr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31785,7 +32868,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zspr_strided_batched_64
-    function rocblas_zspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zspr_strided_batched_64")
+    function rocblas_zspr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count) &
+        bind(c, name="rocblas_zspr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31804,7 +32889,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspr2_64
-    function rocblas_sspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_sspr2_64")
+    function rocblas_sspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) &
+        bind(c, name="rocblas_sspr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31822,7 +32908,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr2_64
-    function rocblas_dspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_dspr2_64")
+    function rocblas_dspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) &
+        bind(c, name="rocblas_dspr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31840,7 +32927,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspr2_batched_64
-    function rocblas_sspr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_sspr2_batched_64")
+    function rocblas_sspr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_sspr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31859,7 +32947,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr2_batched_64
-    function rocblas_dspr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_dspr2_batched_64")
+    function rocblas_dspr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) &
+        bind(c, name="rocblas_dspr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31878,7 +32967,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sspr2_strided_batched_64
-    function rocblas_sspr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_sspr2_strided_batched_64")
+    function rocblas_sspr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count) &
+        bind(c, name="rocblas_sspr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31900,7 +32991,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dspr2_strided_batched_64
-    function rocblas_dspr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_dspr2_strided_batched_64")
+    function rocblas_dspr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count) &
+        bind(c, name="rocblas_dspr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -31990,7 +33083,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr_batched_64
-    function rocblas_ssyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_ssyr_batched_64")
+    function rocblas_ssyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_ssyr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32008,7 +33102,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr_batched_64
-    function rocblas_dsyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_dsyr_batched_64")
+    function rocblas_dsyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_dsyr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32026,7 +33121,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr_batched_64
-    function rocblas_csyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_csyr_batched_64")
+    function rocblas_csyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_csyr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32044,7 +33140,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr_batched_64
-    function rocblas_zsyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zsyr_batched_64")
+    function rocblas_zsyr_batched_64_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) &
+        bind(c, name="rocblas_zsyr_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32062,7 +33159,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr_strided_batched_64
-    function rocblas_ssyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_ssyr_strided_batched_64")
+    function rocblas_ssyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_ssyr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32082,7 +33181,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr_strided_batched_64
-    function rocblas_dsyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_dsyr_strided_batched_64")
+    function rocblas_dsyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_dsyr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32102,7 +33203,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr_strided_batched_64
-    function rocblas_csyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_csyr_strided_batched_64")
+    function rocblas_csyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_csyr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32122,7 +33225,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr_strided_batched_64
-    function rocblas_zsyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_zsyr_strided_batched_64")
+    function rocblas_zsyr_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count) &
+        bind(c, name="rocblas_zsyr_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32142,7 +33247,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr2_64
-    function rocblas_ssyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_ssyr2_64")
+    function rocblas_ssyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_ssyr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32161,7 +33267,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2_64
-    function rocblas_dsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_dsyr2_64")
+    function rocblas_dsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_dsyr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32180,7 +33287,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2_64
-    function rocblas_csyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_csyr2_64")
+    function rocblas_csyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_csyr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32199,7 +33307,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2_64
-    function rocblas_zsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zsyr2_64")
+    function rocblas_zsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) &
+        bind(c, name="rocblas_zsyr2_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32218,7 +33327,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr2_batched_64
-    function rocblas_ssyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_ssyr2_batched_64")
+    function rocblas_ssyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_ssyr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32238,7 +33348,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2_batched_64
-    function rocblas_dsyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_dsyr2_batched_64")
+    function rocblas_dsyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_dsyr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32258,7 +33369,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2_batched_64
-    function rocblas_csyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_csyr2_batched_64")
+    function rocblas_csyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_csyr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32278,7 +33390,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2_batched_64
-    function rocblas_zsyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zsyr2_batched_64")
+    function rocblas_zsyr2_batched_64_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) &
+        bind(c, name="rocblas_zsyr2_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32298,7 +33411,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr2_strided_batched_64
-    function rocblas_ssyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_ssyr2_strided_batched_64")
+    function rocblas_ssyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count) &
+        bind(c, name="rocblas_ssyr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32321,7 +33436,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2_strided_batched_64
-    function rocblas_dsyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_dsyr2_strided_batched_64")
+    function rocblas_dsyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count) &
+        bind(c, name="rocblas_dsyr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32344,7 +33461,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2_strided_batched_64
-    function rocblas_csyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_csyr2_strided_batched_64")
+    function rocblas_csyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count) &
+        bind(c, name="rocblas_csyr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32367,7 +33486,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2_strided_batched_64
-    function rocblas_zsyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zsyr2_strided_batched_64")
+    function rocblas_zsyr2_strided_batched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count) &
+        bind(c, name="rocblas_zsyr2_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32390,7 +33511,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chemm_64
-    function rocblas_chemm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_chemm_64")
+    function rocblas_chemm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_chemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32412,7 +33534,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemm_64
-    function rocblas_zhemm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zhemm_64")
+    function rocblas_zhemm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zhemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32434,7 +33557,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chemm_batched_64
-    function rocblas_chemm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_chemm_batched_64")
+    function rocblas_chemm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_chemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32457,7 +33582,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemm_batched_64
-    function rocblas_zhemm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zhemm_batched_64")
+    function rocblas_zhemm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zhemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32480,7 +33607,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_chemm_strided_batched_64
-    function rocblas_chemm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_chemm_strided_batched_64")
+    function rocblas_chemm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_chemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32506,7 +33635,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zhemm_strided_batched_64
-    function rocblas_zhemm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zhemm_strided_batched_64")
+    function rocblas_zhemm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zhemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32532,7 +33663,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cherk_64
-    function rocblas_cherk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_cherk_64")
+    function rocblas_cherk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_cherk_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32552,7 +33684,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherk_64
-    function rocblas_zherk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_zherk_64")
+    function rocblas_zherk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_zherk_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32572,7 +33705,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cherk_batched_64
-    function rocblas_cherk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_cherk_batched_64")
+    function rocblas_cherk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_cherk_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32593,7 +33727,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherk_batched_64
-    function rocblas_zherk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_zherk_batched_64")
+    function rocblas_zherk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_zherk_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32614,7 +33749,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cherk_strided_batched_64
-    function rocblas_cherk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cherk_strided_batched_64")
+    function rocblas_cherk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cherk_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32637,7 +33774,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherk_strided_batched_64
-    function rocblas_zherk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zherk_strided_batched_64")
+    function rocblas_zherk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zherk_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32660,7 +33799,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher2k_64
-    function rocblas_cher2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cher2k_64")
+    function rocblas_cher2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cher2k_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32682,7 +33822,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2k_64
-    function rocblas_zher2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zher2k_64")
+    function rocblas_zher2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zher2k_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32704,7 +33845,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher2k_batched_64
-    function rocblas_cher2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cher2k_batched_64")
+    function rocblas_cher2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cher2k_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32727,7 +33870,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2k_batched_64
-    function rocblas_zher2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zher2k_batched_64")
+    function rocblas_zher2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zher2k_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32750,7 +33895,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cher2k_strided_batched_64
-    function rocblas_cher2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cher2k_strided_batched_64")
+    function rocblas_cher2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cher2k_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32776,7 +33923,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zher2k_strided_batched_64
-    function rocblas_zher2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zher2k_strided_batched_64")
+    function rocblas_zher2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zher2k_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32802,7 +33951,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cherkx_64
-    function rocblas_cherkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cherkx_64")
+    function rocblas_cherkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cherkx_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32824,7 +33974,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherkx_64
-    function rocblas_zherkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zherkx_64")
+    function rocblas_zherkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zherkx_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32846,7 +33997,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cherkx_batched_64
-    function rocblas_cherkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cherkx_batched_64")
+    function rocblas_cherkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cherkx_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32869,7 +34022,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherkx_batched_64
-    function rocblas_zherkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zherkx_batched_64")
+    function rocblas_zherkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zherkx_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32892,7 +34047,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cherkx_strided_batched_64
-    function rocblas_cherkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cherkx_strided_batched_64")
+    function rocblas_cherkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cherkx_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32918,7 +34075,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zherkx_strided_batched_64
-    function rocblas_zherkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zherkx_strided_batched_64")
+    function rocblas_zherkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zherkx_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32944,7 +34103,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssymm_64
-    function rocblas_ssymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_ssymm_64")
+    function rocblas_ssymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_ssymm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32966,7 +34126,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymm_64
-    function rocblas_dsymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dsymm_64")
+    function rocblas_dsymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dsymm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -32988,7 +34149,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymm_64
-    function rocblas_csymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_csymm_64")
+    function rocblas_csymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_csymm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33010,7 +34172,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymm_64
-    function rocblas_zsymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsymm_64")
+    function rocblas_zsymm_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zsymm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33032,7 +34195,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssymm_batched_64
-    function rocblas_ssymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_ssymm_batched_64")
+    function rocblas_ssymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ssymm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33055,7 +34220,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymm_batched_64
-    function rocblas_dsymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dsymm_batched_64")
+    function rocblas_dsymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dsymm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33078,7 +34245,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymm_batched_64
-    function rocblas_csymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_csymm_batched_64")
+    function rocblas_csymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_csymm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33101,7 +34270,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymm_batched_64
-    function rocblas_zsymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsymm_batched_64")
+    function rocblas_zsymm_batched_64_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zsymm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33124,7 +34295,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssymm_strided_batched_64
-    function rocblas_ssymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssymm_strided_batched_64")
+    function rocblas_ssymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssymm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33150,7 +34323,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsymm_strided_batched_64
-    function rocblas_dsymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsymm_strided_batched_64")
+    function rocblas_dsymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsymm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33176,7 +34351,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csymm_strided_batched_64
-    function rocblas_csymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csymm_strided_batched_64")
+    function rocblas_csymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csymm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33202,7 +34379,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsymm_strided_batched_64
-    function rocblas_zsymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsymm_strided_batched_64")
+    function rocblas_zsymm_strided_batched_64_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsymm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33228,7 +34407,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyrk_64
-    function rocblas_ssyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_ssyrk_64")
+    function rocblas_ssyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_ssyrk_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33248,7 +34428,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrk_64
-    function rocblas_dsyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_dsyrk_64")
+    function rocblas_dsyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_dsyrk_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33268,7 +34449,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrk_64
-    function rocblas_csyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_csyrk_64")
+    function rocblas_csyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_csyrk_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33288,7 +34470,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrk_64
-    function rocblas_zsyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_zsyrk_64")
+    function rocblas_zsyrk_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) &
+        bind(c, name="rocblas_zsyrk_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33308,7 +34491,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyrk_batched_64
-    function rocblas_ssyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_ssyrk_batched_64")
+    function rocblas_ssyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_ssyrk_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33329,7 +34513,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrk_batched_64
-    function rocblas_dsyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_dsyrk_batched_64")
+    function rocblas_dsyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_dsyrk_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33350,7 +34535,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrk_batched_64
-    function rocblas_csyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_csyrk_batched_64")
+    function rocblas_csyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_csyrk_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33371,7 +34557,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrk_batched_64
-    function rocblas_zsyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyrk_batched_64")
+    function rocblas_zsyrk_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) &
+        bind(c, name="rocblas_zsyrk_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33392,7 +34579,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyrk_strided_batched_64
-    function rocblas_ssyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssyrk_strided_batched_64")
+    function rocblas_ssyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssyrk_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33415,7 +34604,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrk_strided_batched_64
-    function rocblas_dsyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsyrk_strided_batched_64")
+    function rocblas_dsyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsyrk_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33438,7 +34629,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrk_strided_batched_64
-    function rocblas_csyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csyrk_strided_batched_64")
+    function rocblas_csyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csyrk_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33461,7 +34654,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrk_strided_batched_64
-    function rocblas_zsyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyrk_strided_batched_64")
+    function rocblas_zsyrk_strided_batched_64_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsyrk_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33484,7 +34679,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr2k_64
-    function rocblas_ssyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_ssyr2k_64")
+    function rocblas_ssyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_ssyr2k_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33506,7 +34702,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2k_64
-    function rocblas_dsyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dsyr2k_64")
+    function rocblas_dsyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dsyr2k_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33528,7 +34725,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2k_64
-    function rocblas_csyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_csyr2k_64")
+    function rocblas_csyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_csyr2k_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33550,7 +34748,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2k_64
-    function rocblas_zsyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsyr2k_64")
+    function rocblas_zsyr2k_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zsyr2k_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33572,7 +34771,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr2k_batched_64
-    function rocblas_ssyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_ssyr2k_batched_64")
+    function rocblas_ssyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ssyr2k_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33595,7 +34796,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2k_batched_64
-    function rocblas_dsyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dsyr2k_batched_64")
+    function rocblas_dsyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dsyr2k_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33618,7 +34821,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2k_batched_64
-    function rocblas_csyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_csyr2k_batched_64")
+    function rocblas_csyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_csyr2k_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33641,7 +34846,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2k_batched_64
-    function rocblas_zsyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyr2k_batched_64")
+    function rocblas_zsyr2k_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zsyr2k_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33664,7 +34871,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyr2k_strided_batched_64
-    function rocblas_ssyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssyr2k_strided_batched_64")
+    function rocblas_ssyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssyr2k_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33690,7 +34899,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyr2k_strided_batched_64
-    function rocblas_dsyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsyr2k_strided_batched_64")
+    function rocblas_dsyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsyr2k_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33716,7 +34927,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyr2k_strided_batched_64
-    function rocblas_csyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csyr2k_strided_batched_64")
+    function rocblas_csyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csyr2k_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33742,7 +34955,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyr2k_strided_batched_64
-    function rocblas_zsyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyr2k_strided_batched_64")
+    function rocblas_zsyr2k_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsyr2k_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33768,7 +34983,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyrkx_64
-    function rocblas_ssyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_ssyrkx_64")
+    function rocblas_ssyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_ssyrkx_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33790,7 +35006,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrkx_64
-    function rocblas_dsyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dsyrkx_64")
+    function rocblas_dsyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dsyrkx_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33812,7 +35029,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrkx_64
-    function rocblas_csyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_csyrkx_64")
+    function rocblas_csyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_csyrkx_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33834,7 +35052,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrkx_64
-    function rocblas_zsyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsyrkx_64")
+    function rocblas_zsyrkx_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zsyrkx_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33856,7 +35075,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyrkx_batched_64
-    function rocblas_ssyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_ssyrkx_batched_64")
+    function rocblas_ssyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ssyrkx_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33879,7 +35100,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrkx_batched_64
-    function rocblas_dsyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dsyrkx_batched_64")
+    function rocblas_dsyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dsyrkx_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33902,7 +35125,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrkx_batched_64
-    function rocblas_csyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_csyrkx_batched_64")
+    function rocblas_csyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_csyrkx_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33925,7 +35150,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrkx_batched_64
-    function rocblas_zsyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyrkx_batched_64")
+    function rocblas_zsyrkx_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zsyrkx_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33948,7 +35175,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ssyrkx_strided_batched_64
-    function rocblas_ssyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ssyrkx_strided_batched_64")
+    function rocblas_ssyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ssyrkx_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -33974,7 +35203,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dsyrkx_strided_batched_64
-    function rocblas_dsyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dsyrkx_strided_batched_64")
+    function rocblas_dsyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dsyrkx_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34000,7 +35231,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_csyrkx_strided_batched_64
-    function rocblas_csyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_csyrkx_strided_batched_64")
+    function rocblas_csyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_csyrkx_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34026,7 +35259,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zsyrkx_strided_batched_64
-    function rocblas_zsyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyrkx_strided_batched_64")
+    function rocblas_zsyrkx_strided_batched_64_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zsyrkx_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34052,7 +35287,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strmm_64
-    function rocblas_strmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_strmm_64")
+    function rocblas_strmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_strmm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34075,7 +35311,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmm_64
-    function rocblas_dtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_dtrmm_64")
+    function rocblas_dtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_dtrmm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34098,7 +35335,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmm_64
-    function rocblas_ctrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ctrmm_64")
+    function rocblas_ctrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_ctrmm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34121,7 +35359,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmm_64
-    function rocblas_ztrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ztrmm_64")
+    function rocblas_ztrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) &
+        bind(c, name="rocblas_ztrmm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34144,7 +35383,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strmm_batched_64
-    function rocblas_strmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_strmm_batched_64")
+    function rocblas_strmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_strmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34168,7 +35409,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmm_batched_64
-    function rocblas_dtrmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_dtrmm_batched_64")
+    function rocblas_dtrmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dtrmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34192,7 +35435,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmm_batched_64
-    function rocblas_ctrmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_ctrmm_batched_64")
+    function rocblas_ctrmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ctrmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34216,7 +35461,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmm_batched_64
-    function rocblas_ztrmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_ztrmm_batched_64")
+    function rocblas_ztrmm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_ztrmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34240,7 +35487,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strmm_strided_batched_64
-    function rocblas_strmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_strmm_strided_batched_64")
+    function rocblas_strmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_strmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34267,7 +35516,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrmm_strided_batched_64
-    function rocblas_dtrmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dtrmm_strided_batched_64")
+    function rocblas_dtrmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dtrmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34294,7 +35545,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrmm_strided_batched_64
-    function rocblas_ctrmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ctrmm_strided_batched_64")
+    function rocblas_ctrmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ctrmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34321,7 +35574,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrmm_strided_batched_64
-    function rocblas_ztrmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ztrmm_strided_batched_64")
+    function rocblas_ztrmm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ztrmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34348,7 +35603,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strsm_64
-    function rocblas_strsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_strsm_64")
+    function rocblas_strsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_strsm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34369,7 +35625,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsm_64
-    function rocblas_dtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_dtrsm_64")
+    function rocblas_dtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_dtrsm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34390,7 +35647,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsm_64
-    function rocblas_ctrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ctrsm_64")
+    function rocblas_ctrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_ctrsm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34411,7 +35669,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsm_64
-    function rocblas_ztrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ztrsm_64")
+    function rocblas_ztrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) &
+        bind(c, name="rocblas_ztrsm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34432,7 +35691,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strsm_batched_64
-    function rocblas_strsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_strsm_batched_64")
+    function rocblas_strsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_strsm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34454,7 +35715,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsm_batched_64
-    function rocblas_dtrsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_dtrsm_batched_64")
+    function rocblas_dtrsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_dtrsm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34476,7 +35739,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsm_batched_64
-    function rocblas_ctrsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_ctrsm_batched_64")
+    function rocblas_ctrsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_ctrsm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34498,7 +35763,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsm_batched_64
-    function rocblas_ztrsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_ztrsm_batched_64")
+    function rocblas_ztrsm_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb, &
+        batch_count) &
+        bind(c, name="rocblas_ztrsm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34520,7 +35787,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_strsm_strided_batched_64
-    function rocblas_strsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_strsm_strided_batched_64")
+    function rocblas_strsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_strsm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34544,7 +35813,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dtrsm_strided_batched_64
-    function rocblas_dtrsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_dtrsm_strided_batched_64")
+    function rocblas_dtrsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_dtrsm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34568,7 +35839,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ctrsm_strided_batched_64
-    function rocblas_ctrsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_ctrsm_strided_batched_64")
+    function rocblas_ctrsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_ctrsm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34592,7 +35865,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ztrsm_strided_batched_64
-    function rocblas_ztrsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_ztrsm_strided_batched_64")
+    function rocblas_ztrsm_strided_batched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count) &
+        bind(c, name="rocblas_ztrsm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34616,7 +35891,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemm_64
-    function rocblas_sgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_sgemm_64")
+    function rocblas_sgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_sgemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34639,7 +35915,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemm_64
-    function rocblas_dgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dgemm_64")
+    function rocblas_dgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dgemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34662,7 +35939,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hgemm_64
-    function rocblas_hgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_hgemm_64")
+    function rocblas_hgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_hgemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34685,7 +35963,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemm_64
-    function rocblas_cgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cgemm_64")
+    function rocblas_cgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cgemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34708,7 +35987,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemm_64
-    function rocblas_zgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zgemm_64")
+    function rocblas_zgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zgemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34731,7 +36011,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemm_batched_64
-    function rocblas_sgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_sgemm_batched_64")
+    function rocblas_sgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_sgemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34755,7 +36037,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemm_batched_64
-    function rocblas_dgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dgemm_batched_64")
+    function rocblas_dgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dgemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34779,7 +36063,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hgemm_batched_64
-    function rocblas_hgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_hgemm_batched_64")
+    function rocblas_hgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_hgemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34803,7 +36089,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemm_batched_64
-    function rocblas_cgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cgemm_batched_64")
+    function rocblas_cgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cgemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34827,7 +36115,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemm_batched_64
-    function rocblas_zgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zgemm_batched_64")
+    function rocblas_zgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zgemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34851,7 +36141,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemm_strided_batched_64
-    function rocblas_sgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_sgemm_strided_batched_64")
+    function rocblas_sgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_sgemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34878,7 +36170,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemm_strided_batched_64
-    function rocblas_dgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_dgemm_strided_batched_64")
+    function rocblas_dgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_dgemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34905,7 +36199,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_hgemm_strided_batched_64
-    function rocblas_hgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_hgemm_strided_batched_64")
+    function rocblas_hgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_hgemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34932,7 +36228,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemm_strided_batched_64
-    function rocblas_cgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_cgemm_strided_batched_64")
+    function rocblas_cgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_cgemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -34959,7 +36257,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemm_strided_batched_64
-    function rocblas_zgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zgemm_strided_batched_64")
+    function rocblas_zgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_zgemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35062,7 +36362,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sdgmm_batched_64
-    function rocblas_sdgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_sdgmm_batched_64")
+    function rocblas_sdgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_sdgmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35082,7 +36383,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddgmm_batched_64
-    function rocblas_ddgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_ddgmm_batched_64")
+    function rocblas_ddgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_ddgmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35102,7 +36404,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdgmm_batched_64
-    function rocblas_cdgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_cdgmm_batched_64")
+    function rocblas_cdgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_cdgmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35122,7 +36425,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdgmm_batched_64
-    function rocblas_zdgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_zdgmm_batched_64")
+    function rocblas_zdgmm_batched_64_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) &
+        bind(c, name="rocblas_zdgmm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35142,7 +36446,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sdgmm_strided_batched_64
-    function rocblas_sdgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_sdgmm_strided_batched_64")
+    function rocblas_sdgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_sdgmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35165,7 +36471,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_ddgmm_strided_batched_64
-    function rocblas_ddgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_ddgmm_strided_batched_64")
+    function rocblas_ddgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_ddgmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35188,7 +36496,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cdgmm_strided_batched_64
-    function rocblas_cdgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cdgmm_strided_batched_64")
+    function rocblas_cdgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cdgmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35211,7 +36521,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zdgmm_strided_batched_64
-    function rocblas_zdgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zdgmm_strided_batched_64")
+    function rocblas_zdgmm_strided_batched_64_(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C, &
+        ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zdgmm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35234,7 +36546,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgeam_64
-    function rocblas_sgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_sgeam_64")
+    function rocblas_sgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_sgeam_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35256,7 +36569,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgeam_64
-    function rocblas_dgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_dgeam_64")
+    function rocblas_dgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_dgeam_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35278,7 +36592,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeam_64
-    function rocblas_cgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_cgeam_64")
+    function rocblas_cgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_cgeam_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35300,7 +36615,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeam_64
-    function rocblas_zgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_zgeam_64")
+    function rocblas_zgeam_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) &
+        bind(c, name="rocblas_zgeam_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35322,7 +36638,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgeam_batched_64
-    function rocblas_sgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_sgeam_batched_64")
+    function rocblas_sgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_sgeam_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35345,7 +36663,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgeam_batched_64
-    function rocblas_dgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_dgeam_batched_64")
+    function rocblas_dgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dgeam_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35368,7 +36688,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeam_batched_64
-    function rocblas_cgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_cgeam_batched_64")
+    function rocblas_cgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cgeam_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35391,7 +36713,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeam_batched_64
-    function rocblas_zgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_zgeam_batched_64")
+    function rocblas_zgeam_batched_64_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zgeam_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35414,7 +36738,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgeam_strided_batched_64
-    function rocblas_sgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_sgeam_strided_batched_64")
+    function rocblas_sgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_sgeam_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35440,7 +36766,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgeam_strided_batched_64
-    function rocblas_dgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_dgeam_strided_batched_64")
+    function rocblas_dgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_dgeam_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35466,7 +36794,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgeam_strided_batched_64
-    function rocblas_cgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_cgeam_strided_batched_64")
+    function rocblas_cgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_cgeam_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35492,7 +36822,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgeam_strided_batched_64
-    function rocblas_zgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zgeam_strided_batched_64")
+    function rocblas_zgeam_strided_batched_64_(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta, &
+        B,ldb,stride_B,C,ldc,stride_C,batch_count) &
+        bind(c, name="rocblas_zgeam_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35518,7 +36850,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_gemm_ex_64
-    function rocblas_gemm_ex_64_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,d,d_type,ldd,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_ex_64")
+    function rocblas_gemm_ex_64_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta, &
+        c,c_type,ldc,d,d_type,ldd,compute_type,algo,solution_index,flags) &
+        bind(c, name="rocblas_gemm_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35551,7 +36885,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_gemm_batched_ex_64
-    function rocblas_gemm_batched_ex_64_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,d,d_type,ldd,batch_count,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_batched_ex_64")
+    function rocblas_gemm_batched_ex_64_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type, &
+        ldb,beta,c,c_type,ldc,d,d_type,ldd,batch_count,compute_type,algo,solution_index,flags) &
+        bind(c, name="rocblas_gemm_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35585,7 +36921,10 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_gemm_strided_batched_ex_64
-    function rocblas_gemm_strided_batched_ex_64_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,stride_a,b,b_type,ldb,stride_b,beta,c,c_type,ldc,stride_c,d,d_type,ldd,stride_d,batch_count,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_strided_batched_ex_64")
+    function rocblas_gemm_strided_batched_ex_64_(handle,transA,transB,m,n,k,alpha,a,a_type,lda, &
+        stride_a,b,b_type,ldb,stride_b,beta,c,c_type,ldc,stride_c,d,d_type,ldd,stride_d, &
+        batch_count,compute_type,algo,solution_index,flags) &
+        bind(c, name="rocblas_gemm_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35692,7 +37031,8 @@ module hipfort_rocblas
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C. Must have ldc >= max(1, n).
   interface rocblas_sgemmt
-    function rocblas_sgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_sgemmt")
+    function rocblas_sgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_sgemmt")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35715,7 +37055,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemmt
-    function rocblas_dgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dgemmt")
+    function rocblas_dgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dgemmt")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35738,7 +37079,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemmt
-    function rocblas_cgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cgemmt")
+    function rocblas_cgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cgemmt")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35761,7 +37103,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemmt
-    function rocblas_zgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zgemmt")
+    function rocblas_zgemmt_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zgemmt")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35784,7 +37127,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemmt_64
-    function rocblas_sgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_sgemmt_64")
+    function rocblas_sgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_sgemmt_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35807,7 +37151,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemmt_64
-    function rocblas_dgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_dgemmt_64")
+    function rocblas_dgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_dgemmt_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35830,7 +37175,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemmt_64
-    function rocblas_cgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_cgemmt_64")
+    function rocblas_cgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_cgemmt_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35853,7 +37199,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemmt_64
-    function rocblas_zgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zgemmt_64")
+    function rocblas_zgemmt_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc) &
+        bind(c, name="rocblas_zgemmt_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35951,7 +37298,9 @@ module hipfort_rocblas
   !>               [rocblas_int]
   !>               number of gemm operations in the batch.
   interface rocblas_sgemmt_batched
-    function rocblas_sgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_sgemmt_batched")
+    function rocblas_sgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_sgemmt_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35975,7 +37324,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemmt_batched
-    function rocblas_dgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dgemmt_batched")
+    function rocblas_dgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_dgemmt_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -35999,7 +37350,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemmt_batched
-    function rocblas_cgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cgemmt_batched")
+    function rocblas_cgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_cgemmt_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36023,7 +37376,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemmt_batched
-    function rocblas_zgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zgemmt_batched")
+    function rocblas_zgemmt_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc, &
+        batch_count) &
+        bind(c, name="rocblas_zgemmt_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36047,7 +37402,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemmt_batched_64
-    function rocblas_sgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_sgemmt_batched_64")
+    function rocblas_sgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C, &
+        ldc,batch_count) &
+        bind(c, name="rocblas_sgemmt_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36071,7 +37428,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemmt_batched_64
-    function rocblas_dgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_dgemmt_batched_64")
+    function rocblas_dgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C, &
+        ldc,batch_count) &
+        bind(c, name="rocblas_dgemmt_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36095,7 +37454,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemmt_batched_64
-    function rocblas_cgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_cgemmt_batched_64")
+    function rocblas_cgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C, &
+        ldc,batch_count) &
+        bind(c, name="rocblas_cgemmt_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36119,7 +37480,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemmt_batched_64
-    function rocblas_zgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zgemmt_batched_64")
+    function rocblas_zgemmt_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,B,ldb,beta,C, &
+        ldc,batch_count) &
+        bind(c, name="rocblas_zgemmt_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36227,7 +37590,9 @@ module hipfort_rocblas
   !>               [rocblas_int]
   !>               number of gemm operatons in the batch.
   interface rocblas_sgemmt_strided_batched
-    function rocblas_sgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_sgemmt_strided_batched")
+    function rocblas_sgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_sgemmt_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36254,7 +37619,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemmt_strided_batched
-    function rocblas_dgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_dgemmt_strided_batched")
+    function rocblas_dgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_dgemmt_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36281,7 +37648,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemmt_strided_batched
-    function rocblas_cgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_cgemmt_strided_batched")
+    function rocblas_cgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_cgemmt_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36308,7 +37677,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemmt_strided_batched
-    function rocblas_zgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zgemmt_strided_batched")
+    function rocblas_zgemmt_strided_batched_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B, &
+        ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_zgemmt_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36335,7 +37706,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_sgemmt_strided_batched_64
-    function rocblas_sgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_sgemmt_strided_batched_64")
+    function rocblas_sgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_sgemmt_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36362,7 +37735,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dgemmt_strided_batched_64
-    function rocblas_dgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_dgemmt_strided_batched_64")
+    function rocblas_dgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_dgemmt_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36389,7 +37764,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_cgemmt_strided_batched_64
-    function rocblas_cgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_cgemmt_strided_batched_64")
+    function rocblas_cgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_cgemmt_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36416,7 +37793,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_zgemmt_strided_batched_64
-    function rocblas_zgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zgemmt_strided_batched_64")
+    function rocblas_zgemmt_strided_batched_64_(handle,uplo,transA,transB,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) &
+        bind(c, name="rocblas_zgemmt_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36545,7 +37924,9 @@ module hipfort_rocblas
   !>               enumerant specifying the operation type and support for
   !>               rocblas_geam_ex_operation_min_plus and rocblas_geam_ex_operation_plus_min.
   interface rocblas_geam_ex
-    function rocblas_geam_ex_(handle,transA,transB,m,n,k,alpha,A,a_type,lda,B,b_type,ldb,beta,C,c_type,ldc,D,d_type,ldd,compute_type,geam_ex_op) bind(c, name="rocblas_geam_ex")
+    function rocblas_geam_ex_(handle,transA,transB,m,n,k,alpha,A,a_type,lda,B,b_type,ldb,beta,C, &
+        c_type,ldc,D,d_type,ldd,compute_type,geam_ex_op) &
+        bind(c, name="rocblas_geam_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36666,7 +38047,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
   interface rocblas_syrk_ex
-    function rocblas_syrk_ex_(handle,uplo,transA,n,k,alpha,A,a_type,lda,beta,C,c_type,ldc,execution_type) bind(c, name="rocblas_syrk_ex")
+    function rocblas_syrk_ex_(handle,uplo,transA,n,k,alpha,A,a_type,lda,beta,C,c_type,ldc, &
+        execution_type) &
+        bind(c, name="rocblas_syrk_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36776,7 +38159,9 @@ module hipfort_rocblas
   !>     execution_type [rocblas_datatype]
   !>            specifies the datatype of computation.
   interface rocblas_herk_ex
-    function rocblas_herk_ex_(handle,uplo,transA,n,k,alpha,A,a_type,lda,beta,C,c_type,ldc,execution_type) bind(c, name="rocblas_herk_ex")
+    function rocblas_herk_ex_(handle,uplo,transA,n,k,alpha,A,a_type,lda,beta,C,c_type,ldc, &
+        execution_type) &
+        bind(c, name="rocblas_herk_ex")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36799,7 +38184,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_axpy_ex_64
-    function rocblas_axpy_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy,execution_type) bind(c, name="rocblas_axpy_ex_64")
+    function rocblas_axpy_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy, &
+        execution_type) &
+        bind(c, name="rocblas_axpy_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36819,7 +38206,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_axpy_batched_ex_64
-    function rocblas_axpy_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy,batch_count,execution_type) bind(c, name="rocblas_axpy_batched_ex_64")
+    function rocblas_axpy_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy, &
+        batch_count,execution_type) &
+        bind(c, name="rocblas_axpy_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36840,7 +38229,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_axpy_strided_batched_ex_64
-    function rocblas_axpy_strided_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,y,y_type,incy,stridey,batch_count,execution_type) bind(c, name="rocblas_axpy_strided_batched_ex_64")
+    function rocblas_axpy_strided_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,stridex, &
+        y,y_type,incy,stridey,batch_count,execution_type) &
+        bind(c, name="rocblas_axpy_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36863,7 +38254,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dot_ex_64
-    function rocblas_dot_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type,execution_type) bind(c, name="rocblas_dot_ex_64")
+    function rocblas_dot_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type, &
+        execution_type) &
+        bind(c, name="rocblas_dot_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36883,7 +38276,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dotc_ex_64
-    function rocblas_dotc_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type,execution_type) bind(c, name="rocblas_dotc_ex_64")
+    function rocblas_dotc_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type, &
+        execution_type) &
+        bind(c, name="rocblas_dotc_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36903,7 +38298,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dot_batched_ex_64
-    function rocblas_dot_batched_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dot_batched_ex_64")
+    function rocblas_dot_batched_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult, &
+        result_type,execution_type) &
+        bind(c, name="rocblas_dot_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36924,7 +38321,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dotc_batched_ex_64
-    function rocblas_dotc_batched_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dotc_batched_ex_64")
+    function rocblas_dotc_batched_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,batch_count, &
+        myResult,result_type,execution_type) &
+        bind(c, name="rocblas_dotc_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36945,7 +38344,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dot_strided_batched_ex_64
-    function rocblas_dot_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dot_strided_batched_ex_64")
+    function rocblas_dot_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,y,y_type,incy, &
+        stride_y,batch_count,myResult,result_type,execution_type) &
+        bind(c, name="rocblas_dot_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36968,7 +38369,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_dotc_strided_batched_ex_64
-    function rocblas_dotc_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dotc_strided_batched_ex_64")
+    function rocblas_dotc_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,y,y_type,incy, &
+        stride_y,batch_count,myResult,result_type,execution_type) &
+        bind(c, name="rocblas_dotc_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -36991,7 +38394,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_nrm2_ex_64
-    function rocblas_nrm2_ex_64_(handle,n,x,x_type,incx,results,result_type,execution_type) bind(c, name="rocblas_nrm2_ex_64")
+    function rocblas_nrm2_ex_64_(handle,n,x,x_type,incx,results,result_type,execution_type) &
+        bind(c, name="rocblas_nrm2_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37008,7 +38412,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_nrm2_batched_ex_64
-    function rocblas_nrm2_batched_ex_64_(handle,n,x,x_type,incx,batch_count,results,result_type,execution_type) bind(c, name="rocblas_nrm2_batched_ex_64")
+    function rocblas_nrm2_batched_ex_64_(handle,n,x,x_type,incx,batch_count,results,result_type, &
+        execution_type) &
+        bind(c, name="rocblas_nrm2_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37026,7 +38432,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_nrm2_strided_batched_ex_64
-    function rocblas_nrm2_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,batch_count,results,result_type,execution_type) bind(c, name="rocblas_nrm2_strided_batched_ex_64")
+    function rocblas_nrm2_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,batch_count, &
+        results,result_type,execution_type) &
+        bind(c, name="rocblas_nrm2_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37045,7 +38453,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_rot_ex_64
-    function rocblas_rot_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,execution_type) bind(c, name="rocblas_rot_ex_64")
+    function rocblas_rot_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,execution_type) &
+        bind(c, name="rocblas_rot_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37066,7 +38475,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_rot_batched_ex_64
-    function rocblas_rot_batched_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,batch_count,execution_type) bind(c, name="rocblas_rot_batched_ex_64")
+    function rocblas_rot_batched_ex_64_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type, &
+        batch_count,execution_type) &
+        bind(c, name="rocblas_rot_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37088,7 +38499,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_rot_strided_batched_ex_64
-    function rocblas_rot_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,c,s,cs_type,batch_count,execution_type) bind(c, name="rocblas_rot_strided_batched_ex_64")
+    function rocblas_rot_strided_batched_ex_64_(handle,n,x,x_type,incx,stride_x,y,y_type,incy, &
+        stride_y,c,s,cs_type,batch_count,execution_type) &
+        bind(c, name="rocblas_rot_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37112,7 +38525,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scal_ex_64
-    function rocblas_scal_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,execution_type) bind(c, name="rocblas_scal_ex_64")
+    function rocblas_scal_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,execution_type) &
+        bind(c, name="rocblas_scal_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37129,7 +38543,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scal_batched_ex_64
-    function rocblas_scal_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,batch_count,execution_type) bind(c, name="rocblas_scal_batched_ex_64")
+    function rocblas_scal_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,batch_count, &
+        execution_type) &
+        bind(c, name="rocblas_scal_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37147,7 +38563,9 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_scal_strided_batched_ex_64
-    function rocblas_scal_strided_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,batch_count,execution_type) bind(c, name="rocblas_scal_strided_batched_ex_64")
+    function rocblas_scal_strided_batched_ex_64_(handle,n,alpha,alpha_type,x,x_type,incx,stridex, &
+        batch_count,execution_type) &
+        bind(c, name="rocblas_scal_strided_batched_ex_64")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37224,7 +38642,8 @@ module hipfort_rocblas
   !>     @param[out]
   !>     len             pointer to size_t for storing the length
   interface rocblas_get_commit_hash_string_size
-    function rocblas_get_commit_hash_string_size_(len) bind(c, name="rocblas_get_commit_hash_string_size")
+    function rocblas_get_commit_hash_string_size_(len) &
+        bind(c, name="rocblas_get_commit_hash_string_size")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37234,7 +38653,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_is_device_memory_size_query
-    function rocblas_is_device_memory_size_query_(handle) bind(c, name="rocblas_is_device_memory_size_query")
+    function rocblas_is_device_memory_size_query_(handle) &
+        bind(c, name="rocblas_is_device_memory_size_query")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37244,7 +38664,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_optimal_device_memory_size_impl
-    function rocblas_set_optimal_device_memory_size_impl_(handle,count) bind(c, name="rocblas_set_optimal_device_memory_size_impl")
+    function rocblas_set_optimal_device_memory_size_impl_(handle,count) &
+        bind(c, name="rocblas_set_optimal_device_memory_size_impl")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37255,7 +38676,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_device_malloc_alloc
-    function rocblas_device_malloc_alloc_(handle,res,count) bind(c, name="rocblas_device_malloc_alloc")
+    function rocblas_device_malloc_alloc_(handle,res,count) &
+        bind(c, name="rocblas_device_malloc_alloc")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37277,7 +38699,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_device_malloc_set_default_memory_size
-    subroutine rocblas_device_malloc_set_default_memory_size_(mySize) bind(c, name="rocblas_device_malloc_set_default_memory_size")
+    subroutine rocblas_device_malloc_set_default_memory_size_(mySize) &
+        bind(c, name="rocblas_device_malloc_set_default_memory_size")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37291,7 +38714,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     handle          rocblas handle
   interface rocblas_is_managing_device_memory
-    function rocblas_is_managing_device_memory_(handle) bind(c, name="rocblas_is_managing_device_memory")
+    function rocblas_is_managing_device_memory_(handle) &
+        bind(c, name="rocblas_is_managing_device_memory")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37306,7 +38730,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     handle          rocblas handle
   interface rocblas_is_user_managing_device_memory
-    function rocblas_is_user_managing_device_memory_(handle) bind(c, name="rocblas_is_user_managing_device_memory")
+    function rocblas_is_user_managing_device_memory_(handle) &
+        bind(c, name="rocblas_is_user_managing_device_memory")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37452,7 +38877,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_sscal_strided_batched_rank_0 = rocblas_sscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_sscal_strided_batched_rank_0 = rocblas_sscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_sscal_strided_batched_rank_1(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37468,7 +38894,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_sscal_strided_batched_rank_1 = rocblas_sscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_sscal_strided_batched_rank_1 = rocblas_sscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_dscal_strided_batched_rank_0(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37484,7 +38911,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dscal_strided_batched_rank_0 = rocblas_dscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dscal_strided_batched_rank_0 = rocblas_dscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_dscal_strided_batched_rank_1(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37500,7 +38928,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dscal_strided_batched_rank_1 = rocblas_dscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dscal_strided_batched_rank_1 = rocblas_dscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_cscal_strided_batched_rank_0(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37516,7 +38945,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_cscal_strided_batched_rank_0 = rocblas_cscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_cscal_strided_batched_rank_0 = rocblas_cscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_cscal_strided_batched_rank_1(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37532,7 +38962,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_cscal_strided_batched_rank_1 = rocblas_cscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_cscal_strided_batched_rank_1 = rocblas_cscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_zscal_strided_batched_rank_0(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37548,7 +38979,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_zscal_strided_batched_rank_0 = rocblas_zscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_zscal_strided_batched_rank_0 = rocblas_zscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_zscal_strided_batched_rank_1(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37564,7 +38996,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_zscal_strided_batched_rank_1 = rocblas_zscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_zscal_strided_batched_rank_1 = rocblas_zscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_csscal_strided_batched_rank_0(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37580,7 +39013,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_csscal_strided_batched_rank_0 = rocblas_csscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_csscal_strided_batched_rank_0 = rocblas_csscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_csscal_strided_batched_rank_1(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37596,7 +39030,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_csscal_strided_batched_rank_1 = rocblas_csscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_csscal_strided_batched_rank_1 = rocblas_csscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_zdscal_strided_batched_rank_0(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37612,7 +39047,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_zdscal_strided_batched_rank_0 = rocblas_zdscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_zdscal_strided_batched_rank_0 = rocblas_zdscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_zdscal_strided_batched_rank_1(handle,n,alpha,x,incx,stride_x,batch_count)
@@ -37628,7 +39064,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_zdscal_strided_batched_rank_1 = rocblas_zdscal_strided_batched_(handle,n,alpha,c_loc(x),incx,stride_x,batch_count)
+      rocblas_zdscal_strided_batched_rank_1 = rocblas_zdscal_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_scopy_rank_0(handle,n,x,incx,y,incy)
@@ -37751,7 +39188,8 @@ module hipfort_rocblas
       rocblas_zcopy_rank_1 = rocblas_zcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
     end function
 
-    function rocblas_scopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_scopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37766,10 +39204,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_scopy_strided_batched_rank_0 = rocblas_scopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_scopy_strided_batched_rank_0 = rocblas_scopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_scopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_scopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37784,10 +39224,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_scopy_strided_batched_rank_1 = rocblas_scopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_scopy_strided_batched_rank_1 = rocblas_scopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dcopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_dcopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37802,10 +39244,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dcopy_strided_batched_rank_0 = rocblas_dcopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_dcopy_strided_batched_rank_0 = rocblas_dcopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dcopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_dcopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37820,10 +39264,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dcopy_strided_batched_rank_1 = rocblas_dcopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_dcopy_strided_batched_rank_1 = rocblas_dcopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_ccopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_ccopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37838,10 +39284,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ccopy_strided_batched_rank_0 = rocblas_ccopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_ccopy_strided_batched_rank_0 = rocblas_ccopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_ccopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_ccopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37856,10 +39304,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ccopy_strided_batched_rank_1 = rocblas_ccopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_ccopy_strided_batched_rank_1 = rocblas_ccopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zcopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_zcopy_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37874,10 +39324,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zcopy_strided_batched_rank_0 = rocblas_zcopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_zcopy_strided_batched_rank_0 = rocblas_zcopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zcopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_zcopy_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37892,7 +39344,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zcopy_strided_batched_rank_1 = rocblas_zcopy_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_zcopy_strided_batched_rank_1 = rocblas_zcopy_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_sdot_rank_0(handle,n,x,incx,y,incy,myResult)
@@ -38101,7 +39554,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: myResult
       !
-      rocblas_sdot_batched_rank_0 = rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_sdot_batched_rank_0 = rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_sdot_batched_rank_1(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38118,7 +39572,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: myResult
       !
-      rocblas_sdot_batched_rank_1 = rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_sdot_batched_rank_1 = rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_sdot_batched_full_rank(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38135,7 +39590,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:,:) :: myResult
       !
-      rocblas_sdot_batched_full_rank = rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_sdot_batched_full_rank = rocblas_sdot_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_ddot_batched_rank_0(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38152,7 +39608,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: myResult
       !
-      rocblas_ddot_batched_rank_0 = rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_ddot_batched_rank_0 = rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_ddot_batched_rank_1(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38169,7 +39626,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: myResult
       !
-      rocblas_ddot_batched_rank_1 = rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_ddot_batched_rank_1 = rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_ddot_batched_full_rank(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38186,7 +39644,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:,:) :: myResult
       !
-      rocblas_ddot_batched_full_rank = rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_ddot_batched_full_rank = rocblas_ddot_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_cdotu_batched_rank_0(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38203,7 +39662,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotu_batched_rank_0 = rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_cdotu_batched_rank_0 = rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_cdotu_batched_rank_1(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38220,7 +39680,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target,dimension(:) :: myResult
       !
-      rocblas_cdotu_batched_rank_1 = rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_cdotu_batched_rank_1 = rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_cdotu_batched_full_rank(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38237,7 +39698,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target,dimension(:,:) :: myResult
       !
-      rocblas_cdotu_batched_full_rank = rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_cdotu_batched_full_rank = rocblas_cdotu_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_zdotu_batched_rank_0(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38254,7 +39716,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotu_batched_rank_0 = rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_zdotu_batched_rank_0 = rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_zdotu_batched_rank_1(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38271,7 +39734,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target,dimension(:) :: myResult
       !
-      rocblas_zdotu_batched_rank_1 = rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_zdotu_batched_rank_1 = rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_zdotu_batched_full_rank(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38288,7 +39752,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target,dimension(:,:) :: myResult
       !
-      rocblas_zdotu_batched_full_rank = rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_zdotu_batched_full_rank = rocblas_zdotu_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_cdotc_batched_rank_0(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38305,7 +39770,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotc_batched_rank_0 = rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_cdotc_batched_rank_0 = rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_cdotc_batched_rank_1(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38322,7 +39788,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target,dimension(:) :: myResult
       !
-      rocblas_cdotc_batched_rank_1 = rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_cdotc_batched_rank_1 = rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_cdotc_batched_full_rank(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38339,7 +39806,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target,dimension(:,:) :: myResult
       !
-      rocblas_cdotc_batched_full_rank = rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_cdotc_batched_full_rank = rocblas_cdotc_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_zdotc_batched_rank_0(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38356,7 +39824,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotc_batched_rank_0 = rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_zdotc_batched_rank_0 = rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_zdotc_batched_rank_1(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38373,7 +39842,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target,dimension(:) :: myResult
       !
-      rocblas_zdotc_batched_rank_1 = rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_zdotc_batched_rank_1 = rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_zdotc_batched_full_rank(handle,n,x,incx,y,incy,batch_count,myResult)
@@ -38390,10 +39860,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target,dimension(:,:) :: myResult
       !
-      rocblas_zdotc_batched_full_rank = rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count,c_loc(myResult))
+      rocblas_zdotc_batched_full_rank = rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count, &
+        c_loc(myResult))
     end function
 
-    function rocblas_sdot_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_sdot_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38409,10 +39881,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: myResult
       !
-      rocblas_sdot_strided_batched_rank_0 = rocblas_sdot_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_sdot_strided_batched_rank_0 = rocblas_sdot_strided_batched_(handle,n,c_loc(x),incx, &
+        stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_sdot_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_sdot_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38428,10 +39902,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: myResult
       !
-      rocblas_sdot_strided_batched_rank_1 = rocblas_sdot_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_sdot_strided_batched_rank_1 = rocblas_sdot_strided_batched_(handle,n,c_loc(x),incx, &
+        stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_ddot_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_ddot_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38447,10 +39923,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: myResult
       !
-      rocblas_ddot_strided_batched_rank_0 = rocblas_ddot_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_ddot_strided_batched_rank_0 = rocblas_ddot_strided_batched_(handle,n,c_loc(x),incx, &
+        stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_ddot_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_ddot_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38466,10 +39944,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: myResult
       !
-      rocblas_ddot_strided_batched_rank_1 = rocblas_ddot_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_ddot_strided_batched_rank_1 = rocblas_ddot_strided_batched_(handle,n,c_loc(x),incx, &
+        stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_cdotu_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_cdotu_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38485,10 +39965,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotu_strided_batched_rank_0 = rocblas_cdotu_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_cdotu_strided_batched_rank_0 = rocblas_cdotu_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_cdotu_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_cdotu_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38504,10 +39986,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target,dimension(:) :: myResult
       !
-      rocblas_cdotu_strided_batched_rank_1 = rocblas_cdotu_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_cdotu_strided_batched_rank_1 = rocblas_cdotu_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_zdotu_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_zdotu_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38523,10 +40007,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotu_strided_batched_rank_0 = rocblas_zdotu_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_zdotu_strided_batched_rank_0 = rocblas_zdotu_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_zdotu_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_zdotu_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38542,10 +40028,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target,dimension(:) :: myResult
       !
-      rocblas_zdotu_strided_batched_rank_1 = rocblas_zdotu_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_zdotu_strided_batched_rank_1 = rocblas_zdotu_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_cdotc_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_cdotc_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38561,10 +40049,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotc_strided_batched_rank_0 = rocblas_cdotc_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_cdotc_strided_batched_rank_0 = rocblas_cdotc_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_cdotc_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_cdotc_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38580,10 +40070,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_float_complex),target,dimension(:) :: myResult
       !
-      rocblas_cdotc_strided_batched_rank_1 = rocblas_cdotc_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_cdotc_strided_batched_rank_1 = rocblas_cdotc_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_zdotc_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_zdotc_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38599,10 +40091,12 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotc_strided_batched_rank_0 = rocblas_zdotc_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_zdotc_strided_batched_rank_0 = rocblas_zdotc_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
-    function rocblas_zdotc_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult)
+    function rocblas_zdotc_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38618,7 +40112,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       complex(c_double_complex),target,dimension(:) :: myResult
       !
-      rocblas_zdotc_strided_batched_rank_1 = rocblas_zdotc_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
+      rocblas_zdotc_strided_batched_rank_1 = rocblas_zdotc_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count,c_loc(myResult))
     end function
 
     function rocblas_cswap_rank_0(handle,n,x,incx,y,incy)
@@ -38681,7 +40176,8 @@ module hipfort_rocblas
       rocblas_zswap_rank_1 = rocblas_zswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
     end function
 
-    function rocblas_sswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_sswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38696,10 +40192,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sswap_strided_batched_rank_0 = rocblas_sswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_sswap_strided_batched_rank_0 = rocblas_sswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_sswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_sswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38714,10 +40212,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sswap_strided_batched_rank_1 = rocblas_sswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_sswap_strided_batched_rank_1 = rocblas_sswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_dswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38732,10 +40232,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dswap_strided_batched_rank_0 = rocblas_dswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_dswap_strided_batched_rank_0 = rocblas_dswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_dswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38750,10 +40252,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dswap_strided_batched_rank_1 = rocblas_dswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_dswap_strided_batched_rank_1 = rocblas_dswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_cswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_cswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38768,10 +40272,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_cswap_strided_batched_rank_0 = rocblas_cswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_cswap_strided_batched_rank_0 = rocblas_cswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_cswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_cswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38786,10 +40292,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_cswap_strided_batched_rank_1 = rocblas_cswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_cswap_strided_batched_rank_1 = rocblas_cswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_zswap_strided_batched_rank_0(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38804,10 +40312,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zswap_strided_batched_rank_0 = rocblas_zswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_zswap_strided_batched_rank_0 = rocblas_zswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_zswap_strided_batched_rank_1(handle,n,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38822,7 +40332,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zswap_strided_batched_rank_1 = rocblas_zswap_strided_batched_(handle,n,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_zswap_strided_batched_rank_1 = rocblas_zswap_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_saxpy_rank_0(handle,n,alpha,x,incx,y,incy)
@@ -38953,7 +40464,8 @@ module hipfort_rocblas
       rocblas_zaxpy_rank_1 = rocblas_zaxpy_(handle,n,alpha,c_loc(x),incx,c_loc(y),incy)
     end function
 
-    function rocblas_saxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_saxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38969,10 +40481,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_saxpy_strided_batched_rank_0 = rocblas_saxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_saxpy_strided_batched_rank_0 = rocblas_saxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_saxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_saxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -38988,10 +40502,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_saxpy_strided_batched_rank_1 = rocblas_saxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_saxpy_strided_batched_rank_1 = rocblas_saxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_daxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_daxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -39007,10 +40523,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_daxpy_strided_batched_rank_0 = rocblas_daxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_daxpy_strided_batched_rank_0 = rocblas_daxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_daxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_daxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -39026,10 +40544,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_daxpy_strided_batched_rank_1 = rocblas_daxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_daxpy_strided_batched_rank_1 = rocblas_daxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_caxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_caxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -39045,10 +40565,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_caxpy_strided_batched_rank_0 = rocblas_caxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_caxpy_strided_batched_rank_0 = rocblas_caxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_caxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_caxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -39064,10 +40586,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_caxpy_strided_batched_rank_1 = rocblas_caxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_caxpy_strided_batched_rank_1 = rocblas_caxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zaxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_zaxpy_strided_batched_rank_0(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -39083,10 +40607,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zaxpy_strided_batched_rank_0 = rocblas_zaxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_zaxpy_strided_batched_rank_0 = rocblas_zaxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zaxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count)
+    function rocblas_zaxpy_strided_batched_rank_1(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -39102,7 +40628,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zaxpy_strided_batched_rank_1 = rocblas_zaxpy_strided_batched_(handle,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
+      rocblas_zaxpy_strided_batched_rank_1 = rocblas_zaxpy_strided_batched_(handle,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_scasum_rank_0(handle,n,x,incx,myResult)
@@ -39173,7 +40700,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_sasum_batched_rank_0 = rocblas_sasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_sasum_batched_rank_0 = rocblas_sasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_sasum_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39188,7 +40716,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_sasum_batched_rank_1 = rocblas_sasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_sasum_batched_rank_1 = rocblas_sasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_sasum_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39203,7 +40732,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:,:) :: results
       !
-      rocblas_sasum_batched_full_rank = rocblas_sasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_sasum_batched_full_rank = rocblas_sasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dasum_batched_rank_0(handle,n,x,incx,batch_count,results)
@@ -39218,7 +40748,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dasum_batched_rank_0 = rocblas_dasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dasum_batched_rank_0 = rocblas_dasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dasum_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39233,7 +40764,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dasum_batched_rank_1 = rocblas_dasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dasum_batched_rank_1 = rocblas_dasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dasum_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39248,7 +40780,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:,:) :: results
       !
-      rocblas_dasum_batched_full_rank = rocblas_dasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dasum_batched_full_rank = rocblas_dasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_scasum_batched_rank_0(handle,n,x,incx,batch_count,results)
@@ -39263,7 +40796,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_scasum_batched_rank_0 = rocblas_scasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_scasum_batched_rank_0 = rocblas_scasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_scasum_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39278,7 +40812,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_scasum_batched_rank_1 = rocblas_scasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_scasum_batched_rank_1 = rocblas_scasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_scasum_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39293,7 +40828,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:,:) :: results
       !
-      rocblas_scasum_batched_full_rank = rocblas_scasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_scasum_batched_full_rank = rocblas_scasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dzasum_batched_rank_0(handle,n,x,incx,batch_count,results)
@@ -39308,7 +40844,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dzasum_batched_rank_0 = rocblas_dzasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dzasum_batched_rank_0 = rocblas_dzasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dzasum_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39323,7 +40860,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dzasum_batched_rank_1 = rocblas_dzasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dzasum_batched_rank_1 = rocblas_dzasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dzasum_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39338,7 +40876,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:,:) :: results
       !
-      rocblas_dzasum_batched_full_rank = rocblas_dzasum_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dzasum_batched_full_rank = rocblas_dzasum_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_sasum_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39354,7 +40893,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_sasum_strided_batched_rank_0 = rocblas_sasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_sasum_strided_batched_rank_0 = rocblas_sasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_sasum_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39370,7 +40910,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_sasum_strided_batched_rank_1 = rocblas_sasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_sasum_strided_batched_rank_1 = rocblas_sasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dasum_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39386,7 +40927,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dasum_strided_batched_rank_0 = rocblas_dasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dasum_strided_batched_rank_0 = rocblas_dasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dasum_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39402,7 +40944,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dasum_strided_batched_rank_1 = rocblas_dasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dasum_strided_batched_rank_1 = rocblas_dasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_scasum_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39418,7 +40961,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_scasum_strided_batched_rank_0 = rocblas_scasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_scasum_strided_batched_rank_0 = rocblas_scasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_scasum_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39434,7 +40978,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_scasum_strided_batched_rank_1 = rocblas_scasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_scasum_strided_batched_rank_1 = rocblas_scasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dzasum_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39450,7 +40995,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dzasum_strided_batched_rank_0 = rocblas_dzasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dzasum_strided_batched_rank_0 = rocblas_dzasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dzasum_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39466,7 +41012,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dzasum_strided_batched_rank_1 = rocblas_dzasum_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dzasum_strided_batched_rank_1 = rocblas_dzasum_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_scnrm2_rank_0(handle,n,x,incx,myResult)
@@ -39537,7 +41084,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_snrm2_batched_rank_0 = rocblas_snrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_snrm2_batched_rank_0 = rocblas_snrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_snrm2_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39552,7 +41100,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_snrm2_batched_rank_1 = rocblas_snrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_snrm2_batched_rank_1 = rocblas_snrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_snrm2_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39567,7 +41116,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:,:) :: results
       !
-      rocblas_snrm2_batched_full_rank = rocblas_snrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_snrm2_batched_full_rank = rocblas_snrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dnrm2_batched_rank_0(handle,n,x,incx,batch_count,results)
@@ -39582,7 +41132,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dnrm2_batched_rank_0 = rocblas_dnrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dnrm2_batched_rank_0 = rocblas_dnrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dnrm2_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39597,7 +41148,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dnrm2_batched_rank_1 = rocblas_dnrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dnrm2_batched_rank_1 = rocblas_dnrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dnrm2_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39612,7 +41164,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:,:) :: results
       !
-      rocblas_dnrm2_batched_full_rank = rocblas_dnrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dnrm2_batched_full_rank = rocblas_dnrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_scnrm2_batched_rank_0(handle,n,x,incx,batch_count,results)
@@ -39627,7 +41180,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_scnrm2_batched_rank_0 = rocblas_scnrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_scnrm2_batched_rank_0 = rocblas_scnrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_scnrm2_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39642,7 +41196,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_scnrm2_batched_rank_1 = rocblas_scnrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_scnrm2_batched_rank_1 = rocblas_scnrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_scnrm2_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39657,7 +41212,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:,:) :: results
       !
-      rocblas_scnrm2_batched_full_rank = rocblas_scnrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_scnrm2_batched_full_rank = rocblas_scnrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dznrm2_batched_rank_0(handle,n,x,incx,batch_count,results)
@@ -39672,7 +41228,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dznrm2_batched_rank_0 = rocblas_dznrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dznrm2_batched_rank_0 = rocblas_dznrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dznrm2_batched_rank_1(handle,n,x,incx,batch_count,results)
@@ -39687,7 +41244,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dznrm2_batched_rank_1 = rocblas_dznrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dznrm2_batched_rank_1 = rocblas_dznrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_dznrm2_batched_full_rank(handle,n,x,incx,batch_count,results)
@@ -39702,7 +41260,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:,:) :: results
       !
-      rocblas_dznrm2_batched_full_rank = rocblas_dznrm2_batched_(handle,n,x,incx,batch_count,c_loc(results))
+      rocblas_dznrm2_batched_full_rank = rocblas_dznrm2_batched_(handle,n,x,incx,batch_count, &
+        c_loc(results))
     end function
 
     function rocblas_snrm2_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39718,7 +41277,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_snrm2_strided_batched_rank_0 = rocblas_snrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_snrm2_strided_batched_rank_0 = rocblas_snrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_snrm2_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39734,7 +41294,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_snrm2_strided_batched_rank_1 = rocblas_snrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_snrm2_strided_batched_rank_1 = rocblas_snrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dnrm2_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39750,7 +41311,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dnrm2_strided_batched_rank_0 = rocblas_dnrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dnrm2_strided_batched_rank_0 = rocblas_dnrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dnrm2_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39766,7 +41328,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dnrm2_strided_batched_rank_1 = rocblas_dnrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dnrm2_strided_batched_rank_1 = rocblas_dnrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_scnrm2_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39782,7 +41345,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target :: results
       !
-      rocblas_scnrm2_strided_batched_rank_0 = rocblas_scnrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_scnrm2_strided_batched_rank_0 = rocblas_scnrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_scnrm2_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39798,7 +41362,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_float),target,dimension(:) :: results
       !
-      rocblas_scnrm2_strided_batched_rank_1 = rocblas_scnrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_scnrm2_strided_batched_rank_1 = rocblas_scnrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dznrm2_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,results)
@@ -39814,7 +41379,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target :: results
       !
-      rocblas_dznrm2_strided_batched_rank_0 = rocblas_dznrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dznrm2_strided_batched_rank_0 = rocblas_dznrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_dznrm2_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,results)
@@ -39830,7 +41396,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       real(c_double),target,dimension(:) :: results
       !
-      rocblas_dznrm2_strided_batched_rank_1 = rocblas_dznrm2_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(results))
+      rocblas_dznrm2_strided_batched_rank_1 = rocblas_dznrm2_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(results))
     end function
 
     function rocblas_icamax_rank_0(handle,n,x,incx,myResult)
@@ -39901,7 +41468,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_isamax_batched_rank_0 = rocblas_isamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_isamax_batched_rank_0 = rocblas_isamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_isamax_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -39916,7 +41484,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_isamax_batched_rank_1 = rocblas_isamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_isamax_batched_rank_1 = rocblas_isamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_isamax_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -39931,7 +41500,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_isamax_batched_full_rank = rocblas_isamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_isamax_batched_full_rank = rocblas_isamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_idamax_batched_rank_0(handle,n,x,incx,batch_count,myResult)
@@ -39946,7 +41516,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_idamax_batched_rank_0 = rocblas_idamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_idamax_batched_rank_0 = rocblas_idamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_idamax_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -39961,7 +41532,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_idamax_batched_rank_1 = rocblas_idamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_idamax_batched_rank_1 = rocblas_idamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_idamax_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -39976,7 +41548,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_idamax_batched_full_rank = rocblas_idamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_idamax_batched_full_rank = rocblas_idamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_icamax_batched_rank_0(handle,n,x,incx,batch_count,myResult)
@@ -39991,7 +41564,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_icamax_batched_rank_0 = rocblas_icamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_icamax_batched_rank_0 = rocblas_icamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_icamax_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -40006,7 +41580,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_icamax_batched_rank_1 = rocblas_icamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_icamax_batched_rank_1 = rocblas_icamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_icamax_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -40021,7 +41596,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_icamax_batched_full_rank = rocblas_icamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_icamax_batched_full_rank = rocblas_icamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_izamax_batched_rank_0(handle,n,x,incx,batch_count,myResult)
@@ -40036,7 +41612,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_izamax_batched_rank_0 = rocblas_izamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_izamax_batched_rank_0 = rocblas_izamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_izamax_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -40051,7 +41628,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_izamax_batched_rank_1 = rocblas_izamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_izamax_batched_rank_1 = rocblas_izamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_izamax_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -40066,7 +41644,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_izamax_batched_full_rank = rocblas_izamax_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_izamax_batched_full_rank = rocblas_izamax_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_isamax_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40082,7 +41661,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_isamax_strided_batched_rank_0 = rocblas_isamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_isamax_strided_batched_rank_0 = rocblas_isamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_isamax_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40098,7 +41678,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_isamax_strided_batched_rank_1 = rocblas_isamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_isamax_strided_batched_rank_1 = rocblas_isamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_idamax_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40114,7 +41695,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_idamax_strided_batched_rank_0 = rocblas_idamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_idamax_strided_batched_rank_0 = rocblas_idamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_idamax_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40130,7 +41712,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_idamax_strided_batched_rank_1 = rocblas_idamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_idamax_strided_batched_rank_1 = rocblas_idamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_icamax_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40146,7 +41729,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_icamax_strided_batched_rank_0 = rocblas_icamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_icamax_strided_batched_rank_0 = rocblas_icamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_icamax_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40162,7 +41746,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_icamax_strided_batched_rank_1 = rocblas_icamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_icamax_strided_batched_rank_1 = rocblas_icamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_izamax_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40178,7 +41763,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_izamax_strided_batched_rank_0 = rocblas_izamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_izamax_strided_batched_rank_0 = rocblas_izamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_izamax_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40194,7 +41780,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_izamax_strided_batched_rank_1 = rocblas_izamax_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_izamax_strided_batched_rank_1 = rocblas_izamax_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_icamin_rank_0(handle,n,x,incx,myResult)
@@ -40265,7 +41852,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_isamin_batched_rank_0 = rocblas_isamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_isamin_batched_rank_0 = rocblas_isamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_isamin_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -40280,7 +41868,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_isamin_batched_rank_1 = rocblas_isamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_isamin_batched_rank_1 = rocblas_isamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_isamin_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -40295,7 +41884,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_isamin_batched_full_rank = rocblas_isamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_isamin_batched_full_rank = rocblas_isamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_idamin_batched_rank_0(handle,n,x,incx,batch_count,myResult)
@@ -40310,7 +41900,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_idamin_batched_rank_0 = rocblas_idamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_idamin_batched_rank_0 = rocblas_idamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_idamin_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -40325,7 +41916,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_idamin_batched_rank_1 = rocblas_idamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_idamin_batched_rank_1 = rocblas_idamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_idamin_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -40340,7 +41932,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_idamin_batched_full_rank = rocblas_idamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_idamin_batched_full_rank = rocblas_idamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_icamin_batched_rank_0(handle,n,x,incx,batch_count,myResult)
@@ -40355,7 +41948,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_icamin_batched_rank_0 = rocblas_icamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_icamin_batched_rank_0 = rocblas_icamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_icamin_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -40370,7 +41964,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_icamin_batched_rank_1 = rocblas_icamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_icamin_batched_rank_1 = rocblas_icamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_icamin_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -40385,7 +41980,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_icamin_batched_full_rank = rocblas_icamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_icamin_batched_full_rank = rocblas_icamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_izamin_batched_rank_0(handle,n,x,incx,batch_count,myResult)
@@ -40400,7 +41996,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_izamin_batched_rank_0 = rocblas_izamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_izamin_batched_rank_0 = rocblas_izamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_izamin_batched_rank_1(handle,n,x,incx,batch_count,myResult)
@@ -40415,7 +42012,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_izamin_batched_rank_1 = rocblas_izamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_izamin_batched_rank_1 = rocblas_izamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_izamin_batched_full_rank(handle,n,x,incx,batch_count,myResult)
@@ -40430,7 +42028,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:,:) :: myResult
       !
-      rocblas_izamin_batched_full_rank = rocblas_izamin_batched_(handle,n,x,incx,batch_count,c_loc(myResult))
+      rocblas_izamin_batched_full_rank = rocblas_izamin_batched_(handle,n,x,incx,batch_count, &
+        c_loc(myResult))
     end function
 
     function rocblas_isamin_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40446,7 +42045,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_isamin_strided_batched_rank_0 = rocblas_isamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_isamin_strided_batched_rank_0 = rocblas_isamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_isamin_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40462,7 +42062,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_isamin_strided_batched_rank_1 = rocblas_isamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_isamin_strided_batched_rank_1 = rocblas_isamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_idamin_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40478,7 +42079,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_idamin_strided_batched_rank_0 = rocblas_idamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_idamin_strided_batched_rank_0 = rocblas_idamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_idamin_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40494,7 +42096,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_idamin_strided_batched_rank_1 = rocblas_idamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_idamin_strided_batched_rank_1 = rocblas_idamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_icamin_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40510,7 +42113,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_icamin_strided_batched_rank_0 = rocblas_icamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_icamin_strided_batched_rank_0 = rocblas_icamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_icamin_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40526,7 +42130,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_icamin_strided_batched_rank_1 = rocblas_icamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_icamin_strided_batched_rank_1 = rocblas_icamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_izamin_strided_batched_rank_0(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40542,7 +42147,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target :: myResult
       !
-      rocblas_izamin_strided_batched_rank_0 = rocblas_izamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_izamin_strided_batched_rank_0 = rocblas_izamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_izamin_strided_batched_rank_1(handle,n,x,incx,stridex,batch_count,myResult)
@@ -40558,7 +42164,8 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       integer(c_int),target,dimension(:) :: myResult
       !
-      rocblas_izamin_strided_batched_rank_1 = rocblas_izamin_strided_batched_(handle,n,c_loc(x),incx,stridex,batch_count,c_loc(myResult))
+      rocblas_izamin_strided_batched_rank_1 = rocblas_izamin_strided_batched_(handle,n,c_loc(x), &
+        incx,stridex,batch_count,c_loc(myResult))
     end function
 
     function rocblas_srot_rank_0(handle,n,x,incx,y,incy,c,s)
@@ -40765,7 +42372,8 @@ module hipfort_rocblas
       rocblas_zdrot_rank_1 = rocblas_zdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
-    function rocblas_srot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_srot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40782,10 +42390,12 @@ module hipfort_rocblas
       real(c_float) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_srot_strided_batched_rank_0 = rocblas_srot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_srot_strided_batched_rank_0 = rocblas_srot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_srot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_srot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40802,10 +42412,12 @@ module hipfort_rocblas
       real(c_float) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_srot_strided_batched_rank_1 = rocblas_srot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_srot_strided_batched_rank_1 = rocblas_srot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_drot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_drot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40822,10 +42434,12 @@ module hipfort_rocblas
       real(c_double) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_drot_strided_batched_rank_0 = rocblas_drot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_drot_strided_batched_rank_0 = rocblas_drot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_drot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_drot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40842,10 +42456,12 @@ module hipfort_rocblas
       real(c_double) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_drot_strided_batched_rank_1 = rocblas_drot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_drot_strided_batched_rank_1 = rocblas_drot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_crot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_crot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40862,10 +42478,12 @@ module hipfort_rocblas
       complex(c_float_complex) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_crot_strided_batched_rank_0 = rocblas_crot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_crot_strided_batched_rank_0 = rocblas_crot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_crot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_crot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40882,10 +42500,12 @@ module hipfort_rocblas
       complex(c_float_complex) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_crot_strided_batched_rank_1 = rocblas_crot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_crot_strided_batched_rank_1 = rocblas_crot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_csrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_csrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40902,10 +42522,12 @@ module hipfort_rocblas
       real(c_float) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_csrot_strided_batched_rank_0 = rocblas_csrot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_csrot_strided_batched_rank_0 = rocblas_csrot_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_csrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_csrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40922,10 +42544,12 @@ module hipfort_rocblas
       real(c_float) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_csrot_strided_batched_rank_1 = rocblas_csrot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_csrot_strided_batched_rank_1 = rocblas_csrot_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_zrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_zrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40942,10 +42566,12 @@ module hipfort_rocblas
       complex(c_double_complex) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_zrot_strided_batched_rank_0 = rocblas_zrot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_zrot_strided_batched_rank_0 = rocblas_zrot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_zrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_zrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40962,10 +42588,12 @@ module hipfort_rocblas
       complex(c_double_complex) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_zrot_strided_batched_rank_1 = rocblas_zrot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_zrot_strided_batched_rank_1 = rocblas_zrot_strided_batched_(handle,n,c_loc(x),incx, &
+        stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_zdrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_zdrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -40982,10 +42610,12 @@ module hipfort_rocblas
       real(c_double) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_zdrot_strided_batched_rank_0 = rocblas_zdrot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_zdrot_strided_batched_rank_0 = rocblas_zdrot_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
-    function rocblas_zdrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count)
+    function rocblas_zdrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41002,7 +42632,8 @@ module hipfort_rocblas
       real(c_double) :: s
       integer(c_int) :: batch_count
       !
-      rocblas_zdrot_strided_batched_rank_1 = rocblas_zdrot_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+      rocblas_zdrot_strided_batched_rank_1 = rocblas_zdrot_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
     function rocblas_srotm_rank_0(handle,n,x,incx,y,incy,param)
@@ -41069,7 +42700,8 @@ module hipfort_rocblas
       rocblas_drotm_rank_1 = rocblas_drotm_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(param))
     end function
 
-    function rocblas_srotm_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count)
+    function rocblas_srotm_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41086,10 +42718,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_param
       integer(c_int) :: batch_count
       !
-      rocblas_srotm_strided_batched_rank_0 = rocblas_srotm_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
+      rocblas_srotm_strided_batched_rank_0 = rocblas_srotm_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
     end function
 
-    function rocblas_srotm_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count)
+    function rocblas_srotm_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41106,10 +42740,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_param
       integer(c_int) :: batch_count
       !
-      rocblas_srotm_strided_batched_rank_1 = rocblas_srotm_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
+      rocblas_srotm_strided_batched_rank_1 = rocblas_srotm_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
     end function
 
-    function rocblas_drotm_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count)
+    function rocblas_drotm_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41126,10 +42762,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_param
       integer(c_int) :: batch_count
       !
-      rocblas_drotm_strided_batched_rank_0 = rocblas_drotm_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
+      rocblas_drotm_strided_batched_rank_0 = rocblas_drotm_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
     end function
 
-    function rocblas_drotm_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count)
+    function rocblas_drotm_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,param, &
+        stride_param,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41146,7 +42784,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_param
       integer(c_int) :: batch_count
       !
-      rocblas_drotm_strided_batched_rank_1 = rocblas_drotm_strided_batched_(handle,n,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
+      rocblas_drotm_strided_batched_rank_1 = rocblas_drotm_strided_batched_(handle,n,c_loc(x), &
+        incx,stride_x,c_loc(y),incy,stride_y,c_loc(param),stride_param,batch_count)
     end function
 
     function rocblas_sgbmv_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41169,7 +42808,8 @@ module hipfort_rocblas
       real(c_float),target :: y
       integer(c_int) :: incy
       !
-      rocblas_sgbmv_rank_0 = rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sgbmv_rank_0 = rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_sgbmv_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41192,7 +42832,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_sgbmv_rank_1 = rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sgbmv_rank_1 = rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_sgbmv_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41215,7 +42856,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_sgbmv_full_rank = rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sgbmv_full_rank = rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_dgbmv_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41238,7 +42880,8 @@ module hipfort_rocblas
       real(c_double),target :: y
       integer(c_int) :: incy
       !
-      rocblas_dgbmv_rank_0 = rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dgbmv_rank_0 = rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_dgbmv_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41261,7 +42904,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dgbmv_rank_1 = rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dgbmv_rank_1 = rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_dgbmv_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41284,7 +42928,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dgbmv_full_rank = rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dgbmv_full_rank = rocblas_dgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_cgbmv_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41307,7 +42952,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_cgbmv_rank_0 = rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_cgbmv_rank_0 = rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_cgbmv_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41330,7 +42976,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_cgbmv_rank_1 = rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_cgbmv_rank_1 = rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_cgbmv_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41353,7 +43000,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_cgbmv_full_rank = rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_cgbmv_full_rank = rocblas_cgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_zgbmv_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41376,7 +43024,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zgbmv_rank_0 = rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zgbmv_rank_0 = rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_zgbmv_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41399,7 +43048,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zgbmv_rank_1 = rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zgbmv_rank_1 = rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_zgbmv_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -41422,10 +43072,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zgbmv_full_rank = rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zgbmv_full_rank = rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,c_loc(x), &
+        incx,beta,c_loc(y),incy)
     end function
 
-    function rocblas_sgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_sgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41449,10 +43101,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_sgbmv_strided_batched_rank_0 = rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_sgbmv_strided_batched_rank_0 = rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_sgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_sgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41476,10 +43131,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_sgbmv_strided_batched_rank_1 = rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_sgbmv_strided_batched_rank_1 = rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_sgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_sgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A, &
+        x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41503,10 +43161,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_sgbmv_strided_batched_full_rank = rocblas_sgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_sgbmv_strided_batched_full_rank = rocblas_sgbmv_strided_batched_(handle,trans,m,n, &
+        kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_dgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_dgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41530,10 +43191,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_dgbmv_strided_batched_rank_0 = rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_dgbmv_strided_batched_rank_0 = rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_dgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_dgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41557,10 +43221,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_dgbmv_strided_batched_rank_1 = rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_dgbmv_strided_batched_rank_1 = rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_dgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_dgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A, &
+        x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41584,10 +43251,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_dgbmv_strided_batched_full_rank = rocblas_dgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_dgbmv_strided_batched_full_rank = rocblas_dgbmv_strided_batched_(handle,trans,m,n, &
+        kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_cgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_cgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41611,10 +43281,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_cgbmv_strided_batched_rank_0 = rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_cgbmv_strided_batched_rank_0 = rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_cgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_cgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41638,10 +43311,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_cgbmv_strided_batched_rank_1 = rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_cgbmv_strided_batched_rank_1 = rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_cgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_cgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A, &
+        x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41665,10 +43341,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_cgbmv_strided_batched_full_rank = rocblas_cgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_cgbmv_strided_batched_full_rank = rocblas_cgbmv_strided_batched_(handle,trans,m,n, &
+        kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_zgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zgbmv_strided_batched_rank_0(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41692,10 +43371,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zgbmv_strided_batched_rank_0 = rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zgbmv_strided_batched_rank_0 = rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_zgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zgbmv_strided_batched_rank_1(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41719,10 +43401,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zgbmv_strided_batched_rank_1 = rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zgbmv_strided_batched_rank_1 = rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl, &
+        ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
-    function rocblas_zgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zgbmv_strided_batched_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A, &
+        x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -41746,7 +43431,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zgbmv_strided_batched_full_rank = rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zgbmv_strided_batched_full_rank = rocblas_zgbmv_strided_batched_(handle,trans,m,n, &
+        kl,ku,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y, &
+        batch_count)
     end function
 
     function rocblas_sgemv_rank_0(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41767,7 +43454,8 @@ module hipfort_rocblas
       real(c_float),target :: y
       integer(c_int) :: incy
       !
-      rocblas_sgemv_rank_0 = rocblas_sgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sgemv_rank_0 = rocblas_sgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_sgemv_rank_1(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41788,7 +43476,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_sgemv_rank_1 = rocblas_sgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sgemv_rank_1 = rocblas_sgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_sgemv_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41809,7 +43498,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_sgemv_full_rank = rocblas_sgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sgemv_full_rank = rocblas_sgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_dgemv_rank_0(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41830,7 +43520,8 @@ module hipfort_rocblas
       real(c_double),target :: y
       integer(c_int) :: incy
       !
-      rocblas_dgemv_rank_0 = rocblas_dgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dgemv_rank_0 = rocblas_dgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_dgemv_rank_1(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41851,7 +43542,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dgemv_rank_1 = rocblas_dgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dgemv_rank_1 = rocblas_dgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_dgemv_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41872,7 +43564,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dgemv_full_rank = rocblas_dgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dgemv_full_rank = rocblas_dgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_cgemv_rank_0(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41893,7 +43586,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_cgemv_rank_0 = rocblas_cgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_cgemv_rank_0 = rocblas_cgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_cgemv_rank_1(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41914,7 +43608,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_cgemv_rank_1 = rocblas_cgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_cgemv_rank_1 = rocblas_cgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_cgemv_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41935,7 +43630,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_cgemv_full_rank = rocblas_cgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_cgemv_full_rank = rocblas_cgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_zgemv_rank_0(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41956,7 +43652,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zgemv_rank_0 = rocblas_zgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zgemv_rank_0 = rocblas_zgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_zgemv_rank_1(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41977,7 +43674,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zgemv_rank_1 = rocblas_zgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zgemv_rank_1 = rocblas_zgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_zgemv_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -41998,10 +43696,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zgemv_full_rank = rocblas_zgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zgemv_full_rank = rocblas_zgemv_(handle,trans,m,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
-    function rocblas_sgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_sgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42023,10 +43723,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sgemv_strided_batched_rank_0 = rocblas_sgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_sgemv_strided_batched_rank_0 = rocblas_sgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_sgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_sgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42048,10 +43750,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sgemv_strided_batched_rank_1 = rocblas_sgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_sgemv_strided_batched_rank_1 = rocblas_sgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_sgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_sgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42073,10 +43777,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sgemv_strided_batched_full_rank = rocblas_sgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_sgemv_strided_batched_full_rank = rocblas_sgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42098,10 +43804,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dgemv_strided_batched_rank_0 = rocblas_dgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dgemv_strided_batched_rank_0 = rocblas_dgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42123,10 +43831,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dgemv_strided_batched_rank_1 = rocblas_dgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dgemv_strided_batched_rank_1 = rocblas_dgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42148,10 +43858,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dgemv_strided_batched_full_rank = rocblas_dgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dgemv_strided_batched_full_rank = rocblas_dgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_cgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_cgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42173,10 +43885,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_cgemv_strided_batched_rank_0 = rocblas_cgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_cgemv_strided_batched_rank_0 = rocblas_cgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_cgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_cgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42198,10 +43912,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_cgemv_strided_batched_rank_1 = rocblas_cgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_cgemv_strided_batched_rank_1 = rocblas_cgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_cgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_cgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42223,10 +43939,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_cgemv_strided_batched_full_rank = rocblas_cgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_cgemv_strided_batched_full_rank = rocblas_cgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_zgemv_strided_batched_rank_0(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42248,10 +43966,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zgemv_strided_batched_rank_0 = rocblas_zgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_zgemv_strided_batched_rank_0 = rocblas_zgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_zgemv_strided_batched_rank_1(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42273,10 +43993,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zgemv_strided_batched_rank_1 = rocblas_zgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_zgemv_strided_batched_rank_1 = rocblas_zgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_zgemv_strided_batched_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42298,7 +44020,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zgemv_strided_batched_full_rank = rocblas_zgemv_strided_batched_(handle,transA,m,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_zgemv_strided_batched_full_rank = rocblas_zgemv_strided_batched_(handle,transA,m,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_chbmv_rank_0(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -42319,7 +44042,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_chbmv_rank_0 = rocblas_chbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chbmv_rank_0 = rocblas_chbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chbmv_rank_1(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -42340,7 +44064,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chbmv_rank_1 = rocblas_chbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chbmv_rank_1 = rocblas_chbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chbmv_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -42361,7 +44086,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chbmv_full_rank = rocblas_chbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chbmv_full_rank = rocblas_chbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_zhbmv_rank_0(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -42382,7 +44108,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zhbmv_rank_0 = rocblas_zhbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhbmv_rank_0 = rocblas_zhbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhbmv_rank_1(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -42403,7 +44130,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhbmv_rank_1 = rocblas_zhbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhbmv_rank_1 = rocblas_zhbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhbmv_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -42424,10 +44152,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhbmv_full_rank = rocblas_zhbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhbmv_full_rank = rocblas_zhbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
-    function rocblas_chbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42449,10 +44179,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chbmv_strided_batched_rank_0 = rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chbmv_strided_batched_rank_0 = rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_chbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42474,10 +44206,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chbmv_strided_batched_rank_1 = rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chbmv_strided_batched_rank_1 = rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_chbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42499,10 +44233,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chbmv_strided_batched_full_rank = rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chbmv_strided_batched_full_rank = rocblas_chbmv_strided_batched_(handle,uplo,n,k, &
+        alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42524,10 +44260,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhbmv_strided_batched_rank_0 = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhbmv_strided_batched_rank_0 = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42549,10 +44287,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhbmv_strided_batched_rank_1 = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhbmv_strided_batched_rank_1 = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42574,7 +44314,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhbmv_strided_batched_full_rank = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhbmv_strided_batched_full_rank = rocblas_zhbmv_strided_batched_(handle,uplo,n,k, &
+        alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chemv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42594,7 +44335,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_chemv_rank_0 = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chemv_rank_0 = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chemv_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42614,7 +44356,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chemv_rank_1 = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chemv_rank_1 = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chemv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42634,7 +44377,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chemv_full_rank = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chemv_full_rank = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_zhemv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42654,7 +44398,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zhemv_rank_0 = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhemv_rank_0 = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhemv_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42674,7 +44419,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhemv_rank_1 = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhemv_rank_1 = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhemv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42694,10 +44440,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhemv_full_rank = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhemv_full_rank = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
-    function rocblas_chemv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chemv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42718,10 +44466,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chemv_strided_batched_rank_0 = rocblas_chemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chemv_strided_batched_rank_0 = rocblas_chemv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_chemv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chemv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42742,10 +44492,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chemv_strided_batched_rank_1 = rocblas_chemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chemv_strided_batched_rank_1 = rocblas_chemv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_chemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42766,10 +44518,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chemv_strided_batched_full_rank = rocblas_chemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chemv_strided_batched_full_rank = rocblas_chemv_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhemv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhemv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42790,10 +44544,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhemv_strided_batched_rank_0 = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhemv_strided_batched_rank_0 = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhemv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhemv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42814,10 +44570,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhemv_strided_batched_rank_1 = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhemv_strided_batched_rank_1 = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42838,7 +44596,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhemv_strided_batched_full_rank = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhemv_strided_batched_full_rank = rocblas_zhemv_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_cher_rank_0(handle,uplo,n,alpha,x,incx,A,lda)
@@ -42943,7 +44702,8 @@ module hipfort_rocblas
       rocblas_zher_full_rank = rocblas_zher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
     end function
 
-    function rocblas_cher_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_cher_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42960,10 +44720,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cher_strided_batched_rank_0 = rocblas_cher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher_strided_batched_rank_0 = rocblas_cher_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_cher_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_cher_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -42980,10 +44742,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cher_strided_batched_rank_1 = rocblas_cher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher_strided_batched_rank_1 = rocblas_cher_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_cher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_cher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43000,10 +44764,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cher_strided_batched_full_rank = rocblas_cher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher_strided_batched_full_rank = rocblas_cher_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_zher_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43020,10 +44786,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher_strided_batched_rank_0 = rocblas_zher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher_strided_batched_rank_0 = rocblas_zher_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_zher_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43040,10 +44808,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher_strided_batched_rank_1 = rocblas_zher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher_strided_batched_rank_1 = rocblas_zher_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_zher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43060,7 +44830,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher_strided_batched_full_rank = rocblas_zher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher_strided_batched_full_rank = rocblas_zher_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
     function rocblas_cher2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43079,7 +44850,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_cher2_rank_0 = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cher2_rank_0 = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_cher2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43098,7 +44870,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_cher2_rank_1 = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cher2_rank_1 = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_cher2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43117,7 +44890,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_cher2_full_rank = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cher2_full_rank = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zher2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43136,7 +44910,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_zher2_rank_0 = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zher2_rank_0 = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zher2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43155,7 +44930,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zher2_rank_1 = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zher2_rank_1 = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zher2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43174,10 +44950,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zher2_full_rank = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zher2_full_rank = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
-    function rocblas_cher2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_cher2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43197,10 +44975,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cher2_strided_batched_rank_0 = rocblas_cher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher2_strided_batched_rank_0 = rocblas_cher2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_cher2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_cher2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43220,10 +45000,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cher2_strided_batched_rank_1 = rocblas_cher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher2_strided_batched_rank_1 = rocblas_cher2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_cher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_cher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43243,10 +45025,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cher2_strided_batched_full_rank = rocblas_cher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher2_strided_batched_full_rank = rocblas_cher2_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_zher2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43266,10 +45050,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher2_strided_batched_rank_0 = rocblas_zher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher2_strided_batched_rank_0 = rocblas_zher2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_zher2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43289,10 +45075,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher2_strided_batched_rank_1 = rocblas_zher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher2_strided_batched_rank_1 = rocblas_zher2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_zher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43312,7 +45100,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher2_strided_batched_full_rank = rocblas_zher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher2_strided_batched_full_rank = rocblas_zher2_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
     function rocblas_chpmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43331,7 +45120,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_chpmv_rank_0 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chpmv_rank_0 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43350,7 +45140,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chpmv_rank_1 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chpmv_rank_1 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhpmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43369,7 +45160,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zhpmv_rank_0 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhpmv_rank_0 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43388,10 +45180,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhpmv_rank_1 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhpmv_rank_1 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
-    function rocblas_chpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43411,10 +45205,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chpmv_strided_batched_rank_0 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chpmv_strided_batched_rank_0 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_chpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43434,10 +45230,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chpmv_strided_batched_rank_1 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chpmv_strided_batched_rank_1 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43457,10 +45255,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhpmv_strided_batched_rank_0 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhpmv_strided_batched_rank_0 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_zhpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
+        beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43480,7 +45280,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhpmv_strided_batched_rank_1 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhpmv_strided_batched_rank_1 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chpr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -43547,7 +45348,8 @@ module hipfort_rocblas
       rocblas_zhpr_rank_1 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
-    function rocblas_chpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_chpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43563,10 +45365,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr_strided_batched_rank_0 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_chpr_strided_batched_rank_0 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_chpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_chpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43582,10 +45386,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr_strided_batched_rank_1 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_chpr_strided_batched_rank_1 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_zhpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_zhpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43601,10 +45407,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr_strided_batched_rank_0 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_zhpr_strided_batched_rank_0 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_zhpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_zhpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43620,7 +45428,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr_strided_batched_rank_1 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_zhpr_strided_batched_rank_1 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -43638,7 +45447,8 @@ module hipfort_rocblas
       integer(c_int) :: incy
       complex(c_float_complex),target :: AP
       !
-      rocblas_chpr2_rank_0 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_chpr2_rank_0 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_chpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -43656,7 +45466,8 @@ module hipfort_rocblas
       integer(c_int) :: incy
       complex(c_float_complex),target,dimension(:) :: AP
       !
-      rocblas_chpr2_rank_1 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_chpr2_rank_1 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_zhpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -43674,7 +45485,8 @@ module hipfort_rocblas
       integer(c_int) :: incy
       complex(c_double_complex),target :: AP
       !
-      rocblas_zhpr2_rank_0 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_zhpr2_rank_0 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_zhpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -43692,10 +45504,12 @@ module hipfort_rocblas
       integer(c_int) :: incy
       complex(c_double_complex),target,dimension(:) :: AP
       !
-      rocblas_zhpr2_rank_1 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_zhpr2_rank_1 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
-    function rocblas_chpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_chpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43714,10 +45528,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr2_strided_batched_rank_0 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_chpr2_strided_batched_rank_0 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_chpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_chpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43736,10 +45552,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr2_strided_batched_rank_1 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_chpr2_strided_batched_rank_1 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_zhpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_zhpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43758,10 +45576,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr2_strided_batched_rank_0 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_zhpr2_strided_batched_rank_0 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_zhpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_zhpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -43780,7 +45600,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr2_strided_batched_rank_1 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_zhpr2_strided_batched_rank_1 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_strmv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -43999,7 +45820,8 @@ module hipfort_rocblas
       rocblas_ztrmv_full_rank = rocblas_ztrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_strmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_strmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44017,10 +45839,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strmv_strided_batched_rank_0 = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_strmv_strided_batched_rank_0 = rocblas_strmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_strmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_strmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44038,10 +45862,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strmv_strided_batched_rank_1 = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_strmv_strided_batched_rank_1 = rocblas_strmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_strmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_strmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44059,10 +45885,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strmv_strided_batched_full_rank = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_strmv_strided_batched_full_rank = rocblas_strmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44080,10 +45908,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrmv_strided_batched_rank_0 = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtrmv_strided_batched_rank_0 = rocblas_dtrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44101,10 +45931,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrmv_strided_batched_rank_1 = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtrmv_strided_batched_rank_1 = rocblas_dtrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44122,10 +45954,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrmv_strided_batched_full_rank = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtrmv_strided_batched_full_rank = rocblas_dtrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44143,10 +45977,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrmv_strided_batched_rank_0 = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctrmv_strided_batched_rank_0 = rocblas_ctrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44164,10 +46000,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrmv_strided_batched_rank_1 = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctrmv_strided_batched_rank_1 = rocblas_ctrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44185,10 +46023,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrmv_strided_batched_full_rank = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctrmv_strided_batched_full_rank = rocblas_ctrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44206,10 +46046,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrmv_strided_batched_rank_0 = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztrmv_strided_batched_rank_0 = rocblas_ztrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44227,10 +46069,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrmv_strided_batched_rank_1 = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztrmv_strided_batched_rank_1 = rocblas_ztrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44248,7 +46092,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrmv_strided_batched_full_rank = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztrmv_strided_batched_full_rank = rocblas_ztrmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_stpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
@@ -44387,7 +46232,8 @@ module hipfort_rocblas
       rocblas_ztpmv_rank_1 = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_stpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44404,10 +46250,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stpmv_strided_batched_rank_0 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stpmv_strided_batched_rank_0 = rocblas_stpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44424,10 +46272,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stpmv_strided_batched_rank_1 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stpmv_strided_batched_rank_1 = rocblas_stpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44444,10 +46294,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpmv_strided_batched_rank_0 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtpmv_strided_batched_rank_0 = rocblas_dtpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44464,10 +46316,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpmv_strided_batched_rank_1 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtpmv_strided_batched_rank_1 = rocblas_dtpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44484,10 +46338,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpmv_strided_batched_rank_0 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctpmv_strided_batched_rank_0 = rocblas_ctpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44504,10 +46360,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpmv_strided_batched_rank_1 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctpmv_strided_batched_rank_1 = rocblas_ctpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44524,10 +46382,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpmv_strided_batched_rank_0 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztpmv_strided_batched_rank_0 = rocblas_ztpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44544,7 +46404,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpmv_strided_batched_rank_1 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztpmv_strided_batched_rank_1 = rocblas_ztpmv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_stbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -44601,7 +46462,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_stbmv_full_rank = rocblas_stbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_stbmv_full_rank = rocblas_stbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
     function rocblas_dtbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -44658,7 +46520,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtbmv_full_rank = rocblas_dtbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtbmv_full_rank = rocblas_dtbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
     function rocblas_ctbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -44715,7 +46578,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctbmv_full_rank = rocblas_ctbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctbmv_full_rank = rocblas_ctbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
     function rocblas_ztbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -44772,10 +46636,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztbmv_full_rank = rocblas_ztbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztbmv_full_rank = rocblas_ztbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
-    function rocblas_stbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44794,10 +46660,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbmv_strided_batched_rank_0 = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbmv_strided_batched_rank_0 = rocblas_stbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44816,10 +46684,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbmv_strided_batched_rank_1 = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbmv_strided_batched_rank_1 = rocblas_stbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44838,10 +46708,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbmv_strided_batched_full_rank = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbmv_strided_batched_full_rank = rocblas_stbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44860,10 +46732,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtbmv_strided_batched_rank_0 = rocblas_dtbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtbmv_strided_batched_rank_0 = rocblas_dtbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44882,10 +46756,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtbmv_strided_batched_rank_1 = rocblas_dtbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtbmv_strided_batched_rank_1 = rocblas_dtbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44904,10 +46780,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtbmv_strided_batched_full_rank = rocblas_dtbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtbmv_strided_batched_full_rank = rocblas_dtbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44926,10 +46804,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctbmv_strided_batched_rank_0 = rocblas_ctbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctbmv_strided_batched_rank_0 = rocblas_ctbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44948,10 +46828,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctbmv_strided_batched_rank_1 = rocblas_ctbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctbmv_strided_batched_rank_1 = rocblas_ctbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44970,10 +46852,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctbmv_strided_batched_full_rank = rocblas_ctbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctbmv_strided_batched_full_rank = rocblas_ctbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44992,10 +46876,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztbmv_strided_batched_rank_0 = rocblas_ztbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztbmv_strided_batched_rank_0 = rocblas_ztbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45014,10 +46900,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztbmv_strided_batched_rank_1 = rocblas_ztbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztbmv_strided_batched_rank_1 = rocblas_ztbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45036,7 +46924,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztbmv_strided_batched_full_rank = rocblas_ztbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztbmv_strided_batched_full_rank = rocblas_ztbmv_strided_batched_(handle,uplo,trans, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_stbsv_rank_0(handle,uplo,transA,diag,n,k,A,lda,x,incx)
@@ -45093,7 +46982,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_stbsv_full_rank = rocblas_stbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_stbsv_full_rank = rocblas_stbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
     function rocblas_dtbsv_rank_0(handle,uplo,transA,diag,n,k,A,lda,x,incx)
@@ -45150,7 +47040,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtbsv_full_rank = rocblas_dtbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtbsv_full_rank = rocblas_dtbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
     function rocblas_ctbsv_rank_0(handle,uplo,transA,diag,n,k,A,lda,x,incx)
@@ -45207,7 +47098,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctbsv_full_rank = rocblas_ctbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctbsv_full_rank = rocblas_ctbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
     function rocblas_ztbsv_rank_0(handle,uplo,transA,diag,n,k,A,lda,x,incx)
@@ -45264,10 +47156,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztbsv_full_rank = rocblas_ztbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztbsv_full_rank = rocblas_ztbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda,c_loc(x), &
+        incx)
     end function
 
-    function rocblas_stbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45286,10 +47180,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbsv_strided_batched_rank_0 = rocblas_stbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbsv_strided_batched_rank_0 = rocblas_stbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45308,10 +47204,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbsv_strided_batched_rank_1 = rocblas_stbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbsv_strided_batched_rank_1 = rocblas_stbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45330,10 +47228,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbsv_strided_batched_full_rank = rocblas_stbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbsv_strided_batched_full_rank = rocblas_stbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45352,10 +47252,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtbsv_strided_batched_rank_0 = rocblas_dtbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtbsv_strided_batched_rank_0 = rocblas_dtbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45374,10 +47276,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtbsv_strided_batched_rank_1 = rocblas_dtbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtbsv_strided_batched_rank_1 = rocblas_dtbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45396,10 +47300,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtbsv_strided_batched_full_rank = rocblas_dtbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtbsv_strided_batched_full_rank = rocblas_dtbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45418,10 +47324,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctbsv_strided_batched_rank_0 = rocblas_ctbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctbsv_strided_batched_rank_0 = rocblas_ctbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45440,10 +47348,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctbsv_strided_batched_rank_1 = rocblas_ctbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctbsv_strided_batched_rank_1 = rocblas_ctbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45462,10 +47372,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctbsv_strided_batched_full_rank = rocblas_ctbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctbsv_strided_batched_full_rank = rocblas_ctbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztbsv_strided_batched_rank_0(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45484,10 +47396,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztbsv_strided_batched_rank_0 = rocblas_ztbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztbsv_strided_batched_rank_0 = rocblas_ztbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztbsv_strided_batched_rank_1(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45506,10 +47420,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztbsv_strided_batched_rank_1 = rocblas_ztbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztbsv_strided_batched_rank_1 = rocblas_ztbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztbsv_strided_batched_full_rank(handle,uplo,transA,diag,n,k,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45528,7 +47444,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztbsv_strided_batched_full_rank = rocblas_ztbsv_strided_batched_(handle,uplo,transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztbsv_strided_batched_full_rank = rocblas_ztbsv_strided_batched_(handle,uplo,transA, &
+        diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_strsv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -45747,7 +47664,8 @@ module hipfort_rocblas
       rocblas_ztrsv_full_rank = rocblas_ztrsv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_strsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_strsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45765,10 +47683,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strsv_strided_batched_rank_0 = rocblas_strsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_strsv_strided_batched_rank_0 = rocblas_strsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_strsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_strsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45786,10 +47706,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strsv_strided_batched_rank_1 = rocblas_strsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_strsv_strided_batched_rank_1 = rocblas_strsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_strsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_strsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45807,10 +47729,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strsv_strided_batched_full_rank = rocblas_strsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_strsv_strided_batched_full_rank = rocblas_strsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtrsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45828,10 +47752,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrsv_strided_batched_rank_0 = rocblas_dtrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtrsv_strided_batched_rank_0 = rocblas_dtrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtrsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45849,10 +47775,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrsv_strided_batched_rank_1 = rocblas_dtrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtrsv_strided_batched_rank_1 = rocblas_dtrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtrsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45870,10 +47798,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrsv_strided_batched_full_rank = rocblas_dtrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtrsv_strided_batched_full_rank = rocblas_dtrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctrsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45891,10 +47821,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrsv_strided_batched_rank_0 = rocblas_ctrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctrsv_strided_batched_rank_0 = rocblas_ctrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctrsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45912,10 +47844,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrsv_strided_batched_rank_1 = rocblas_ctrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctrsv_strided_batched_rank_1 = rocblas_ctrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctrsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45933,10 +47867,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrsv_strided_batched_full_rank = rocblas_ctrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctrsv_strided_batched_full_rank = rocblas_ctrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztrsv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45954,10 +47890,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrsv_strided_batched_rank_0 = rocblas_ztrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztrsv_strided_batched_rank_0 = rocblas_ztrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztrsv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45975,10 +47913,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrsv_strided_batched_rank_1 = rocblas_ztrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztrsv_strided_batched_rank_1 = rocblas_ztrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztrsv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x, &
+        incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45996,7 +47936,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrsv_strided_batched_full_rank = rocblas_ztrsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztrsv_strided_batched_full_rank = rocblas_ztrsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_stpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -46135,7 +48076,8 @@ module hipfort_rocblas
       rocblas_ztpsv_rank_1 = rocblas_ztpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
-    function rocblas_stpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46152,10 +48094,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stpsv_strided_batched_rank_0 = rocblas_stpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stpsv_strided_batched_rank_0 = rocblas_stpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46172,10 +48116,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stpsv_strided_batched_rank_1 = rocblas_stpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stpsv_strided_batched_rank_1 = rocblas_stpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46192,10 +48138,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpsv_strided_batched_rank_0 = rocblas_dtpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtpsv_strided_batched_rank_0 = rocblas_dtpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_dtpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46212,10 +48160,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpsv_strided_batched_rank_1 = rocblas_dtpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_dtpsv_strided_batched_rank_1 = rocblas_dtpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46232,10 +48182,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpsv_strided_batched_rank_0 = rocblas_ctpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctpsv_strided_batched_rank_0 = rocblas_ctpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ctpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46252,10 +48204,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpsv_strided_batched_rank_1 = rocblas_ctpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ctpsv_strided_batched_rank_1 = rocblas_ctpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46272,10 +48226,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpsv_strided_batched_rank_0 = rocblas_ztpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztpsv_strided_batched_rank_0 = rocblas_ztpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_ztpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
+        stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46292,7 +48248,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpsv_strided_batched_rank_1 = rocblas_ztpsv_strided_batched_(handle,uplo,transA,diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_ztpsv_strided_batched_rank_1 = rocblas_ztpsv_strided_batched_(handle,uplo,transA, &
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ssymv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46312,7 +48269,8 @@ module hipfort_rocblas
       real(c_float),target :: y
       integer(c_int) :: incy
       !
-      rocblas_ssymv_rank_0 = rocblas_ssymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_ssymv_rank_0 = rocblas_ssymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_ssymv_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46332,7 +48290,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_ssymv_rank_1 = rocblas_ssymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_ssymv_rank_1 = rocblas_ssymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_ssymv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46352,7 +48311,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_ssymv_full_rank = rocblas_ssymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_ssymv_full_rank = rocblas_ssymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_dsymv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46372,7 +48332,8 @@ module hipfort_rocblas
       real(c_double),target :: y
       integer(c_int) :: incy
       !
-      rocblas_dsymv_rank_0 = rocblas_dsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dsymv_rank_0 = rocblas_dsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_dsymv_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46392,7 +48353,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dsymv_rank_1 = rocblas_dsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dsymv_rank_1 = rocblas_dsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_dsymv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46412,7 +48374,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dsymv_full_rank = rocblas_dsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dsymv_full_rank = rocblas_dsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_csymv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46432,7 +48395,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_csymv_rank_0 = rocblas_csymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_csymv_rank_0 = rocblas_csymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_csymv_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46452,7 +48416,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_csymv_rank_1 = rocblas_csymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_csymv_rank_1 = rocblas_csymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_csymv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46472,7 +48437,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_csymv_full_rank = rocblas_csymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_csymv_full_rank = rocblas_csymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_zsymv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46492,7 +48458,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zsymv_rank_0 = rocblas_zsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zsymv_rank_0 = rocblas_zsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zsymv_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46512,7 +48479,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zsymv_rank_1 = rocblas_zsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zsymv_rank_1 = rocblas_zsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zsymv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46532,10 +48500,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zsymv_full_rank = rocblas_zsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zsymv_full_rank = rocblas_zsymv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
-    function rocblas_ssymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_ssymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46556,10 +48526,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ssymv_strided_batched_rank_0 = rocblas_ssymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_ssymv_strided_batched_rank_0 = rocblas_ssymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_ssymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_ssymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46580,10 +48552,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ssymv_strided_batched_rank_1 = rocblas_ssymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_ssymv_strided_batched_rank_1 = rocblas_ssymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_ssymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_ssymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46604,10 +48578,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ssymv_strided_batched_full_rank = rocblas_ssymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_ssymv_strided_batched_full_rank = rocblas_ssymv_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dsymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dsymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46628,10 +48604,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dsymv_strided_batched_rank_0 = rocblas_dsymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dsymv_strided_batched_rank_0 = rocblas_dsymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dsymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dsymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46652,10 +48630,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dsymv_strided_batched_rank_1 = rocblas_dsymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dsymv_strided_batched_rank_1 = rocblas_dsymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dsymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dsymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46676,10 +48656,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dsymv_strided_batched_full_rank = rocblas_dsymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dsymv_strided_batched_full_rank = rocblas_dsymv_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_csymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_csymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46700,10 +48682,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_csymv_strided_batched_rank_0 = rocblas_csymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_csymv_strided_batched_rank_0 = rocblas_csymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_csymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_csymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46724,10 +48708,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_csymv_strided_batched_rank_1 = rocblas_csymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_csymv_strided_batched_rank_1 = rocblas_csymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_csymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_csymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46748,10 +48734,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_csymv_strided_batched_full_rank = rocblas_csymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_csymv_strided_batched_full_rank = rocblas_csymv_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zsymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_zsymv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46772,10 +48760,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zsymv_strided_batched_rank_0 = rocblas_zsymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_zsymv_strided_batched_rank_0 = rocblas_zsymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zsymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_zsymv_strided_batched_rank_1(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46796,10 +48786,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zsymv_strided_batched_rank_1 = rocblas_zsymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_zsymv_strided_batched_rank_1 = rocblas_zsymv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_zsymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_zsymv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46820,7 +48812,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_zsymv_strided_batched_full_rank = rocblas_zsymv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_zsymv_strided_batched_full_rank = rocblas_zsymv_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_sspmv_rank_0(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
@@ -46839,7 +48832,8 @@ module hipfort_rocblas
       real(c_float),target :: y
       integer(c_int) :: incy
       !
-      rocblas_sspmv_rank_0 = rocblas_sspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sspmv_rank_0 = rocblas_sspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_sspmv_rank_1(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
@@ -46858,7 +48852,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_sspmv_rank_1 = rocblas_sspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_sspmv_rank_1 = rocblas_sspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_dspmv_rank_0(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
@@ -46877,7 +48872,8 @@ module hipfort_rocblas
       real(c_double),target :: y
       integer(c_int) :: incy
       !
-      rocblas_dspmv_rank_0 = rocblas_dspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dspmv_rank_0 = rocblas_dspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_dspmv_rank_1(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
@@ -46896,10 +48892,12 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dspmv_rank_1 = rocblas_dspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dspmv_rank_1 = rocblas_dspmv_(handle,uplo,n,alpha,c_loc(A),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
-    function rocblas_sspmv_strided_batched_rank_0(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_sspmv_strided_batched_rank_0(handle,uplo,n,alpha,A,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46919,10 +48917,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sspmv_strided_batched_rank_0 = rocblas_sspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_sspmv_strided_batched_rank_0 = rocblas_sspmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_sspmv_strided_batched_rank_1(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_sspmv_strided_batched_rank_1(handle,uplo,n,alpha,A,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46942,10 +48942,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_sspmv_strided_batched_rank_1 = rocblas_sspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_sspmv_strided_batched_rank_1 = rocblas_sspmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dspmv_strided_batched_rank_0(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dspmv_strided_batched_rank_0(handle,uplo,n,alpha,A,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46965,10 +48967,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dspmv_strided_batched_rank_0 = rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dspmv_strided_batched_rank_0 = rocblas_dspmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dspmv_strided_batched_rank_1(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dspmv_strided_batched_rank_1(handle,uplo,n,alpha,A,strideA,x,incx,stridex, &
+        beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -46988,7 +48992,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dspmv_strided_batched_rank_1 = rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dspmv_strided_batched_rank_1 = rocblas_dspmv_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(A),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_ssbmv_rank_0(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -47009,7 +49014,8 @@ module hipfort_rocblas
       real(c_float),target :: y
       integer(c_int) :: incy
       !
-      rocblas_ssbmv_rank_0 = rocblas_ssbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_ssbmv_rank_0 = rocblas_ssbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_ssbmv_rank_1(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -47030,7 +49036,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_ssbmv_rank_1 = rocblas_ssbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_ssbmv_rank_1 = rocblas_ssbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_ssbmv_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -47051,7 +49058,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_ssbmv_full_rank = rocblas_ssbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_ssbmv_full_rank = rocblas_ssbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
     function rocblas_dsbmv_rank_0(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -47072,7 +49080,8 @@ module hipfort_rocblas
       real(c_double),target :: y
       integer(c_int) :: incy
       !
-      rocblas_dsbmv_rank_0 = rocblas_dsbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dsbmv_rank_0 = rocblas_dsbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_dsbmv_rank_1(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -47093,7 +49102,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dsbmv_rank_1 = rocblas_dsbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dsbmv_rank_1 = rocblas_dsbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_dsbmv_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -47114,10 +49124,12 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_dsbmv_full_rank = rocblas_dsbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_dsbmv_full_rank = rocblas_dsbmv_(handle,uplo,n,k,alpha,c_loc(A),lda,c_loc(x),incx, &
+        beta,c_loc(y),incy)
     end function
 
-    function rocblas_ssbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_ssbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47139,10 +49151,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ssbmv_strided_batched_rank_0 = rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_ssbmv_strided_batched_rank_0 = rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_ssbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_ssbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47164,10 +49178,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ssbmv_strided_batched_rank_1 = rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_ssbmv_strided_batched_rank_1 = rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_ssbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_ssbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47189,10 +49205,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_ssbmv_strided_batched_full_rank = rocblas_ssbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_ssbmv_strided_batched_full_rank = rocblas_ssbmv_strided_batched_(handle,uplo,n,k, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dsbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dsbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47214,10 +49232,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dsbmv_strided_batched_rank_0 = rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dsbmv_strided_batched_rank_0 = rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dsbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dsbmv_strided_batched_rank_1(handle,uplo,n,k,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47239,10 +49259,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dsbmv_strided_batched_rank_1 = rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dsbmv_strided_batched_rank_1 = rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha, &
+        c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
-    function rocblas_dsbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count)
+    function rocblas_dsbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47264,7 +49286,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
       !
-      rocblas_dsbmv_strided_batched_full_rank = rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
+      rocblas_dsbmv_strided_batched_full_rank = rocblas_dsbmv_strided_batched_(handle,uplo,n,k, &
+        alpha,c_loc(A),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batch_count)
     end function
 
     function rocblas_sger_rank_0(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47321,7 +49344,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_sger_full_rank = rocblas_sger_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_sger_full_rank = rocblas_sger_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_dger_rank_0(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47378,7 +49402,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_dger_full_rank = rocblas_dger_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_dger_full_rank = rocblas_dger_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_cgeru_rank_0(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47397,7 +49422,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_cgeru_rank_0 = rocblas_cgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cgeru_rank_0 = rocblas_cgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_cgeru_rank_1(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47416,7 +49442,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_cgeru_rank_1 = rocblas_cgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cgeru_rank_1 = rocblas_cgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_cgeru_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47435,7 +49462,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_cgeru_full_rank = rocblas_cgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cgeru_full_rank = rocblas_cgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zgeru_rank_0(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47454,7 +49482,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_zgeru_rank_0 = rocblas_zgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zgeru_rank_0 = rocblas_zgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_zgeru_rank_1(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47473,7 +49502,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zgeru_rank_1 = rocblas_zgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zgeru_rank_1 = rocblas_zgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_zgeru_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47492,7 +49522,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zgeru_full_rank = rocblas_zgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zgeru_full_rank = rocblas_zgeru_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_cgerc_rank_0(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47511,7 +49542,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_cgerc_rank_0 = rocblas_cgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cgerc_rank_0 = rocblas_cgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_cgerc_rank_1(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47530,7 +49562,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_cgerc_rank_1 = rocblas_cgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cgerc_rank_1 = rocblas_cgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_cgerc_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47549,7 +49582,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_cgerc_full_rank = rocblas_cgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cgerc_full_rank = rocblas_cgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zgerc_rank_0(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47568,7 +49602,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_zgerc_rank_0 = rocblas_zgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zgerc_rank_0 = rocblas_zgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_zgerc_rank_1(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47587,7 +49622,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zgerc_rank_1 = rocblas_zgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zgerc_rank_1 = rocblas_zgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A), &
+        lda)
     end function
 
     function rocblas_zgerc_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -47606,10 +49642,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zgerc_full_rank = rocblas_zgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zgerc_full_rank = rocblas_zgerc_(handle,m,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
-    function rocblas_sger_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_sger_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47629,10 +49667,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_sger_strided_batched_rank_0 = rocblas_sger_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_sger_strided_batched_rank_0 = rocblas_sger_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_sger_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_sger_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47652,10 +49692,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_sger_strided_batched_rank_1 = rocblas_sger_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_sger_strided_batched_rank_1 = rocblas_sger_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_sger_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_sger_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47675,10 +49717,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_sger_strided_batched_full_rank = rocblas_sger_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_sger_strided_batched_full_rank = rocblas_sger_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dger_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_dger_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47698,10 +49742,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dger_strided_batched_rank_0 = rocblas_dger_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_dger_strided_batched_rank_0 = rocblas_dger_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dger_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_dger_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A, &
+        lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47721,10 +49767,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dger_strided_batched_rank_1 = rocblas_dger_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_dger_strided_batched_rank_1 = rocblas_dger_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dger_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_dger_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47744,10 +49792,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dger_strided_batched_full_rank = rocblas_dger_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_dger_strided_batched_full_rank = rocblas_dger_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_cgeru_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_cgeru_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47767,10 +49817,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_cgeru_strided_batched_rank_0 = rocblas_cgeru_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_cgeru_strided_batched_rank_0 = rocblas_cgeru_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_cgeru_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_cgeru_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47790,10 +49842,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_cgeru_strided_batched_rank_1 = rocblas_cgeru_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_cgeru_strided_batched_rank_1 = rocblas_cgeru_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_cgeru_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_cgeru_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47813,10 +49867,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_cgeru_strided_batched_full_rank = rocblas_cgeru_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_cgeru_strided_batched_full_rank = rocblas_cgeru_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zgeru_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zgeru_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47836,10 +49892,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zgeru_strided_batched_rank_0 = rocblas_zgeru_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zgeru_strided_batched_rank_0 = rocblas_zgeru_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zgeru_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zgeru_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47859,10 +49917,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zgeru_strided_batched_rank_1 = rocblas_zgeru_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zgeru_strided_batched_rank_1 = rocblas_zgeru_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zgeru_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zgeru_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47882,10 +49942,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zgeru_strided_batched_full_rank = rocblas_zgeru_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zgeru_strided_batched_full_rank = rocblas_zgeru_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_cgerc_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_cgerc_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47905,10 +49967,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_cgerc_strided_batched_rank_0 = rocblas_cgerc_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_cgerc_strided_batched_rank_0 = rocblas_cgerc_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_cgerc_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_cgerc_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47928,10 +49992,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_cgerc_strided_batched_rank_1 = rocblas_cgerc_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_cgerc_strided_batched_rank_1 = rocblas_cgerc_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_cgerc_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_cgerc_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47951,10 +50017,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_cgerc_strided_batched_full_rank = rocblas_cgerc_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_cgerc_strided_batched_full_rank = rocblas_cgerc_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zgerc_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zgerc_strided_batched_rank_0(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47974,10 +50042,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zgerc_strided_batched_rank_0 = rocblas_zgerc_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zgerc_strided_batched_rank_0 = rocblas_zgerc_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zgerc_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zgerc_strided_batched_rank_1(handle,m,n,alpha,x,incx,stridex,y,incy,stridey, &
+        A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47997,10 +50067,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zgerc_strided_batched_rank_1 = rocblas_zgerc_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zgerc_strided_batched_rank_1 = rocblas_zgerc_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zgerc_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zgerc_strided_batched_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48020,7 +50092,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zgerc_strided_batched_full_rank = rocblas_zgerc_strided_batched_(handle,m,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zgerc_strided_batched_full_rank = rocblas_zgerc_strided_batched_(handle,m,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
     function rocblas_sspr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -48151,7 +50224,8 @@ module hipfort_rocblas
       rocblas_zspr_rank_1 = rocblas_zspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
-    function rocblas_sspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_sspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48167,10 +50241,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_sspr_strided_batched_rank_0 = rocblas_sspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_sspr_strided_batched_rank_0 = rocblas_sspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_sspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_sspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48186,10 +50262,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_sspr_strided_batched_rank_1 = rocblas_sspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_sspr_strided_batched_rank_1 = rocblas_sspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_dspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_dspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48205,10 +50283,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_dspr_strided_batched_rank_0 = rocblas_dspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_dspr_strided_batched_rank_0 = rocblas_dspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_dspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_dspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48224,10 +50304,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_dspr_strided_batched_rank_1 = rocblas_dspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_dspr_strided_batched_rank_1 = rocblas_dspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_cspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_cspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48243,10 +50325,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cspr_strided_batched_rank_0 = rocblas_cspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_cspr_strided_batched_rank_0 = rocblas_cspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_cspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_cspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48262,10 +50346,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_cspr_strided_batched_rank_1 = rocblas_cspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_cspr_strided_batched_rank_1 = rocblas_cspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_zspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_zspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48281,10 +50367,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zspr_strided_batched_rank_0 = rocblas_zspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_zspr_strided_batched_rank_0 = rocblas_zspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_zspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
+    function rocblas_zspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48300,7 +50388,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zspr_strided_batched_rank_1 = rocblas_zspr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
+      rocblas_zspr_strided_batched_rank_1 = rocblas_zspr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_sspr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48318,7 +50407,8 @@ module hipfort_rocblas
       integer(c_int) :: incy
       real(c_float),target :: AP
       !
-      rocblas_sspr2_rank_0 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_sspr2_rank_0 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_sspr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48336,7 +50426,8 @@ module hipfort_rocblas
       integer(c_int) :: incy
       real(c_float),target,dimension(:) :: AP
       !
-      rocblas_sspr2_rank_1 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_sspr2_rank_1 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_dspr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48354,7 +50445,8 @@ module hipfort_rocblas
       integer(c_int) :: incy
       real(c_double),target :: AP
       !
-      rocblas_dspr2_rank_0 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_dspr2_rank_0 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_dspr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48372,10 +50464,12 @@ module hipfort_rocblas
       integer(c_int) :: incy
       real(c_double),target,dimension(:) :: AP
       !
-      rocblas_dspr2_rank_1 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
+      rocblas_dspr2_rank_1 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
-    function rocblas_sspr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_sspr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48394,10 +50488,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_sspr2_strided_batched_rank_0 = rocblas_sspr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_sspr2_strided_batched_rank_0 = rocblas_sspr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_sspr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_sspr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48416,10 +50512,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_sspr2_strided_batched_rank_1 = rocblas_sspr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_sspr2_strided_batched_rank_1 = rocblas_sspr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_dspr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_dspr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48438,10 +50536,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_dspr2_strided_batched_rank_0 = rocblas_dspr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_dspr2_strided_batched_rank_0 = rocblas_dspr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_dspr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
+    function rocblas_dspr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
+        stride_y,AP,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48460,7 +50560,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_dspr2_strided_batched_rank_1 = rocblas_dspr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
+      rocblas_dspr2_strided_batched_rank_1 = rocblas_dspr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_ssyr_rank_0(handle,uplo,n,alpha,x,incx,A,lda)
@@ -48667,7 +50768,8 @@ module hipfort_rocblas
       rocblas_zsyr_full_rank = rocblas_zsyr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
     end function
 
-    function rocblas_ssyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_ssyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48684,10 +50786,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr_strided_batched_rank_0 = rocblas_ssyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_ssyr_strided_batched_rank_0 = rocblas_ssyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_ssyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_ssyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48704,10 +50808,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr_strided_batched_rank_1 = rocblas_ssyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_ssyr_strided_batched_rank_1 = rocblas_ssyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_ssyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_ssyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48724,10 +50830,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr_strided_batched_full_rank = rocblas_ssyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_ssyr_strided_batched_full_rank = rocblas_ssyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dsyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_dsyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48744,10 +50852,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr_strided_batched_rank_0 = rocblas_dsyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_dsyr_strided_batched_rank_0 = rocblas_dsyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dsyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_dsyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48764,10 +50874,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr_strided_batched_rank_1 = rocblas_dsyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_dsyr_strided_batched_rank_1 = rocblas_dsyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dsyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_dsyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48784,10 +50896,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr_strided_batched_full_rank = rocblas_dsyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_dsyr_strided_batched_full_rank = rocblas_dsyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_csyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_csyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48804,10 +50918,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_csyr_strided_batched_rank_0 = rocblas_csyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_csyr_strided_batched_rank_0 = rocblas_csyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_csyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_csyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48824,10 +50940,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_csyr_strided_batched_rank_1 = rocblas_csyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_csyr_strided_batched_rank_1 = rocblas_csyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_csyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_csyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48844,10 +50962,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_csyr_strided_batched_full_rank = rocblas_csyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_csyr_strided_batched_full_rank = rocblas_csyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zsyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_zsyr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48864,10 +50984,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr_strided_batched_rank_0 = rocblas_zsyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_zsyr_strided_batched_rank_0 = rocblas_zsyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zsyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_zsyr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA, &
+        batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48884,10 +51006,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr_strided_batched_rank_1 = rocblas_zsyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_zsyr_strided_batched_rank_1 = rocblas_zsyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zsyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count)
+    function rocblas_zsyr_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -48904,7 +51028,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr_strided_batched_full_rank = rocblas_zsyr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+      rocblas_zsyr_strided_batched_full_rank = rocblas_zsyr_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
     function rocblas_ssyr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -48923,7 +51048,8 @@ module hipfort_rocblas
       real(c_float),target :: A
       integer(c_int) :: lda
       !
-      rocblas_ssyr2_rank_0 = rocblas_ssyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_ssyr2_rank_0 = rocblas_ssyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_ssyr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -48942,7 +51068,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_ssyr2_rank_1 = rocblas_ssyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_ssyr2_rank_1 = rocblas_ssyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_ssyr2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -48961,7 +51088,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_ssyr2_full_rank = rocblas_ssyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_ssyr2_full_rank = rocblas_ssyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_dsyr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -48980,7 +51108,8 @@ module hipfort_rocblas
       real(c_double),target :: A
       integer(c_int) :: lda
       !
-      rocblas_dsyr2_rank_0 = rocblas_dsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_dsyr2_rank_0 = rocblas_dsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_dsyr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -48999,7 +51128,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_dsyr2_rank_1 = rocblas_dsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_dsyr2_rank_1 = rocblas_dsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_dsyr2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49018,7 +51148,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_dsyr2_full_rank = rocblas_dsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_dsyr2_full_rank = rocblas_dsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_csyr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49037,7 +51168,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_csyr2_rank_0 = rocblas_csyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_csyr2_rank_0 = rocblas_csyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_csyr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49056,7 +51188,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_csyr2_rank_1 = rocblas_csyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_csyr2_rank_1 = rocblas_csyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_csyr2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49075,7 +51208,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_csyr2_full_rank = rocblas_csyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_csyr2_full_rank = rocblas_csyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zsyr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49094,7 +51228,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       !
-      rocblas_zsyr2_rank_0 = rocblas_zsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zsyr2_rank_0 = rocblas_zsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zsyr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49113,7 +51248,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zsyr2_rank_1 = rocblas_zsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zsyr2_rank_1 = rocblas_zsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
     function rocblas_zsyr2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -49132,10 +51268,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zsyr2_full_rank = rocblas_zsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zsyr2_full_rank = rocblas_zsyr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(A),lda)
     end function
 
-    function rocblas_ssyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_ssyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49155,10 +51293,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr2_strided_batched_rank_0 = rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_ssyr2_strided_batched_rank_0 = rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_ssyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_ssyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49178,10 +51318,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr2_strided_batched_rank_1 = rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_ssyr2_strided_batched_rank_1 = rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_ssyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_ssyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49201,10 +51343,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr2_strided_batched_full_rank = rocblas_ssyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_ssyr2_strided_batched_full_rank = rocblas_ssyr2_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dsyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_dsyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49224,10 +51368,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr2_strided_batched_rank_0 = rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_dsyr2_strided_batched_rank_0 = rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dsyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_dsyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49247,10 +51393,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr2_strided_batched_rank_1 = rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_dsyr2_strided_batched_rank_1 = rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_dsyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_dsyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49270,10 +51418,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr2_strided_batched_full_rank = rocblas_dsyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_dsyr2_strided_batched_full_rank = rocblas_dsyr2_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_csyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_csyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49293,10 +51443,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_csyr2_strided_batched_rank_0 = rocblas_csyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_csyr2_strided_batched_rank_0 = rocblas_csyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_csyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_csyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49316,10 +51468,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_csyr2_strided_batched_rank_1 = rocblas_csyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_csyr2_strided_batched_rank_1 = rocblas_csyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_csyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_csyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49339,10 +51493,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_csyr2_strided_batched_full_rank = rocblas_csyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_csyr2_strided_batched_full_rank = rocblas_csyr2_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zsyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zsyr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49362,10 +51518,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr2_strided_batched_rank_0 = rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zsyr2_strided_batched_rank_0 = rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zsyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zsyr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49385,10 +51543,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr2_strided_batched_rank_1 = rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zsyr2_strided_batched_rank_1 = rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha, &
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
-    function rocblas_zsyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count)
+    function rocblas_zsyr2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49408,7 +51568,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr2_strided_batched_full_rank = rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+      rocblas_zsyr2_strided_batched_full_rank = rocblas_zsyr2_strided_batched_(handle,uplo,n, &
+        alpha,c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
     function rocblas_chemm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49430,7 +51591,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_chemm_rank_0 = rocblas_chemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_chemm_rank_0 = rocblas_chemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_chemm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49452,7 +51614,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_chemm_rank_1 = rocblas_chemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_chemm_rank_1 = rocblas_chemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_chemm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49474,7 +51637,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_chemm_full_rank = rocblas_chemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_chemm_full_rank = rocblas_chemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zhemm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49496,7 +51660,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zhemm_rank_0 = rocblas_zhemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zhemm_rank_0 = rocblas_zhemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_zhemm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49518,7 +51683,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zhemm_rank_1 = rocblas_zhemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zhemm_rank_1 = rocblas_zhemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_zhemm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49540,10 +51706,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zhemm_full_rank = rocblas_zhemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zhemm_full_rank = rocblas_zhemm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_chemm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_chemm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49566,10 +51734,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_chemm_strided_batched_rank_0 = rocblas_chemm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_chemm_strided_batched_rank_0 = rocblas_chemm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_chemm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_chemm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49592,10 +51762,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_chemm_strided_batched_rank_1 = rocblas_chemm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_chemm_strided_batched_rank_1 = rocblas_chemm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_chemm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_chemm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49618,10 +51790,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_chemm_strided_batched_full_rank = rocblas_chemm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_chemm_strided_batched_full_rank = rocblas_chemm_strided_batched_(handle,side,uplo,m, &
+        n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zhemm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zhemm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49644,10 +51818,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zhemm_strided_batched_rank_0 = rocblas_zhemm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zhemm_strided_batched_rank_0 = rocblas_zhemm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zhemm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zhemm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49670,10 +51846,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zhemm_strided_batched_rank_1 = rocblas_zhemm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zhemm_strided_batched_rank_1 = rocblas_zhemm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zhemm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zhemm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49696,7 +51874,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zhemm_strided_batched_full_rank = rocblas_zhemm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zhemm_strided_batched_full_rank = rocblas_zhemm_strided_batched_(handle,side,uplo,m, &
+        n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
     function rocblas_cherk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -49716,7 +51895,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_cherk_rank_0 = rocblas_cherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_cherk_rank_0 = rocblas_cherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_cherk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -49736,7 +51916,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cherk_rank_1 = rocblas_cherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_cherk_rank_1 = rocblas_cherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_cherk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -49756,7 +51937,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cherk_full_rank = rocblas_cherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_cherk_full_rank = rocblas_cherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zherk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -49776,7 +51958,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zherk_rank_0 = rocblas_zherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_zherk_rank_0 = rocblas_zherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zherk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -49796,7 +51979,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zherk_rank_1 = rocblas_zherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_zherk_rank_1 = rocblas_zherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zherk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -49816,10 +52000,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zherk_full_rank = rocblas_zherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_zherk_full_rank = rocblas_zherk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
-    function rocblas_cherk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cherk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49839,10 +52025,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cherk_strided_batched_rank_0 = rocblas_cherk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cherk_strided_batched_rank_0 = rocblas_cherk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cherk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cherk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49862,10 +52050,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cherk_strided_batched_rank_1 = rocblas_cherk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cherk_strided_batched_rank_1 = rocblas_cherk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cherk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cherk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49885,10 +52075,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cherk_strided_batched_full_rank = rocblas_cherk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cherk_strided_batched_full_rank = rocblas_cherk_strided_batched_(handle,uplo,transA, &
+        n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zherk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zherk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49908,10 +52100,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zherk_strided_batched_rank_0 = rocblas_zherk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zherk_strided_batched_rank_0 = rocblas_zherk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zherk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zherk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49931,10 +52125,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zherk_strided_batched_rank_1 = rocblas_zherk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zherk_strided_batched_rank_1 = rocblas_zherk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zherk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zherk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -49954,7 +52150,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zherk_strided_batched_full_rank = rocblas_zherk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zherk_strided_batched_full_rank = rocblas_zherk_strided_batched_(handle,uplo,transA, &
+        n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
     function rocblas_cher2k_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49976,7 +52173,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_cher2k_rank_0 = rocblas_cher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cher2k_rank_0 = rocblas_cher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cher2k_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -49998,7 +52196,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cher2k_rank_1 = rocblas_cher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cher2k_rank_1 = rocblas_cher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cher2k_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50020,7 +52219,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cher2k_full_rank = rocblas_cher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cher2k_full_rank = rocblas_cher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zher2k_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50042,7 +52242,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zher2k_rank_0 = rocblas_zher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zher2k_rank_0 = rocblas_zher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zher2k_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50064,7 +52265,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zher2k_rank_1 = rocblas_zher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zher2k_rank_1 = rocblas_zher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zher2k_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50086,10 +52288,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zher2k_full_rank = rocblas_zher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zher2k_full_rank = rocblas_zher2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_cher2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cher2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50112,10 +52316,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cher2k_strided_batched_rank_0 = rocblas_cher2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cher2k_strided_batched_rank_0 = rocblas_cher2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cher2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cher2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50138,10 +52344,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cher2k_strided_batched_rank_1 = rocblas_cher2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cher2k_strided_batched_rank_1 = rocblas_cher2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cher2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cher2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50164,10 +52372,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cher2k_strided_batched_full_rank = rocblas_cher2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cher2k_strided_batched_full_rank = rocblas_cher2k_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zher2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zher2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50190,10 +52401,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zher2k_strided_batched_rank_0 = rocblas_zher2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zher2k_strided_batched_rank_0 = rocblas_zher2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zher2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zher2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50216,10 +52429,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zher2k_strided_batched_rank_1 = rocblas_zher2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zher2k_strided_batched_rank_1 = rocblas_zher2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zher2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zher2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50242,7 +52457,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zher2k_strided_batched_full_rank = rocblas_zher2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zher2k_strided_batched_full_rank = rocblas_zher2k_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
     function rocblas_cherkx_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50264,7 +52481,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_cherkx_rank_0 = rocblas_cherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cherkx_rank_0 = rocblas_cherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cherkx_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50286,7 +52504,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cherkx_rank_1 = rocblas_cherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cherkx_rank_1 = rocblas_cherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cherkx_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50308,7 +52527,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cherkx_full_rank = rocblas_cherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cherkx_full_rank = rocblas_cherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zherkx_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50330,7 +52550,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zherkx_rank_0 = rocblas_zherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zherkx_rank_0 = rocblas_zherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zherkx_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50352,7 +52573,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zherkx_rank_1 = rocblas_zherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zherkx_rank_1 = rocblas_zherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zherkx_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50374,10 +52596,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zherkx_full_rank = rocblas_zherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zherkx_full_rank = rocblas_zherkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_cherkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cherkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50400,10 +52624,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cherkx_strided_batched_rank_0 = rocblas_cherkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cherkx_strided_batched_rank_0 = rocblas_cherkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cherkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cherkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50426,10 +52652,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cherkx_strided_batched_rank_1 = rocblas_cherkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cherkx_strided_batched_rank_1 = rocblas_cherkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cherkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_cherkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50452,10 +52680,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cherkx_strided_batched_full_rank = rocblas_cherkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cherkx_strided_batched_full_rank = rocblas_cherkx_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zherkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zherkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50478,10 +52709,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zherkx_strided_batched_rank_0 = rocblas_zherkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zherkx_strided_batched_rank_0 = rocblas_zherkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zherkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zherkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50504,10 +52737,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zherkx_strided_batched_rank_1 = rocblas_zherkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zherkx_strided_batched_rank_1 = rocblas_zherkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zherkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zherkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50530,7 +52765,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zherkx_strided_batched_full_rank = rocblas_zherkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zherkx_strided_batched_full_rank = rocblas_zherkx_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
     function rocblas_ssymm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50552,7 +52789,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssymm_rank_0 = rocblas_ssymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssymm_rank_0 = rocblas_ssymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_ssymm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50574,7 +52812,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssymm_rank_1 = rocblas_ssymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssymm_rank_1 = rocblas_ssymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_ssymm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50596,7 +52835,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssymm_full_rank = rocblas_ssymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssymm_full_rank = rocblas_ssymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsymm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50618,7 +52858,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsymm_rank_0 = rocblas_dsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsymm_rank_0 = rocblas_dsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsymm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50640,7 +52881,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsymm_rank_1 = rocblas_dsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsymm_rank_1 = rocblas_dsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsymm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50662,7 +52904,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsymm_full_rank = rocblas_dsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsymm_full_rank = rocblas_dsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csymm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50684,7 +52927,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_csymm_rank_0 = rocblas_csymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csymm_rank_0 = rocblas_csymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_csymm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50706,7 +52950,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csymm_rank_1 = rocblas_csymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csymm_rank_1 = rocblas_csymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_csymm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50728,7 +52973,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csymm_full_rank = rocblas_csymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csymm_full_rank = rocblas_csymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsymm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50750,7 +52996,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsymm_rank_0 = rocblas_zsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsymm_rank_0 = rocblas_zsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsymm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50772,7 +53019,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsymm_rank_1 = rocblas_zsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsymm_rank_1 = rocblas_zsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsymm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -50794,10 +53042,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsymm_full_rank = rocblas_zsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsymm_full_rank = rocblas_zsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_ssymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50820,10 +53070,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssymm_strided_batched_rank_0 = rocblas_ssymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssymm_strided_batched_rank_0 = rocblas_ssymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50846,10 +53098,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssymm_strided_batched_rank_1 = rocblas_ssymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssymm_strided_batched_rank_1 = rocblas_ssymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50872,10 +53126,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssymm_strided_batched_full_rank = rocblas_ssymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssymm_strided_batched_full_rank = rocblas_ssymm_strided_batched_(handle,side,uplo,m, &
+        n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50898,10 +53154,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsymm_strided_batched_rank_0 = rocblas_dsymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsymm_strided_batched_rank_0 = rocblas_dsymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50924,10 +53182,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsymm_strided_batched_rank_1 = rocblas_dsymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsymm_strided_batched_rank_1 = rocblas_dsymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50950,10 +53210,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsymm_strided_batched_full_rank = rocblas_dsymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsymm_strided_batched_full_rank = rocblas_dsymm_strided_batched_(handle,side,uplo,m, &
+        n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -50976,10 +53238,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csymm_strided_batched_rank_0 = rocblas_csymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csymm_strided_batched_rank_0 = rocblas_csymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51002,10 +53266,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csymm_strided_batched_rank_1 = rocblas_csymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csymm_strided_batched_rank_1 = rocblas_csymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51028,10 +53294,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csymm_strided_batched_full_rank = rocblas_csymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csymm_strided_batched_full_rank = rocblas_csymm_strided_batched_(handle,side,uplo,m, &
+        n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsymm_strided_batched_rank_0(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51054,10 +53322,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsymm_strided_batched_rank_0 = rocblas_zsymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsymm_strided_batched_rank_0 = rocblas_zsymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsymm_strided_batched_rank_1(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb, &
+        stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51080,10 +53350,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsymm_strided_batched_rank_1 = rocblas_zsymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsymm_strided_batched_rank_1 = rocblas_zsymm_strided_batched_(handle,side,uplo,m,n, &
+        alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsymm_strided_batched_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51106,7 +53378,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsymm_strided_batched_full_rank = rocblas_zsymm_strided_batched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsymm_strided_batched_full_rank = rocblas_zsymm_strided_batched_(handle,side,uplo,m, &
+        n,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
     function rocblas_ssyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51126,7 +53399,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyrk_rank_0 = rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_ssyrk_rank_0 = rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_ssyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51146,7 +53420,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyrk_rank_1 = rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_ssyrk_rank_1 = rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_ssyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51166,7 +53441,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyrk_full_rank = rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_ssyrk_full_rank = rocblas_ssyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_dsyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51186,7 +53462,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyrk_rank_0 = rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_dsyrk_rank_0 = rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_dsyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51206,7 +53483,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyrk_rank_1 = rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_dsyrk_rank_1 = rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_dsyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51226,7 +53504,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyrk_full_rank = rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_dsyrk_full_rank = rocblas_dsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_csyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51246,7 +53525,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyrk_rank_0 = rocblas_csyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_csyrk_rank_0 = rocblas_csyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_csyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51266,7 +53546,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyrk_rank_1 = rocblas_csyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_csyrk_rank_1 = rocblas_csyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_csyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51286,7 +53567,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyrk_full_rank = rocblas_csyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_csyrk_full_rank = rocblas_csyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zsyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51306,7 +53588,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyrk_rank_0 = rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_zsyrk_rank_0 = rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zsyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51326,7 +53609,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyrk_rank_1 = rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_zsyrk_rank_1 = rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zsyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -51346,10 +53630,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyrk_full_rank = rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      rocblas_zsyrk_full_rank = rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta, &
+        c_loc(C),ldc)
     end function
 
-    function rocblas_ssyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51369,10 +53655,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyrk_strided_batched_rank_0 = rocblas_ssyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyrk_strided_batched_rank_0 = rocblas_ssyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51392,10 +53680,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyrk_strided_batched_rank_1 = rocblas_ssyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyrk_strided_batched_rank_1 = rocblas_ssyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51415,10 +53705,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyrk_strided_batched_full_rank = rocblas_ssyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyrk_strided_batched_full_rank = rocblas_ssyrk_strided_batched_(handle,uplo,transA, &
+        n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51438,10 +53730,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyrk_strided_batched_rank_0 = rocblas_dsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyrk_strided_batched_rank_0 = rocblas_dsyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51461,10 +53755,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyrk_strided_batched_rank_1 = rocblas_dsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyrk_strided_batched_rank_1 = rocblas_dsyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51484,10 +53780,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyrk_strided_batched_full_rank = rocblas_dsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyrk_strided_batched_full_rank = rocblas_dsyrk_strided_batched_(handle,uplo,transA, &
+        n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51507,10 +53805,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyrk_strided_batched_rank_0 = rocblas_csyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyrk_strided_batched_rank_0 = rocblas_csyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51530,10 +53830,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyrk_strided_batched_rank_1 = rocblas_csyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyrk_strided_batched_rank_1 = rocblas_csyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51553,10 +53855,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyrk_strided_batched_full_rank = rocblas_csyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyrk_strided_batched_full_rank = rocblas_csyrk_strided_batched_(handle,uplo,transA, &
+        n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyrk_strided_batched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51576,10 +53880,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyrk_strided_batched_rank_0 = rocblas_zsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyrk_strided_batched_rank_0 = rocblas_zsyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyrk_strided_batched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51599,10 +53905,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyrk_strided_batched_rank_1 = rocblas_zsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyrk_strided_batched_rank_1 = rocblas_zsyrk_strided_batched_(handle,uplo,transA,n, &
+        k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyrk_strided_batched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,stride_A, &
+        beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51622,7 +53930,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyrk_strided_batched_full_rank = rocblas_zsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyrk_strided_batched_full_rank = rocblas_zsyrk_strided_batched_(handle,uplo,transA, &
+        n,k,alpha,c_loc(A),lda,stride_A,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
     function rocblas_ssyr2k_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51644,7 +53953,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyr2k_rank_0 = rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssyr2k_rank_0 = rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_ssyr2k_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51666,7 +53976,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyr2k_rank_1 = rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssyr2k_rank_1 = rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_ssyr2k_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51688,7 +53999,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyr2k_full_rank = rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssyr2k_full_rank = rocblas_ssyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsyr2k_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51710,7 +54022,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyr2k_rank_0 = rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsyr2k_rank_0 = rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsyr2k_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51732,7 +54045,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyr2k_rank_1 = rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsyr2k_rank_1 = rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsyr2k_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51754,7 +54068,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyr2k_full_rank = rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsyr2k_full_rank = rocblas_dsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csyr2k_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51776,7 +54091,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyr2k_rank_0 = rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csyr2k_rank_0 = rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csyr2k_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51798,7 +54114,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyr2k_rank_1 = rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csyr2k_rank_1 = rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csyr2k_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51820,7 +54137,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyr2k_full_rank = rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csyr2k_full_rank = rocblas_csyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsyr2k_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51842,7 +54160,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyr2k_rank_0 = rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsyr2k_rank_0 = rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsyr2k_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51864,7 +54183,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyr2k_rank_1 = rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsyr2k_rank_1 = rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsyr2k_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -51886,10 +54206,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyr2k_full_rank = rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsyr2k_full_rank = rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_ssyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51912,10 +54234,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr2k_strided_batched_rank_0 = rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyr2k_strided_batched_rank_0 = rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51938,10 +54262,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr2k_strided_batched_rank_1 = rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyr2k_strided_batched_rank_1 = rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51964,10 +54290,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyr2k_strided_batched_full_rank = rocblas_ssyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyr2k_strided_batched_full_rank = rocblas_ssyr2k_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_dsyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -51990,10 +54319,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr2k_strided_batched_rank_0 = rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyr2k_strided_batched_rank_0 = rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52016,10 +54347,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr2k_strided_batched_rank_1 = rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyr2k_strided_batched_rank_1 = rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52042,10 +54375,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyr2k_strided_batched_full_rank = rocblas_dsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyr2k_strided_batched_full_rank = rocblas_dsyr2k_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_csyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52068,10 +54404,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyr2k_strided_batched_rank_0 = rocblas_csyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyr2k_strided_batched_rank_0 = rocblas_csyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52094,10 +54432,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyr2k_strided_batched_rank_1 = rocblas_csyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyr2k_strided_batched_rank_1 = rocblas_csyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52120,10 +54460,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyr2k_strided_batched_full_rank = rocblas_csyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyr2k_strided_batched_full_rank = rocblas_csyr2k_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zsyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyr2k_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52146,10 +54489,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr2k_strided_batched_rank_0 = rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyr2k_strided_batched_rank_0 = rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyr2k_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52172,10 +54517,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr2k_strided_batched_rank_1 = rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyr2k_strided_batched_rank_1 = rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyr2k_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52198,7 +54545,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyr2k_strided_batched_full_rank = rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyr2k_strided_batched_full_rank = rocblas_zsyr2k_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
     function rocblas_ssyrkx_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52220,7 +54569,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyrkx_rank_0 = rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssyrkx_rank_0 = rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_ssyrkx_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52242,7 +54592,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyrkx_rank_1 = rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssyrkx_rank_1 = rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_ssyrkx_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52264,7 +54615,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ssyrkx_full_rank = rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_ssyrkx_full_rank = rocblas_ssyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsyrkx_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52286,7 +54638,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyrkx_rank_0 = rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsyrkx_rank_0 = rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsyrkx_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52308,7 +54661,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyrkx_rank_1 = rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsyrkx_rank_1 = rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dsyrkx_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52330,7 +54684,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dsyrkx_full_rank = rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dsyrkx_full_rank = rocblas_dsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csyrkx_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52352,7 +54707,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyrkx_rank_0 = rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csyrkx_rank_0 = rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csyrkx_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52374,7 +54730,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyrkx_rank_1 = rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csyrkx_rank_1 = rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_csyrkx_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52396,7 +54753,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_csyrkx_full_rank = rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_csyrkx_full_rank = rocblas_csyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsyrkx_rank_0(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52418,7 +54776,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyrkx_rank_0 = rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsyrkx_rank_0 = rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsyrkx_rank_1(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52440,7 +54799,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyrkx_rank_1 = rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsyrkx_rank_1 = rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zsyrkx_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -52462,10 +54822,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zsyrkx_full_rank = rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zsyrkx_full_rank = rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_ssyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52488,10 +54850,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyrkx_strided_batched_rank_0 = rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyrkx_strided_batched_rank_0 = rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52514,10 +54878,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyrkx_strided_batched_rank_1 = rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyrkx_strided_batched_rank_1 = rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ssyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_ssyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52540,10 +54906,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ssyrkx_strided_batched_full_rank = rocblas_ssyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ssyrkx_strided_batched_full_rank = rocblas_ssyrkx_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_dsyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52566,10 +54935,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyrkx_strided_batched_rank_0 = rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyrkx_strided_batched_rank_0 = rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52592,10 +54963,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyrkx_strided_batched_rank_1 = rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyrkx_strided_batched_rank_1 = rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_dsyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_dsyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52618,10 +54991,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dsyrkx_strided_batched_full_rank = rocblas_dsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dsyrkx_strided_batched_full_rank = rocblas_dsyrkx_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_csyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52644,10 +55020,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyrkx_strided_batched_rank_0 = rocblas_csyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyrkx_strided_batched_rank_0 = rocblas_csyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52670,10 +55048,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyrkx_strided_batched_rank_1 = rocblas_csyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyrkx_strided_batched_rank_1 = rocblas_csyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_csyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_csyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52696,10 +55076,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_csyrkx_strided_batched_full_rank = rocblas_csyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_csyrkx_strided_batched_full_rank = rocblas_csyrkx_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zsyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyrkx_strided_batched_rank_0(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52722,10 +55105,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyrkx_strided_batched_rank_0 = rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyrkx_strided_batched_rank_0 = rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyrkx_strided_batched_rank_1(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B, &
+        ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52748,10 +55133,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyrkx_strided_batched_rank_1 = rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyrkx_strided_batched_rank_1 = rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n, &
+        k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zsyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+    function rocblas_zsyrkx_strided_batched_full_rank(handle,uplo,trans,n,k,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52774,7 +55161,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zsyrkx_strided_batched_full_rank = rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zsyrkx_strided_batched_full_rank = rocblas_zsyrkx_strided_batched_(handle,uplo, &
+        trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
     function rocblas_strmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52797,7 +55186,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_strmm_rank_0 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_strmm_rank_0 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_strmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52820,7 +55210,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_strmm_rank_1 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_strmm_rank_1 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_strmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52843,7 +55234,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_strmm_full_rank = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_strmm_full_rank = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_dtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52866,7 +55258,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dtrmm_rank_0 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_dtrmm_rank_0 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_dtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52889,7 +55282,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dtrmm_rank_1 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_dtrmm_rank_1 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_dtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52912,7 +55306,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dtrmm_full_rank = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_dtrmm_full_rank = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_ctrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52935,7 +55330,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_ctrmm_rank_0 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_ctrmm_rank_0 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_ctrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52958,7 +55354,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ctrmm_rank_1 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_ctrmm_rank_1 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_ctrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -52981,7 +55378,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ctrmm_full_rank = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_ctrmm_full_rank = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_ztrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -53004,7 +55402,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_ztrmm_rank_0 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_ztrmm_rank_0 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_ztrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -53027,7 +55426,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ztrmm_rank_1 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_ztrmm_rank_1 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_ztrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -53050,7 +55450,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ztrmm_full_rank = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_ztrmm_full_rank = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_strtri_rank_0(handle,uplo,diag,n,A,lda,invA,ldinvA)
@@ -53257,7 +55658,8 @@ module hipfort_rocblas
       rocblas_ztrtri_full_rank = rocblas_ztrtri_(handle,uplo,diag,n,c_loc(A),lda,c_loc(invA),ldinvA)
     end function
 
-    function rocblas_strtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_strtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53274,10 +55676,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_strtri_strided_batched_rank_0 = rocblas_strtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_strtri_strided_batched_rank_0 = rocblas_strtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_strtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_strtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53294,10 +55698,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_strtri_strided_batched_rank_1 = rocblas_strtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_strtri_strided_batched_rank_1 = rocblas_strtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_strtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_strtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
+        ldinvA,stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53314,10 +55720,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_strtri_strided_batched_full_rank = rocblas_strtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_strtri_strided_batched_full_rank = rocblas_strtri_strided_batched_(handle,uplo,diag, &
+        n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_dtrtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_dtrtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53334,10 +55742,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_dtrtri_strided_batched_rank_0 = rocblas_dtrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_dtrtri_strided_batched_rank_0 = rocblas_dtrtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_dtrtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_dtrtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53354,10 +55764,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_dtrtri_strided_batched_rank_1 = rocblas_dtrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_dtrtri_strided_batched_rank_1 = rocblas_dtrtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_dtrtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_dtrtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
+        ldinvA,stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53374,10 +55786,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_dtrtri_strided_batched_full_rank = rocblas_dtrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_dtrtri_strided_batched_full_rank = rocblas_dtrtri_strided_batched_(handle,uplo,diag, &
+        n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_ctrtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_ctrtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53394,10 +55808,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_ctrtri_strided_batched_rank_0 = rocblas_ctrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_ctrtri_strided_batched_rank_0 = rocblas_ctrtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_ctrtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_ctrtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53414,10 +55830,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_ctrtri_strided_batched_rank_1 = rocblas_ctrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_ctrtri_strided_batched_rank_1 = rocblas_ctrtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_ctrtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_ctrtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
+        ldinvA,stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53434,10 +55852,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_ctrtri_strided_batched_full_rank = rocblas_ctrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_ctrtri_strided_batched_full_rank = rocblas_ctrtri_strided_batched_(handle,uplo,diag, &
+        n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_ztrtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_ztrtri_strided_batched_rank_0(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53454,10 +55874,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_ztrtri_strided_batched_rank_0 = rocblas_ztrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_ztrtri_strided_batched_rank_0 = rocblas_ztrtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_ztrtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_ztrtri_strided_batched_rank_1(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA, &
+        stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53474,10 +55896,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_ztrtri_strided_batched_rank_1 = rocblas_ztrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_ztrtri_strided_batched_rank_1 = rocblas_ztrtri_strided_batched_(handle,uplo,diag,n, &
+        c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
-    function rocblas_ztrtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count)
+    function rocblas_ztrtri_strided_batched_full_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
+        ldinvA,stride_invA,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53494,7 +55918,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
       !
-      rocblas_ztrtri_strided_batched_full_rank = rocblas_ztrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
+      rocblas_ztrtri_strided_batched_full_rank = rocblas_ztrtri_strided_batched_(handle,uplo,diag, &
+        n,c_loc(A),lda,stride_a,c_loc(invA),ldinvA,stride_invA,batch_count)
     end function
 
     function rocblas_strsm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53515,7 +55940,8 @@ module hipfort_rocblas
       real(c_float),target :: B
       integer(c_int) :: ldb
       !
-      rocblas_strsm_rank_0 = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_strsm_rank_0 = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_strsm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53536,7 +55962,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_strsm_rank_1 = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_strsm_rank_1 = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_strsm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53557,7 +55984,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_strsm_full_rank = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_strsm_full_rank = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb)
     end function
 
     function rocblas_dtrsm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53578,7 +56006,8 @@ module hipfort_rocblas
       real(c_double),target :: B
       integer(c_int) :: ldb
       !
-      rocblas_dtrsm_rank_0 = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_dtrsm_rank_0 = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_dtrsm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53599,7 +56028,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_dtrsm_rank_1 = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_dtrsm_rank_1 = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_dtrsm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53620,7 +56050,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_dtrsm_full_rank = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_dtrsm_full_rank = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb)
     end function
 
     function rocblas_ctrsm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53641,7 +56072,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       !
-      rocblas_ctrsm_rank_0 = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ctrsm_rank_0 = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_ctrsm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53662,7 +56094,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_ctrsm_rank_1 = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ctrsm_rank_1 = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_ctrsm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53683,7 +56116,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_ctrsm_full_rank = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ctrsm_full_rank = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb)
     end function
 
     function rocblas_ztrsm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53704,7 +56138,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       !
-      rocblas_ztrsm_rank_0 = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ztrsm_rank_0 = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_ztrsm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53725,7 +56160,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_ztrsm_rank_1 = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ztrsm_rank_1 = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
     function rocblas_ztrsm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -53746,10 +56182,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       !
-      rocblas_ztrsm_full_rank = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ztrsm_full_rank = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A), &
+        lda,c_loc(B),ldb)
     end function
 
-    function rocblas_strsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_strsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53770,10 +56208,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_strsm_strided_batched_rank_0 = rocblas_strsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_strsm_strided_batched_rank_0 = rocblas_strsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_strsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_strsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53794,10 +56234,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_strsm_strided_batched_rank_1 = rocblas_strsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_strsm_strided_batched_rank_1 = rocblas_strsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_strsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_strsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53818,10 +56260,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_strsm_strided_batched_full_rank = rocblas_strsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_strsm_strided_batched_full_rank = rocblas_strsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_dtrsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_dtrsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53842,10 +56286,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_dtrsm_strided_batched_rank_0 = rocblas_dtrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_dtrsm_strided_batched_rank_0 = rocblas_dtrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_dtrsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_dtrsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53866,10 +56312,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_dtrsm_strided_batched_rank_1 = rocblas_dtrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_dtrsm_strided_batched_rank_1 = rocblas_dtrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_dtrsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_dtrsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53890,10 +56338,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_dtrsm_strided_batched_full_rank = rocblas_dtrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_dtrsm_strided_batched_full_rank = rocblas_dtrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_ctrsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_ctrsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53914,10 +56364,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_ctrsm_strided_batched_rank_0 = rocblas_ctrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_ctrsm_strided_batched_rank_0 = rocblas_ctrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_ctrsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_ctrsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53938,10 +56390,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_ctrsm_strided_batched_rank_1 = rocblas_ctrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_ctrsm_strided_batched_rank_1 = rocblas_ctrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_ctrsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_ctrsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53962,10 +56416,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_ctrsm_strided_batched_full_rank = rocblas_ctrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_ctrsm_strided_batched_full_rank = rocblas_ctrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_ztrsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_ztrsm_strided_batched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -53986,10 +56442,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_ztrsm_strided_batched_rank_0 = rocblas_ztrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_ztrsm_strided_batched_rank_0 = rocblas_ztrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_ztrsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_ztrsm_strided_batched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54010,10 +56468,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_ztrsm_strided_batched_rank_1 = rocblas_ztrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_ztrsm_strided_batched_rank_1 = rocblas_ztrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
-    function rocblas_ztrsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count)
+    function rocblas_ztrsm_strided_batched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54034,7 +56494,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
       !
-      rocblas_ztrsm_strided_batched_full_rank = rocblas_ztrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+      rocblas_ztrsm_strided_batched_full_rank = rocblas_ztrsm_strided_batched_(handle,side,uplo, &
+        transA,diag,m,n,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
     function rocblas_sgemm_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54057,7 +56518,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_sgemm_rank_0 = rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_sgemm_rank_0 = rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_sgemm_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54080,7 +56542,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_sgemm_rank_1 = rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_sgemm_rank_1 = rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_sgemm_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54103,7 +56566,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_sgemm_full_rank = rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_sgemm_full_rank = rocblas_sgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dgemm_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54126,7 +56590,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dgemm_rank_0 = rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dgemm_rank_0 = rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dgemm_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54149,7 +56614,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dgemm_rank_1 = rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dgemm_rank_1 = rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_dgemm_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54172,7 +56638,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dgemm_full_rank = rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_dgemm_full_rank = rocblas_dgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cgemm_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54195,7 +56662,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_cgemm_rank_0 = rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cgemm_rank_0 = rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cgemm_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54218,7 +56686,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cgemm_rank_1 = rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cgemm_rank_1 = rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_cgemm_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54241,7 +56710,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cgemm_full_rank = rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_cgemm_full_rank = rocblas_cgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zgemm_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54264,7 +56734,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zgemm_rank_0 = rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zgemm_rank_0 = rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zgemm_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54287,7 +56758,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zgemm_rank_1 = rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zgemm_rank_1 = rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
     function rocblas_zgemm_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -54310,10 +56782,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zgemm_full_rank = rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      rocblas_zgemm_full_rank = rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda, &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
 
-    function rocblas_sgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_sgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54337,10 +56811,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_sgemm_strided_batched_rank_0 = rocblas_sgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_sgemm_strided_batched_rank_0 = rocblas_sgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_sgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_sgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54364,10 +56841,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_sgemm_strided_batched_rank_1 = rocblas_sgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_sgemm_strided_batched_rank_1 = rocblas_sgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_sgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_sgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54391,10 +56871,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_sgemm_strided_batched_full_rank = rocblas_sgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_sgemm_strided_batched_full_rank = rocblas_sgemm_strided_batched_(handle,transA, &
+        transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_dgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_dgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54418,10 +56901,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_dgemm_strided_batched_rank_0 = rocblas_dgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_dgemm_strided_batched_rank_0 = rocblas_dgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_dgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_dgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54445,10 +56931,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_dgemm_strided_batched_rank_1 = rocblas_dgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_dgemm_strided_batched_rank_1 = rocblas_dgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_dgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_dgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54472,10 +56961,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_dgemm_strided_batched_full_rank = rocblas_dgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_dgemm_strided_batched_full_rank = rocblas_dgemm_strided_batched_(handle,transA, &
+        transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_cgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_cgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54499,10 +56991,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_cgemm_strided_batched_rank_0 = rocblas_cgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_cgemm_strided_batched_rank_0 = rocblas_cgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_cgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_cgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54526,10 +57021,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_cgemm_strided_batched_rank_1 = rocblas_cgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_cgemm_strided_batched_rank_1 = rocblas_cgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_cgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_cgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54553,10 +57051,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_cgemm_strided_batched_full_rank = rocblas_cgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_cgemm_strided_batched_full_rank = rocblas_cgemm_strided_batched_(handle,transA, &
+        transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_zgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_zgemm_strided_batched_rank_0(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54580,10 +57081,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_zgemm_strided_batched_rank_0 = rocblas_zgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_zgemm_strided_batched_rank_0 = rocblas_zgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_zgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_zgemm_strided_batched_rank_1(handle,transA,transB,m,n,k,alpha,A,lda,stride_a, &
+        B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54607,10 +57111,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_zgemm_strided_batched_rank_1 = rocblas_zgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_zgemm_strided_batched_rank_1 = rocblas_zgemm_strided_batched_(handle,transA,transB, &
+        m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
-    function rocblas_zgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+    function rocblas_zgemm_strided_batched_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54634,7 +57141,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
       !
-      rocblas_zgemm_strided_batched_full_rank = rocblas_zgemm_strided_batched_(handle,transA,transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c,batch_count)
+      rocblas_zgemm_strided_batched_full_rank = rocblas_zgemm_strided_batched_(handle,transA, &
+        transB,m,n,k,alpha,c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,beta,c_loc(C),ldc,stride_c, &
+        batch_count)
     end function
 
     function rocblas_sdgmm_rank_0(handle,side,m,n,A,lda,x,incx,C,ldc)
@@ -54691,7 +57200,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_sdgmm_full_rank = rocblas_sdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx,c_loc(C),ldc)
+      rocblas_sdgmm_full_rank = rocblas_sdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_ddgmm_rank_0(handle,side,m,n,A,lda,x,incx,C,ldc)
@@ -54748,7 +57258,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_ddgmm_full_rank = rocblas_ddgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx,c_loc(C),ldc)
+      rocblas_ddgmm_full_rank = rocblas_ddgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_cdgmm_rank_0(handle,side,m,n,A,lda,x,incx,C,ldc)
@@ -54805,7 +57316,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cdgmm_full_rank = rocblas_cdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx,c_loc(C),ldc)
+      rocblas_cdgmm_full_rank = rocblas_cdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
     end function
 
     function rocblas_zdgmm_rank_0(handle,side,m,n,A,lda,x,incx,C,ldc)
@@ -54862,10 +57374,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zdgmm_full_rank = rocblas_zdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx,c_loc(C),ldc)
+      rocblas_zdgmm_full_rank = rocblas_zdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
     end function
 
-    function rocblas_sdgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_sdgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54885,10 +57399,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_sdgmm_strided_batched_rank_0 = rocblas_sdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_sdgmm_strided_batched_rank_0 = rocblas_sdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_sdgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_sdgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54908,10 +57424,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_sdgmm_strided_batched_rank_1 = rocblas_sdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_sdgmm_strided_batched_rank_1 = rocblas_sdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_sdgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_sdgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54931,10 +57449,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_sdgmm_strided_batched_full_rank = rocblas_sdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_sdgmm_strided_batched_full_rank = rocblas_sdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ddgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_ddgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54954,10 +57474,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ddgmm_strided_batched_rank_0 = rocblas_ddgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ddgmm_strided_batched_rank_0 = rocblas_ddgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ddgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_ddgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -54977,10 +57499,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ddgmm_strided_batched_rank_1 = rocblas_ddgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ddgmm_strided_batched_rank_1 = rocblas_ddgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_ddgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_ddgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55000,10 +57524,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_ddgmm_strided_batched_full_rank = rocblas_ddgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_ddgmm_strided_batched_full_rank = rocblas_ddgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cdgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_cdgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55023,10 +57549,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cdgmm_strided_batched_rank_0 = rocblas_cdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cdgmm_strided_batched_rank_0 = rocblas_cdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cdgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_cdgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55046,10 +57574,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cdgmm_strided_batched_rank_1 = rocblas_cdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cdgmm_strided_batched_rank_1 = rocblas_cdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_cdgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_cdgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55069,10 +57599,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cdgmm_strided_batched_full_rank = rocblas_cdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cdgmm_strided_batched_full_rank = rocblas_cdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zdgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_zdgmm_strided_batched_rank_0(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55092,10 +57624,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zdgmm_strided_batched_rank_0 = rocblas_zdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zdgmm_strided_batched_rank_0 = rocblas_zdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zdgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_zdgmm_strided_batched_rank_1(handle,side,m,n,A,lda,stride_A,x,incx,stride_x, &
+        C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55115,10 +57649,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zdgmm_strided_batched_rank_1 = rocblas_zdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zdgmm_strided_batched_rank_1 = rocblas_zdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_zdgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count)
+    function rocblas_zdgmm_strided_batched_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55138,7 +57674,8 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zdgmm_strided_batched_full_rank = rocblas_zdgmm_strided_batched_(handle,side,m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zdgmm_strided_batched_full_rank = rocblas_zdgmm_strided_batched_(handle,side,m,n, &
+        c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
     function rocblas_sgeam_rank_0(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55160,7 +57697,8 @@ module hipfort_rocblas
       real(c_float),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_sgeam_rank_0 = rocblas_sgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_sgeam_rank_0 = rocblas_sgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_sgeam_rank_1(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55182,7 +57720,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_sgeam_rank_1 = rocblas_sgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_sgeam_rank_1 = rocblas_sgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_sgeam_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55204,7 +57743,8 @@ module hipfort_rocblas
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_sgeam_full_rank = rocblas_sgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_sgeam_full_rank = rocblas_sgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_dgeam_rank_0(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55226,7 +57766,8 @@ module hipfort_rocblas
       real(c_double),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_dgeam_rank_0 = rocblas_dgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_dgeam_rank_0 = rocblas_dgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_dgeam_rank_1(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55248,7 +57789,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dgeam_rank_1 = rocblas_dgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_dgeam_rank_1 = rocblas_dgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_dgeam_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55270,7 +57812,8 @@ module hipfort_rocblas
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_dgeam_full_rank = rocblas_dgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_dgeam_full_rank = rocblas_dgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_cgeam_rank_0(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55292,7 +57835,8 @@ module hipfort_rocblas
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_cgeam_rank_0 = rocblas_cgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_cgeam_rank_0 = rocblas_cgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_cgeam_rank_1(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55314,7 +57858,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cgeam_rank_1 = rocblas_cgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_cgeam_rank_1 = rocblas_cgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_cgeam_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55336,7 +57881,8 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_cgeam_full_rank = rocblas_cgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_cgeam_full_rank = rocblas_cgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_zgeam_rank_0(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55358,7 +57904,8 @@ module hipfort_rocblas
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       !
-      rocblas_zgeam_rank_0 = rocblas_zgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_zgeam_rank_0 = rocblas_zgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_zgeam_rank_1(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55380,7 +57927,8 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zgeam_rank_1 = rocblas_zgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_zgeam_rank_1 = rocblas_zgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_zgeam_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -55402,10 +57950,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocblas_zgeam_full_rank = rocblas_zgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      rocblas_zgeam_full_rank = rocblas_zgeam_(handle,transA,transB,m,n,alpha,c_loc(A),lda,beta, &
+        c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_sgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_sgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55428,10 +57978,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_sgeam_strided_batched_rank_0 = rocblas_sgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_sgeam_strided_batched_rank_0 = rocblas_sgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_sgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_sgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55454,10 +58007,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_sgeam_strided_batched_rank_1 = rocblas_sgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_sgeam_strided_batched_rank_1 = rocblas_sgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_sgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_sgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55480,10 +58036,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_sgeam_strided_batched_full_rank = rocblas_sgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_sgeam_strided_batched_full_rank = rocblas_sgeam_strided_batched_(handle,transA, &
+        transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_dgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_dgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55506,10 +58065,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dgeam_strided_batched_rank_0 = rocblas_dgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dgeam_strided_batched_rank_0 = rocblas_dgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_dgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_dgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55532,10 +58094,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dgeam_strided_batched_rank_1 = rocblas_dgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dgeam_strided_batched_rank_1 = rocblas_dgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_dgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_dgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55558,10 +58123,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_dgeam_strided_batched_full_rank = rocblas_dgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_dgeam_strided_batched_full_rank = rocblas_dgeam_strided_batched_(handle,transA, &
+        transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_cgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_cgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55584,10 +58152,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cgeam_strided_batched_rank_0 = rocblas_cgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cgeam_strided_batched_rank_0 = rocblas_cgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_cgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_cgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55610,10 +58181,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cgeam_strided_batched_rank_1 = rocblas_cgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cgeam_strided_batched_rank_1 = rocblas_cgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_cgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_cgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55636,10 +58210,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_cgeam_strided_batched_full_rank = rocblas_cgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_cgeam_strided_batched_full_rank = rocblas_cgeam_strided_batched_(handle,transA, &
+        transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_zgeam_strided_batched_rank_0(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55662,10 +58239,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zgeam_strided_batched_rank_0 = rocblas_zgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zgeam_strided_batched_rank_0 = rocblas_zgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_zgeam_strided_batched_rank_1(handle,transA,transB,m,n,alpha,A,lda,stride_A, &
+        beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55688,10 +58268,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zgeam_strided_batched_rank_1 = rocblas_zgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zgeam_strided_batched_rank_1 = rocblas_zgeam_strided_batched_(handle,transA,transB, &
+        m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
-    function rocblas_zgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda,stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+    function rocblas_zgeam_strided_batched_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -55714,7 +58297,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
       !
-      rocblas_zgeam_strided_batched_full_rank = rocblas_zgeam_strided_batched_(handle,transA,transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C,batch_count)
+      rocblas_zgeam_strided_batched_full_rank = rocblas_zgeam_strided_batched_(handle,transA, &
+        transB,m,n,alpha,c_loc(A),lda,stride_A,beta,c_loc(B),ldb,stride_B,c_loc(C),ldc,stride_C, &
+        batch_count)
     end function
 
 #endif
