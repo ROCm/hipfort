@@ -104,9 +104,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if generator was created successfully
   interface hiprandCreateGeneratorHost
 #ifdef USE_CUDA_NAMES
-    function hiprandCreateGeneratorHost_(generator,rng_type) bind(c, name="curandCreateGeneratorHost")
+    function hiprandCreateGeneratorHost_(generator,rng_type) &
+        bind(c, name="curandCreateGeneratorHost")
 #else
-    function hiprandCreateGeneratorHost_(generator,rng_type) bind(c, name="hiprandCreateGeneratorHost")
+    function hiprandCreateGeneratorHost_(generator,rng_type) &
+        bind(c, name="hiprandCreateGeneratorHost")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -299,9 +301,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGenerateUniformDouble
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateUniformDouble_(generator,output_data,n) bind(c, name="curandGenerateUniformDouble")
+    function hiprandGenerateUniformDouble_(generator,output_data,n) &
+        bind(c, name="curandGenerateUniformDouble")
 #else
-    function hiprandGenerateUniformDouble_(generator,output_data,n) bind(c, name="hiprandGenerateUniformDouble")
+    function hiprandGenerateUniformDouble_(generator,output_data,n) &
+        bind(c, name="hiprandGenerateUniformDouble")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -333,9 +337,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGenerateNormal
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormal")
+    function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) &
+        bind(c, name="curandGenerateNormal")
 #else
-    function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormal")
+    function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateNormal")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -369,9 +375,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGenerateNormalDouble
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormalDouble")
+    function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) &
+        bind(c, name="curandGenerateNormalDouble")
 #else
-    function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormalDouble")
+    function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateNormalDouble")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -405,9 +413,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGenerateLogNormal
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormal")
+    function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) &
+        bind(c, name="curandGenerateLogNormal")
 #else
-    function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormal")
+    function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateLogNormal")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -441,9 +451,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGenerateLogNormalDouble
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormalDouble")
+    function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) &
+        bind(c, name="curandGenerateLogNormalDouble")
 #else
-    function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormalDouble")
+    function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateLogNormalDouble")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -476,9 +488,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGeneratePoisson
 #ifdef USE_CUDA_NAMES
-    function hiprandGeneratePoisson_(generator,output_data,n,lambda) bind(c, name="curandGeneratePoisson")
+    function hiprandGeneratePoisson_(generator,output_data,n,lambda) &
+        bind(c, name="curandGeneratePoisson")
 #else
-    function hiprandGeneratePoisson_(generator,output_data,n,lambda) bind(c, name="hiprandGeneratePoisson")
+    function hiprandGeneratePoisson_(generator,output_data,n,lambda) &
+        bind(c, name="hiprandGeneratePoisson")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -563,9 +577,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if seed was set successfully
   interface hiprandSetPseudoRandomGeneratorSeed
 #ifdef USE_CUDA_NAMES
-    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) bind(c, name="curandSetPseudoRandomGeneratorSeed")
+    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) &
+        bind(c, name="curandSetPseudoRandomGeneratorSeed")
 #else
-    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) bind(c, name="hiprandSetPseudoRandomGeneratorSeed")
+    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) &
+        bind(c, name="hiprandSetPseudoRandomGeneratorSeed")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -627,9 +643,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if the number of dimensions was set successfully
   interface hiprandSetQuasiRandomGeneratorDimensions
 #ifdef USE_CUDA_NAMES
-    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) bind(c, name="curandSetQuasiRandomGeneratorDimensions")
+    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) &
+        bind(c, name="curandSetQuasiRandomGeneratorDimensions")
 #else
-    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) bind(c, name="hiprandSetQuasiRandomGeneratorDimensions")
+    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) &
+        bind(c, name="hiprandSetQuasiRandomGeneratorDimensions")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -678,9 +696,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if the histogram was constructed successfully
   interface hiprandCreatePoissonDistribution
 #ifdef USE_CUDA_NAMES
-    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) bind(c, name="curandCreatePoissonDistribution")
+    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) &
+        bind(c, name="curandCreatePoissonDistribution")
 #else
-    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) bind(c, name="hiprandCreatePoissonDistribution")
+    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) &
+        bind(c, name="hiprandCreatePoissonDistribution")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -703,9 +723,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if the histogram was destroyed successfully
   interface hiprandDestroyDistribution
 #ifdef USE_CUDA_NAMES
-    function hiprandDestroyDistribution_(discrete_distribution) bind(c, name="curandDestroyDistribution")
+    function hiprandDestroyDistribution_(discrete_distribution) &
+        bind(c, name="curandDestroyDistribution")
 #else
-    function hiprandDestroyDistribution_(discrete_distribution) bind(c, name="hiprandDestroyDistribution")
+    function hiprandDestroyDistribution_(discrete_distribution) &
+        bind(c, name="hiprandDestroyDistribution")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -736,9 +758,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
   interface hiprandGenerateLongLong
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateLongLong_(generator,output_data,n) bind(c, name="curandGenerateLongLong")
+    function hiprandGenerateLongLong_(generator,output_data,n) &
+        bind(c, name="curandGenerateLongLong")
 #else
-    function hiprandGenerateLongLong_(generator,output_data,n) bind(c, name="hiprandGenerateLongLong")
+    function hiprandGenerateLongLong_(generator,output_data,n) &
+        bind(c, name="hiprandGenerateLongLong")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -770,7 +794,8 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
 #ifndef USE_CUDA_NAMES
   interface hiprandGenerateUniformHalf
-    function hiprandGenerateUniformHalf_(generator,output_data,n) bind(c, name="hiprandGenerateUniformHalf")
+    function hiprandGenerateUniformHalf_(generator,output_data,n) &
+        bind(c, name="hiprandGenerateUniformHalf")
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
@@ -802,7 +827,8 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
 #ifndef USE_CUDA_NAMES
   interface hiprandGenerateNormalHalf
-    function hiprandGenerateNormalHalf_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormalHalf")
+    function hiprandGenerateNormalHalf_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateNormalHalf")
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
@@ -836,7 +862,8 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
 #ifndef USE_CUDA_NAMES
   interface hiprandGenerateLogNormalHalf
-    function hiprandGenerateLogNormalHalf_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormalHalf")
+    function hiprandGenerateLogNormalHalf_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateLogNormalHalf")
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
@@ -875,9 +902,11 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_TYPE_ERROR if generator's type is not valid
   interface hiprandSetGeneratorOrdering
 #ifdef USE_CUDA_NAMES
-    function hiprandSetGeneratorOrdering_(generator,order) bind(c, name="curandSetGeneratorOrdering")
+    function hiprandSetGeneratorOrdering_(generator,order) &
+        bind(c, name="curandSetGeneratorOrdering")
 #else
-    function hiprandSetGeneratorOrdering_(generator,order) bind(c, name="hiprandSetGeneratorOrdering")
+    function hiprandSetGeneratorOrdering_(generator,order) &
+        bind(c, name="hiprandSetGeneratorOrdering")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
