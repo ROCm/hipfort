@@ -14,13 +14,19 @@ endif()
 
 if(BUILD_TESTING)
   function(hipfort_add_test lib func dir)
+    # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
+    if(dir STREQUAL "f2008")
+      set(ext "f08")
+    else()
+      set(ext "f03")
+    endif()
     # Build absolute source path and fail early if checkout is incomplete.
-    set(src "${CMAKE_CURRENT_SOURCE_DIR}/${dir}/${lib}/${func}.f03")
+    set(src "${CMAKE_CURRENT_SOURCE_DIR}/${dir}/${lib}/${func}.${ext}")
     if(NOT EXISTS "${src}")
       message(FATAL_ERROR "Missing test source: ${src}")
     endif()
 
-    # Force language detection for .f03 in toolchains where CMake misses it.
+    # Force language detection for .f03/.f08 in toolchains where CMake misses it.
     set_source_files_properties("${src}" PROPERTIES LANGUAGE Fortran)
     add_executable(hipfort_test_${dir}_${lib}_${func} "${src}")
     set_target_properties(hipfort_test_${dir}_${lib}_${func}
@@ -355,11 +361,17 @@ if(BUILD_TESTING)
   if(CMAKE_HIP_COMPILER)
     enable_language(HIP)
     foreach(std IN ITEMS f2003 f2008)
+      # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
+      if(std STREQUAL "f2008")
+        set(ext "f08")
+      else()
+        set(ext "f03")
+      endif()
       set(vecadd_target hipfort_test_${std}_vecadd_main)
       add_executable(${vecadd_target}
-        ${std}/vecadd/main.f03
+        ${std}/vecadd/main.${ext}
         ${std}/vecadd/hip_implementation.cpp)
-      set_source_files_properties(${std}/vecadd/main.f03 PROPERTIES LANGUAGE Fortran)
+      set_source_files_properties(${std}/vecadd/main.${ext} PROPERTIES LANGUAGE Fortran)
       set_source_files_properties(${std}/vecadd/hip_implementation.cpp PROPERTIES LANGUAGE HIP)
       target_link_libraries(${vecadd_target} PRIVATE hipfort::hip)
       set_target_properties(${vecadd_target}
