@@ -34677,7 +34677,6 @@ module hipfort_rocblas
     function rocblas_hgemm_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_hgemm_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_64_
       type(c_ptr),value :: handle
@@ -34686,13 +34685,13 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(rocblas_half) :: alpha
-      type(rocblas_half) :: A
+      integer(c_short) :: alpha
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(rocblas_half) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(rocblas_half) :: beta
-      type(rocblas_half) :: C
+      integer(c_short) :: beta
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
     end function
   end interface
@@ -34795,7 +34794,6 @@ module hipfort_rocblas
     function rocblas_hgemm_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_hgemm_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_batched_64_
       type(c_ptr),value :: handle
@@ -34804,12 +34802,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(rocblas_half) :: alpha
+      integer(c_short) :: alpha
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
       type(c_ptr) :: B
       integer(c_int64_t),value :: ldb
-      type(rocblas_half) :: beta
+      integer(c_short) :: beta
       type(c_ptr) :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
@@ -34922,7 +34920,6 @@ module hipfort_rocblas
     function rocblas_hgemm_strided_batched_64_(handle,transA,transB,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_hgemm_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_strided_batched_64_
       type(c_ptr),value :: handle
@@ -34931,15 +34928,15 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(rocblas_half) :: alpha
-      type(rocblas_half) :: A
+      integer(c_short) :: alpha
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: stride_a
-      type(rocblas_half) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: stride_b
-      type(rocblas_half) :: beta
-      type(rocblas_half) :: C
+      integer(c_short) :: beta
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: stride_c
       integer(c_int64_t),value :: batch_count
