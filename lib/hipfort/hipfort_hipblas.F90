@@ -17825,9 +17825,9 @@ module hipfort_hipblas
 
   interface hipblasCsymm
 #ifdef USE_CUDA_NAMES
-    function hipblasCsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsymm_v2")
+    function hipblasCsymm_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCsymm_v2")
 #else
-    function hipblasCsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCsymm")
+    function hipblasCsymm_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCsymm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -17839,99 +17839,28 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsymm_full_rank,&
       hipblasCsymm_rank_0,&
-      hipblasCsymm_rank_1
+      hipblasCsymm_rank_1,&
+      hipblasCsymm_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     symm performs one of the matrix-matrix operations:
-  !> 
-  !>     C := alpha*A*B + beta*C if side == HIPBLAS_SIDE_LEFT,
-  !>     C := alpha*B*A + beta*C if side == HIPBLAS_SIDE_RIGHT,
-  !> 
-  !>     where alpha and beta are scalars, B and C are m by n matrices, and
-  !>     A is a symmetric matrix stored as either upper or lower.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
-  !>             HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     m       [int]
-  !>             m specifies the number of rows of B and C. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of columns of B and C. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A and B are not referenced.
-  !> 
-  !>     @param[in]
-  !>     A       pointer storing matrix A on the GPU.
-  !>             A is m by m if side == HIPBLAS_SIDE_LEFT
-  !>             A is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A.
-  !>             if side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ),
-  !>             otherwise lda >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     B       pointer storing matrix B on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B. ldb >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       pointer storing matrix C on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !>
+
   interface hipblasZsymm
 #ifdef USE_CUDA_NAMES
-    function hipblasZsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsymm_v2")
+    function hipblasZsymm_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZsymm_v2")
 #else
-    function hipblasZsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZsymm")
+    function hipblasZsymm_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZsymm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -17943,28 +17872,107 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsymm_full_rank,&
       hipblasZsymm_rank_0,&
-      hipblasZsymm_rank_1
+      hipblasZsymm_rank_1,&
+      hipblasZsymm_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     symmBatched performs a batch of the matrix-matrix operations:
+  !>
+  !>         C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>         C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``B_i`` and ``C_i`` are ``m`` by ``n`` matrices,
+  !>     and
+  !>     ``A_i`` is a symmetric matrix stored as either upper or lower.
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side  [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     m       [int]
+  !>             m specifies the number of rows of B_i and C_i. m >= 0.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of columns of B_i and C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A_i and B_i are not referenced.
+  !>
+  !>     @param[in]
+  !>     AP      device array of device pointers storing each matrix A_i on the GPU.
+  !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT.
+  !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             Otherwise, lda >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     BP      device array of device pointers storing each matrix B_i on the GPU.
+  !>             Matrix dimension is m by n.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C_i does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>             Matrix dimension is m by n.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsymmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasSsymmBatched")
+    function hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSsymmBatched")
 #else
-    function hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasSsymmBatched")
+    function hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSsymmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -17976,29 +17984,22 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasSsymmBatched_full_rank,&
-      hipblasSsymmBatched_rank_0,&
-      hipblasSsymmBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasDsymmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasDsymmBatched")
+    function hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDsymmBatched")
 #else
-    function hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasDsymmBatched")
+    function hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDsymmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18010,29 +18011,22 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasDsymmBatched_full_rank,&
-      hipblasDsymmBatched_rank_0,&
-      hipblasDsymmBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasCsymmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasCsymmBatched")
+    function hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCsymmBatched")
 #else
-    function hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasCsymmBatched")
+    function hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCsymmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18044,104 +18038,22 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasCsymmBatched_full_rank,&
-      hipblasCsymmBatched_rank_0,&
-      hipblasCsymmBatched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     symmBatched performs a batch of the matrix-matrix operations:
-  !> 
-  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
-  !> 
-  !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
-  !>     A_i is a symmetric matrix stored as either upper or lower.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     m       [int]
-  !>             m specifies the number of rows of B_i and C_i. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of columns of B_i and C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A_i and B_i are not referenced.
-  !> 
-  !>     @param[in]
-  !>     A       device array of device pointers storing each matrix A_i on the GPU.
-  !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
-  !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ),
-  !>             otherwise lda >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     B       device array of device pointers storing each matrix B_i on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C_i need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       device array of device pointers storing each matrix C_i on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsymmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsymmBatched")
+    function hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZsymmBatched")
 #else
-    function hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasZsymmBatched")
+    function hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZsymmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18153,29 +18065,110 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasZsymmBatched_full_rank,&
-      hipblasZsymmBatched_rank_0,&
-      hipblasZsymmBatched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The symmStridedBatched functions perform a batch of the matrix-matrix operations:
+  !>
+  !>         C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>         C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``B_i`` and ``C_i`` are ``m`` by ``n`` matrices,
+  !>     and
+  !>     ``A_i`` is a symmetric matrix stored as either upper or lower.
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side  [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     m       [int]
+  !>             m specifies the number of rows of B_i and C_i. m >= 0.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of columns of B_i and C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A_i and B_i are not referenced.
+  !>
+  !>     @param[in]
+  !>     AP       device pointer to first matrix A_1.
+  !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT.
+  !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             Otherwise, lda >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
+  !>
+  !>     @param[in]
+  !>     BP       device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP        device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
+  !>
+  !>     @param[inout]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsymmStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasSsymmStridedBatched")
+    function hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsymmStridedBatched")
 #else
-    function hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasSsymmStridedBatched")
+    function hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsymmStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18187,14 +18180,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18202,17 +18195,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsymmStridedBatched_full_rank,&
       hipblasSsymmStridedBatched_rank_0,&
-      hipblasSsymmStridedBatched_rank_1
+      hipblasSsymmStridedBatched_rank_1,&
+      hipblasSsymmStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsymmStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasDsymmStridedBatched")
+    function hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsymmStridedBatched")
 #else
-    function hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasDsymmStridedBatched")
+    function hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsymmStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18224,14 +18217,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18239,17 +18232,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsymmStridedBatched_full_rank,&
       hipblasDsymmStridedBatched_rank_0,&
-      hipblasDsymmStridedBatched_rank_1
+      hipblasDsymmStridedBatched_rank_1,&
+      hipblasDsymmStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsymmStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasCsymmStridedBatched")
+    function hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsymmStridedBatched")
 #else
-    function hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasCsymmStridedBatched")
+    function hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsymmStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18261,14 +18254,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18276,101 +18269,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsymmStridedBatched_full_rank,&
       hipblasCsymmStridedBatched_rank_0,&
-      hipblasCsymmStridedBatched_rank_1
+      hipblasCsymmStridedBatched_rank_1,&
+      hipblasCsymmStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     symmStridedBatched performs a batch of the matrix-matrix operations:
-  !> 
-  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
-  !> 
-  !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
-  !>     A_i is a symmetric matrix stored as either upper or lower.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     m       [int]
-  !>             m specifies the number of rows of B_i and C_i. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of columns of B_i and C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A_i and B_i are not referenced.
-  !> 
-  !>     @param[in]
-  !>     A       device pointer to first matrix A_1
-  !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
-  !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ),
-  !>             otherwise lda >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !> 
-  !>     @param[in]
-  !>     B       device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
-  !>               stride from the start of one matrix (B_i) and the next one (B_i+1)
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C        device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
-  !> 
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
-  !>               stride from the start of one matrix (C_i) and the next one (C_i+1)
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsymmStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsymmStridedBatched")
+    function hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsymmStridedBatched")
 #else
-    function hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasZsymmStridedBatched")
+    function hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsymmStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18382,14 +18291,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18397,17 +18306,88 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsymmStridedBatched_full_rank,&
       hipblasZsymmStridedBatched_rank_0,&
-      hipblasZsymmStridedBatched_rank_1
+      hipblasZsymmStridedBatched_rank_1,&
+      hipblasZsymmStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syrk functions perform one of the matrix-matrix operations for a symmetric rank-k
+  !>     update:
+  !>
+  !>         C := alpha*op( A )*op( A )^T + beta*C
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A)`` is an ``n`` by ``k`` matrix, and
+  !>     ``C`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A ) = A, and A is n by k if transA == HIPBLAS_OP_N
+  !>         op( A ) = A^T and A is k by n if transA == HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T: op(A) = A^T
+  !>             - HIPBLAS_OP_N: op(A) = A
+  !>             - HIPBLAS_OP_C: op(A) = A^T
+  !>             - HIPBLAS_OP_C is not supported for complex types. See cherk
+  !>             and zherk.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and A does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      pointer storing matrix A on the GPU.
+  !>             Matrix dimension is ( lda, k ) when transA = HIPBLAS_OP_N. Otherwise, (lda, n).
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A.
+  !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       pointer storing matrix C on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasSsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasSsyrk_v2")
+    function hipblasSsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasSsyrk_v2")
 #else
-    function hipblasSsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasSsyrk")
+    function hipblasSsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasSsyrk")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18419,26 +18399,26 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsyrk_full_rank,&
       hipblasSsyrk_rank_0,&
-      hipblasSsyrk_rank_1
+      hipblasSsyrk_rank_1,&
+      hipblasSsyrk_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasDsyrk_v2")
+    function hipblasDsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasDsyrk_v2")
 #else
-    function hipblasDsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasDsyrk")
+    function hipblasDsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasDsyrk")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18450,26 +18430,26 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsyrk_full_rank,&
       hipblasDsyrk_rank_0,&
-      hipblasDsyrk_rank_1
+      hipblasDsyrk_rank_1,&
+      hipblasDsyrk_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasCsyrk_v2")
+    function hipblasCsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasCsyrk_v2")
 #else
-    function hipblasCsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasCsyrk")
+    function hipblasCsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasCsyrk")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18481,94 +18461,26 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsyrk_full_rank,&
       hipblasCsyrk_rank_0,&
-      hipblasCsyrk_rank_1
+      hipblasCsyrk_rank_1,&
+      hipblasCsyrk_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syrk performs one of the matrix-matrix operations for a symmetric rank-k update
-  !> 
-  !>     C := alpha*op( A )*op( A )^T + beta*C
-  !> 
-  !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
-  !>     C is a symmetric n x n matrix stored as either upper or lower.
-  !> 
-  !>         op( A ) = A, and A is n by k if transA == HIPBLAS_OP_N
-  !>         op( A ) = A^T and A is k by n if transA == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T: op(A) = A^T
-  !>             HIPBLAS_OP_N: op(A) = A
-  !>             HIPBLAS_OP_C: op(A) = A^T
-  !> 
-  !>             HIPBLAS_OP_C is not supported for complex types, see cherk
-  !>             and zherk.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       pointer storing matrix A on the GPU.
-  !>             Martrix dimension is ( lda, k ) when if transA = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A.
-  !>             if transA = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       pointer storing matrix C on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>
+
   interface hipblasZsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZsyrk_v2")
+    function hipblasZsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasZsyrk_v2")
 #else
-    function hipblasZsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasZsyrk")
+    function hipblasZsyrk_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasZsyrk")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18580,26 +18492,99 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsyrk_full_rank,&
       hipblasZsyrk_rank_0,&
-      hipblasZsyrk_rank_1
+      hipblasZsyrk_rank_1,&
+      hipblasZsyrk_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syrkBatched functions performs a batch of the matrix-matrix operations for a symmetric
+  !>     rank-k update:
+  !>
+  !>         C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` is an ``n`` by ``k`` matrix, and
+  !>     ``C_i`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A_i ) = A_i, and A_i is n by k if transA == HIPBLAS_OP_N
+  !>         op( A_i ) = A_i^T and A_i is k by n if transA == HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T: op(A) = A^T
+  !>             - HIPBLAS_OP_N: op(A) = A
+  !>             - HIPBLAS_OP_C: op(A) = A^T
+  !>             - HIPBLAS_OP_C is not supported for complex types. See cherk
+  !>             and zherk.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>             when transA is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If transA = HIPBLAS_OP_N, lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       device array of device pointers storing each matrix C_i on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsyrkBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="cublasSsyrkBatched")
+    function hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasSsyrkBatched")
 #else
-    function hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="hipblasSsyrkBatched")
+    function hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasSsyrkBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18611,27 +18596,20 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasSsyrkBatched_full_rank,&
-      hipblasSsyrkBatched_rank_0,&
-      hipblasSsyrkBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasDsyrkBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="cublasDsyrkBatched")
+    function hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasDsyrkBatched")
 #else
-    function hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="hipblasDsyrkBatched")
+    function hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasDsyrkBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18643,27 +18621,20 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasDsyrkBatched_full_rank,&
-      hipblasDsyrkBatched_rank_0,&
-      hipblasDsyrkBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasCsyrkBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="cublasCsyrkBatched")
+    function hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasCsyrkBatched")
 #else
-    function hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="hipblasCsyrkBatched")
+    function hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasCsyrkBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18675,97 +18646,20 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasCsyrkBatched_full_rank,&
-      hipblasCsyrkBatched_rank_0,&
-      hipblasCsyrkBatched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syrkBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
-  !> 
-  !>     C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
-  !> 
-  !>     where  alpha and beta are scalars, op(A_i) is an n by k matrix, and
-  !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !> 
-  !>         op( A_i ) = A_i, and A_i is n by k if transA == HIPBLAS_OP_N
-  !>         op( A_i ) = A_i^T and A_i is k by n if transA == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T: op(A) = A^T
-  !>             HIPBLAS_OP_N: op(A) = A
-  !>             HIPBLAS_OP_C: op(A) = A^T
-  !> 
-  !>             HIPBLAS_OP_C is not supported for complex types, see cherk
-  !>             and zherk.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       device array of device pointers storing each matrix_i A of dimension (lda, k)
-  !>             when transA is HIPBLAS_OP_N, otherwise of dimension (lda, n)
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if transA = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       device array of device pointers storing each matrix C_i on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsyrkBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="cublasZsyrkBatched")
+    function hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasZsyrkBatched")
 #else
-    function hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="hipblasZsyrkBatched")
+    function hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasZsyrkBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18777,27 +18671,102 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasZsyrkBatched_full_rank,&
-      hipblasZsyrkBatched_rank_0,&
-      hipblasZsyrkBatched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syrkStridedBatched functions perform a batch of the matrix-matrix operations for a
+  !>     symmetric rank-k update:
+  !>
+  !>         C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` is an ``n`` by ``k`` matrix, and
+  !>     ``C_i`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A_i ) = A_i, and A_i is n by k if transA == HIPBLAS_OP_N
+  !>         op( A_i ) = A_i^T and A_i is k by n if transA == HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T: op(A) = A^T
+  !>             - HIPBLAS_OP_N: op(A) = A
+  !>             - HIPBLAS_OP_C: op(A) = A^T
+  !>             - HIPBLAS_OP_C is not supported for complex types. See cherk
+  !>             and zherk.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>             when transA is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       Device pointer to the first matrix C_1 on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
+  !>
+  !>     @param[inout]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsyrkStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="cublasSsyrkStridedBatched")
+    function hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsyrkStridedBatched")
 #else
-    function hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasSsyrkStridedBatched")
+    function hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsyrkStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18809,11 +18778,11 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18821,17 +18790,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsyrkStridedBatched_full_rank,&
       hipblasSsyrkStridedBatched_rank_0,&
-      hipblasSsyrkStridedBatched_rank_1
+      hipblasSsyrkStridedBatched_rank_1,&
+      hipblasSsyrkStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsyrkStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="cublasDsyrkStridedBatched")
+    function hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsyrkStridedBatched")
 #else
-    function hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasDsyrkStridedBatched")
+    function hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsyrkStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18843,11 +18812,11 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18855,17 +18824,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsyrkStridedBatched_full_rank,&
       hipblasDsyrkStridedBatched_rank_0,&
-      hipblasDsyrkStridedBatched_rank_1
+      hipblasDsyrkStridedBatched_rank_1,&
+      hipblasDsyrkStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsyrkStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="cublasCsyrkStridedBatched")
+    function hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsyrkStridedBatched")
 #else
-    function hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasCsyrkStridedBatched")
+    function hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsyrkStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18877,11 +18846,11 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -18889,96 +18858,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsyrkStridedBatched_full_rank,&
       hipblasCsyrkStridedBatched_rank_0,&
-      hipblasCsyrkStridedBatched_rank_1
+      hipblasCsyrkStridedBatched_rank_1,&
+      hipblasCsyrkStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syrkStridedBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
-  !> 
-  !>     C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
-  !> 
-  !>     where  alpha and beta are scalars, op(A_i) is an n by k matrix, and
-  !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !> 
-  !>         op( A_i ) = A_i, and A_i is n by k if transA == HIPBLAS_OP_N
-  !>         op( A_i ) = A_i^T and A_i is k by n if transA == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T: op(A) = A^T
-  !>             HIPBLAS_OP_N: op(A) = A
-  !>             HIPBLAS_OP_C: op(A) = A^T
-  !> 
-  !>             HIPBLAS_OP_C is not supported for complex types, see cherk
-  !>             and zherk.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
-  !>             when transA is HIPBLAS_OP_N, otherwise of dimension (lda, n)
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if transA = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       Device pointer to the first matrix C_1 on the GPU. on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
-  !>               stride from the start of one matrix (C_i) and the next one (C_i+1)
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsyrkStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsyrkStridedBatched")
+    function hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsyrkStridedBatched")
 #else
-    function hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasZsyrkStridedBatched")
+    function hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsyrkStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -18990,11 +18880,11 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -19002,17 +18892,95 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsyrkStridedBatched_full_rank,&
       hipblasZsyrkStridedBatched_rank_0,&
-      hipblasZsyrkStridedBatched_rank_1
+      hipblasZsyrkStridedBatched_rank_1,&
+      hipblasZsyrkStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syr2k functions perform one of the matrix-matrix operations for a symmetric rank-2k
+  !>     update:
+  !>
+  !>         C := alpha*(op( A )*op( B )^T + op( B )*op( A )^T) + beta*C
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A)`` and ``op(B)`` are ``n`` by ``k``
+  !>     matrices, and
+  !>     ``C`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
+  !>         op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T:      op( A ) = A^T, op( B ) = B^T
+  !>             - HIPBLAS_OP_N:           op( A ) = A, op( B ) = B
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A) and op(B). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      Pointer storing matrix A on the GPU.
+  !>             Matrix dimension is ( lda, k ) when trans = HIPBLAS_OP_N. Otherwise, (lda, n).
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A.
+  !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>     @param[in]
+  !>     BP      pointer storing matrix B on the GPU.
+  !>             Matrix dimension is ( ldb, k ) when trans = HIPBLAS_OP_N. Otherwise, (ldb, n).
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B.
+  !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
+  !>             Otherwise, ldb >= max( 1, k ).
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       pointer storing matrix C on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasSsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsyr2k_v2")
+    function hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasSsyr2k_v2")
 #else
-    function hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSsyr2k")
+    function hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasSsyr2k")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19024,28 +18992,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsyr2k_full_rank,&
       hipblasSsyr2k_rank_0,&
-      hipblasSsyr2k_rank_1
+      hipblasSsyr2k_rank_1,&
+      hipblasSsyr2k_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsyr2k_v2")
+    function hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasDsyr2k_v2")
 #else
-    function hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasDsyr2k")
+    function hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasDsyr2k")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19057,28 +19025,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsyr2k_full_rank,&
       hipblasDsyr2k_rank_0,&
-      hipblasDsyr2k_rank_1
+      hipblasDsyr2k_rank_1,&
+      hipblasDsyr2k_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsyr2k_v2")
+    function hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCsyr2k_v2")
 #else
-    function hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCsyr2k")
+    function hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCsyr2k")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19090,101 +19058,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsyr2k_full_rank,&
       hipblasCsyr2k_rank_0,&
-      hipblasCsyr2k_rank_1
+      hipblasCsyr2k_rank_1,&
+      hipblasCsyr2k_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syr2k performs one of the matrix-matrix operations for a symmetric rank-2k update
-  !> 
-  !>     C := alpha*(op( A )*op( B )^T + op( B )*op( A )^T) + beta*C
-  !> 
-  !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrix, and
-  !>     C is a symmetric n x n matrix stored as either upper or lower.
-  !> 
-  !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
-  !>         op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     trans  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T:      op( A ) = A^T, op( B ) = B^T
-  !>             HIPBLAS_OP_N:           op( A ) = A, op( B ) = B
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A) and op(B). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       pointer storing matrix A on the GPU.
-  !>             Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A.
-  !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !>     @param[in]
-  !>     B       pointer storing matrix B on the GPU.
-  !>             Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n)
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B.
-  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ),
-  !>             otherwise ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       pointer storing matrix C on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>
+
   interface hipblasZsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsyr2k_v2")
+    function hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZsyr2k_v2")
 #else
-    function hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZsyr2k")
+    function hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZsyr2k")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19196,28 +19091,107 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsyr2k_full_rank,&
       hipblasZsyr2k_rank_0,&
-      hipblasZsyr2k_rank_1
+      hipblasZsyr2k_rank_1,&
+      hipblasZsyr2k_full_rank
 #endif
   end interface
-  
+
+  !>     \brief   BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syr2kBatched functions perform a batch of the matrix-matrix operations for a symmetric
+  !>     rank-2k update:
+  !>
+  !>         C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are ``n`` by ``k``
+  !>     matrices, and
+  !>     ``C_i`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
+  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T, and A_i and B_i are k by n if trans ==
+  !>         HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
+  !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>     @param[in]
+  !>     BP      device array of device pointers storing each matrix_i B of dimension (ldb, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B.
+  !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
+  !>             Otherwise, ldb >= max( 1, k ).
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsyr2kBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasSsyr2kBatched")
+    function hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSsyr2kBatched")
 #else
-    function hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasSsyr2kBatched")
+    function hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSsyr2kBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19229,29 +19203,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasSsyr2kBatched_full_rank,&
-      hipblasSsyr2kBatched_rank_0,&
-      hipblasSsyr2kBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasDsyr2kBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasDsyr2kBatched")
+    function hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDsyr2kBatched")
 #else
-    function hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasDsyr2kBatched")
+    function hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDsyr2kBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19263,29 +19230,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasDsyr2kBatched_full_rank,&
-      hipblasDsyr2kBatched_rank_0,&
-      hipblasDsyr2kBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasCsyr2kBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasCsyr2kBatched")
+    function hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCsyr2kBatched")
 #else
-    function hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasCsyr2kBatched")
+    function hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCsyr2kBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19297,102 +19257,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasCsyr2kBatched_full_rank,&
-      hipblasCsyr2kBatched_rank_0,&
-      hipblasCsyr2kBatched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syr2kBatched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
-  !> 
-  !>     C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
-  !> 
-  !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
-  !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !> 
-  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
-  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     trans  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
-  !>             HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       device array of device pointers storing each matrix_i A of dimension (lda, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (lda, n)
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !>     @param[in]
-  !>     B       device array of device pointers storing each matrix_i B of dimension (ldb, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (ldb, n)
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B.
-  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ),
-  !>             otherwise ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       device array of device pointers storing each matrix C_i on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsyr2kBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsyr2kBatched")
+    function hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZsyr2kBatched")
 #else
-    function hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasZsyr2kBatched")
+    function hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZsyr2kBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19404,29 +19284,117 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasZsyr2kBatched_full_rank,&
-      hipblasZsyr2kBatched_rank_0,&
-      hipblasZsyr2kBatched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syr2kStridedBatched functions perform a batch of the matrix-matrix operations for a
+  !>     symmetric rank-2k update:
+  !>
+  !>         C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are ``n`` by ``k``
+  !>     matrices, and
+  !>     ``C_i`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
+  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T, and A_i and B_i are k by n if trans ==
+  !>         HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
+  !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
+  !>
+  !>     @param[in]
+  !>     BP      Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B_i.
+  !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
+  !>             Otherwise, ldb >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       Device pointer to the first matrix C_1 on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
+  !>
+  !>     @param[inout]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsyr2kStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasSsyr2kStridedBatched")
+    function hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsyr2kStridedBatched")
 #else
-    function hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasSsyr2kStridedBatched")
+    function hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsyr2kStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19438,14 +19406,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -19453,17 +19421,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsyr2kStridedBatched_full_rank,&
       hipblasSsyr2kStridedBatched_rank_0,&
-      hipblasSsyr2kStridedBatched_rank_1
+      hipblasSsyr2kStridedBatched_rank_1,&
+      hipblasSsyr2kStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsyr2kStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasDsyr2kStridedBatched")
+    function hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsyr2kStridedBatched")
 #else
-    function hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasDsyr2kStridedBatched")
+    function hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsyr2kStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19475,14 +19443,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -19490,17 +19458,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsyr2kStridedBatched_full_rank,&
       hipblasDsyr2kStridedBatched_rank_0,&
-      hipblasDsyr2kStridedBatched_rank_1
+      hipblasDsyr2kStridedBatched_rank_1,&
+      hipblasDsyr2kStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsyr2kStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasCsyr2kStridedBatched")
+    function hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsyr2kStridedBatched")
 #else
-    function hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasCsyr2kStridedBatched")
+    function hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsyr2kStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19512,14 +19480,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -19527,106 +19495,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsyr2kStridedBatched_full_rank,&
       hipblasCsyr2kStridedBatched_rank_0,&
-      hipblasCsyr2kStridedBatched_rank_1
+      hipblasCsyr2kStridedBatched_rank_1,&
+      hipblasCsyr2kStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syr2kStridedBatched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
-  !> 
-  !>     C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
-  !> 
-  !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
-  !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !> 
-  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
-  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     trans  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
-  !>             HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (lda, n)
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !> 
-  !>     @param[in]
-  !>     B       Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (ldb, n)
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B_i.
-  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ),
-  !>             otherwise ldb >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     stride_B  [hipblasStride]
-  !>               stride from the start of one matrix (B_i) and the next one (B_i+1)
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       Device pointer to the first matrix C_1 on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
-  !>               stride from the start of one matrix (C_i) and the next one (C_i+1)
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsyr2kStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsyr2kStridedBatched")
+    function hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsyr2kStridedBatched")
 #else
-    function hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasZsyr2kStridedBatched")
+    function hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsyr2kStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19638,14 +19517,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -19653,17 +19532,99 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsyr2kStridedBatched_full_rank,&
       hipblasZsyr2kStridedBatched_rank_0,&
-      hipblasZsyr2kStridedBatched_rank_1
+      hipblasZsyr2kStridedBatched_rank_1,&
+      hipblasZsyr2kStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syrkx functions performs one of the matrix-matrix operations for a symmetric rank-k
+  !>     update:
+  !>
+  !>         C := alpha*op( A )*op( B )^T + beta*C
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A)`` and ``op(B)`` are ``n`` by ``k``
+  !>     matrices, and
+  !>     ``C`` is a symmetric ``n`` by ``n ``matrix stored as either upper or lower.
+  !>     This routine should only be used when the caller can guarantee that the result of
+  !>     ``op( A )*op( B )^T`` will be symmetric.
+  !>
+  !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
+  !>         op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T:      op( A ) = A^T, op( B ) = B^T
+  !>             - HIPBLAS_OP_N:           op( A ) = A, op( B ) = B
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A) and op(B). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      pointer storing matrix A on the GPU.
+  !>             Matrix dimension is ( lda, k ) when trans = HIPBLAS_OP_N. Otherwise, (lda, n).
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A.
+  !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     BP      pointer storing matrix B on the GPU.
+  !>             Matrix dimension is ( ldb, k ) when trans = HIPBLAS_OP_N. Otherwise, (ldb, n).
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B.
+  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
+  !>             Otherwise, ldb >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       pointer storing matrix C on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasSsyrkx
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsyrkx")
+    function hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasSsyrkx")
 #else
-    function hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSsyrkx")
+    function hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasSsyrkx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19675,28 +19636,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsyrkx_full_rank,&
       hipblasSsyrkx_rank_0,&
-      hipblasSsyrkx_rank_1
+      hipblasSsyrkx_rank_1,&
+      hipblasSsyrkx_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsyrkx
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsyrkx")
+    function hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasDsyrkx")
 #else
-    function hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasDsyrkx")
+    function hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasDsyrkx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19708,28 +19669,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsyrkx_full_rank,&
       hipblasDsyrkx_rank_0,&
-      hipblasDsyrkx_rank_1
+      hipblasDsyrkx_rank_1,&
+      hipblasDsyrkx_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsyrkx
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsyrkx")
+    function hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCsyrkx")
 #else
-    function hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCsyrkx")
+    function hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCsyrkx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19741,104 +19702,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsyrkx_full_rank,&
       hipblasCsyrkx_rank_0,&
-      hipblasCsyrkx_rank_1
+      hipblasCsyrkx_rank_1,&
+      hipblasCsyrkx_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syrkx performs one of the matrix-matrix operations for a symmetric rank-k update
-  !> 
-  !>     C := alpha*op( A )*op( B )^T + beta*C
-  !> 
-  !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrix, and
-  !>     C is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be symmetric.
-  !> 
-  !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
-  !>         op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     trans  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T:      op( A ) = A^T, op( B ) = B^T
-  !>             HIPBLAS_OP_N:           op( A ) = A, op( B ) = B
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A) and op(B). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       pointer storing matrix A on the GPU.
-  !>             Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A.
-  !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     B       pointer storing matrix B on the GPU.
-  !>             Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n)
-  !>             only the upper/lower triangular part is accessed.
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B.
-  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ),
-  !>             otherwise ldb >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       pointer storing matrix C on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>
+
   interface hipblasZsyrkx
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsyrkx")
+    function hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZsyrkx")
 #else
-    function hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZsyrkx")
+    function hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZsyrkx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19850,28 +19735,113 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsyrkx_full_rank,&
       hipblasZsyrkx_rank_0,&
-      hipblasZsyrkx_rank_1
+      hipblasZsyrkx_rank_1,&
+      hipblasZsyrkx_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syrkxBatched functions perform a batch of the matrix-matrix operations for a symmetric
+  !>     rank-k update:
+  !>
+  !>         C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are an ``n`` by ``k``
+  !>     matrix, and
+  !>     ``C_i`` is a symmetric ``n`` x ``n`` matrix stored as either upper or lower.
+  !>     This routine should only be used when the caller can guarantee that the result of
+  !>     ``op( A_i )*op( B_i )^T`` will be symmetric.
+  !>
+  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
+  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T, and A_i and B_i are k by n if trans ==
+  !>         HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
+  !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and A does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     BP      device array of device pointers storing each matrix_i B of dimension (ldb, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B.
+  !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
+  !>             Otherwise, ldb >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       device array of device pointers storing each matrix C_i on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>             number of instances in the batch.
   interface hipblasSsyrkxBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasSsyrkxBatched")
+    function hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSsyrkxBatched")
 #else
-    function hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasSsyrkxBatched")
+    function hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSsyrkxBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19883,29 +19853,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasSsyrkxBatched_full_rank,&
-      hipblasSsyrkxBatched_rank_0,&
-      hipblasSsyrkxBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasDsyrkxBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasDsyrkxBatched")
+    function hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDsyrkxBatched")
 #else
-    function hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasDsyrkxBatched")
+    function hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDsyrkxBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19917,29 +19880,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasDsyrkxBatched_full_rank,&
-      hipblasDsyrkxBatched_rank_0,&
-      hipblasDsyrkxBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasCsyrkxBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasCsyrkxBatched")
+    function hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCsyrkxBatched")
 #else
-    function hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasCsyrkxBatched")
+    function hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCsyrkxBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -19951,107 +19907,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasCsyrkxBatched_full_rank,&
-      hipblasCsyrkxBatched_rank_0,&
-      hipblasCsyrkxBatched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syrkxBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
-  !> 
-  !>     C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
-  !> 
-  !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
-  !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )*op( B_i )^T will be symmetric.
-  !> 
-  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
-  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     trans  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
-  !>             HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       device array of device pointers storing each matrix_i A of dimension (lda, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (lda, n)
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     B       device array of device pointers storing each matrix_i B of dimension (ldb, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (ldb, n)
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B.
-  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ),
-  !>             otherwise ldb >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       device array of device pointers storing each matrix C_i on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>             number of instances in the batch.
-  !>
+
   interface hipblasZsyrkxBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsyrkxBatched")
+    function hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZsyrkxBatched")
 #else
-    function hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasZsyrkxBatched")
+    function hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZsyrkxBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -20063,29 +19934,119 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasZsyrkxBatched_full_rank,&
-      hipblasZsyrkxBatched_rank_0,&
-      hipblasZsyrkxBatched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief   BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The syrkxStridedBatched functions perform a batch of the matrix-matrix operations for a
+  !>     symmetric rank-k update:
+  !>
+  !>         C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are ``n`` by ``k``
+  !>     matrices, and
+  !>     ``C_i`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
+  !>     This routine should only be used when the caller can guarantee that the result of
+  !>     ``op( A_i )*op( B_i )^T`` will be symmetric.
+  !>
+  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
+  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T, and A_i and B_i are k by n if trans ==
+  !>         HIPBLAS_OP_T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
+  !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
+  !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows and columns of C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of op(A). k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A is not referenced and does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
+  !>             Otherwise, lda >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
+  !>
+  !>     @param[in]
+  !>     BP       Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
+  !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B_i.
+  !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
+  !>             Otherwise, ldb >= max( 1, k ).
+  !>
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP       Device pointer to the first matrix C_1 on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
+  !>
+  !>     @param[inout]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasSsyrkxStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="cublasSsyrkxStridedBatched")
+    function hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsyrkxStridedBatched")
 #else
-    function hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="hipblasSsyrkxStridedBatched")
+    function hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsyrkxStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -20097,32 +20058,32 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       real(c_float) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
-      integer(c_int64_t),value :: stridec
+      integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSsyrkxStridedBatched_full_rank,&
       hipblasSsyrkxStridedBatched_rank_0,&
-      hipblasSsyrkxStridedBatched_rank_1
+      hipblasSsyrkxStridedBatched_rank_1,&
+      hipblasSsyrkxStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDsyrkxStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="cublasDsyrkxStridedBatched")
+    function hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsyrkxStridedBatched")
 #else
-    function hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="hipblasDsyrkxStridedBatched")
+    function hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsyrkxStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -20134,32 +20095,32 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       real(c_double) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
-      integer(c_int64_t),value :: stridec
+      integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDsyrkxStridedBatched_full_rank,&
       hipblasDsyrkxStridedBatched_rank_0,&
-      hipblasDsyrkxStridedBatched_rank_1
+      hipblasDsyrkxStridedBatched_rank_1,&
+      hipblasDsyrkxStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCsyrkxStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="cublasCsyrkxStridedBatched")
+    function hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsyrkxStridedBatched")
 #else
-    function hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="hipblasCsyrkxStridedBatched")
+    function hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsyrkxStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -20171,122 +20132,32 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
-      integer(c_int64_t),value :: stridec
+      integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCsyrkxStridedBatched_full_rank,&
       hipblasCsyrkxStridedBatched_rank_0,&
-      hipblasCsyrkxStridedBatched_rank_1
+      hipblasCsyrkxStridedBatched_rank_1,&
+      hipblasCsyrkxStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     syrkxStridedBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
-  !> 
-  !>     C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
-  !> 
-  !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
-  !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )*op( B_i )^T will be symmetric.
-  !> 
-  !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
-  !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     trans  [hipblasOperation_t]
-  !>             HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
-  !>             HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of rows and columns of C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     k       [int]
-  !>             k specifies the number of columns of op(A). k >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A is not referenced and A need not be set before
-  !>             entry.
-  !> 
-  !>     @param[in]
-  !>     A       Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (lda, n)
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ),
-  !>             otherwise lda >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !> 
-  !>     @param[in]
-  !>     B       Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
-  !>             when trans is HIPBLAS_OP_N, otherwise of dimension (ldb, n)
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B_i.
-  !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ),
-  !>             otherwise ldb >= max( 1, k ).
-  !> 
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
-  !>               stride from the start of one matrix (B_i) and the next one (B_i+1)
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       Device pointer to the first matrix C_1 on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
-  !>               stride from the start of one matrix (C_i) and the next one (C_i+1)
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZsyrkxStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="cublasZsyrkxStridedBatched")
+    function hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsyrkxStridedBatched")
 #else
-    function hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="hipblasZsyrkxStridedBatched")
+    function hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsyrkxStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -20298,427 +20169,494 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
-      integer(c_int64_t),value :: stridec
+      integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZsyrkxStridedBatched_full_rank,&
       hipblasZsyrkxStridedBatched_rank_0,&
-      hipblasZsyrkxStridedBatched_rank_1
+      hipblasZsyrkxStridedBatched_rank_1,&
+      hipblasZsyrkxStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The geam functions perform one of the matrix-matrix operations:
+  !>
+  !>         C = alpha*op( A ) + beta*op( B ),
+  !>
+  !>     where op( X ) is one of
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B`` and ``C`` are matrices, with
+  !>     ``op( A )`` an ``m`` by ``n`` matrix, ``op( B )`` an ``m`` by`` n`` matrix, and ``C`` an
+  !>     ``m`` by ``n`` matrix.
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in]
+  !>     AP         device pointer storing matrix A.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>     @param[in]
+  !>     BP         device pointer storing matrix B.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of B.
+  !>     @param[in, out]
+  !>     CP         device pointer storing matrix C.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
   interface hipblasSgeam
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasSgeam")
+    function hipblasSgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasSgeam")
 #else
-    function hipblasSgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasSgeam")
+    function hipblasSgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasSgeam")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSgeam_full_rank,&
       hipblasSgeam_rank_0,&
-      hipblasSgeam_rank_1
+      hipblasSgeam_rank_1,&
+      hipblasSgeam_full_rank
 #endif
   end interface
-  
+
   interface hipblasDgeam
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasDgeam")
+    function hipblasDgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasDgeam")
 #else
-    function hipblasDgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasDgeam")
+    function hipblasDgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasDgeam")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgeam_full_rank,&
       hipblasDgeam_rank_0,&
-      hipblasDgeam_rank_1
+      hipblasDgeam_rank_1,&
+      hipblasDgeam_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgeam
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasCgeam")
+    function hipblasCgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasCgeam")
 #else
-    function hipblasCgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasCgeam")
+    function hipblasCgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasCgeam")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgeam_full_rank,&
       hipblasCgeam_rank_0,&
-      hipblasCgeam_rank_1
+      hipblasCgeam_rank_1,&
+      hipblasCgeam_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !>     geam performs one of the matrix-matrix operations
-  !> 
-  !>         C = alpha*op( A ) + beta*op( B ),
-  !> 
-  !>     where op( X ) is one of
-  !> 
-  !>         op( X ) = X      or
-  !>         op( X ) = X**T   or
-  !>         op( X ) = X**H,
-  !> 
-  !>     alpha and beta are scalars, and A, B and C are matrices, with
-  !>     op( A ) an m by n matrix, op( B ) an m by n matrix, and C an m by n matrix.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
-  !>               specifies the form of op( A )
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
-  !>               specifies the form of op( B )
-  !>     @param[in]
-  !>     m         [int]
-  !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
-  !>               matrix dimension n.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     A         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
-  !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in]
-  !>     B         device pointer storing matrix B.
-  !>     @param[in]
-  !>     ldb       [int]
-  !>               specifies the leading dimension of B.
-  !>     @param[in, out]
-  !>     C         device pointer storing matrix C.
-  !>     @param[in]
-  !>     ldc       [int]
-  !>               specifies the leading dimension of C.
-  !>
+
   interface hipblasZgeam
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasZgeam")
+    function hipblasZgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasZgeam")
 #else
-    function hipblasZgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasZgeam")
+    function hipblasZgeam_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasZgeam")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgeam_full_rank,&
       hipblasZgeam_rank_0,&
-      hipblasZgeam_rank_1
+      hipblasZgeam_rank_1,&
+      hipblasZgeam_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The geamBatched functions perform one of the batched matrix-matrix operations:
+  !>
+  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)``, ``op(B_i)``, and ``C_i`` are ``m``
+  !>     by ``n`` matrices,
+  !>     and ``op( X )`` is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in]
+  !>     AP        device array of device pointers storing each matrix A_i on the GPU.
+  !>               Each A_i is of dimension ( lda, k ), where k is m
+  !>               when  transA == HIPBLAS_OP_N and
+  !>               is  n  when  transA == HIPBLAS_OP_T.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>     @param[in]
+  !>     BP         device array of device pointers storing each matrix B_i on the GPU.
+  !>               Each B_i is of dimension ( ldb, k ), where k is m
+  !>               when  transB == HIPBLAS_OP_N and
+  !>               is  n  when  transB == HIPBLAS_OP_T.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of B.
+  !>     @param[in, out]
+  !>     CP         device array of device pointers storing each matrix C_i on the GPU.
+  !>               Each C_i is of dimension ( ldc, n ).
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances i in the batch.
   interface hipblasSgeamBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasSgeamBatched")
+    function hipblasSgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasSgeamBatched")
 #else
-    function hipblasSgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasSgeamBatched")
+    function hipblasSgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasSgeamBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasSgeamBatched_full_rank,&
-      hipblasSgeamBatched_rank_0,&
-      hipblasSgeamBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasDgeamBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasDgeamBatched")
+    function hipblasDgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasDgeamBatched")
 #else
-    function hipblasDgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasDgeamBatched")
+    function hipblasDgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasDgeamBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasDgeamBatched_full_rank,&
-      hipblasDgeamBatched_rank_0,&
-      hipblasDgeamBatched_rank_1
-#endif
   end interface
-  
+
   interface hipblasCgeamBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasCgeamBatched")
+    function hipblasCgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasCgeamBatched")
 #else
-    function hipblasCgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasCgeamBatched")
+    function hipblasCgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasCgeamBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasCgeamBatched_full_rank,&
-      hipblasCgeamBatched_rank_0,&
-      hipblasCgeamBatched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !>     geamBatched performs one of the batched matrix-matrix operations
-  !> 
-  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
-  !> 
-  !>     where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
-  !>     and op( X ) is one of
-  !> 
-  !>         op( X ) = X      or
-  !>         op( X ) = X**T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
-  !>               specifies the form of op( A )
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
-  !>               specifies the form of op( B )
-  !>     @param[in]
-  !>     m         [int]
-  !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
-  !>               matrix dimension n.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     A         device array of device pointers storing each matrix A_i on the GPU.
-  !>               Each A_i is of dimension ( lda, k ), where k is m
-  !>               when  transA == HIPBLAS_OP_N and
-  !>               is  n  when  transA == HIPBLAS_OP_T.
-  !>     @param[in]
-  !>     lda       [int]
-  !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in]
-  !>     B         device array of device pointers storing each matrix B_i on the GPU.
-  !>               Each B_i is of dimension ( ldb, k ), where k is m
-  !>               when  transB == HIPBLAS_OP_N and
-  !>               is  n  when  transB == HIPBLAS_OP_T.
-  !>     @param[in]
-  !>     ldb       [int]
-  !>               specifies the leading dimension of B.
-  !>     @param[in, out]
-  !>     C         device array of device pointers storing each matrix C_i on the GPU.
-  !>               Each C_i is of dimension ( ldc, n ).
-  !>     @param[in]
-  !>     ldc       [int]
-  !>               specifies the leading dimension of C.
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances i in the batch.
-  !>
+
   interface hipblasZgeamBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasZgeamBatched")
+    function hipblasZgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasZgeamBatched")
 #else
-    function hipblasZgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasZgeamBatched")
+    function hipblasZgeamBatched_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasZgeamBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasZgeamBatched_full_rank,&
-      hipblasZgeamBatched_rank_0,&
-      hipblasZgeamBatched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The geamStridedBatched functions perform one of the batched matrix-matrix operations:
+  !>
+  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A_i)``, ``op(B_i)``, and ``C_i`` are ``m``
+  !>     by ``n`` matrices,
+  !>     and ``op( X )`` is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T
+  !>
+  !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>
+  !>     @param[in]
+  !>     AP        device pointer to the first matrix A_0 on the GPU.
+  !>               Each A_i is of dimension ( lda, k ), where k is m
+  !>               when  transA == HIPBLAS_OP_N and
+  !>               is  n  when  transA == HIPBLAS_OP_T.
+  !>
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
+  !>
+  !>     @param[in]
+  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>
+  !>     @param[in]
+  !>     BP        pointer to the first matrix B_0 on the GPU.
+  !>               Each B_i is of dimension ( ldb, k ), where k is m
+  !>               when  transB == HIPBLAS_OP_N and
+  !>               is  n  when  transB == HIPBLAS_OP_T.
+  !>
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of B.
+  !>
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
+  !>
+  !>     @param[in, out]
+  !>     CP         pointer to the first matrix C_0 on the GPU.
+  !>               Each C_i is of dimension ( ldc, n ).
+  !>
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
+  !>
+  !>     @param[in]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances i in the batch.
   interface hipblasSgeamStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasSgeamStridedBatched")
+    function hipblasSgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasSgeamStridedBatched")
 #else
-    function hipblasSgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasSgeamStridedBatched")
+    function hipblasSgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasSgeamStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       real(c_float) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -20726,36 +20664,36 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSgeamStridedBatched_full_rank,&
       hipblasSgeamStridedBatched_rank_0,&
-      hipblasSgeamStridedBatched_rank_1
+      hipblasSgeamStridedBatched_rank_1,&
+      hipblasSgeamStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDgeamStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasDgeamStridedBatched")
+    function hipblasDgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasDgeamStridedBatched")
 #else
-    function hipblasDgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasDgeamStridedBatched")
+    function hipblasDgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasDgeamStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       real(c_double) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -20763,36 +20701,36 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgeamStridedBatched_full_rank,&
       hipblasDgeamStridedBatched_rank_0,&
-      hipblasDgeamStridedBatched_rank_1
+      hipblasDgeamStridedBatched_rank_1,&
+      hipblasDgeamStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgeamStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasCgeamStridedBatched")
+    function hipblasCgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasCgeamStridedBatched")
 #else
-    function hipblasCgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasCgeamStridedBatched")
+    function hipblasCgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasCgeamStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -20800,118 +20738,36 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgeamStridedBatched_full_rank,&
       hipblasCgeamStridedBatched_rank_0,&
-      hipblasCgeamStridedBatched_rank_1
+      hipblasCgeamStridedBatched_rank_1,&
+      hipblasCgeamStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !>     geamStridedBatched performs one of the batched matrix-matrix operations
-  !> 
-  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
-  !> 
-  !>     where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
-  !>     and op( X ) is one of
-  !> 
-  !>         op( X ) = X      or
-  !>         op( X ) = X**T
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
-  !>               specifies the form of op( A )
-  !> 
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
-  !>               specifies the form of op( B )
-  !> 
-  !>     @param[in]
-  !>     m         [int]
-  !>               matrix dimension m.
-  !> 
-  !>     @param[in]
-  !>     n         [int]
-  !>               matrix dimension n.
-  !> 
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !> 
-  !>     @param[in]
-  !>     A         device pointer to the first matrix A_0 on the GPU.
-  !>               Each A_i is of dimension ( lda, k ), where k is m
-  !>               when  transA == HIPBLAS_OP_N and
-  !>               is  n  when  transA == HIPBLAS_OP_T.
-  !> 
-  !>     @param[in]
-  !>     lda       [int]
-  !>               specifies the leading dimension of A.
-  !> 
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !> 
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !> 
-  !>     @param[in]
-  !>     B         pointer to the first matrix B_0 on the GPU.
-  !>               Each B_i is of dimension ( ldb, k ), where k is m
-  !>               when  transB == HIPBLAS_OP_N and
-  !>               is  n  when  transB == HIPBLAS_OP_T.
-  !> 
-  !>     @param[in]
-  !>     ldb       [int]
-  !>               specifies the leading dimension of B.
-  !> 
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
-  !>               stride from the start of one matrix (B_i) and the next one (B_i+1)
-  !> 
-  !>     @param[in, out]
-  !>     C         pointer to the first matrix C_0 on the GPU.
-  !>               Each C_i is of dimension ( ldc, n ).
-  !> 
-  !>     @param[in]
-  !>     ldc       [int]
-  !>               specifies the leading dimension of C.
-  !> 
-  !>     @param[in]
-  !>     strideC  [hipblasStride]
-  !>               stride from the start of one matrix (C_i) and the next one (C_i+1)
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances i in the batch.
-  !>
+
   interface hipblasZgeamStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasZgeamStridedBatched")
+    function hipblasZgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasZgeamStridedBatched")
 #else
-    function hipblasZgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasZgeamStridedBatched")
+    function hipblasZgeamStridedBatched_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasZgeamStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -20919,17 +20775,92 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgeamStridedBatched_full_rank,&
       hipblasZgeamStridedBatched_rank_0,&
-      hipblasZgeamStridedBatched_rank_1
+      hipblasZgeamStridedBatched_rank_1,&
+      hipblasZgeamStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The hemm functions perform one of the matrix-matrix operations:
+  !>
+  !>         C := alpha*A*B + beta*C if side == HIPBLAS_SIDE_LEFT,
+  !>         C := alpha*B*A + beta*C if side == HIPBLAS_SIDE_RIGHT,
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``B`` and ``C`` are ``m`` by ``n`` matrices, and
+  !>     ``A`` is a Hermitian matrix stored as either upper or lower.
+  !>
+  !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side  [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
+  !>             - HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows of B and C. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             n specifies the number of columns of B and C. k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A and B are not referenced.
+  !>
+  !>     @param[in]
+  !>     AP      pointer storing matrix A on the GPU.
+  !>             - A is m by m if side == HIPBLAS_SIDE_LEFT.
+  !>             - A is n by n if side == HIPBLAS_SIDE_RIGHT.
+  !>             - Only the upper/lower triangular part is accessed.
+  !>             - The imaginary component of the diagonal elements is not used.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A.
+  !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             Otherwise, lda >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     BP      pointer storing matrix B on the GPU.
+  !>             Matrix dimension is m by n.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP      pointer storing matrix C on the GPU.
+  !>             Matrix dimension is m by n.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   interface hipblasChemm
 #ifdef USE_CUDA_NAMES
-    function hipblasChemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasChemm_v2")
+    function hipblasChemm_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasChemm_v2")
 #else
-    function hipblasChemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasChemm")
+    function hipblasChemm_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasChemm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -20941,100 +20872,28 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasChemm_full_rank,&
       hipblasChemm_rank_0,&
-      hipblasChemm_rank_1
+      hipblasChemm_rank_1,&
+      hipblasChemm_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     hemm performs one of the matrix-matrix operations:
-  !> 
-  !>     C := alpha*A*B + beta*C if side == HIPBLAS_SIDE_LEFT,
-  !>     C := alpha*B*A + beta*C if side == HIPBLAS_SIDE_RIGHT,
-  !> 
-  !>     where alpha and beta are scalars, B and C are m by n matrices, and
-  !>     A is a Hermitian matrix stored as either upper or lower.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
-  !>             HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     m       [int]
-  !>             m specifies the number of rows of B and C. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of columns of B and C. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A and B are not referenced.
-  !> 
-  !>     @param[in]
-  !>     A       pointer storing matrix A on the GPU.
-  !>             A is m by m if side == HIPBLAS_SIDE_LEFT
-  !>             A is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             Only the upper/lower triangular part is accessed.
-  !>             The imaginary component of the diagonal elements is not used.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A.
-  !>             if side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ),
-  !>             otherwise lda >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     B       pointer storing matrix B on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B. ldb >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       pointer storing matrix C on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !>
+
   interface hipblasZhemm
 #ifdef USE_CUDA_NAMES
-    function hipblasZhemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZhemm_v2")
+    function hipblasZhemm_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZhemm_v2")
 #else
-    function hipblasZhemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZhemm")
+    function hipblasZhemm_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZhemm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21046,28 +20905,108 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZhemm_full_rank,&
       hipblasZhemm_rank_0,&
-      hipblasZhemm_rank_1
+      hipblasZhemm_rank_1,&
+      hipblasZhemm_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The hemmBatched functions perform a batch of the matrix-matrix operations:
+  !>
+  !>         C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>         C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``B_i`` and ``C_i`` are ``m`` by ``n`` matrices,
+  !>     and
+  !>     ``A_i`` is a Hermitian matrix stored as either upper or lower.
+  !>
+  !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side  [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows of B_i and C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of B_i and C_i. k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A_i and B_i are not referenced.
+  !>
+  !>     @param[in]
+  !>     AP      device array of device pointers storing each matrix A_i on the GPU.
+  !>             - A_i is m by m if side == HIPBLAS_SIDE_LEFT.
+  !>             - A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
+  !>             - Only the upper/lower triangular part is accessed.
+  !>             - The imaginary component of the diagonal elements is not used.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             Otherwise, lda >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     BP      device array of device pointers storing each matrix B_i on the GPU.
+  !>             Matrix dimension is m by n.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C_i need not be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>             Matrix dimension is m by n.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasChemmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasChemmBatched_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasChemmBatched")
+    function hipblasChemmBatched_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasChemmBatched")
 #else
-    function hipblasChemmBatched_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasChemmBatched")
+    function hipblasChemmBatched_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasChemmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21079,105 +21018,22 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasChemmBatched_full_rank,&
-      hipblasChemmBatched_rank_0,&
-      hipblasChemmBatched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     hemmBatched performs a batch of the matrix-matrix operations:
-  !> 
-  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
-  !> 
-  !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
-  !>     A_i is a Hermitian matrix stored as either upper or lower.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     m       [int]
-  !>             m specifies the number of rows of B_i and C_i. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of columns of B_i and C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A_i and B_i are not referenced.
-  !> 
-  !>     @param[in]
-  !>     A       device array of device pointers storing each matrix A_i on the GPU.
-  !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
-  !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             Only the upper/lower triangular part is accessed.
-  !>             The imaginary component of the diagonal elements is not used.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ),
-  !>             otherwise lda >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     B       device array of device pointers storing each matrix B_i on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C_i need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C       device array of device pointers storing each matrix C_i on the GPU.
-  !>             Matrix dimension is m by n
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m )
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch.
-  !>
+
   interface hipblasZhemmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZhemmBatched")
+    function hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZhemmBatched")
 #else
-    function hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasZhemmBatched")
+    function hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZhemmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21189,29 +21045,114 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr) :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr) :: BP
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr) :: CP
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipblasZhemmBatched_full_rank,&
-      hipblasZhemmBatched_rank_0,&
-      hipblasZhemmBatched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>
+  !>     The hemmStridedBatched functions perform a batch of the matrix-matrix operations:
+  !>
+  !>         C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>         C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``B_i`` and ``C_i`` are ``m`` by ``n`` matrices,
+  !>     and
+  !>     ``A_i`` is a Hermitian matrix stored as either upper or lower.
+  !>
+  !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side  [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of rows of B_i and C_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     k       [int]
+  !>             k specifies the number of columns of B_i and C_i. k >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha
+  !>             alpha specifies the scalar alpha. When alpha is
+  !>             zero, then A_i and B_i are not referenced.
+  !>
+  !>     @param[in]
+  !>     AP      device pointer to first matrix A_1
+  !>             - A_i is m by m if side == HIPBLAS_SIDE_LEFT.
+  !>             - A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
+  !>             - Only the upper/lower triangular part is accessed.
+  !>             - The imaginary component of the diagonal elements is not used.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A_i.
+  !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             Otherwise, lda >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
+  !>
+  !>     @param[in]
+  !>     BP       device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldb     [int]
+  !>             ldb specifies the first dimension of B_i.
+  !>             If side = HIPBLAS_OP_N,  ldb >= max( 1, m ).
+  !>             Otherwise, ldb >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
+  !>
+  !>     @param[in]
+  !>     beta
+  !>             beta specifies the scalar beta. When beta is
+  !>             zero, then C does not need to be set before entry.
+  !>
+  !>     @param[in]
+  !>     CP        device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
+  !>
+  !>     @param[in]
+  !>     ldc    [int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
+  !>
+  !>     @param[inout]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
   interface hipblasChemmStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasChemmStridedBatched")
+    function hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasChemmStridedBatched")
 #else
-    function hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasChemmStridedBatched")
+    function hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasChemmStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21223,14 +21164,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -21238,105 +21179,17 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasChemmStridedBatched_full_rank,&
       hipblasChemmStridedBatched_rank_0,&
-      hipblasChemmStridedBatched_rank_1
+      hipblasChemmStridedBatched_rank_1,&
+      hipblasChemmStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 3 API
-  !> 
-  !>     \details
-  !> 
-  !>     hemmStridedBatched performs a batch of the matrix-matrix operations:
-  !> 
-  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
-  !> 
-  !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
-  !>     A_i is a Hermitian matrix stored as either upper or lower.
-  !> 
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
-  !>               handle to the hipblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
-  !> 
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
-  !>             HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix
-  !>             HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix
-  !> 
-  !>     @param[in]
-  !>     m       [int]
-  !>             m specifies the number of rows of B_i and C_i. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     n       [int]
-  !>             n specifies the number of columns of B_i and C_i. n >= 0.
-  !> 
-  !>     @param[in]
-  !>     alpha
-  !>             alpha specifies the scalar alpha. When alpha is
-  !>             zero then A_i and B_i are not referenced.
-  !> 
-  !>     @param[in]
-  !>     A       device pointer to first matrix A_1
-  !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
-  !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             Only the upper/lower triangular part is accessed.
-  !>             The imaginary component of the diagonal elements is not used.
-  !> 
-  !>     @param[in]
-  !>     lda     [int]
-  !>             lda specifies the first dimension of A_i.
-  !>             if side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ),
-  !>             otherwise lda >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !> 
-  !>     @param[in]
-  !>     B       device pointer to first matrix B_1 of dimension (ldb, n) on the GPU
-  !> 
-  !>     @param[in]
-  !>     ldb     [int]
-  !>             ldb specifies the first dimension of B_i.
-  !>             if side = HIPBLAS_OP_N,  ldb >= max( 1, m ),
-  !>             otherwise ldb >= max( 1, n ).
-  !> 
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
-  !>               stride from the start of one matrix (B_i) and the next one (B_i+1)
-  !> 
-  !>     @param[in]
-  !>     beta
-  !>             beta specifies the scalar beta. When beta is
-  !>             zero then C need not be set before entry.
-  !> 
-  !>     @param[in]
-  !>     C        device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
-  !> 
-  !>     @param[in]
-  !>     ldc    [int]
-  !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !> 
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
-  !>               stride from the start of one matrix (C_i) and the next one (C_i+1)
-  !> 
-  !>     @param[in]
-  !>     batchCount [int]
-  !>                 number of instances in the batch
-  !>
+
   interface hipblasZhemmStridedBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZhemmStridedBatched")
+    function hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZhemmStridedBatched")
 #else
-    function hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasZhemmStridedBatched")
+    function hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZhemmStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21348,14 +21201,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: A
+      type(c_ptr),value :: AP
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: B
+      type(c_ptr),value :: BP
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: C
+      type(c_ptr),value :: CP
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
       integer(c_int),value :: batchCount
@@ -21363,12 +21216,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZhemmStridedBatched_full_rank,&
       hipblasZhemmStridedBatched_rank_0,&
-      hipblasZhemmStridedBatched_rank_1
+      hipblasZhemmStridedBatched_rank_1,&
+      hipblasZhemmStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasStrmm
 #ifdef USE_CUDA_NAMES
     function hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="cublasStrmm_v2")
@@ -55220,29 +55073,7 @@ module hipfort_hipblas
       hipblasDsymm_full_rank = hipblasDsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsymm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      !
-      hipblasCsymm_full_rank = hipblasCsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
-    end function
-
-    function hipblasCsymm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsymm_rank_0(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55253,18 +55084,18 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsymm_rank_0 = hipblasCsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsymm_rank_0 = hipblasCsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsymm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsymm_rank_1(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55275,40 +55106,40 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsymm_rank_1 = hipblasCsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsymm_rank_1 = hipblasCsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsymm_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsymm_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsymm_full_rank = hipblasZsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsymm_full_rank = hipblasCsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsymm_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsymm_rank_0(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55319,18 +55150,18 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsymm_rank_0 = hipblasZsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsymm_rank_0 = hipblasZsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsymm_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsymm_rank_1(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55341,320 +55172,40 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsymm_rank_1 = hipblasZsymm_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsymm_rank_1 = hipblasZsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsymmBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
+    function hipblasZsymm_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsymmBatched_full_rank = hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsymmBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target :: A
-      integer(c_int) :: lda
-      real(c_float),target :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsymmBatched_rank_0 = hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsymmBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsymmBatched_rank_1 = hipblasSsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsymmBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsymmBatched_full_rank = hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsymmBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target :: A
-      integer(c_int) :: lda
-      real(c_double),target :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsymmBatched_rank_0 = hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsymmBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsymmBatched_rank_1 = hipblasDsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsymmBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsymmBatched_full_rank = hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsymmBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsymmBatched_rank_0 = hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsymmBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsymmBatched_rank_1 = hipblasCsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsymmBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int) :: batchCount
       !
-      hipblasZsymmBatched_full_rank = hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
+      hipblasZsymm_full_rank = hipblasZsymm_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsymmBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsymmBatched_rank_0 = hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsymmBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsymmBatched_rank_1 = hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      integer(c_int64_t) :: strideB
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int64_t) :: strideC
-      integer(c_int) :: batchCount
-      !
-      hipblasSsymmStridedBatched_full_rank = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
-    end function
-
-    function hipblasSsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasSsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55665,22 +55216,22 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsymmStridedBatched_rank_0 = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsymmStridedBatched_rank_0 = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasSsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55691,48 +55242,48 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsymmStridedBatched_rank_1 = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsymmStridedBatched_rank_1 = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasSsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsymmStridedBatched_full_rank = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsymmStridedBatched_full_rank = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasDsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55743,22 +55294,22 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsymmStridedBatched_rank_0 = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsymmStridedBatched_rank_0 = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasDsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55769,48 +55320,48 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsymmStridedBatched_rank_1 = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsymmStridedBatched_rank_1 = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasDsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsymmStridedBatched_full_rank = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsymmStridedBatched_full_rank = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasCsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55821,22 +55372,22 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsymmStridedBatched_rank_0 = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsymmStridedBatched_rank_0 = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasCsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55847,48 +55398,48 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsymmStridedBatched_rank_1 = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsymmStridedBatched_rank_1 = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasCsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsymmStridedBatched_full_rank = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsymmStridedBatched_full_rank = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasZsymmStridedBatched_rank_0(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55899,22 +55450,22 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsymmStridedBatched_rank_0 = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZsymmStridedBatched_rank_0 = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasZsymmStridedBatched_rank_1(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55925,42 +55476,48 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsymmStridedBatched_rank_1 = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZsymmStridedBatched_rank_1 = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasZsymmStridedBatched_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_full_rank
       type(c_ptr) :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int) :: m
       integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int) :: batchCount
       !
-      hipblasSsyrk_full_rank = hipblasSsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasZsymmStridedBatched_full_rank = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasSsyrk_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55971,16 +55528,16 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasSsyrk_rank_0 = hipblasSsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasSsyrk_rank_0 = hipblasSsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasSsyrk_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -55991,36 +55548,36 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasSsyrk_rank_1 = hipblasSsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasSsyrk_rank_1 = hipblasSsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasSsyrk_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyrk_full_rank = hipblasDsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasSsyrk_full_rank = hipblasSsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasDsyrk_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56031,16 +55588,16 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyrk_rank_0 = hipblasDsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasDsyrk_rank_0 = hipblasDsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasDsyrk_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56051,36 +55608,36 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyrk_rank_1 = hipblasDsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasDsyrk_rank_1 = hipblasDsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasDsyrk_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyrk_full_rank = hipblasCsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasDsyrk_full_rank = hipblasDsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasCsyrk_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56091,16 +55648,16 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyrk_rank_0 = hipblasCsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasCsyrk_rank_0 = hipblasCsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasCsyrk_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56111,36 +55668,36 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyrk_rank_1 = hipblasCsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasCsyrk_rank_1 = hipblasCsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrk_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasCsyrk_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyrk_full_rank = hipblasZsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasCsyrk_full_rank = hipblasCsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrk_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasZsyrk_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56151,16 +55708,16 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyrk_rank_0 = hipblasZsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasZsyrk_rank_0 = hipblasZsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrk_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+    function hipblasZsyrk_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56171,291 +55728,36 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyrk_rank_1 = hipblasZsyrk_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc)
+      hipblasZsyrk_rank_1 = hipblasZsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsyrkBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
+    function hipblasZsyrk_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkBatched_full_rank = hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyrkBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target :: A
-      integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkBatched_rank_0 = hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyrkBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkBatched_rank_1 = hipblasSsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyrkBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyrkBatched_full_rank = hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyrkBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target :: A
-      integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyrkBatched_rank_0 = hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyrkBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyrkBatched_rank_1 = hipblasDsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyrkBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyrkBatched_full_rank = hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyrkBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyrkBatched_rank_0 = hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyrkBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyrkBatched_rank_1 = hipblasCsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsyrkBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int) :: batchCount
       !
-      hipblasZsyrkBatched_full_rank = hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
+      hipblasZsyrk_full_rank = hipblasZsyrk_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrkBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsyrkBatched_rank_0 = hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsyrkBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsyrkBatched_rank_1 = hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int64_t) :: strideC
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkStridedBatched_full_rank = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
-    end function
-
-    function hipblasSsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasSsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56466,19 +55768,19 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsyrkStridedBatched_rank_0 = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsyrkStridedBatched_rank_0 = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasSsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56489,42 +55791,42 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsyrkStridedBatched_rank_1 = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsyrkStridedBatched_rank_1 = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasSsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyrkStridedBatched_full_rank = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsyrkStridedBatched_full_rank = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasDsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56535,19 +55837,19 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyrkStridedBatched_rank_0 = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsyrkStridedBatched_rank_0 = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasDsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56558,42 +55860,42 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyrkStridedBatched_rank_1 = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsyrkStridedBatched_rank_1 = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasDsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyrkStridedBatched_full_rank = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsyrkStridedBatched_full_rank = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasCsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56604,19 +55906,19 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyrkStridedBatched_rank_0 = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsyrkStridedBatched_rank_0 = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasCsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56627,42 +55929,42 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyrkStridedBatched_rank_1 = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsyrkStridedBatched_rank_1 = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasCsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyrkStridedBatched_full_rank = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsyrkStridedBatched_full_rank = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasZsyrkStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56673,19 +55975,19 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyrkStridedBatched_rank_0 = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZsyrkStridedBatched_rank_0 = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount)
+    function hipblasZsyrkStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56696,41 +55998,42 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyrkStridedBatched_rank_1 = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZsyrkStridedBatched_rank_1 = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyr2k_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsyrkStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_float),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int) :: batchCount
       !
-      hipblasSsyr2k_full_rank = hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsyrkStridedBatched_full_rank = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyr2k_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasSsyr2k_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56741,18 +56044,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasSsyr2k_rank_0 = hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasSsyr2k_rank_0 = hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsyr2k_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasSsyr2k_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56763,40 +56066,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasSsyr2k_rank_1 = hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasSsyr2k_rank_1 = hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyr2k_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasSsyr2k_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyr2k_full_rank = hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasSsyr2k_full_rank = hipblasSsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyr2k_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasDsyr2k_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56807,18 +56110,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyr2k_rank_0 = hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasDsyr2k_rank_0 = hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyr2k_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasDsyr2k_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56829,40 +56132,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyr2k_rank_1 = hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasDsyr2k_rank_1 = hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyr2k_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasDsyr2k_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyr2k_full_rank = hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasDsyr2k_full_rank = hipblasDsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyr2k_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsyr2k_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56873,18 +56176,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyr2k_rank_0 = hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsyr2k_rank_0 = hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyr2k_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsyr2k_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56895,40 +56198,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyr2k_rank_1 = hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsyr2k_rank_1 = hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyr2k_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsyr2k_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyr2k_full_rank = hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsyr2k_full_rank = hipblasCsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyr2k_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsyr2k_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56939,18 +56242,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyr2k_rank_0 = hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsyr2k_rank_0 = hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyr2k_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsyr2k_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -56961,320 +56264,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyr2k_rank_1 = hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsyr2k_rank_1 = hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsyr2kBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
+    function hipblasZsyr2k_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyr2kBatched_full_rank = hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyr2kBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target :: A
-      integer(c_int) :: lda
-      real(c_float),target :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyr2kBatched_rank_0 = hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyr2kBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyr2kBatched_rank_1 = hipblasSsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyr2kBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyr2kBatched_full_rank = hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyr2kBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target :: A
-      integer(c_int) :: lda
-      real(c_double),target :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyr2kBatched_rank_0 = hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyr2kBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyr2kBatched_rank_1 = hipblasDsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyr2kBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyr2kBatched_full_rank = hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyr2kBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyr2kBatched_rank_0 = hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyr2kBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyr2kBatched_rank_1 = hipblasCsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsyr2kBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int) :: batchCount
       !
-      hipblasZsyr2kBatched_full_rank = hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
+      hipblasZsyr2k_full_rank = hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyr2kBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsyr2kBatched_rank_0 = hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsyr2kBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsyr2kBatched_rank_1 = hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      integer(c_int64_t) :: strideB
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int64_t) :: strideC
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyr2kStridedBatched_full_rank = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
-    end function
-
-    function hipblasSsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasSsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57285,22 +56308,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsyr2kStridedBatched_rank_0 = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsyr2kStridedBatched_rank_0 = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasSsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57311,48 +56334,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsyr2kStridedBatched_rank_1 = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsyr2kStridedBatched_rank_1 = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasSsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyr2kStridedBatched_full_rank = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasSsyr2kStridedBatched_full_rank = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasDsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57363,22 +56386,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyr2kStridedBatched_rank_0 = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsyr2kStridedBatched_rank_0 = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasDsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57389,48 +56412,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyr2kStridedBatched_rank_1 = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsyr2kStridedBatched_rank_1 = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasDsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyr2kStridedBatched_full_rank = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasDsyr2kStridedBatched_full_rank = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasCsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57441,22 +56464,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyr2kStridedBatched_rank_0 = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsyr2kStridedBatched_rank_0 = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasCsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57467,48 +56490,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyr2kStridedBatched_rank_1 = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsyr2kStridedBatched_rank_1 = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasCsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyr2kStridedBatched_full_rank = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasCsyr2kStridedBatched_full_rank = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasZsyr2kStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57519,22 +56542,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyr2kStridedBatched_rank_0 = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZsyr2kStridedBatched_rank_0 = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasZsyr2kStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57545,44 +56568,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyr2kStridedBatched_rank_1 = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZsyr2kStridedBatched_rank_1 = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyrkx_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsyr2kStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int) :: batchCount
       !
-      hipblasSsyrkx_full_rank = hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsyr2kStridedBatched_full_rank = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyrkx_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasSsyrkx_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57593,18 +56620,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasSsyrkx_rank_0 = hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasSsyrkx_rank_0 = hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsyrkx_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasSsyrkx_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57615,40 +56642,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasSsyrkx_rank_1 = hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasSsyrkx_rank_1 = hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyrkx_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasSsyrkx_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyrkx_full_rank = hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasSsyrkx_full_rank = hipblasSsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyrkx_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasDsyrkx_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57659,18 +56686,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyrkx_rank_0 = hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasDsyrkx_rank_0 = hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasDsyrkx_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasDsyrkx_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57681,40 +56708,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDsyrkx_rank_1 = hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasDsyrkx_rank_1 = hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyrkx_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasDsyrkx_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyrkx_full_rank = hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasDsyrkx_full_rank = hipblasDsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyrkx_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsyrkx_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57725,18 +56752,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyrkx_rank_0 = hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsyrkx_rank_0 = hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasCsyrkx_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsyrkx_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57747,40 +56774,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCsyrkx_rank_1 = hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsyrkx_rank_1 = hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrkx_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasCsyrkx_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyrkx_full_rank = hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasCsyrkx_full_rank = hipblasCsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrkx_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsyrkx_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57791,18 +56818,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyrkx_rank_0 = hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsyrkx_rank_0 = hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrkx_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZsyrkx_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -57813,320 +56840,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZsyrkx_rank_1 = hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZsyrkx_rank_1 = hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasSsyrkxBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
+    function hipblasZsyrkx_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkxBatched_full_rank = hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyrkxBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target :: A
-      integer(c_int) :: lda
-      real(c_float),target :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkxBatched_rank_0 = hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyrkxBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkxBatched_rank_1 = hipblasSsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyrkxBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyrkxBatched_full_rank = hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyrkxBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target :: A
-      integer(c_int) :: lda
-      real(c_double),target :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyrkxBatched_rank_0 = hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDsyrkxBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDsyrkxBatched_rank_1 = hipblasDsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyrkxBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyrkxBatched_full_rank = hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyrkxBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyrkxBatched_rank_0 = hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCsyrkxBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCsyrkxBatched_rank_1 = hipblasCsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsyrkxBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int) :: batchCount
       !
-      hipblasZsyrkxBatched_full_rank = hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
+      hipblasZsyrkx_full_rank = hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZsyrkxBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsyrkxBatched_rank_0 = hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZsyrkxBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZsyrkxBatched_rank_1 = hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(kind(HIPBLAS_OP_N)) :: transA
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      integer(c_int64_t) :: strideB
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
-      integer(c_int) :: batchCount
-      !
-      hipblasSsyrkxStridedBatched_full_rank = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
-    end function
-
-    function hipblasSsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasSsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58137,22 +56884,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float) :: beta
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsyrkxStridedBatched_rank_0 = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasSsyrkxStridedBatched_rank_0 = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasSsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58163,48 +56910,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSsyrkxStridedBatched_rank_1 = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasSsyrkxStridedBatched_rank_1 = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasSsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyrkxStridedBatched_full_rank = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasSsyrkxStridedBatched_full_rank = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasDsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58215,22 +56962,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double) :: beta
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyrkxStridedBatched_rank_0 = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasDsyrkxStridedBatched_rank_0 = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasDsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58241,48 +56988,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDsyrkxStridedBatched_rank_1 = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasDsyrkxStridedBatched_rank_1 = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasDsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyrkxStridedBatched_full_rank = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasDsyrkxStridedBatched_full_rank = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasCsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58293,22 +57040,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyrkxStridedBatched_rank_0 = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasCsyrkxStridedBatched_rank_0 = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasCsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58319,48 +57066,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCsyrkxStridedBatched_rank_1 = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasCsyrkxStridedBatched_rank_1 = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasCsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyrkxStridedBatched_full_rank = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasCsyrkxStridedBatched_full_rank = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasZsyrkxStridedBatched_rank_0(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58371,22 +57118,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyrkxStridedBatched_rank_0 = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasZsyrkxStridedBatched_rank_0 = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount)
+    function hipblasZsyrkxStridedBatched_rank_1(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -58397,896 +57144,624 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
-      integer(c_int64_t) :: stridec
+      integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZsyrkxStridedBatched_rank_1 = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,stridec,batchCount)
+      hipblasZsyrkxStridedBatched_rank_1 = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSgeam_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasZsyrkxStridedBatched_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: k
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int) :: batchCount
       !
-      hipblasSgeam_full_rank = hipblasSgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasZsyrkxStridedBatched_full_rank = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSgeam_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasSgeam_rank_0(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       real(c_float) :: beta
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasSgeam_rank_0 = hipblasSgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasSgeam_rank_0 = hipblasSgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasSgeam_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasSgeam_rank_1(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasSgeam_rank_1 = hipblasSgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasSgeam_rank_1 = hipblasSgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasDgeam_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasSgeam_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDgeam_full_rank = hipblasDgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasSgeam_full_rank = hipblasSgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasDgeam_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasDgeam_rank_0(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       real(c_double) :: beta
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasDgeam_rank_0 = hipblasDgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasDgeam_rank_0 = hipblasDgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasDgeam_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasDgeam_rank_1(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasDgeam_rank_1 = hipblasDgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasDgeam_rank_1 = hipblasDgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasCgeam_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasDgeam_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCgeam_full_rank = hipblasCgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasDgeam_full_rank = hipblasDgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasCgeam_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasCgeam_rank_0(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasCgeam_rank_0 = hipblasCgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasCgeam_rank_0 = hipblasCgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasCgeam_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasCgeam_rank_1(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasCgeam_rank_1 = hipblasCgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasCgeam_rank_1 = hipblasCgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasZgeam_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasCgeam_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZgeam_full_rank = hipblasZgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasCgeam_full_rank = hipblasCgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasZgeam_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasZgeam_rank_0(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasZgeam_rank_0 = hipblasZgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasZgeam_rank_0 = hipblasZgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasZgeam_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+    function hipblasZgeam_rank_1(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZgeam_rank_1 = hipblasZgeam_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc)
+      hipblasZgeam_rank_1 = hipblasZgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasSgeamBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
+    function hipblasZgeam_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_float),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSgeamBatched_full_rank = hipblasSgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSgeamBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target :: A
-      integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target :: B
-      integer(c_int) :: ldb
-      real(c_float),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSgeamBatched_rank_0 = hipblasSgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSgeamBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: beta
-      real(c_float),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_float),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasSgeamBatched_rank_1 = hipblasSgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDgeamBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      real(c_double),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDgeamBatched_full_rank = hipblasDgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDgeamBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target :: A
-      integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target :: B
-      integer(c_int) :: ldb
-      real(c_double),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDgeamBatched_rank_0 = hipblasDgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasDgeamBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: beta
-      real(c_double),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      real(c_double),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasDgeamBatched_rank_1 = hipblasDgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCgeamBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCgeamBatched_full_rank = hipblasCgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCgeamBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCgeamBatched_rank_0 = hipblasCgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasCgeamBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasCgeamBatched_rank_1 = hipblasCgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZgeamBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int) :: batchCount
       !
-      hipblasZgeamBatched_full_rank = hipblasZgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
+      hipblasZgeam_full_rank = hipblasZgeam_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,beta,c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
-    function hipblasZgeamBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZgeamBatched_rank_0 = hipblasZgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZgeamBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZgeamBatched_rank_1 = hipblasZgeamBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,beta,c_loc(B),ldb,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasSgeamStridedBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      integer(c_int64_t) :: strideB
-      real(c_float),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int64_t) :: strideC
-      integer(c_int) :: batchCount
-      !
-      hipblasSgeamStridedBatched_full_rank = hipblasSgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
-    end function
-
-    function hipblasSgeamStridedBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasSgeamStridedBatched_rank_0(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float) :: alpha
-      real(c_float),target :: A
+      real(c_float),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float) :: beta
-      real(c_float),target :: B
+      real(c_float),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_float),target :: C
+      real(c_float),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSgeamStridedBatched_rank_0 = hipblasSgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasSgeamStridedBatched_rank_0 = hipblasSgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasSgeamStridedBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasSgeamStridedBatched_rank_1(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float) :: alpha
-      real(c_float),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float) :: beta
-      real(c_float),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_float),target,dimension(:) :: C
+      real(c_float),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasSgeamStridedBatched_rank_1 = hipblasSgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasSgeamStridedBatched_rank_1 = hipblasSgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDgeamStridedBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasSgeamStridedBatched_full_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: B
+      real(c_float) :: beta
+      real(c_float),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDgeamStridedBatched_full_rank = hipblasDgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasSgeamStridedBatched_full_rank = hipblasSgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDgeamStridedBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasDgeamStridedBatched_rank_0(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double) :: alpha
-      real(c_double),target :: A
+      real(c_double),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double) :: beta
-      real(c_double),target :: B
+      real(c_double),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target :: C
+      real(c_double),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDgeamStridedBatched_rank_0 = hipblasDgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasDgeamStridedBatched_rank_0 = hipblasDgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasDgeamStridedBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasDgeamStridedBatched_rank_1(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double) :: alpha
-      real(c_double),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double) :: beta
-      real(c_double),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target,dimension(:) :: C
+      real(c_double),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasDgeamStridedBatched_rank_1 = hipblasDgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasDgeamStridedBatched_rank_1 = hipblasDgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCgeamStridedBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasDgeamStridedBatched_full_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double) :: beta
+      real(c_double),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCgeamStridedBatched_full_rank = hipblasCgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasDgeamStridedBatched_full_rank = hipblasDgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCgeamStridedBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasCgeamStridedBatched_rank_0(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCgeamStridedBatched_rank_0 = hipblasCgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasCgeamStridedBatched_rank_0 = hipblasCgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasCgeamStridedBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasCgeamStridedBatched_rank_1(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasCgeamStridedBatched_rank_1 = hipblasCgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasCgeamStridedBatched_rank_1 = hipblasCgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZgeamStridedBatched_full_rank(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasCgeamStridedBatched_full_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZgeamStridedBatched_full_rank = hipblasZgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasCgeamStridedBatched_full_rank = hipblasCgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZgeamStridedBatched_rank_0(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasZgeamStridedBatched_rank_0(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_rank_0
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZgeamStridedBatched_rank_0 = hipblasZgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasZgeamStridedBatched_rank_0 = hipblasZgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZgeamStridedBatched_rank_1(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount)
+    function hipblasZgeamStridedBatched_rank_1(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_rank_1
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: transa
-      integer(kind(HIPBLAS_OP_N)) :: transb
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZgeamStridedBatched_rank_1 = hipblasZgeamStridedBatched_(handle,transa,transb,m,n,alpha,c_loc(A),lda,strideA,beta,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
+      hipblasZgeamStridedBatched_rank_1 = hipblasZgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasChemm_full_rank(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZgeamStridedBatched_full_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_full_rank
       type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int) :: m
       integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int) :: batchCount
       !
-      hipblasChemm_full_rank = hipblasChemm_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZgeamStridedBatched_full_rank = hipblasZgeamStridedBatched_(handle,transA,transB,m,n,alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasChemm_rank_0(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasChemm_rank_0(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59297,18 +57772,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasChemm_rank_0 = hipblasChemm_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasChemm_rank_0 = hipblasChemm_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasChemm_rank_1(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasChemm_rank_1(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59319,40 +57794,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasChemm_rank_1 = hipblasChemm_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasChemm_rank_1 = hipblasChemm_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZhemm_full_rank(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasChemm_full_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZhemm_full_rank = hipblasZhemm_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasChemm_full_rank = hipblasChemm_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZhemm_rank_0(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZhemm_rank_0(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59363,18 +57838,18 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       !
-      hipblasZhemm_rank_0 = hipblasZhemm_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZhemm_rank_0 = hipblasZhemm_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZhemm_rank_1(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+    function hipblasZhemm_rank_1(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59385,182 +57860,40 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       !
-      hipblasZhemm_rank_1 = hipblasZhemm_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc)
+      hipblasZhemm_rank_1 = hipblasZhemm_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasChemmBatched_full_rank(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
+    function hipblasZhemm_full_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:,:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasChemmBatched_full_rank = hipblasChemmBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasChemmBatched_rank_0(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasChemmBatched_rank_0 = hipblasChemmBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasChemmBatched_rank_1(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasChemmBatched_rank_1 = hipblasChemmBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZhemmBatched_full_rank(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
-      integer(c_int) :: batchCount
       !
-      hipblasZhemmBatched_full_rank = hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
+      hipblasZhemm_full_rank = hipblasZhemm_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,c_loc(BP),ldb,beta,c_loc(CP),ldc)
     end function
 
-    function hipblasZhemmBatched_rank_0(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZhemmBatched_rank_0 = hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasZhemmBatched_rank_1(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int) :: ldb
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int) :: ldc
-      integer(c_int) :: batchCount
-      !
-      hipblasZhemmBatched_rank_1 = hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,c_loc(B),ldb,beta,c_loc(C),ldc,batchCount)
-    end function
-
-    function hipblasChemmStridedBatched_full_rank(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      integer(c_int64_t) :: strideB
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
-      integer(c_int64_t) :: strideC
-      integer(c_int) :: batchCount
-      !
-      hipblasChemmStridedBatched_full_rank = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
-    end function
-
-    function hipblasChemmStridedBatched_rank_0(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasChemmStridedBatched_rank_0(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59571,22 +57904,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
+      complex(c_float_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target :: B
+      complex(c_float_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: C
+      complex(c_float_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasChemmStridedBatched_rank_0 = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasChemmStridedBatched_rank_0 = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasChemmStridedBatched_rank_1(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasChemmStridedBatched_rank_1(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59597,48 +57930,48 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: C
+      complex(c_float_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasChemmStridedBatched_rank_1 = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasChemmStridedBatched_rank_1 = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZhemmStridedBatched_full_rank(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasChemmStridedBatched_full_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZhemmStridedBatched_full_rank = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasChemmStridedBatched_full_rank = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZhemmStridedBatched_rank_0(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasZhemmStridedBatched_rank_0(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59649,22 +57982,22 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
+      complex(c_double_complex),target :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target :: B
+      complex(c_double_complex),target :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: C
+      complex(c_double_complex),target :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZhemmStridedBatched_rank_0 = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZhemmStridedBatched_rank_0 = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
-    function hipblasZhemmStridedBatched_rank_1(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount)
+    function hipblasZhemmStridedBatched_rank_1(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -59675,19 +58008,45 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: C
+      complex(c_double_complex),target,dimension(:) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
       !
-      hipblasZhemmStridedBatched_rank_1 = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
+      hipblasZhemmStridedBatched_rank_1 = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
+    end function
+
+    function hipblasZhemmStridedBatched_full_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_full_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int) :: batchCount
+      !
+      hipblasZhemmStridedBatched_full_rank = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
 
     function hipblasStrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
