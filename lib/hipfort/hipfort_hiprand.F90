@@ -241,6 +241,43 @@ module hipfort_hiprand
     end function
   end interface
 
+  !>  \brief Generates uniformly distributed 64-bit unsigned integers.
+  !>
+  !>  Generates \p n uniformly distributed 64-bit unsigned integers and
+  !>  saves them to \p output_data.
+  !>
+  !>  Generated numbers are between \p 0 and \p 2^64, including \p 0 and
+  !>  excluding \p 2^64.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of 64-bit unsigned integers to generate
+  !>
+  !>  Note: \p generator must be of type \p HIPRAND_RNG_QUASI_SOBOL64
+  !>  or \p HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64.
+  !>
+  !>  \return
+  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
+  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
+  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
+  interface hiprandGenerateLongLong
+#ifdef USE_CUDA_NAMES
+    function hiprandGenerateLongLong_(generator,output_data,n) &
+        bind(c, name="curandGenerateLongLong")
+#else
+    function hiprandGenerateLongLong_(generator,output_data,n) &
+        bind(c, name="hiprandGenerateLongLong")
+#endif
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
   !>  \brief Generates uniformly distributed floats.
   !>
   !>  Generates \p n uniformly distributed 32-bit floating-point values
@@ -316,6 +353,39 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
   end interface
+
+  !>  \brief Generates uniformly distributed half-precision floating-point values.
+  !>
+  !>  Generates \p n uniformly distributed 16-bit half-precision floating-point
+  !>  values and saves them to \p output_data.
+  !>
+  !>  Generated numbers are between \p 0.0 and \p 1.0, excluding \p 0.0 and
+  !>  including \p 1.0.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of halfs to generate
+  !>
+  !>  \return
+  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
+  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
+  !>  - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
+#ifndef USE_CUDA_NAMES
+  interface hiprandGenerateUniformHalf
+    function hiprandGenerateUniformHalf_(generator,output_data,n) &
+        bind(c, name="hiprandGenerateUniformHalf")
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformHalf_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+#endif
 
   !>  \brief Generates normally distributed floats.
   !>
@@ -393,6 +463,41 @@ module hipfort_hiprand
     end function
   end interface
 
+  !>  \brief Generates normally distributed halfs.
+  !>
+  !>  Generates \p n normally distributed 16-bit half-precision floating-point
+  !>  numbers and saves them to \p output_data.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of halfs to generate
+  !>  \param mean - Mean value of normal distribution
+  !>  \param stddev - Standard deviation value of normal distribution
+  !>
+  !>  \return
+  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
+  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
+  !>  - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
+  !>  aligned to \p sizeof(half2) bytes, or \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
+#ifndef USE_CUDA_NAMES
+  interface hiprandGenerateNormalHalf
+    function hiprandGenerateNormalHalf_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateNormalHalf")
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalHalf_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_int),value :: mean
+      integer(c_int),value :: stddev
+    end function
+  end interface
+#endif
+
   !>  \brief Generates log-normally distributed floats.
   !>
   !>  Generates \p n log-normally distributed 32-bit floating-point values
@@ -468,6 +573,41 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
   end interface
+
+  !>  \brief Generates log-normally distributed halfs.
+  !>
+  !>  Generates \p n log-normally distributed 16-bit half-precision floating-point
+  !>  values and saves them to \p output_data.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of halfs to generate
+  !>  \param mean - Mean value of log normal distribution
+  !>  \param stddev - Standard deviation value of log normal distribution
+  !>
+  !>  \return
+  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
+  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
+  !>  - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
+  !>  aligned to \p sizeof(half2) bytes, or \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
+#ifndef USE_CUDA_NAMES
+  interface hiprandGenerateLogNormalHalf
+    function hiprandGenerateLogNormalHalf_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateLogNormalHalf")
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalHalf_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_int),value :: mean
+      integer(c_int),value :: stddev
+    end function
+  end interface
+#endif
 
   !>  \brief Generates Poisson-distributed 32-bit unsigned integers.
   !>
@@ -625,6 +765,46 @@ module hipfort_hiprand
     end function
   end interface
 
+  !>  \brief Sets the ordering of a random number generator.
+  !>
+  !>  Sets the ordering of the results of a random number generator.
+  !>
+  !>  - This operation resets the generator's internal state.
+  !>  - This operation does not change the generator's seed.
+  !>
+  !>  \param generator - Random number generator
+  !>  \param order - New ordering of results
+  !>
+  !>  The ordering choices for pseudorandom sequences are
+  !>  HIPRAND_ORDERING_PSEUDO_DEFAULT and
+  !>  HIPRAND_ORDERING_PSEUDO_LEGACY.
+  !>  The default ordering is HIPRAND_ORDERING_PSEUDO_DEFAULT, which is equal to
+  !>  HIPRAND_ORDERING_PSEUDO_LEGACY for now.
+  !>
+  !>  For quasirandom sequences there is only one ordering, HIPRAND_ORDERING_QUASI_DEFAULT.
+  !>
+  !>  \return
+  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
+  !>  - HIPRAND_STATUS_OUT_OF_RANGE if the ordering is not valid
+  !>  - HIPRAND_STATUS_SUCCESS if the ordering was successfully set
+  !>  - HIPRAND_STATUS_TYPE_ERROR if generator's type is not valid
+  interface hiprandSetGeneratorOrdering
+#ifdef USE_CUDA_NAMES
+    function hiprandSetGeneratorOrdering_(generator,order) &
+        bind(c, name="curandSetGeneratorOrdering")
+#else
+    function hiprandSetGeneratorOrdering_(generator,order) &
+        bind(c, name="hiprandSetGeneratorOrdering")
+#endif
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetGeneratorOrdering_
+      type(c_ptr),value :: generator
+      integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)),value :: order
+    end function
+  end interface
+
   !>  \brief Set the number of dimensions of a quasi-random number generator.
   !>
   !>  Set the number of dimensions of a quasi-random number generator.
@@ -734,186 +914,6 @@ module hipfort_hiprand
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyDistribution_
       type(c_ptr),value :: discrete_distribution
-    end function
-  end interface
-
-  !>  \brief Generates uniformly distributed 64-bit unsigned integers.
-  !>
-  !>  Generates \p n uniformly distributed 64-bit unsigned integers and
-  !>  saves them to \p output_data.
-  !>
-  !>  Generated numbers are between \p 0 and \p 2^64, including \p 0 and
-  !>  excluding \p 2^64.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of 64-bit unsigned integers to generate
-  !>
-  !>  Note: \p generator must be of type \p HIPRAND_RNG_QUASI_SOBOL64
-  !>  or \p HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64.
-  !>
-  !>  \return
-  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
-  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
-  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
-  interface hiprandGenerateLongLong
-#ifdef USE_CUDA_NAMES
-    function hiprandGenerateLongLong_(generator,output_data,n) &
-        bind(c, name="curandGenerateLongLong")
-#else
-    function hiprandGenerateLongLong_(generator,output_data,n) &
-        bind(c, name="hiprandGenerateLongLong")
-#endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
-      implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-    end function
-  end interface
-
-  !>  \brief Generates uniformly distributed half-precision floating-point values.
-  !>
-  !>  Generates \p n uniformly distributed 16-bit half-precision floating-point
-  !>  values and saves them to \p output_data.
-  !>
-  !>  Generated numbers are between \p 0.0 and \p 1.0, excluding \p 0.0 and
-  !>  including \p 1.0.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of halfs to generate
-  !>
-  !>  \return
-  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
-  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
-  !>  - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
-#ifndef USE_CUDA_NAMES
-  interface hiprandGenerateUniformHalf
-    function hiprandGenerateUniformHalf_(generator,output_data,n) &
-        bind(c, name="hiprandGenerateUniformHalf")
-      use iso_c_binding
-      use hipfort_hiprand_enums
-      implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformHalf_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-    end function
-  end interface
-#endif
-
-  !>  \brief Generates normally distributed halfs.
-  !>
-  !>  Generates \p n normally distributed 16-bit half-precision floating-point
-  !>  numbers and saves them to \p output_data.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of halfs to generate
-  !>  \param mean - Mean value of normal distribution
-  !>  \param stddev - Standard deviation value of normal distribution
-  !>
-  !>  \return
-  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
-  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
-  !>  - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
-  !>  aligned to \p sizeof(half2) bytes, or \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
-#ifndef USE_CUDA_NAMES
-  interface hiprandGenerateNormalHalf
-    function hiprandGenerateNormalHalf_(generator,output_data,n,mean,stddev) &
-        bind(c, name="hiprandGenerateNormalHalf")
-      use iso_c_binding
-      use hipfort_hiprand_enums
-      implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalHalf_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-      integer(c_int),value :: mean
-      integer(c_int),value :: stddev
-    end function
-  end interface
-#endif
-
-  !>  \brief Generates log-normally distributed halfs.
-  !>
-  !>  Generates \p n log-normally distributed 16-bit half-precision floating-point
-  !>  values and saves them to \p output_data.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of halfs to generate
-  !>  \param mean - Mean value of log normal distribution
-  !>  \param stddev - Standard deviation value of log normal distribution
-  !>
-  !>  \return
-  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
-  !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
-  !>  - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
-  !>  aligned to \p sizeof(half2) bytes, or \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
-#ifndef USE_CUDA_NAMES
-  interface hiprandGenerateLogNormalHalf
-    function hiprandGenerateLogNormalHalf_(generator,output_data,n,mean,stddev) &
-        bind(c, name="hiprandGenerateLogNormalHalf")
-      use iso_c_binding
-      use hipfort_hiprand_enums
-      implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalHalf_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-      integer(c_int),value :: mean
-      integer(c_int),value :: stddev
-    end function
-  end interface
-#endif
-
-  !>  \brief Sets the ordering of a random number generator.
-  !>
-  !>  Sets the ordering of the results of a random number generator.
-  !>
-  !>  - This operation resets the generator's internal state.
-  !>  - This operation does not change the generator's seed.
-  !>
-  !>  \param generator - Random number generator
-  !>  \param order - New ordering of results
-  !>
-  !>  The ordering choices for pseudorandom sequences are
-  !>  HIPRAND_ORDERING_PSEUDO_DEFAULT and
-  !>  HIPRAND_ORDERING_PSEUDO_LEGACY.
-  !>  The default ordering is HIPRAND_ORDERING_PSEUDO_DEFAULT, which is equal to
-  !>  HIPRAND_ORDERING_PSEUDO_LEGACY for now.
-  !>
-  !>  For quasirandom sequences there is only one ordering, HIPRAND_ORDERING_QUASI_DEFAULT.
-  !>
-  !>  \return
-  !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
-  !>  - HIPRAND_STATUS_OUT_OF_RANGE if the ordering is not valid
-  !>  - HIPRAND_STATUS_SUCCESS if the ordering was successfully set
-  !>  - HIPRAND_STATUS_TYPE_ERROR if generator's type is not valid
-  interface hiprandSetGeneratorOrdering
-#ifdef USE_CUDA_NAMES
-    function hiprandSetGeneratorOrdering_(generator,order) &
-        bind(c, name="curandSetGeneratorOrdering")
-#else
-    function hiprandSetGeneratorOrdering_(generator,order) &
-        bind(c, name="hiprandSetGeneratorOrdering")
-#endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
-      implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetGeneratorOrdering_
-      type(c_ptr),value :: generator
-      integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)),value :: order
     end function
   end interface
 

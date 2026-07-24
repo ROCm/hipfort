@@ -194,6 +194,34 @@ module hipfort_hipfft
     end function
   end interface
 
+  !>  @brief Set scaling factor.
+  !>
+  !>   @details hipFFT multiplies each element of the result by the given factor at the end of the
+  !>   transform.
+  !>
+  !>   The supplied factor must be a finite number.  That is, it must neither be infinity nor NaN.
+  !>
+  !>   This function must be called after the plan is allocated using
+  !>   `hipfftCreate`, but before the plan is initialized by any of the
+  !>   "MakePlan" functions.  Therefore, API functions that combine
+  !>   creation and initialization (`hipfftPlan1d`, `hipfftPlan2d`,
+  !>   `hipfftPlan3d`, and `hipfftPlanMany`) cannot set a scale factor.
+  !>
+  !>   Note that the scale factor applies to both forward and
+  !>   backward transforms executed with the specified plan handle.
+#ifndef USE_CUDA_NAMES
+  interface hipfftExtPlanScaleFactor
+    function hipfftExtPlanScaleFactor_(plan,scalefactor) bind(c, name="hipfftExtPlanScaleFactor")
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExtPlanScaleFactor_
+      type(c_ptr),value :: plan
+      real(c_double),value :: scalefactor
+    end function
+  end interface
+#endif
+
   !>  @brief Initialize a new one-dimensional FFT plan.
   !>
   !>   @details Assumes that the plan has been created already, and
@@ -1058,34 +1086,6 @@ module hipfort_hipfft
       type(c_ptr),value :: myValue
     end function
   end interface
-
-  !>  @brief Set scaling factor.
-  !>
-  !>   @details hipFFT multiplies each element of the result by the given factor at the end of the
-  !>   transform.
-  !>
-  !>   The supplied factor must be a finite number.  That is, it must neither be infinity nor NaN.
-  !>
-  !>   This function must be called after the plan is allocated using
-  !>   `hipfftCreate`, but before the plan is initialized by any of the
-  !>   "MakePlan" functions.  Therefore, API functions that combine
-  !>   creation and initialization (`hipfftPlan1d`, `hipfftPlan2d`,
-  !>   `hipfftPlan3d`, and `hipfftPlanMany`) cannot set a scale factor.
-  !>
-  !>   Note that the scale factor applies to both forward and
-  !>   backward transforms executed with the specified plan handle.
-#ifndef USE_CUDA_NAMES
-  interface hipfftExtPlanScaleFactor
-    function hipfftExtPlanScaleFactor_(plan,scalefactor) bind(c, name="hipfftExtPlanScaleFactor")
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftExtPlanScaleFactor_
-      type(c_ptr),value :: plan
-      real(c_double),value :: scalefactor
-    end function
-  end interface
-#endif
 
 
 #ifdef USE_FPOINTER_INTERFACES
