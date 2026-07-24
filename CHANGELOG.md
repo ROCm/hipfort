@@ -4,6 +4,16 @@
 
 ### Added
 
+* **hipFFTW support.** Added Fortran interfaces to the FFTW3-compatible hipFFTW
+  library (new `hipfort_hipfftw` modules) and a `hipfort::hipfftw` CMake target.
+* Regenerated the library bindings against the current ROCm API, adding the new
+  symbols and enums exposed by hipBLAS, rocBLAS, hipSPARSE, rocSPARSE, hipSOLVER,
+  and rocSOLVER. Derived types now live in dedicated `hipfort_<lib>_types` modules.
+* Added the rocSOLVER generalized symmetric/Hermitian eigensolver interfaces
+  `?sygvdx`/`?hegvdx`.
+* Added the rocSOLVER ILP64 (`*_64`) eigenvalue interfaces.
+* Added the `[C, ldC]` output arguments to the non-strided hipBLAS TRMM interfaces
+  to match the current hipBLAS API.
 * Added Fortran interfaces for the interleaved batch pentadiagonal solver:
   `rocsparse_Xgpsv_interleaved_batch` and
   `rocsparse_Xgpsv_interleaved_batch_buffer_size` (rocSPARSE), and
@@ -15,6 +25,14 @@
 
 ### Changed
 
+* hipfort now installs its libraries and Fortran module files into
+  toolchain-specific subdirectories (`lib/fortran/<compiler>` and
+  `include/fortran/<compiler>`) so several Fortran toolchains can coexist. This is
+  controlled by the new `HIPFORT_MULTITOOLCHAIN_LAYOUT` CMake option (`ON` by
+  default); the exported `hipfort::*` targets resolve the paths automatically.
+* Updated the `rocblas_?trmm` interfaces to match the current rocBLAS API.
+* Updated the rocFFT `set_scale_factor` interface.
+* Refined generic (overload) resolution in the generated bindings.
 * On the NVIDIA/CUDA backend (`USE_CUDA_NAMES`), `hipCheck` now compares the
   returned `cudaError_t` directly against `cudaSuccess` instead of translating
   it through `hipCUDAErrorTohipError`; failures report the native status code.
@@ -29,6 +47,8 @@
 * Removed the `rocblas_hgemm_kernel_name`, `rocblas_sgemm_kernel_name`, and
   `rocblas_dgemm_kernel_name` interfaces. The corresponding rocBLAS API
   functions were removed in ROCm 7.1.0.
+* Removed the unused legacy `lib/modules-amdgcn` modules (`hip_blas`,
+  `rocblas_module`, `rocfft`, `rocsparse_module`, and related enum modules).
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 
