@@ -34262,6 +34262,518 @@ module hipfort_rocsolver
     end function
   end interface
 
+  interface rocsolver_ssyev_64
+    function rocsolver_ssyev_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_ssyev_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyev_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsyev_64
+    function rocsolver_dsyev_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_dsyev_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyev_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cheev_64
+    function rocsolver_cheev_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_cheev_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheev_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zheev_64
+    function rocsolver_zheev_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_zheev_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheev_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_ssyev_batched_64
+    function rocsolver_ssyev_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyev_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyev_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyev_batched_64
+    function rocsolver_dsyev_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_dsyev_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyev_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cheev_batched_64
+    function rocsolver_cheev_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheev_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheev_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheev_batched_64
+    function rocsolver_zheev_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_zheev_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheev_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ssyev_strided_batched_64
+    function rocsolver_ssyev_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyev_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyev_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyev_strided_batched_64
+    function rocsolver_dsyev_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_dsyev_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyev_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cheev_strided_batched_64
+    function rocsolver_cheev_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheev_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheev_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheev_strided_batched_64
+    function rocsolver_zheev_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_zheev_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheev_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ssyevd_64
+    function rocsolver_ssyevd_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_ssyevd_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevd_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_dsyevd_64
+    function rocsolver_dsyevd_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_dsyevd_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevd_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_cheevd_64
+    function rocsolver_cheevd_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_cheevd_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevd_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_zheevd_64
+    function rocsolver_zheevd_64_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_zheevd_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevd_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocsolver_ssyevd_batched_64
+    function rocsolver_ssyevd_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyevd_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevd_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevd_batched_64
+    function rocsolver_dsyevd_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_dsyevd_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevd_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cheevd_batched_64
+    function rocsolver_cheevd_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheevd_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevd_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevd_batched_64
+    function rocsolver_zheevd_batched_64_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_zheevd_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevd_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ssyevd_strided_batched_64
+    function rocsolver_ssyevd_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyevd_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevd_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dsyevd_strided_batched_64
+    function rocsolver_dsyevd_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_dsyevd_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevd_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_cheevd_strided_batched_64
+    function rocsolver_cheevd_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheevd_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevd_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zheevd_strided_batched_64
+    function rocsolver_zheevd_strided_batched_64_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_zheevd_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevd_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_evect_original)),value :: evect
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: myInfo
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
   !>     \brief The SYEVDJ functions compute the eigenvalues and optionally the eigenvectors of a
   !>     real symmetric
   !>     matrix ``A``.
