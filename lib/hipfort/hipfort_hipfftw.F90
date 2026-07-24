@@ -39,7 +39,6 @@ module hipfort_hipfftw
     function fftw_malloc_(n) bind(c, name="fftw_malloc")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_malloc_
       integer(c_size_t),value :: n
@@ -51,7 +50,6 @@ module hipfort_hipfftw
     function fftwf_malloc_(n) bind(c, name="fftwf_malloc")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_malloc_
       integer(c_size_t),value :: n
@@ -63,7 +61,6 @@ module hipfort_hipfftw
     function fftw_alloc_real_(n) bind(c, name="fftw_alloc_real")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       real(c_double) :: fftw_alloc_real_
       integer(c_size_t),value :: n
@@ -75,7 +72,6 @@ module hipfort_hipfftw
     function fftwf_alloc_real_(n) bind(c, name="fftwf_alloc_real")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       real(c_float) :: fftwf_alloc_real_
       integer(c_size_t),value :: n
@@ -88,7 +84,6 @@ module hipfort_hipfftw
     function fftw_alloc_complex_(n) bind(c, name="fftw_alloc_complex")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_alloc_complex_
       integer(c_size_t),value :: n
@@ -101,7 +96,6 @@ module hipfort_hipfftw
     function fftwf_alloc_complex_(n) bind(c, name="fftwf_alloc_complex")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_alloc_complex_
       integer(c_size_t),value :: n
@@ -115,7 +109,6 @@ module hipfort_hipfftw
     subroutine fftw_free_(p) bind(c, name="fftw_free")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: p
     end subroutine
@@ -126,7 +119,6 @@ module hipfort_hipfftw
     subroutine fftwf_free_(p) bind(c, name="fftwf_free")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: p
     end subroutine
@@ -147,7 +139,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_1d_(n,in,out,sign,flags) bind(c, name="fftw_plan_dft_1d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_1d_
       integer(c_int),value :: n
@@ -163,7 +154,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_1d_(n,in,out,sign,flags) bind(c, name="fftwf_plan_dft_1d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_1d_
       integer(c_int),value :: n
@@ -189,7 +179,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_2d_(n0,n1,in,out,sign,flags) bind(c, name="fftw_plan_dft_2d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_2d_
       integer(c_int),value :: n0
@@ -206,7 +195,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_2d_(n0,n1,in,out,sign,flags) bind(c, name="fftwf_plan_dft_2d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_2d_
       integer(c_int),value :: n0
@@ -233,7 +221,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_3d_(n0,n1,n2,in,out,sign,flags) bind(c, name="fftw_plan_dft_3d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_3d_
       integer(c_int),value :: n0
@@ -251,7 +238,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_3d_(n0,n1,n2,in,out,sign,flags) bind(c, name="fftwf_plan_dft_3d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_3d_
       integer(c_int),value :: n0
@@ -280,7 +266,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_(rank,n,in,out,sign,flags) bind(c, name="fftw_plan_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_
       integer(c_int),value :: rank
@@ -297,7 +282,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_(rank,n,in,out,sign,flags) bind(c, name="fftwf_plan_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_
       integer(c_int),value :: rank
@@ -322,7 +306,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_r2c_1d_(n,in,out,flags) bind(c, name="fftw_plan_dft_r2c_1d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_r2c_1d_
       integer(c_int),value :: n
@@ -337,7 +320,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_r2c_1d_(n,in,out,flags) bind(c, name="fftwf_plan_dft_r2c_1d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_r2c_1d_
       integer(c_int),value :: n
@@ -360,7 +342,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_r2c_2d_(n0,n1,in,out,flags) bind(c, name="fftw_plan_dft_r2c_2d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_r2c_2d_
       integer(c_int),value :: n0
@@ -376,7 +357,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_r2c_2d_(n0,n1,in,out,flags) bind(c, name="fftwf_plan_dft_r2c_2d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_r2c_2d_
       integer(c_int),value :: n0
@@ -400,7 +380,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_r2c_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftw_plan_dft_r2c_3d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_r2c_3d_
       integer(c_int),value :: n0
@@ -417,7 +396,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_r2c_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftwf_plan_dft_r2c_3d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_r2c_3d_
       integer(c_int),value :: n0
@@ -443,7 +421,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_r2c_(rank,n,in,out,flags) bind(c, name="fftw_plan_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_r2c_
       integer(c_int),value :: rank
@@ -459,7 +436,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_r2c_(rank,n,in,out,flags) bind(c, name="fftwf_plan_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_r2c_
       integer(c_int),value :: rank
@@ -483,7 +459,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_c2r_1d_(n,in,out,flags) bind(c, name="fftw_plan_dft_c2r_1d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_c2r_1d_
       integer(c_int),value :: n
@@ -498,7 +473,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_c2r_1d_(n,in,out,flags) bind(c, name="fftwf_plan_dft_c2r_1d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_c2r_1d_
       integer(c_int),value :: n
@@ -521,7 +495,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_c2r_2d_(n0,n1,in,out,flags) bind(c, name="fftw_plan_dft_c2r_2d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_c2r_2d_
       integer(c_int),value :: n0
@@ -537,7 +510,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_c2r_2d_(n0,n1,in,out,flags) bind(c, name="fftwf_plan_dft_c2r_2d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_c2r_2d_
       integer(c_int),value :: n0
@@ -561,7 +533,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_c2r_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftw_plan_dft_c2r_3d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_c2r_3d_
       integer(c_int),value :: n0
@@ -578,7 +549,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_c2r_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftwf_plan_dft_c2r_3d")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_c2r_3d_
       integer(c_int),value :: n0
@@ -604,7 +574,6 @@ module hipfort_hipfftw
     function fftw_plan_dft_c2r_(rank,n,in,out,flags) bind(c, name="fftw_plan_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_dft_c2r_
       integer(c_int),value :: rank
@@ -620,7 +589,6 @@ module hipfort_hipfftw
     function fftwf_plan_dft_c2r_(rank,n,in,out,flags) bind(c, name="fftwf_plan_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_dft_c2r_
       integer(c_int),value :: rank
@@ -658,10 +626,11 @@ module hipfort_hipfftw
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_many_dft
-    function fftw_plan_many_dft_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride,odist,sign,flags) bind(c, name="fftw_plan_many_dft")
+    function fftw_plan_many_dft_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,sign,flags) &
+        bind(c, name="fftw_plan_many_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_many_dft_
       integer(c_int),value :: rank
@@ -682,10 +651,11 @@ module hipfort_hipfftw
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_many_dft.
   interface fftwf_plan_many_dft
-    function fftwf_plan_many_dft_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride,odist,sign,flags) bind(c, name="fftwf_plan_many_dft")
+    function fftwf_plan_many_dft_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,sign,flags) &
+        bind(c, name="fftwf_plan_many_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_many_dft_
       integer(c_int),value :: rank
@@ -729,10 +699,11 @@ module hipfort_hipfftw
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_many_dft_r2c
-    function fftw_plan_many_dft_r2c_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride,odist,flags) bind(c, name="fftw_plan_many_dft_r2c")
+    function fftw_plan_many_dft_r2c_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftw_plan_many_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_many_dft_r2c_
       integer(c_int),value :: rank
@@ -752,10 +723,11 @@ module hipfort_hipfftw
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_many_dft_r2c.
   interface fftwf_plan_many_dft_r2c
-    function fftwf_plan_many_dft_r2c_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride,odist,flags) bind(c, name="fftwf_plan_many_dft_r2c")
+    function fftwf_plan_many_dft_r2c_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftwf_plan_many_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_many_dft_r2c_
       integer(c_int),value :: rank
@@ -799,10 +771,11 @@ module hipfort_hipfftw
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_many_dft_c2r
-    function fftw_plan_many_dft_c2r_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride,odist,flags) bind(c, name="fftw_plan_many_dft_c2r")
+    function fftw_plan_many_dft_c2r_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftw_plan_many_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftw_plan_many_dft_c2r_
       integer(c_int),value :: rank
@@ -822,10 +795,11 @@ module hipfort_hipfftw
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_many_dft_c2r.
   interface fftwf_plan_many_dft_c2r
-    function fftwf_plan_many_dft_c2r_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride,odist,flags) bind(c, name="fftwf_plan_many_dft_c2r")
+    function fftwf_plan_many_dft_c2r_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftwf_plan_many_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_many_dft_c2r_
       integer(c_int),value :: rank
@@ -845,8 +819,7 @@ module hipfort_hipfftw
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, complex
   !>  discrete Fourier transform of lengths dims[0].n x dims[1].n x ... x dims[rank-1].n
-  !>  and batch sizes
-  !>  howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
+  !>  and batch sizes howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] dims - array of ``rank`` ``fftw_iodim`` values;
@@ -860,7 +833,8 @@ module hipfort_hipfftw
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_guru_dft
-    function fftw_plan_guru_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) bind(c, name="fftw_plan_guru_dft")
+    function fftw_plan_guru_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftw_plan_guru_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
       use hipfort_hipfftw_types
@@ -879,10 +853,10 @@ module hipfort_hipfftw
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_guru_dft.
   interface fftwf_plan_guru_dft
-    function fftwf_plan_guru_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) bind(c, name="fftwf_plan_guru_dft")
+    function fftwf_plan_guru_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftwf_plan_guru_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru_dft_
       integer(c_int),value :: rank
@@ -898,8 +872,7 @@ module hipfort_hipfftw
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, real forward
   !>  discrete Fourier transform of lengths dims[0].n x dims[1].n x ... x dims[rank-1].n
-  !>  and batch sizes
-  !>  howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
+  !>  and batch sizes howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] dims - array of ``rank`` ``fftw_iodim`` values;
@@ -911,7 +884,8 @@ module hipfort_hipfftw
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_guru_dft_r2c
-    function fftw_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftw_plan_guru_dft_r2c")
+    function fftw_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
       use hipfort_hipfftw_types
@@ -929,10 +903,10 @@ module hipfort_hipfftw
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_guru_dft_r2c.
   interface fftwf_plan_guru_dft_r2c
-    function fftwf_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftwf_plan_guru_dft_r2c")
+    function fftwf_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru_dft_r2c_
       integer(c_int),value :: rank
@@ -946,10 +920,8 @@ module hipfort_hipfftw
   end interface
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, real backward
-  !>  (inverse) discrete Fourier transform of lengths
-  !>  dims[0].n x dims[1].n x ... x dims[rank-1].n
-  !>  and batch sizes
-  !>  howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
+  !>  (inverse) discrete Fourier transform of lengths dims[0].n x dims[1].n x ... x dims[rank-1].n
+  !>  and batch sizes howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] dims - array of ``rank`` ``fftw_iodim`` values;
@@ -961,7 +933,8 @@ module hipfort_hipfftw
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_guru_dft_c2r
-    function fftw_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftw_plan_guru_dft_c2r")
+    function fftw_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
       use hipfort_hipfftw_types
@@ -979,10 +952,10 @@ module hipfort_hipfftw
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_guru_dft_c2r.
   interface fftwf_plan_guru_dft_c2r
-    function fftwf_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftwf_plan_guru_dft_c2r")
+    function fftwf_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru_dft_c2r_
       integer(c_int),value :: rank
@@ -998,7 +971,8 @@ module hipfort_hipfftw
   !>  @brief Equivalent of \ref fftw_plan_guru_dft using layout-describing values of type
   !>  ``fftw_iodim64`` instead of ``fftw_iodim``.
   interface fftw_plan_guru64_dft
-    function fftw_plan_guru64_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) bind(c, name="fftw_plan_guru64_dft")
+    function fftw_plan_guru64_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftw_plan_guru64_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
       use hipfort_hipfftw_types
@@ -1018,10 +992,10 @@ module hipfort_hipfftw
   !>  @brief Equivalent of \ref fftwf_plan_guru_dft using layout-describing values of type
   !>  ``fftwf_iodim64`` instead of ``fftwf_iodim``.
   interface fftwf_plan_guru64_dft
-    function fftwf_plan_guru64_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) bind(c, name="fftwf_plan_guru64_dft")
+    function fftwf_plan_guru64_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftwf_plan_guru64_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru64_dft_
       integer(c_int),value :: rank
@@ -1038,7 +1012,8 @@ module hipfort_hipfftw
   !>  @brief Equivalent of \ref fftw_plan_guru_dft_r2c using layout-describing values of type
   !>  ``fftw_iodim64`` instead of ``fftw_iodim``.
   interface fftw_plan_guru64_dft_r2c
-    function fftw_plan_guru64_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftw_plan_guru64_dft_r2c")
+    function fftw_plan_guru64_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru64_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
       use hipfort_hipfftw_types
@@ -1057,10 +1032,10 @@ module hipfort_hipfftw
   !>  @brief Equivalent of \ref fftwf_plan_guru_dft_r2c using layout-describing values of type
   !>  ``fftwf_iodim64`` instead of ``fftwf_iodim``.
   interface fftwf_plan_guru64_dft_r2c
-    function fftwf_plan_guru64_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftwf_plan_guru64_dft_r2c")
+    function fftwf_plan_guru64_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru64_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru64_dft_r2c_
       integer(c_int),value :: rank
@@ -1076,7 +1051,8 @@ module hipfort_hipfftw
   !>  @brief Equivalent of \ref fftw_plan_guru_dft_c2r using layout-describing values of type
   !>  ``fftw_iodim64`` instead of ``fftw_iodim``.
   interface fftw_plan_guru64_dft_c2r
-    function fftw_plan_guru64_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftw_plan_guru64_dft_c2r")
+    function fftw_plan_guru64_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru64_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
       use hipfort_hipfftw_types
@@ -1095,10 +1071,10 @@ module hipfort_hipfftw
   !>  @brief Equivalent of \ref fftwf_plan_guru_dft_c2r using layout-describing values of type
   !>  ``fftwf_iodim64`` instead of ``fftwf_iodim``.
   interface fftwf_plan_guru64_dft_c2r
-    function fftwf_plan_guru64_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) bind(c, name="fftwf_plan_guru64_dft_c2r")
+    function fftwf_plan_guru64_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru64_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru64_dft_c2r_
       integer(c_int),value :: rank
@@ -1119,7 +1095,6 @@ module hipfort_hipfftw
     subroutine fftw_execute_(plan) bind(c, name="fftw_execute")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
     end subroutine
@@ -1130,7 +1105,6 @@ module hipfort_hipfftw
     subroutine fftwf_execute_(plan) bind(c, name="fftwf_execute")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
     end subroutine
@@ -1147,7 +1121,6 @@ module hipfort_hipfftw
     subroutine fftw_execute_dft_(plan,in,out) bind(c, name="fftw_execute_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
       type(c_ptr),value :: in
@@ -1160,7 +1133,6 @@ module hipfort_hipfftw
     subroutine fftwf_execute_dft_(plan,in,out) bind(c, name="fftwf_execute_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
       type(c_ptr),value :: in
@@ -1179,7 +1151,6 @@ module hipfort_hipfftw
     subroutine fftw_execute_dft_r2c_(plan,in,out) bind(c, name="fftw_execute_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
       type(c_ptr),value :: in
@@ -1192,7 +1163,6 @@ module hipfort_hipfftw
     subroutine fftwf_execute_dft_r2c_(plan,in,out) bind(c, name="fftwf_execute_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
       type(c_ptr),value :: in
@@ -1212,7 +1182,6 @@ module hipfort_hipfftw
     subroutine fftw_execute_dft_c2r_(plan,in,out) bind(c, name="fftw_execute_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
       type(c_ptr),value :: in
@@ -1225,7 +1194,6 @@ module hipfort_hipfftw
     subroutine fftwf_execute_dft_c2r_(plan,in,out) bind(c, name="fftwf_execute_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
       type(c_ptr),value :: in
@@ -1240,7 +1208,6 @@ module hipfort_hipfftw
     subroutine fftw_destroy_plan_(plan) bind(c, name="fftw_destroy_plan")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
     end subroutine
@@ -1251,7 +1218,6 @@ module hipfort_hipfftw
     subroutine fftwf_destroy_plan_(plan) bind(c, name="fftwf_destroy_plan")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: plan
     end subroutine
@@ -1261,7 +1227,6 @@ module hipfort_hipfftw
     subroutine fftw_print_plan_(arg1) bind(c, name="fftw_print_plan")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: arg1
     end subroutine
@@ -1271,7 +1236,6 @@ module hipfort_hipfftw
     subroutine fftwf_print_plan_(arg1) bind(c, name="fftwf_print_plan")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: arg1
     end subroutine
@@ -1281,7 +1245,6 @@ module hipfort_hipfftw
     subroutine fftw_set_timelimit_(arg1) bind(c, name="fftw_set_timelimit")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       real(c_double),value :: arg1
     end subroutine
@@ -1291,7 +1254,6 @@ module hipfort_hipfftw
     subroutine fftwf_set_timelimit_(arg1) bind(c, name="fftwf_set_timelimit")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       real(c_double),value :: arg1
     end subroutine
@@ -1301,7 +1263,6 @@ module hipfort_hipfftw
     function fftw_cost_(arg1) bind(c, name="fftw_cost")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       real(c_double) :: fftw_cost_
       type(c_ptr),value :: arg1
@@ -1312,7 +1273,6 @@ module hipfort_hipfftw
     function fftwf_cost_(arg1) bind(c, name="fftwf_cost")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       real(c_double) :: fftwf_cost_
       type(c_ptr),value :: arg1
@@ -1323,7 +1283,6 @@ module hipfort_hipfftw
     subroutine fftw_flops_(arg1,arg2,arg3,arg4) bind(c, name="fftw_flops")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: arg1
       type(c_ptr),value :: arg2
@@ -1336,7 +1295,6 @@ module hipfort_hipfftw
     subroutine fftwf_flops_(arg1,arg2,arg3,arg4) bind(c, name="fftwf_flops")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
       type(c_ptr),value :: arg1
       type(c_ptr),value :: arg2
@@ -1349,7 +1307,6 @@ module hipfort_hipfftw
     subroutine fftw_cleanup_() bind(c, name="fftw_cleanup")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
     end subroutine
   end interface
@@ -1358,7 +1315,6 @@ module hipfort_hipfftw
     subroutine fftwf_cleanup_() bind(c, name="fftwf_cleanup")
       use iso_c_binding
       use hipfort_hipfftw_enums
-      use hipfort_hipfftw_types
       implicit none
     end subroutine
   end interface
