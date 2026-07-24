@@ -13,6 +13,14 @@
   `hipsparseXgpsvInterleavedBatch` and
   `hipsparseXgpsvInterleavedBatch_bufferSizeExt` (hipSPARSE), for the `s`, `d`,
   `c`, and `z` precisions, along with the `rocsparse_gpsv_interleaved_alg` enum.
+* Added the `hiprandCheck` error-check helper for hipRAND status codes
+  (`use hipfort_check`).
+
+### Changed
+
+* On the NVIDIA/CUDA backend (`USE_CUDA_NAMES`), `hipCheck` now compares the
+  returned `cudaError_t` directly against `cudaSuccess` instead of translating
+  it through `hipCUDAErrorTohipError`; failures report the native status code.
 
 ### Removed
 
