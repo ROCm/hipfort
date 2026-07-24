@@ -28,8 +28,8 @@ module hipfort_rocfft
   use hipfort_rocfft_enums
   implicit none
 
-  !>  @brief Library setup function, called once in program before start of
-  !>  library use
+  !>  @brief Library setup function, called at least once in program before
+  !>  start of library use
   interface rocfft_setup
     function rocfft_setup_() bind(c, name="rocfft_setup")
       use iso_c_binding
@@ -39,8 +39,8 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Library cleanup function, called once in program after end of library
-  !>  use
+  !>  @brief Library cleanup function, called exactly as many times as rocfft_setup
+  !>  in program after end of library use
   interface rocfft_cleanup
     function rocfft_cleanup_() bind(c, name="rocfft_cleanup")
       use iso_c_binding
@@ -83,7 +83,9 @@ module hipfort_rocfft
   !>  rocfft_plan_description_create; can be
   !>   NULL for simple transforms
   interface rocfft_plan_create
-    function rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
+    function rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,lengths, &
+        number_of_transforms,description) &
+        bind(c, name="rocfft_plan_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -97,6 +99,7 @@ module hipfort_rocfft
       integer(c_size_t),value :: number_of_transforms
       type(c_ptr),value :: description
     end function
+
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocfft_plan_create_rank_0,&
@@ -172,7 +175,8 @@ module hipfort_rocfft
   !>   @param[in] description - description handle
   !>   @param[in] scale_factor - scaling factor
   interface rocfft_plan_description_set_scale_factor
-    function rocfft_plan_description_set_scale_factor_(description,scale_factor) bind(c, name="rocfft_plan_description_set_scale_factor")
+    function rocfft_plan_description_set_scale_factor_(description,scale_factor) &
+        bind(c, name="rocfft_plan_description_set_scale_factor")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -197,10 +201,12 @@ module hipfort_rocfft
   !>       * Hermitian and complex data defaults to interleaved if a specific
   !>           format is not specified.
   !>   * Offset of first data element in the data buffer.  Defaults to 0 if unspecified.
-  !>   * Stride between consecutive elements in each dimension.  Defaults
-  !>       to contiguous data in all dimensions if unspecified.
-  !>   * Distance between consecutive batches.  Defaults to contiguous
-  !>       batches if unspecified.
+  !>   * Stride between consecutive elements in each dimension. Defaults to packed data
+  !>       layout consistent with the type of transform and its placement (requested at
+  !>       plan creation), if unspecified.
+  !>   * Distance between consecutive batches. Zero values are interpreted as defaults
+  !>       to be deduced from the corresponding length and stride along the last transform
+  !>       dimension.
   !>
   !>   Not all combinations of array types are supported and error codes
   !>   will be returned for unsupported cases.
@@ -208,6 +214,7 @@ module hipfort_rocfft
   !>   Offset, stride, and distance for either input or output provided
   !>   here is ignored if a field is set for the corresponding input or
   !>   output.
+  !>   @note Non-zero offsets are not supported yet.
   !>
   !>   @param[in, out] description - description handle
   !>   @param[in] in_array_type - array type of input buffer
@@ -224,7 +231,10 @@ module hipfort_rocfft
   !>    output buffer; if set to null ptr library chooses defaults
   !>   @param[in] out_distance - distance between start of each data instance in output buffer
   interface rocfft_plan_description_set_data_layout
-    function rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance) bind(c, name="rocfft_plan_description_set_data_layout")
+    function rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type, &
+        in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size, &
+        out_strides,out_distance) &
+        bind(c, name="rocfft_plan_description_set_data_layout")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -241,6 +251,7 @@ module hipfort_rocfft
       type(c_ptr),value :: out_strides
       integer(c_size_t),value :: out_distance
     end function
+
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       rocfft_plan_description_set_data_layout_rank_0,&
@@ -263,12 +274,21 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Get work buffer size
-  !>   @details Get the work buffer size required for a plan.
+  !>  @brief Get work buffer size on current HIP device
+  !>   @details Get the work buffer size required for a plan on the current HIP device.
+  !>
+  !>   Work memory may be required on any device(s) with input or output
+  !>   data for the transform, and also the current device when the plan
+  !>   was created.  If the FFT plan uses multiple devices then this
+  !>   function can be called repeatedly with each of those devices as
+  !>   the current HIP device, to know the complete work memory
+  !>   requirements for all devices.
+  !>
   !>   @param[in] plan - plan handle
   !>   @param[out] size_in_bytes - size of needed work buffer in bytes
   interface rocfft_plan_get_work_buffer_size
-    function rocfft_plan_get_work_buffer_size_(plan,size_in_bytes) bind(c, name="rocfft_plan_get_work_buffer_size")
+    function rocfft_plan_get_work_buffer_size_(plan,size_in_bytes) &
+        bind(c, name="rocfft_plan_get_work_buffer_size")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -297,7 +317,8 @@ module hipfort_rocfft
   !>  with a call to `rocfft_plan_description_destroy`.
   !>   @param[out] description - plan description handle
   interface rocfft_plan_description_create
-    function rocfft_plan_description_create_(description) bind(c, name="rocfft_plan_description_create")
+    function rocfft_plan_description_create_(description) &
+        bind(c, name="rocfft_plan_description_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -311,7 +332,8 @@ module hipfort_rocfft
   !>   can be freed any time after it is passed to `rocfft_plan_create`.
   !>   @param[in] description - plan description handle
   interface rocfft_plan_description_destroy
-    function rocfft_plan_description_destroy_(description) bind(c, name="rocfft_plan_description_destroy")
+    function rocfft_plan_description_destroy_(description) &
+        bind(c, name="rocfft_plan_description_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -350,12 +372,18 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Set work buffer in execution info
+  !>  @brief Set work buffer in execution info for the current HIP device
   !>
   !>   @details This is one of the execution info functions to specify
   !>   optional additional information to control execution.  This API
   !>   provides a work buffer for the transform. It must be called
   !>   before `rocfft_execute`.
+  !>
+  !>   Work memory may be required on any device(s) with input or output
+  !>   data for the transform, and also the current device when the plan
+  !>   was created.  If the FFT plan uses multiple devices then this
+  !>   function can be called repeatedly with each of those devices as
+  !>   the current HIP device, to set work memory for all devices.
   !>
   !>   When a non-zero value is obtained from
   !>   `rocfft_plan_get_work_buffer_size`, that means the library needs a
@@ -376,7 +404,8 @@ module hipfort_rocfft
   !>   @param[in] work_buffer - work buffer
   !>   @param[in] size_in_bytes - size of work buffer in bytes
   interface rocfft_execution_info_set_work_buffer
-    function rocfft_execution_info_set_work_buffer_(myInfo,work_buffer,size_in_bytes) bind(c, name="rocfft_execution_info_set_work_buffer")
+    function rocfft_execution_info_set_work_buffer_(myInfo,work_buffer,size_in_bytes) &
+        bind(c, name="rocfft_execution_info_set_work_buffer")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -400,7 +429,8 @@ module hipfort_rocfft
   !>   @param[in] myInfo - execution info handle
   !>   @param[in] stream - underlying compute stream
   interface rocfft_execution_info_set_stream
-    function rocfft_execution_info_set_stream_(myInfo,stream) bind(c, name="rocfft_execution_info_set_stream")
+    function rocfft_execution_info_set_stream_(myInfo,stream) &
+        bind(c, name="rocfft_execution_info_set_stream")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -417,8 +447,10 @@ module hipfort_rocfft
   !>
   !>   Callback function pointers/data are given as arrays, with one
   !>   function/data pointer per brick in the input field of the plan.
-  !>   A plan with no input field specified is considered to have one
-  !>   brick.
+  !>   Load callbacks require at least one brick in the input field to
+  !>   be assigned to the current device used at plan creation. A plan
+  !>   with no input field specified is considered to have one brick on
+  !>   the current device used at plan creation.
   !>
   !>   All functions in the array must perform the same logical
   !>   operation.  That is, any function in the array must be
@@ -454,7 +486,9 @@ module hipfort_rocfft
   !>   @param[in] shared_mem_bytes - amount of shared memory to allocate for the callback function
   !>   to use
   interface rocfft_execution_info_set_load_callback
-    function rocfft_execution_info_set_load_callback_(myInfo,cb_functions,cb_data,shared_mem_bytes) bind(c, name="rocfft_execution_info_set_load_callback")
+    function rocfft_execution_info_set_load_callback_(myInfo,cb_functions,cb_data, &
+        shared_mem_bytes) &
+        bind(c, name="rocfft_execution_info_set_load_callback")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -472,13 +506,11 @@ module hipfort_rocfft
   !>   transform.  Callbacks are an experimental feature in rocFFT.
   !>
   !>   Callback function pointers/data are given as arrays, with one
-  !>   function/data pointer per device executing this plan.  Currently,
-  !>   plans can only use one device.
-  !>
-  !>   Callback function pointers/data are given as arrays, with one
   !>   function/data pointer per brick in the output field of the plan.
-  !>   A plan with no output field specified is considered to have one
-  !>   brick.
+  !>   Store callbacks require at least one brick in the output field to
+  !>   be assigned to the current device used at plan creation. A plan
+  !>   with no output field specified is considered to have one brick on
+  !>   the current device used at plan creation.
   !>
   !>   All functions in the array must perform the same logical
   !>   operation.  That is, any function in the array must be
@@ -514,7 +546,9 @@ module hipfort_rocfft
   !>   @param[in] shared_mem_bytes - amount of shared memory to allocate for the callback function
   !>   to use
   interface rocfft_execution_info_set_store_callback
-    function rocfft_execution_info_set_store_callback_(myInfo,cb_functions,cb_data,shared_mem_bytes) bind(c, name="rocfft_execution_info_set_store_callback")
+    function rocfft_execution_info_set_store_callback_(myInfo,cb_functions,cb_data, &
+        shared_mem_bytes) &
+        bind(c, name="rocfft_execution_info_set_store_callback")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -564,7 +598,8 @@ module hipfort_rocfft
   !>   this operation.  The cache is unmodified if either a null buffer
   !>   pointer or a zero length is passed.
   interface rocfft_cache_deserialize
-    function rocfft_cache_deserialize_(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_deserialize")
+    function rocfft_cache_deserialize_(buffer,buffer_len_bytes) &
+        bind(c, name="rocfft_cache_deserialize")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -616,7 +651,8 @@ module hipfort_rocfft
   !>   @param[in] comm_type - communicator type
   !>   @param[in] comm_handle - handle to communication-library-specific state
   interface rocfft_plan_description_set_comm
-    function rocfft_plan_description_set_comm_(description,comm_type,comm_handle) bind(c, name="rocfft_plan_description_set_comm")
+    function rocfft_plan_description_set_comm_(description,comm_type,comm_handle) &
+        bind(c, name="rocfft_plan_description_set_comm")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -647,20 +683,21 @@ module hipfort_rocfft
   !>  All arrays may be re-used or freed immediately after the function returns.
   !>
   !>  @param[out] brick - : brick structure
-  !>  @param[in] field_lower - : array of length dim specifying the lower index (inclusive) for the
-  !>  brick in the
-  !>  field's index space.
-  !>  @param[in] field_upper - : array of length dim specifying the upper index (exclusive) for the
-  !>  brick in the
-  !>  field's index space.
-  !>  @param[in] brick_stride - : array of length dim specifying the brick's stride in memory
-  !>  @param[in] dim_with_batch - length of the arrays; this must match the dimension of
+  !>  @param[in] field_lower - : array of length `dim_with_batch` specifying the lower index
+  !>  (inclusive) for the brick in the field's index space.
+  !>  @param[in] field_upper - : array of length `dim_with_batch` specifying the upper index
+  !>  (exclusive) for the brick in the field's index space.
+  !>  @param[in] brick_stride - : array of length `dim_with_batch` specifying the brick's stride in
+  !>  memory
+  !>  @param[in] dim_with_batch - : length of the arrays; this must match the dimension of
   !>  the FFT plus one for the batch dimension.
   !>  @param[in] deviceID - : HIP device ID for the device on which the brick's data is resident.
   !>
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_brick_create
-    function rocfft_brick_create_(brick,field_lower,field_upper,brick_stride,dim_with_batch,deviceID) bind(c, name="rocfft_brick_create")
+    function rocfft_brick_create_(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
+        deviceID) &
+        bind(c, name="rocfft_brick_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -721,7 +758,8 @@ module hipfort_rocfft
   !>
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_plan_description_add_infield
-    function rocfft_plan_description_add_infield_(description,field) bind(c, name="rocfft_plan_description_add_infield")
+    function rocfft_plan_description_add_infield_(description,field) &
+        bind(c, name="rocfft_plan_description_add_infield")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -741,7 +779,8 @@ module hipfort_rocfft
   !>
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_plan_description_add_outfield
-    function rocfft_plan_description_add_outfield_(description,field) bind(c, name="rocfft_plan_description_add_outfield")
+    function rocfft_plan_description_add_outfield_(description,field) &
+        bind(c, name="rocfft_plan_description_add_outfield")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -755,7 +794,8 @@ module hipfort_rocfft
 #ifdef USE_FPOINTER_INTERFACES
   contains
 
-    function rocfft_plan_create_rank_0(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description)
+    function rocfft_plan_create_rank_0(plan,placement,transform_type,myPrecision,dimensions, &
+        lengths,number_of_transforms,description)
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -769,10 +809,12 @@ module hipfort_rocfft
       integer(c_size_t) :: number_of_transforms
       type(c_ptr) :: description
       !
-      rocfft_plan_create_rank_0 = rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+      rocfft_plan_create_rank_0 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
+        dimensions,c_loc(lengths),number_of_transforms,description)
     end function
 
-    function rocfft_plan_create_rank_1(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description)
+    function rocfft_plan_create_rank_1(plan,placement,transform_type,myPrecision,dimensions, &
+        lengths,number_of_transforms,description)
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -786,10 +828,13 @@ module hipfort_rocfft
       integer(c_size_t) :: number_of_transforms
       type(c_ptr) :: description
       !
-      rocfft_plan_create_rank_1 = rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+      rocfft_plan_create_rank_1 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
+        dimensions,c_loc(lengths),number_of_transforms,description)
     end function
 
-    function rocfft_plan_description_set_data_layout_rank_0(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance)
+    function rocfft_plan_description_set_data_layout_rank_0(description,in_array_type, &
+        out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
+        out_strides_size,out_strides,out_distance)
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -806,10 +851,15 @@ module hipfort_rocfft
       integer(c_size_t),target :: out_strides
       integer(c_size_t) :: out_distance
       !
-      rocfft_plan_description_set_data_layout_rank_0 = rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
+      rocfft_plan_description_set_data_layout_rank_0 = rocfft_plan_description_set_data_layout_( &
+        description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets), &
+        in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides), &
+        out_distance)
     end function
 
-    function rocfft_plan_description_set_data_layout_rank_1(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance)
+    function rocfft_plan_description_set_data_layout_rank_1(description,in_array_type, &
+        out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
+        out_strides_size,out_strides,out_distance)
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -826,7 +876,10 @@ module hipfort_rocfft
       integer(c_size_t),target,dimension(:) :: out_strides
       integer(c_size_t) :: out_distance
       !
-      rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
+      rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_( &
+        description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets), &
+        in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides), &
+        out_distance)
     end function
 
 #endif
