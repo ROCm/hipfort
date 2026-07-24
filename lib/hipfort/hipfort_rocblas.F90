@@ -27921,7 +27921,6 @@ module hipfort_rocblas
     function rocblas_hshgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hshgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hshgemv_strided_batched_
       type(c_ptr),value :: handle
@@ -27929,14 +27928,14 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(rocblas_half) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_half) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
-      type(rocblas_half) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int),value :: batch_count
@@ -27947,7 +27946,6 @@ module hipfort_rocblas
     function rocblas_hssgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hssgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hssgemv_strided_batched_
       type(c_ptr),value :: handle
@@ -27955,10 +27953,10 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(rocblas_half) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_half) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
@@ -27973,7 +27971,6 @@ module hipfort_rocblas
     function rocblas_tstgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tstgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tstgemv_strided_batched_
       type(c_ptr),value :: handle
@@ -27981,14 +27978,14 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(rocblas_bfloat16) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_bfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
-      type(rocblas_bfloat16) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int),value :: batch_count
@@ -27999,7 +27996,6 @@ module hipfort_rocblas
     function rocblas_tssgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tssgemv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tssgemv_strided_batched_
       type(c_ptr),value :: handle
@@ -28007,10 +28003,10 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(rocblas_bfloat16) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_bfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
@@ -28125,7 +28121,6 @@ module hipfort_rocblas
     function rocblas_hshgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hshgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hshgemv_strided_batched_64_
       type(c_ptr),value :: handle
@@ -28133,14 +28128,14 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(rocblas_half) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_half) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
-      type(rocblas_half) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int64_t),value :: batch_count
@@ -28151,7 +28146,6 @@ module hipfort_rocblas
     function rocblas_hssgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_hssgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hssgemv_strided_batched_64_
       type(c_ptr),value :: handle
@@ -28159,10 +28153,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(rocblas_half) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_half) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
@@ -28177,7 +28171,6 @@ module hipfort_rocblas
     function rocblas_tstgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tstgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tstgemv_strided_batched_64_
       type(c_ptr),value :: handle
@@ -28185,14 +28178,14 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(rocblas_bfloat16) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_bfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
-      type(rocblas_bfloat16) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int64_t),value :: batch_count
@@ -28203,7 +28196,6 @@ module hipfort_rocblas
     function rocblas_tssgemv_strided_batched_64_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_tssgemv_strided_batched_64")
       use iso_c_binding
       use hipfort_rocblas_enums
-      use hipfort_rocblas_types
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tssgemv_strided_batched_64_
       type(c_ptr),value :: handle
@@ -28211,10 +28203,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(rocblas_bfloat16) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      type(rocblas_bfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: stridex
       real(c_float) :: beta
