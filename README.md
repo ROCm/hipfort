@@ -97,12 +97,13 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ### Supported HIP and ROCm API
 
-The current batch of HIPFORT interfaces is derived from ROCm 4.5.0.
+The current batch of HIPFORT interfaces is derived from ROCm 7.14.0.
 The following tables list the supported API:
 
 * [HIP](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hip.md)
 * [hipBLAS](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipblas.md)
 * [hipFFT](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipfft.md)
+* [hipFFTW](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipfftw.md)
 * [hipRAND](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hiprand.md)
 * [hipSOLVER](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipsolver.md)
 * [hipSPARSE](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipsparse.md)

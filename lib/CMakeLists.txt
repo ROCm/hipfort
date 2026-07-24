@@ -21,10 +21,6 @@
 file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
 file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
 set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
-#file(GLOB HIPFORT_SRC_CONTRIB "${CMAKE_CURRENT_SOURCE_DIR}/modules-contrib/*.f*")
-#file(GLOB HIPFORT_SRC_HIP     "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f*")
-#file(GLOB HIPFORT_SRC_amdgcn  "${CMAKE_CURRENT_SOURCE_DIR}/modules-amdgcn/*.f*")
-#file(GLOB HIPFORT_SRC_nvptx   "${CMAKE_CURRENT_SOURCE_DIR}/modules-nvptx/*.f*")
 
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn
@@ -32,8 +28,6 @@ set(HIPFORT_ARCH "amdgcn")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
     ADD_LIBRARY(${HIPFORT_LIB} STATIC 
         ${HIPFORT_SRC_HIP} 
-        #${HIPFORT_SRC_amdgcn} 
-        ${HIPFORT_SRC_CONTRIB} 
         )
     target_include_directories(${HIPFORT_LIB}
       PUBLIC
@@ -61,8 +55,6 @@ set(HIPFORT_ARCH "nvptx")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
     ADD_LIBRARY(${HIPFORT_LIB} STATIC 
          ${HIPFORT_SRC_HIP} 
-         #${HIPFORT_SRC_nvptx} 
-         ${HIPFORT_SRC_CONTRIB} 
          )
     IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
