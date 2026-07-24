@@ -14018,8 +14018,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0,&
-      hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1,&
-      hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1
 #endif
   end interface
 
@@ -14053,8 +14052,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0,&
-      hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1,&
-      hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1
 #endif
   end interface
 
@@ -14088,8 +14086,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0,&
-      hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1,&
-      hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1
 #endif
   end interface
 
@@ -14123,8 +14120,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0,&
-      hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1,&
-      hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1
 #endif
   end interface
 
@@ -14264,8 +14260,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseSgpsvInterleavedBatch_rank_0,&
-      hipsparseSgpsvInterleavedBatch_rank_1,&
-      hipsparseSgpsvInterleavedBatch_full_rank
+      hipsparseSgpsvInterleavedBatch_rank_1
 #endif
   end interface
 
@@ -14297,8 +14292,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseDgpsvInterleavedBatch_rank_0,&
-      hipsparseDgpsvInterleavedBatch_rank_1,&
-      hipsparseDgpsvInterleavedBatch_full_rank
+      hipsparseDgpsvInterleavedBatch_rank_1
 #endif
   end interface
 
@@ -14330,8 +14324,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseCgpsvInterleavedBatch_rank_0,&
-      hipsparseCgpsvInterleavedBatch_rank_1,&
-      hipsparseCgpsvInterleavedBatch_full_rank
+      hipsparseCgpsvInterleavedBatch_rank_1
 #endif
   end interface
 
@@ -14363,8 +14356,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseZgpsvInterleavedBatch_rank_0,&
-      hipsparseZgpsvInterleavedBatch_rank_1,&
-      hipsparseZgpsvInterleavedBatch_full_rank
+      hipsparseZgpsvInterleavedBatch_rank_1
 #endif
   end interface
 
@@ -20852,8 +20844,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseXcsrsort_rank_0,&
-      hipsparseXcsrsort_rank_1,&
-      hipsparseXcsrsort_full_rank
+      hipsparseXcsrsort_rank_1
 #endif
   end interface
 
@@ -20994,8 +20985,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseXcscsort_rank_0,&
-      hipsparseXcscsort_rank_1,&
-      hipsparseXcscsort_full_rank
+      hipsparseXcscsort_rank_1
 #endif
   end interface
 
@@ -21128,8 +21118,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseXcoosortByRow_rank_0,&
-      hipsparseXcoosortByRow_rank_1,&
-      hipsparseXcoosortByRow_full_rank
+      hipsparseXcoosortByRow_rank_1
 #endif
   end interface
 
@@ -21204,8 +21193,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
       hipsparseXcoosortByColumn_rank_0,&
-      hipsparseXcoosortByColumn_rank_1,&
-      hipsparseXcoosortByColumn_full_rank
+      hipsparseXcoosortByColumn_rank_1
 #endif
   end interface
 
@@ -27482,19 +27470,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_float) :: alpha
       type(c_ptr) :: descr
-      real(c_float),target :: bsrVal
-      integer(c_int),target :: bsrMaskPtr
-      integer(c_int),target :: bsrRowPtr
-      integer(c_int),target :: bsrEndPtr
-      integer(c_int),target :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
       !
       hipsparseSbsrxmv_rank_0 = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseSbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27512,19 +27499,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_float) :: alpha
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: bsrVal
-      integer(c_int),target,dimension(:) :: bsrMaskPtr
-      integer(c_int),target,dimension(:) :: bsrRowPtr
-      integer(c_int),target,dimension(:) :: bsrEndPtr
-      integer(c_int),target,dimension(:) :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
       !
       hipsparseSbsrxmv_rank_1 = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseDbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27542,19 +27528,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_double) :: alpha
       type(c_ptr) :: descr
-      real(c_double),target :: bsrVal
-      integer(c_int),target :: bsrMaskPtr
-      integer(c_int),target :: bsrRowPtr
-      integer(c_int),target :: bsrEndPtr
-      integer(c_int),target :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
       !
       hipsparseDbsrxmv_rank_0 = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseDbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27572,19 +27557,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_double) :: alpha
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: bsrVal
-      integer(c_int),target,dimension(:) :: bsrMaskPtr
-      integer(c_int),target,dimension(:) :: bsrRowPtr
-      integer(c_int),target,dimension(:) :: bsrEndPtr
-      integer(c_int),target,dimension(:) :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
       !
       hipsparseDbsrxmv_rank_1 = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseCbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27602,19 +27586,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descr
-      complex(c_float_complex),target :: bsrVal
-      integer(c_int),target :: bsrMaskPtr
-      integer(c_int),target :: bsrRowPtr
-      integer(c_int),target :: bsrEndPtr
-      integer(c_int),target :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
       !
       hipsparseCbsrxmv_rank_0 = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseCbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27632,19 +27615,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: bsrVal
-      integer(c_int),target,dimension(:) :: bsrMaskPtr
-      integer(c_int),target,dimension(:) :: bsrRowPtr
-      integer(c_int),target,dimension(:) :: bsrEndPtr
-      integer(c_int),target,dimension(:) :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
       !
       hipsparseCbsrxmv_rank_1 = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseZbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27662,19 +27644,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descr
-      complex(c_double_complex),target :: bsrVal
-      integer(c_int),target :: bsrMaskPtr
-      integer(c_int),target :: bsrRowPtr
-      integer(c_int),target :: bsrEndPtr
-      integer(c_int),target :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
       !
       hipsparseZbsrxmv_rank_0 = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseZbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -27692,19 +27673,18 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: bsrVal
-      integer(c_int),target,dimension(:) :: bsrMaskPtr
-      integer(c_int),target,dimension(:) :: bsrRowPtr
-      integer(c_int),target,dimension(:) :: bsrEndPtr
-      integer(c_int),target,dimension(:) :: bsrColInd
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
       integer(c_int) :: blockDim
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
       !
       hipsparseZbsrxmv_rank_1 = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
-        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
-        blockDim,c_loc(x),beta,c_loc(y))
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseSbsrsv2_bufferSize_rank_0(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
@@ -28577,10 +28557,10 @@ module hipfort_hipsparse
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: nnz
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int),target,dimension(:,:) :: xInd
+      real(c_float),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
       real(c_float) :: beta
-      real(c_float),target,dimension(:,:) :: y
+      real(c_float),target,dimension(:) :: y
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       type(c_ptr) :: pBuffer
       !
@@ -28650,10 +28630,10 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: nnz
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int),target,dimension(:,:) :: xInd
+      real(c_double),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
       real(c_double) :: beta
-      real(c_double),target,dimension(:,:) :: y
+      real(c_double),target,dimension(:) :: y
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       type(c_ptr) :: pBuffer
       !
@@ -28723,10 +28703,10 @@ module hipfort_hipsparse
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: nnz
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int),target,dimension(:,:) :: xInd
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: y
+      complex(c_float_complex),target,dimension(:) :: y
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       type(c_ptr) :: pBuffer
       !
@@ -28796,10 +28776,10 @@ module hipfort_hipsparse
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: nnz
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int),target,dimension(:,:) :: xInd
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: y
+      complex(c_double_complex),target,dimension(:) :: y
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       type(c_ptr) :: pBuffer
       !
@@ -28885,9 +28865,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: bsrValA
-      integer(c_int),target,dimension(:,:) :: bsrRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrColIndA
+      real(c_float),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
       integer(c_int) :: blockDim
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -28978,9 +28958,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: bsrValA
-      integer(c_int),target,dimension(:,:) :: bsrRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrColIndA
+      real(c_double),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
       integer(c_int) :: blockDim
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -29071,9 +29051,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: bsrValA
-      integer(c_int),target,dimension(:,:) :: bsrRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrColIndA
+      complex(c_float_complex),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
       integer(c_int) :: blockDim
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -29164,9 +29144,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: bsrValA
-      integer(c_int),target,dimension(:,:) :: bsrRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrColIndA
+      complex(c_double_complex),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
       integer(c_int) :: blockDim
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -29249,9 +29229,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float) :: beta
@@ -29333,9 +29313,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double) :: beta
@@ -29417,9 +29397,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
@@ -29501,9 +29481,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
@@ -29588,9 +29568,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float) :: beta
@@ -29675,9 +29655,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double) :: beta
@@ -29762,9 +29742,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       complex(c_float_complex) :: beta
@@ -29849,9 +29829,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       complex(c_double_complex) :: beta
@@ -30309,14 +30289,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       real(c_float),target :: B
       integer(c_int) :: ldb
-      real(c_float),target :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_solve_rank_0 = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseSbsrsm2_solve_rank_1(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30341,14 +30321,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      real(c_float),target,dimension(:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_solve_rank_1 = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseSbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30366,21 +30346,21 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: bsrSortedValA
-      integer(c_int),target,dimension(:,:) :: bsrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrSortedColIndA
+      real(c_float),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      real(c_float),target,dimension(:,:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_solve_full_rank = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
-        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseDbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30405,14 +30385,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       real(c_double),target :: B
       integer(c_int) :: ldb
-      real(c_double),target :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_solve_rank_0 = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseDbsrsm2_solve_rank_1(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30437,14 +30417,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      real(c_double),target,dimension(:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_solve_rank_1 = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseDbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30462,21 +30442,21 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: bsrSortedValA
-      integer(c_int),target,dimension(:,:) :: bsrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrSortedColIndA
+      real(c_double),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      real(c_double),target,dimension(:,:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_solve_full_rank = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
-        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseCbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30501,14 +30481,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      complex(c_float_complex),target :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_solve_rank_0 = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseCbsrsm2_solve_rank_1(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30533,14 +30513,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      complex(c_float_complex),target,dimension(:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_solve_rank_1 = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseCbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30558,21 +30538,21 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: bsrSortedValA
-      integer(c_int),target,dimension(:,:) :: bsrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      complex(c_float_complex),target,dimension(:,:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_solve_full_rank = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
-        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseZbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30597,14 +30577,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      complex(c_double_complex),target :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_solve_rank_0 = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseZbsrsm2_solve_rank_1(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30629,14 +30609,14 @@ module hipfort_hipsparse
       type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      complex(c_double_complex),target,dimension(:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_solve_rank_1 = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseZbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
@@ -30654,21 +30634,21 @@ module hipfort_hipsparse
       integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: bsrSortedValA
-      integer(c_int),target,dimension(:,:) :: bsrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: bsrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      complex(c_double_complex),target,dimension(:,:) :: X
+      type(c_ptr) :: X
       integer(c_int) :: ldx
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_solve_full_rank = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
-        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
     function hipsparseScsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30747,14 +30727,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseScsrsm2_bufferSizeExt_full_rank = hipsparseScsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
@@ -30837,14 +30817,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseDcsrsm2_bufferSizeExt_full_rank = hipsparseDcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
@@ -30927,14 +30907,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseCcsrsm2_bufferSizeExt_full_rank = hipsparseCcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
@@ -31017,14 +30997,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseZcsrsm2_bufferSizeExt_full_rank = hipsparseZcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
@@ -31104,9 +31084,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31191,9 +31171,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31278,9 +31258,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31365,9 +31345,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31452,9 +31432,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_float) :: alpha
       type(c_ptr) :: descrA
-      real(c_float),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31539,9 +31519,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       real(c_double) :: alpha
       type(c_ptr) :: descrA
-      real(c_double),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31626,9 +31606,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_float_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31713,9 +31693,9 @@ module hipfort_hipsparse
       integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descrA
-      complex(c_double_complex),target,dimension(:,:) :: csrSortedValA
-      integer(c_int),target,dimension(:,:) :: csrSortedRowPtrA
-      integer(c_int),target,dimension(:,:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
@@ -31791,9 +31771,9 @@ module hipfort_hipsparse
       real(c_float) :: alpha
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:,:) :: cscValB
-      integer(c_int),target,dimension(:,:) :: cscColPtrB
-      integer(c_int),target,dimension(:,:) :: cscRowIndB
+      real(c_float),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
@@ -31866,9 +31846,9 @@ module hipfort_hipsparse
       real(c_double) :: alpha
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:,:) :: cscValB
-      integer(c_int),target,dimension(:,:) :: cscColPtrB
-      integer(c_int),target,dimension(:,:) :: cscRowIndB
+      real(c_double),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
@@ -31941,9 +31921,9 @@ module hipfort_hipsparse
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:) :: cscValB
-      integer(c_int),target,dimension(:,:) :: cscColPtrB
-      integer(c_int),target,dimension(:,:) :: cscRowIndB
+      complex(c_float_complex),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
@@ -32016,9 +31996,9 @@ module hipfort_hipsparse
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:,:) :: cscValB
-      integer(c_int),target,dimension(:,:) :: cscColPtrB
-      integer(c_int),target,dimension(:,:) :: cscRowIndB
+      complex(c_double_complex),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
@@ -36407,15 +36387,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseSgtsv2_bufferSizeExt_rank_0 = hipsparseSgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseSgtsv2_bufferSizeExt_rank_0 = hipsparseSgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36426,15 +36406,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseSgtsv2_bufferSizeExt_rank_1 = hipsparseSgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseSgtsv2_bufferSizeExt_rank_1 = hipsparseSgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36445,15 +36425,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: dl
-      real(c_float),target,dimension(:,:) :: d
-      real(c_float),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseSgtsv2_bufferSizeExt_full_rank = hipsparseSgtsv2_bufferSizeExt_(handle,m,n, &
-        c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseSgtsv2_bufferSizeExt_full_rank = hipsparseSgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36464,15 +36444,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseDgtsv2_bufferSizeExt_rank_0 = hipsparseDgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseDgtsv2_bufferSizeExt_rank_0 = hipsparseDgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36483,15 +36463,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseDgtsv2_bufferSizeExt_rank_1 = hipsparseDgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseDgtsv2_bufferSizeExt_rank_1 = hipsparseDgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36502,15 +36482,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: dl
-      real(c_double),target,dimension(:,:) :: d
-      real(c_double),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseDgtsv2_bufferSizeExt_full_rank = hipsparseDgtsv2_bufferSizeExt_(handle,m,n, &
-        c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseDgtsv2_bufferSizeExt_full_rank = hipsparseDgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36521,15 +36501,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseCgtsv2_bufferSizeExt_rank_0 = hipsparseCgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseCgtsv2_bufferSizeExt_rank_0 = hipsparseCgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36540,15 +36520,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseCgtsv2_bufferSizeExt_rank_1 = hipsparseCgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseCgtsv2_bufferSizeExt_rank_1 = hipsparseCgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36559,15 +36539,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: dl
-      complex(c_float_complex),target,dimension(:,:) :: d
-      complex(c_float_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseCgtsv2_bufferSizeExt_full_rank = hipsparseCgtsv2_bufferSizeExt_(handle,m,n, &
-        c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseCgtsv2_bufferSizeExt_full_rank = hipsparseCgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36578,15 +36558,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseZgtsv2_bufferSizeExt_rank_0 = hipsparseZgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseZgtsv2_bufferSizeExt_rank_0 = hipsparseZgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36597,15 +36577,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseZgtsv2_bufferSizeExt_rank_1 = hipsparseZgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseZgtsv2_bufferSizeExt_rank_1 = hipsparseZgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
@@ -36616,15 +36596,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: dl
-      complex(c_double_complex),target,dimension(:,:) :: d
-      complex(c_double_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
-      hipsparseZgtsv2_bufferSizeExt_full_rank = hipsparseZgtsv2_bufferSizeExt_(handle,m,n, &
-        c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+      hipsparseZgtsv2_bufferSizeExt_full_rank = hipsparseZgtsv2_bufferSizeExt_(handle,m,n,dl,d,du, &
+        c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36635,15 +36615,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2_rank_0 = hipsparseSgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseSgtsv2_rank_0 = hipsparseSgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseSgtsv2_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36654,15 +36633,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2_rank_1 = hipsparseSgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseSgtsv2_rank_1 = hipsparseSgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseSgtsv2_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36673,15 +36651,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: dl
-      real(c_float),target,dimension(:,:) :: d
-      real(c_float),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2_full_rank = hipsparseSgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
-        c_loc(B),ldb,pBuffer)
+      hipsparseSgtsv2_full_rank = hipsparseSgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseDgtsv2_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36692,15 +36669,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2_rank_0 = hipsparseDgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseDgtsv2_rank_0 = hipsparseDgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseDgtsv2_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36711,15 +36687,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2_rank_1 = hipsparseDgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseDgtsv2_rank_1 = hipsparseDgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseDgtsv2_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36730,15 +36705,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: dl
-      real(c_double),target,dimension(:,:) :: d
-      real(c_double),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2_full_rank = hipsparseDgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
-        c_loc(B),ldb,pBuffer)
+      hipsparseDgtsv2_full_rank = hipsparseDgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseCgtsv2_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36749,15 +36723,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2_rank_0 = hipsparseCgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseCgtsv2_rank_0 = hipsparseCgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseCgtsv2_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36768,15 +36741,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2_rank_1 = hipsparseCgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseCgtsv2_rank_1 = hipsparseCgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseCgtsv2_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36787,15 +36759,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: dl
-      complex(c_float_complex),target,dimension(:,:) :: d
-      complex(c_float_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2_full_rank = hipsparseCgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
-        c_loc(B),ldb,pBuffer)
+      hipsparseCgtsv2_full_rank = hipsparseCgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseZgtsv2_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36806,15 +36777,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2_rank_0 = hipsparseZgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseZgtsv2_rank_0 = hipsparseZgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseZgtsv2_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36825,15 +36795,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2_rank_1 = hipsparseZgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
-        ldb,pBuffer)
+      hipsparseZgtsv2_rank_1 = hipsparseZgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseZgtsv2_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -36844,15 +36813,14 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: dl
-      complex(c_double_complex),target,dimension(:,:) :: d
-      complex(c_double_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2_full_rank = hipsparseZgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
-        c_loc(B),ldb,pBuffer)
+      hipsparseZgtsv2_full_rank = hipsparseZgtsv2_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
     function hipsparseSgtsv2_nopivot_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb, &
@@ -36864,15 +36832,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseSgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2_nopivot_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb, &
@@ -36884,15 +36852,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseSgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2_nopivot_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb, &
@@ -36904,15 +36872,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: dl
-      real(c_float),target,dimension(:,:) :: d
-      real(c_float),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseSgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2_nopivot_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb, &
@@ -36924,15 +36892,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseDgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2_nopivot_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb, &
@@ -36944,15 +36912,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseDgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2_nopivot_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb, &
@@ -36964,15 +36932,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: dl
-      real(c_double),target,dimension(:,:) :: d
-      real(c_double),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseDgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2_nopivot_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb, &
@@ -36984,15 +36952,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseCgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2_nopivot_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb, &
@@ -37004,15 +36972,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseCgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2_nopivot_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb, &
@@ -37024,15 +36992,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: dl
-      complex(c_float_complex),target,dimension(:,:) :: d
-      complex(c_float_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseCgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2_nopivot_bufferSizeExt_rank_0(handle,m,n,dl,d,du,B,ldb, &
@@ -37044,15 +37012,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseZgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1(handle,m,n,dl,d,du,B,ldb, &
@@ -37064,15 +37032,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseZgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2_nopivot_bufferSizeExt_full_rank(handle,m,n,dl,d,du,B,ldb, &
@@ -37084,15 +37052,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: dl
-      complex(c_double_complex),target,dimension(:,:) :: d
-      complex(c_double_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseZgtsv2_nopivot_bufferSizeExt_( &
-        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+        handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2_nopivot_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37103,15 +37071,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2_nopivot_rank_0 = hipsparseSgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseSgtsv2_nopivot_rank_0 = hipsparseSgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseSgtsv2_nopivot_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37122,15 +37090,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2_nopivot_rank_1 = hipsparseSgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseSgtsv2_nopivot_rank_1 = hipsparseSgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseSgtsv2_nopivot_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37141,15 +37109,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: dl
-      real(c_float),target,dimension(:,:) :: d
-      real(c_float),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2_nopivot_full_rank = hipsparseSgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseSgtsv2_nopivot_full_rank = hipsparseSgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B), &
+        ldb,pBuffer)
     end function
 
     function hipsparseDgtsv2_nopivot_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37160,15 +37128,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2_nopivot_rank_0 = hipsparseDgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseDgtsv2_nopivot_rank_0 = hipsparseDgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseDgtsv2_nopivot_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37179,15 +37147,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2_nopivot_rank_1 = hipsparseDgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseDgtsv2_nopivot_rank_1 = hipsparseDgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseDgtsv2_nopivot_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37198,15 +37166,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: dl
-      real(c_double),target,dimension(:,:) :: d
-      real(c_double),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2_nopivot_full_rank = hipsparseDgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseDgtsv2_nopivot_full_rank = hipsparseDgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B), &
+        ldb,pBuffer)
     end function
 
     function hipsparseCgtsv2_nopivot_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37217,15 +37185,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2_nopivot_rank_0 = hipsparseCgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseCgtsv2_nopivot_rank_0 = hipsparseCgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseCgtsv2_nopivot_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37236,15 +37204,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2_nopivot_rank_1 = hipsparseCgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseCgtsv2_nopivot_rank_1 = hipsparseCgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseCgtsv2_nopivot_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37255,15 +37223,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: dl
-      complex(c_float_complex),target,dimension(:,:) :: d
-      complex(c_float_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2_nopivot_full_rank = hipsparseCgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseCgtsv2_nopivot_full_rank = hipsparseCgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B), &
+        ldb,pBuffer)
     end function
 
     function hipsparseZgtsv2_nopivot_rank_0(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37274,15 +37242,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2_nopivot_rank_0 = hipsparseZgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseZgtsv2_nopivot_rank_0 = hipsparseZgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseZgtsv2_nopivot_rank_1(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37293,15 +37261,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2_nopivot_rank_1 = hipsparseZgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseZgtsv2_nopivot_rank_1 = hipsparseZgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
+        pBuffer)
     end function
 
     function hipsparseZgtsv2_nopivot_full_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
@@ -37312,15 +37280,15 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: dl
-      complex(c_double_complex),target,dimension(:,:) :: d
-      complex(c_double_complex),target,dimension(:,:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2_nopivot_full_rank = hipsparseZgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(B),ldb,pBuffer)
+      hipsparseZgtsv2_nopivot_full_rank = hipsparseZgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B), &
+        ldb,pBuffer)
     end function
 
     function hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount, &
@@ -37331,17 +37299,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0 = &
-        hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount, &
@@ -37352,17 +37320,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1 = &
-        hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount, &
@@ -37373,17 +37341,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0 = &
-        hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount, &
@@ -37394,17 +37362,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1 = &
-        hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount, &
@@ -37415,17 +37383,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0 = &
-        hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount, &
@@ -37436,17 +37404,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1 = &
-        hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount, &
@@ -37457,17 +37425,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0 = &
-        hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount, &
@@ -37478,17 +37446,17 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1 = &
-        hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
-        batchCount,batchStride,pBufferSizeInBytes)
+        hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount, &
+        batchStride,pBufferSizeInBytes)
     end function
 
     function hipsparseSgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37498,16 +37466,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2StridedBatch_rank_0 = hipsparseSgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseSgtsv2StridedBatch_rank_0 = hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseSgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37517,16 +37485,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgtsv2StridedBatch_rank_1 = hipsparseSgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseSgtsv2StridedBatch_rank_1 = hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseDgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37536,16 +37504,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2StridedBatch_rank_0 = hipsparseDgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseDgtsv2StridedBatch_rank_0 = hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseDgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37555,16 +37523,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgtsv2StridedBatch_rank_1 = hipsparseDgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseDgtsv2StridedBatch_rank_1 = hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseCgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37574,16 +37542,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2StridedBatch_rank_0 = hipsparseCgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseCgtsv2StridedBatch_rank_0 = hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseCgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37593,16 +37561,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgtsv2StridedBatch_rank_1 = hipsparseCgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseCgtsv2StridedBatch_rank_1 = hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseZgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37612,16 +37580,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2StridedBatch_rank_0 = hipsparseZgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseZgtsv2StridedBatch_rank_0 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseZgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
@@ -37631,16 +37599,16 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_int) :: batchStride
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgtsv2StridedBatch_rank_1 = hipsparseZgtsv2StridedBatch_(handle,m,c_loc(dl), &
-        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+      hipsparseZgtsv2StridedBatch_rank_1 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x), &
+        batchCount,batchStride,pBuffer)
     end function
 
     function hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37652,18 +37620,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_float),target :: ds
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
-      real(c_float),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_float),target :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0 = &
-        hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+        hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
+        batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37675,41 +37643,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_float),target,dimension(:) :: ds
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
-      real(c_float),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1 = &
-        hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
-    end function
-
-    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
         batchCount,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      real(c_float),target,dimension(:,:) :: ds
-      real(c_float),target,dimension(:,:) :: dl
-      real(c_float),target,dimension(:,:) :: d
-      real(c_float),target,dimension(:,:) :: du
-      real(c_float),target,dimension(:,:) :: dw
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank = &
-        hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37721,18 +37666,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_double),target :: ds
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
-      real(c_double),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_double),target :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0 = &
-        hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+        hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
+        batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37744,41 +37689,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_double),target,dimension(:) :: ds
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
-      real(c_double),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1 = &
-        hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
-    end function
-
-    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
         batchCount,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      real(c_double),target,dimension(:,:) :: ds
-      real(c_double),target,dimension(:,:) :: dl
-      real(c_double),target,dimension(:,:) :: d
-      real(c_double),target,dimension(:,:) :: du
-      real(c_double),target,dimension(:,:) :: dw
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank = &
-        hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37790,18 +37712,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_float_complex),target :: ds
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
-      complex(c_float_complex),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_float_complex),target :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0 = &
-        hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+        hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
+        batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37813,41 +37735,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:) :: ds
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
-      complex(c_float_complex),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1 = &
-        hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
-    end function
-
-    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
         batchCount,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:,:) :: ds
-      complex(c_float_complex),target,dimension(:,:) :: dl
-      complex(c_float_complex),target,dimension(:,:) :: d
-      complex(c_float_complex),target,dimension(:,:) :: du
-      complex(c_float_complex),target,dimension(:,:) :: dw
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank = &
-        hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37859,18 +37758,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_double_complex),target :: ds
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
-      complex(c_double_complex),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_double_complex),target :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0 = &
-        hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+        hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
+        batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x, &
@@ -37882,41 +37781,18 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:) :: ds
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
-      complex(c_double_complex),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1 = &
-        hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
-    end function
-
-    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x), &
         batchCount,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:,:) :: ds
-      complex(c_double_complex),target,dimension(:,:) :: dl
-      complex(c_double_complex),target,dimension(:,:) :: d
-      complex(c_double_complex),target,dimension(:,:) :: du
-      complex(c_double_complex),target,dimension(:,:) :: dw
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank = &
-        hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
-        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
     end function
 
     function hipsparseSgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -37927,17 +37803,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_float),target :: ds
-      real(c_float),target :: dl
-      real(c_float),target :: d
-      real(c_float),target :: du
-      real(c_float),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_float),target :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgpsvInterleavedBatch_rank_0 = hipsparseSgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseSgpsvInterleavedBatch_rank_0 = hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseSgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -37948,39 +37824,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_float),target,dimension(:) :: ds
-      real(c_float),target,dimension(:) :: dl
-      real(c_float),target,dimension(:) :: d
-      real(c_float),target,dimension(:) :: du
-      real(c_float),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseSgpsvInterleavedBatch_rank_1 = hipsparseSgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
-    end function
-
-    function hipsparseSgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
-        pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      real(c_float),target,dimension(:,:) :: ds
-      real(c_float),target,dimension(:,:) :: dl
-      real(c_float),target,dimension(:,:) :: d
-      real(c_float),target,dimension(:,:) :: du
-      real(c_float),target,dimension(:,:) :: dw
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseSgpsvInterleavedBatch_full_rank = hipsparseSgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseSgpsvInterleavedBatch_rank_1 = hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseDgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -37991,17 +37845,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_double),target :: ds
-      real(c_double),target :: dl
-      real(c_double),target :: d
-      real(c_double),target :: du
-      real(c_double),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_double),target :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgpsvInterleavedBatch_rank_0 = hipsparseDgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseDgpsvInterleavedBatch_rank_0 = hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseDgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -38012,39 +37866,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      real(c_double),target,dimension(:) :: ds
-      real(c_double),target,dimension(:) :: dl
-      real(c_double),target,dimension(:) :: d
-      real(c_double),target,dimension(:) :: du
-      real(c_double),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseDgpsvInterleavedBatch_rank_1 = hipsparseDgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
-    end function
-
-    function hipsparseDgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
-        pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      real(c_double),target,dimension(:,:) :: ds
-      real(c_double),target,dimension(:,:) :: dl
-      real(c_double),target,dimension(:,:) :: d
-      real(c_double),target,dimension(:,:) :: du
-      real(c_double),target,dimension(:,:) :: dw
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseDgpsvInterleavedBatch_full_rank = hipsparseDgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseDgpsvInterleavedBatch_rank_1 = hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseCgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -38055,17 +37887,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_float_complex),target :: ds
-      complex(c_float_complex),target :: dl
-      complex(c_float_complex),target :: d
-      complex(c_float_complex),target :: du
-      complex(c_float_complex),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_float_complex),target :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgpsvInterleavedBatch_rank_0 = hipsparseCgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseCgpsvInterleavedBatch_rank_0 = hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseCgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -38076,39 +37908,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:) :: ds
-      complex(c_float_complex),target,dimension(:) :: dl
-      complex(c_float_complex),target,dimension(:) :: d
-      complex(c_float_complex),target,dimension(:) :: du
-      complex(c_float_complex),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseCgpsvInterleavedBatch_rank_1 = hipsparseCgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
-    end function
-
-    function hipsparseCgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
-        pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:,:) :: ds
-      complex(c_float_complex),target,dimension(:,:) :: dl
-      complex(c_float_complex),target,dimension(:,:) :: d
-      complex(c_float_complex),target,dimension(:,:) :: du
-      complex(c_float_complex),target,dimension(:,:) :: dw
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseCgpsvInterleavedBatch_full_rank = hipsparseCgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseCgpsvInterleavedBatch_rank_1 = hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseZgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -38119,17 +37929,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_double_complex),target :: ds
-      complex(c_double_complex),target :: dl
-      complex(c_double_complex),target :: d
-      complex(c_double_complex),target :: du
-      complex(c_double_complex),target :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_double_complex),target :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgpsvInterleavedBatch_rank_0 = hipsparseZgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseZgpsvInterleavedBatch_rank_0 = hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseZgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
@@ -38140,39 +37950,17 @@ module hipfort_hipsparse
       type(c_ptr) :: handle
       integer(c_int) :: algo
       integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:) :: ds
-      complex(c_double_complex),target,dimension(:) :: dl
-      complex(c_double_complex),target,dimension(:) :: d
-      complex(c_double_complex),target,dimension(:) :: du
-      complex(c_double_complex),target,dimension(:) :: dw
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batchCount
       type(c_ptr) :: pBuffer
       !
-      hipsparseZgpsvInterleavedBatch_rank_1 = hipsparseZgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
-    end function
-
-    function hipsparseZgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
-        pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: algo
-      integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:,:) :: ds
-      complex(c_double_complex),target,dimension(:,:) :: dl
-      complex(c_double_complex),target,dimension(:,:) :: d
-      complex(c_double_complex),target,dimension(:,:) :: du
-      complex(c_double_complex),target,dimension(:,:) :: dw
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: batchCount
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseZgpsvInterleavedBatch_full_rank = hipsparseZgpsvInterleavedBatch_(handle,algo,m, &
-        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+      hipsparseZgpsvInterleavedBatch_rank_1 = hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl, &
+        d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseSnnz_rank_0(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
@@ -38226,7 +38014,7 @@ module hipfort_hipsparse
       type(c_ptr) :: descrA
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:,:) :: nnzPerRowColumn
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
       hipsparseSnnz_full_rank = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
@@ -38284,7 +38072,7 @@ module hipfort_hipsparse
       type(c_ptr) :: descrA
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:,:) :: nnzPerRowColumn
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
       hipsparseDnnz_full_rank = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
@@ -38342,7 +38130,7 @@ module hipfort_hipsparse
       type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:,:) :: nnzPerRowColumn
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
       hipsparseCnnz_full_rank = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
@@ -38400,7 +38188,7 @@ module hipfort_hipsparse
       type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:,:) :: nnzPerRowColumn
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
       hipsparseZnnz_full_rank = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
@@ -38459,10 +38247,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerRow
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       !
       hipsparseSdense2csr_full_rank = hipsparseSdense2csr_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
@@ -38520,10 +38308,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerRow
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       !
       hipsparseDdense2csr_full_rank = hipsparseDdense2csr_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
@@ -38581,10 +38369,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerRow
-      complex(c_float_complex),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      complex(c_float_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       !
       hipsparseCdense2csr_full_rank = hipsparseCdense2csr_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
@@ -38642,10 +38430,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerRow
-      complex(c_double_complex),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      complex(c_double_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       !
       hipsparseZdense2csr_full_rank = hipsparseZdense2csr_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
@@ -38710,10 +38498,10 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: threshold
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSize_full_rank = hipsparseSpruneDense2csr_bufferSize_(handle, &
         m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
@@ -38779,10 +38567,10 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: threshold
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSize_full_rank = hipsparseDpruneDense2csr_bufferSize_(handle, &
         m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
@@ -38848,10 +38636,10 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: threshold
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSizeExt_full_rank = hipsparseSpruneDense2csr_bufferSizeExt_( &
         handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
@@ -38917,10 +38705,10 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: threshold
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSizeExt_full_rank = hipsparseDpruneDense2csr_bufferSizeExt_( &
         handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
@@ -38982,7 +38770,7 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: threshold
       type(c_ptr) :: descr
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr) :: buffer
       !
@@ -39045,7 +38833,7 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: threshold
       type(c_ptr) :: descr
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr) :: buffer
       !
@@ -39110,9 +38898,9 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: threshold
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csr_full_rank = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda, &
@@ -39176,9 +38964,9 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: threshold
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csr_full_rank = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda, &
@@ -39246,11 +39034,11 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: percentage
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank = &
         hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
@@ -39318,11 +39106,11 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: percentage
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank = &
         hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
@@ -39390,11 +39178,11 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: percentage
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank = &
         hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
@@ -39462,11 +39250,11 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: percentage
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:,:) :: pBufferSizeInBytes
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank = &
         hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
@@ -39530,7 +39318,7 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: percentage
       type(c_ptr) :: descr
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr) :: myInfo
       type(c_ptr) :: buffer
@@ -39597,7 +39385,7 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: percentage
       type(c_ptr) :: descr
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr) :: myInfo
       type(c_ptr) :: buffer
@@ -39668,9 +39456,9 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_float) :: percentage
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
       type(c_ptr) :: buffer
       !
@@ -39740,9 +39528,9 @@ module hipfort_hipsparse
       integer(c_int) :: lda
       real(c_double) :: percentage
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
       type(c_ptr) :: buffer
       !
@@ -39805,10 +39593,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerColumn
-      real(c_float),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      real(c_float),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
       hipsparseSdense2csc_full_rank = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
@@ -39868,10 +39656,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerColumn
-      real(c_double),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      real(c_double),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
       hipsparseDdense2csc_full_rank = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
@@ -39931,10 +39719,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerColumn
-      complex(c_float_complex),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      complex(c_float_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
       hipsparseCdense2csc_full_rank = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
@@ -39994,10 +39782,10 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:,:) :: nnzPerColumn
-      complex(c_double_complex),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      complex(c_double_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
       hipsparseZdense2csc_full_rank = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld, &
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
@@ -40050,9 +39838,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40107,9 +39895,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40164,9 +39952,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      complex(c_float_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40221,9 +40009,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:,:) :: csrVal
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
+      complex(c_double_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40278,9 +40066,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      real(c_float),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40335,9 +40123,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      real(c_double),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40392,9 +40180,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      complex(c_float_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -40449,9 +40237,9 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:,:) :: cscVal
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: cscColPtr
+      complex(c_double_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: ld
       !
@@ -43421,25 +43209,6 @@ module hipfort_hipsparse
         c_loc(csrColInd),c_loc(P),pBuffer)
     end function
 
-    function hipsparseXcsrsort_full_rank(handle,m,n,nnz,descrA,csrRowPtr,csrColInd,P,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      type(c_ptr) :: descrA
-      integer(c_int),target,dimension(:,:) :: csrRowPtr
-      integer(c_int),target,dimension(:,:) :: csrColInd
-      integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseXcsrsort_full_rank = hipsparseXcsrsort_(handle,m,n,nnz,descrA,c_loc(csrRowPtr), &
-        c_loc(csrColInd),c_loc(P),pBuffer)
-    end function
-
     function hipsparseXcscsort_bufferSizeExt_rank_0(handle,m,n,nnz,cscColPtr,cscRowInd, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -43511,25 +43280,6 @@ module hipfort_hipsparse
       type(c_ptr) :: pBuffer
       !
       hipsparseXcscsort_rank_1 = hipsparseXcscsort_(handle,m,n,nnz,descrA,c_loc(cscColPtr), &
-        c_loc(cscRowInd),c_loc(P),pBuffer)
-    end function
-
-    function hipsparseXcscsort_full_rank(handle,m,n,nnz,descrA,cscColPtr,cscRowInd,P,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      type(c_ptr) :: descrA
-      integer(c_int),target,dimension(:,:) :: cscColPtr
-      integer(c_int),target,dimension(:,:) :: cscRowInd
-      integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseXcscsort_full_rank = hipsparseXcscsort_(handle,m,n,nnz,descrA,c_loc(cscColPtr), &
         c_loc(cscRowInd),c_loc(P),pBuffer)
     end function
 
@@ -43605,24 +43355,6 @@ module hipfort_hipsparse
         c_loc(cooCols),c_loc(P),pBuffer)
     end function
 
-    function hipsparseXcoosortByRow_full_rank(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByRow_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      integer(c_int),target,dimension(:,:) :: cooRows
-      integer(c_int),target,dimension(:,:) :: cooCols
-      integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseXcoosortByRow_full_rank = hipsparseXcoosortByRow_(handle,m,n,nnz,c_loc(cooRows), &
-        c_loc(cooCols),c_loc(P),pBuffer)
-    end function
-
     function hipsparseXcoosortByColumn_rank_0(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43657,24 +43389,6 @@ module hipfort_hipsparse
       !
       hipsparseXcoosortByColumn_rank_1 = hipsparseXcoosortByColumn_(handle,m,n,nnz,c_loc(cooRows), &
         c_loc(cooCols),c_loc(P),pBuffer)
-    end function
-
-    function hipsparseXcoosortByColumn_full_rank(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByColumn_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      integer(c_int),target,dimension(:,:) :: cooRows
-      integer(c_int),target,dimension(:,:) :: cooCols
-      integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseXcoosortByColumn_full_rank = hipsparseXcoosortByColumn_(handle,m,n,nnz, &
-        c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
 
     function hipsparseSgebsr2gebsr_bufferSize_rank_0(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -44708,15 +44422,14 @@ module hipfort_hipsparse
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float),target :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseScsrcolor_rank_0 = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseScsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44732,15 +44445,14 @@ module hipfort_hipsparse
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),target,dimension(:) :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseScsrcolor_rank_1 = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseDcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44756,15 +44468,14 @@ module hipfort_hipsparse
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double),target :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseDcsrcolor_rank_0 = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseDcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44780,15 +44491,14 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),target,dimension(:) :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseDcsrcolor_rank_1 = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseCcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44804,15 +44514,14 @@ module hipfort_hipsparse
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float),target :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseCcsrcolor_rank_0 = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseCcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44828,15 +44537,14 @@ module hipfort_hipsparse
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),target,dimension(:) :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseCcsrcolor_rank_1 = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseZcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44852,15 +44560,14 @@ module hipfort_hipsparse
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double),target :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseZcsrcolor_rank_0 = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseZcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
@@ -44876,15 +44583,14 @@ module hipfort_hipsparse
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),target,dimension(:) :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr) :: myInfo
       !
       hipsparseZcsrcolor_rank_1 = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),ncolors,coloring,reordering, &
-        myInfo)
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
     function hipsparseSparseToDense_bufferSize_rank_0(handle,matA,matB,alg,pBufferSizeInBytes)
