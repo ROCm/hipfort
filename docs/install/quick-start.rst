@@ -11,8 +11,12 @@ This topic discusses how to quickly build hipFORT from source.
 Prerequisites
 ===============
 
-hipFORT requires GFortran version 7.5.0 or newer.
-For more information, see the `GFortran website. <https://fortran-lang.org/learn/os_setup/install_gfortran/>`_
+hipFORT requires a Fortran compiler that supports at least the Fortran 2003 standard.
+GFortran version 7.5.0 or newer is the primary tested compiler (see the `GFortran website
+<https://fortran-lang.org/learn/os_setup/install_gfortran/>`_), and AMD ``amdflang`` (LLVM Flang) is
+also supported. Other standard-conforming compilers such as NVIDIA ``nvfortran``, Intel ``ifx``/``ifort``,
+and the Cray Fortran compiler (for example on LUMI) are not officially supported, but hipFORT should
+build with them too. Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
 
 Building and testing hipFORT from source
 ==========================================

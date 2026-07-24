@@ -49,7 +49,17 @@ These interfaces take Fortran (array) variables, the number of elements instead 
 and the number of bytes, respectively. Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read.
 
-.. note:: 
+These additional interfaces are guarded by the ``USE_FPOINTER_INTERFACES`` preprocessor definition,
+which hipFORT enables automatically once it detects Fortran 2008 support in your compiler. By convention,
+application and test sources that rely on them use the ``.f08`` file extension (see the ``test/f2008``
+examples), while Fortran 2003 sources use ``.f03``.
+
+GFortran is the primary tested compiler, and AMD's ``amdflang`` (LLVM Flang) is also supported.
+Other standard-conforming Fortran compilers such as NVIDIA ``nvfortran``, Intel ``ifx``/``ifort``,
+and the Cray Fortran compiler (for example on LUMI) are not officially supported, but hipFORT
+should build with them too. Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
+
+.. note::
 
    If you plan to use the `f2008` interfaces, GFortran version 7.5.0 or newer is recommended.
    Problems can occur with older versions.

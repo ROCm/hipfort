@@ -42,6 +42,10 @@ As the interfaces make use of the `iso_c_binding` module, the minimum requiremen
 that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
 management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
+`gfortran` is the primary tested compiler, and AMD's `amdflang` (LLVM Flang) is also supported.
+Other standard-conforming Fortran compilers such as NVIDIA `nvfortran`, Intel `ifx`/`ifort`, and the
+Cray Fortran compiler (for example on LUMI) are not officially supported, but `hipfort` should
+build with them too. Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
 
 If your compiler understands the Fortran 2008 (`f2008`) code constructs that occur in `hipfort`'s source and test files, 
 additional interfaces are compiled into the `hipfort` modules and libraries. 
