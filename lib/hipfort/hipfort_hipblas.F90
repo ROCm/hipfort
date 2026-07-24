@@ -29849,19 +29849,18 @@ module hipfort_hipblas
     function hipblasBfdotStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasBfdotStridedBatched")
       use iso_c_binding
       use hipfort_hipblas_enums
-      use hipfort_hipblas_types
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotStridedBatched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(hipblasBfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
-      type(hipblasBfloat16) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int),value :: batchCount
-      type(hipblasBfloat16) :: myResult
+      type(c_ptr),value :: myResult
     end function
   end interface
 #endif
@@ -29892,19 +29891,18 @@ module hipfort_hipblas
     function hipblasBfdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasBfdotStridedBatched_64")
       use iso_c_binding
       use hipfort_hipblas_enums
-      use hipfort_hipblas_types
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotStridedBatched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(hipblasBfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: stridex
-      type(hipblasBfloat16) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int64_t),value :: batchCount
-      type(hipblasBfloat16) :: myResult
+      type(c_ptr),value :: myResult
     end function
   end interface
 #endif
