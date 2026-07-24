@@ -29,17 +29,17 @@ module hipfort_rocsparse_types
   implicit none
 
   type, bind(c) :: rocsparse_float_complex
-    real(c_float) :: x
-    real(c_float) :: y
+    real(c_float) :: x !< real part.
+    real(c_float) :: y !< imaginary part.
   end type rocsparse_float_complex
 
   type, bind(c) :: rocsparse_double_complex
-    real(c_double) :: x
-    real(c_double) :: y
+    real(c_double) :: x !< real part.
+    real(c_double) :: y !< imaginary part.
   end type rocsparse_double_complex
 
   type, bind(c) :: rocsparse_bfloat16
-    integer(c_int16_t) :: data
+    integer(c_int16_t) :: data !< brain float storage.
   end type rocsparse_bfloat16
 
 end module hipfort_rocsparse_types

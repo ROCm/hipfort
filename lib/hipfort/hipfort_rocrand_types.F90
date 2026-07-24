@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2026 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,11 +29,11 @@ module hipfort_rocrand_types
   implicit none
 
   type, bind(c) :: rocrand_discrete_distribution_st
-    integer(c_int) :: size
-    integer(c_int) :: offset
-    type(c_ptr) :: alias
-    type(c_ptr) :: probability
-    type(c_ptr) :: cdf
+    integer(c_int) :: size !< Number of entries in the probability table
+    integer(c_int) :: offset !< The distribution can be offset
+    type(c_ptr) :: alias !< Alias table
+    type(c_ptr) :: probability !< Probability data for the alias table
+    type(c_ptr) :: cdf !< Cumulative distribution function
   end type rocrand_discrete_distribution_st
 
 end module hipfort_rocrand_types
