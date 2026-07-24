@@ -24519,12 +24519,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgetrsStridedBatched_full_rank,&
       hipblasDgetrsStridedBatched_rank_0,&
-      hipblasDgetrsStridedBatched_rank_1
+      hipblasDgetrsStridedBatched_rank_1,&
+      hipblasDgetrsStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgetrsStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount) bind(c, name="cublasCgetrsStridedBatched")
@@ -24553,79 +24553,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgetrsStridedBatched_full_rank,&
       hipblasCgetrsStridedBatched_rank_0,&
-      hipblasCgetrsStridedBatched_rank_1
+      hipblasCgetrsStridedBatched_rank_1,&
+      hipblasCgetrsStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief SOLVER API
-  !> 
-  !>     \details
-  !>     getrsStridedBatched solves a batch of systems of n linear equations
-  !>     on n variables in its factorized forms.
-  !> 
-  !>     For each instance i in the batch, it solves one of the following systems, depending on the value of trans:
-  !> 
-  !>     \f[
-  !>         \begin{array}{cl}
-  !>         A_i X_i = B_i & \: \text{not transposed,}
-  !>
-  !>         A_i^T X_i = B_i & \: \text{transposed, or}
-  !>
-  !>         A_i^H X_i = B_i & \: \text{conjugate transposed.}
-  !>         \end{array}
-  !>     \f]
-  !> 
-  !>     Matrix \f$A_i\f$ is defined by its triangular factors as returned by hipblasSgetrfStridedBatched "getrfStridedBatched".
-  !> 
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.\n
-  !>                 Specifies the form of the system of equations of each instance in the batch.
-  !>     @param[in]
-  !>     n           int. n >= 0.\n
-  !>                 The order of the system, i.e. the number of columns and rows of all A_i matrices.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.\n
-  !>                 The number of right hand sides, i.e., the number of columns
-  !>                 of all the matrices B_i.
-  !>     @param[in]
-  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by hipblasSgetrfStridedBatched "getrfStridedBatched".
-  !>     @param[in]
-  !>     lda         int. lda >= n.\n
-  !>                 The leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     strideA     hipblasStride.\n
-  !>                 Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
-  !>     @param[in]
-  !>     ipiv        pointer to int. Array on the GPU (the size depends on the value of strideP).\n
-  !>                 Contains the vectors ipiv_i of pivot indices returned by hipblasSgetrfStridedBatched "getrfStridedBatched".
-  !>     @param[in]
-  !>     strideP     hipblasStride.\n
-  !>                 Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !>                 There is no restriction for the value of strideP. Normal use case is strideP >= n.
-  !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU (size depends on the value of strideB).\n
-  !>                 On entry, the right hand side matrices B_i.
-  !>                 On exit, the solution matrix X_i of each system in the batch.
-  !>     @param[in]
-  !>     ldb         int. ldb >= n.\n
-  !>                 The leading dimension of matrices B_i.
-  !>     @param[in]
-  !>     strideB     hipblasStride.\n
-  !>                 Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.\n
-  !>               If info = 0, successful exit.
-  !>               If info = j < 0, the j-th argument is invalid.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.\n
-  !>                 Number of instances (systems) in the batch.
-  !>
+
   interface hipblasZgetrsStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount) bind(c, name="cublasZgetrsStridedBatched")
@@ -24654,12 +24587,60 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgetrsStridedBatched_full_rank,&
       hipblasZgetrsStridedBatched_rank_0,&
-      hipblasZgetrsStridedBatched_rank_1
+      hipblasZgetrsStridedBatched_rank_1,&
+      hipblasZgetrsStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The getriBatched functions computes the inverse \f$C_i = A_i^{-1}\f$ of a batch of general
+  !>     n-by-n matrices \f$A_i\f$.
+  !>
+  !>     The inverse is computed by solving the linear system
+  !>
+  !>     \f[
+  !>         A_i C_i = I
+  !>     \f]
+  !>
+  !>     where I is the identity matrix and \f$A_i\f$ is factorized as \f$A_i = P_i L_i U_i\f$, as
+  !>     given by `hipblasSgetrfBatched` "getrfBatched".
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    hipblasHandle_t.
+  !>     @param[in]
+  !>     n         int. n >= 0.
+  !>               The number of rows and columns of all matrices A_i in the batch.
+  !>     @param[in]
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>               The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
+  !>               `hipblasSgetrfBatched` "getrfBatched".
+  !>     @param[in]
+  !>     lda       int. lda >= n.
+  !>               Specifies the leading dimension of matrices A_i.
+  !>     @param[in]
+  !>     ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).
+  !>               The pivot indices returned by `hipblasSgetrfBatched` "getrfBatched".
+  !>               ipiv can be passed in as a nullptr. This will assume that getrfBatched was called
+  !>               without partial pivoting.
+  !>     @param[out]
+  !>     C array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.
+  !>               If info[i] = 0, the inverse of matrices A_i. Otherwise, undefined.
+  !>     @param[in]
+  !>     ldc       int. ldc >= n.
+  !>               Specifies the leading dimension of C_i.
+  !>     @param[out]
+  !>     info      pointer to int. Array of batchCount integers on the GPU.
+  !>               - If info[i] = 0, successful exit for inversion of A_i.
+  !>               - If info[i] = j > 0, U_i is singular. U_i[j,j] is the first zero pivot.
+  !>     @param[in]
+  !>     batchCount int. batchCount >= 0.
+  !>                 Number of matrices in the batch.
   interface hipblasSgetriBatched
 #ifdef USE_CUDA_NAMES
     function hipblasSgetriBatched_(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount) bind(c, name="cublasSgetriBatched")
@@ -24683,12 +24664,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSgetriBatched_full_rank,&
       hipblasSgetriBatched_rank_0,&
-      hipblasSgetriBatched_rank_1
+      hipblasSgetriBatched_rank_1,&
+      hipblasSgetriBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDgetriBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDgetriBatched_(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount) bind(c, name="cublasDgetriBatched")
@@ -24712,12 +24693,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgetriBatched_full_rank,&
       hipblasDgetriBatched_rank_0,&
-      hipblasDgetriBatched_rank_1
+      hipblasDgetriBatched_rank_1,&
+      hipblasDgetriBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgetriBatched
 #ifdef USE_CUDA_NAMES
     function hipblasCgetriBatched_(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount) bind(c, name="cublasCgetriBatched")
@@ -24741,53 +24722,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgetriBatched_full_rank,&
       hipblasCgetriBatched_rank_0,&
-      hipblasCgetriBatched_rank_1
+      hipblasCgetriBatched_rank_1,&
+      hipblasCgetriBatched_full_rank
 #endif
   end interface
-  !>  \brief SOLVER API
-  !> 
-  !>     \details
-  !>     getriBatched computes the inverse \f$C_i = A_i^{-1}\f$ of a batch of general n-by-n matrices \f$A_i\f$.
-  !> 
-  !>     The inverse is computed by solving the linear system
-  !> 
-  !>     \f[
-  !>         A_i C_i = I
-  !>     \f]
-  !> 
-  !>     where I is the identity matrix, and \f$A_i\f$ is factorized as \f$A_i = P_i  L_i  U_i\f$ as given by hipblasSgetrfBatched "getrfBatched".
-  !> 
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     n         int. n >= 0.\n
-  !>               The number of rows and columns of all matrices A_i in the batch.
-  !>     @param[in]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
-  !>               The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by hipblasSgetrfBatched "getrfBatched".
-  !>     @param[in]
-  !>     lda       int. lda >= n.\n
-  !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).\n
-  !>               The pivot indices returned by hipblasSgetrfBatched "getrfBatched".
-  !>               ipiv can be passed in as a nullptr, this will assume that getrfBatched was called without partial pivoting.
-  !>     @param[out]
-  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.\n
-  !>               If info[i] = 0, the inverse of matrices A_i. Otherwise, undefined.
-  !>     @param[in]
-  !>     ldc       int. ldc >= n.\n
-  !>               Specifies the leading dimension of C_i.
-  !>     @param[out]
-  !>     info      pointer to int. Array of batchCount integers on the GPU.\n
-  !>               If info[i] = 0, successful exit for inversion of A_i.
-  !>               If info[i] = j > 0, U_i is singular. U_i[j,j] is the first zero pivot.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.\n
-  !>                 Number of matrices in the batch.
-  !>
+
   interface hipblasZgetriBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetriBatched_(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount) bind(c, name="cublasZgetriBatched")
@@ -24811,12 +24751,69 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgetriBatched_full_rank,&
       hipblasZgetriBatched_rank_0,&
-      hipblasZgetriBatched_rank_1
+      hipblasZgetriBatched_rank_1,&
+      hipblasZgetriBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The geqrf functions compute a QR factorization of a general ``m`` -by-``n`` matrix ``A``.
+  !>     The factorization has the form:
+  !>
+  !>     \f[
+  !>         A = Q\left[\begin{array}{c}
+  !>         R\\%
+  !>         0
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     where ``R`` is upper triangular (upper trapezoidal if ``m < n``), and ``Q`` is
+  !>     an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
+  !>     matrices:
+  !>
+  !>     \f[
+  !>         Q = H_1H_2\cdots H_k, \quad \text{with} \: k = \text{min}(m,n)
+  !>     \f]
+  !>
+  !>     Each Householder matrix \f$H_i\f$ is given by:
+  !>
+  !>     \f[
+  !>         H_i = I - \text{ipiv}[i] \cdot v_i v_i'
+  !>     \f]
+  !>
+  !>     where the first ``i`` -1 elements of the Householder vector \f$v_i\f$ are zero, and
+  !>     \f$v_i[i] = 1\f$.
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    hipblasHandle_t.
+  !>     @param[in]
+  !>     m         int. m >= 0.
+  !>               The number of rows of the matrix A.
+  !>     @param[in]
+  !>     n         int. n >= 0.
+  !>               The number of columns of the matrix A.
+  !>     @param[inout]
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.
+  !>               - On entry, the m-by-n matrix to be factored.
+  !>               - On exit, the elements on and above the diagonal contain the
+  !>               factor R. The elements below the diagonal are the last m - i elements
+  !>               of Householder vector v_i.
+  !>     @param[in]
+  !>     lda       int. lda >= m.
+  !>               Specifies the leading dimension of A.
+  !>     @param[out]
+  !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).
+  !>               The Householder scalars.
+  !>     @param[out]
+  !>     info      pointer to a int on the host.
+  !>               - If info = 0, successful exit.
+  !>               - If info = j < 0, the argument at position -j is invalid.
   interface hipblasSgeqrf
 #ifdef USE_CUDA_NAMES
     function hipblasSgeqrf_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasSgeqrf")
@@ -24838,12 +24835,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSgeqrf_full_rank,&
       hipblasSgeqrf_rank_0,&
-      hipblasSgeqrf_rank_1
+      hipblasSgeqrf_rank_1,&
+      hipblasSgeqrf_full_rank
 #endif
   end interface
-  
+
   interface hipblasDgeqrf
 #ifdef USE_CUDA_NAMES
     function hipblasDgeqrf_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasDgeqrf")
@@ -24865,12 +24862,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgeqrf_full_rank,&
       hipblasDgeqrf_rank_0,&
-      hipblasDgeqrf_rank_1
+      hipblasDgeqrf_rank_1,&
+      hipblasDgeqrf_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgeqrf
 #ifdef USE_CUDA_NAMES
     function hipblasCgeqrf_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasCgeqrf")
@@ -24892,66 +24889,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgeqrf_full_rank,&
       hipblasCgeqrf_rank_0,&
-      hipblasCgeqrf_rank_1
+      hipblasCgeqrf_rank_1,&
+      hipblasCgeqrf_full_rank
 #endif
   end interface
-  !>  \brief SOLVER API
-  !> 
-  !>     \details
-  !>     geqrf computes a QR factorization of a general m-by-n matrix A.
-  !> 
-  !>     The factorization has the form
-  !> 
-  !>     \f[
-  !>         A = Q\left[\begin{array}{c}
-  !>         R\newline
-  !>
-  !>         0
-  !>         \end{array}\right]
-  !>     \f]
-  !> 
-  !>     where R is upper triangular (upper trapezoidal if m < n), and Q is
-  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
-  !> 
-  !>     \f[
-  !>         Q = H_1H_2\cdots H_k, \quad \text{with} \: k = \text{min}(m,n)
-  !>     \f]
-  !> 
-  !>     Each Householder matrix \f$H_i\f$ is given by
-  !> 
-  !>     \f[
-  !>         H_i = I - \text{ipiv}[i] \cdot v_i v_i'
-  !>     \f]
-  !> 
-  !>     where the first i-1 elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i] = 1\f$.
-  !> 
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     m         int. m >= 0.\n
-  !>               The number of rows of the matrix A.
-  !>     @param[in]
-  !>     n         int. n >= 0.\n
-  !>               The number of columns of the matrix A.
-  !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
-  !>               On entry, the m-by-n matrix to be factored.
-  !>               On exit, the elements on and above the diagonal contain the
-  !>               factor R; the elements below the diagonal are the last m - i elements
-  !>               of Householder vector v_i.
-  !>     @param[in]
-  !>     lda       int. lda >= m.\n
-  !>               Specifies the leading dimension of A.
-  !>     @param[out]
-  !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
-  !>               The Householder scalars.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.\n
-  !>               If info = 0, successful exit.
-  !>               If info = j < 0, the j-th argument is invalid.
-  !>
+
   interface hipblasZgeqrf
 #ifdef USE_CUDA_NAMES
     function hipblasZgeqrf_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasZgeqrf")
@@ -24973,12 +24916,75 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgeqrf_full_rank,&
       hipblasZgeqrf_rank_0,&
-      hipblasZgeqrf_rank_1
+      hipblasZgeqrf_rank_1,&
+      hipblasZgeqrf_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The geqrfBatched function computes the QR factorization of a batch of general
+  !>     ``m``-by-``n`` matrices.
+  !>
+  !>     The factorization of matrix \f$A_i\f$ in the batch has the form:
+  !>
+  !>     \f[
+  !>         A_i = Q_i\left[\begin{array}{c}
+  !>         R_i\\%
+  !>         0
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     where \f$R_i\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``) and \f$Q_i\f$ is
+  !>     an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
+  !>     matrices:
+  !>
+  !>     \f[
+  !>         Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n)
+  !>     \f]
+  !>
+  !>     Each Householder matrix \f$H_{i_j}\f$ is given by:
+  !>
+  !>     \f[
+  !>         H_{i_j} = I - \text{ipiv}_i[j] \cdot v_{i_j} v_{i_j}'
+  !>     \f]
+  !>
+  !>     where the first ``j`` -1 elements of Householder vector \f$v_{i_j}\f$ are zero and
+  !>     \f$v_{i_j}[j] = 1\f$.
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    hipblasHandle_t.
+  !>     @param[in]
+  !>     m         int. m >= 0.
+  !>               The number of rows of all the matrices A_i in the batch.
+  !>     @param[in]
+  !>     n         int. n >= 0.
+  !>               The number of columns of all the matrices A_i in the batch.
+  !>     @param[inout]
+  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>               - On entry, the m-by-n matrices A_i to be factored.
+  !>               - On exit, the elements on and above the diagonal contain the
+  !>               factor R_i. The elements below the diagonal are the last m - j elements
+  !>               of Householder vector v_(i_j).
+  !>     @param[in]
+  !>     lda       int. lda >= m.
+  !>               Specifies the leading dimension of matrices A_i.
+  !>     @param[out]
+  !>     ipiv      array of pointers to type. Each pointer points to an array on the GPU
+  !>               of dimension min(m, n).
+  !>               Contains the vectors ipiv_i of corresponding Householder scalars.
+  !>     @param[out]
+  !>     info      pointer to a int on the host.
+  !>               - If info = 0, successful exit.
+  !>               - If info = j < 0, the argument at position -j is invalid.
+  !>     @param[in]
+  !>     batchCount  int. batchCount >= 0.
+  !>                  Number of matrices in the batch.
   interface hipblasSgeqrfBatched
 #ifdef USE_CUDA_NAMES
     function hipblasSgeqrfBatched_(handle,m,n,A,lda,ipiv,myInfo,batchCount) bind(c, name="cublasSgeqrfBatched")
@@ -25001,12 +25007,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSgeqrfBatched_full_rank,&
       hipblasSgeqrfBatched_rank_0,&
-      hipblasSgeqrfBatched_rank_1
+      hipblasSgeqrfBatched_rank_1,&
+      hipblasSgeqrfBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDgeqrfBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDgeqrfBatched_(handle,m,n,A,lda,ipiv,myInfo,batchCount) bind(c, name="cublasDgeqrfBatched")
@@ -25029,12 +25035,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgeqrfBatched_full_rank,&
       hipblasDgeqrfBatched_rank_0,&
-      hipblasDgeqrfBatched_rank_1
+      hipblasDgeqrfBatched_rank_1,&
+      hipblasDgeqrfBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgeqrfBatched
 #ifdef USE_CUDA_NAMES
     function hipblasCgeqrfBatched_(handle,m,n,A,lda,ipiv,myInfo,batchCount) bind(c, name="cublasCgeqrfBatched")
@@ -25057,70 +25063,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgeqrfBatched_full_rank,&
       hipblasCgeqrfBatched_rank_0,&
-      hipblasCgeqrfBatched_rank_1
+      hipblasCgeqrfBatched_rank_1,&
+      hipblasCgeqrfBatched_full_rank
 #endif
   end interface
-  !>  \brief SOLVER API
-  !> 
-  !>     \details
-  !>     geqrfBatched computes the QR factorization of a batch of general
-  !>     m-by-n matrices.
-  !> 
-  !>     The factorization of matrix \f$A_i\f$ in the batch has the form
-  !> 
-  !>     \f[
-  !>         A_i = Q_i\left[\begin{array}{c}
-  !>         R_i\newline
-  !>
-  !>         0
-  !>         \end{array}\right]
-  !>     \f]
-  !> 
-  !>     where \f$R_i\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_i\f$ is
-  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
-  !> 
-  !>     \f[
-  !>         Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n)
-  !>     \f]
-  !> 
-  !>     Each Householder matrix \f$H_{i_j}\f$ is given by
-  !> 
-  !>     \f[
-  !>         H_{i_j} = I - \text{ipiv}_i[j] \cdot v_{i_j} v_{i_j}'
-  !>     \f]
-  !> 
-  !>     where the first j-1 elements of Householder vector \f$v_{i_j}\f$ are zero, and \f$v_{i_j}[j] = 1\f$.
-  !> 
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     m         int. m >= 0.\n
-  !>               The number of rows of all the matrices A_i in the batch.
-  !>     @param[in]
-  !>     n         int. n >= 0.\n
-  !>               The number of columns of all the matrices A_i in the batch.
-  !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
-  !>               On entry, the m-by-n matrices A_i to be factored.
-  !>               On exit, the elements on and above the diagonal contain the
-  !>               factor R_i. The elements below the diagonal are the last m - j elements
-  !>               of Householder vector v_(i_j).
-  !>     @param[in]
-  !>     lda       int. lda >= m.\n
-  !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[out]
-  !>     ipiv      array of pointers to type. Each pointer points to an array on the GPU
-  !>               of dimension min(m, n).\n
-  !>               Contains the vectors ipiv_i of corresponding Householder scalars.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.\n
-  !>               If info = 0, successful exit.
-  !>               If info = k < 0, the k-th argument is invalid.
-  !>     @param[in]
-  !>     batchCount  int. batchCount >= 0.\n
-  !>                  Number of matrices in the batch.
+
   interface hipblasZgeqrfBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgeqrfBatched_(handle,m,n,A,lda,ipiv,myInfo,batchCount) bind(c, name="cublasZgeqrfBatched")
@@ -25143,12 +25091,84 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgeqrfBatched_full_rank,&
       hipblasZgeqrfBatched_rank_0,&
-      hipblasZgeqrfBatched_rank_1
+      hipblasZgeqrfBatched_rank_1,&
+      hipblasZgeqrfBatched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The geqrfStridedBatched functions compute the QR factorization of a batch of
+  !>     general ``m``-by-``n`` matrices.
+  !>
+  !>     The factorization of matrix \f$A_i\f$ in the batch has the form:
+  !>
+  !>     \f[
+  !>         A_i = Q_i\left[\begin{array}{c}
+  !>         R_i\\%
+  !>         0
+  !>         \end{array}\right]
+  !>     \f]
+  !>
+  !>     where \f$R_i\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``), and \f$Q_i\f$ is
+  !>     an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
+  !>     matrices:
+  !>
+  !>     \f[
+  !>         Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n)
+  !>     \f]
+  !>
+  !>     Each Householder matrix \f$H_{i_j}\f$ is given by:
+  !>
+  !>     \f[
+  !>         H_{i_j} = I - \text{ipiv}_j[j] \cdot v_{i_j} v_{i_j}'
+  !>     \f]
+  !>
+  !>     where the first ``j`` -1 elements of Householder vector \f$v_{i_j}\f$ are zero, and
+  !>     \f$v_{i_j}[j] = 1\f$.
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : No support.
+  !>
+  !>     @param[in]
+  !>     handle    hipblasHandle_t.
+  !>     @param[in]
+  !>     m         int. m >= 0.
+  !>               The number of rows of all the matrices A_i in the batch.
+  !>     @param[in]
+  !>     n         int. n >= 0.
+  !>               The number of columns of all the matrices A_i in the batch.
+  !>     @param[inout]
+  !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>               - On entry, the m-by-n matrices A_i to be factored.
+  !>               - On exit, the elements on and above the diagonal contain the
+  !>               factor R_i. The elements below the diagonal are the last m - j elements
+  !>               of Householder vector v_(i_j).
+  !>     @param[in]
+  !>     lda       int. lda >= m.
+  !>               Specifies the leading dimension of matrices A_i.
+  !>     @param[in]
+  !>     strideA   hipblasStride.
+  !>               Stride from the start of one matrix A_i to the next one A_(i+1).
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >=
+  !>               lda*n.
+  !>     @param[out]
+  !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).
+  !>               Contains the vectors ipiv_i of corresponding Householder scalars.
+  !>     @param[in]
+  !>     strideP   hipblasStride.
+  !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
+  !>               There is no restriction for the value
+  !>               of strideP. Normal use is strideP >= min(m,n).
+  !>     @param[out]
+  !>     info      pointer to a int on the host.
+  !>               - If info = 0, successful exit.
+  !>               - If info = j < 0, the argument at position -j is invalid.
+  !>     @param[in]
+  !>     batchCount  int. batchCount >= 0.
+  !>                  Number of matrices in the batch.
   interface hipblasSgeqrfStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasSgeqrfStridedBatched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount) bind(c, name="cublasSgeqrfStridedBatched")
@@ -25173,12 +25193,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasSgeqrfStridedBatched_full_rank,&
       hipblasSgeqrfStridedBatched_rank_0,&
-      hipblasSgeqrfStridedBatched_rank_1
+      hipblasSgeqrfStridedBatched_rank_1,&
+      hipblasSgeqrfStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasDgeqrfStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDgeqrfStridedBatched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount) bind(c, name="cublasDgeqrfStridedBatched")
@@ -25203,12 +25223,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasDgeqrfStridedBatched_full_rank,&
       hipblasDgeqrfStridedBatched_rank_0,&
-      hipblasDgeqrfStridedBatched_rank_1
+      hipblasDgeqrfStridedBatched_rank_1,&
+      hipblasDgeqrfStridedBatched_full_rank
 #endif
   end interface
-  
+
   interface hipblasCgeqrfStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasCgeqrfStridedBatched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount) bind(c, name="cublasCgeqrfStridedBatched")
@@ -25233,78 +25253,12 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasCgeqrfStridedBatched_full_rank,&
       hipblasCgeqrfStridedBatched_rank_0,&
-      hipblasCgeqrfStridedBatched_rank_1
+      hipblasCgeqrfStridedBatched_rank_1,&
+      hipblasCgeqrfStridedBatched_full_rank
 #endif
   end interface
-  !>  \brief SOLVER API
-  !> 
-  !>     \details
-  !>     geqrfStridedBatched computes the QR factorization of a batch of
-  !>     general m-by-n matrices.
-  !> 
-  !>     The factorization of matrix \f$A_i\f$ in the batch has the form
-  !> 
-  !>     \f[
-  !>         A_i = Q_i\left[\begin{array}{c}
-  !>         R_i\newline
-  !>
-  !>         0
-  !>         \end{array}\right]
-  !>     \f]
-  !> 
-  !>     where \f$R_i\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_i\f$ is
-  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
-  !> 
-  !>     \f[
-  !>         Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n)
-  !>     \f]
-  !> 
-  !>     Each Householder matrix \f$H_{i_j}\f$ is given by
-  !> 
-  !>     \f[
-  !>         H_{i_j} = I - \text{ipiv}_j[j] \cdot v_{i_j} v_{i_j}'
-  !>     \f]
-  !> 
-  !>     where the first j-1 elements of Householder vector \f$v_{i_j}\f$ are zero, and \f$v_{i_j}[j] = 1\f$.
-  !> 
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     m         int. m >= 0.\n
-  !>               The number of rows of all the matrices A_i in the batch.
-  !>     @param[in]
-  !>     n         int. n >= 0.\n
-  !>               The number of columns of all the matrices A_i in the batch.
-  !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               On entry, the m-by-n matrices A_i to be factored.
-  !>               On exit, the elements on and above the diagonal contain the
-  !>               factor R_i. The elements below the diagonal are the last m - j elements
-  !>               of Householder vector v_(i_j).
-  !>     @param[in]
-  !>     lda       int. lda >= m.\n
-  !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     strideA   hipblasStride.\n
-  !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
-  !>     @param[out]
-  !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
-  !>               Contains the vectors ipiv_i of corresponding Householder scalars.
-  !>     @param[in]
-  !>     strideP   hipblasStride.\n
-  !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !>               There is no restriction for the value
-  !>               of strideP. Normal use is strideP >= min(m,n).
-  !>     @param[out]
-  !>     info      pointer to a int on the host.\n
-  !>               If info = 0, successful exit.
-  !>               If info = k < 0, the k-th argument is invalid.
-  !>     @param[in]
-  !>     batchCount  int. batchCount >= 0.\n
-  !>                  Number of matrices in the batch.
+
   interface hipblasZgeqrfStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgeqrfStridedBatched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount) bind(c, name="cublasZgeqrfStridedBatched")
@@ -25329,124 +25283,557 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipblasZgeqrfStridedBatched_full_rank,&
       hipblasZgeqrfStridedBatched_rank_0,&
-      hipblasZgeqrfStridedBatched_rank_1
+      hipblasZgeqrfStridedBatched_rank_1,&
+      hipblasZgeqrfStridedBatched_full_rank
 #endif
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The gemmEx functions perform one of the matrix-matrix operations:
+  !>
+  !>         C = alpha*op( A )*op( B ) + beta*C,
+  !>
+  !>     where ``op( X )`` is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B``, and ``C`` are matrices, with
+  !>     ``op( A )`` an ``m`` by ``k`` matrix, ``op( B )`` a ``k`` by ``n`` matrix, and ``C`` an
+  !>     ``m`` by ``n`` matrix.
+  !>
+  !>     - Supported types are determined by the backend. See the cuBLAS documentation for cuBLAS
+  !>     backend information.
+  !>       For the rocBLAS backend, conversion from ``hipblasComputeType_t`` to
+  !>       ``rocblas_datatype_t`` happens within hipBLAS.
+  !>       Supported types are as follows:
+  !>
+  !>       |   aType    |   bType    |   cType    |     computeType     |
+  !>       | ---------- | ---------- | ---------- | ------------------- |
+  !>       | HIP_R_16F  | HIP_R_16F  | HIP_R_16F  | HIPBLAS_COMPUTE_16F |
+  !>       | HIP_R_16F  | HIP_R_16F  | HIP_R_16F  | HIPBLAS_COMPUTE_32F |
+  !>       | HIP_R_16F  | HIP_R_16F  | HIP_R_32F  | HIPBLAS_COMPUTE_32F |
+  !>       | HIP_R_16BF | HIP_R_16BF | HIP_R_16BF | HIPBLAS_COMPUTE_32F |
+  !>       | HIP_R_16BF | HIP_R_16BF | HIP_R_32F  | HIPBLAS_COMPUTE_32F |
+  !>       | HIP_R_32F  | HIP_R_32F  | HIP_R_32F  | HIPBLAS_COMPUTE_32F |
+  !>       | HIP_R_64F  | HIP_R_64F  | HIP_R_64F  | HIPBLAS_COMPUTE_64F |
+  !>       | HIP_R_8I   | HIP_R_8I   | HIP_R_32I  | HIPBLAS_COMPUTE_32I |
+  !>       | HIP_C_32F  | HIP_C_32F  | HIP_C_32F  | HIPBLAS_COMPUTE_32F |
+  !>       | HIP_C_64F  | HIP_C_64F  | HIP_C_64F  | HIPBLAS_COMPUTE_64F |
+  !>
+  !>     ``hipblasGemmExWithFlags`` is also available. This is identical to ``hipblasGemmEx``
+  !>     with the addition of a ``flags`` parameter which controls the flags used in Tensile to
+  !>     control gemm algorithms with the
+  !>     rocBLAS backend. When using a cuBLAS backend, this parameter is ignored.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     [const void *]
+  !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     A         [void *]
+  !>               device pointer storing matrix A.
+  !>     @param[in]
+  !>     aType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix A.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>     @param[in]
+  !>     B         [void *]
+  !>               device pointer storing matrix B.
+  !>     @param[in]
+  !>     bType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix B.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of B.
+  !>     @param[in]
+  !>     beta      [const void *]
+  !>               device pointer or host pointer specifying the scalar beta. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     C         [void *]
+  !>               device pointer storing matrix C.
+  !>     @param[in]
+  !>     cType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix C.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
+  !>     @param[in]
+  !>     computeType
+  !>     [hipblasComputeType_t]
+  !>               specifies the datatype of computation.
+  !>     @param[in]
+  !>     algo      [hipblasGemmAlgo_t]
+  !>               enumerant specifying the algorithm type.
   interface hipblasGemmEx
 #ifdef USE_CUDA_NAMES
-    function hipblasGemmEx_(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,compute_type,algo) bind(c, name="cublasGemmEx")
+    function hipblasGemmEx_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,computeType,algo) bind(c, name="cublasGemmEx")
 #else
-    function hipblasGemmEx_(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,compute_type,algo) bind(c, name="hipblasGemmEx")
+    function hipblasGemmEx_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,computeType,algo) bind(c, name="hipblasGemmEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmEx_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: trans_a
-      integer(kind(HIPBLAS_OP_N)),value :: trans_b
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr),value :: a
-      integer(kind(HIPBLAS_R_16F)),value :: a_type
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
       integer(c_int),value :: lda
-      type(c_ptr),value :: b
-      integer(kind(HIPBLAS_R_16F)),value :: b_type
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
       integer(c_int),value :: ldb
       type(c_ptr),value :: beta
-      type(c_ptr),value :: c
-      integer(kind(HIPBLAS_R_16F)),value :: c_type
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
       integer(c_int),value :: ldc
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !> \details
+  !>     The gemmBatchedEx functions perform one of the batched matrix-matrix operations:
+  !>
+  !>         C_i = alpha*op(A_i)*op(B_i) + beta*C_i, for i = 1, ..., batchCount.
+  !>
+  !>     where ``op( X )`` is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B``, and ``C`` are batched pointers to
+  !>     matrices, with
+  !>     ``op( A )`` an ``m`` by ``k`` by ``batchCount`` batched matrix,
+  !>     ``op( B )`` a ``k`` by ``n`` by ``batchCount`` batched matrix, and
+  !>     ``C`` an ``m`` by ``n`` by ``batchCount`` batched matrix.
+  !>     The batched matrices are an array of pointers to matrices.
+  !>     The number of pointers to matrices is ``batchCount``.
+  !>
+  !>     - Supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     ``hipblasGemmBatchedExWithFlags`` is also available. This is identical to
+  !>     ``hipblasGemmBatchedEx``
+  !>     with the addition of a ``flags`` parameter which controls the flags used in Tensile to
+  !>     control gemm algorithms with the
+  !>     rocBLAS backend. When using a cuBLAS backend, this parameter is ignored.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     [const void *]
+  !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     A         [void *]
+  !>               device pointer storing array of pointers to each matrix A_i.
+  !>     @param[in]
+  !>     aType
+  !>     [hipDataType]
+  !>               specifies the datatype of each matrix A_i.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of each A_i.
+  !>     @param[in]
+  !>     B         [void *]
+  !>               device pointer storing array of pointers to each matrix B_i.
+  !>     @param[in]
+  !>     bType
+  !>     [hipDataType]
+  !>               specifies the datatype of each matrix B_i.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of each B_i.
+  !>     @param[in]
+  !>     beta      [const void *]
+  !>               device pointer or host pointer specifying the scalar beta. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     C         [void *]
+  !>               device array of device pointers to each matrix C_i.
+  !>     @param[in]
+  !>     cType
+  !>     [hipDataType]
+  !>               specifies the datatype of each matrix C_i.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of each C_i.
+  !>     @param[in]
+  !>     batchCount
+  !>               [int]
+  !>               number of gemm operations in the batch.
+  !>     @param[in]
+  !>     computeType
+  !>     [hipblasComputeType_t]
+  !>               specifies the datatype of computation.
+  !>     @param[in]
+  !>     algo      [hipblasGemmAlgo_t]
+  !>               enumerant specifying the algorithm type.
   interface hipblasGemmBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasGemmBatchedEx_(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,batch_count,compute_type,algo) bind(c, name="cublasGemmBatchedEx")
+    function hipblasGemmBatchedEx_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,batchCount,computeType,algo) bind(c, name="cublasGemmBatchedEx")
 #else
-    function hipblasGemmBatchedEx_(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,batch_count,compute_type,algo) bind(c, name="hipblasGemmBatchedEx")
+    function hipblasGemmBatchedEx_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,batchCount,computeType,algo) bind(c, name="hipblasGemmBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmBatchedEx_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: trans_a
-      integer(kind(HIPBLAS_OP_N)),value :: trans_b
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr) :: a
-      integer(kind(HIPBLAS_R_16F)),value :: a_type
+      type(c_ptr) :: A
+      integer(kind(HIP_R_32F)),value :: aType
       integer(c_int),value :: lda
-      type(c_ptr) :: b
-      integer(kind(HIPBLAS_R_16F)),value :: b_type
+      type(c_ptr) :: B
+      integer(kind(HIP_R_32F)),value :: bType
       integer(c_int),value :: ldb
       type(c_ptr),value :: beta
-      type(c_ptr) :: c
-      integer(kind(HIPBLAS_R_16F)),value :: c_type
+      type(c_ptr) :: C
+      integer(kind(HIP_R_32F)),value :: cType
       integer(c_int),value :: ldc
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(c_int),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
-
   end interface
-  
+
+  !>  \brief   BLAS EX API
+  !>
+  !>     \details
+  !>     The gemmStridedBatchedEx functions perform one of the strided_batched matrix-matrix
+  !>     operations:
+  !>
+  !>         C_i = alpha*op(A_i)*op(B_i) + beta*C_i, for i = 1, ..., batchCount
+  !>
+  !>     where ``op( X )`` is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B``, and ``C`` are strided_batched
+  !>     matrices, with
+  !>     ``op( A )`` an ``m`` by ``k`` by ``batchCount`` strided_batched matrix,
+  !>     ``op( B )`` a ``k`` by ``n`` by ``batchCount`` strided_batched matrix, and
+  !>     ``C`` an ``m`` by ``n`` by ``batchCount`` strided_batched matrix.
+  !>
+  !>     The strided_batched matrices are multiple matrices separated by a constant stride.
+  !>     The number of matrices is ``batchCount``.
+  !>
+  !>     - Supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     ``hipblasGemmStridedBatchedExWithFlags`` is also available. This is identical to
+  !>     ``hipblasStridedBatchedGemmEx``
+  !>     with the addition of a ``flags`` parameter which controls the flags used in Tensile to
+  !>     control gemm algorithms with the
+  !>     rocBLAS backend. When using a cuBLAS backend, this parameter is ignored.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     [const void *]
+  !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     A         [void *]
+  !>               device pointer pointing to first matrix A_1.
+  !>     @param[in]
+  !>     aType
+  !>     [hipDataType]
+  !>               specifies the datatype of each matrix A_i.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of each A_i.
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               specifies stride from start of one A_i matrix to the next A_(i + 1).
+  !>     @param[in]
+  !>     B         [void *]
+  !>               device pointer pointing to first matrix B_1.
+  !>     @param[in]
+  !>     bType
+  !>     [hipDataType]
+  !>               specifies the datatype of each matrix B_i.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of each B_i.
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               specifies stride from start of one B_i matrix to the next B_(i + 1).
+  !>     @param[in]
+  !>     beta      [const void *]
+  !>               device pointer or host pointer specifying the scalar beta. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     C         [void *]
+  !>               device pointer pointing to first matrix C_1.
+  !>     @param[in]
+  !>     cType
+  !>     [hipDataType]
+  !>               specifies the datatype of each matrix C_i.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of each C_i.
+  !>     @param[in]
+  !>     strideC  [hipblasStride]
+  !>               specifies stride from start of one C_i matrix to the next C_(i + 1).
+  !>     @param[in]
+  !>     batchCount
+  !>               [int]
+  !>               number of gemm operations in the batch.
+  !>     @param[in]
+  !>     computeType
+  !>     [hipblasComputeType_t]
+  !>               specifies the datatype of computation.
+  !>     @param[in]
+  !>     algo      [hipblasGemmAlgo_t]
+  !>               enumerant specifying the algorithm type.
   interface hipblasGemmStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasGemmStridedBatchedEx_(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,stride_A,b,b_type,ldb,stride_B,beta,c,c_type,ldc,stride_C,batch_count,compute_type,algo) bind(c, name="cublasGemmStridedBatchedEx")
+    function hipblasGemmStridedBatchedEx_(handle,transA,transB,m,n,k,alpha,A,aType,lda,strideA,B,bType,ldb,strideB,beta,C,cType,ldc,strideC,batchCount,computeType,algo) bind(c, name="cublasGemmStridedBatchedEx")
 #else
-    function hipblasGemmStridedBatchedEx_(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,stride_A,b,b_type,ldb,stride_B,beta,c,c_type,ldc,stride_C,batch_count,compute_type,algo) bind(c, name="hipblasGemmStridedBatchedEx")
+    function hipblasGemmStridedBatchedEx_(handle,transA,transB,m,n,k,alpha,A,aType,lda,strideA,B,bType,ldb,strideB,beta,C,cType,ldc,strideC,batchCount,computeType,algo) bind(c, name="hipblasGemmStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmStridedBatchedEx_
       type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: trans_a
-      integer(kind(HIPBLAS_OP_N)),value :: trans_b
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr),value :: a
-      integer(kind(HIPBLAS_R_16F)),value :: a_type
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
       integer(c_int),value :: lda
-      integer(c_int64_t),value :: stride_A
-      type(c_ptr),value :: b
-      integer(kind(HIPBLAS_R_16F)),value :: b_type
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
       integer(c_int),value :: ldb
-      integer(c_int64_t),value :: stride_B
+      integer(c_int64_t),value :: strideB
       type(c_ptr),value :: beta
-      type(c_ptr),value :: c
-      integer(kind(HIPBLAS_R_16F)),value :: c_type
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
       integer(c_int),value :: ldc
-      integer(c_int64_t),value :: stride_C
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(c_int64_t),value :: strideC
+      integer(c_int),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
-
   end interface
-  
+
+  !>  BLAS EX API
+  !>
+  !>     \details
+  !>     The trsmEx functions solve:
+  !>
+  !>         op(A)*X = alpha*B or X*op(A) = alpha*B,
+  !>
+  !>     where ``alpha`` is a scalar, ``X`` and ``B`` are ``m`` by ``n`` matrices,
+  !>     ``A`` is a triangular matrix, and ``op(A)`` is one of
+  !>
+  !>         op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
+  !>
+  !>     The matrix ``X`` is overwritten on ``B``.
+  !>
+  !>     This function gives the user the ability to reuse the ``invA`` matrix between runs.
+  !>     If ``invA == NULL``, ``hipblasTrsmEx`` will automatically calculate ``invA`` on every run.
+  !>
+  !>     Setting up invA:
+  !>     The accepted ``invA`` matrix consists of the packed 128x128 inverses of the diagonal blocks
+  !>     of
+  !>     matrix ``A``, followed by any smaller diagonal block that remains.
+  !>     To set up ``invA``, it is recommended that ``hipblasTrtriBatched`` be used with matrix
+  !>     ``A`` as the input.
+  !>
+  !>     Device memory of size 128 x ``k`` should be allocated for ``invA`` ahead of time, where
+  !>     ``k`` is ``m`` when
+  !>     ``HIPBLAS_SIDE_LEFT`` and is ``n`` when ``HIPBLAS_SIDE_RIGHT``. The actual number of
+  !>     elements in ``invA``
+  !>     should be passed as ``invAsize``.
+  !>
+  !>     To begin, ``hipblasTrtriBatched`` must be called on the full 128x128 sized diagonal blocks
+  !>     of
+  !>     matrix ``A``. Here are the restricted parameters:
+  !>       - ``n`` = 128
+  !>       - ``ldinvA`` = 128
+  !>       - ``stride_invA`` = 128x128
+  !>       - ``batchCount`` = ``k / 128``,
+  !>
+  !>     Then any remaining block can be added:
+  !>       - ``n`` = ``k % 128``
+  !>       - ``invA`` = ``invA + stride_invA * previousBatchCount``
+  !>       - ``ldinvA`` = 128
+  !>       - ``batchCount`` = 1
+  !>
+  !>     @param[in]
+  !>     handle  [hipblasHandle_t]
+  !>             handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side    [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
+  !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_N: op(A) = A.
+  !>             - HIPBLAS_OP_T: op(A) = A^T.
+  !>             - HIPBLAS_ON_C: op(A) = A^H.
+  !>
+  !>     @param[in]
+  !>     diag    [hipblasDiagType_t]
+  !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
+  !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     m       [int]
+  !>             m specifies the number of rows of B. m >= 0.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of columns of B. n >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha   [void *]
+  !>             device pointer or host pointer specifying the scalar alpha. When alpha is
+  !>             &zero, then A is not referenced, and B does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     A       [void *]
+  !>             device pointer storing matrix A.
+  !>             Of dimension ( lda, k ), where k is m
+  !>             when HIPBLAS_SIDE_LEFT and
+  !>             is n when HIPBLAS_SIDE_RIGHT.
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A.
+  !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
+  !>
+  !>     @param[in, out]
+  !>     B       [void *]
+  !>             device pointer storing matrix B.
+  !>             B is of dimension ( ldb, n ).
+  !>             Before entry, the leading m by n part of the array B must
+  !>             contain the right-hand side matrix B, and on exit is
+  !>             overwritten by the solution matrix X.
+  !>
+  !>     @param[in]
+  !>     ldb    [int]
+  !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     invA    [void *]
+  !>             device pointer storing the inverse diagonal blocks of A.
+  !>             invA is of dimension ( ld_invA, k ), where k is m
+  !>             when HIPBLAS_SIDE_LEFT and
+  !>             is n when HIPBLAS_SIDE_RIGHT.
+  !>             ld_invA must be equal to 128.
+  !>
+  !>     @param[in]
+  !>     invAsize [int]
+  !>             invAsize specifies the number of elements of device memory in invA.
+  !>
+  !>     @param[in]
+  !>     computeType
+  !>     [hipDataType]
+  !>             specifies the datatype of computation.
   interface hipblasTrsmEx
 #ifdef USE_CUDA_NAMES
-    function hipblasTrsmEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="cublasTrsmEx")
+    function hipblasTrsmEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invAsize,computeType) bind(c, name="cublasTrsmEx")
 #else
-    function hipblasTrsmEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="hipblasTrsmEx")
+    function hipblasTrsmEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invAsize,computeType) bind(c, name="hipblasTrsmEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmEx_
       type(c_ptr),value :: handle
@@ -25462,20 +25849,152 @@ module hipfort_hipblas
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: invA
-      integer(c_int),value :: invA_size
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(c_int),value :: invAsize
+      integer(kind(HIP_R_32F)),value :: computeType
     end function
-
   end interface
-  
+
+  !>  BLAS EX API
+  !>
+  !>     \details
+  !>     The trsmBatchedEx functions solve:
+  !>
+  !>         op(A_i)*X_i = alpha*B_i or X_i*op(A_i) = alpha*B_i,
+  !>
+  !>     for ``i`` = 1, ..., ``batchCount``, where ``alpha`` is a scalar, ``X`` and ``B`` are arrays
+  !>     of ``m`` by ``n`` matrices,
+  !>     ``A`` is an array of triangular matrices, and each ``op(A_i)`` is one of:
+  !>
+  !>         op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
+  !>
+  !>     Each matrix ``X_i`` is overwritten on ``B_i``.
+  !>
+  !>     This function gives the user the ability to reuse the ``invA`` matrix between runs.
+  !>     If ``invA == NULL``, ``hipblasTrsmBatchedEx`` will automatically calculate each ``invA_i``
+  !>     on every run.
+  !>
+  !>     Setting up ``invA``:
+  !>     Each accepted ``invA_i`` matrix consists of the packed 128x128 inverses of the diagonal
+  !>     blocks of
+  !>     matrix ``A_i``, followed by any smaller diagonal block that remains.
+  !>     To set up each ``invA_i``, it is recommended that ``hipblasTrtriBatched`` be used with
+  !>     matrix ``A_i`` as the input.
+  !>     ``invA`` is an array of pointers of ``batchCount`` length holding each ``invA_i``.
+  !>
+  !>     Device memory of size 128 x ``k`` should be allocated for each ``invA_i`` ahead of time,
+  !>     where ``k`` is ``m`` when
+  !>     ``HIPBLAS_SIDE_LEFT`` and is ``n`` when ``HIPBLAS_SIDE_RIGHT``. The actual number of
+  !>     elements in each ``invA_i``
+  !>     should be passed as ``invAsize``.
+  !>
+  !>     To begin, ``hipblasTrtriBatched`` must be called on the full 128x128 sized diagonal blocks
+  !>     of each
+  !>     matrix ``A_i``. Below are the restricted parameters:
+  !>       - ``n`` = 128
+  !>       - ``ldinvA`` = 128
+  !>       - ``stride_invA`` = 128x128
+  !>       - ``batchCount`` = ``k / 128``,
+  !>
+  !>     Then any remaining block can be added:
+  !>       - ``n`` = ``k % 128``
+  !>       - ``invA`` = ``invA + stride_invA * previousBatchCount``
+  !>       - ``ldinvA`` = 128
+  !>       - ``batchCount`` = 1
+  !>
+  !>     @param[in]
+  !>     handle  [hipblasHandle_t]
+  !>             handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side    [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
+  !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_N: op(A) = A.
+  !>             - HIPBLAS_OP_T: op(A) = A^T.
+  !>             - HIPBLAS_OP_C: op(A) = A^H.
+  !>
+  !>     @param[in]
+  !>     diag    [hipblasDiagType_t]
+  !>             - HIPBLAS_DIAG_UNIT:     each A_i is assumed to be unit triangular.
+  !>             - HIPBLAS_DIAG_NON_UNIT:  each A_i is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     m       [int]
+  !>             m specifies the number of rows of each B_i. m >= 0.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of columns of each B_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha   [void *]
+  !>             device pointer or host pointer alpha specifying the scalar alpha. When alpha is
+  !>             &zero, then A is not referenced, and B does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     A       [void *]
+  !>             device array of device pointers storing each matrix A_i.
+  !>             Each A_i is of dimension ( lda, k ), where k is m
+  !>             when HIPBLAS_SIDE_LEFT and
+  !>             is n when HIPBLAS_SIDE_RIGHT.
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of each A_i.
+  !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
+  !>
+  !>     @param[in, out]
+  !>     B       [void *]
+  !>             device array of device pointers storing each matrix B_i.
+  !>             Each B_i is of dimension ( ldb, n ).
+  !>             Before entry, the leading m by n part of the array B_i must
+  !>             contain the right-hand side matrix B_i, and on exit is
+  !>             overwritten by the solution matrix X_i.
+  !>
+  !>     @param[in]
+  !>     ldb    [int]
+  !>            ldb specifies the first dimension of each B_i. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>             specifies how many batches.
+  !>
+  !>     @param[in]
+  !>     invA    [void *]
+  !>             device array of device pointers storing the inverse diagonal blocks of each A_i.
+  !>             Each invA_i is of dimension ( ld_invA, k ), where k is m
+  !>             when HIPBLAS_SIDE_LEFT and
+  !>             is n when HIPBLAS_SIDE_RIGHT.
+  !>             ld_invA must be equal to 128.
+  !>
+  !>     @param[in]
+  !>     invAsize [int]
+  !>             invAsize specifies the number of elements of device memory in each invA_i.
+  !>
+  !>     @param[in]
+  !>     computeType
+  !>     [hipDataType]
+  !>             specifies the datatype of computation.
   interface hipblasTrsmBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasTrsmBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="cublasTrsmBatchedEx")
+    function hipblasTrsmBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount,invA,invAsize,computeType) bind(c, name="cublasTrsmBatchedEx")
 #else
-    function hipblasTrsmBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="hipblasTrsmBatchedEx")
+    function hipblasTrsmBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount,invA,invAsize,computeType) bind(c, name="hipblasTrsmBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmBatchedEx_
       type(c_ptr),value :: handle
@@ -25490,22 +26009,167 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: invA
-      integer(c_int),value :: invA_size
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(c_int),value :: invAsize
+      integer(kind(HIP_R_32F)),value :: computeType
     end function
-
   end interface
-  
+
+  !>  \brief   BLAS EX API
+  !>
+  !>     \details
+  !>     The trsmStridedBatchedEx functions solve:
+  !>
+  !>         op(A_i)*X_i = alpha*B_i or X_i*op(A_i) = alpha*B_i,
+  !>
+  !>     for ``i`` = 1, ..., ``batchCount``, where ``alpha`` is a scalar, ``X`` and ``B`` are
+  !>     strided batched ``m`` by ``n`` matrices,
+  !>     ``A`` is a strided batched triangular matrix, and ``op(A_i)`` is one of:
+  !>
+  !>         op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
+  !>
+  !>     Each matrix ``X_i`` is overwritten on ``B_i``.
+  !>
+  !>     This function gives the user the ability to reuse each ``invA_i`` matrix between runs.
+  !>     If ``invA == NULL``, ``hipblasTrsmStridedBatchedEx`` will automatically calculate each
+  !>     ``invA_i`` on every run.
+  !>
+  !>     Setting up invA:
+  !>     Each accepted ``invA_i`` matrix consists of the packed 128x128 inverses of the diagonal
+  !>     blocks of
+  !>     matrix ``A_i``, followed by any smaller diagonal block that remains.
+  !>     To set up ``invA_i``, it is recommended that ``hipblasTrtriBatched`` be used with matrix
+  !>     ``A_i`` as the input.
+  !>     ``invA`` is a contiguous piece of memory holding each ``invA_i``.
+  !>
+  !>     Device memory of size 128 x ``k`` should be allocated for each ``invA_i`` ahead of time,
+  !>     where ``k`` is ``m`` when
+  !>     ``HIPBLAS_SIDE_LEFT`` and is ``n`` when ``HIPBLAS_SIDE_RIGHT``. The actual number of
+  !>     elements in each ``invA_i``
+  !>     should be passed as ``invAsize``.
+  !>
+  !>     To begin, ``hipblasTrtriBatched`` must be called on the full 128x128 sized diagonal blocks
+  !>     of each
+  !>     matrix ``A_i``. Below are the restricted parameters:
+  !>       - ``n`` = 128
+  !>       - ``ldinvA`` = 128
+  !>       - ``stride_invA`` = 128x128
+  !>       - ``batchCount`` = ``k / 128``,
+  !>
+  !>     Then any remaining block can be added:
+  !>       - ``n`` = ``k % 128``
+  !>       - ``invA`` = ``invA + stride_invA * previousBatchCount``
+  !>       - ``ldinvA`` = 128
+  !>       - ``batchCount`` = 1
+  !>
+  !>     @param[in]
+  !>     handle  [hipblasHandle_t]
+  !>             handle to the hipBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     side    [hipblasSideMode_t]
+  !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
+  !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
+  !>
+  !>     @param[in]
+  !>     uplo    [hipblasFillMode_t]
+  !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
+  !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA  [hipblasOperation_t]
+  !>             - HIPBLAS_OP_N: op(A) = A.
+  !>             - HIPBLAS_OP_T: op(A) = A^T.
+  !>             - HIPBLAS_OP_C: op(A) = A^H.
+  !>
+  !>     @param[in]
+  !>     diag    [hipblasDiagType_t]
+  !>             - HIPBLAS_DIAG_UNIT:     each A_i is assumed to be unit triangular.
+  !>             - HIPBLAS_DIAG_NON_UNIT:  each A_i is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     m       [int]
+  !>             m specifies the number of rows of each B_i. m >= 0.
+  !>
+  !>     @param[in]
+  !>     n       [int]
+  !>             n specifies the number of columns of each B_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     alpha   [void *]
+  !>             device pointer or host pointer specifying the scalar alpha. When alpha is
+  !>             &zero, then A is not referenced, and B does not need to be set before
+  !>             entry.
+  !>
+  !>     @param[in]
+  !>     A       [void *]
+  !>             device pointer storing matrix A.
+  !>             Of dimension ( lda, k ), where k is m
+  !>             when HIPBLAS_SIDE_LEFT and
+  !>             is n when HIPBLAS_SIDE_RIGHT.
+  !>             Only the upper/lower triangular part is accessed.
+  !>
+  !>     @param[in]
+  !>     lda     [int]
+  !>             lda specifies the first dimension of A.
+  !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
+  !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     strideA [hipblasStride]
+  !>             The stride between each A matrix.
+  !>
+  !>     @param[in, out]
+  !>     B       [void *]
+  !>             device pointer pointing to first matrix B_i.
+  !>             Each B_i is of dimension ( ldb, n ).
+  !>             Before entry, the leading m by n part of each array B_i must
+  !>             contain the right-hand side of matrix B_i, and on exit is
+  !>             overwritten by the solution matrix X_i.
+  !>
+  !>     @param[in]
+  !>     ldb    [int]
+  !>            ldb specifies the first dimension of each B_i. ldb >= max( 1, m ).
+  !>
+  !>     @param[in]
+  !>     strideB [hipblasStride]
+  !>             The stride between each B_i matrix.
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>             specifies how many batches.
+  !>
+  !>     @param[in]
+  !>     invA    [void *]
+  !>             device pointer storing the inverse diagonal blocks of each A_i.
+  !>             invA points to the first invA_1.
+  !>             Each invA_i is of dimension ( ld_invA, k ), where k is m
+  !>             when HIPBLAS_SIDE_LEFT and
+  !>             is n when HIPBLAS_SIDE_RIGHT.
+  !>             ld_invA must be equal to 128.
+  !>
+  !>     @param[in]
+  !>     invAsize [int]
+  !>             invAsize specifies the number of elements of device memory in each invA_i.
+  !>
+  !>     @param[in]
+  !>     strideInvA [hipblasStride]
+  !>             The stride between each invA matrix.
+  !>
+  !>     @param[in]
+  !>     computeType
+  !>     [hipDataType]
+  !>             specifies the datatype of computation.
   interface hipblasTrsmStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasTrsmStridedBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="cublasTrsmStridedBatchedEx")
+    function hipblasTrsmStridedBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,batchCount,invA,invAsize,strideInvA,computeType) bind(c, name="cublasTrsmStridedBatchedEx")
 #else
-    function hipblasTrsmStridedBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="hipblasTrsmStridedBatchedEx")
+    function hipblasTrsmStridedBatchedEx_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,batchCount,invA,invAsize,strideInvA,computeType) bind(c, name="hipblasTrsmStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmStridedBatchedEx_
       type(c_ptr),value :: handle
@@ -25518,19 +26182,62 @@ module hipfort_hipblas
       type(c_ptr),value :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),value :: stride_A
+      integer(c_int64_t),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      integer(c_int64_t),value :: stride_B
-      integer(c_int),value :: batch_count
+      integer(c_int64_t),value :: strideB
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: invA
-      integer(c_int),value :: invA_size
-      integer(c_int64_t),value :: stride_invA
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(c_int),value :: invAsize
+      integer(c_int64_t),value :: strideInvA
+      integer(kind(HIP_R_32F)),value :: computeType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The axpyEx funtions compute a constant ``alpha`` multiplied by vector ``x``, plus vector
+  !>     ``y``:
+  !>
+  !>         y := alpha * x + y
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x and y.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in]
+  !>     alphaType
+  !>     [hipDataType]
+  !>               specifies the datatype of alpha.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of vector x.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[inout]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>               specifies the datatype of vector y.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasAxpyEx
 #ifdef USE_CUDA_NAMES
     function hipblasAxpyEx_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,executionType) bind(c, name="cublasAxpyEx")
@@ -25539,77 +26246,235 @@ module hipfort_hipblas
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasAxpyEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
-      integer(kind(HIPBLAS_R_16F)),value :: alphaType
+      integer(kind(HIP_R_32F)),value :: alphaType
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The axpyBatchedEx functions compute a constant ``alpha`` multiplied by vector ``x``, plus
+  !>     vector ``y``, over
+  !>     a set of batched vectors.
+  !>
+  !>         y := alpha * x + y
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in each x_i and y_i.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in]
+  !>     alphaType
+  !>     [hipDataType]
+  !>               specifies the datatype of alpha.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[inout]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector y_i.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasAxpyBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasAxpyBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,batch_count,executionType) bind(c, name="cublasAxpyBatchedEx")
+    function hipblasAxpyBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,batchCount,executionType) bind(c, name="cublasAxpyBatchedEx")
 #else
-    function hipblasAxpyBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,batch_count,executionType) bind(c, name="hipblasAxpyBatchedEx")
+    function hipblasAxpyBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,batchCount,executionType) bind(c, name="hipblasAxpyBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasAxpyBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
-      integer(kind(HIPBLAS_R_16F)),value :: alphaType
+      integer(kind(HIP_R_32F)),value :: alphaType
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(c_int),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The axpyStridedBatchedEx functions compute a constant ``alpha`` multiplied by vector ``x``,
+  !>     plus vector ``y``, over
+  !>     a set of strided batched vectors.
+  !>
+  !>         y := alpha * x + y
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in each x_i and y_i.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in]
+  !>     alphaType
+  !>     [hipDataType]
+  !>               specifies the datatype of alpha.
+  !>     @param[in]
+  !>     x         device pointer to the first vector x_1.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stridex   [hipblasStride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>               There are no restrictions placed on stridex. However, the user should
+  !>               ensure that stridex is of an appropriate size. For a typical
+  !>               case, this means stridex >= n * incx.
+  !>     @param[inout]
+  !>     y         device pointer to the first vector y_1.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector y_i.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     stridey   [hipblasStride]
+  !>               stride from the start of one vector (y_i) to the next one (y_i+1).
+  !>               There are no restrictions placed on stridey. However, the user should
+  !>               ensure that stridey is of appropriate size. For a typical
+  !>               case, this means stridey >= n * incy.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasAxpyStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasAxpyStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,y,yType,incy,stridey,batch_count,executionType) bind(c, name="cublasAxpyStridedBatchedEx")
+    function hipblasAxpyStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,executionType) bind(c, name="cublasAxpyStridedBatchedEx")
 #else
-    function hipblasAxpyStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,y,yType,incy,stridey,batch_count,executionType) bind(c, name="hipblasAxpyStridedBatchedEx")
+    function hipblasAxpyStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,executionType) bind(c, name="hipblasAxpyStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasAxpyStridedBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
-      integer(kind(HIPBLAS_R_16F)),value :: alphaType
+      integer(kind(HIP_R_32F)),value :: alphaType
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(c_int),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>     \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The dotEx functions perform the dot product of vectors ``x`` and ``y``:
+  !>
+  !>         result = x * y;
+  !>
+  !>     The dotcEx functions perform the dot product of the conjugate of complex vector ``x`` and
+  !>     complex vector ``y``:
+  !>
+  !>         result = conjugate (x) * y;
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x and y.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of vector x.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>               specifies the datatype of vector y.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[inout]
+  !>     result
+  !>               device pointer or host pointer to store the dot product.
+  !>               Return value is 0.0 if n <= 0.
+  !>     @param[in]
+  !>     resultType
+  !>     [hipDataType]
+  !>               specifies the datatype of the result.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasDotEx
 #ifdef USE_CUDA_NAMES
     function hipblasDotEx_(handle,n,x,xType,incx,y,yType,incy,myResult,resultType,executionType) bind(c, name="cublasDotEx")
@@ -25618,23 +26483,23 @@ module hipfort_hipblas
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
   interface hipblasDotcEx
 #ifdef USE_CUDA_NAMES
     function hipblasDotcEx_(handle,n,x,xType,incx,y,yType,incy,myResult,resultType,executionType) bind(c, name="cublasDotcEx")
@@ -25643,131 +26508,289 @@ module hipfort_hipblas
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotcEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>     \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The dotBatchedEx functions perform a batch of dot products of vectors ``x`` and ``y``:
+  !>
+  !>         result_i = x_i * y_i;
+  !>
+  !>     The dotcBatchedEx functions performs a batch of dot products of the conjugate of complex
+  !>     vector ``x`` and complex vector ``y``:
+  !>
+  !>         result_i = conjugate (x_i) * y_i;
+  !>
+  !>     where ``(x_i, y_i)`` is the ``i``-th instance of the batch and
+  !>     ``x_i`` and ``y_i`` are vectors, for ``i`` = 1, ..., ``batchCount``.
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in each x_i and y_i.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector y_i.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+  !>     @param[inout]
+  !>     result
+  !>               device array or host array of batchCount size to store the dot products of each
+  !>               batch.
+  !>               Returns 0.0 for each element if n <= 0.
+  !>     @param[in]
+  !>     resultType
+  !>     [hipDataType]
+  !>               specifies the datatype of the result.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasDotBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasDotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batch_count,myResult,resultType,executionType) bind(c, name="cublasDotBatchedEx")
+    function hipblasDotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotBatchedEx")
 #else
-    function hipblasDotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batch_count,myResult,resultType,executionType) bind(c, name="hipblasDotBatchedEx")
+    function hipblasDotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
   interface hipblasDotcBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasDotcBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batch_count,myResult,resultType,executionType) bind(c, name="cublasDotcBatchedEx")
+    function hipblasDotcBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotcBatchedEx")
 #else
-    function hipblasDotcBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batch_count,myResult,resultType,executionType) bind(c, name="hipblasDotcBatchedEx")
+    function hipblasDotcBatchedEx_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotcBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotcBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>     \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The dotStridedBatchedEx functions perform a batch of dot products of vectors ``x`` and
+  !>     ``y``:
+  !>
+  !>         result_i = x_i * y_i;
+  !>
+  !>     The dotc_strided_batched_ex functions performs a batch of dot products of the conjugate of
+  !>     complex vector ``x`` and complex vector ``y``:
+  !>
+  !>         result_i = conjugate (x_i) * y_i;
+  !>
+  !>     where ``(x_i, y_i)`` is the ``i``-th instance of the batch and
+  !>     ``x_i`` and ``y_i`` are vectors, for ``i`` = 1, ..., ``batchCount``.
+  !>
+  !>     The supported types are determined by the backend. See rocBLAS/cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in each x_i and y_i.
+  !>     @param[in]
+  !>     x         device pointer to the first vector (x_1) in the batch.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stridex   [hipblasStride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in]
+  !>     y         device pointer to the first vector (y_1) in the batch.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector y_i.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     stridey   [hipblasStride]
+  !>               stride from the start of one vector (y_i) to the next one (y_i+1).
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+  !>     @param[inout]
+  !>     result
+  !>               device array or host array of batchCount size to store the dot products of each
+  !>               batch.
+  !>               Returns 0.0 for each element if n <= 0.
+  !>     @param[in]
+  !>     resultType
+  !>     [hipDataType]
+  !>               specifies the datatype of the result.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasDotStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasDotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batch_count,myResult,resultType,executionType) bind(c, name="cublasDotStridedBatchedEx")
+    function hipblasDotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotStridedBatchedEx")
 #else
-    function hipblasDotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batch_count,myResult,resultType,executionType) bind(c, name="hipblasDotStridedBatchedEx")
+    function hipblasDotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotStridedBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
   interface hipblasDotcStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasDotcStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batch_count,myResult,resultType,executionType) bind(c, name="cublasDotcStridedBatchedEx")
+    function hipblasDotcStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotcStridedBatchedEx")
 #else
-    function hipblasDotcStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batch_count,myResult,resultType,executionType) bind(c, name="hipblasDotcStridedBatchedEx")
+    function hipblasDotcStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotcStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotcStridedBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief   BLAS EX API
+  !>
+  !>     \details
+  !>     The nrm2Ex functions compute the Euclidean norm of a real or complex vector:
+  !>
+  !>               result := sqrt( x'*x ) for real vectors
+  !>               result := sqrt( x**H*x ) for complex vectors
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of the vector x.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[inout]
+  !>     result
+  !>               device pointer or host pointer to store the nrm2 product.
+  !>               The return value is 0.0 if n, incx<=0.
+  !>     @param[in]
+  !>     resultType
+  !>     [hipDataType]
+  !>               specifies the datatype of the result.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasNrm2Ex
 #ifdef USE_CUDA_NAMES
     function hipblasNrm2Ex_(handle,n,x,xType,incx,myResult,resultType,executionType) bind(c, name="cublasNrm2Ex")
@@ -25776,67 +26799,212 @@ module hipfort_hipblas
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasNrm2Ex_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief   BLAS EX API
+  !>
+  !>     \details
+  !>     The nrm2BatchedEx functions compute the Euclidean norm over a batch of real or complex
+  !>     vectors:
+  !>
+  !>               result := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batchCount
+  !>               result := sqrt( x_i**H*x_i ) for complex vectors x, for i = 1, ..., batchCount
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               number of elements in each x_i.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i. incx must be > 0.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+  !>     @param[out]
+  !>     result
+  !>               device pointer or host pointer to array of batchCount size for nrm2 results.
+  !>               Returns 0.0 for each element if n <= 0, incx<=0.
+  !>     @param[in]
+  !>     resultType
+  !>     [hipDataType]
+  !>               specifies the datatype of the result.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasNrm2BatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasNrm2BatchedEx_(handle,n,x,xType,incx,batch_count,myResult,resultType,executionType) bind(c, name="cublasNrm2BatchedEx")
+    function hipblasNrm2BatchedEx_(handle,n,x,xType,incx,batchCount,myResult,resultType,executionType) bind(c, name="cublasNrm2BatchedEx")
 #else
-    function hipblasNrm2BatchedEx_(handle,n,x,xType,incx,batch_count,myResult,resultType,executionType) bind(c, name="hipblasNrm2BatchedEx")
+    function hipblasNrm2BatchedEx_(handle,n,x,xType,incx,batchCount,myResult,resultType,executionType) bind(c, name="hipblasNrm2BatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasNrm2BatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief   BLAS EX API
+  !>
+  !>     \details
+  !>     The nrm2StridedBatchedEx computes the Euclidean norm over a batch of real or complex
+  !>     vectors:
+  !>
+  !>               := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batchCount
+  !>               := sqrt( x_i**H*x_i ) for complex vectors, for i = 1, ..., batchCount
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               number of elements in each x_i.
+  !>     @param[in]
+  !>     x         device pointer to the first vector x_1.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>               specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i. incx must be > 0.
+  !>     @param[in]
+  !>     stridex   [hipblasStride]
+  !>               stride from the start of one vector (x_i) and the next one (x_i+1).
+  !>               There are no restrictions placed on stridex. However, the user should
+  !>               ensure that stridex is of an appropriate size. For a typical
+  !>               case, this means stridex >= n * incx.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+  !>     @param[out]
+  !>     result
+  !>               device pointer or host pointer to array for storing contiguous batchCount
+  !>               results.
+  !>               Returns 0.0 for each element if n <= 0, incx<=0.
+  !>     @param[in]
+  !>     resultType
+  !>     [hipDataType]
+  !>               specifies the datatype of the result.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>               specifies the datatype of computation.
   interface hipblasNrm2StridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasNrm2StridedBatchedEx_(handle,n,x,xType,incx,stridex,batch_count,myResult,resultType,executionType) bind(c, name="cublasNrm2StridedBatchedEx")
+    function hipblasNrm2StridedBatchedEx_(handle,n,x,xType,incx,stridex,batchCount,myResult,resultType,executionType) bind(c, name="cublasNrm2StridedBatchedEx")
 #else
-    function hipblasNrm2StridedBatchedEx_(handle,n,x,xType,incx,stridex,batch_count,myResult,resultType,executionType) bind(c, name="hipblasNrm2StridedBatchedEx")
+    function hipblasNrm2StridedBatchedEx_(handle,n,x,xType,incx,stridex,batchCount,myResult,resultType,executionType) bind(c, name="hipblasNrm2StridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasNrm2StridedBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
-      integer(c_int),value :: batch_count
+      integer(c_int),value :: batchCount
       type(c_ptr),value :: myResult
-      integer(kind(HIPBLAS_R_16F)),value :: resultType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The rotEx functions applies the Givens rotation matrix defined by ``c=cos(alpha)`` and
+  !>     ``s=sin(alpha)`` to vectors ``x`` and ``y``.
+  !>     Scalars ``c`` and ``s`` can be stored in either the host or device memory. The location is
+  !>     specified by calling ``hipblasSetPointerMode``.
+  !>
+  !>     If ``cs_type`` is real:
+  !>
+  !>         x := c * x + s * y
+  !>         y := c * y - s * x
+  !>
+  !>     If ``cs_type`` is complex, the imaginary part of ``c`` is ignored:
+  !>
+  !>         x := real(c) * x + s * y
+  !>         y := real(c) * y - conj(s) * x
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle  [hipblasHandle_t]
+  !>             handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n       [int]
+  !>             number of elements in the x and y vectors.
+  !>     @param[inout]
+  !>     x       device pointer storing vector x.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>             specifies the datatype of vector x.
+  !>     @param[in]
+  !>     incx    [int]
+  !>             specifies the increment between elements of x.
+  !>     @param[inout]
+  !>     y       device pointer storing vector y.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>             specifies the datatype of vector y.
+  !>     @param[in]
+  !>     incy    [int]
+  !>             specifies the increment between elements of y.
+  !>     @param[in]
+  !>     c device pointer or host pointer storing scalar cosine component of the rotation matrix.
+  !>     @param[in]
+  !>     s device pointer or host pointer storing scalar sine component of the rotation matrix.
+  !>     @param[in]
+  !>     csType
+  !>     [hipDataType]
+  !>             specifies the datatype of c and s.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>             specifies the datatype of computation.
   interface hipblasRotEx
 #ifdef USE_CUDA_NAMES
     function hipblasRotEx_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,executionType) bind(c, name="cublasRotEx")
@@ -25845,80 +27013,240 @@ module hipfort_hipblas
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasRotEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(HIPBLAS_R_16F)),value :: csType
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: csType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The rotBatchedEx functions apply the Givens rotation matrix defined by ``c=cos(alpha)`` and
+  !>     ``s=sin(alpha)`` to batched vectors ``x_i`` and`` y_i``, for ``i`` = 1, ...,
+  !>     ``batchCount``.
+  !>     Scalars ``c`` and ``s`` can be stored in either host or device memory. The location is
+  !>     specified by calling ``hipblasSetPointerMode``.
+  !>
+  !>     If ``cs_type`` is real:
+  !>
+  !>         x := c * x + s * y
+  !>         y := c * y - s * x
+  !>
+  !>     If ``cs_type`` is complex, the imaginary part of ``c`` is ignored:
+  !>
+  !>         x := real(c) * x + s * y
+  !>         y := real(c) * y - conj(s) * x
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle  [hipblasHandle_t]
+  !>             handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n       [int]
+  !>             number of elements in each x_i and y_i vectors.
+  !>     @param[inout]
+  !>     x       device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>             specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx    [int]
+  !>             specifies the increment between elements of each x_i.
+  !>     @param[inout]
+  !>     y       device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>             specifies the datatype of each vector y_i.
+  !>     @param[in]
+  !>     incy    [int]
+  !>             specifies the increment between elements of each y_i.
+  !>     @param[in]
+  !>     c       device pointer or host pointer to scalar cosine component of the rotation matrix.
+  !>     @param[in]
+  !>     s       device pointer or host pointer to scalar sine component of the rotation matrix.
+  !>     @param[in]
+  !>     csType
+  !>     [hipDataType]
+  !>             specifies the datatype of c and s.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>             the number of x and y arrays, that is, the number of batches.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>             specifies the datatype of computation.
   interface hipblasRotBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasRotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,batch_count,executionType) bind(c, name="cublasRotBatchedEx")
+    function hipblasRotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,batchCount,executionType) bind(c, name="cublasRotBatchedEx")
 #else
-    function hipblasRotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,batch_count,executionType) bind(c, name="hipblasRotBatchedEx")
+    function hipblasRotBatchedEx_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,batchCount,executionType) bind(c, name="hipblasRotBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasRotBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(HIPBLAS_R_16F)),value :: csType
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: csType
+      integer(c_int),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The rotStridedBatchedEx functions apply the Givens rotation matrix defined by
+  !>     ``c=cos(alpha)`` and ``s=sin(alpha)`` to strided batched vectors ``x_i`` and ``y_i``, for
+  !>     ``i`` = 1, ..., ``batchCount``.
+  !>     Scalars ``c`` and ``s`` can be stored in either host or device memory. The location is
+  !>     specified by calling ``hipblasSetPointerMode``.
+  !>
+  !>     If ``cs_type`` is real:
+  !>
+  !>         x := c * x + s * y
+  !>         y := c * y - s * x
+  !>
+  !>     If ``cs_type`` is complex, the imaginary part of ``c`` is ignored:
+  !>
+  !>         x := real(c) * x + s * y
+  !>         y := real(c) * y - conj(s) * x
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle  [hipblasHandle_t]
+  !>             handle to the hipblas library context queue.
+  !>     @param[in]
+  !>     n       [int]
+  !>             number of elements in each x_i and y_i vectors.
+  !>     @param[inout]
+  !>     x       device pointer to the first vector x_1.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>             specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx    [int]
+  !>             specifies the increment between elements of each x_i.
+  !>     @param[in]
+  !>     stridex [hipblasStride]
+  !>             specifies the increment from the beginning of x_i to the beginning of x_(i+1).
+  !>     @param[inout]
+  !>     y       device pointer to the first vector y_1.
+  !>     @param[in]
+  !>     yType
+  !>     [hipDataType]
+  !>             specifies the datatype of each vector y_i.
+  !>     @param[in]
+  !>     incy    [int]
+  !>             specifies the increment between elements of each y_i.
+  !>     @param[in]
+  !>     stridey [hipblasStride]
+  !>             specifies the increment from the beginning of y_i to the beginning of y_(i+1).
+  !>     @param[in]
+  !>     c       device pointer or host pointer to scalar cosine component of the rotation matrix.
+  !>     @param[in]
+  !>     s       device pointer or host pointer to scalar sine component of the rotation matrix.
+  !>     @param[in]
+  !>     csType
+  !>     [hipDataType]
+  !>             specifies the datatype of c and s.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>             the number of x and y arrays, that is, the number of batches.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>             specifies the datatype of computation.
   interface hipblasRotStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasRotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,c,s,csType,batch_count,executionType) bind(c, name="cublasRotStridedBatchedEx")
+    function hipblasRotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,c,s,csType,batchCount,executionType) bind(c, name="cublasRotStridedBatchedEx")
 #else
-    function hipblasRotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,c,s,csType,batch_count,executionType) bind(c, name="hipblasRotStridedBatchedEx")
+    function hipblasRotStridedBatchedEx_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,c,s,csType,batchCount,executionType) bind(c, name="hipblasRotStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasRotStridedBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
       type(c_ptr),value :: y
-      integer(kind(HIPBLAS_R_16F)),value :: yType
+      integer(kind(HIP_R_32F)),value :: yType
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(HIPBLAS_R_16F)),value :: csType
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: csType
+      integer(c_int),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The scalEx functions scale each element of vector ``x`` with scalar ``alpha``.
+  !>
+  !>         x := alpha * x
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer for the scalar alpha.
+  !>     @param[in]
+  !>     alphaType
+  !>     [hipDataType]
+  !>                specifies the datatype of alpha.
+  !>     @param[inout]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>            specifies the datatype of vector x.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>                    specifies the datatype of computation.
   interface hipblasScalEx
 #ifdef USE_CUDA_NAMES
     function hipblasScalEx_(handle,n,alpha,alphaType,x,xType,incx,executionType) bind(c, name="cublasScalEx")
@@ -25927,65 +27255,148 @@ module hipfort_hipblas
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScalEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
-      integer(kind(HIPBLAS_R_16F)),value :: alphaType
+      integer(kind(HIP_R_32F)),value :: alphaType
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The scalBatchedEx functions scale each element of each vector ``x_i`` with scalar
+  !>     ``alpha``:
+  !>
+  !>         x_i := alpha * x_i
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer for the scalar alpha.
+  !>     @param[in]
+  !>     alphaType
+  !>     [hipDataType]
+  !>                specifies the datatype of alpha.
+  !>     @param[inout]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>            specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>                    specifies the datatype of computation.
   interface hipblasScalBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasScalBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,batch_count,executionType) bind(c, name="cublasScalBatchedEx")
+    function hipblasScalBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,batchCount,executionType) bind(c, name="cublasScalBatchedEx")
 #else
-    function hipblasScalBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,batch_count,executionType) bind(c, name="hipblasScalBatchedEx")
+    function hipblasScalBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,batchCount,executionType) bind(c, name="hipblasScalBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScalBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
-      integer(kind(HIPBLAS_R_16F)),value :: alphaType
+      integer(kind(HIP_R_32F)),value :: alphaType
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(c_int),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
-  
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>     The scalStridedBatchedEx functions scale each element of vector ``x`` with scalar alpha
+  !>     over a set
+  !>     of strided batched vectors.
+  !>
+  !>         x := alpha * x
+  !>
+  !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer for the scalar alpha.
+  !>     @param[in]
+  !>     alphaType
+  !>     [hipDataType]
+  !>                specifies the datatype of alpha.
+  !>     @param[inout]
+  !>     x         device pointer to the first vector x_1.
+  !>     @param[in]
+  !>     xType
+  !>     [hipDataType]
+  !>            specifies the datatype of each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stridex   [hipblasStride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>               There are no restrictions placed on stridex. However, the user should
+  !>               take care to ensure that stridex is of an appropriate size. For a typical
+  !>               case, this means stridex >= n * incx.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
+  !>     @param[in]
+  !>     executionType
+  !>     [hipDataType]
+  !>                    specifies the datatype of computation.
   interface hipblasScalStridedBatchedEx
 #ifdef USE_CUDA_NAMES
-    function hipblasScalStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,batch_count,executionType) bind(c, name="cublasScalStridedBatchedEx")
+    function hipblasScalStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,batchCount,executionType) bind(c, name="cublasScalStridedBatchedEx")
 #else
-    function hipblasScalStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,batch_count,executionType) bind(c, name="hipblasScalStridedBatchedEx")
+    function hipblasScalStridedBatchedEx_(handle,n,alpha,alphaType,x,xType,incx,stridex,batchCount,executionType) bind(c, name="hipblasScalStridedBatchedEx")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
+      use hipfort_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScalStridedBatchedEx_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
-      integer(kind(HIPBLAS_R_16F)),value :: alphaType
+      integer(kind(HIP_R_32F)),value :: alphaType
       type(c_ptr),value :: x
-      integer(kind(HIPBLAS_R_16F)),value :: xType
+      integer(kind(HIP_R_32F)),value :: xType
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: executionType
+      integer(c_int),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
     end function
-
   end interface
 
   !>  \brief Gets the hipBLAS library version number.
@@ -26084,6 +27495,342 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       type(c_ptr),value :: workspace
       integer(c_size_t),value :: workspaceSizeInBytes
+    end function
+  end interface
+
+  !>  \brief Copy vector from host to device.
+  !>     @param[in]
+  !>     n           [int]
+  !>                 number of elements in the vector.
+  !>     @param[in]
+  !>     elemSize    [int]
+  !>                 Size of both vectors in bytes.
+  !>     @param[in]
+  !>     x           pointer to vector on the host.
+  !>     @param[in]
+  !>     incx        [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out]
+  !>     y           pointer to vector on the device.
+  !>     @param[in]
+  !>     incy        [int]
+  !>                 specifies the increment for the elements of the vector.
+  interface hipblasSetVector
+#ifdef USE_CUDA_NAMES
+    function hipblasSetVector_(n,elemSize,x,incx,y,incy) bind(c, name="cublasSetVector")
+#else
+    function hipblasSetVector_(n,elemSize,x,incx,y,incy) bind(c, name="hipblasSetVector")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetVector_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+  end interface
+
+  !>  \brief Copy vector from device to host.
+  !>     @param[in]
+  !>     n           [int]
+  !>                 number of elements in the vector.
+  !>     @param[in]
+  !>     elemSize    [int]
+  !>                 Size of both vectors in bytes.
+  !>     @param[in]
+  !>     x           pointer to vector on the device.
+  !>     @param[in]
+  !>     incx        [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out]
+  !>     y           pointer to vector on the host.
+  !>     @param[in]
+  !>     incy        [int]
+  !>                 specifies the increment for the elements of the vector.
+  interface hipblasGetVector
+#ifdef USE_CUDA_NAMES
+    function hipblasGetVector_(n,elemSize,x,incx,y,incy) bind(c, name="cublasGetVector")
+#else
+    function hipblasGetVector_(n,elemSize,x,incx,y,incy) bind(c, name="hipblasGetVector")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetVector_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+  end interface
+
+  !>  \brief Copy matrix from host to device.
+  !>     @param[in]
+  !>     rows        [int]
+  !>                 number of rows in the matrix.
+  !>     @param[in]
+  !>     cols        [int]
+  !>                 number of columns in the matrix.
+  !>     @param[in]
+  !>     elemSize   [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in]
+  !>     AP          pointer to matrix on the host.
+  !>     @param[in]
+  !>     lda         [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out]
+  !>     BP           pointer to matrix on the GPU.
+  !>     @param[in]
+  !>     ldb         [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  interface hipblasSetMatrix
+#ifdef USE_CUDA_NAMES
+    function hipblasSetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="cublasSetMatrix")
+#else
+    function hipblasSetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="hipblasSetMatrix")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetMatrix_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  !>  \brief Copy matrix from device to host.
+  !>     @param[in]
+  !>     rows        [int]
+  !>                 number of rows in the matrix.
+  !>     @param[in]
+  !>     cols        [int]
+  !>                 number of columns in the matrix.
+  !>     @param[in]
+  !>     elemSize   [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in]
+  !>     AP          pointer to matrix on the GPU.
+  !>     @param[in]
+  !>     lda         [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out]
+  !>     BP          pointer to matrix on the host.
+  !>     @param[in]
+  !>     ldb         [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  interface hipblasGetMatrix
+#ifdef USE_CUDA_NAMES
+    function hipblasGetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="cublasGetMatrix")
+#else
+    function hipblasGetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="hipblasGetMatrix")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetMatrix_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+    end function
+  end interface
+
+  !>  \brief Asynchronously copy vector from host to device.
+  !>     \details
+  !>     ``hipblasSetVectorAsync`` copies a vector from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in]
+  !>     n           [int]
+  !>                 number of elements in the vector.
+  !>     @param[in]
+  !>     elemSize   [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in]
+  !>     x           pointer to vector on the host.
+  !>     @param[in]
+  !>     incx        [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out]
+  !>     y           pointer to vector on the device.
+  !>     @param[in]
+  !>     incy        [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[in]
+  !>     stream      specifies the stream into which this transfer request is queued.
+  interface hipblasSetVectorAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasSetVectorAsync_(n,elemSize,x,incx,y,incy,stream) bind(c, name="cublasSetVectorAsync")
+#else
+    function hipblasSetVectorAsync_(n,elemSize,x,incx,y,incy,stream) bind(c, name="hipblasSetVectorAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetVectorAsync_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  \brief Asynchronously copy vector from device to host.
+  !>     \details
+  !>     ``hipblasGetVectorAsync`` copies a vector from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in]
+  !>     n           [int]
+  !>                 number of elements in the vector.
+  !>     @param[in]
+  !>     elemSize   [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in]
+  !>     x           pointer to vector on the device.
+  !>     @param[in]
+  !>     incx        [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out]
+  !>     y           pointer to vector on the host.
+  !>     @param[in]
+  !>     incy        [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[in]
+  !>     stream      specifies the stream into which this transfer request is queued.
+  interface hipblasGetVectorAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasGetVectorAsync_(n,elemSize,x,incx,y,incy,stream) bind(c, name="cublasGetVectorAsync")
+#else
+    function hipblasGetVectorAsync_(n,elemSize,x,incx,y,incy,stream) bind(c, name="hipblasGetVectorAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetVectorAsync_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  \brief Asynchronously copy matrix from host to device.
+  !>     \details
+  !>     ``hipblasSetMatrixAsync`` copies a matrix from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in]
+  !>     rows        [int]
+  !>                 number of rows in matrices.
+  !>     @param[in]
+  !>     cols        [int]
+  !>                 number of columns in matrices.
+  !>     @param[in]
+  !>     elemSize   [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in]
+  !>     AP           pointer to matrix on the host.
+  !>     @param[in]
+  !>     lda         [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out]
+  !>     BP           pointer to matrix on the GPU.
+  !>     @param[in]
+  !>     ldb         [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  !>     @param[in]
+  !>     stream      specifies the stream into which this transfer request is queued.
+  interface hipblasSetMatrixAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasSetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) bind(c, name="cublasSetMatrixAsync")
+#else
+    function hipblasSetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) bind(c, name="hipblasSetMatrixAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetMatrixAsync_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  \brief Asynchronously copy matrix from device to host.
+  !>     \details
+  !>     ``hipblasGetMatrixAsync`` copies a matrix from device memory to pinned host memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in]
+  !>     rows        [int]
+  !>                 number of rows in matrices.
+  !>     @param[in]
+  !>     cols        [int]
+  !>                 number of columns in matrices.
+  !>     @param[in]
+  !>     elemSize   [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in]
+  !>     AP          pointer to matrix on the GPU.
+  !>     @param[in]
+  !>     lda         [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out]
+  !>     BP           pointer to matrix on the host.
+  !>     @param[in]
+  !>     ldb         [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  !>     @param[in]
+  !>     stream      specifies the stream into which this transfer request is queued.
+  interface hipblasGetMatrixAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasGetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) bind(c, name="cublasGetMatrixAsync")
+#else
+    function hipblasGetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) bind(c, name="hipblasGetMatrixAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetMatrixAsync_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
     end function
   end interface
 
@@ -27614,16 +29361,15 @@ module hipfort_hipblas
     function hipblasBfdot_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasBfdot")
       use iso_c_binding
       use hipfort_hipblas_enums
-      use hipfort_hipblas_types
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdot_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(hipblasBfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(hipblasBfloat16) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(hipblasBfloat16) :: myResult
+      type(c_ptr),value :: myResult
     end function
   end interface
 #endif
@@ -27651,16 +29397,15 @@ module hipfort_hipblas
     function hipblasBfdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasBfdot_64")
       use iso_c_binding
       use hipfort_hipblas_enums
-      use hipfort_hipblas_types
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdot_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(hipblasBfloat16) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(hipblasBfloat16) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(hipblasBfloat16) :: myResult
+      type(c_ptr),value :: myResult
     end function
   end interface
 #endif
@@ -27851,7 +29596,6 @@ module hipfort_hipblas
     function hipblasBfdotBatched_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasBfdotBatched")
       use iso_c_binding
       use hipfort_hipblas_enums
-      use hipfort_hipblas_types
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotBatched_
       type(c_ptr),value :: handle
@@ -27861,7 +29605,7 @@ module hipfort_hipblas
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
-      type(hipblasBfloat16) :: myResult
+      type(c_ptr),value :: myResult
     end function
   end interface
 #endif
@@ -27890,7 +29634,6 @@ module hipfort_hipblas
     function hipblasBfdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasBfdotBatched_64")
       use iso_c_binding
       use hipfort_hipblas_enums
-      use hipfort_hipblas_types
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotBatched_64_
       type(c_ptr),value :: handle
@@ -27900,7 +29643,7 @@ module hipfort_hipblas
       type(c_ptr) :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batchCount
-      type(hipblasBfloat16) :: myResult
+      type(c_ptr),value :: myResult
     end function
   end interface
 #endif
@@ -61347,29 +63090,6 @@ module hipfort_hipblas
       hipblasSgetrsStridedBatched_full_rank = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasDgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(HIPBLAS_OP_N)) :: trans
-      integer(c_int) :: n
-      integer(c_int) :: nrhs
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
-      integer(c_int64_t) :: strideP
-      real(c_double),target,dimension(:,:) :: B
-      integer(c_int) :: ldb
-      integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
-      integer(c_int) :: batchCount
-      !
-      hipblasDgetrsStridedBatched_full_rank = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
-    end function
-
     function hipblasDgetrsStridedBatched_rank_0(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -61382,15 +63102,15 @@ module hipfort_hipblas
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgetrsStridedBatched_rank_0 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasDgetrsStridedBatched_rank_0 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
@@ -61405,38 +63125,38 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgetrsStridedBatched_rank_1 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasDgetrsStridedBatched_rank_1 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasCgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
+    function hipblasDgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      complex(c_float_complex),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgetrsStridedBatched_full_rank = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasDgetrsStridedBatched_full_rank = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgetrsStridedBatched_rank_0(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
@@ -61451,15 +63171,15 @@ module hipfort_hipblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgetrsStridedBatched_rank_0 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasCgetrsStridedBatched_rank_0 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
@@ -61474,38 +63194,38 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgetrsStridedBatched_rank_1 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasCgetrsStridedBatched_rank_1 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasZgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
+    function hipblasCgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      complex(c_double_complex),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgetrsStridedBatched_full_rank = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasCgetrsStridedBatched_full_rank = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgetrsStridedBatched_rank_0(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
@@ -61520,15 +63240,15 @@ module hipfort_hipblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgetrsStridedBatched_rank_0 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasZgetrsStridedBatched_rank_0 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
@@ -61543,33 +63263,38 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgetrsStridedBatched_rank_1 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+      hipblasZgetrsStridedBatched_rank_1 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasSgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
+    function hipblasZgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetriBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_full_rank
       type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:,:) :: A
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      real(c_float),target,dimension(:,:,:) :: C
-      integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgetriBatched_full_rank = hipblasSgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasZgetrsStridedBatched_full_rank = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
     end function
 
     function hipblasSgetriBatched_rank_0(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61579,15 +63304,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetriBatched_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: n
-      real(c_float),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      real(c_float),target :: C
+      integer(c_int),target :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgetriBatched_rank_0 = hipblasSgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasSgetriBatched_rank_0 = hipblasSgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasSgetriBatched_rank_1(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61597,33 +63322,33 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetriBatched_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      real(c_float),target,dimension(:) :: C
+      integer(c_int),target,dimension(:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgetriBatched_rank_1 = hipblasSgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasSgetriBatched_rank_1 = hipblasSgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasDgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
+    function hipblasSgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetriBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetriBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      real(c_double),target,dimension(:,:,:) :: C
+      integer(c_int),target,dimension(:,:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgetriBatched_full_rank = hipblasDgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasSgetriBatched_full_rank = hipblasSgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgetriBatched_rank_0(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61633,15 +63358,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetriBatched_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: n
-      real(c_double),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      real(c_double),target :: C
+      integer(c_int),target :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgetriBatched_rank_0 = hipblasDgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasDgetriBatched_rank_0 = hipblasDgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgetriBatched_rank_1(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61651,33 +63376,33 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetriBatched_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      real(c_double),target,dimension(:) :: C
+      integer(c_int),target,dimension(:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgetriBatched_rank_1 = hipblasDgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasDgetriBatched_rank_1 = hipblasDgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasCgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
+    function hipblasDgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetriBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetriBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      complex(c_float_complex),target,dimension(:,:,:) :: C
+      integer(c_int),target,dimension(:,:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgetriBatched_full_rank = hipblasCgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasDgetriBatched_full_rank = hipblasDgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgetriBatched_rank_0(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61687,15 +63412,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetriBatched_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      complex(c_float_complex),target :: C
+      integer(c_int),target :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgetriBatched_rank_0 = hipblasCgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasCgetriBatched_rank_0 = hipblasCgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgetriBatched_rank_1(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61705,33 +63430,33 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetriBatched_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int),target,dimension(:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgetriBatched_rank_1 = hipblasCgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasCgetriBatched_rank_1 = hipblasCgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasZgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
+    function hipblasCgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetriBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetriBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      complex(c_double_complex),target,dimension(:,:,:) :: C
+      integer(c_int),target,dimension(:,:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgetriBatched_full_rank = hipblasZgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasCgetriBatched_full_rank = hipblasCgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgetriBatched_rank_0(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61741,15 +63466,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetriBatched_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      complex(c_double_complex),target :: C
+      integer(c_int),target :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgetriBatched_rank_0 = hipblasZgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasZgetriBatched_rank_0 = hipblasZgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgetriBatched_rank_1(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
@@ -61759,31 +63484,33 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetriBatched_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int),target,dimension(:) :: ipiv
+      type(c_ptr) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgetriBatched_rank_1 = hipblasZgetriBatched_(handle,n,c_loc(A),lda,ipiv,c_loc(C),ldc,myInfo,batchCount)
+      hipblasZgetriBatched_rank_1 = hipblasZgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasSgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+    function hipblasZgetriBatched_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetriBatched_full_rank
       type(c_ptr) :: handle
-      integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      type(c_ptr) :: C
+      integer(c_int) :: ldc
+      integer(c_int),target,dimension(:,:) :: myInfo
+      integer(c_int) :: batchCount
       !
-      hipblasSgeqrf_full_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgetriBatched_full_rank = hipblasZgetriBatched_(handle,n,A,lda,c_loc(ipiv),C,ldc,c_loc(myInfo),batchCount)
     end function
 
     function hipblasSgeqrf_rank_0(handle,m,n,A,lda,ipiv,myInfo)
@@ -61796,10 +63523,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      real(c_float),target :: ipiv
+      integer(c_int),target :: myInfo
       !
-      hipblasSgeqrf_rank_0 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgeqrf_rank_0 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasSgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -61812,26 +63539,26 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      real(c_float),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      hipblasSgeqrf_rank_1 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgeqrf_rank_1 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function hipblasDgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+    function hipblasSgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      real(c_float),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      hipblasDgeqrf_full_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgeqrf_full_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasDgeqrf_rank_0(handle,m,n,A,lda,ipiv,myInfo)
@@ -61844,10 +63571,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      real(c_double),target :: ipiv
+      integer(c_int),target :: myInfo
       !
-      hipblasDgeqrf_rank_0 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgeqrf_rank_0 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasDgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -61860,26 +63587,26 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      real(c_double),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      hipblasDgeqrf_rank_1 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgeqrf_rank_1 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function hipblasCgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+    function hipblasDgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      real(c_double),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      hipblasCgeqrf_full_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgeqrf_full_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasCgeqrf_rank_0(handle,m,n,A,lda,ipiv,myInfo)
@@ -61892,10 +63619,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      complex(c_float_complex),target :: ipiv
+      integer(c_int),target :: myInfo
       !
-      hipblasCgeqrf_rank_0 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgeqrf_rank_0 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasCgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -61908,26 +63635,26 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      hipblasCgeqrf_rank_1 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgeqrf_rank_1 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function hipblasZgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+    function hipblasCgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      hipblasZgeqrf_full_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgeqrf_full_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasZgeqrf_rank_0(handle,m,n,A,lda,ipiv,myInfo)
@@ -61940,10 +63667,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      complex(c_double_complex),target :: ipiv
+      integer(c_int),target :: myInfo
       !
-      hipblasZgeqrf_rank_0 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgeqrf_rank_0 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasZgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -61956,27 +63683,26 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      hipblasZgeqrf_rank_1 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgeqrf_rank_1 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function hipblasSgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+    function hipblasZgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
-      integer(c_int) :: batchCount
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      hipblasSgeqrfBatched_full_rank = hipblasSgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasZgeqrf_full_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function hipblasSgeqrfBatched_rank_0(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -61987,13 +63713,13 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgeqrfBatched_rank_0 = hipblasSgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasSgeqrfBatched_rank_0 = hipblasSgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasSgeqrfBatched_rank_1(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62004,30 +63730,30 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgeqrfBatched_rank_1 = hipblasSgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasSgeqrfBatched_rank_1 = hipblasSgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasDgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+    function hipblasSgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgeqrfBatched_full_rank = hipblasDgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasSgeqrfBatched_full_rank = hipblasSgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgeqrfBatched_rank_0(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62038,13 +63764,13 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgeqrfBatched_rank_0 = hipblasDgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasDgeqrfBatched_rank_0 = hipblasDgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgeqrfBatched_rank_1(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62055,30 +63781,30 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgeqrfBatched_rank_1 = hipblasDgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasDgeqrfBatched_rank_1 = hipblasDgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasCgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+    function hipblasDgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgeqrfBatched_full_rank = hipblasCgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasDgeqrfBatched_full_rank = hipblasDgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgeqrfBatched_rank_0(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62089,13 +63815,13 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgeqrfBatched_rank_0 = hipblasCgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasCgeqrfBatched_rank_0 = hipblasCgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgeqrfBatched_rank_1(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62106,30 +63832,30 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgeqrfBatched_rank_1 = hipblasCgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasCgeqrfBatched_rank_1 = hipblasCgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasZgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+    function hipblasCgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgeqrfBatched_full_rank = hipblasZgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasCgeqrfBatched_full_rank = hipblasCgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgeqrfBatched_rank_0(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62140,13 +63866,13 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgeqrfBatched_rank_0 = hipblasZgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasZgeqrfBatched_rank_0 = hipblasZgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgeqrfBatched_rank_1(handle,m,n,A,lda,ipiv,myInfo,batchCount)
@@ -62157,32 +63883,30 @@ module hipfort_hipblas
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgeqrfBatched_rank_1 = hipblasZgeqrfBatched_(handle,m,n,c_loc(A),lda,ipiv,myInfo,batchCount)
+      hipblasZgeqrfBatched_rank_1 = hipblasZgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasSgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
+    function hipblasZgeqrfBatched_full_rank(handle,m,n,A,lda,ipiv,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
       type(c_ptr) :: ipiv
-      integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgeqrfStridedBatched_full_rank = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasZgeqrfBatched_full_rank = hipblasZgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo),batchCount)
     end function
 
     function hipblasSgeqrfStridedBatched_rank_0(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62196,12 +63920,12 @@ module hipfort_hipblas
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_float),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgeqrfStridedBatched_rank_0 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasSgeqrfStridedBatched_rank_0 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasSgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62215,31 +63939,31 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_float),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasSgeqrfStridedBatched_rank_1 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasSgeqrfStridedBatched_rank_1 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasDgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
+    function hipblasSgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgeqrfStridedBatched_full_rank = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasSgeqrfStridedBatched_full_rank = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgeqrfStridedBatched_rank_0(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62253,12 +63977,12 @@ module hipfort_hipblas
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_double),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgeqrfStridedBatched_rank_0 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasDgeqrfStridedBatched_rank_0 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasDgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62272,31 +63996,31 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_double),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasDgeqrfStridedBatched_rank_1 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasDgeqrfStridedBatched_rank_1 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasCgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
+    function hipblasDgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgeqrfStridedBatched_full_rank = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasDgeqrfStridedBatched_full_rank = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgeqrfStridedBatched_rank_0(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62310,12 +64034,12 @@ module hipfort_hipblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgeqrfStridedBatched_rank_0 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasCgeqrfStridedBatched_rank_0 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasCgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62329,31 +64053,31 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasCgeqrfStridedBatched_rank_1 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasCgeqrfStridedBatched_rank_1 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
-    function hipblasZgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
+    function hipblasCgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_full_rank
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgeqrfStridedBatched_full_rank = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasCgeqrfStridedBatched_full_rank = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgeqrfStridedBatched_rank_0(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62367,12 +64091,12 @@ module hipfort_hipblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgeqrfStridedBatched_rank_0 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasZgeqrfStridedBatched_rank_0 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
     function hipblasZgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
@@ -62386,14 +64110,32 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batchCount
       !
-      hipblasZgeqrfStridedBatched_rank_1 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,ipiv,strideP,myInfo,batchCount)
+      hipblasZgeqrfStridedBatched_rank_1 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
     end function
 
-  
+    function hipblasZgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target,dimension(:,:) :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfStridedBatched_full_rank = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
 #endif
 end module hipfort_hipblas
