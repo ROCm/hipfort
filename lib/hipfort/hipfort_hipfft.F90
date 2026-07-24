@@ -147,9 +147,11 @@ module hipfort_hipfft
   !>   @param[in] batch - Number of batched transforms to perform.
   interface hipfftPlanMany
 #ifdef USE_CUDA_NAMES
-    function hipfftPlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch) bind(c, name="cufftPlanMany")
+    function hipfftPlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch) &
+        bind(c, name="cufftPlanMany")
 #else
-    function hipfftPlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch) bind(c, name="hipfftPlanMany")
+    function hipfftPlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch) &
+        bind(c, name="hipfftPlanMany")
 #endif
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -340,9 +342,13 @@ module hipfort_hipfft
   !>   @param[out] workSize - Pointer to work area size (returned value).
   interface hipfftMakePlanMany
 #ifdef USE_CUDA_NAMES
-    function hipfftMakePlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="cufftMakePlanMany")
+    function hipfftMakePlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="cufftMakePlanMany")
 #else
-    function hipfftMakePlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="hipfftMakePlanMany")
+    function hipfftMakePlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="hipfftMakePlanMany")
 #endif
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -371,9 +377,13 @@ module hipfort_hipfft
 
   interface hipfftMakePlanMany64
 #ifdef USE_CUDA_NAMES
-    function hipfftMakePlanMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="cufftMakePlanMany64")
+    function hipfftMakePlanMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="cufftMakePlanMany64")
 #else
-    function hipfftMakePlanMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="hipfftMakePlanMany64")
+    function hipfftMakePlanMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="hipfftMakePlanMany64")
 #endif
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -504,9 +514,13 @@ module hipfort_hipfft
   !>   @param[out] workSize - Pointer to work area size (returned value).
   interface hipfftEstimateMany
 #ifdef USE_CUDA_NAMES
-    function hipfftEstimateMany_(rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="cufftEstimateMany")
+    function hipfftEstimateMany_(rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch, &
+        workSize) &
+        bind(c, name="cufftEstimateMany")
 #else
-    function hipfftEstimateMany_(rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="hipfftEstimateMany")
+    function hipfftEstimateMany_(rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch, &
+        workSize) &
+        bind(c, name="hipfftEstimateMany")
 #endif
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -643,9 +657,13 @@ module hipfort_hipfft
   !>   @param[out] workSize - Pointer to work area size (returned value).
   interface hipfftGetSizeMany
 #ifdef USE_CUDA_NAMES
-    function hipfftGetSizeMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="cufftGetSizeMany")
+    function hipfftGetSizeMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="cufftGetSizeMany")
 #else
-    function hipfftGetSizeMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="hipfftGetSizeMany")
+    function hipfftGetSizeMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="hipfftGetSizeMany")
 #endif
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -674,9 +692,13 @@ module hipfort_hipfft
 
   interface hipfftGetSizeMany64
 #ifdef USE_CUDA_NAMES
-    function hipfftGetSizeMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="cufftGetSizeMany64")
+    function hipfftGetSizeMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="cufftGetSizeMany64")
 #else
-    function hipfftGetSizeMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize) bind(c, name="hipfftGetSizeMany64")
+    function hipfftGetSizeMany64_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="hipfftGetSizeMany64")
 #endif
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1069,7 +1091,8 @@ module hipfort_hipfft
 #ifdef USE_FPOINTER_INTERFACES
   contains
 
-    function hipfftPlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch)
+    function hipfftPlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1086,10 +1109,12 @@ module hipfort_hipfft
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
       !
-      hipfftPlanMany_rank_0 = hipfftPlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch)
+      hipfftPlanMany_rank_0 = hipfftPlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist, &
+        c_loc(onembed),ostride,odist,myType,batch)
     end function
 
-    function hipfftPlanMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch)
+    function hipfftPlanMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1106,7 +1131,8 @@ module hipfort_hipfft
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
       !
-      hipfftPlanMany_rank_1 = hipfftPlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch)
+      hipfftPlanMany_rank_1 = hipfftPlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist, &
+        c_loc(onembed),ostride,odist,myType,batch)
     end function
 
     function hipfftMakePlan1d_rank_0(plan,nx,myType,batch,workSize)
@@ -1195,7 +1221,8 @@ module hipfort_hipfft
       hipfftMakePlan3d_rank_1 = hipfftMakePlan3d_(plan,nx,ny,nz,myType,c_loc(workSize))
     end function
 
-    function hipfftMakePlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftMakePlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1213,10 +1240,12 @@ module hipfort_hipfft
       integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
-      hipfftMakePlanMany_rank_0 = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftMakePlanMany_rank_0 = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftMakePlanMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftMakePlanMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1234,10 +1263,12 @@ module hipfort_hipfft
       integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
-      hipfftMakePlanMany_rank_1 = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftMakePlanMany_rank_1 = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftMakePlanMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftMakePlanMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1255,10 +1286,12 @@ module hipfort_hipfft
       integer(c_int64_t) :: batch
       integer(c_size_t),target :: workSize
       !
-      hipfftMakePlanMany64_rank_0 = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftMakePlanMany64_rank_0 = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftMakePlanMany64_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftMakePlanMany64_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1276,7 +1309,8 @@ module hipfort_hipfft
       integer(c_int64_t) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
-      hipfftMakePlanMany64_rank_1 = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftMakePlanMany64_rank_1 = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
     function hipfftEstimate1d_rank_0(nx,myType,batch,workSize)
@@ -1359,7 +1393,8 @@ module hipfort_hipfft
       hipfftEstimate3d_rank_1 = hipfftEstimate3d_(nx,ny,nz,myType,c_loc(workSize))
     end function
 
-    function hipfftEstimateMany_rank_0(rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftEstimateMany_rank_0(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1376,10 +1411,12 @@ module hipfort_hipfft
       integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
-      hipfftEstimateMany_rank_0 = hipfftEstimateMany_(rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftEstimateMany_rank_0 = hipfftEstimateMany_(rank,c_loc(n),c_loc(inembed),istride,idist, &
+        c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftEstimateMany_rank_1(rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftEstimateMany_rank_1(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1396,7 +1433,8 @@ module hipfort_hipfft
       integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
-      hipfftEstimateMany_rank_1 = hipfftEstimateMany_(rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftEstimateMany_rank_1 = hipfftEstimateMany_(rank,c_loc(n),c_loc(inembed),istride,idist, &
+        c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
     function hipfftGetSize1d_rank_0(plan,nx,myType,batch,workSize)
@@ -1485,7 +1523,8 @@ module hipfort_hipfft
       hipfftGetSize3d_rank_1 = hipfftGetSize3d_(plan,nx,ny,nz,myType,c_loc(workSize))
     end function
 
-    function hipfftGetSizeMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftGetSizeMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1503,10 +1542,12 @@ module hipfort_hipfft
       integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
-      hipfftGetSizeMany_rank_0 = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftGetSizeMany_rank_0 = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftGetSizeMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftGetSizeMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1524,10 +1565,12 @@ module hipfort_hipfft
       integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
-      hipfftGetSizeMany_rank_1 = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftGetSizeMany_rank_1 = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftGetSizeMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftGetSizeMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1545,10 +1588,12 @@ module hipfort_hipfft
       integer(c_int64_t) :: batch
       integer(c_size_t),target :: workSize
       !
-      hipfftGetSizeMany64_rank_0 = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftGetSizeMany64_rank_0 = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftGetSizeMany64_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch,workSize)
+    function hipfftGetSizeMany64_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1566,7 +1611,8 @@ module hipfort_hipfft
       integer(c_int64_t) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
-      hipfftGetSizeMany64_rank_1 = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+      hipfftGetSizeMany64_rank_1 = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
     end function
 
     function hipfftGetSize_rank_0(plan,workSize)
