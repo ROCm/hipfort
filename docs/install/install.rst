@@ -6,7 +6,7 @@
 Installing and building hipFORT
 *********************************
 
-This topic discusses how to build hipFORT from source and use the Makefile.
+This topic discusses how to build and install hipFORT from source with CMake.
 It also provides information on how to build and run the tests.
 
 Prerequisites
@@ -62,7 +62,7 @@ against the appropriate ROCm libraries. hipFORT provides exported CMake targets 
 .. code-block:: cmake
 
    find_package(hipfort REQUIRED)
-   add_executable(my_app main.f03)
+   add_executable(my_app main.f08)
    target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 
 

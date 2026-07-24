@@ -19,6 +19,7 @@ hipFORT provides interfaces to the following HIP and ROCm-only libraries:
    *  hipBLAS
    *  hipSPARSE
    *  hipFFT
+   *  hipFFTW
    *  hipRAND
    *  hipSOLVER
 
@@ -61,11 +62,12 @@ To see some examples for the `f2003` and `f2008` interfaces, see the :doc:`hipFO
 Supported HIP and ROCm APIs
 ---------------------------
 
-The current set of hipFORT interfaces is derived from ROCm version 4.5.0. The following tables list the supported APIs:
+The current set of hipFORT interfaces is derived from ROCm 7.14.0. The following tables list the supported APIs:
 
 * :doc:`HIP API <../doxygen/html/md_input_supported_api_hip>`
 * :doc:`hipBLAS API <../doxygen/html/md_input_supported_api_hipblas>` 
-* :doc:`hipFFT API <../doxygen/html/md_input_supported_api_hipfft>` 
+* :doc:`hipFFT API <../doxygen/html/md_input_supported_api_hipfft>`
+* :doc:`hipFFTW API <../doxygen/html/md_input_supported_api_hipfftw>`
 * :doc:`hipRAND API <../doxygen/html/md_input_supported_api_hiprand>`
 * :doc:`hipSOLVER API <../doxygen/html/md_input_supported_api_hipsolver>`
 * :doc:`hipSPARSE API <../doxygen/html/md_input_supported_api_hipsparse>`
