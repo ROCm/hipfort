@@ -259,6 +259,36 @@ module hipfort_rocfft
 #endif
   end interface
 
+  !>  @brief Create a rocfft field struct.
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_field_create
+    function rocfft_field_create_(field) bind(c, name="rocfft_field_create")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_field_create_
+      type(c_ptr) :: field
+    end function
+  end interface
+
+  !>  @brief Destroy a rocfft field struct
+  !>
+  !>  The field struct can be destroyed after being added to the plan description; it is not used
+  !>  for
+  !>  plan execution.
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_field_destroy
+    function rocfft_field_destroy_(field) bind(c, name="rocfft_field_destroy")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_field_destroy_
+      type(c_ptr),value :: field
+    end function
+  end interface
+
   !>  @brief Get library version string
   !>
   !>  @param[in, out] buf - buffer that receives the version string
@@ -271,6 +301,157 @@ module hipfort_rocfft
       integer(kind(rocfft_status_success)) :: rocfft_get_version_string_
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
+    end function
+  end interface
+
+  !>  @brief Set the communication library for distributed transforms.
+  !>
+  !>   @details Set the multi-processing communication library for a plan.
+  !>
+  !>   Multi-processing communication libraries require library-specific
+  !>   handle to also be specified.  For MPI libraries, this is a
+  !>   pointer to an MPI communicator.
+  !>
+  !>   @param[in] description - description handle
+  !>   @param[in] comm_type - communicator type
+  !>   @param[in] comm_handle - handle to communication-library-specific state
+  interface rocfft_plan_description_set_comm
+    function rocfft_plan_description_set_comm_(description,comm_type,comm_handle) &
+        bind(c, name="rocfft_plan_description_set_comm")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_comm_
+      type(c_ptr),value :: description
+      integer(kind(rocfft_comm_none)),value :: comm_type
+      type(c_ptr),value :: comm_handle
+    end function
+  end interface
+
+  !>  @brief Define a brick as part of a decomposition of a field.
+  !>
+  !>  Fields can contain a full-dimensional data distribution.  The
+  !>  decomposition is specified by providing a lower coordinate and an
+  !>  upper coordinate in the field's index space.  The lower coordinate
+  !>  is inclusive (contained within the brick) and the upper coordinate
+  !>  is exclusive (first index past the end of the brick).
+  !>
+  !>  One must also provide a stride for the brick data which specifies
+  !>  how the brick's data is arranged in memory.
+  !>
+  !>  All coordinates and strides must include batch dimensions, and are in
+  !>  column-major order (fastest-moving dimension first).
+  !>
+  !>  A HIP device ID is also provided - each brick may reside on a
+  !>  different device.
+  !>
+  !>  All arrays may be re-used or freed immediately after the function returns.
+  !>
+  !>  @param[out] brick - : brick structure
+  !>  @param[in] field_lower - : array of length `dim_with_batch` specifying the lower index
+  !>  (inclusive) for the brick in the field's index space.
+  !>  @param[in] field_upper - : array of length `dim_with_batch` specifying the upper index
+  !>  (exclusive) for the brick in the field's index space.
+  !>  @param[in] brick_stride - : array of length `dim_with_batch` specifying the brick's stride in
+  !>  memory
+  !>  @param[in] dim_with_batch - : length of the arrays; this must match the dimension of
+  !>  the FFT plus one for the batch dimension.
+  !>  @param[in] deviceID - : HIP device ID for the device on which the brick's data is resident.
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_brick_create
+    function rocfft_brick_create_(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
+        deviceID) &
+        bind(c, name="rocfft_brick_create")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_brick_create_
+      type(c_ptr) :: brick
+      type(c_ptr),value :: field_lower
+      type(c_ptr),value :: field_upper
+      type(c_ptr),value :: brick_stride
+      integer(c_size_t),value :: dim_with_batch
+      integer(c_int),value :: deviceID
+    end function
+  end interface
+
+  !>  @brief Deallocate a brick created with rocfft_brick_create.
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_brick_destroy
+    function rocfft_brick_destroy_(brick) bind(c, name="rocfft_brick_destroy")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_brick_destroy_
+      type(c_ptr),value :: brick
+    end function
+  end interface
+
+  !>  @brief Add a brick to a field.
+  !>
+  !>  Note that the order in which the bricks are added is significant;
+  !>  the pointers provided for each brick to `rocfft_execute` are in
+  !>  the same order that the bricks were added to the field.
+  !>
+  !>  The brick may be added to another field or destroyed any time
+  !>  after this function returns.
+  !>
+  !>  @param[in, out] field - : `rocfft_field` struct which holds the brick decomposition.
+  !>  @param[in] brick - : `rocfft_brick` struct to add to the field.
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_field_add_brick
+    function rocfft_field_add_brick_(field,brick) bind(c, name="rocfft_field_add_brick")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_field_add_brick_
+      type(c_ptr),value :: field
+      type(c_ptr),value :: brick
+    end function
+  end interface
+
+  !>  @brief Add a `rocfft_field` to a `rocfft_plan_description` as an input.
+  !>
+  !>  The field may be reused or freed immediately after the function returns.
+  !>
+  !>  @param[in, out] description - : `rocfft_plan_description` that will pass the field information
+  !>  to plan creation
+  !>  @param[in] field - : `rocfft_field` struct added as an input field
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_plan_description_add_infield
+    function rocfft_plan_description_add_infield_(description,field) &
+        bind(c, name="rocfft_plan_description_add_infield")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_add_infield_
+      type(c_ptr),value :: description
+      type(c_ptr),value :: field
+    end function
+  end interface
+
+  !>  @brief Add a `rocfft_field` to a `rocfft_plan_description` as an output.
+  !>
+  !>  The field may be reused or freed immediately after the function returns.
+  !>
+  !>  @param[in, out] description - : `rocfft_plan_description` that will pass the field information
+  !>  to plan creation
+  !>  @param[in] field - : `rocfft_field` struct added as an output field
+  !>
+  !>   @warning Experimental!  This feature is part of an experimental API preview.
+  interface rocfft_plan_description_add_outfield
+    function rocfft_plan_description_add_outfield_(description,field) &
+        bind(c, name="rocfft_plan_description_add_outfield")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_add_outfield_
+      type(c_ptr),value :: description
+      type(c_ptr),value :: field
     end function
   end interface
 
@@ -606,187 +787,6 @@ module hipfort_rocfft
       integer(kind(rocfft_status_success)) :: rocfft_cache_deserialize_
       type(c_ptr),value :: buffer
       integer(c_size_t),value :: buffer_len_bytes
-    end function
-  end interface
-
-  !>  @brief Create a rocfft field struct.
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_field_create
-    function rocfft_field_create_(field) bind(c, name="rocfft_field_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_field_create_
-      type(c_ptr) :: field
-    end function
-  end interface
-
-  !>  @brief Destroy a rocfft field struct
-  !>
-  !>  The field struct can be destroyed after being added to the plan description; it is not used
-  !>  for
-  !>  plan execution.
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_field_destroy
-    function rocfft_field_destroy_(field) bind(c, name="rocfft_field_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_field_destroy_
-      type(c_ptr),value :: field
-    end function
-  end interface
-
-  !>  @brief Set the communication library for distributed transforms.
-  !>
-  !>   @details Set the multi-processing communication library for a plan.
-  !>
-  !>   Multi-processing communication libraries require library-specific
-  !>   handle to also be specified.  For MPI libraries, this is a
-  !>   pointer to an MPI communicator.
-  !>
-  !>   @param[in] description - description handle
-  !>   @param[in] comm_type - communicator type
-  !>   @param[in] comm_handle - handle to communication-library-specific state
-  interface rocfft_plan_description_set_comm
-    function rocfft_plan_description_set_comm_(description,comm_type,comm_handle) &
-        bind(c, name="rocfft_plan_description_set_comm")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_comm_
-      type(c_ptr),value :: description
-      integer(kind(rocfft_comm_none)),value :: comm_type
-      type(c_ptr),value :: comm_handle
-    end function
-  end interface
-
-  !>  @brief Define a brick as part of a decomposition of a field.
-  !>
-  !>  Fields can contain a full-dimensional data distribution.  The
-  !>  decomposition is specified by providing a lower coordinate and an
-  !>  upper coordinate in the field's index space.  The lower coordinate
-  !>  is inclusive (contained within the brick) and the upper coordinate
-  !>  is exclusive (first index past the end of the brick).
-  !>
-  !>  One must also provide a stride for the brick data which specifies
-  !>  how the brick's data is arranged in memory.
-  !>
-  !>  All coordinates and strides must include batch dimensions, and are in
-  !>  column-major order (fastest-moving dimension first).
-  !>
-  !>  A HIP device ID is also provided - each brick may reside on a
-  !>  different device.
-  !>
-  !>  All arrays may be re-used or freed immediately after the function returns.
-  !>
-  !>  @param[out] brick - : brick structure
-  !>  @param[in] field_lower - : array of length `dim_with_batch` specifying the lower index
-  !>  (inclusive) for the brick in the field's index space.
-  !>  @param[in] field_upper - : array of length `dim_with_batch` specifying the upper index
-  !>  (exclusive) for the brick in the field's index space.
-  !>  @param[in] brick_stride - : array of length `dim_with_batch` specifying the brick's stride in
-  !>  memory
-  !>  @param[in] dim_with_batch - : length of the arrays; this must match the dimension of
-  !>  the FFT plus one for the batch dimension.
-  !>  @param[in] deviceID - : HIP device ID for the device on which the brick's data is resident.
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_brick_create
-    function rocfft_brick_create_(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
-        deviceID) &
-        bind(c, name="rocfft_brick_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_brick_create_
-      type(c_ptr) :: brick
-      type(c_ptr),value :: field_lower
-      type(c_ptr),value :: field_upper
-      type(c_ptr),value :: brick_stride
-      integer(c_size_t),value :: dim_with_batch
-      integer(c_int),value :: deviceID
-    end function
-  end interface
-
-  !>  @brief Deallocate a brick created with rocfft_brick_create.
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_brick_destroy
-    function rocfft_brick_destroy_(brick) bind(c, name="rocfft_brick_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_brick_destroy_
-      type(c_ptr),value :: brick
-    end function
-  end interface
-
-  !>  @brief Add a brick to a field.
-  !>
-  !>  Note that the order in which the bricks are added is significant;
-  !>  the pointers provided for each brick to `rocfft_execute` are in
-  !>  the same order that the bricks were added to the field.
-  !>
-  !>  The brick may be added to another field or destroyed any time
-  !>  after this function returns.
-  !>
-  !>  @param[in, out] field - : `rocfft_field` struct which holds the brick decomposition.
-  !>  @param[in] brick - : `rocfft_brick` struct to add to the field.
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_field_add_brick
-    function rocfft_field_add_brick_(field,brick) bind(c, name="rocfft_field_add_brick")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_field_add_brick_
-      type(c_ptr),value :: field
-      type(c_ptr),value :: brick
-    end function
-  end interface
-
-  !>  @brief Add a `rocfft_field` to a `rocfft_plan_description` as an input.
-  !>
-  !>  The field may be reused or freed immediately after the function returns.
-  !>
-  !>  @param[in, out] description - : `rocfft_plan_description` that will pass the field information
-  !>  to plan creation
-  !>  @param[in] field - : `rocfft_field` struct added as an input field
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_plan_description_add_infield
-    function rocfft_plan_description_add_infield_(description,field) &
-        bind(c, name="rocfft_plan_description_add_infield")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_add_infield_
-      type(c_ptr),value :: description
-      type(c_ptr),value :: field
-    end function
-  end interface
-
-  !>  @brief Add a `rocfft_field` to a `rocfft_plan_description` as an output.
-  !>
-  !>  The field may be reused or freed immediately after the function returns.
-  !>
-  !>  @param[in, out] description - : `rocfft_plan_description` that will pass the field information
-  !>  to plan creation
-  !>  @param[in] field - : `rocfft_field` struct added as an output field
-  !>
-  !>   @warning Experimental!  This feature is part of an experimental API preview.
-  interface rocfft_plan_description_add_outfield
-    function rocfft_plan_description_add_outfield_(description,field) &
-        bind(c, name="rocfft_plan_description_add_outfield")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_add_outfield_
-      type(c_ptr),value :: description
-      type(c_ptr),value :: field
     end function
   end interface
 

@@ -70,6 +70,51 @@ module hipfort_rocrand
     end function
   end interface
 
+  !>  \brief Creates a new host random number generator.
+  !>
+  !>  Creates a new pseudo random number generator of type \p rng_type
+  !>  and returns it in \p generator. This generator is executed on the host rather than
+  !>  on a device, and it is enqueued on the stream associated with the generator.
+  !>
+  !>  All generators are supported.
+  !>
+  !>  \param generator - Pointer to generator
+  !>  \param rng_type - Type of generator to create
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_ALLOCATION_FAILED, if memory could not be allocated
+  !>  - ROCRAND_STATUS_VERSION_MISMATCH if the header file version does not match the
+  !>    dynamically linked library version
+  !>  - ROCRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid
+  !>  - ROCRAND_STATUS_SUCCESS if generator was created successfully
+  interface rocrand_create_generator_host
+    function rocrand_create_generator_host_(generator,rng_type) &
+        bind(c, name="rocrand_create_generator_host")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_
+      type(c_ptr) :: generator
+      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+    end function
+  end interface
+
+  !>  \brief Creates a new host random number generator, similar to `rocrand_create_generator_host`.
+  !>    The exception is that, instead of enqueuing the host function in the stream,
+  !>    execution happens synchronously with respect to the calling thread and the stream is
+  !>    ignored.
+  interface rocrand_create_generator_host_blocking
+    function rocrand_create_generator_host_blocking_(generator,rng_type) &
+        bind(c, name="rocrand_create_generator_host_blocking")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_blocking_
+      type(c_ptr) :: generator
+      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+    end function
+  end interface
+
   !>  \brief Destroys random number generator.
   !>
   !>  Destroys random number generator and frees related memory.
@@ -113,6 +158,38 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  !>  \brief Generates uniformly distributed 64-bit unsigned integers.
+  !>
+  !>  Generates \p n uniformly distributed 64-bit unsigned integers and
+  !>  saves them to \p output_data.
+  !>
+  !>  Generated numbers are between \p 0 and \p 2^64, including \p 0 and
+  !>  excluding \p 2^64.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of 64-bit unsigned integers to generate
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
+  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
+  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - ROCRAND_TYPE_ERROR if the generator can't natively generate 64-bit random numbers
+  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
+  interface rocrand_generate_long_long
+    function rocrand_generate_long_long_(generator,output_data,n) &
+        bind(c, name="rocrand_generate_long_long")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -241,6 +318,37 @@ module hipfort_rocrand
     end function
   end interface
 
+  !>  \brief Generates uniformly distributed half-precision floating-point values.
+  !>
+  !>  Generates \p n uniformly distributed 16-bit half-precision floating-point
+  !>  values and saves them to \p output_data.
+  !>
+  !>  Generated numbers are between \p 0.0 and \p 1.0, excluding \p 0.0 and
+  !>  including \p 1.0.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of halfs to generate
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
+  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
+  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
+  interface rocrand_generate_uniform_half
+    function rocrand_generate_uniform_half_(generator,output_data,n) &
+        bind(c, name="rocrand_generate_uniform_half")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_half_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
   !>  \brief Generates normally distributed \p float values.
   !>
   !>  Generates \p n normally distributed distributed 32-bit floating-point
@@ -305,6 +413,38 @@ module hipfort_rocrand
     end function
   end interface
 
+  !>  \brief Generates normally distributed \p half values.
+  !>
+  !>  Generates \p n normally distributed 16-bit half-precision floating-point
+  !>  numbers and saves them to \p output_data.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of halfs to generate
+  !>  \param mean - Mean value of normal distribution
+  !>  \param stddev - Standard deviation value of normal distribution
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
+  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
+  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
+  interface rocrand_generate_normal_half
+    function rocrand_generate_normal_half_(generator,output_data,n,mean,stddev) &
+        bind(c, name="rocrand_generate_normal_half")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_half_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
+    end function
+  end interface
+
   !>  \brief Generates log-normally distributed \p float values.
   !>
   !>  Generates \p n log-normally distributed 32-bit floating-point values
@@ -366,6 +506,38 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
       real(c_double),value :: mean
       real(c_double),value :: stddev
+    end function
+  end interface
+
+  !>  \brief Generates log-normally distributed \p half values.
+  !>
+  !>  Generates \p n log-normally distributed 16-bit half-precision floating-point
+  !>  values and saves them to \p output_data.
+  !>
+  !>  \param generator - Generator to use
+  !>  \param output_data - Pointer to memory to store generated numbers
+  !>  \param n - Number of halfs to generate
+  !>  \param mean - Mean value of log normal distribution
+  !>  \param stddev - Standard deviation value of log normal distribution
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
+  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
+  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>  of used quasi-random generator
+  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
+  interface rocrand_generate_log_normal_half
+    function rocrand_generate_log_normal_half_(generator,output_data,n,mean,stddev) &
+        bind(c, name="rocrand_generate_log_normal_half")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_half_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
     end function
   end interface
 
@@ -482,6 +654,37 @@ module hipfort_rocrand
     end function
   end interface
 
+  !>  \brief Sets the seeds of a pseudo-random number generator.
+  !>
+  !>  Sets the seed of the pseudo-random number generator. Currently only for LFSR113
+  !>
+  !>  - This operation resets the generator's internal state.
+  !>  - This operation does not change the generator's offset.
+  !>
+  !>  Only usable for LFSR113.
+  !>
+  !>  For a LFSR113 generator seed values must be bigger than 1, 7, 15,
+  !>  127. If those values smaller, than the requested minimum values [2, 8, 16, 128], then
+  !>  it will be increased with the minimum values minus 1 [1, 7, 15, 127].
+  !>
+  !>  \param generator - Pseudo-random number generator
+  !>  \param seed - New seed value
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
+  !>  - ROCRAND_STATUS_TYPE_ERROR if the generator is a quasi-random number generator
+  !>  - ROCRAND_STATUS_SUCCESS if seed was set successfully
+  interface rocrand_set_seed_uint4
+    function rocrand_set_seed_uint4_(generator,seed) bind(c, name="rocrand_set_seed_uint4")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_uint4_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: seed
+    end function
+  end interface
+
   !>  \brief Sets the offset of a random number generator.
   !>
   !>  Sets the absolute offset of the random number generator.
@@ -508,6 +711,43 @@ module hipfort_rocrand
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_offset_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: offset
+    end function
+  end interface
+
+  !>  \brief Sets the ordering of a random number generator.
+  !>
+  !>  Sets the ordering of the results of a random number generator.
+  !>
+  !>  - This operation resets the generator's internal state.
+  !>  - This operation does not change the generator's seed.
+  !>
+  !>  \param generator - Random number generator
+  !>  \param order - New ordering of results
+  !>
+  !>  The ordering choices for pseudorandom sequences are the following.
+  !>  Note that not all generators support all orderings. For details, see
+  !>  the Programmer's Guide in the documentation.
+  !>  - ROCRAND_ORDERING_PSEUDO_DEFAULT
+  !>  - ROCRAND_ORDERING_PSEUDO_LEGACY
+  !>  - ROCRAND_ORDERING_PSEUDO_BEST
+  !>  - ROCRAND_ORDERING_PSEUDO_SEEDED
+  !>  - ROCRAND_ORDERING_PSEUDO_DYNAMIC
+  !>
+  !>  For quasirandom sequences there is only one ordering, ROCRAND_ORDERING_QUASI_DEFAULT.
+  !>
+  !>  \return
+  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
+  !>  - ROCRAND_STATUS_OUT_OF_RANGE if the ordering is not valid
+  !>  - ROCRAND_STATUS_SUCCESS if the ordering was successfully set
+  !>  - ROCRAND_STATUS_TYPE_ERROR if generator's type is not valid
+  interface rocrand_set_ordering
+    function rocrand_set_ordering_(generator,order) bind(c, name="rocrand_set_ordering")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_ordering_
+      type(c_ptr),value :: generator
+      integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)),value :: order
     end function
   end interface
 
@@ -632,246 +872,6 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_discrete_distribution_
       type(c_ptr),value :: discrete_distribution
-    end function
-  end interface
-
-  !>  \brief Creates a new host random number generator.
-  !>
-  !>  Creates a new pseudo random number generator of type \p rng_type
-  !>  and returns it in \p generator. This generator is executed on the host rather than
-  !>  on a device, and it is enqueued on the stream associated with the generator.
-  !>
-  !>  All generators are supported.
-  !>
-  !>  \param generator - Pointer to generator
-  !>  \param rng_type - Type of generator to create
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_ALLOCATION_FAILED, if memory could not be allocated
-  !>  - ROCRAND_STATUS_VERSION_MISMATCH if the header file version does not match the
-  !>    dynamically linked library version
-  !>  - ROCRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid
-  !>  - ROCRAND_STATUS_SUCCESS if generator was created successfully
-  interface rocrand_create_generator_host
-    function rocrand_create_generator_host_(generator,rng_type) &
-        bind(c, name="rocrand_create_generator_host")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_
-      type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
-    end function
-  end interface
-
-  !>  \brief Creates a new host random number generator, similar to `rocrand_create_generator_host`.
-  !>    The exception is that, instead of enqueuing the host function in the stream,
-  !>    execution happens synchronously with respect to the calling thread and the stream is
-  !>    ignored.
-  interface rocrand_create_generator_host_blocking
-    function rocrand_create_generator_host_blocking_(generator,rng_type) &
-        bind(c, name="rocrand_create_generator_host_blocking")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_blocking_
-      type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
-    end function
-  end interface
-
-  !>  \brief Generates uniformly distributed 64-bit unsigned integers.
-  !>
-  !>  Generates \p n uniformly distributed 64-bit unsigned integers and
-  !>  saves them to \p output_data.
-  !>
-  !>  Generated numbers are between \p 0 and \p 2^64, including \p 0 and
-  !>  excluding \p 2^64.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of 64-bit unsigned integers to generate
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
-  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
-  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - ROCRAND_TYPE_ERROR if the generator can't natively generate 64-bit random numbers
-  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
-  interface rocrand_generate_long_long
-    function rocrand_generate_long_long_(generator,output_data,n) &
-        bind(c, name="rocrand_generate_long_long")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-    end function
-  end interface
-
-  !>  \brief Generates uniformly distributed half-precision floating-point values.
-  !>
-  !>  Generates \p n uniformly distributed 16-bit half-precision floating-point
-  !>  values and saves them to \p output_data.
-  !>
-  !>  Generated numbers are between \p 0.0 and \p 1.0, excluding \p 0.0 and
-  !>  including \p 1.0.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of halfs to generate
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
-  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
-  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
-  interface rocrand_generate_uniform_half
-    function rocrand_generate_uniform_half_(generator,output_data,n) &
-        bind(c, name="rocrand_generate_uniform_half")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_half_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-    end function
-  end interface
-
-  !>  \brief Generates normally distributed \p half values.
-  !>
-  !>  Generates \p n normally distributed 16-bit half-precision floating-point
-  !>  numbers and saves them to \p output_data.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of halfs to generate
-  !>  \param mean - Mean value of normal distribution
-  !>  \param stddev - Standard deviation value of normal distribution
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
-  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
-  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
-  interface rocrand_generate_normal_half
-    function rocrand_generate_normal_half_(generator,output_data,n,mean,stddev) &
-        bind(c, name="rocrand_generate_normal_half")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_half_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-      integer(c_short),value :: mean
-      integer(c_short),value :: stddev
-    end function
-  end interface
-
-  !>  \brief Generates log-normally distributed \p half values.
-  !>
-  !>  Generates \p n log-normally distributed 16-bit half-precision floating-point
-  !>  values and saves them to \p output_data.
-  !>
-  !>  \param generator - Generator to use
-  !>  \param output_data - Pointer to memory to store generated numbers
-  !>  \param n - Number of halfs to generate
-  !>  \param mean - Mean value of log normal distribution
-  !>  \param stddev - Standard deviation value of log normal distribution
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
-  !>  - ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed
-  !>  - ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !>  of used quasi-random generator
-  !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated
-  interface rocrand_generate_log_normal_half
-    function rocrand_generate_log_normal_half_(generator,output_data,n,mean,stddev) &
-        bind(c, name="rocrand_generate_log_normal_half")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_half_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: output_data
-      integer(c_size_t),value :: n
-      integer(c_short),value :: mean
-      integer(c_short),value :: stddev
-    end function
-  end interface
-
-  !>  \brief Sets the seeds of a pseudo-random number generator.
-  !>
-  !>  Sets the seed of the pseudo-random number generator. Currently only for LFSR113
-  !>
-  !>  - This operation resets the generator's internal state.
-  !>  - This operation does not change the generator's offset.
-  !>
-  !>  Only usable for LFSR113.
-  !>
-  !>  For a LFSR113 generator seed values must be bigger than 1, 7, 15,
-  !>  127. If those values smaller, than the requested minimum values [2, 8, 16, 128], then
-  !>  it will be increased with the minimum values minus 1 [1, 7, 15, 127].
-  !>
-  !>  \param generator - Pseudo-random number generator
-  !>  \param seed - New seed value
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
-  !>  - ROCRAND_STATUS_TYPE_ERROR if the generator is a quasi-random number generator
-  !>  - ROCRAND_STATUS_SUCCESS if seed was set successfully
-  interface rocrand_set_seed_uint4
-    function rocrand_set_seed_uint4_(generator,seed) bind(c, name="rocrand_set_seed_uint4")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_uint4_
-      type(c_ptr),value :: generator
-      type(c_ptr),value :: seed
-    end function
-  end interface
-
-  !>  \brief Sets the ordering of a random number generator.
-  !>
-  !>  Sets the ordering of the results of a random number generator.
-  !>
-  !>  - This operation resets the generator's internal state.
-  !>  - This operation does not change the generator's seed.
-  !>
-  !>  \param generator - Random number generator
-  !>  \param order - New ordering of results
-  !>
-  !>  The ordering choices for pseudorandom sequences are the following.
-  !>  Note that not all generators support all orderings. For details, see
-  !>  the Programmer's Guide in the documentation.
-  !>  - ROCRAND_ORDERING_PSEUDO_DEFAULT
-  !>  - ROCRAND_ORDERING_PSEUDO_LEGACY
-  !>  - ROCRAND_ORDERING_PSEUDO_BEST
-  !>  - ROCRAND_ORDERING_PSEUDO_SEEDED
-  !>  - ROCRAND_ORDERING_PSEUDO_DYNAMIC
-  !>
-  !>  For quasirandom sequences there is only one ordering, ROCRAND_ORDERING_QUASI_DEFAULT.
-  !>
-  !>  \return
-  !>  - ROCRAND_STATUS_NOT_CREATED if the generator wasn't created
-  !>  - ROCRAND_STATUS_OUT_OF_RANGE if the ordering is not valid
-  !>  - ROCRAND_STATUS_SUCCESS if the ordering was successfully set
-  !>  - ROCRAND_STATUS_TYPE_ERROR if generator's type is not valid
-  interface rocrand_set_ordering
-    function rocrand_set_ordering_(generator,order) bind(c, name="rocrand_set_ordering")
-      use iso_c_binding
-      use hipfort_rocrand_enums
-      implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_ordering_
-      type(c_ptr),value :: generator
-      integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)),value :: order
     end function
   end interface
 
