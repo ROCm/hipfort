@@ -97,8 +97,7 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ### Supported HIP and ROCm API
 
-The HIPFORT interfaces are regenerated from the current ROCm libraries (the
-`rocm-libraries` monorepo headers).
+The current batch of HIPFORT interfaces is derived from ROCm 7.14.0.
 The following tables list the supported API:
 
 * [HIP](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hip.md)
