@@ -6151,89 +6151,6 @@ module hipfort_rocblas
 #endif
   end interface
 
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hbmv_strided_batched performs one of the matrix-vector operations
-  !> 
-  !>         y_i := alpha*A_i*x_i + beta*y_i
-  !> 
-  !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
-  !>     n by n Hermitian band matrix with k super-diagonals, for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is being supplied.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is being supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     k         [rocblas_int]
-  !>               the number of super-diagonals of each matrix A_i. Must be >= 0.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     A         device array pointing to the first matrix A_1. Each A_i is of dimension (lda, n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The leading (k + 1) by n part of each A_i must contain the upper
-  !>                 triangular band part of the Hermitian matrix, with the leading
-  !>                 diagonal in row (k + 1), the first super-diagonal on the RHS
-  !>                 of row k, etc.
-  !>                 The top left k by x triangle of each A_i will not be referenced.
-  !>                     Ex (upper, lda = n = 4, k = 1):
-  !>                     A                             Represented matrix
-  !>                     (0,0) (5,9) (6,8) (7,7)       (1, 0) (5, 9) (0, 0) (0, 0)
-  !>                     (1,0) (2,0) (3,0) (4,0)       (5,-9) (2, 0) (6, 8) (0, 0)
-  !>                     (0,0) (0,0) (0,0) (0,0)       (0, 0) (6,-8) (3, 0) (7, 7)
-  !>                     (0,0) (0,0) (0,0) (0,0)       (0, 0) (0, 0) (7,-7) (4, 0)
-  !> 
-  !>               if uplo == rocblas_fill_lower:
-  !>                 The leading (k + 1) by n part of each A_i must contain the lower
-  !>                 triangular band part of the Hermitian matrix, with the leading
-  !>                 diagonal in row (1), the first sub-diagonal on the LHS of
-  !>                 row 2, etc.
-  !>                 The bottom right k by k triangle of each A_i will not be referenced.
-  !>                     Ex (lower, lda = 2, n = 4, k = 1):
-  !>                     A                               Represented matrix
-  !>                     (1,0) (2,0) (3,0) (4,0)         (1, 0) (5,-9) (0, 0) (0, 0)
-  !>                     (5,9) (6,8) (7,7) (0,0)         (5, 9) (2, 0) (6,-8) (0, 0)
-  !>                                                     (0, 0) (6, 8) (3, 0) (7,-7)
-  !>                                                     (0, 0) (0, 0) (7, 7) (4, 0)
-  !> 
-  !>               As a Hermitian matrix, the imaginary part of the main diagonal
-  !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i. must be >= max(1, n)
-  !>     @param[in]
-  !>     stride_A  [rocblas_stride]
-  !>               stride from the start of one matrix (A_i) and the next one (A_i+1)
-  !>     @param[in]
-  !>     x         device array pointing to the first vector y_1.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one vector (x_i) and the next one (x_i+1)
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array pointing to the first vector y_1.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stride_y  [rocblas_stride]
-  !>               stride from the start of one vector (y_i) and the next one (y_i+1)
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
-  !>
   interface rocblas_zhbmv_strided_batched
     function rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhbmv_strided_batched")
       use iso_c_binding
@@ -6260,12 +6177,66 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zhbmv_strided_batched_full_rank,&
       rocblas_zhbmv_strided_batched_rank_0,&
-      rocblas_zhbmv_strided_batched_rank_1
+      rocblas_zhbmv_strided_batched_rank_1,&
+      rocblas_zhbmv_strided_batched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hemv functions perform one of the matrix-vector operations:
+  !>
+  !>         y := alpha*A*x + beta*y
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors, and
+  !>     ``A`` is an
+  !>     ``n`` by ``n`` Hermitian matrix.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is
+  !>             supplied.
+  !>             - rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is
+  !>             supplied.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the order of the matrix A.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     A         device pointer storing matrix A. Of dimension (lda, n).
+  !>
+  !>         if uplo == rocblas_fill_upper:
+  !>             The upper triangular part of A must contain
+  !>             the upper triangular part of a Hermitian matrix. The lower
+  !>             triangular part of A will not be referenced.
+  !>
+  !>         if uplo == rocblas_fill_lower:
+  !>             The lower triangular part of A must contain
+  !>             the lower triangular part of a Hermitian matrix. The upper
+  !>             triangular part of A will not be referenced.
+  !>             As a Hermitian matrix, the imaginary part of the main diagonal
+  !>             of A will not be referenced and is assumed to be == 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of A. Must be >= max(1, n).
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer to scalar beta.
+  !>     @param[in, out]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
   interface rocblas_chemv
     function rocblas_chemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_chemv")
       use iso_c_binding
@@ -6287,61 +6258,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_chemv_full_rank,&
       rocblas_chemv_rank_0,&
-      rocblas_chemv_rank_1
+      rocblas_chemv_rank_1,&
+      rocblas_chemv_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hemv performs one of the matrix-vector operations
-  !> 
-  !>         y := alpha*A*x + beta*y
-  !> 
-  !>     where alpha and beta are scalars, x and y are n element vectors and A is an
-  !>     n by n Hermitian matrix.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is supplied.
-  !>               rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of the matrix A.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     A         device pointer storing matrix A. Of dimension (lda, n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular part of A must contain
-  !>                 the upper triangular part of a Hermitian matrix. The lower
-  !>                 triangular part of A will not be referenced.
-  !>               if uplo == rocblas_fill_lower:
-  !>                 The lower triangular part of A must contain
-  !>                 the lower triangular part of a Hermitian matrix. The upper
-  !>                 triangular part of A will not be referenced.
-  !>               As a Hermitian matrix, the imaginary part of the main diagonal
-  !>               of A will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of A. must be >= max(1, n)
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>
+
   interface rocblas_zhemv
     function rocblas_zhemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhemv")
       use iso_c_binding
@@ -6363,12 +6285,69 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zhemv_full_rank,&
       rocblas_zhemv_rank_0,&
-      rocblas_zhemv_rank_1
+      rocblas_zhemv_rank_1,&
+      rocblas_zhemv_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hemv_batched functions perform one of the matrix-vector operations:
+  !>
+  !>         y_i := alpha*A_i*x_i + beta*y_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors,
+  !>     and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, for each batch in ``i = [1, batch_count``].
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is
+  !>             supplied.
+  !>             - rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is
+  !>             supplied.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the order of each matrix A_i.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     A         device array of device pointers storing each matrix A_i of dimension (lda, n).
+  !>
+  !>         if uplo == rocblas_fill_upper:
+  !>             The upper triangular part of each A_i must contain
+  !>             the upper triangular part of a Hermitian matrix. The lower
+  !>             triangular part of each A_i will not be referenced.
+  !>
+  !>         if uplo == rocblas_fill_lower:
+  !>             The lower triangular part of each A_i must contain
+  !>             the lower triangular part of a Hermitian matrix. The upper
+  !>             triangular part of each A_i will not be referenced.
+  !>             As a Hermitian matrix, the imaginary part of the main diagonal
+  !>             of each A_i will not be referenced and is assumed to be == 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i. Must be >= max(1, n).
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer to scalar beta.
+  !>     @param[in, out]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chemv_batched
     function rocblas_chemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chemv_batched")
       use iso_c_binding
@@ -6388,67 +6367,8 @@ module hipfort_rocblas
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_chemv_batched_full_rank,&
-      rocblas_chemv_batched_rank_0,&
-      rocblas_chemv_batched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hemv_batched performs one of the matrix-vector operations
-  !> 
-  !>         y_i := alpha*A_i*x_i + beta*y_i
-  !> 
-  !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
-  !>     n by n Hermitian matrix, for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is supplied.
-  !>               rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     A         device array of device pointers storing each matrix A_i of dimension (lda, n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular part of each A_i must contain
-  !>                 the upper triangular part of a Hermitian matrix. The lower
-  !>                 triangular part of each A_i will not be referenced.
-  !>               if uplo == rocblas_fill_lower:
-  !>                 The lower triangular part of each A_i must contain
-  !>                 the lower triangular part of a Hermitian matrix. The upper
-  !>                 triangular part of each A_i will not be referenced.
-  !>               As a Hermitian matrix, the imaginary part of the main diagonal
-  !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i. must be >= max(1, n)
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
-  !>
+
   interface rocblas_zhemv_batched
     function rocblas_zhemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhemv_batched")
       use iso_c_binding
@@ -6468,15 +6388,74 @@ module hipfort_rocblas
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_zhemv_batched_full_rank,&
-      rocblas_zhemv_batched_rank_0,&
-      rocblas_zhemv_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hemv_strided_batched functions perform one of the matrix-vector operations:
+  !>
+  !>         y_i := alpha*A_i*x_i + beta*y_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors,
+  !>     and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, for each batch in ``i = [1, batch_count``].
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is
+  !>             supplied.
+  !>             - rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is
+  !>             supplied.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the order of each matrix A_i.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     A         device array of device pointers storing each matrix A_i of dimension (lda, n).
+  !>
+  !>         if uplo == rocblas_fill_upper:
+  !>             The upper triangular part of each A_i must contain
+  !>             the upper triangular part of a Hermitian matrix. The lower
+  !>             triangular part of each A_i will not be referenced.
+  !>
+  !>         if uplo == rocblas_fill_lower:
+  !>             The lower triangular part of each A_i must contain
+  !>             the lower triangular part of a Hermitian matrix. The upper
+  !>             triangular part of each A_i will not be referenced.
+  !>             As a Hermitian matrix, the imaginary part of the main diagonal
+  !>             of each A_i will not be referenced and is assumed to be == 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i. Must be >= max(1, n).
+  !>     @param[in]
+  !>     stride_A    [rocblas_stride]
+  !>                 stride from the start of one (A_i) to the next (A_i+1).
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in]
+  !>     beta      device pointer or host pointer to scalar beta.
+  !>     @param[in, out]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     stride_y  [rocblas_stride]
+  !>               stride from the start of one vector (y_i) to the next one (y_i+1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chemv_strided_batched
     function rocblas_chemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chemv_strided_batched")
       use iso_c_binding
@@ -6502,73 +6481,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_chemv_strided_batched_full_rank,&
       rocblas_chemv_strided_batched_rank_0,&
-      rocblas_chemv_strided_batched_rank_1
+      rocblas_chemv_strided_batched_rank_1,&
+      rocblas_chemv_strided_batched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hemv_strided_batched performs one of the matrix-vector operations
-  !> 
-  !>         y_i := alpha*A_i*x_i + beta*y_i
-  !> 
-  !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
-  !>     n by n Hermitian matrix, for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is supplied.
-  !>               rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     A         device array of device pointers storing each matrix A_i of dimension (lda, n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular part of each A_i must contain
-  !>                 the upper triangular part of a Hermitian matrix. The lower
-  !>                 triangular part of each A_i will not be referenced.
-  !>               if uplo == rocblas_fill_lower:
-  !>                 The lower triangular part of each A_i must contain
-  !>                 the lower triangular part of a Hermitian matrix. The upper
-  !>                 triangular part of each A_i will not be referenced.
-  !>               As a Hermitian matrix, the imaginary part of the main diagonal
-  !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i. must be >= max(1, n)
-  !>     @param[in]
-  !>     stride_A    [rocblas_stride]
-  !>                 stride from the start of one (A_i) to the next (A_i+1)
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one vector (x_i) and the next one (x_i+1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stride_y  [rocblas_stride]
-  !>               stride from the start of one vector (y_i) and the next one (y_i+1).
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
-  !>
+
   interface rocblas_zhemv_strided_batched
     function rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhemv_strided_batched")
       use iso_c_binding
@@ -6594,12 +6512,58 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zhemv_strided_batched_full_rank,&
       rocblas_zhemv_strided_batched_rank_0,&
-      rocblas_zhemv_strided_batched_rank_1
+      rocblas_zhemv_strided_batched_rank_1,&
+      rocblas_zhemv_strided_batched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The her functions perform the matrix-vector operations:
+  !>
+  !>         A := A + alpha*x*x**H
+  !>
+  !>     where ``alpha`` is a real scalar, ``x`` is a vector, and ``A`` is an
+  !>     ``n`` by ``n`` Hermitian matrix.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of A is supplied in A.
+  !>             - rocblas_fill_lower: The lower triangular part of A is supplied in A.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of matrix A. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in, out]
+  !>     A device pointer storing the specified triangular portion of the Hermitian matrix A.
+  !>               Of size (lda * n).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of the Hermitian matrix A is supplied.
+  !>                         The lower triangluar portion will not be touched.
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of the Hermitian matrix A is supplied.
+  !>                         The upper triangular portion will not be touched.
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of A. Must be at least max(1, n).
   interface rocblas_cher
     function rocblas_cher_(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="rocblas_cher")
       use iso_c_binding
@@ -6618,54 +6582,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_cher_full_rank,&
       rocblas_cher_rank_0,&
-      rocblas_cher_rank_1
+      rocblas_cher_rank_1,&
+      rocblas_cher_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     her performs the matrix-vector operations
-  !> 
-  !>         A := A + alpha*x*x**H
-  !> 
-  !>     where alpha is a real scalar, x is a vector, and A is an
-  !>     n by n Hermitian matrix.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of A is supplied in A.
-  !>               rocblas_fill_lower: The lower triangular part of A is supplied in A.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of matrix A, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     A         device pointer storing the specified triangular portion of
-  !>               the Hermitian matrix A. Of size (lda * n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of the Hermitian matrix A is supplied. The lower
-  !>                 triangluar portion will not be touched.
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of the Hermitian matrix A is supplied. The upper
-  !>                 triangular portion will not be touched.
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of A. Must be at least max(1, n).
+
   interface rocblas_zher
     function rocblas_zher_(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="rocblas_zher")
       use iso_c_binding
@@ -6684,12 +6606,62 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zher_full_rank,&
       rocblas_zher_rank_0,&
-      rocblas_zher_rank_1
+      rocblas_zher_rank_1,&
+      rocblas_zher_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The her_batched functions performs the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*x_i**H
+  !>
+  !>     where ``alpha`` is a real scalar, ``x_i`` is a vector, and ``A_i`` is an
+  !>     ``n`` by ``n`` symmetric matrix, for ``i`` = 1, ..., ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied in A.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied in A.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in, out]
+  !>     A         device array of device pointers storing the specified triangular portion of
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
+  !>               least size batch_count.
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The lower triangular portion of each A_i will not be touched.
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The upper triangular portion of each A_i will not be touched.
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i. Must be at least max(1, n).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_cher_batched
     function rocblas_cher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_cher_batched")
       use iso_c_binding
@@ -6706,60 +6678,8 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_cher_batched_full_rank,&
-      rocblas_cher_batched_rank_0,&
-      rocblas_cher_batched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     her_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*x_i**H
-  !> 
-  !>     where alpha is a real scalar, x_i is a vector, and A_i is an
-  !>     n by n symmetric matrix, for i = 1, ..., batch_count.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied in A.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied in A.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     A         device array of device pointers storing the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion
-  !>                 of each A_i will not be touched.
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular portion
-  !>                 of each A_i will not be touched.
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i. Must be at least max(1, n).
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zher_batched
     function rocblas_zher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zher_batched")
       use iso_c_binding
@@ -6776,15 +6696,62 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_zher_batched_full_rank,&
-      rocblas_zher_batched_rank_0,&
-      rocblas_zher_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The her_strided_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*x_i**H
+  !>
+  !>     where ``alpha`` is a real scalar, ``x_i`` is a vector, and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, for ``i`` = 1, ..., ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>               specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied in A.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied in A.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer pointing to the first vector (x_1).
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in, out]
+  !>     A         device array of device pointers storing the specified triangular portion of
+  !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The lower triangular portion of each A_i will not be touched.
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The upper triangular portion of each A_i will not be touched.
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i.
+  !>     @param[in]
+  !>     stride_A    [rocblas_stride]
+  !>                 stride from the start of one (A_i) to the next (A_i+1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_cher_strided_batched
     function rocblas_cher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_cher_strided_batched")
       use iso_c_binding
@@ -6806,63 +6773,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_cher_strided_batched_full_rank,&
       rocblas_cher_strided_batched_rank_0,&
-      rocblas_cher_strided_batched_rank_1
+      rocblas_cher_strided_batched_rank_1,&
+      rocblas_cher_strided_batched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     her_strided_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*x_i**H
-  !> 
-  !>     where alpha is a real scalar, x_i is a vector, and A_i is an
-  !>     n by n Hermitian matrix, for i = 1, ..., batch_count.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied in A.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied in A.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one vector (x_i) and the next one (x_i+1).
-  !>     @param[inout]
-  !>     A         device array of device pointers storing the specified triangular portion of
-  !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular
-  !>                 portion of each A_i will not be touched.
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular
-  !>                 portion of each A_i will not be touched.
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     stride_A    [rocblas_stride]
-  !>                 stride from the start of one (A_i) and the next (A_i+1)
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zher_strided_batched
     function rocblas_zher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher_strided_batched")
       use iso_c_binding
@@ -6884,12 +6800,62 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zher_strided_batched_full_rank,&
       rocblas_zher_strided_batched_rank_0,&
-      rocblas_zher_strided_batched_rank_1
+      rocblas_zher_strided_batched_rank_1,&
+      rocblas_zher_strided_batched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The her2 functions perform the matrix-vector operations:
+  !>
+  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
+  !>
+  !>     where ``alpha`` is a complex scalar, ``x`` and ``y`` are vectors, and ``A`` is an
+  !>     ``n`` by ``n`` Hermitian matrix.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of A is supplied.
+  !>             - rocblas_fill_lower: The lower triangular part of A is supplied.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of matrix A. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in, out]
+  !>     A         device pointer storing the specified triangular portion of
+  !>               the Hermitian matrix A. Of size (lda, n).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of the Hermitian matrix A is supplied.
+  !>                         The lower triangular portion of A will not be touched.
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of the Hermitian matrix A is supplied.
+  !>                         The upper triangular portion of A will not be touched.
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of A. Must be at least max(lda, 1).
   interface rocblas_cher2
     function rocblas_cher2_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_cher2")
       use iso_c_binding
@@ -6910,59 +6876,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_cher2_full_rank,&
       rocblas_cher2_rank_0,&
-      rocblas_cher2_rank_1
+      rocblas_cher2_rank_1,&
+      rocblas_cher2_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     her2 performs the matrix-vector operations
-  !> 
-  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
-  !> 
-  !>     where alpha is a complex scalar, x and y are vectors, and A is an
-  !>     n by n Hermitian matrix.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of A is supplied.
-  !>               rocblas_fill_lower: The lower triangular part of A is supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of matrix A, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     A         device pointer storing the specified triangular portion of
-  !>               the Hermitian matrix A. Of size (lda, n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of the Hermitian matrix A is supplied. The lower triangular
-  !>                 portion of A will not be touched.
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of the Hermitian matrix A is supplied. The upper triangular
-  !>                 portion of A will not be touched.
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of A. Must be at least max(lda, 1).
+
   interface rocblas_zher2
     function rocblas_zher2_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zher2")
       use iso_c_binding
@@ -6983,12 +6902,65 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zher2_full_rank,&
       rocblas_zher2_rank_0,&
-      rocblas_zher2_rank_1
+      rocblas_zher2_rank_1,&
+      rocblas_zher2_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The her2_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
+  !>
+  !>     where ``alpha`` is a complex scalar, ``x_i`` and ``y_i`` are vectors, and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix for each batch in ``i = [1, batch_count``].
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in, out]
+  !>     A         device array of device pointers storing the specified triangular portion of
+  !>               each Hermitian matrix A_i of size (lda, n).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The lower triangular portion of each A_i will not be touched.
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The upper triangular portion of each A_i will not be touched.
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i. Must be at least max(lda, 1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_cher2_batched
     function rocblas_cher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_cher2_batched")
       use iso_c_binding
@@ -7007,65 +6979,8 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_cher2_batched_full_rank,&
-      rocblas_cher2_batched_rank_0,&
-      rocblas_cher2_batched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     her2_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
-  !> 
-  !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
-  !>     n by n Hermitian matrix for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of each y_i.
-  !>     @param[inout]
-  !>     A         device array of device pointers storing the specified triangular portion of
-  !>               each Hermitian matrix A_i of size (lda, n).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular
-  !>                 portion of each A_i will not be touched.
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular
-  !>                 portion of each A_i will not be touched.
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i. Must be at least max(lda, 1).
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zher2_batched
     function rocblas_zher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zher2_batched")
       use iso_c_binding
@@ -7084,15 +6999,74 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_zher2_batched_full_rank,&
-      rocblas_zher2_batched_rank_0,&
-      rocblas_zher2_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The her2_strided_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
+  !>
+  !>     where ``alpha`` is a complex scalar, ``x_i`` and ``y_i`` are vectors, and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix for each batch in ``i = [1, batch_count``].
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer pointing to the first vector x_1.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               specifies the stride between the beginning of one vector (x_i) and the next
+  !>               (x_i+1).
+  !>     @param[in]
+  !>     y         device pointer pointing to the first vector y_i.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     stride_y  [rocblas_stride]
+  !>               specifies the stride between the beginning of one vector (y_i) and the next
+  !>               (y_i+1).
+  !>     @param[in, out]
+  !>     A device pointer pointing to the first matrix (A_1). Stores the specified triangular
+  !>     portion of
+  !>               each Hermitian matrix A_i.
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The lower triangular portion of each A_i will not be touched.
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The upper triangular portion of each A_i will not be touched.
+  !>                 Note that the imaginary parts of the diagonal elements are not accessed
+  !>                 and are assumed to be 0.
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i. Must be at least max(lda, 1).
+  !>     @param[in]
+  !>     stride_A  [rocblas_stride]
+  !>               specifies the stride between the beginning of one matrix (A_i) and the next
+  !>               (A_i+1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_cher2_strided_batched
     function rocblas_cher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_cher2_strided_batched")
       use iso_c_binding
@@ -7117,71 +7091,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_cher2_strided_batched_full_rank,&
       rocblas_cher2_strided_batched_rank_0,&
-      rocblas_cher2_strided_batched_rank_1
+      rocblas_cher2_strided_batched_rank_1,&
+      rocblas_cher2_strided_batched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     her2_strided_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
-  !> 
-  !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
-  !>     n by n Hermitian matrix for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               specifies the stride between the beginning of one vector (x_i) and the next (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer pointing to the first vector y_i.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stride_y  [rocblas_stride]
-  !>               specifies the stride between the beginning of one vector (y_i) and the next (y_i+1).
-  !>     @param[inout]
-  !>     A         device pointer pointing to the first matrix (A_1). Stores the specified triangular portion of
-  !>               each Hermitian matrix A_i.
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular
-  !>                 portion of each A_i will not be touched.
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular
-  !>                 portion of each A_i will not be touched.
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of each A_i. Must be at least max(lda, 1).
-  !>     @param[in]
-  !>     stride_A  [rocblas_stride]
-  !>               specifies the stride between the beginning of one matrix (A_i) and the next (A_i+1).
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zher2_strided_batched
     function rocblas_zher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher2_strided_batched")
       use iso_c_binding
@@ -7206,12 +7121,80 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_zher2_strided_batched_full_rank,&
       rocblas_zher2_strided_batched_rank_0,&
-      rocblas_zher2_strided_batched_rank_1
+      rocblas_zher2_strided_batched_rank_1,&
+      rocblas_zher2_strided_batched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpmv functions perform the matrix-vector operation:
+  !>
+  !>         y := alpha*A*x + beta*y
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors and A
+  !>     is an
+  !>     ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below).
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is
+  !>             supplied in AP.
+  !>             - rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is
+  !>             supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the order of the matrix A. Must be >= 0.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) / 2).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of the Hermitian matrix A is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (3, 2)
+  !>                             (2,-1) (4, 0) (5,-1) ---> [(1,0),(2,1),(4,0),(3,2),(5,-1),(6,0)]
+  !>                             (3,-2) (5, 1) (6, 0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of the Hermitian matrix A is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (3, 2)
+  !>                             (2,-1) (4, 0) (5,-1) ---> [(1,0),(2,-1),(3,-2),(4,0),(5,1),(6,0)]
+  !>                             (3,-2) (5, 1) (6, 0)
+  !>                 Note that the imaginary parts of the diagonal elements are not accessed
+  !>                 and are assumed to be 0.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer to scalar beta.
+  !>     @param[in, out]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
   interface rocblas_chpmv
     function rocblas_chpmv_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="rocblas_chpmv")
       use iso_c_binding
@@ -7236,68 +7219,7 @@ module hipfort_rocblas
       rocblas_chpmv_rank_1
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpmv performs the matrix-vector operation
-  !> 
-  !>         y := alpha*A*x + beta*y
-  !> 
-  !>     where alpha and beta are scalars, x and y are n element vectors and A is an
-  !>     n by n Hermitian matrix, supplied in packed form (see description below).
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: the upper triangular part of the Hermitian matrix A is supplied in AP.
-  !>               rocblas_fill_lower: the lower triangular part of the Hermitian matrix A is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of the matrix A, must be >= 0.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of the Hermitian matrix A is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (3, 2)
-  !>                         (2,-1) (4, 0) (5,-1)    -----> [(1,0), (2,1), (4,0), (3,2), (5,-1), (6,0)]
-  !>                         (3,-2) (5, 1) (6, 0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of the Hermitian matrix A is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (3, 2)
-  !>                         (2,-1) (4, 0) (5,-1)    -----> [(1,0), (2,-1), (3,-2), (4,0), (5,1), (6,0)]
-  !>                         (3,-2) (5, 1) (6, 0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>
+
   interface rocblas_zhpmv
     function rocblas_zhpmv_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="rocblas_zhpmv")
       use iso_c_binding
@@ -7322,7 +7244,82 @@ module hipfort_rocblas
       rocblas_zhpmv_rank_1
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpmv_batched functions perform the matrix-vector operation:
+  !>
+  !>         y_i := alpha*A_i*x_i + beta*y_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors
+  !>     and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below),
+  !>     for each batch in ``i = [1, batch_count``].
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: the upper triangular part of each Hermitian matrix A_i is
+  !>             supplied in AP.
+  !>             - rocblas_fill_lower: the lower triangular part of each Hermitian matrix A_i is
+  !>             supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the order of each matrix A_i.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     AP device pointer of device pointers storing the packed version of the specified triangular
+  !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n * (n + 1)) /
+  !>             2).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that each AP_i contains the triangular
+  !>                         portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (3, 2)
+  !>                             (2,-1) (4, 0) (5,-1) ---> [(1,0),(2,1),(4,0),(3,2),(5,-1),(6,0)]
+  !>                             (3,-2) (5, 1) (6, 0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that each AP_i contains the triangular
+  !>                         portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (3, 2)
+  !>                             (2,-1) (4, 0) (5,-1) ---> [(1,0),(2,-1),(3,-2),(4,0),(5,1),(6,0)]
+  !>                             (3,-2) (5, 1) (6, 0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer to scalar beta.
+  !>     @param[in, out]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chpmv_batched
     function rocblas_chpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_chpmv_batched")
       use iso_c_binding
@@ -7341,80 +7338,8 @@ module hipfort_rocblas
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_chpmv_batched_full_rank,&
-      rocblas_chpmv_batched_rank_0,&
-      rocblas_chpmv_batched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpmv_batched performs the matrix-vector operation
-  !> 
-  !>         y_i := alpha*A_i*x_i + beta*y_i
-  !> 
-  !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
-  !>     n by n Hermitian matrix, supplied in packed form (see description below),
-  !>     for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: the upper triangular part of each Hermitian matrix A_i is supplied in AP.
-  !>               rocblas_fill_lower: the lower triangular part of each Hermitian matrix A_i is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP      device pointer of device pointers storing the packed version of the specified triangular
-  !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n * (n + 1)) 2).
-  !>             if uplo == rocblas_fill_upper:
-  !>             The upper triangular portion of each Hermitian matrix A_i is supplied.
-  !>             The matrix is compacted so that each AP_i contains the triangular portion column-by-column
-  !>             so that:
-  !>             AP(0) = A(0,0)
-  !>             AP(1) = A(0,1)
-  !>             AP(2) = A(1,1), etc.
-  !>                 Ex: (rocblas_fill_upper; n = 3)
-  !>                     (1, 0) (2, 1) (3, 2)
-  !>                     (2,-1) (4, 0) (5,-1)    -----> [(1,0), (2,1), (4,0), (3,2), (5,-1), (6,0)]
-  !>                     (3,-2) (5, 1) (6, 0)
-  !>         if uplo == rocblas_fill_lower:
-  !>             The lower triangular portion of each Hermitian matrix A_i is supplied.
-  !>             The matrix is compacted so that each AP_i contains the triangular portion column-by-column
-  !>             so that:
-  !>             AP(0) = A(0,0)
-  !>             AP(1) = A(1,0)
-  !>             AP(2) = A(2,1), etc.
-  !>                 Ex: (rocblas_fill_lower; n = 3)
-  !>                     (1, 0) (2, 1) (3, 2)
-  !>                     (2,-1) (4, 0) (5,-1)    -----> [(1,0), (2,-1), (3,-2), (4,0), (5,1), (6,0)]
-  !>                     (3,-2) (5, 1) (6, 0)
-  !>         Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>         to be 0.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
-  !>
+
   interface rocblas_zhpmv_batched
     function rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhpmv_batched")
       use iso_c_binding
@@ -7433,15 +7358,92 @@ module hipfort_rocblas
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_zhpmv_batched_full_rank,&
-      rocblas_zhpmv_batched_rank_0,&
-      rocblas_zhpmv_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpmv_strided_batched functions perform the matrix-vector operation:
+  !>
+  !>         y_i := alpha*A_i*x_i + beta*y_i
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors
+  !>     and ``A_i`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below),
+  !>     for each batch in ``i = [1, batch_count``].
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: the upper triangular part of each Hermitian matrix A_i is
+  !>             supplied in AP.
+  !>             - rocblas_fill_lower: the lower triangular part of each Hermitian matrix A_i is
+  !>             supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the order of each matrix A_i.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     AP device pointer pointing to the beginning of the first matrix (AP_1). Stores the packed
+  !>               version of the specified triangular portion of each Hermitian matrix AP_i of size
+  !>               ((n * (n + 1)) / 2).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that each AP_i contains the triangular
+  !>                         portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (3, 2)
+  !>                             (2,-1) (4, 0) (5,-1) ---> [(1,0),(2,1),(4,0),(3,2),(5,-1),(6,0)]
+  !>                             (3,-2) (5, 1) (6, 0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that each AP_i contains the triangular
+  !>                         portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (3, 2)
+  !>                             (2,-1) (4, 0) (5,-1) ---> [(1,0),(2,-1),(3,-2),(4,0),(5,1),(6,0)]
+  !>                             (3,-2) (5, 1) (6, 0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     stride_A  [rocblas_stride]
+  !>               stride from the start of one matrix (AP_i) to the next one (AP_i+1).
+  !>     @param[in]
+  !>     x         device array pointing to the beginning of the first vector (x_1).
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in]
+  !>     beta      device pointer or host pointer to scalar beta.
+  !>     @param[in, out]
+  !>     y         device array pointing to the beginning of the first vector (y_1).
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     stride_y  [rocblas_stride]
+  !>               stride from the start of one vector (y_i) to the next one (y_i+1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chpmv_strided_batched
     function rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_chpmv_strided_batched")
       use iso_c_binding
@@ -7470,81 +7472,7 @@ module hipfort_rocblas
       rocblas_chpmv_strided_batched_rank_1
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpmv_strided_batched performs the matrix-vector operation
-  !> 
-  !>         y_i := alpha*A_i*x_i + beta*y_i
-  !> 
-  !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
-  !>     n by n Hermitian matrix, supplied in packed form (see description below),
-  !>     for each batch in i = [1, batch_count].
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: the upper triangular part of each Hermitian matrix A_i is supplied in AP.
-  !>               rocblas_fill_lower: the lower triangular part of each Hermitian matrix A_i is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer pointing to the beginning of the first matrix (AP_1). Stores the packed
-  !>               version of the specified triangular portion of each Hermitian matrix AP_i of size ((n * (n + 1)) 2).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that each AP_i contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (3, 2)
-  !>                         (2,-1) (4, 0) (5,-1)    -----> [(1,0), (2,1), (4,0), (3,2), (5,-1), (6,0)]
-  !>                         (3,-2) (5, 1) (6, 0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that each AP_i contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (3, 2)
-  !>                         (2,-1) (4, 0) (5,-1)    -----> [(1,0), (2,-1), (3,-2), (4,0), (5,1), (6,0)]
-  !>                         (3,-2) (5, 1) (6, 0)
-  !>         Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>         to be 0.
-  !>     @param[in]
-  !>     stride_A  [rocblas_stride]
-  !>               stride from the start of one matrix (AP_i) and the next one (AP_i+1).
-  !>     @param[in]
-  !>     x         device array pointing to the beginning of the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one vector (x_i) and the next one (x_i+1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array pointing to the beginning of the first vector (y_1).
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stride_y  [rocblas_stride]
-  !>               stride from the start of one vector (y_i) and the next one (y_i+1).
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
-  !>
+
   interface rocblas_zhpmv_strided_batched
     function rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhpmv_strided_batched")
       use iso_c_binding
@@ -7573,7 +7501,67 @@ module hipfort_rocblas
       rocblas_zhpmv_strided_batched_rank_1
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpr functions perform the matrix-vector operations:
+  !>
+  !>         A := A + alpha*x*x**H
+  !>
+  !>     where ``alpha`` is a real scalar, ``x`` is a vector, and ``A`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, supplied in packed form.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of A is supplied in AP.
+  !>             - rocblas_fill_lower: The lower triangular part of A is supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of matrix A. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in, out]
+  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) / 2).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of the Hermitian matrix A is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,1),(3,0),(4,9),(5,3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of the Hermitian matrix A is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,-1),(4,-9),(3,0),(5,-3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
   interface rocblas_chpr
     function rocblas_chpr_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="rocblas_chpr")
       use iso_c_binding
@@ -7595,62 +7583,7 @@ module hipfort_rocblas
       rocblas_chpr_rank_1
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpr performs the matrix-vector operations
-  !> 
-  !>         A := A + alpha*x*x**H
-  !> 
-  !>     where alpha is a real scalar, x is a vector, and A is an
-  !>     n by n Hermitian matrix, supplied in packed form.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of A is supplied in AP.
-  !>               rocblas_fill_lower: The lower triangular part of A is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of matrix A, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of the Hermitian matrix A is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of the Hermitian matrix A is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
+
   interface rocblas_zhpr
     function rocblas_zhpr_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="rocblas_zhpr")
       use iso_c_binding
@@ -7672,7 +7605,73 @@ module hipfort_rocblas
       rocblas_zhpr_rank_1
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpr_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*x_i**H
+  !>
+  !>     where ``alpha`` is a real scalar, ``x_i`` is a vector, and ``A_i`` is an
+  !>     ``n`` by ``n`` symmetric matrix, supplied in packed form, for ``i`` = 1, ...,
+  !>     ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in, out]
+  !>     AP device array of device pointers storing the packed version of the specified triangular
+  !>     portion of
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
+  !>               least size batch_count.
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,1),(3,0),(4,9),(5,3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,-1),(4,-9),(3,0),(5,-3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chpr_batched
     function rocblas_chpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_chpr_batched")
       use iso_c_binding
@@ -7688,73 +7687,8 @@ module hipfort_rocblas
       type(c_ptr) :: AP
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_chpr_batched_full_rank,&
-      rocblas_chpr_batched_rank_0,&
-      rocblas_chpr_batched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpr_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*x_i**H
-  !> 
-  !>     where alpha is a real scalar, x_i is a vector, and A_i is an
-  !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zhpr_batched
     function rocblas_zhpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zhpr_batched")
       use iso_c_binding
@@ -7770,15 +7704,79 @@ module hipfort_rocblas
       type(c_ptr) :: AP
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_zhpr_batched_full_rank,&
-      rocblas_zhpr_batched_rank_0,&
-      rocblas_zhpr_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpr_strided_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*x_i**H
+  !>
+  !>     where ``alpha`` is a real scalar, ``x_i`` is a vector, and ``A_i`` is an
+  !>     ``n`` by ``n`` symmetric matrix, supplied in packed form, for ``i`` = 1, ...,
+  !>     ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer pointing to the first vector (x_1).
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in, out]
+  !>     AP device array of device pointers storing the packed version of the specified triangular
+  !>     portion of
+  !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,1),(3,0),(4,9),(5,3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,-1),(4,-9),(3,0),(5,-3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     stride_A    [rocblas_stride]
+  !>                 stride from the start of one (A_i) to the next (A_i+1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chpr_strided_batched
     function rocblas_chpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_chpr_strided_batched")
       use iso_c_binding
@@ -7803,71 +7801,7 @@ module hipfort_rocblas
       rocblas_chpr_strided_batched_rank_1
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpr_strided_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*x_i**H
-  !> 
-  !>     where alpha is a real scalar, x_i is a vector, and A_i is an
-  !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one vector (x_i) and the next one (x_i+1).
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     stride_A    [rocblas_stride]
-  !>                 stride from the start of one (A_i) and the next (A_i+1)
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zhpr_strided_batched
     function rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr_strided_batched")
       use iso_c_binding
@@ -7892,7 +7826,72 @@ module hipfort_rocblas
       rocblas_zhpr_strided_batched_rank_1
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpr2 functions perform the matrix-vector operations:
+  !>
+  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
+  !>
+  !>     where ``alpha`` is a complex scalar, ``x`` and ``y`` are vectors, and ``A`` is an
+  !>     ``n`` by ``n`` Hermitian matrix, supplied in packed form.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of A is supplied in AP.
+  !>             - rocblas_fill_lower: The lower triangular part of A is supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of matrix A. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in, out]
+  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) / 2).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of the Hermitian matrix A is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,1),(3,0),(4,9),(5,3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of the Hermitian matrix A is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,-1),(4,-9),(3,0),(5,-3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
   interface rocblas_chpr2
     function rocblas_chpr2_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_chpr2")
       use iso_c_binding
@@ -7916,67 +7915,7 @@ module hipfort_rocblas
       rocblas_chpr2_rank_1
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpr2 performs the matrix-vector operations
-  !> 
-  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
-  !> 
-  !>     where alpha is a complex scalar, x and y are vectors, and A is an
-  !>     n by n Hermitian matrix, supplied in packed form.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of A is supplied in AP.
-  !>               rocblas_fill_lower: The lower triangular part of A is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of matrix A, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of the Hermitian matrix A is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of the Hermitian matrix A is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
+
   interface rocblas_zhpr2
     function rocblas_zhpr2_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_zhpr2")
       use iso_c_binding
@@ -8000,7 +7939,78 @@ module hipfort_rocblas
       rocblas_zhpr2_rank_1
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpr2_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
+  !>
+  !>     where ``alpha`` is a complex scalar, ``x_i`` and``y_i`` are vectors, and ``A_i`` is an
+  !>     ``n`` by ``n`` symmetric matrix, supplied in packed form, for ``i`` = 1, ...,
+  !>     ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in, out]
+  !>     AP device array of device pointers storing the packed version of the specified triangular
+  !>     portion of
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
+  !>               least size batch_count.
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,1),(3,0),(4,9),(5,3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                         Ex: (rocblas_fill_lower; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) --> [(1,0),(2,-1),(4,-9),(3,0),(5,-3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chpr2_batched
     function rocblas_chpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_chpr2_batched")
       use iso_c_binding
@@ -8018,78 +8028,8 @@ module hipfort_rocblas
       type(c_ptr) :: AP
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_chpr2_batched_full_rank,&
-      rocblas_chpr2_batched_rank_0,&
-      rocblas_chpr2_batched_rank_1
-#endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpr2_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
-  !> 
-  !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
-  !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of each y_i.
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zhpr2_batched
     function rocblas_zhpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_zhpr2_batched")
       use iso_c_binding
@@ -8107,15 +8047,88 @@ module hipfort_rocblas
       type(c_ptr) :: AP
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_zhpr2_batched_full_rank,&
-      rocblas_zhpr2_batched_rank_0,&
-      rocblas_zhpr2_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The hpr2_strided_batched functions perform the matrix-vector operations:
+  !>
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
+  !>
+  !>     where ``alpha`` is a complex scalar, ``x_i`` and ``y_i`` are vectors, and ``A_i`` is an
+  !>     ``n`` by ``n`` symmetric matrix, supplied in packed form, for ``i`` = 1, ...,
+  !>     ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             specifies either upper (rocblas_fill_upper) or lower (rocblas_fill_lower).
+  !>             - rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
+  !>             - rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of each matrix A_i. Must be at least 0.
+  !>     @param[in]
+  !>     alpha
+  !>               device pointer or host pointer to scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer pointing to the first vector (x_1).
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in]
+  !>     y         device pointer pointing to the first vector (y_1).
+  !>     @param[in]
+  !>     incy      [rocblas_int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     stride_y  [rocblas_stride]
+  !>               stride from the start of one vector (y_i) to the next one (y_i+1).
+  !>     @param[in, out]
+  !>     AP device array of device pointers storing the packed version of the specified triangular
+  !>     portion of
+  !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
+  !>
+  !>                     if uplo == rocblas_fill_upper:
+  !>                         The upper triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(0,1)
+  !>                         AP(2) = A(1,1), etc.
+  !>                         Ex: (rocblas_fill_upper; n = 3)
+  !>                             (1, 0) (2, 1) (4,9)
+  !>                             (2,-1) (3, 0) (5,3) ---> [(1,0),(2,1),(3,0),(4,9),(5,3),(6,0)]
+  !>                             (4,-9) (5,-3) (6,0)
+  !>
+  !>                     if uplo == rocblas_fill_lower:
+  !>                         The lower triangular portion of each Hermitian matrix A_i is supplied.
+  !>                         The matrix is compacted so that AP contains the triangular portion
+  !>                         column-by-column
+  !>                         so that:
+  !>                         AP(0) = A(0,0)
+  !>                         AP(1) = A(1,0)
+  !>                         AP(2) = A(2,1), etc.
+  !>                             Ex: (rocblas_fill_lower; n = 3)
+  !>                                 (1, 0) (2, 1) (4,9)
+  !>                                 (2,-1) (3, 0) (5,3) --->
+  !>                                 [(1,0),(2,-1),(4,-9),(3,0),(5,-3),(6,0)]
+  !>                                 (4,-9) (5,-3) (6,0)
+  !>                Note that the imaginary parts of the diagonal elements are not accessed
+  !>                and are assumed to be 0.
+  !>     @param[in]
+  !>     stride_A    [rocblas_stride]
+  !>                 stride from the start of one (A_i) to the next (A_i+1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_chpr2_strided_batched
     function rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_chpr2_strided_batched")
       use iso_c_binding
@@ -8143,79 +8156,7 @@ module hipfort_rocblas
       rocblas_chpr2_strided_batched_rank_1
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     hpr2_strided_batched performs the matrix-vector operations
-  !> 
-  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
-  !> 
-  !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
-  !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !>     @param[in]
-  !>     uplo      [rocblas_fill]
-  !>               specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower'
-  !>               rocblas_fill_upper: The upper triangular part of each A_i is supplied in AP.
-  !>               rocblas_fill_lower: The lower triangular part of each A_i is supplied in AP.
-  !>     @param[in]
-  !>     n         [rocblas_int]
-  !>               the number of rows and columns of each matrix A_i, must be at least 0.
-  !>     @param[in]
-  !>     alpha
-  !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one vector (x_i) and the next one (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer pointing to the first vector (y_1).
-  !>     @param[in]
-  !>     incy      [rocblas_int]
-  !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stride_y  [rocblas_stride]
-  !>               stride from the start of one vector (y_i) and the next one (y_i+1).
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
-  !>               if uplo == rocblas_fill_upper:
-  !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(0,1)
-  !>                 AP(2) = A(1,1), etc.
-  !>                     Ex: (rocblas_fill_upper; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             if uplo == rocblas_fill_lower:
-  !>                 The lower triangular portion of each Hermitian matrix A_i is supplied.
-  !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
-  !>                 so that:
-  !>                 AP(0) = A(0,0)
-  !>                 AP(1) = A(1,0)
-  !>                 AP(2) = A(2,1), etc.
-  !>                     Ex: (rocblas_fill_lower; n = 3)
-  !>                         (1, 0) (2, 1) (4,9)
-  !>                         (2,-1) (3, 0) (5,3)  -----> [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)]
-  !>                         (4,-9) (5,-3) (6,0)
-  !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
-  !>             to be 0.
-  !>     @param[in]
-  !>     stride_A    [rocblas_stride]
-  !>                 stride from the start of one (A_i) and the next (A_i+1)
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>                 number of instances in the batch.
+
   interface rocblas_zhpr2_strided_batched
     function rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr2_strided_batched")
       use iso_c_binding
@@ -8243,9 +8184,61 @@ module hipfort_rocblas
       rocblas_zhpr2_strided_batched_rank_1
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The trmv functions perform one of the matrix-vector operations:
+  !>
+  !>         x = A*x or
+  !>         x = A**T*x or
+  !>         x = A**H*x
+  !>
+  !>     where ``x`` is an ``n`` -element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
+  !>     upper or lower triangular matrix.
+  !>     The vector ``x`` is overwritten.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [rocblas_fill]
+  !>             - rocblas_fill_upper:  A is an upper triangular matrix.
+  !>             - rocblas_fill_lower:  A is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA     [rocblas_operation]
+  !>             - rocblas_operation_none:    op(A) = A.
+  !>             - rocblas_operation_transpose:   op(A) = A^T.
+  !>             - rocblas_operation_conjugate_transpose:  op(A) = A^H.
+  !>
+  !>     @param[in]
+  !>     diag    [rocblas_diagonal]
+  !>             - rocblas_diagonal_unit:     A is assumed to be unit triangular.
+  !>             - rocblas_diagonal_non_unit:  A is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               n specifies the number of rows of A. n >= 0.
+  !>
+  !>     @param[in]
+  !>     A device pointer storing matrix A, of dimension ( lda, n ). If uplo == rocblas_fill_upper,
+  !>     the upper triangular part of the leading n-by-n array contains the matrix A. Otherwise, the
+  !>     lower triangular part of the leading n-by-n array contains the matrix A.
+  !>
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of A. lda must be at least max( 1, n ).
+  !>
+  !>     @param[in, out]
+  !>     x device pointer storing vector x. On exit, x is overwritten with the transformed vector x.
+  !>
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of x.
   interface rocblas_strmv
-    function rocblas_strmv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="rocblas_strmv")
+    function rocblas_strmv_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_strmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8254,7 +8247,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
@@ -8263,14 +8256,14 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_strmv_full_rank,&
       rocblas_strmv_rank_0,&
-      rocblas_strmv_rank_1
+      rocblas_strmv_rank_1,&
+      rocblas_strmv_full_rank
 #endif
   end interface
-  
+
   interface rocblas_dtrmv
-    function rocblas_dtrmv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="rocblas_dtrmv")
+    function rocblas_dtrmv_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_dtrmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8279,7 +8272,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
@@ -8288,14 +8281,14 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_dtrmv_full_rank,&
       rocblas_dtrmv_rank_0,&
-      rocblas_dtrmv_rank_1
+      rocblas_dtrmv_rank_1,&
+      rocblas_dtrmv_full_rank
 #endif
   end interface
-  
+
   interface rocblas_ctrmv
-    function rocblas_ctrmv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="rocblas_ctrmv")
+    function rocblas_ctrmv_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_ctrmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8304,7 +8297,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
@@ -8313,61 +8306,14 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ctrmv_full_rank,&
       rocblas_ctrmv_rank_0,&
-      rocblas_ctrmv_rank_1
+      rocblas_ctrmv_rank_1,&
+      rocblas_ctrmv_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     trmv performs one of the matrix-vector operations
-  !> 
-  !>          x = A*x or x = A**T*x,
-  !> 
-  !>     where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix.
-  !> 
-  !>     The vector x is overwritten.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [rocblas_fill]
-  !>             rocblas_fill_upper:  A is an upper triangular matrix.
-  !>             rocblas_fill_lower:  A is a  lower triangular matrix.
-  !> 
-  !>     @param[in]
-  !>     transA     [rocblas_operation]
-  !> 
-  !>     @param[in]
-  !>     diag    [rocblas_diagonal]
-  !>             rocblas_diagonal_unit:     A is assumed to be unit triangular.
-  !>             rocblas_diagonal_non_unit:  A is not assumed to be unit triangular.
-  !> 
-  !>     @param[in]
-  !>     m         [rocblas_int]
-  !>               m specifies the number of rows of A. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     A         device pointer storing matrix A,
-  !>               of dimension ( lda, m )
-  !> 
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of A.
-  !>               lda = max( 1, m ).
-  !> 
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !> 
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of x.
-  !>
+
   interface rocblas_ztrmv
-    function rocblas_ztrmv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="rocblas_ztrmv")
+    function rocblas_ztrmv_(handle,uplo,transA,diag,n,A,lda,x,incx) bind(c, name="rocblas_ztrmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8376,7 +8322,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
@@ -8385,14 +8331,83 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ztrmv_full_rank,&
       rocblas_ztrmv_rank_0,&
-      rocblas_ztrmv_rank_1
+      rocblas_ztrmv_rank_1,&
+      rocblas_ztrmv_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The trmv_strided_batched functions perform one of the matrix-vector operations:
+  !>
+  !>         x_i = A_i*x_i or
+  !>         x_i = A_i**T*x_i, or
+  !>         x_i = A_i**H*x_i, 0 < i < batch_count
+  !>
+  !>     where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+  !>     non-unit, upper or lower triangular matrix)
+  !>     with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$`` ) from ``$x_{i-1}$``
+  !>     (resp. ``$A_i$`` ).
+  !>
+  !>     The vectors ``x_i`` are overwritten.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [rocblas_fill]
+  !>             - rocblas_fill_upper:  A_i is an upper triangular matrix.
+  !>             - rocblas_fill_lower:  A_i is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA     [rocblas_operation]
+  !>             - rocblas_operation_none:    op(A) = A.
+  !>             - rocblas_operation_transpose:   op(A) = A^T.
+  !>             - rocblas_operation_conjugate_transpose:  op(A) = A^H.
+  !>
+  !>     @param[in]
+  !>     diag    [rocblas_diagonal]
+  !>             - rocblas_diagonal_unit:     A_i is assumed to be unit triangular.
+  !>             - rocblas_diagonal_non_unit:  A_i is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               n specifies the number of rows of matrices A_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     A device pointer to the matrix A_1 of the batch, of dimension ( lda, n ). If uplo ==
+  !>     rocblas_fill_upper, the upper triangular part of the leading n-by-n array contains the
+  !>     matrix A_i. Otherwise, the lower triangular part of the leading n-by-n array contains the
+  !>     matrix A_i.
+  !>
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of A_i. lda must be at least max( 1, n ).
+  !>
+  !>     @param[in]
+  !>     stride_A  [rocblas_stride]
+  !>               stride from the start of one A_i matrix to the next A_{i + 1}.
+  !>
+  !>     @param[in, out]
+  !>     x device pointer to the vector x_1 of the batch. On exit, each x_i is overwritten with the
+  !>     transformed vector x_i.
+  !>
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of one vector x.
+  !>
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one x_i vector to the next x_{i + 1}.
+  !>
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>               The number of batched matrices/vectors.
   interface rocblas_strmv_strided_batched
-    function rocblas_strmv_strided_batched_(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_strmv_strided_batched")
+    function rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_strmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8401,26 +8416,26 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_strmv_strided_batched_full_rank,&
       rocblas_strmv_strided_batched_rank_0,&
-      rocblas_strmv_strided_batched_rank_1
+      rocblas_strmv_strided_batched_rank_1,&
+      rocblas_strmv_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocblas_dtrmv_strided_batched
-    function rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_dtrmv_strided_batched")
+    function rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtrmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8429,26 +8444,26 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_dtrmv_strided_batched_full_rank,&
       rocblas_dtrmv_strided_batched_rank_0,&
-      rocblas_dtrmv_strided_batched_rank_1
+      rocblas_dtrmv_strided_batched_rank_1,&
+      rocblas_dtrmv_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocblas_ctrmv_strided_batched
-    function rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_ctrmv_strided_batched")
+    function rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctrmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8457,87 +8472,26 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ctrmv_strided_batched_full_rank,&
       rocblas_ctrmv_strided_batched_rank_0,&
-      rocblas_ctrmv_strided_batched_rank_1
+      rocblas_ctrmv_strided_batched_rank_1,&
+      rocblas_ctrmv_strided_batched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     trmv_strided_batched performs one of the matrix-vector operations
-  !> 
-  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batch_count
-  !> 
-  !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
-  !>     with strides specifying how to retrieve $x_i$ (resp. $A_i$) from $x_{i-1}$ (resp. $A_i$).
-  !> 
-  !>     The vectors x_i are overwritten.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [rocblas_fill]
-  !>             rocblas_fill_upper:  A_i is an upper triangular matrix.
-  !>             rocblas_fill_lower:  A_i is a  lower triangular matrix.
-  !> 
-  !>     @param[in]
-  !>     transA     [rocblas_operation]
-  !> 
-  !>     @param[in]
-  !>     diag    [rocblas_diagonal]
-  !>             rocblas_diagonal_unit:     A_i is assumed to be unit triangular.
-  !>             rocblas_diagonal_non_unit:  A_i is not assumed to be unit triangular.
-  !> 
-  !>     @param[in]
-  !>     m         [rocblas_int]
-  !>               m specifies the number of rows of matrices A_i. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     A         device pointer of the matrix A_0,
-  !>               of dimension ( lda, m )
-  !> 
-  !>     @param[in]
-  !>     lda       [rocblas_int]
-  !>               specifies the leading dimension of A_i.
-  !>               lda >= max( 1, m ).
-  !> 
-  !>     @param[in]
-  !>     stride_a  [rocblas_stride]
-  !>               stride from the start of one A_i matrix to the next A_{i + 1}
-  !> 
-  !>     @param[in]
-  !>     x         device pointer storing the vector x_0.
-  !> 
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of one vector x.
-  !> 
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one x_i vector to the next x_{i + 1}
-  !> 
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>               The number of batched matrices/vectors.
-  !> 
-  !>
+
   interface rocblas_ztrmv_strided_batched
-    function rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_ztrmv_strided_batched")
+    function rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztrmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8546,26 +8500,87 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ztrmv_strided_batched_full_rank,&
       rocblas_ztrmv_strided_batched_rank_0,&
-      rocblas_ztrmv_strided_batched_rank_1
+      rocblas_ztrmv_strided_batched_rank_1,&
+      rocblas_ztrmv_strided_batched_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The tpmv functions perform one of the matrix-vector operations:
+  !>
+  !>         x = A*x or
+  !>         x = A**T*x or
+  !>         x = A**H*x
+  !>
+  !>     where ``x`` is an ``n`` element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
+  !>     upper or lower triangular matrix, supplied in the pack form.
+  !>     The vector ``x`` is overwritten.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [rocblas_fill]
+  !>             - rocblas_fill_upper:  A is an upper triangular matrix.
+  !>             - rocblas_fill_lower:  A is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA     [rocblas_operation]
+  !>             - rocblas_operation_none:    op(A) = A.
+  !>             - rocblas_operation_transpose:   op(A) = A^T
+  !>             - rocblas_operation_conjugate_transpose:  op(A) = A^H
+  !>
+  !>     @param[in]
+  !>     diag    [rocblas_diagonal]
+  !>             - rocblas_diagonal_unit:     A is assumed to be unit triangular.
+  !>             - rocblas_diagonal_non_unit:  A is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     n       [rocblas_int]
+  !>             n specifies the number of rows of A. n >= 0.
+  !>
+  !>     @param[in]
+  !>     A       device pointer storing matrix A,
+  !>             of dimension at leat ( n * ( n + 1 ) / 2 ).
+  !>         - Before entry with uplo = rocblas_fill_upper, the array A
+  !>             must contain the upper triangular matrix packed sequentially,
+  !>             column by column, so that
+  !>             A[0] contains a_{0,0}, A[1] and A[2] contain
+  !>             a_{0,1} and a_{1, 1}, respectively, and so on.
+  !>
+  !>         - Before entry with uplo = rocblas_fill_lower, the array A
+  !>             must contain the lower triangular matrix packed sequentially,
+  !>             column by column, so that
+  !>             A[0] contains a_{0,0}, A[1] and A[2] contain
+  !>             a_{1,0} and a_{2,0}, respectively, and so on.
+  !>
+  !>           Note that when DIAG = rocblas_diagonal_unit, the diagonal elements of A are
+  !>           not referenced, but are assumed to be unity.
+  !>
+  !>     @param[in, out]
+  !>     x device pointer storing vector x. On exit, x is overwritten with the transformed vector x.
+  !>
+  !>     @param[in]
+  !>     incx    [rocblas_int]
+  !>             specifies the increment for the elements of x. incx must not be zero.
   interface rocblas_stpmv
-    function rocblas_stpmv_(handle,uplo,transA,diag,m,A,x,incx) bind(c, name="rocblas_stpmv")
+    function rocblas_stpmv_(handle,uplo,transA,diag,n,A,x,incx) bind(c, name="rocblas_stpmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8574,7 +8589,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
@@ -8582,14 +8597,14 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_stpmv_full_rank,&
       rocblas_stpmv_rank_0,&
-      rocblas_stpmv_rank_1
+      rocblas_stpmv_rank_1,&
+      rocblas_stpmv_full_rank
 #endif
   end interface
-  
+
   interface rocblas_dtpmv
-    function rocblas_dtpmv_(handle,uplo,transA,diag,m,A,x,incx) bind(c, name="rocblas_dtpmv")
+    function rocblas_dtpmv_(handle,uplo,transA,diag,n,A,x,incx) bind(c, name="rocblas_dtpmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8598,7 +8613,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
@@ -8606,14 +8621,14 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_dtpmv_full_rank,&
       rocblas_dtpmv_rank_0,&
-      rocblas_dtpmv_rank_1
+      rocblas_dtpmv_rank_1,&
+      rocblas_dtpmv_full_rank
 #endif
   end interface
-  
+
   interface rocblas_ctpmv
-    function rocblas_ctpmv_(handle,uplo,transA,diag,m,A,x,incx) bind(c, name="rocblas_ctpmv")
+    function rocblas_ctpmv_(handle,uplo,transA,diag,n,A,x,incx) bind(c, name="rocblas_ctpmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8622,7 +8637,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
@@ -8630,66 +8645,14 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ctpmv_full_rank,&
       rocblas_ctpmv_rank_0,&
-      rocblas_ctpmv_rank_1
+      rocblas_ctpmv_rank_1,&
+      rocblas_ctpmv_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     tpmv performs one of the matrix-vector operations
-  !> 
-  !>          x = A*x or x = A**T*x,
-  !> 
-  !>     where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix, supplied in the pack form.
-  !> 
-  !>     The vector x is overwritten.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [rocblas_fill]
-  !>             rocblas_fill_upper:  A is an upper triangular matrix.
-  !>             rocblas_fill_lower:  A is a  lower triangular matrix.
-  !> 
-  !>     @param[in]
-  !>     transA     [rocblas_operation]
-  !> 
-  !>     @param[in]
-  !>     diag    [rocblas_diagonal]
-  !>             rocblas_diagonal_unit:     A is assumed to be unit triangular.
-  !>             rocblas_diagonal_non_unit:  A is not assumed to be unit triangular.
-  !> 
-  !>     @param[in]
-  !>     m       [rocblas_int]
-  !>             m specifies the number of rows of A. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     A       device pointer storing matrix A,
-  !>             of dimension at leat ( m * ( m + 1 ) 2 ).
-  !>           Before entry with uplo = rocblas_fill_upper, the array A
-  !>           must contain the upper triangular matrix packed sequentially,
-  !>           column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain
-  !>           a_{0,1} and a_{1, 1} respectively, and so on.
-  !>           Before entry with uplo = rocblas_fill_lower, the array A
-  !>           must contain the lower triangular matrix packed sequentially,
-  !>           column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain
-  !>           a_{1,0} and a_{2,0} respectively, and so on.
-  !>           Note that when DIAG = rocblas_diagonal_unit, the diagonal elements of A are
-  !>           not referenced, but are assumed to be unity.
-  !> 
-  !>     @param[in]
-  !>     x       device pointer storing vector x.
-  !> 
-  !>     @param[in]
-  !>     incx    [rocblas_int]
-  !>             specifies the increment for the elements of x. incx must not be zero.
-  !>
+
   interface rocblas_ztpmv
-    function rocblas_ztpmv_(handle,uplo,transA,diag,m,A,x,incx) bind(c, name="rocblas_ztpmv")
+    function rocblas_ztpmv_(handle,uplo,transA,diag,n,A,x,incx) bind(c, name="rocblas_ztpmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8698,7 +8661,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
@@ -8706,14 +8669,78 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ztpmv_full_rank,&
       rocblas_ztpmv_rank_0,&
-      rocblas_ztpmv_rank_1
+      rocblas_ztpmv_rank_1,&
+      rocblas_ztpmv_full_rank
 #endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The tpmv_strided_batched functions perform one of the matrix-vector operations:
+  !>
+  !>         x_i = A_i*x_i or
+  !>         x_i = A_i**T*x_i or
+  !>         x_i = A_i**H*x_i, 0 < i < batch_count
+  !>
+  !>     where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+  !>     non-unit, upper or lower triangular) matrix
+  !>     with strides specifying how to retrieve ``$x_i$`` (resp. $``A_i$``) from ``$x_{i-1}$``
+  !>     (resp. ``$A_i$`` ).
+  !>     The vectors ``x_i`` are overwritten.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>
+  !>     @param[in]
+  !>     uplo    [rocblas_fill]
+  !>             - rocblas_fill_upper:  A_i is an upper triangular matrix.
+  !>             - rocblas_fill_lower:  A_i is a  lower triangular matrix.
+  !>
+  !>     @param[in]
+  !>     transA     [rocblas_operation]
+  !>             - rocblas_operation_none:    op(A) = A.
+  !>             - rocblas_operation_transpose:   op(A) = A^T
+  !>             - rocblas_operation_conjugate_transpose:  op(A) = A^H
+  !>
+  !>     @param[in]
+  !>     diag    [rocblas_diagonal]
+  !>             - rocblas_diagonal_unit:     A_i is assumed to be unit triangular.
+  !>             - rocblas_diagonal_non_unit:  A_i is not assumed to be unit triangular.
+  !>
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>             n specifies the number of rows of matrices A_i. n >= 0.
+  !>
+  !>     @param[in]
+  !>     A device pointer to the matrix A_1 of the batch, of dimension ( lda, n ). If uplo ==
+  !>     rocblas_fill_upper, the upper triangular part of the leading n-by-n array contains the
+  !>     matrix A_i. Otherwise, the lower triangular part of the leading n-by-n array contains the
+  !>     matrix A_i.
+  !>
+  !>     @param[in]
+  !>     stride_A  [rocblas_stride]
+  !>             stride from the start of one A_i matrix to the next A_{i + 1}.
+  !>
+  !>     @param[in, out]
+  !>     x device pointer to the vector x_1 of the batch. On exit, each x_i is overwritten with the
+  !>     transformed vector x_i.
+  !>
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>             specifies the increment for the elements of one vector x.
+  !>
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>             stride from the start of one x_i vector to the next x_{i + 1}.
+  !>
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>             The number of batched matrices/vectors.
   interface rocblas_stpmv_strided_batched
-    function rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_stpmv_strided_batched")
+    function rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8722,25 +8749,25 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_stpmv_strided_batched_full_rank,&
       rocblas_stpmv_strided_batched_rank_0,&
-      rocblas_stpmv_strided_batched_rank_1
+      rocblas_stpmv_strided_batched_rank_1,&
+      rocblas_stpmv_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocblas_dtpmv_strided_batched
-    function rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_dtpmv_strided_batched")
+    function rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8749,25 +8776,25 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_dtpmv_strided_batched_full_rank,&
       rocblas_dtpmv_strided_batched_rank_0,&
-      rocblas_dtpmv_strided_batched_rank_1
+      rocblas_dtpmv_strided_batched_rank_1,&
+      rocblas_dtpmv_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocblas_ctpmv_strided_batched
-    function rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_ctpmv_strided_batched")
+    function rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ctpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8776,81 +8803,25 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ctpmv_strided_batched_full_rank,&
       rocblas_ctpmv_strided_batched_rank_0,&
-      rocblas_ctpmv_strided_batched_rank_1
+      rocblas_ctpmv_strided_batched_rank_1,&
+      rocblas_ctpmv_strided_batched_full_rank
 #endif
   end interface
-  !>  \brief BLAS Level 2 API
-  !> 
-  !>     \details
-  !>     tpmv_strided_batched performs one of the matrix-vector operations
-  !> 
-  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batch_count
-  !> 
-  !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
-  !>     with strides specifying how to retrieve $x_i$ (resp. $A_i$) from $x_{i-1}$ (resp. $A_i$).
-  !> 
-  !>     The vectors x_i are overwritten.
-  !> 
-  !>     @param[in]
-  !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
-  !> 
-  !>     @param[in]
-  !>     uplo    [rocblas_fill]
-  !>             rocblas_fill_upper:  A_i is an upper triangular matrix.
-  !>             rocblas_fill_lower:  A_i is a  lower triangular matrix.
-  !> 
-  !>     @param[in]
-  !>     transA     [rocblas_operation]
-  !> 
-  !>     @param[in]
-  !>     diag    [rocblas_diagonal]
-  !>             rocblas_diagonal_unit:     A_i is assumed to be unit triangular.
-  !>             rocblas_diagonal_non_unit:  A_i is not assumed to be unit triangular.
-  !> 
-  !>     @param[in]
-  !>     m         [rocblas_int]
-  !>               m specifies the number of rows of matrices A_i. m >= 0.
-  !> 
-  !>     @param[in]
-  !>     A         device pointer of the matrix A_0,
-  !>               of dimension ( lda, m )
-  !> 
-  !>     @param[in]
-  !>     stride_a  [rocblas_stride]
-  !>               stride from the start of one A_i matrix to the next A_{i + 1}
-  !> 
-  !>     @param[in]
-  !>     x         device pointer storing the vector x_0.
-  !> 
-  !>     @param[in]
-  !>     incx      [rocblas_int]
-  !>               specifies the increment for the elements of one vector x.
-  !> 
-  !>     @param[in]
-  !>     stride_x  [rocblas_stride]
-  !>               stride from the start of one x_i vector to the next x_{i + 1}
-  !> 
-  !>     @param[in]
-  !>     batch_count [rocblas_int]
-  !>               The number of batched matrices/vectors.
-  !> 
-  !>
+
   interface rocblas_ztpmv_strided_batched
-    function rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_ztpmv_strided_batched")
+    function rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztpmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -8859,158 +8830,86 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       type(c_ptr),value :: A
-      integer(c_int64_t),value :: stridea
+      integer(c_int64_t),value :: stride_A
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: stride_x
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ztpmv_strided_batched_full_rank,&
       rocblas_ztpmv_strided_batched_rank_0,&
-      rocblas_ztpmv_strided_batched_rank_1
+      rocblas_ztpmv_strided_batched_rank_1,&
+      rocblas_ztpmv_strided_batched_full_rank
 #endif
   end interface
-  
-  interface rocblas_stbmv
-    function rocblas_stbmv_(handle,uplo,trans,diag,m,k,A,lda,x,incx) bind(c, name="rocblas_stbmv")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_
-      type(c_ptr),value :: handle
-      integer(kind(rocblas_fill_upper)),value :: uplo
-      integer(kind(rocblas_operation_none)),value :: trans
-      integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: k
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-    end function
 
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_stbmv_full_rank,&
-      rocblas_stbmv_rank_0,&
-      rocblas_stbmv_rank_1
-#endif
-  end interface
-  
-  interface rocblas_dtbmv
-    function rocblas_dtbmv_(handle,uplo,trans,diag,m,k,A,lda,x,incx) bind(c, name="rocblas_dtbmv")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_
-      type(c_ptr),value :: handle
-      integer(kind(rocblas_fill_upper)),value :: uplo
-      integer(kind(rocblas_operation_none)),value :: trans
-      integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: k
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_dtbmv_full_rank,&
-      rocblas_dtbmv_rank_0,&
-      rocblas_dtbmv_rank_1
-#endif
-  end interface
-  
-  interface rocblas_ctbmv
-    function rocblas_ctbmv_(handle,uplo,trans,diag,m,k,A,lda,x,incx) bind(c, name="rocblas_ctbmv")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_
-      type(c_ptr),value :: handle
-      integer(kind(rocblas_fill_upper)),value :: uplo
-      integer(kind(rocblas_operation_none)),value :: trans
-      integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: k
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_ctbmv_full_rank,&
-      rocblas_ctbmv_rank_0,&
-      rocblas_ctbmv_rank_1
-#endif
-  end interface
-  !>  \brief BLAS Level 2 API
-  !> 
+  !>     \brief  BLAS Level 2 API
+  !>
   !>     \details
-  !>     tbmv performs one of the matrix-vector operations
-  !> 
+  !>     The tbmv functions perform one of the matrix-vector operations:
+  !>
   !>         x := A*x      or
   !>         x := A**T*x   or
   !>         x := A**H*x,
-  !> 
-  !>     x is a vectors and A is a banded m by m matrix (see description below).
-  !> 
+  !>
+  !>     ``x`` is a vector, and ``A`` is a banded ``n`` by ``n`` matrix (see description below).
+  !>
   !>     @param[in]
   !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
+  !>               handle to the rocBLAS library context queue.
   !>     @param[in]
   !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: A is an upper banded triangular matrix.
-  !>               rocblas_fill_lower: A is a  lower banded triangular matrix.
+  !>             - rocblas_fill_upper: A is an upper banded triangular matrix.
+  !>             - rocblas_fill_lower: A is a  lower banded triangular matrix.
   !>     @param[in]
   !>     trans     [rocblas_operation]
   !>               indicates whether matrix A is tranposed (conjugated) or not.
   !>     @param[in]
   !>     diag      [rocblas_diagonal]
-  !>               rocblas_diagonal_unit: The main diagonal of A is assumed to consist of only
+  !>             - rocblas_diagonal_unit: The main diagonal of A is assumed to consist of only
   !>                                      1's and is not referenced.
-  !>               rocblas_diagonal_non_unit: No assumptions are made of A's main diagonal.
+  !>             - rocblas_diagonal_non_unit: No assumptions are made about the main diagonal of A.
   !>     @param[in]
-  !>     m         [rocblas_int]
+  !>     n         [rocblas_int]
   !>               the number of rows and columns of the matrix represented by A.
   !>     @param[in]
   !>     k         [rocblas_int]
-  !>               if uplo == rocblas_fill_upper, k specifies the number of super-diagonals
-  !>               of the matrix A.
-  !>               if uplo == rocblas_fill_lower, k specifies the number of sub-diagonals
-  !>               of the matrix A.
-  !>               k must satisfy k > 0 && k < lda.
+  !>
+  !>             if uplo == rocblas_fill_upper, k specifies the number of super-diagonals
+  !>             of the matrix A.
+  !>
+  !>             if uplo == rocblas_fill_lower, k specifies the number of sub-diagonals
+  !>             of the matrix A.
+  !>             k must satisfy k > 0 && k < lda.
   !>     @param[in]
   !>     A         device pointer storing banded triangular matrix A.
-  !>               if uplo == rocblas_fill_upper:
+  !>
+  !>             if uplo == rocblas_fill_upper:
   !>                 The matrix represented is an upper banded triangular matrix
   !>                 with the main diagonal and k super-diagonals, everything
   !>                 else can be assumed to be 0.
   !>                 The matrix is compacted so that the main diagonal resides on the k'th
-  !>                 row, the first super diagonal resides on the RHS of the k-1'th row, etc,
+  !>                 row, the first super diagonal resides on the RHS of the k-1'th row, and so
+  !>                 forth,
   !>                 with the k'th diagonal on the RHS of the 0'th row.
-  !>                    Ex: (rocblas_fill_upper; m = 5; k = 2)
+  !>                    Ex: (rocblas_fill_upper; n = 5; k = 2)
   !>                       1 6 9 0 0              0 0 9 8 7
   !>                       0 2 7 8 0              0 6 7 8 9
   !>                       0 0 3 8 7     ---->    1 2 3 4 5
   !>                       0 0 0 4 9              0 0 0 0 0
   !>                       0 0 0 0 5              0 0 0 0 0
-  !>               if uplo == rocblas_fill_lower:
+  !>
+  !>             if uplo == rocblas_fill_lower:
   !>                 The matrix represnted is a lower banded triangular matrix
   !>                 with the main diagonal and k sub-diagonals, everything else can be
   !>                 assumed to be 0.
   !>                 The matrix is compacted so that the main diagonal resides on the 0'th row,
   !>                 working up to the k'th diagonal residing on the LHS of the k'th row.
-  !>                    Ex: (rocblas_fill_lower; m = 5; k = 2)
+  !>                    Ex: (rocblas_fill_lower; n = 5; k = 2)
   !>                       1 0 0 0 0              1 2 3 4 5
   !>                       6 2 0 0 0              6 7 8 9 0
   !>                       9 7 3 0 0     ---->    9 8 7 0 0
@@ -9019,23 +8918,22 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A. lda must satisfy lda > k.
-  !>     @param[inout]
+  !>     @param[in, out]
   !>     x         device pointer storing vector x.
   !>     @param[in]
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
-  !>
-  interface rocblas_ztbmv
-    function rocblas_ztbmv_(handle,uplo,trans,diag,m,k,A,lda,x,incx) bind(c, name="rocblas_ztbmv")
+  interface rocblas_stbmv
+    function rocblas_stbmv_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_stbmv")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_
+      integer(kind(rocblas_status_success)) :: rocblas_stbmv_
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: trans
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -9045,151 +8943,157 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_ztbmv_full_rank,&
+      rocblas_stbmv_rank_0,&
+      rocblas_stbmv_rank_1,&
+      rocblas_stbmv_full_rank
+#endif
+  end interface
+
+  interface rocblas_dtbmv
+    function rocblas_dtbmv_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_dtbmv")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(kind(rocblas_diagonal_non_unit)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocblas_dtbmv_rank_0,&
+      rocblas_dtbmv_rank_1,&
+      rocblas_dtbmv_full_rank
+#endif
+  end interface
+
+  interface rocblas_ctbmv
+    function rocblas_ctbmv_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ctbmv")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(kind(rocblas_diagonal_non_unit)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocblas_ctbmv_rank_0,&
+      rocblas_ctbmv_rank_1,&
+      rocblas_ctbmv_full_rank
+#endif
+  end interface
+
+  interface rocblas_ztbmv
+    function rocblas_ztbmv_(handle,uplo,trans,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ztbmv")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(kind(rocblas_diagonal_non_unit)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
       rocblas_ztbmv_rank_0,&
-      rocblas_ztbmv_rank_1
+      rocblas_ztbmv_rank_1,&
+      rocblas_ztbmv_full_rank
 #endif
   end interface
-  
-  interface rocblas_stbmv_batched
-    function rocblas_stbmv_batched_(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_stbmv_batched")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_batched_
-      type(c_ptr),value :: handle
-      integer(kind(rocblas_fill_upper)),value :: uplo
-      integer(kind(rocblas_operation_none)),value :: trans
-      integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: k
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr) :: x
-      integer(c_int),value :: incx
-      integer(c_int),value :: batch_count
-    end function
 
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_stbmv_batched_full_rank,&
-      rocblas_stbmv_batched_rank_0,&
-      rocblas_stbmv_batched_rank_1
-#endif
-  end interface
-  
-  interface rocblas_dtbmv_batched
-    function rocblas_dtbmv_batched_(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtbmv_batched")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_batched_
-      type(c_ptr),value :: handle
-      integer(kind(rocblas_fill_upper)),value :: uplo
-      integer(kind(rocblas_operation_none)),value :: trans
-      integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: k
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr) :: x
-      integer(c_int),value :: incx
-      integer(c_int),value :: batch_count
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_dtbmv_batched_full_rank,&
-      rocblas_dtbmv_batched_rank_0,&
-      rocblas_dtbmv_batched_rank_1
-#endif
-  end interface
-  
-  interface rocblas_ctbmv_batched
-    function rocblas_ctbmv_batched_(handle,uplo,trans,diag,m,k,A,da,x,incx,batch_count) bind(c, name="rocblas_ctbmv_batched")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_batched_
-      type(c_ptr),value :: handle
-      integer(kind(rocblas_fill_upper)),value :: uplo
-      integer(kind(rocblas_operation_none)),value :: trans
-      integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: k
-      type(c_ptr) :: A
-      integer(c_int),value :: da
-      type(c_ptr) :: x
-      integer(c_int),value :: incx
-      integer(c_int),value :: batch_count
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_ctbmv_batched_full_rank,&
-      rocblas_ctbmv_batched_rank_0,&
-      rocblas_ctbmv_batched_rank_1
-#endif
-  end interface
-  !>  \brief BLAS Level 2 API
-  !> 
+  !>     \brief  BLAS Level 2 API
+  !>
   !>     \details
-  !>     tbmv_batched performs one of the matrix-vector operations
-  !> 
+  !>     The tbmv_batched functions perform one of the matrix-vector operations:
+  !>
   !>         x_i := A_i*x_i      or
   !>         x_i := A_i**T*x_i   or
   !>         x_i := A_i**H*x_i,
-  !> 
-  !>     where (A_i, x_i) is the i-th instance of the batch.
-  !>     x_i is a vector and A_i is an m by m matrix, for i = 1, ..., batch_count.
-  !> 
+  !>
+  !>     where (``A_i``, ``x_i``) is the i-th instance of the batch,
+  !>     ``x_i`` is a vector, and ``A_i`` is an ``n`` by ``n`` matrix, for ``i`` = 1, ...,
+  !>     ``batch_count``.
+  !>
   !>     @param[in]
   !>     handle    [rocblas_handle]
-  !>               handle to the rocblas library context queue.
+  !>               handle to the rocBLAS library context queue.
   !>     @param[in]
   !>     uplo      [rocblas_fill]
-  !>               rocblas_fill_upper: each A_i is an upper banded triangular matrix.
-  !>               rocblas_fill_lower: each A_i is a  lower banded triangular matrix.
+  !>             - rocblas_fill_upper: each A_i is an upper banded triangular matrix.
+  !>             - rocblas_fill_lower: each A_i is a  lower banded triangular matrix.
   !>     @param[in]
   !>     trans     [rocblas_operation]
   !>               indicates whether each matrix A_i is tranposed (conjugated) or not.
   !>     @param[in]
   !>     diag      [rocblas_diagonal]
-  !>               rocblas_diagonal_unit: The main diagonal of each A_i is assumed to consist of only
+  !>             - rocblas_diagonal_unit: The main diagonal of each A_i is assumed to consist of
+  !>             only
   !>                                      1's and is not referenced.
-  !>               rocblas_diagonal_non_unit: No assumptions are made of each A_i's main diagonal.
+  !>             - rocblas_diagonal_non_unit: No assumptions are made of the main diagonal of each
+  !>             A_i.
   !>     @param[in]
-  !>     m         [rocblas_int]
+  !>     n         [rocblas_int]
   !>               the number of rows and columns of the matrix represented by each A_i.
   !>     @param[in]
   !>     k         [rocblas_int]
-  !>               if uplo == rocblas_fill_upper, k specifies the number of super-diagonals
-  !>               of each matrix A_i.
-  !>               if uplo == rocblas_fill_lower, k specifies the number of sub-diagonals
-  !>               of each matrix A_i.
-  !>               k must satisfy k > 0 && k < lda.
+  !>
+  !>             if uplo == rocblas_fill_upper, k specifies the number of super-diagonals
+  !>             of each matrix A_i.
+  !>
+  !>             if uplo == rocblas_fill_lower, k specifies the number of sub-diagonals
+  !>             of each matrix A_i.
+  !>             k must satisfy k > 0 && k < lda.
   !>     @param[in]
   !>     A         device array of device pointers storing each banded triangular matrix A_i.
-  !>               if uplo == rocblas_fill_upper:
+  !>
+  !>             if uplo == rocblas_fill_upper:
   !>                 The matrix represented is an upper banded triangular matrix
   !>                 with the main diagonal and k super-diagonals, everything
   !>                 else can be assumed to be 0.
   !>                 The matrix is compacted so that the main diagonal resides on the k'th
-  !>                 row, the first super diagonal resides on the RHS of the k-1'th row, etc,
+  !>                 row, the first super diagonal resides on the RHS of the k-1'th row, and so
+  !>                 forth,
   !>                 with the k'th diagonal on the RHS of the 0'th row.
-  !>                    Ex: (rocblas_fill_upper; m = 5; k = 2)
+  !>                    Ex: (rocblas_fill_upper; n = 5; k = 2)
   !>                       1 6 9 0 0              0 0 9 8 7
   !>                       0 2 7 8 0              0 6 7 8 9
   !>                       0 0 3 8 7     ---->    1 2 3 4 5
   !>                       0 0 0 4 9              0 0 0 0 0
   !>                       0 0 0 0 5              0 0 0 0 0
-  !>               if uplo == rocblas_fill_lower:
+  !>
+  !>             if uplo == rocblas_fill_lower:
   !>                 The matrix represnted is a lower banded triangular matrix
   !>                 with the main diagonal and k sub-diagonals, everything else can be
   !>                 assumed to be 0.
   !>                 The matrix is compacted so that the main diagonal resides on the 0'th row,
   !>                 working up to the k'th diagonal residing on the LHS of the k'th row.
-  !>                    Ex: (rocblas_fill_lower; m = 5; k = 2)
+  !>                    Ex: (rocblas_fill_lower; n = 5; k = 2)
   !>                       1 0 0 0 0              1 2 3 4 5
   !>                       6 2 0 0 0              6 7 8 9 0
   !>                       9 7 3 0 0     ---->    9 8 7 0 0
@@ -9198,7 +9102,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of each A_i. lda must satisfy lda > k.
-  !>     @param[inout]
+  !>     @param[in, out]
   !>     x         device array of device pointer storing each vector x_i.
   !>     @param[in]
   !>     incx      [rocblas_int]
@@ -9206,9 +9110,68 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>
+  interface rocblas_stbmv_batched
+    function rocblas_stbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_stbmv_batched")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_stbmv_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(kind(rocblas_diagonal_non_unit)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocblas_dtbmv_batched
+    function rocblas_dtbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_dtbmv_batched")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(kind(rocblas_diagonal_non_unit)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocblas_ctbmv_batched
+    function rocblas_ctbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ctbmv_batched")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(kind(rocblas_diagonal_non_unit)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
   interface rocblas_ztbmv_batched
-    function rocblas_ztbmv_batched_(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbmv_batched")
+    function rocblas_ztbmv_batched_(handle,uplo,trans,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbmv_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9217,7 +9180,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: trans
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr) :: A
       integer(c_int),value :: lda
@@ -9225,17 +9188,100 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      rocblas_ztbmv_batched_full_rank,&
-      rocblas_ztbmv_batched_rank_0,&
-      rocblas_ztbmv_batched_rank_1
-#endif
   end interface
-  
+
+  !>     \brief  BLAS Level 2 API
+  !>
+  !>     \details
+  !>     The tbmv_strided_batched functions perform one of the matrix-vector operations:
+  !>
+  !>         x_i := A_i*x_i      or
+  !>         x_i := A_i**T*x_i   or
+  !>         x_i := A_i**H*x_i,
+  !>
+  !>     where (``A_i``, ``x_i``) is the i-th instance of the batch,
+  !>     ``x_i`` is a vector, and ``A_i`` is an ``n`` by ``n`` matrix, for ``i`` = 1, ...,
+  !>     ``batch_count``.
+  !>
+  !>     @param[in]
+  !>     handle    [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [rocblas_fill]
+  !>             - rocblas_fill_upper: each A_i is an upper banded triangular matrix.
+  !>             - rocblas_fill_lower: each A_i is a  lower banded triangular matrix.
+  !>     @param[in]
+  !>     trans     [rocblas_operation]
+  !>               indicates whether each matrix A_i is tranposed (conjugated) or not.
+  !>     @param[in]
+  !>     diag      [rocblas_diagonal]
+  !>             - rocblas_diagonal_unit: The main diagonal of each A_i is assumed to consist of
+  !>             only
+  !>                                      1's and is not referenced.
+  !>             - rocblas_diagonal_non_unit: No assumptions are made of the main diagonal of each
+  !>             A_i.
+  !>     @param[in]
+  !>     n         [rocblas_int]
+  !>               the number of rows and columns of the matrix represented by each A_i.
+  !>     @param[in]
+  !>     k         [rocblas_int]
+  !>
+  !>             if uplo == rocblas_fill_upper, k specifies the number of super-diagonals
+  !>             of each matrix A_i.
+  !>
+  !>             if uplo == rocblas_fill_lower, k specifies the number of sub-diagonals
+  !>             of each matrix A_i.
+  !>             k must satisfy k > 0 && k < lda.
+  !>     @param[in]
+  !>     A device array to the first matrix A_i of the batch. Stores each banded triangular matrix
+  !>     A_i.
+  !>
+  !>             if uplo == rocblas_fill_upper:
+  !>                 The matrix represented is an upper banded triangular matrix
+  !>                 with the main diagonal and k super-diagonals, everything
+  !>                 else can be assumed to be 0.
+  !>                 The matrix is compacted so that the main diagonal resides on the k'th
+  !>                 row, the first super diagonal resides on the RHS of the k-1'th row, and so
+  !>                 forth,
+  !>                 with the k'th diagonal on the RHS of the 0'th row.
+  !>                    Ex: (rocblas_fill_upper; n = 5; k = 2)
+  !>                       1 6 9 0 0              0 0 9 8 7
+  !>                       0 2 7 8 0              0 6 7 8 9
+  !>                       0 0 3 8 7     ---->    1 2 3 4 5
+  !>                       0 0 0 4 9              0 0 0 0 0
+  !>                       0 0 0 0 5              0 0 0 0 0
+  !>
+  !>             if uplo == rocblas_fill_lower:
+  !>                 The matrix represnted is a lower banded triangular matrix
+  !>                 with the main diagonal and k sub-diagonals, everything else can be
+  !>                 assumed to be 0.
+  !>                 The matrix is compacted so that the main diagonal resides on the 0'th row,
+  !>                 working up to the k'th diagonal residing on the LHS of the k'th row.
+  !>                    Ex: (rocblas_fill_lower; n = 5; k = 2)
+  !>                       1 0 0 0 0              1 2 3 4 5
+  !>                       6 2 0 0 0              6 7 8 9 0
+  !>                       9 7 3 0 0     ---->    9 8 7 0 0
+  !>                       0 8 8 4 0              0 0 0 0 0
+  !>                       0 0 7 9 5              0 0 0 0 0
+  !>     @param[in]
+  !>     lda       [rocblas_int]
+  !>               specifies the leading dimension of each A_i. lda must satisfy lda > k.
+  !>     @param[in]
+  !>     stride_A  [rocblas_stride]
+  !>               stride from the start of one A_i matrix to the next A_(i + 1).
+  !>     @param[in, out]
+  !>     x         device array to the first vector x_i of the batch.
+  !>     @param[in]
+  !>     incx      [rocblas_int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stride_x  [rocblas_stride]
+  !>               stride from the start of one x_i matrix to the next x_(i + 1).
+  !>     @param[in]
+  !>     batch_count [rocblas_int]
+  !>                 number of instances in the batch.
   interface rocblas_stbmv_strided_batched
-    function rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stbmv_strided_batched")
+    function rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_stbmv_strided_batched")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -9244,7 +9290,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_operation_none)),value :: trans
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
-      integer(c_int),value :: m
+      integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -9257,12 +9303,12 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocblas_stbmv_strided_batched_full_rank,&
       rocblas_stbmv_strided_batched_rank_0,&
-      rocblas_stbmv_strided_batched_rank_1
+      rocblas_stbmv_strided_batched_rank_1,&
+      rocblas_stbmv_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocblas_dtbmv_strided_batched
     function rocblas_dtbmv_strided_batched_(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_dtbmv_strided_batched")
       use iso_c_binding
@@ -42557,31 +42603,6 @@ module hipfort_rocblas
       rocblas_chbmv_strided_batched_full_rank = rocblas_chbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      integer(c_int) :: k
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int64_t) :: stride_y
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhbmv_strided_batched_full_rank = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
-    end function
-
     function rocblas_zhbmv_strided_batched_rank_0(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42632,24 +42653,29 @@ module hipfort_rocblas
       rocblas_zhbmv_strided_batched_rank_1 = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_chemv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+    function rocblas_zhbmv_strided_batched_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chemv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: k
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int) :: batch_count
       !
-      rocblas_chemv_full_rank = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhbmv_strided_batched_full_rank = rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chemv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42692,24 +42718,24 @@ module hipfort_rocblas
       rocblas_chemv_rank_1 = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
-    function rocblas_zhemv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+    function rocblas_chemv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhemv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_chemv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: y
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhemv_full_rank = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chemv_full_rank = rocblas_chemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_zhemv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -42752,154 +42778,24 @@ module hipfort_rocblas
       rocblas_zhemv_rank_1 = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
-    function rocblas_chemv_batched_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count)
+    function rocblas_zhemv_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chemv_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_chemv_batched_full_rank = rocblas_chemv_batched_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_chemv_batched_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chemv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_chemv_batched_rank_0 = rocblas_chemv_batched_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_chemv_batched_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chemv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_chemv_batched_rank_1 = rocblas_chemv_batched_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_zhemv_batched_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhemv_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_zhemv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
-      integer(c_int) :: batch_count
       !
-      rocblas_zhemv_batched_full_rank = rocblas_zhemv_batched_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_zhemv_batched_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhemv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhemv_batched_rank_0 = rocblas_zhemv_batched_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_zhemv_batched_rank_1(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhemv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhemv_batched_rank_1 = rocblas_zhemv_batched_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_chemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int64_t) :: stride_y
-      integer(c_int) :: batch_count
-      !
-      rocblas_chemv_strided_batched_full_rank = rocblas_chemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhemv_full_rank = rocblas_zhemv_(handle,uplo,n,alpha,c_loc(A),lda,c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_chemv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
@@ -42950,28 +42846,28 @@ module hipfort_rocblas
       rocblas_chemv_strided_batched_rank_1 = rocblas_chemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_zhemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+    function rocblas_chemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: y
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhemv_strided_batched_full_rank = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chemv_strided_batched_full_rank = rocblas_chemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_zhemv_strided_batched_rank_0(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
@@ -43022,21 +42918,28 @@ module hipfort_rocblas
       rocblas_zhemv_strided_batched_rank_1 = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
-    function rocblas_cher_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+    function rocblas_zhemv_strided_batched_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,dimension(:,:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int) :: batch_count
       !
-      rocblas_cher_full_rank = rocblas_cher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
+      rocblas_zhemv_strided_batched_full_rank = rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_cher_rank_0(handle,uplo,n,alpha,x,incx,A,lda)
@@ -43073,21 +42976,21 @@ module hipfort_rocblas
       rocblas_cher_rank_1 = rocblas_cher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
     end function
 
-    function rocblas_zher_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+    function rocblas_cher_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_cher_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
+      real(c_float) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zher_full_rank = rocblas_zher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
+      rocblas_cher_full_rank = rocblas_cher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
     end function
 
     function rocblas_zher_rank_0(handle,uplo,n,alpha,x,incx,A,lda)
@@ -43124,132 +43027,21 @@ module hipfort_rocblas
       rocblas_zher_rank_1 = rocblas_zher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
     end function
 
-    function rocblas_cher_batched_full_rank(handle,uplo,n,alpha,x,incx,A,lda,batch_count)
+    function rocblas_zher_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher_batched_full_rank = rocblas_cher_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_cher_batched_rank_0(handle,uplo,n,alpha,x,incx,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher_batched_rank_0 = rocblas_cher_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_cher_batched_rank_1(handle,uplo,n,alpha,x,incx,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher_batched_rank_1 = rocblas_cher_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_zher_batched_full_rank(handle,uplo,n,alpha,x,incx,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_zher_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double) :: alpha
       complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int) :: batch_count
       !
-      rocblas_zher_batched_full_rank = rocblas_zher_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_zher_batched_rank_0(handle,uplo,n,alpha,x,incx,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_zher_batched_rank_0 = rocblas_zher_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_zher_batched_rank_1(handle,uplo,n,alpha,x,incx,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_zher_batched_rank_1 = rocblas_zher_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_cher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: stride_A
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher_strided_batched_full_rank = rocblas_cher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher_full_rank = rocblas_zher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(A),lda)
     end function
 
     function rocblas_cher_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
@@ -43292,24 +43084,24 @@ module hipfort_rocblas
       rocblas_cher_strided_batched_rank_1 = rocblas_cher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
+    function rocblas_cher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
+      real(c_float) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher_strided_batched_full_rank = rocblas_zher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher_strided_batched_full_rank = rocblas_cher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
     function rocblas_zher_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
@@ -43352,23 +43144,24 @@ module hipfort_rocblas
       rocblas_zher_strided_batched_rank_1 = rocblas_zher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_cher2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+    function rocblas_zher_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher2_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
+      real(c_double) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
+      integer(c_int64_t) :: stride_A
+      integer(c_int) :: batch_count
       !
-      rocblas_cher2_full_rank = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_zher_strided_batched_full_rank = rocblas_zher_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
     function rocblas_cher2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43409,23 +43202,23 @@ module hipfort_rocblas
       rocblas_cher2_rank_1 = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
     end function
 
-    function rocblas_zher2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+    function rocblas_cher2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher2_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_cher2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:) :: y
+      complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocblas_zher2_full_rank = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
+      rocblas_cher2_full_rank = rocblas_cher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
     end function
 
     function rocblas_zher2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -43466,71 +43259,11 @@ module hipfort_rocblas
       rocblas_zher2_rank_1 = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
     end function
 
-    function rocblas_cher2_batched_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count)
+    function rocblas_zher2_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher2_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher2_batched_full_rank = rocblas_cher2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_cher2_batched_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher2_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target :: y
-      integer(c_int) :: incy
-      complex(c_float_complex),target :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher2_batched_rank_0 = rocblas_cher2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_cher2_batched_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher2_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher2_batched_rank_1 = rocblas_cher2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_zher2_batched_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher2_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_zher2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
@@ -43539,74 +43272,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int) :: batch_count
       !
-      rocblas_zher2_batched_full_rank = rocblas_zher2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_zher2_batched_rank_0(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher2_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target :: y
-      integer(c_int) :: incy
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_zher2_batched_rank_0 = rocblas_zher2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_zher2_batched_rank_1(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher2_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: batch_count
-      !
-      rocblas_zher2_batched_rank_1 = rocblas_zher2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda,batch_count)
-    end function
-
-    function rocblas_cher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int64_t) :: stride_y
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: stride_A
-      integer(c_int) :: batch_count
-      !
-      rocblas_cher2_strided_batched_full_rank = rocblas_cher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_zher2_full_rank = rocblas_zher2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(A),lda)
     end function
 
     function rocblas_cher2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
@@ -43655,27 +43324,27 @@ module hipfort_rocblas
       rocblas_cher2_strided_batched_rank_1 = rocblas_cher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
-    function rocblas_zher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+    function rocblas_cher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,dimension(:) :: y
+      complex(c_float_complex),target,dimension(:,:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zher2_strided_batched_full_rank = rocblas_zher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+      rocblas_cher2_strided_batched_full_rank = rocblas_cher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
     function rocblas_zher2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
@@ -43724,6 +43393,29 @@ module hipfort_rocblas
       rocblas_zher2_strided_batched_rank_1 = rocblas_zher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
     end function
 
+    function rocblas_zher2_strided_batched_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:,:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: stride_A
+      integer(c_int) :: batch_count
+      !
+      rocblas_zher2_strided_batched_full_rank = rocblas_zher2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A,batch_count)
+    end function
+
     function rocblas_chpmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -43733,14 +43425,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_chpmv_rank_0 = rocblas_chpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chpmv_rank_0 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_chpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43752,14 +43444,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chpmv_rank_1 = rocblas_chpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chpmv_rank_1 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_zhpmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43771,14 +43463,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zhpmv_rank_0 = rocblas_zhpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhpmv_rank_0 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_zhpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -43790,134 +43482,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhpmv_rank_1 = rocblas_zhpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
-    end function
-
-    function rocblas_chpmv_batched_full_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpmv_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpmv_batched_full_rank = rocblas_chpmv_batched_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_chpmv_batched_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpmv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpmv_batched_rank_0 = rocblas_chpmv_batched_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_chpmv_batched_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpmv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex) :: beta
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpmv_batched_rank_1 = rocblas_chpmv_batched_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_zhpmv_batched_full_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpmv_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpmv_batched_full_rank = rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_zhpmv_batched_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpmv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpmv_batched_rank_0 = rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
-    end function
-
-    function rocblas_zhpmv_batched_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpmv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex) :: beta
-      complex(c_double_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpmv_batched_rank_1 = rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy,batch_count)
+      rocblas_zhpmv_rank_1 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta,c_loc(y),incy)
     end function
 
     function rocblas_chpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
@@ -43929,7 +43501,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -43940,7 +43512,7 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chpmv_strided_batched_rank_0 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chpmv_strided_batched_rank_0 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
@@ -43952,7 +43524,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -43963,7 +43535,7 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_chpmv_strided_batched_rank_1 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_chpmv_strided_batched_rank_1 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_zhpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
@@ -43975,7 +43547,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -43986,7 +43558,7 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhpmv_strided_batched_rank_0 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhpmv_strided_batched_rank_0 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_zhpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
@@ -43998,7 +43570,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -44009,7 +43581,7 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
       !
-      rocblas_zhpmv_strided_batched_rank_1 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+      rocblas_zhpmv_strided_batched_rank_1 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chpr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -44023,9 +43595,9 @@ module hipfort_rocblas
       real(c_float) :: alpha
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      rocblas_chpr_rank_0 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_chpr_rank_0 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_chpr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -44039,9 +43611,9 @@ module hipfort_rocblas
       real(c_float) :: alpha
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      rocblas_chpr_rank_1 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_chpr_rank_1 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_zhpr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -44055,9 +43627,9 @@ module hipfort_rocblas
       real(c_double) :: alpha
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      rocblas_zhpr_rank_0 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_zhpr_rank_0 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_zhpr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -44071,111 +43643,9 @@ module hipfort_rocblas
       real(c_double) :: alpha
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      rocblas_zhpr_rank_1 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
-    end function
-
-    function rocblas_chpr_batched_full_rank(handle,uplo,n,alpha,x,incx,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpr_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpr_batched_full_rank = rocblas_chpr_batched_(handle,uplo,n,alpha,c_loc(x),incx,AP,batch_count)
-    end function
-
-    function rocblas_chpr_batched_rank_0(handle,uplo,n,alpha,x,incx,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpr_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpr_batched_rank_0 = rocblas_chpr_batched_(handle,uplo,n,alpha,c_loc(x),incx,AP,batch_count)
-    end function
-
-    function rocblas_chpr_batched_rank_1(handle,uplo,n,alpha,x,incx,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpr_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_float) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpr_batched_rank_1 = rocblas_chpr_batched_(handle,uplo,n,alpha,c_loc(x),incx,AP,batch_count)
-    end function
-
-    function rocblas_zhpr_batched_full_rank(handle,uplo,n,alpha,x,incx,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpr_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpr_batched_full_rank = rocblas_zhpr_batched_(handle,uplo,n,alpha,c_loc(x),incx,AP,batch_count)
-    end function
-
-    function rocblas_zhpr_batched_rank_0(handle,uplo,n,alpha,x,incx,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpr_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpr_batched_rank_0 = rocblas_zhpr_batched_(handle,uplo,n,alpha,c_loc(x),incx,AP,batch_count)
-    end function
-
-    function rocblas_zhpr_batched_rank_1(handle,uplo,n,alpha,x,incx,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpr_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpr_batched_rank_1 = rocblas_zhpr_batched_(handle,uplo,n,alpha,c_loc(x),incx,AP,batch_count)
+      rocblas_zhpr_rank_1 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_chpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
@@ -44190,11 +43660,11 @@ module hipfort_rocblas
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr_strided_batched_rank_0 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+      rocblas_chpr_strided_batched_rank_0 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
@@ -44209,11 +43679,11 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr_strided_batched_rank_1 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+      rocblas_chpr_strided_batched_rank_1 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
@@ -44228,11 +43698,11 @@ module hipfort_rocblas
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr_strided_batched_rank_0 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+      rocblas_zhpr_strided_batched_rank_0 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count)
@@ -44247,11 +43717,11 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr_strided_batched_rank_1 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+      rocblas_zhpr_strided_batched_rank_1 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -44267,9 +43737,9 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      rocblas_chpr2_rank_0 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_chpr2_rank_0 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function rocblas_chpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -44285,9 +43755,9 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      rocblas_chpr2_rank_1 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_chpr2_rank_1 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function rocblas_zhpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -44303,9 +43773,9 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      rocblas_zhpr2_rank_0 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_zhpr2_rank_0 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function rocblas_zhpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -44321,123 +43791,9 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      rocblas_zhpr2_rank_1 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
-    end function
-
-    function rocblas_chpr2_batched_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpr2_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpr2_batched_full_rank = rocblas_chpr2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP,batch_count)
-    end function
-
-    function rocblas_chpr2_batched_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpr2_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target :: y
-      integer(c_int) :: incy
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpr2_batched_rank_0 = rocblas_chpr2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP,batch_count)
-    end function
-
-    function rocblas_chpr2_batched_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_chpr2_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_chpr2_batched_rank_1 = rocblas_chpr2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP,batch_count)
-    end function
-
-    function rocblas_zhpr2_batched_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpr2_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:,:) :: y
-      integer(c_int) :: incy
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpr2_batched_full_rank = rocblas_zhpr2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP,batch_count)
-    end function
-
-    function rocblas_zhpr2_batched_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpr2_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target :: y
-      integer(c_int) :: incy
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpr2_batched_rank_0 = rocblas_zhpr2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP,batch_count)
-    end function
-
-    function rocblas_zhpr2_batched_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_zhpr2_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target,dimension(:) :: y
-      integer(c_int) :: incy
-      type(c_ptr) :: AP
-      integer(c_int) :: batch_count
-      !
-      rocblas_zhpr2_batched_rank_1 = rocblas_zhpr2_batched_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP,batch_count)
+      rocblas_zhpr2_rank_1 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function rocblas_chpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
@@ -44455,11 +43811,11 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr2_strided_batched_rank_0 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+      rocblas_chpr2_strided_batched_rank_0 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
@@ -44477,11 +43833,11 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_chpr2_strided_batched_rank_1 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+      rocblas_chpr2_strided_batched_rank_1 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
@@ -44499,11 +43855,11 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr2_strided_batched_rank_0 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+      rocblas_zhpr2_strided_batched_rank_0 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count)
@@ -44521,32 +43877,14 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
-      rocblas_zhpr2_strided_batched_rank_1 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+      rocblas_zhpr2_strided_batched_rank_1 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
-    function rocblas_strmv_full_rank(handle,uplo,transA,diag,m,A,lda,x,incx)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_strmv_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: transA
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: x
-      integer(c_int) :: incx
-      !
-      rocblas_strmv_full_rank = rocblas_strmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
-    end function
-
-    function rocblas_strmv_rank_0(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_strmv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44555,16 +43893,16 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: x
       integer(c_int) :: incx
       !
-      rocblas_strmv_rank_0 = rocblas_strmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_strmv_rank_0 = rocblas_strmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_strmv_rank_1(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_strmv_rank_1(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44573,34 +43911,34 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_strmv_rank_1 = rocblas_strmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_strmv_rank_1 = rocblas_strmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_dtrmv_full_rank(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_strmv_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtrmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_strmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: x
+      real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtrmv_full_rank = rocblas_dtrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_strmv_full_rank = rocblas_strmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_dtrmv_rank_0(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_dtrmv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44609,16 +43947,16 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: x
       integer(c_int) :: incx
       !
-      rocblas_dtrmv_rank_0 = rocblas_dtrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtrmv_rank_0 = rocblas_dtrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_dtrmv_rank_1(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_dtrmv_rank_1(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44627,34 +43965,34 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtrmv_rank_1 = rocblas_dtrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtrmv_rank_1 = rocblas_dtrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ctrmv_full_rank(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_dtrmv_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctrmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_dtrmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: x
+      real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctrmv_full_rank = rocblas_ctrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtrmv_full_rank = rocblas_dtrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ctrmv_rank_0(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_ctrmv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44663,16 +44001,16 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ctrmv_rank_0 = rocblas_ctrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctrmv_rank_0 = rocblas_ctrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ctrmv_rank_1(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_ctrmv_rank_1(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44681,34 +44019,34 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctrmv_rank_1 = rocblas_ctrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctrmv_rank_1 = rocblas_ctrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztrmv_full_rank(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_ctrmv_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztrmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ctrmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztrmv_full_rank = rocblas_ztrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctrmv_full_rank = rocblas_ctrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztrmv_rank_0(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_ztrmv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44717,16 +44055,16 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ztrmv_rank_0 = rocblas_ztrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztrmv_rank_0 = rocblas_ztrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztrmv_rank_1(handle,uplo,transA,diag,m,A,lda,x,incx)
+    function rocblas_ztrmv_rank_1(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44735,37 +44073,34 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztrmv_rank_1 = rocblas_ztrmv_(handle,uplo,transA,diag,m,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztrmv_rank_1 = rocblas_ztrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_strmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_ztrmv_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ztrmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
-      real(c_float),target,dimension(:) :: x
+      complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
-      integer(c_int) :: batch_count
       !
-      rocblas_strmv_strided_batched_full_rank = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ztrmv_full_rank = rocblas_ztrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_strmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_strmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44774,19 +44109,19 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_float),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strmv_strided_batched_rank_0 = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_strmv_strided_batched_rank_0 = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_strmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_strmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44795,40 +44130,40 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_strmv_strided_batched_rank_1 = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_strmv_strided_batched_rank_1 = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_strmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
-      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrmv_strided_batched_full_rank = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_strmv_strided_batched_full_rank = rocblas_strmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_dtrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44837,19 +44172,19 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_double),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrmv_strided_batched_rank_0 = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_dtrmv_strided_batched_rank_0 = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtrmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_dtrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44858,40 +44193,40 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtrmv_strided_batched_rank_1 = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_dtrmv_strided_batched_rank_1 = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_dtrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
-      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrmv_strided_batched_full_rank = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_dtrmv_strided_batched_full_rank = rocblas_dtrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_ctrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44900,19 +44235,19 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrmv_strided_batched_rank_0 = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ctrmv_strided_batched_rank_0 = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctrmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_ctrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44921,40 +44256,40 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctrmv_strided_batched_rank_1 = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ctrmv_strided_batched_rank_1 = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_ctrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
-      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrmv_strided_batched_full_rank = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ctrmv_strided_batched_full_rank = rocblas_ctrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_ztrmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44963,19 +44298,19 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrmv_strided_batched_rank_0 = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ztrmv_strided_batched_rank_0 = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztrmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count)
+    function rocblas_ztrmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -44984,36 +44319,40 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztrmv_strided_batched_rank_1 = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),lda,stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ztrmv_strided_batched_rank_1 = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stpmv_full_rank(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_ztrmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stpmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_float),target,dimension(:,:) :: A
-      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int) :: batch_count
       !
-      rocblas_stpmv_full_rank = rocblas_stpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_ztrmv_strided_batched_full_rank = rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stpmv_rank_0(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_stpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45022,15 +44361,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
       real(c_float),target :: x
       integer(c_int) :: incx
       !
-      rocblas_stpmv_rank_0 = rocblas_stpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_stpmv_rank_0 = rocblas_stpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_stpmv_rank_1(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_stpmv_rank_1(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45039,32 +44378,32 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_stpmv_rank_1 = rocblas_stpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_stpmv_rank_1 = rocblas_stpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_dtpmv_full_rank(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_stpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtpmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_stpmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_double),target,dimension(:,:) :: A
-      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtpmv_full_rank = rocblas_dtpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_stpmv_full_rank = rocblas_stpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_dtpmv_rank_0(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_dtpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45073,15 +44412,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
       real(c_double),target :: x
       integer(c_int) :: incx
       !
-      rocblas_dtpmv_rank_0 = rocblas_dtpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_dtpmv_rank_0 = rocblas_dtpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_dtpmv_rank_1(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_dtpmv_rank_1(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45090,32 +44429,32 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtpmv_rank_1 = rocblas_dtpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_dtpmv_rank_1 = rocblas_dtpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ctpmv_full_rank(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_dtpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctpmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_dtpmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:,:) :: A
-      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctpmv_full_rank = rocblas_ctpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_dtpmv_full_rank = rocblas_dtpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ctpmv_rank_0(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_ctpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45124,15 +44463,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target :: A
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ctpmv_rank_0 = rocblas_ctpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_ctpmv_rank_0 = rocblas_ctpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ctpmv_rank_1(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_ctpmv_rank_1(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45141,32 +44480,32 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctpmv_rank_1 = rocblas_ctpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_ctpmv_rank_1 = rocblas_ctpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ztpmv_full_rank(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_ctpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztpmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ctpmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:,:) :: A
-      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztpmv_full_rank = rocblas_ztpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_ctpmv_full_rank = rocblas_ctpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ztpmv_rank_0(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_ztpmv_rank_0(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45175,15 +44514,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target :: A
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ztpmv_rank_0 = rocblas_ztpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_ztpmv_rank_0 = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_ztpmv_rank_1(handle,uplo,transA,diag,m,A,x,incx)
+    function rocblas_ztpmv_rank_1(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45192,35 +44531,32 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztpmv_rank_1 = rocblas_ztpmv_(handle,uplo,transA,diag,m,c_loc(A),c_loc(x),incx)
+      rocblas_ztpmv_rank_1 = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_stpmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_ztpmv_full_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stpmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ztpmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stridea
-      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
-      integer(c_int) :: batch_count
       !
-      rocblas_stpmv_strided_batched_full_rank = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ztpmv_full_rank = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
     end function
 
-    function rocblas_stpmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_stpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45229,18 +44565,18 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_float),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stpmv_strided_batched_rank_0 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_stpmv_strided_batched_rank_0 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stpmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_stpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45249,38 +44585,38 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stpmv_strided_batched_rank_1 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_stpmv_strided_batched_rank_1 = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_stpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtpmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_stpmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stridea
-      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpmv_strided_batched_full_rank = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_stpmv_strided_batched_full_rank = rocblas_stpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_dtpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45289,18 +44625,18 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_double),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpmv_strided_batched_rank_0 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_dtpmv_strided_batched_rank_0 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_dtpmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_dtpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45309,38 +44645,38 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_dtpmv_strided_batched_rank_1 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_dtpmv_strided_batched_rank_1 = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_dtpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctpmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_dtpmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stridea
-      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpmv_strided_batched_full_rank = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_dtpmv_strided_batched_full_rank = rocblas_dtpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_ctpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45349,18 +44685,18 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpmv_strided_batched_rank_0 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ctpmv_strided_batched_rank_0 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ctpmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_ctpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45369,38 +44705,38 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ctpmv_strided_batched_rank_1 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ctpmv_strided_batched_rank_1 = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpmv_strided_batched_full_rank(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_ctpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztpmv_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ctpmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int64_t) :: stridea
-      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpmv_strided_batched_full_rank = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ctpmv_strided_batched_full_rank = rocblas_ctpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpmv_strided_batched_rank_0(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_ztpmv_strided_batched_rank_0(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45409,18 +44745,18 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpmv_strided_batched_rank_0 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ztpmv_strided_batched_rank_0 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_ztpmv_strided_batched_rank_1(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count)
+    function rocblas_ztpmv_strided_batched_rank_1(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45429,37 +44765,38 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int64_t) :: stridea
+      integer(c_int64_t) :: stride_A
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_ztpmv_strided_batched_rank_1 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,m,c_loc(A),stridea,c_loc(x),incx,stridex,batch_count)
+      rocblas_ztpmv_strided_batched_rank_1 = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbmv_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_ztpmv_strided_batched_full_rank(handle,uplo,transA,diag,n,A,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ztpmv_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int) :: batch_count
       !
-      rocblas_stbmv_full_rank = rocblas_stbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztpmv_strided_batched_full_rank = rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,n,c_loc(A),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbmv_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_stbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45468,17 +44805,17 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: x
       integer(c_int) :: incx
       !
-      rocblas_stbmv_rank_0 = rocblas_stbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_stbmv_rank_0 = rocblas_stbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_stbmv_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_stbmv_rank_1(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45487,36 +44824,36 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_stbmv_rank_1 = rocblas_stbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_stbmv_rank_1 = rocblas_stbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_dtbmv_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_stbmv_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_stbmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: x
+      real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtbmv_full_rank = rocblas_dtbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_stbmv_full_rank = rocblas_stbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_dtbmv_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_dtbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45525,17 +44862,17 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: x
       integer(c_int) :: incx
       !
-      rocblas_dtbmv_rank_0 = rocblas_dtbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtbmv_rank_0 = rocblas_dtbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_dtbmv_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_dtbmv_rank_1(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45544,36 +44881,36 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtbmv_rank_1 = rocblas_dtbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtbmv_rank_1 = rocblas_dtbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ctbmv_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_dtbmv_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: x
+      real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctbmv_full_rank = rocblas_ctbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_dtbmv_full_rank = rocblas_dtbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ctbmv_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_ctbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45582,17 +44919,17 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ctbmv_rank_0 = rocblas_ctbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctbmv_rank_0 = rocblas_ctbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ctbmv_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_ctbmv_rank_1(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45601,36 +44938,36 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctbmv_rank_1 = rocblas_ctbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctbmv_rank_1 = rocblas_ctbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztbmv_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_ctbmv_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztbmv_full_rank = rocblas_ztbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ctbmv_full_rank = rocblas_ctbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztbmv_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_ztbmv_rank_0(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45639,17 +44976,17 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ztbmv_rank_0 = rocblas_ztbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztbmv_rank_0 = rocblas_ztbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztbmv_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx)
+    function rocblas_ztbmv_rank_1(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45658,279 +44995,36 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztbmv_rank_1 = rocblas_ztbmv_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx)
+      rocblas_ztbmv_rank_1 = rocblas_ztbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_stbmv_batched_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
+    function rocblas_ztbmv_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_stbmv_batched_full_rank = rocblas_stbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_stbmv_batched_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_float),target :: A
-      integer(c_int) :: lda
-      real(c_float),target :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_stbmv_batched_rank_0 = rocblas_stbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_stbmv_batched_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_float),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_stbmv_batched_rank_1 = rocblas_stbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_dtbmv_batched_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_double),target,dimension(:,:,:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_dtbmv_batched_full_rank = rocblas_dtbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_dtbmv_batched_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_double),target :: A
-      integer(c_int) :: lda
-      real(c_double),target :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_dtbmv_batched_rank_0 = rocblas_dtbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_dtbmv_batched_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_double),target,dimension(:) :: A
-      integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_dtbmv_batched_rank_1 = rocblas_dtbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_ctbmv_batched_full_rank(handle,uplo,trans,diag,m,k,A,da,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:,:) :: A
-      integer(c_int) :: da
-      complex(c_float_complex),target,dimension(:,:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_ctbmv_batched_full_rank = rocblas_ctbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),da,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_ctbmv_batched_rank_0(handle,uplo,trans,diag,m,k,A,da,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      complex(c_float_complex),target :: A
-      integer(c_int) :: da
-      complex(c_float_complex),target :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_ctbmv_batched_rank_0 = rocblas_ctbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),da,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_ctbmv_batched_rank_1(handle,uplo,trans,diag,m,k,A,da,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int) :: da
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_ctbmv_batched_rank_1 = rocblas_ctbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),da,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_ztbmv_batched_full_rank(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      integer(c_int) :: batch_count
       !
-      rocblas_ztbmv_batched_full_rank = rocblas_ztbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
+      rocblas_ztbmv_full_rank = rocblas_ztbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda,c_loc(x),incx)
     end function
 
-    function rocblas_ztbmv_batched_rank_0(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_batched_rank_0
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      complex(c_double_complex),target :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_ztbmv_batched_rank_0 = rocblas_ztbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_ztbmv_batched_rank_1(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_batched_rank_1
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int) :: batch_count
-      !
-      rocblas_ztbmv_batched_rank_1 = rocblas_ztbmv_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,c_loc(x),incx,batch_count)
-    end function
-
-    function rocblas_stbmv_strided_batched_full_rank(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
-      integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int64_t) :: stride_A
-      real(c_float),target,dimension(:) :: x
-      integer(c_int) :: incx
-      integer(c_int64_t) :: stride_x
-      integer(c_int) :: batch_count
-      !
-      rocblas_stbmv_strided_batched_full_rank = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
-    end function
-
-    function rocblas_stbmv_strided_batched_rank_0(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbmv_strided_batched_rank_0(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45939,7 +45033,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: A
       integer(c_int) :: lda
@@ -45949,10 +45043,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbmv_strided_batched_rank_0 = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbmv_strided_batched_rank_0 = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
-    function rocblas_stbmv_strided_batched_rank_1(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+    function rocblas_stbmv_strided_batched_rank_1(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -45961,7 +45055,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
-      integer(c_int) :: m
+      integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -45971,7 +45065,29 @@ module hipfort_rocblas
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
       !
-      rocblas_stbmv_strided_batched_rank_1 = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,m,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+      rocblas_stbmv_strided_batched_rank_1 = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_stbmv_strided_batched_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:,:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int) :: batch_count
+      !
+      rocblas_stbmv_strided_batched_full_rank = rocblas_stbmv_strided_batched_(handle,uplo,trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_dtbmv_strided_batched_full_rank(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count)
