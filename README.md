@@ -49,6 +49,10 @@ These directly take Fortran (array) variables and the number of
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
 Therefore, they reduce the chance to introduce compile-time and runtime errors
 into your code and makes it easier to read too.
+These additional interfaces are guarded by the `USE_FPOINTER_INTERFACES` preprocessor
+definition, which `hipfort` enables automatically once it detects Fortran 2008 support
+in your compiler. By convention, application and test sources that rely on them use the
+`.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
 
 > **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
 as we have observed problems with older versions.
@@ -125,7 +129,7 @@ straightforward:
 
 ```cmake
 find_package(hipfort REQUIRED)
-add_executable(my_app main.f03)
+add_executable(my_app main.f08)
 target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 ```
 
