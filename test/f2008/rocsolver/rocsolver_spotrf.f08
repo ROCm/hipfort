@@ -3,7 +3,7 @@
 ! see: https:!www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational_ga2f55f604a6003d03b5cd4a0adcfb9e07.html
 !
 ! NOTE: rocSOLVER writes the `info` output to DEVICE memory. The hipfort
-! binding types the info argument as a plain integer, so it must be backed
+! binding types the info argument as a device pointer (type(c_ptr)), so it must be backed
 ! by a device allocation (dInfo below) and passed as c_loc(dInfo); passing a
 ! host scalar faults on the GPU.
 !
