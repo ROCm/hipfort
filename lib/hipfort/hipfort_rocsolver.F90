@@ -26,7 +26,6 @@
 
 module hipfort_rocsolver
   use hipfort_rocsolver_enums
-  use hipfort_rocsolver_types
   implicit none
 
   !>  \brief The GET_VERSION_STRING function queries the library version.

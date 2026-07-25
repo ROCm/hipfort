@@ -26,7 +26,6 @@
 
 module hipfort_hipblas
   use hipfort_hipblas_enums
-  use hipfort_hipblas_types
   implicit none
 
   !>  \brief Create the hipBLAS handle.
