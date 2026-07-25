@@ -27,6 +27,27 @@ cmake --install build
 ctest --test-dir build
 ```
 
+### Toolchain files
+
+Example CMake toolchain files are provided in [`cmake/toolchains`](cmake/toolchains)
+to select the Fortran compiler and backend without setting cache variables by
+hand. Pass one with `-DCMAKE_TOOLCHAIN_FILE`:
+
+```shell
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
+```
+
+| Toolchain file | Compiler | Backend |
+| -------------- | ---------- | ------- |
+| `amdflang.cmake` | `amdflang` (ROCm LLVM Flang) | AMD ROCm (**recommended default**) |
+| `gnu.cmake`    | `gfortran` | AMD ROCm |
+| `intel.cmake`  | `ifx` (Intel LLVM) | AMD ROCm |
+| `intel-classic.cmake` | `ifort` (EOL) | AMD ROCm |
+| `cray.cmake`   | Cray `ftn` | AMD ROCm |
+| `nvhpc.cmake`  | `nvfortran` | NVIDIA/CUDA |
+
+Copy any of these as a starting point for your own site-specific toolchain.
+
 ## Fortran interfaces
 
 `hipfort` provides interfaces to the following HIP and ROCm libraries:

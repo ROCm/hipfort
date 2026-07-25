@@ -22,6 +22,10 @@
   `c`, and `z` precisions, along with the `rocsparse_gpsv_interleaved_alg` enum.
 * Added the `hiprandCheck` error-check helper for hipRAND status codes
   (`use hipfort_check`).
+* Added example CMake toolchain files in `cmake/toolchains/` (amdflang, GNU,
+  Intel `ifx`/`ifort`, Cray, and NVHPC), selectable with
+  `-DCMAKE_TOOLCHAIN_FILE`, to build hipfort with different Fortran compilers
+  and backends.
 
 ### Changed
 

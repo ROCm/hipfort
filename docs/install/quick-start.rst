@@ -32,3 +32,7 @@ Building and testing hipFORT from source
       cmake --build build
       cmake --install build
       ctest --test-dir build
+
+To build with a specific compiler and backend, pass one of the provided toolchain files, for
+example ``-DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake``. See
+:doc:`the detailed install guide <./install>` for the full list.
