@@ -45,6 +45,11 @@
   and descriptor getters. Call them directly, for example
   `istat = hipDeviceGetAttribute(value, attr, dev)`, with no `C_LOC(value)`. Existing
   code that passes `C_LOC(x)` to these routines must now pass `x`.
+* **rocSOLVER `info` is now a device pointer.** The `info` output is written on the
+  GPU, so these routines now take a `type(c_ptr)` that points to device memory,
+  instead of a host `integer`. Allocate it with `hipMalloc` and pass the device
+  pointer. This affects `getrf`, `getri`, `potrf`, `sytrf`, `gesv`, `posv`, `syev`,
+  `heev`, `trtri`, and the related factorization and eigenvalue routines.
 * Derived types are emitted in per-library `hipfort_<lib>_types` modules. A module is
   generated only when a binding references one of its types. Unreferenced complex,
   half, and bfloat16 struct mirrors are no longer emitted.
@@ -87,6 +92,10 @@
 * `fftw_iodim64` members now use `c_ptrdiff_t` instead of `c_long`, matching FFTW's
   `ptrdiff_t` fields. This gives the correct struct layout on LLP64 platforms such
   as Windows.
+* Batched rocBLAS, hipBLAS, and rocSOLVER routines now pass their array of device
+  pointers by value. The array holds device pointers and lives on the device, so it
+  is passed directly, not by reference. This fixes an illegal-address failure (HIP
+  error `700`) in `*_gemm_batched` and the other `*_batched` routines.
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 
