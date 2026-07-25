@@ -38,13 +38,18 @@ set(HIPFORT_ARCH "amdgcn")
     ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-amdgcn
+    # CMAKE_INSTALL_LIBDIR/INCLUDEDIR already carry the toolchain-specific
+    # subdirectory (see HIPFORT_MULTITOOLCHAIN_LAYOUT in the top-level
+    # CMakeLists.txt), so they must not be suffixed with FORTRAN_LIBRARY_SUBDIR
+    # again -- doing so nests the archive and mod files one level too deep
+    # (e.g. lib/fortran/<compiler>/fortran/<compiler>).
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
         EXPORT hipfort-amdgcn-targets
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${FORTRAN_LIBRARY_SUBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/${FORTRAN_LIBRARY_SUBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${FORTRAN_LIBRARY_SUBDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
