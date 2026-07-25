@@ -16,7 +16,7 @@ module hipfort_auxiliary
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceProperties_(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
 #else
-    function hipGetDeviceProperties_(prop,deviceId) bind(c, name="hipGetDeviceProperties")
+    function hipGetDeviceProperties_(prop,deviceId) bind(c, name="hipGetDevicePropertiesR0600")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
