@@ -926,7 +926,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -942,7 +942,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -958,7 +958,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -974,7 +974,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -990,7 +990,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -1006,7 +1006,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -1022,7 +1022,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -1038,7 +1038,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -1054,7 +1054,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -1070,7 +1070,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -1086,7 +1086,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -1102,7 +1102,7 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -1566,9 +1566,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scopy_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -1583,9 +1583,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -1600,9 +1600,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -1617,9 +1617,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -1634,9 +1634,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scopy_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -1651,9 +1651,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -1668,9 +1668,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -1685,9 +1685,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -2259,9 +2259,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2277,9 +2277,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2295,9 +2295,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_hdot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2313,9 +2313,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_bfdot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2331,9 +2331,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2349,9 +2349,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2367,9 +2367,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2385,9 +2385,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2403,9 +2403,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2421,9 +2421,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2439,9 +2439,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_hdot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2457,9 +2457,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_bfdot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2475,9 +2475,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2493,9 +2493,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2511,9 +2511,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -2529,9 +2529,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -3126,9 +3126,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sswap_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3143,9 +3143,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dswap_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3160,9 +3160,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cswap_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3177,9 +3177,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zswap_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3194,9 +3194,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sswap_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3211,9 +3211,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dswap_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3228,9 +3228,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cswap_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3245,9 +3245,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zswap_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3691,9 +3691,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_short) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3709,9 +3709,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3727,9 +3727,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3745,9 +3745,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3763,9 +3763,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -3781,9 +3781,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       integer(c_short) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3799,9 +3799,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3817,9 +3817,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3835,9 +3835,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -3853,9 +3853,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -4289,7 +4289,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sasum_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4305,7 +4305,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dasum_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4321,7 +4321,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4337,7 +4337,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4353,7 +4353,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sasum_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4369,7 +4369,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dasum_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4385,7 +4385,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4401,7 +4401,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4767,7 +4767,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4783,7 +4783,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4799,7 +4799,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4815,7 +4815,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: results
@@ -4831,7 +4831,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4847,7 +4847,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4863,7 +4863,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -4879,7 +4879,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: results
@@ -5240,7 +5240,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamax_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5256,7 +5256,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamax_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5272,7 +5272,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5288,7 +5288,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5304,7 +5304,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamax_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5320,7 +5320,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamax_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5336,7 +5336,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5352,7 +5352,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5706,7 +5706,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamin_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5722,7 +5722,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamin_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5738,7 +5738,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5754,7 +5754,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5770,7 +5770,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamin_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5786,7 +5786,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamin_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5802,7 +5802,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -5818,7 +5818,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
       type(c_ptr),value :: myResult
@@ -6301,9 +6301,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       real(c_float) :: c
       real(c_float) :: s
@@ -6320,9 +6320,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       real(c_double) :: c
       real(c_double) :: s
@@ -6339,9 +6339,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       real(c_float) :: c
       complex(c_float_complex) :: s
@@ -6358,9 +6358,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       real(c_float) :: c
       real(c_float) :: s
@@ -6377,9 +6377,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       real(c_double) :: c
       complex(c_double_complex) :: s
@@ -6396,9 +6396,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       real(c_double) :: c
       real(c_double) :: s
@@ -6415,9 +6415,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       real(c_float) :: c
       real(c_float) :: s
@@ -6434,9 +6434,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       real(c_double) :: c
       real(c_double) :: s
@@ -6453,9 +6453,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       real(c_float) :: c
       complex(c_float_complex) :: s
@@ -6472,9 +6472,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       real(c_float) :: c
       real(c_float) :: s
@@ -6491,9 +6491,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       real(c_double) :: c
       complex(c_double_complex) :: s
@@ -6510,9 +6510,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       real(c_double) :: c
       real(c_double) :: s
@@ -7018,10 +7018,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotg_batched_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7034,10 +7034,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotg_batched_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7050,10 +7050,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crotg_batched_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7066,10 +7066,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrotg_batched_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7082,10 +7082,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotg_batched_64_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7098,10 +7098,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotg_batched_64_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7114,10 +7114,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crotg_batched_64_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7130,10 +7130,10 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrotg_batched_64_
       type(c_ptr),value :: handle
-      type(c_ptr) :: a
-      type(c_ptr) :: b
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7487,11 +7487,11 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srotm_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: param
+      type(c_ptr),value :: param
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7505,11 +7505,11 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drotm_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: param
+      type(c_ptr),value :: param
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7523,11 +7523,11 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srotm_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: param
+      type(c_ptr),value :: param
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7541,11 +7541,11 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drotm_batched_64_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: param
+      type(c_ptr),value :: param
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7836,11 +7836,11 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotmg_batched_
       type(c_ptr),value :: handle
-      type(c_ptr) :: d1
-      type(c_ptr) :: d2
-      type(c_ptr) :: x1
-      type(c_ptr) :: y1
-      type(c_ptr) :: param
+      type(c_ptr),value :: d1
+      type(c_ptr),value :: d2
+      type(c_ptr),value :: x1
+      type(c_ptr),value :: y1
+      type(c_ptr),value :: param
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7853,11 +7853,11 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotmg_batched_
       type(c_ptr),value :: handle
-      type(c_ptr) :: d1
-      type(c_ptr) :: d2
-      type(c_ptr) :: x1
-      type(c_ptr) :: y1
-      type(c_ptr) :: param
+      type(c_ptr),value :: d1
+      type(c_ptr),value :: d2
+      type(c_ptr),value :: x1
+      type(c_ptr),value :: y1
+      type(c_ptr),value :: param
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -7870,11 +7870,11 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotmg_batched_64_
       type(c_ptr),value :: handle
-      type(c_ptr) :: d1
-      type(c_ptr) :: d2
-      type(c_ptr) :: x1
-      type(c_ptr) :: y1
-      type(c_ptr) :: param
+      type(c_ptr),value :: d1
+      type(c_ptr),value :: d2
+      type(c_ptr),value :: x1
+      type(c_ptr),value :: y1
+      type(c_ptr),value :: param
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -7887,11 +7887,11 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotmg_batched_64_
       type(c_ptr),value :: handle
-      type(c_ptr) :: d1
-      type(c_ptr) :: d2
-      type(c_ptr) :: x1
-      type(c_ptr) :: y1
-      type(c_ptr) :: param
+      type(c_ptr),value :: d1
+      type(c_ptr),value :: d2
+      type(c_ptr),value :: x1
+      type(c_ptr),value :: y1
+      type(c_ptr),value :: param
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -8386,12 +8386,12 @@ module hipfort_rocblas
       integer(c_int),value :: kl
       integer(c_int),value :: ku
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -8412,12 +8412,12 @@ module hipfort_rocblas
       integer(c_int),value :: kl
       integer(c_int),value :: ku
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -8438,12 +8438,12 @@ module hipfort_rocblas
       integer(c_int),value :: kl
       integer(c_int),value :: ku
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -8464,12 +8464,12 @@ module hipfort_rocblas
       integer(c_int),value :: kl
       integer(c_int),value :: ku
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -8490,12 +8490,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: kl
       integer(c_int64_t),value :: ku
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -8516,12 +8516,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: kl
       integer(c_int64_t),value :: ku
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -8542,12 +8542,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: kl
       integer(c_int64_t),value :: ku
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -8568,12 +8568,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: kl
       integer(c_int64_t),value :: ku
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9182,12 +9182,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9205,12 +9205,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9228,12 +9228,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9251,12 +9251,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9274,12 +9274,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9297,12 +9297,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9320,12 +9320,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9343,12 +9343,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -9367,12 +9367,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9391,12 +9391,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9415,12 +9415,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9439,12 +9439,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9463,12 +9463,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9487,12 +9487,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9511,12 +9511,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -9535,12 +9535,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -10291,12 +10291,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -10314,12 +10314,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -10337,12 +10337,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -10360,12 +10360,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -10761,12 +10761,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -10783,12 +10783,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -10805,12 +10805,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -10827,12 +10827,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -11182,9 +11182,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -11201,9 +11201,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -11220,9 +11220,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -11239,9 +11239,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -11579,11 +11579,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -11600,11 +11600,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -11621,11 +11621,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -11642,11 +11642,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -12043,11 +12043,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -12064,11 +12064,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -12085,11 +12085,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -12106,11 +12106,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -12498,9 +12498,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -12516,9 +12516,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -12534,9 +12534,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -12552,9 +12552,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -12931,11 +12931,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -12951,11 +12951,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -12971,11 +12971,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -12991,11 +12991,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -14872,9 +14872,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14893,9 +14893,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14914,9 +14914,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14935,9 +14935,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14956,9 +14956,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -14977,9 +14977,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -14998,9 +14998,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -15019,9 +15019,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -15625,9 +15625,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -15646,9 +15646,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -15667,9 +15667,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -15688,9 +15688,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
       integer(c_int),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -15709,9 +15709,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -15730,9 +15730,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -15751,9 +15751,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -15772,9 +15772,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -16345,9 +16345,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -16365,9 +16365,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -16385,9 +16385,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -16405,9 +16405,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -16425,9 +16425,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -16445,9 +16445,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -16465,9 +16465,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -16485,9 +16485,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -17021,8 +17021,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -17040,8 +17040,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -17059,8 +17059,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -17078,8 +17078,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -17097,8 +17097,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -17116,8 +17116,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -17135,8 +17135,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -17154,8 +17154,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -17686,12 +17686,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -17708,12 +17708,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -17730,12 +17730,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -17752,12 +17752,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -17774,12 +17774,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -17796,12 +17796,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -17818,12 +17818,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_float_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -17840,12 +17840,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       complex(c_double_complex) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -18294,11 +18294,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -18315,11 +18315,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -18336,11 +18336,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -18357,11 +18357,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -18704,12 +18704,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -18727,12 +18727,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -18750,12 +18750,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_float) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -18773,12 +18773,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       real(c_double) :: beta
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
       integer(c_int64_t),value :: batch_count
     end function
@@ -19299,11 +19299,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -19320,11 +19320,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -19341,11 +19341,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -19362,11 +19362,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -19383,11 +19383,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -19404,11 +19404,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -19425,11 +19425,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -19446,11 +19446,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -19467,11 +19467,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -19488,11 +19488,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -19509,11 +19509,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -19530,11 +19530,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -20201,9 +20201,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -20219,9 +20219,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -20237,9 +20237,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -20255,9 +20255,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -20273,9 +20273,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -20291,9 +20291,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -20309,9 +20309,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -20327,9 +20327,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -20802,11 +20802,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -20822,11 +20822,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -20842,11 +20842,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -20862,11 +20862,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: AP
+      type(c_ptr),value :: AP
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -21275,9 +21275,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21294,9 +21294,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21313,9 +21313,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21332,9 +21332,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21351,9 +21351,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -21370,9 +21370,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -21389,9 +21389,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -21408,9 +21408,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -21908,11 +21908,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21929,11 +21929,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21950,11 +21950,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21971,11 +21971,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: batch_count
     end function
@@ -21992,11 +21992,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -22013,11 +22013,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -22034,11 +22034,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -22055,11 +22055,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: y
+      type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: batch_count
     end function
@@ -22569,12 +22569,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -22593,12 +22593,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -22618,12 +22618,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -22643,12 +22643,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -23076,10 +23076,10 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -23098,10 +23098,10 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -23120,10 +23120,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -23142,10 +23142,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -23585,12 +23585,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -23610,12 +23610,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -23635,12 +23635,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -23660,12 +23660,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -24138,12 +24138,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -24163,12 +24163,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -24188,12 +24188,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -24213,12 +24213,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -24774,12 +24774,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -24798,12 +24798,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -24822,12 +24822,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -24846,12 +24846,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -24871,12 +24871,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -24896,12 +24896,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -24921,12 +24921,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -24946,12 +24946,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -25603,10 +25603,10 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -25625,10 +25625,10 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -25647,10 +25647,10 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -25669,10 +25669,10 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -25691,10 +25691,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -25713,10 +25713,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -25735,10 +25735,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -25757,10 +25757,10 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -26424,12 +26424,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -26449,12 +26449,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -26474,12 +26474,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -26499,12 +26499,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -26524,12 +26524,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -26549,12 +26549,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -26574,12 +26574,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -26599,12 +26599,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -27317,12 +27317,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -27342,12 +27342,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -27367,12 +27367,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -27392,12 +27392,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -27417,12 +27417,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -27442,12 +27442,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -27467,12 +27467,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -27492,12 +27492,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -28286,11 +28286,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -28312,11 +28312,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -28338,11 +28338,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -28364,11 +28364,11 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -28390,11 +28390,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -28416,11 +28416,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -28442,11 +28442,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -28468,11 +28468,11 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -28996,9 +28996,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batch_count
     end function
@@ -29015,9 +29015,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batch_count
     end function
@@ -29034,9 +29034,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batch_count
     end function
@@ -29053,9 +29053,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batch_count
     end function
@@ -29561,9 +29561,9 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -29585,9 +29585,9 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -29609,9 +29609,9 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -29633,9 +29633,9 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -29657,9 +29657,9 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -29681,9 +29681,9 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -29705,9 +29705,9 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -29729,9 +29729,9 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -30409,12 +30409,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -30435,12 +30435,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -30461,12 +30461,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_short) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_short) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -30487,12 +30487,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -30513,12 +30513,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -30539,12 +30539,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -30565,12 +30565,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -30591,12 +30591,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       integer(c_short) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_short) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -30617,12 +30617,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -30643,12 +30643,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -31284,11 +31284,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -31305,11 +31305,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -31326,11 +31326,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -31347,11 +31347,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -31368,11 +31368,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -31389,11 +31389,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -31410,11 +31410,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -31431,11 +31431,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)),value :: side
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -32021,12 +32021,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -32046,12 +32046,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -32071,12 +32071,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -32096,12 +32096,12 @@ module hipfort_rocblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -32121,12 +32121,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       real(c_float) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -32146,12 +32146,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       real(c_double) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -32171,12 +32171,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       complex(c_float_complex) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -32196,12 +32196,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       complex(c_double_complex) :: beta
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -33378,12 +33378,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -33404,12 +33404,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -33430,12 +33430,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -33456,12 +33456,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -33482,12 +33482,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_float) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_float) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -33508,12 +33508,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       real(c_double) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       real(c_double) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -33534,12 +33534,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_float_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
@@ -33560,12 +33560,12 @@ module hipfort_rocblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       complex(c_double_complex) :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batch_count
     end function
