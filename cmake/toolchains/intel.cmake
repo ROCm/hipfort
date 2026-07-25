@@ -3,6 +3,12 @@
 # Uses the LLVM-based Intel compilers (ifx/icx/icpx). For the end-of-life
 # classic ifort compiler, see intel-classic.cmake.
 #
+# Requires the C/C++ Intel compilers (icx/icpx) in addition to the Fortran one
+# (ifx): this file sets all three, and hipfort enables C and CXX because
+# find_package(hip) requires them. Install the Intel oneAPI C/C++ component
+# alongside ifx (they are separate downloads), or edit the CMAKE_C_COMPILER /
+# CMAKE_CXX_COMPILER lines below to point at another available C/C++ compiler.
+#
 # Usage:
 #   source /opt/intel/oneapi/setvars.sh
 #   cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/intel.cmake
