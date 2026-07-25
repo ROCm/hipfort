@@ -1008,22 +1008,15 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of vector \f$x\f$. Must be non-negative.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   xVal        array of \p nnz elements containing the values of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of vector \f$x\f$. Must be non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] xVal - array of \p nnz elements containing the values of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[inout]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[inout] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1157,22 +1150,15 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of vector \f$x\f$. Must be non-negative.
-  !>   @param[in]
-  !>   xVal        array of \p nnz values containing the elements of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of vector \f$x\f$. Must be non-negative.
+  !>   @param[in] xVal - array of \p nnz values containing the elements of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[in] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd.
-  !>   @param[out]
-  !>   result      pointer to the result, which can be host or device memory.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[out] myResult - pointer to the result, which can be host or device memory.
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1262,22 +1248,15 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of vector \f$x\f$. Must be non-negative.
-  !>   @param[in]
-  !>   xVal        array of \p nnz values containing the elements of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of vector \f$x\f$. Must be non-negative.
+  !>   @param[in] xVal - array of \p nnz values containing the elements of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[in] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd.
-  !>   @param[out]
-  !>   result      pointer to the result, which can be host or device memory.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[out] myResult - pointer to the result, which can be host or device memory.
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1409,20 +1388,14 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$. Must be non-negative.
-  !>   @param[in]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$. Must be non-negative.
+  !>   @param[in] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd.
-  !>   @param[out]
-  !>   xVal        array of \p nnz elements that will contain the gathered values of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[out] xVal - array of \p nnz elements that will contain the gathered values of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1550,21 +1523,15 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$. Must be non-negative.
-  !>   @param[inout]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$. Must be non-negative.
+  !>   @param[inout] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd. Gathered elements
   !>               are set to zero.
-  !>   @param[out]
-  !>   xVal        array of \p nnz elements that will contain the gathered values of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[out] xVal - array of \p nnz elements that will contain the gathered values of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1696,24 +1663,16 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$. Must be non-negative.
-  !>   @param[inout]
-  !>   xVal        array of \p nnz elements containing the non-zero values of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$. Must be non-negative.
+  !>   @param[inout] xVal - array of \p nnz elements containing the non-zero values of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[inout]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[inout] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd.
-  !>   @param[in]
-  !>   c           pointer to the cosine element of \f$G\f$, which can be on host or device.
-  !>   @param[in]
-  !>   s           pointer to the sine element of \f$G\f$, which can be on host or device.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] c - pointer to the cosine element of \f$G\f$, which can be on host or device.
+  !>   @param[in] s - pointer to the sine element of \f$G\f$, which can be on host or device.
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1799,20 +1758,14 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$. Must be non-negative.
-  !>   @param[in]
-  !>   xVal        array of \p nnz elements containing the non-zero values of \f$x\f$.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$. Must be non-negative.
+  !>   @param[in] xVal - array of \p nnz elements containing the non-zero values of \f$x\f$.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[inout]
-  !>   y           array of values in dense format. Must be pre-allocated with sufficient
+  !>   @param[inout] y - array of values in dense format. Must be pre-allocated with sufficient
   !>               size to accommodate all indices specified in \p xInd.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -1940,40 +1893,27 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA            matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA          matrix operation type.
-  !>   @param[in]
-  !>   mb              number of block rows of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   nb              number of block columns of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   nnzb            number of non-zero blocks of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   bsrSortedValA   array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>                   the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb elements containing the block column indices
+  !>   of the sparse
   !>                   BSR matrix.
-  !>   @param[in]
-  !>   blockDim        block dimension of the sparse BSR matrix. Must be positive.
-  !>   @param[in]
-  !>   x               array of \p nb*blockDim elements (\f$op(A) = A\f$) or \p mb*blockDim
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix. Must be positive.
+  !>   @param[in] x - array of \p nb*blockDim elements (\f$op(A) = A\f$) or \p mb*blockDim
   !>                   elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y               array of \p mb*blockDim elements (\f$op(A) = A\f$) or \p nb*blockDim
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p mb*blockDim elements (\f$op(A) = A\f$) or \p nb*blockDim
   !>                   elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -2154,12 +2094,9 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, can be in host or device memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -2191,32 +2128,22 @@ module hipfort_hipsparse
   !>   `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()". The temporary storage buffer must
   !>   be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA        matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedValA array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnz containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>               `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()" and
   !>               `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()".
   !>
@@ -2375,32 +2302,22 @@ module hipfort_hipsparse
   !>   `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()". The temporary storage buffer must be
   !>   allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA        matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedValA array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnz containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>               `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()" and
   !>               `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()".
   !>
@@ -2549,36 +2466,25 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA        matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedValA array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnz containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix.
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim,
@@ -2805,41 +2711,27 @@ module hipfort_hipsparse
   !>   Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` and
   !>   \p transA == `HIPSPARSE_OPERATION_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA        matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedValA array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnz containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   f           array of \p m elements, holding the right-hand side.
-  !>   @param[out]
-  !>   x           array of \p m elements, holding the solution.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] f - array of \p m elements, holding the right-hand side.
+  !>   @param[out] x - array of \p m elements, holding the solution.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim,
@@ -3047,48 +2939,33 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   sizeOfMask  number of updated block rows of the array \p y. Must be non-negative and
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] sizeOfMask - number of updated block rows of the array \p y. Must be non-negative
+  !>   and
   !>               not greater than \p mb.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   nb          number of block columns of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   bsrVal      array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrMaskPtr  array of \p sizeOfMask elements that give the indices of the updated block rows.
-  !>   @param[in]
-  !>   bsrRowPtr   array of \p mb elements that point to the start of every block row of
+  !>   @param[in] bsrVal - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrMaskPtr - array of \p sizeOfMask elements that give the indices of the updated
+  !>   block rows.
+  !>   @param[in] bsrRowPtr - array of \p mb elements that point to the start of every block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrEndPtr   array of \p mb elements that point to the end of every block row of
+  !>   @param[in] bsrEndPtr - array of \p mb elements that point to the end of every block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrColInd   array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsrColInd - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix. Must be greater than 1.
-  !>   @param[in]
-  !>   x           array of \p nb*blockDim elements (\f$op(A) = A\f$) or \p mb*blockDim
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix. Must be greater than 1.
+  !>   @param[in] x - array of \p nb*blockDim elements (\f$op(A) = A\f$) or \p mb*blockDim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p mb*blockDim elements (\f$op(A) = A\f$) or \p nb*blockDim
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p mb*blockDim elements (\f$op(A) = A\f$) or \p nb*blockDim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -3310,36 +3187,24 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA              matrix operation type.
-  !>   @param[in]
-  !>   m                   number of rows of the sparse CSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   n                   number of columns of the sparse CSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   nnz number of non-zero entries of the sparse CSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   alpha               scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA              descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in] n - number of columns of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix. Currently, only
   !>                       `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrSortedValA       array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA    array of \p m+1 elements that point to the start
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start
   !>                       of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA    array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                       CSR matrix.
-  !>   @param[in]
-  !>   x                   array of \p n elements (\f$op(A) == A\f$) or \p m elements
+  !>   @param[in] x - array of \p n elements (\f$op(A) == A\f$) or \p m elements
   !>                       (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   beta                scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y                   array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>                       (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -3496,12 +3361,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -3530,28 +3393,20 @@ module hipfort_hipsparse
   !>   `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()". The temporary storage buffer must
   !>   be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA           matrix operation type.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz              number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                    CSR matrix.
-  !>   @param[out]
-  !>   info             structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsrsv2_analysis` "hipsparseXcsrsv2_analysis()" and
   !>                      `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()".
   !>
@@ -3686,28 +3541,20 @@ module hipfort_hipsparse
   !>   `hipsparseScsrsv2_solve` "`hipsparseScsrsv2_solve()`". The temporary storage buffer must be
   !>   allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA           matrix operation type.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz              number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                    CSR matrix.
-  !>   @param[out]
-  !>   info             structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsrsv2_analysis` "hipsparseXcsrsv2_analysis()" and
   !>                      `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()".
   !>
@@ -3846,32 +3693,23 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA           matrix operation type.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz              number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                    CSR matrix.
-  !>   @param[out]
-  !>   info             structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>                    the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descr,
@@ -4076,37 +3914,24 @@ module hipfort_hipsparse
   !>   Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` and
   !>   \p transA == `HIPSPARSE_OPERATION_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   f           array of \p m elements, holding the right-hand side.
-  !>   @param[out]
-  !>   x           array of \p m elements, holding the solution.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] f - array of \p m elements, holding the right-hand side.
+  !>   @param[out] x - array of \p m elements, holding the solution.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA,
@@ -4255,18 +4080,12 @@ module hipfort_hipsparse
   !>   required by `hipsparseSgemvi` "hipsparseXgemvi()". The temporary storage buffer must
   !>   be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries in the sparse vector.
-  !>   @param[out]
-  !>   pBufferSizeInBytes temporary storage buffer size.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the dense matrix.
+  !>   @param[in] n - number of columns of the dense matrix.
+  !>   @param[in] nnz - number of non-zero entries in the sparse vector.
+  !>   @param[out] pBufferSizeInBytes - temporary storage buffer size.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, or
@@ -4391,35 +4210,21 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   A           pointer to the dense matrix.
-  !>   @param[in]
-  !>   lda         leading dimension of the dense matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries in the sparse vector.
-  !>   @param[in]
-  !>   x           array of \p nnz elements containing the values of the sparse vector.
-  !>   @param[in]
-  !>   xInd        array of \p nnz elements containing the indices of the sparse vector.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] m - number of rows of the dense matrix.
+  !>   @param[in] n - number of columns of the dense matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] A - pointer to the dense matrix.
+  !>   @param[in] lda - leading dimension of the dense matrix.
+  !>   @param[in] nnz - number of non-zero entries in the sparse vector.
+  !>   @param[in] x - array of \p nnz elements containing the values of the sparse vector.
+  !>   @param[in] xInd - array of \p nnz elements containing the indices of the sparse vector.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer.
+  !>   @param[in] idxBase - `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in] pBuffer - temporary storage buffer.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p nnz, \p alpha,
@@ -4602,24 +4407,16 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA      matrix operation type.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse HYB matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse HYB matrix. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   hybA        matrix in HYB storage format.
-  !>   @param[in]
-  !>   x           array of \p n elements (\f$op(A) == A\f$) or \p m elements
+  !>   @param[in] hybA - matrix in HYB storage format.
+  !>   @param[in] x - array of \p n elements (\f$op(A) == A\f$) or \p m elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -4774,55 +4571,42 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks. Can be `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks. Can be `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   transA matrix \f$A\f$ operation type. Currently, only `HIPSPARSE_OPERATION_NON_TRANSPOSE` is
-  !>   supported.
-  !>   @param[in]
-  !>   transB matrix \f$B\f$ operation type. Currently, only `HIPSPARSE_OPERATION_NON_TRANSPOSE` and
-  !>   `HIPSPARSE_OPERATION_TRANSPOSE`
+  !>   @param[in] transA - matrix \f$A\f$ operation type. Currently, only
+  !>   `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
+  !>   @param[in] transB - matrix \f$B\f$ operation type. Currently, only
+  !>   `HIPSPARSE_OPERATION_NON_TRANSPOSE` and `HIPSPARSE_OPERATION_TRANSPOSE`
   !>               are supported.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   n number of columns of the dense matrix \f$op(B)\f$ and \f$C\f$. Must be non-negative.
-  !>   @param[in]
-  !>   kb          number of block columns of the sparse BSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \f$op(B)\f$ and \f$C\f$. Must be
+  !>   non-negative.
+  !>   @param[in] kb - number of block columns of the sparse BSR matrix \f$A\f$. Must be
+  !>   non-negative.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix \f$A\f$. Must be
+  !>   non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix \f$A\f$. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   bsrValA     array of \p nnzb*blockDim*blockDim elements of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrRowPtrA  array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrValA - array of \p nnzb*blockDim*blockDim elements of the sparse BSR matrix
+  !>   \f$A\f$.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrColIndA  array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   blockDim    size of the blocks in the sparse BSR matrix. Must be positive.
-  !>   @param[in]
-  !>   B           array of dimension \p ldb*n (\f$op(B) == B\f$),
+  !>   @param[in] blockDim - size of the blocks in the sparse BSR matrix. Must be positive.
+  !>   @param[in] B - array of dimension \p ldb*n (\f$op(B) == B\f$),
   !>               \p ldb*k otherwise.
-  !>   @param[in]
-  !>   ldb leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$ (\f$ op(B) == B\f$)
-  !>   where \p k=blockDim*kb,
+  !>   @param[in] ldb - leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$ (\f$ op(B)
+  !>   == B\f$) where \p k=blockDim*kb,
   !>               \f$\max{(1, n)}\f$ otherwise.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C           array of dimension \p ldc*n.
-  !>   @param[in]
-  !>   ldc leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$ (\f$ op(A) == A\f$)
-  !>   where \p m=blockDim*mb,
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - array of dimension \p ldc*n.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$ (\f$ op(A)
+  !>   == A\f$) where \p m=blockDim*mb,
   !>               \f$\max{(1, k)}\f$ where \p k=blockDim*kb otherwise.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -5027,12 +4811,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -5064,36 +4846,24 @@ module hipfort_hipsparse
   !>   `hipsparseSbsrsm2_solve` "hipsparseXbsrsm2_solve()". The temporary storage buffer must
   !>   be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA        matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA      matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transX      matrix \f$X\f$ operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nrhs        number of columns of the dense matrix \f$op(X)\f$.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrSortedValA array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transX - matrix \f$X\f$ operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] nrhs - number of columns of the dense matrix \f$op(X)\f$.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>               `hipsparseSbsrsm2_analysis` "hipsparseXbsrsm2_analysis()" and
   !>               `hipsparseSbsrsm2_solve` "hipsparseXbsrsm2_solve()".
   !>
@@ -5270,39 +5040,26 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA        matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA      matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transX      matrix \f$X\f$ operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nrhs        number of columns of the dense matrix \f$op(X)\f$.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrSortedValA array of \p nnzb blocks of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transX - matrix \f$X\f$ operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] nrhs - number of columns of the dense matrix \f$op(X)\f$.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>               the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb containing the block column indices of the
+  !>   sparse
   !>               BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   blockDim    block dimension of the sparse BSR matrix \f$A\f$.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix \f$A\f$.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nrhs, \p nnzb,
@@ -5682,48 +5439,30 @@ module hipfort_hipsparse
   !>   Currently, only \p transA != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` and
   !>   \p transX != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA             matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   transA           matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transX           matrix \f$X\f$ operation type.
-  !>   @param[in]
-  !>   mb               number of block rows of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nrhs             number of columns of the dense matrix \f$op(X)\f$.
-  !>   @param[in]
-  !>   nnzb             number of non-zero blocks of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha            scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrSortedValA    array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - matrix storage of BSR blocks.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transX - matrix \f$X\f$ operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] nrhs - number of columns of the dense matrix \f$op(X)\f$.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsrSortedValA - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of
   !>                    the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb containing the block column indices of the sparse
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb containing the block column indices of the
+  !>   sparse
   !>                    BSR matrix.
-  !>   @param[in]
-  !>   blockDim         block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   info             structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   B                rhs matrix B with leading dimension \p ldb.
-  !>   @param[in]
-  !>   ldb              leading dimension of rhs matrix \f$B\f$.
-  !>   @param[out]
-  !>   X                solution matrix X with leading dimension \p ldx.
-  !>   @param[in]
-  !>   ldx              leading dimension of solution matrix \f$X\f$.
-  !>   @param[in]
-  !>   policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer          temporary storage buffer allocated by the user.
+  !>   @param[in] blockDim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] B - rhs matrix B with leading dimension \p ldb.
+  !>   @param[in] ldb - leading dimension of rhs matrix \f$B\f$.
+  !>   @param[out] X - solution matrix X with leading dimension \p ldx.
+  !>   @param[in] ldx - leading dimension of solution matrix \f$X\f$.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nrhs, \p nnzb, \p blockDim,
@@ -5964,43 +5703,31 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA              matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   m                   number of rows of the sparse CSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   n number of columns of the dense matrix \f$op(B)\f$ and \f$C\f$. Must be non-negative.
-  !>   @param[in]
-  !>   k                   number of columns of the sparse CSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   nnz number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   alpha               scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA              descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \f$op(B)\f$ and \f$C\f$. Must be
+  !>   non-negative.
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be
+  !>   non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                       `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrSortedValA       array of \p nnz elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                       sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA    array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                       CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   B                   array of dimension \p ldb*n (\f$op(B) == B\f$),
+  !>   @param[in] B - array of dimension \p ldb*n (\f$op(B) == B\f$),
   !>                       \p ldb*k otherwise.
-  !>   @param[in]
-  !>   ldb                 leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$
+  !>   @param[in] ldb - leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$
   !>                       (\f$op(B) == B\f$), \f$\max{(1, n)}\f$ otherwise.
-  !>   @param[in]
-  !>   beta                scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C                   array of dimension \p ldc*n.
-  !>   @param[in]
-  !>   ldc                 leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - array of dimension \p ldc*n.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$
   !>                       (\f$op(A) == A\f$), \f$\max{(1, k)}\f$ otherwise.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -6207,45 +5934,30 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA      matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transB      matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \f$op(B)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   k           number of columns of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transB - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] n - number of columns of the dense matrix \f$op(B)\f$ and \f$C\f$.
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrSortedValA array of \p nnz elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>               sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>               CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   B           array of dimension \p ldb*n (\f$op(B) == B\f$),
+  !>   @param[in] B - array of dimension \p ldb*n (\f$op(B) == B\f$),
   !>               \p ldb*k otherwise.
-  !>   @param[in]
-  !>   ldb         leading dimension of \f$B\f$. Must be at least \f$\max{(1, k)}\f$
+  !>   @param[in] ldb - leading dimension of \f$B\f$. Must be at least \f$\max{(1, k)}\f$
   !>               (\f$op(B) == B\f$), \f$\max{(1, n)}\f$ otherwise.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C           array of dimension \p ldc*n.
-  !>   @param[in]
-  !>   ldc         leading dimension of \f$C\f$. Must be at least \f$\max{(1, m)}\f$
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - array of dimension \p ldc*n.
+  !>   @param[in] ldc - leading dimension of \f$C\f$. Must be at least \f$\max{(1, m)}\f$
   !>               (\f$op(A) == A\f$), \f$\max{(1, k)}\f$ otherwise.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -6421,12 +6133,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -6455,43 +6165,28 @@ module hipfort_hipsparse
   !>   and `hipsparseScsrsm2_solve` "hipsparseXcsrsm2_solve()". The temporary storage buffer
   !>   must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo             algorithm to use.
-  !>   @param[in]
-  !>   transA           matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transB           matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nrhs             number of columns of the dense matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   nnz              number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha            scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnz elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - algorithm to use.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transB - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] nrhs - number of columns of the dense matrix \f$op(B)\f$.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                    CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   B                array of \p m \f$\times\f$ \p nrhs elements of the rhs matrix \f$B\f$.
-  !>   @param[in]
-  !>   ldb              leading dimension of rhs matrix \f$B\f$.
-  !>   @param[in]
-  !>   info             structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] B - array of \p m \f$\times\f$ \p nrhs elements of the rhs matrix \f$B\f$.
+  !>   @param[in] ldb - leading dimension of rhs matrix \f$B\f$.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsrsm2_analysis` "hipsparseXcsrsm2_analysis()" and
   !>                      `hipsparseScsrsm2_solve` "hipsparseXcsrsm2_solve()".
   !>
@@ -6665,43 +6360,28 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo        algorithm to use.
-  !>   @param[in]
-  !>   transA      matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transB      matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nrhs        number of columns of the dense matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedValA array of \p nnz elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - algorithm to use.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transB - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] nrhs - number of columns of the dense matrix \f$op(B)\f$.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>               sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>               CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   B           array of \p m \f$\times\f$ \p nrhs elements of the rhs matrix \f$B\f$.
-  !>   @param[in]
-  !>   ldb         leading dimension of rhs matrix \f$B\f$.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[in] B - array of \p m \f$\times\f$ \p nrhs elements of the rhs matrix \f$B\f$.
+  !>   @param[in] ldb - leading dimension of rhs matrix \f$B\f$.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nrhs, \p nnz, \p alpha,
@@ -7021,43 +6701,28 @@ module hipfort_hipsparse
   !>   Currently, only \p transA != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` and
   !>   \p transB != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` is supported.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo        algorithm to use.
-  !>   @param[in]
-  !>   transA      matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transB      matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nrhs        number of columns of the dense matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedValA array of \p nnz elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - algorithm to use.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transB - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] nrhs - number of columns of the dense matrix \f$op(B)\f$.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>               sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>               CSR matrix \f$A\f$.
-  !>   @param[inout]
-  !>   B           array of \p m \f$\times\f$ \p nrhs elements of the rhs matrix \f$B\f$.
-  !>   @param[in]
-  !>   ldb         leading dimension of rhs matrix \f$B\f$.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+  !>   @param[inout] B - array of \p m \f$\times\f$ \p nrhs elements of the rhs matrix \f$B\f$.
+  !>   @param[in] ldb - leading dimension of rhs matrix \f$B\f$.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
   !>               `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nrhs, \p nnz, \p alpha,
@@ -7238,39 +6903,29 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   n number of columns of the sparse CSC matrix \f$op(B)\f$ and \f$C\f$. Must be non-negative.
-  !>   @param[in]
-  !>   k           number of columns of the dense matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   nnz number of non-zero entries of the sparse CSC matrix \f$B\f$. Must be non-negative.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   A           array of dimension \f$lda \times k\f$ (\f$op(A) == A\f$) or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] n - number of columns of the sparse CSC matrix \f$op(B)\f$ and \f$C\f$. Must be
+  !>   non-negative.
+  !>   @param[in] k - number of columns of the dense matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix \f$B\f$. Must be
+  !>   non-negative.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] A - array of dimension \f$lda \times k\f$ (\f$op(A) == A\f$) or
   !>               \f$lda \times m\f$ (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   lda         leading dimension of \f$A\f$, must be at least \f$m\f$
+  !>   @param[in] lda - leading dimension of \f$A\f$, must be at least \f$m\f$
   !>               (\f$op(A) == A\f$) or \f$k\f$ (\f$op(A) == A^T\f$ or
   !>               \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   cscValB     array of \p nnz elements of the sparse CSC matrix \f$B\f$.
-  !>   @param[in]
-  !>   cscColPtrB  array of \p n+1 elements that point to the start of every column of the
+  !>   @param[in] cscValB - array of \p nnz elements of the sparse CSC matrix \f$B\f$.
+  !>   @param[in] cscColPtrB - array of \p n+1 elements that point to the start of every column of
+  !>   the
   !>               sparse CSC matrix \f$B\f$.
-  !>   @param[in]
-  !>   cscRowIndB  array of \p nnz elements containing the column indices of the sparse CSC
+  !>   @param[in] cscRowIndB - array of \p nnz elements containing the column indices of the sparse
+  !>   CSC
   !>               matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C           array of dimension \f$ldc \times n\f$ that holds the values of \f$C\f$.
-  !>   @param[in]
-  !>   ldc         leading dimension of \f$C\f$, must be at least \f$m\f$.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - array of dimension \f$ldc \times n\f$ that holds the values of \f$C\f$.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, must be at least \f$m\f$.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -7438,44 +7093,32 @@ module hipfort_hipsparse
   !>   \deprecated
   !>   This function is deprecated and will be removed in a future release.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$. Must be
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$. Must
+  !>   be non-negative.
+  !>   @param[in] n - number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   Must be non-negative.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be
   !>   non-negative.
-  !>   @param[in]
-  !>   n number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$. Must be
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                   sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
+  !>                   sparse CSR matrix \f$A\f$.
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$. Must be
   !>   non-negative.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-  !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements that point to the start of every row of the
-  !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
-  !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-  !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB number of non-zero entries of the sparse CSR matrix \f$B\f$. Must be non-negative.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrRowPtrB - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr pointer to the number of non-zero entries of the sparse CSR
+  !>   @param[out] nnzTotalDevHostPtr - pointer to the number of non-zero entries of the sparse CSR
   !>                      matrix \f$C\f$. \p nnzTotalDevHostPtr can be a host or device pointer.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -7551,52 +7194,33 @@ module hipfort_hipsparse
   !>   \deprecated
   !>   This function is deprecated and will be removed in a future release.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrValA         array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrValA - array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrValB         array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrValB - array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrRowPtrB - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC         array of elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrValC - array of elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csrColIndC      array of elements containing the column indices of the
+  !>   @param[out] csrColIndC - array of elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -7767,55 +7391,38 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   n number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   alpha              scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA               number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedValA      array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedValA - array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrSortedColIndA - array of \p nnzA elements containing the column indices of the
   !>                      sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   beta               scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descrB             descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB               number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedValB      array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrB   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrSortedValB - array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrSortedRowPtrB - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedColIndB   array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrSortedColIndB - array of \p nnzB elements containing the column indices of the
   !>                      sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC             descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrSortedValC      array of elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrC   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrSortedValC - array of elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csrSortedRowPtrC - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csrSortedColIndC   array of elements containing the column indices of the
+  !>   @param[out] csrSortedColIndC - array of elements containing the column indices of the
   !>                      sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseXcsrgeam2Nnz()` and `hipsparseScsrgeam2` "hipsparseXcsrgeam2()".
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8034,45 +7641,33 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   n number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA               number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrSortedColIndA - array of \p nnzA elements containing the column indices of the
   !>                      sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB             descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB               number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrB   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrSortedRowPtrB - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedColIndB   array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrSortedColIndB - array of \p nnzB elements containing the column indices of the
   !>                      sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC             descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrSortedRowPtrC   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrSortedRowPtrC - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr pointer to the number of non-zero entries of the sparse CSR
+  !>   @param[out] nnzTotalDevHostPtr - pointer to the number of non-zero entries of the sparse CSR
   !>                      matrix \f$C\f$. \p nnzTotalDevHostPtr can be a host or device pointer.
-  !>   @param[in]
-  !>   workspace          temporary storage buffer allocated by the user.
+  !>   @param[in] workspace - temporary storage buffer allocated by the user.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnzA, \p nnzB,
@@ -8154,55 +7749,38 @@ module hipfort_hipsparse
   !>   \note This function is non-blocking and executed asynchronously with respect to the
   !>         host. It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   n                number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   alpha            scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                    `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA             number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedValA - array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrSortedColIndA - array of \p nnzA elements containing the column indices of the
   !>                    sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   beta             scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descrB           descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                    `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB             number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedValB    array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrB array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrSortedValB - array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrSortedRowPtrB - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrSortedColIndB array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrSortedColIndB - array of \p nnzB elements containing the column indices of the
   !>                    sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC           descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                    `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrSortedValC    array of elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csrSortedRowPtrC array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrSortedValC - array of elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csrSortedRowPtrC - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csrSortedColIndC array of elements containing the column indices of the
+  !>   @param[out] csrSortedColIndC - array of elements containing the column indices of the
   !>                    sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   pBuffer          temporary storage buffer allocated by the user.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnzA, \p nnzB,
@@ -8424,52 +8002,39 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA          matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transB          matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$. Must be non-negative.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transB - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$. Must be
+  !>   non-negative.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$. Must be non-negative.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$. Must be non-negative.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be
+  !>   non-negative.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB number of non-zero entries of the sparse CSR matrix \f$B\f$. Must be non-negative.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$. Must be
+  !>   non-negative.
+  !>   @param[in] csrRowPtrB - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[inout]
-  !>   nnzTotalDevHostPtr pointer to the number of non-zero entries of the sparse CSR
+  !>   @param[inout] nnzTotalDevHostPtr - pointer to the number of non-zero entries of the sparse
+  !>   CSR
   !>                      matrix \f$C\f$. \p nnzTotalDevHostPtr can be a host or device pointer.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8566,58 +8131,38 @@ module hipfort_hipsparse
   !>   \note For matrix products with more than 4096 non-zero entries per
   !>   row, an additional temporary storage buffer is allocated by the algorithm.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   transA          matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   transB          matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] transA - matrix \f$A\f$ operation type.
+  !>   @param[in] transB - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrValA         array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrValA - array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrValB         array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrValB - array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrRowPtrB - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC         array of \p nnzC elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrValC - array of \p nnzC elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csrColIndC      array of \p nnzC elements containing the column indices of the
+  !>   @param[out] csrColIndC - array of \p nnzC elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8804,59 +8349,39 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrRowPtrB - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descrD          descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descrD - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzD            number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrRowPtrD      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzD - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csrRowPtrD - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrColIndD      array of \p nnzD elements containing the column indices of the sparse
+  !>   @param[in] csrColIndD - array of \p nnzD elements containing the column indices of the sparse
   !>                   CSR matrix \f$D\f$.
-  !>   @param[inout]
-  !>   info            structure that holds meta data for the sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[inout] myInfo - structure that holds meta data for the sparse CSR matrix \f$C\f$.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseXcsrgemm2Nnz()`, `hipsparseScsrgemm2()`, hipsparseDcsrgemm2(),
   !>                      hipsparseCcsrgemm2(), and hipsparseZcsrgemm2().
   !>
@@ -9055,64 +8580,43 @@ module hipfort_hipsparse
   !>   \note
   !>   Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrRowPtrB - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descrD          descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] descrD - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzD            number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrRowPtrD      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzD - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csrRowPtrD - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrColIndD      array of \p nnzD elements containing the column indices of the sparse
+  !>   @param[in] csrColIndD - array of \p nnzD elements containing the column indices of the sparse
   !>                   CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr pointer to the number of non-zero entries of the sparse CSR
+  !>   @param[out] nnzTotalDevHostPtr - pointer to the number of non-zero entries of the sparse CSR
   !>                      matrix \f$C\f$.
-  !>   @param[in]
-  !>   info            structure that holds meta data for the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   pBuffer         temporary storage buffer allocated by the user. The size is returned
+  !>   @param[in] myInfo - structure that holds meta data for the sparse CSR matrix \f$C\f$.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user. The size is returned
   !>                   by `hipsparseScsrgemm2_bufferSizeExt()`, hipsparseDcsrgemm2_bufferSizeExt(),
   !>                   hipsparseZcsrgemm2_bufferSizeExt(), or hipsparseZcsrgemm2_bufferSizeExt().
   !>
@@ -9203,76 +8707,49 @@ module hipfort_hipsparse
   !>   \note For matrix products with more than 4096 non-zero entries per
   !>   row, an additional temporary storage buffer is allocated by the algorithm.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrValA         array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnzA - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrValA - array of \p nnzA elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnzA elements containing the column indices of the
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descrB - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrValB         array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csrRowPtrB      array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnzB - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrValB - array of \p nnzB elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csrRowPtrB - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csrColIndB      array of \p nnzB elements containing the column indices of the
+  !>   @param[in] csrColIndB - array of \p nnzB elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descrD          descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descrD - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   nnzD            number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrValD         array of \p nnzD elements of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrRowPtrD      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnzD - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csrValD - array of \p nnzD elements of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csrRowPtrD - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csrColIndD      array of \p nnzD elements containing the column indices of the
+  !>   @param[in] csrColIndD - array of \p nnzD elements containing the column indices of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC         array of \p nnzC elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrValC - array of \p nnzC elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csrColIndC      array of \p nnzC elements containing the column indices of the
+  !>   @param[out] csrColIndC - array of \p nnzC elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   info            structure that holds meta data for the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   pBuffer         temporary storage buffer allocated by the user. The size is returned
+  !>   @param[in] myInfo - structure that holds meta data for the sparse CSR matrix \f$C\f$.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user. The size is returned
   !>                   by `hipsparseScsrgemm2_bufferSizeExt()`, hipsparseDcsrgemm2_bufferSizeExt(),
   !>                   hipsparseCcsrgemm2_bufferSizeExt(), or hipsparseZcsrgemm2_bufferSizeExt().
   !>
@@ -9497,12 +8974,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -9534,33 +9009,25 @@ module hipfort_hipsparse
   !>   and `hipsparseSbsric02` "hipsparseXbsric02()". The temporary storage buffer must be
   !>   allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW`
   !>                      or by `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb                 number of block rows in the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   nnzb number of non-zero block entries of the sparse BSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrValA array of length \p nnzb*blockDim*blockDim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsrRowPtrA array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix. Must be non-negative.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix. Must be
+  !>   non-negative.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrValA - array of length \p nnzb*blockDim*blockDim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>                      sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix. Must be positive, which is between 1 and m
-  !>   where \p m=mb*blockDim.
-  !>   @param[out]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix. Must be positive, which is
+  !>   between 1 and m where \p m=mb*blockDim.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSbsric02_analysis()`, hipsparseDbsric02_analysis(),
   !>                      hipsparseCbsric02_analysis(), hipsparseZbsric02_analysis(),
   !>                      `hipsparseSbsric02()`, hipsparseDbsric02(), hipsparseCbsric02(),
@@ -9724,36 +9191,25 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
-  !>   or by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW` or by
   !>               `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrValA array of length \p nnzb*blockDim*blockDim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsrRowPtrA  array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrValA - array of length \p nnzb*blockDim*blockDim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix, which is between 1 and m where \p
-  !>   m=mb*blockDim.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix, which is between 1 and m where
+  !>   \p m=mb*blockDim.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim, \p descrA,
@@ -9944,36 +9400,25 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
-  !>   or by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW` or by
   !>               `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix.
-  !>   @param[inout]
-  !>   bsrValA array of length \p nnzb*blockDim*blockDim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsrRowPtrA  array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[inout] bsrValA - array of length \p nnzb*blockDim*blockDim containing the values of
+  !>   the sparse BSR matrix.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix, which is between 1 and m where \p
-  !>   m=mb*blockDim.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix, which is between 1 and m where
+  !>   \p m=mb*blockDim.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim, \p descrA,
@@ -10145,12 +9590,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -10191,16 +9634,11 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info          structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   enable_boost  enable/disable numeric boost.
-  !>   @param[in]
-  !>   tol           tolerance to determine whether a numerical value is replaced or not.
-  !>   @param[in]
-  !>   boost_val     boost value to replace a numerical value.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] enable_boost - enable/disable numeric boost.
+  !>   @param[in] tol - tolerance to determine whether a numerical value is replaced or not.
+  !>   @param[in] boost_val - boost value to replace a numerical value.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -10294,33 +9732,24 @@ module hipfort_hipsparse
   !>   and `hipsparseSbsrilu02` "hipsparseXbsrilu02()". The temporary storage buffer must be
   !>   allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW`
   !>                      or by `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb                 number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb               number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedValA array of length \p nnzb*blockDim*blockDim containing the values of the sparse
-  !>   BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrSortedValA - array of length \p nnzb*blockDim*blockDim containing the values of
+  !>   the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of the
   !>                      sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb elements containing the block column indices of the sparse
-  !>   BSR matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix, which is between 1 and m where \p
-  !>   m=mb*blockDim.
-  !>   @param[out]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb elements containing the block column indices
+  !>   of the sparse BSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix, which is between 1 and m where
+  !>   \p m=mb*blockDim.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSbsrilu02_analysis()`, hipsparseDbsrilu02_analysis(),
   !>                      hipsparseCbsrilu02_analysis(), hipsparseZbsrilu02_analysis(),
   !>                      `hipsparseSbsrilu02()`, hipsparseDbsrilu02(), hipsparseCbsrilu02(),
@@ -10482,35 +9911,24 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA             direction that specified whether to count non-zero elements by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specified whether to count non-zero elements by
   !>                    `HIPSPARSE_DIRECTION_ROW` or by `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb               number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb             number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedValA array of length \p nnzb*blockDim*blockDim containing the values of the sparse
-  !>   BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsrSortedValA - array of length \p nnzb*blockDim*blockDim containing the values of
+  !>   the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of the
   !>                    sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb elements containing the block column indices of the sparse
-  !>   BSR matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix, which is between 1 and m where \p
-  !>   m=mb*blockDim.
-  !>   @param[out]
-  !>   info             structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer          temporary storage buffer allocated by the user.
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb elements containing the block column indices
+  !>   of the sparse BSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix, which is between 1 and m where
+  !>   \p m=mb*blockDim.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim, \p descrA,
@@ -10692,35 +10110,24 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA               direction that specified whether to count non-zero elements by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specified whether to count non-zero elements by
   !>                      `HIPSPARSE_DIRECTION_ROW` or by `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb                 number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb               number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse BSR matrix.
-  !>   @param[inout]
-  !>   bsrSortedValA_valM array of length \p nnzb*blockDim*blockDim containing the values of the
-  !>   sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedRowPtrA array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix.
+  !>   @param[inout] bsrSortedValA_valM - array of length \p nnzb*blockDim*blockDim containing the
+  !>   values of the sparse BSR matrix.
+  !>   @param[in] bsrSortedRowPtrA - array of \p mb+1 elements that point to the start of every
+  !>   block row of the
   !>                      sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrSortedColIndA array of \p nnzb elements containing the block column indices of the sparse
-  !>   BSR matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix, which is between 1 and m where \p
-  !>   m=mb*blockDim.
-  !>   @param[in]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy             `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer            temporary storage buffer allocated by the user.
+  !>   @param[in] bsrSortedColIndA - array of \p nnzb elements containing the block column indices
+  !>   of the sparse BSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix, which is between 1 and m where
+  !>   \p m=mb*blockDim.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim, \p descrA,
@@ -10888,12 +10295,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -10925,26 +10330,19 @@ module hipfort_hipsparse
   !>   `hipsparseScsric02` "hipsparseXcsric02()". The temporary storage buffer must be allocated
   !>   by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA      array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                      CSR matrix.
-  !>   @param[out]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()" and
   !>                      `hipsparseScsric02` "hipsparseXcsric02()".
   !>
@@ -11091,26 +10489,19 @@ module hipfort_hipsparse
   !>   and `hipsparseScsric02` "hipsparseXcsric02()". The temporary storage buffer must be
   !>   allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA      array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                      CSR matrix.
-  !>   @param[out]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()" and
   !>                      `hipsparseScsric02` "hipsparseXcsric02()".
   !>
@@ -11246,29 +10637,21 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz              number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                    CSR matrix.
-  !>   @param[out]
-  !>   info             structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>                    the analysis step.
-  !>   @param[in]
-  !>   policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer          temporary storage buffer allocated by the user.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
@@ -11546,28 +10929,19 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix.
-  !>   @param[inout]
-  !>   csrSortedValA_valM array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[inout] csrSortedValA_valM - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start
   !>                      of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                      CSR matrix.
-  !>   @param[in]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy             `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer            temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p
@@ -11728,12 +11102,10 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -11774,16 +11146,11 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   info            structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   enable_boost    enable/disable numeric boost.
-  !>   @param[in]
-  !>   tol             tolerance to determine whether a numerical value is replaced or not.
-  !>   @param[in]
-  !>   boost_val       boost value to replace a numerical value.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] enable_boost - enable/disable numeric boost.
+  !>   @param[in] tol - tolerance to determine whether a numerical value is replaced or not.
+  !>   @param[in] boost_val - boost value to replace a numerical value.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -11877,26 +11244,19 @@ module hipfort_hipsparse
   !>   and `hipsparseScsrilu02` "hipsparseXcsrilu02()". The temporary storage buffer
   !>   must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA      array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                      CSR matrix.
-  !>   @param[out]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()" and
   !>                      `hipsparseScsrilu02` "hipsparseXcsrilu02()".
   !>
@@ -12041,26 +11401,19 @@ module hipfort_hipsparse
   !>   and `hipsparseScsrilu02` "hipsparseXcsrilu02()". The temporary storage buffer
   !>   must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA      array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                      sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                      CSR matrix.
-  !>   @param[out]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()" and
   !>                      `hipsparseScsrilu02` "hipsparseXcsrilu02()".
   !>
@@ -12195,29 +11548,21 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle           handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz              number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA           descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedValA    array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[in] csrSortedValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                    sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                    CSR matrix.
-  !>   @param[out]
-  !>   info             structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>                    the analysis step.
-  !>   @param[in]
-  !>   policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer          temporary storage buffer allocated by the user.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
@@ -12478,28 +11823,19 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix.
-  !>   @param[inout]
-  !>   csrSortedValA_valM array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA   array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix.
+  !>   @param[inout] csrSortedValA_valM - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start
   !>                      of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColIndA - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                      CSR matrix.
-  !>   @param[in]
-  !>   info               structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy             `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
-  !>   @param[in]
-  !>   pBuffer            temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p
@@ -12646,30 +11982,20 @@ module hipfort_hipsparse
   !>   "hipsparseXgpsvInterleavedBatch()".
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo               algorithm to solve the linear system.
-  !>   @param[in]
-  !>   m                  size of the pentadiagonal linear system.
-  !>   @param[in]
-  !>   ds lower diagonal (distance 2) of the pentadiagonal system. The first two entries
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - algorithm to solve the linear system.
+  !>   @param[in] m - size of the pentadiagonal linear system.
+  !>   @param[in] ds - lower diagonal (distance 2) of the pentadiagonal system. The first two
+  !>   entries
   !>                      must be zero.
-  !>   @param[in]
-  !>   dl                 lower diagonal of the pentadiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d                  main diagonal of the pentadiagonal system.
-  !>   @param[in]
-  !>   du                 upper diagonal of the pentadiagonal system. The last entry must be zero.
-  !>   @param[in]
-  !>   dw upper diagonal (distance 2) of the pentadiagonal system. The last two entries
+  !>   @param[in] dl - lower diagonal of the pentadiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of the pentadiagonal system.
+  !>   @param[in] du - upper diagonal of the pentadiagonal system. The last entry must be zero.
+  !>   @param[in] dw - upper diagonal (distance 2) of the pentadiagonal system. The last two entries
   !>                      must be zero.
-  !>   @param[in]
-  !>   x                  Dense array of right-hand sides with dimension \p batchCount by \p m.
-  !>   @param[in]
-  !>   batchCount         The number of systems to solve.
-  !>   @param[out]
-  !>   pBufferSizeInBytes Number of bytes of the temporary storage buffer required.
+  !>   @param[in] x - Dense array of right-hand sides with dimension \p batchCount by \p m.
+  !>   @param[in] batchCount - The number of systems to solve.
+  !>   @param[out] pBufferSizeInBytes - Number of bytes of the temporary storage buffer required.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p alg, \p batchCount, \p ds, \p dl,
@@ -12890,30 +12216,21 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo        algorithm to solve the linear system.
-  !>   @param[in]
-  !>   m           size of the pentadiagonal linear system.
-  !>   @param[inout]
-  !>   ds          lower diagonal (distance 2) of the pentadiagonal system. The first two entries
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - algorithm to solve the linear system.
+  !>   @param[in] m - size of the pentadiagonal linear system.
+  !>   @param[inout] ds - lower diagonal (distance 2) of the pentadiagonal system. The first two
+  !>   entries
   !>               must be zero.
-  !>   @param[inout]
-  !>   dl          lower diagonal of the pentadiagonal system. The first entry must be zero.
-  !>   @param[inout]
-  !>   d           main diagonal of the pentadiagonal system.
-  !>   @param[inout]
-  !>   du          upper diagonal of the pentadiagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   dw          upper diagonal (distance 2) of the pentadiagonal system. The last two entries
+  !>   @param[inout] dl - lower diagonal of the pentadiagonal system. The first entry must be zero.
+  !>   @param[inout] d - main diagonal of the pentadiagonal system.
+  !>   @param[inout] du - upper diagonal of the pentadiagonal system. The last entry must be zero.
+  !>   @param[inout] dw - upper diagonal (distance 2) of the pentadiagonal system. The last two
+  !>   entries
   !>               must be zero.
-  !>   @param[inout]
-  !>   x           Dense array of right-hand-sides with dimension \p batchCount by \p m.
-  !>   @param[in]
-  !>   batchCount  The number of systems to solve.
-  !>   @param[in]
-  !>   pBuffer     Temporary storage buffer allocated by the user.
+  !>   @param[inout] x - Dense array of right-hand-sides with dimension \p batchCount by \p m.
+  !>   @param[in] batchCount - The number of systems to solve.
+  !>   @param[in] pBuffer - Temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p alg, \p batchCount, \p ds,
@@ -13060,24 +12377,15 @@ module hipfort_hipsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  size of the tridiagonal linear system. Must be at least 2.
-  !>   @param[in]
-  !>   n                  number of columns in the dense matrix B. Must be non-negative.
-  !>   @param[in]
-  !>   dl                 lower diagonal of the tridiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d                  main diagonal of the tridiagonal system.
-  !>   @param[in]
-  !>   du                 upper diagonal of the tridiagonal system. The last entry must be zero.
-  !>   @param[in]
-  !>   B                  dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb                leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - size of the tridiagonal linear system. Must be at least 2.
+  !>   @param[in] n - number of columns in the dense matrix B. Must be non-negative.
+  !>   @param[in] dl - lower diagonal of the tridiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of the tridiagonal system.
+  !>   @param[in] du - upper diagonal of the tridiagonal system. The last entry must be zero.
+  !>   @param[in] B - dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSgtsv2` "hipsparseXgtsv2()".
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -13242,24 +12550,15 @@ module hipfort_hipsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tridiagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   n           number of columns in the dense matrix B.
-  !>   @param[in]
-  !>   dl          lower diagonal of the tridiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of the tridiagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of the tridiagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   B           Dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb         Leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - size of the tridiagonal linear system (must be >= 2).
+  !>   @param[in] n - number of columns in the dense matrix B.
+  !>   @param[in] dl - lower diagonal of the tridiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of the tridiagonal system.
+  !>   @param[in] du - upper diagonal of the tridiagonal system. The last entry must be zero.
+  !>   @param[inout] B - Dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - Leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p ldb, \p dl, \p d,
@@ -13388,29 +12687,21 @@ module hipfort_hipsparse
   !>   "hipsparseXgtsvInterleavedBatch()".
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo Algorithm to use when solving tridiagonal systems. Options are Thomas ( \p algo=0 ),
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - Algorithm to use when solving tridiagonal systems. Options are Thomas ( \p
+  !>   algo=0 ),
   !>                      LU ( \p algo=1 ), or QR ( \p algo=2 ). The Thomas algorithm is the fastest
   !>                      but is not
   !>                      stable, while LU and QR are slower but are stable.
-  !>   @param[in]
-  !>   m                  size of the tridiagonal linear system.
-  !>   @param[in]
-  !>   dl lower diagonal of the tridiagonal system. The first element of the lower diagonal must be
-  !>   zero.
-  !>   @param[in]
-  !>   d                  main diagonal of the tridiagonal system.
-  !>   @param[in]
-  !>   du upper diagonal of the tridiagonal system. The last element of the upper diagonal must be
-  !>   zero.
-  !>   @param[inout]
-  !>   x                  Dense array of right-hand sides with dimension \p batchCount by \p m.
-  !>   @param[in]
-  !>   batchCount         The number of systems to solve.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] m - size of the tridiagonal linear system.
+  !>   @param[in] dl - lower diagonal of the tridiagonal system. The first element of the lower
+  !>   diagonal must be zero.
+  !>   @param[in] d - main diagonal of the tridiagonal system.
+  !>   @param[in] du - upper diagonal of the tridiagonal system. The last element of the upper
+  !>   diagonal must be zero.
+  !>   @param[inout] x - Dense array of right-hand sides with dimension \p batchCount by \p m.
+  !>   @param[in] batchCount - The number of systems to solve.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSgtsvInterleavedBatch` "`hipsparseSgtsvInterleavedBatch()`".
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -13597,29 +12888,21 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   algo Algorithm to use when solving tridiagonal systems. Options are Thomas ( \p algo=0 ),
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] algo - Algorithm to use when solving tridiagonal systems. Options are Thomas ( \p
+  !>   algo=0 ),
   !>               LU ( \p algo=1 ), or QR ( \p algo=2 ). The Thomas algorithm is the fastest but is
   !>               not
   !>               stable, while LU and QR are slower but are stable.
-  !>   @param[in]
-  !>   m           size of the tridiagonal linear system.
-  !>   @param[inout]
-  !>   dl lower diagonal of the tridiagonal system. The first element of the lower diagonal must be
-  !>   zero.
-  !>   @param[inout]
-  !>   d           main diagonal of the tridiagonal system.
-  !>   @param[inout]
-  !>   du upper diagonal of the tridiagonal system. The last element of the upper diagonal must be
-  !>   zero.
-  !>   @param[inout]
-  !>   x           Dense array of right-hand sides with dimension \p batchCount by \p m.
-  !>   @param[in]
-  !>   batchCount  The number of systems to solve.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] m - size of the tridiagonal linear system.
+  !>   @param[inout] dl - lower diagonal of the tridiagonal system. The first element of the lower
+  !>   diagonal must be zero.
+  !>   @param[inout] d - main diagonal of the tridiagonal system.
+  !>   @param[inout] du - upper diagonal of the tridiagonal system. The last element of the upper
+  !>   diagonal must be zero.
+  !>   @param[inout] x - Dense array of right-hand sides with dimension \p batchCount by \p m.
+  !>   @param[in] batchCount - The number of systems to solve.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p batchCount, \p dl, \p d,
@@ -13727,24 +13010,15 @@ module hipfort_hipsparse
   !>   buffer in bytes that is required by `hipsparseSgtsv2_nopivot` "hipsparseXgtsv2_nopivot()".
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  size of the tridiagonal linear system. Must be >= 2.
-  !>   @param[in]
-  !>   n                  number of columns in the dense matrix B. Must be non-negative.
-  !>   @param[in]
-  !>   dl                 lower diagonal of the tridiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d                  main diagonal of the tridiagonal system.
-  !>   @param[in]
-  !>   du                 upper diagonal of the tridiagonal system. The last entry must be zero.
-  !>   @param[in]
-  !>   B                  Dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb                Leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - size of the tridiagonal linear system. Must be >= 2.
+  !>   @param[in] n - number of columns in the dense matrix B. Must be non-negative.
+  !>   @param[in] dl - lower diagonal of the tridiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of the tridiagonal system.
+  !>   @param[in] du - upper diagonal of the tridiagonal system. The last entry must be zero.
+  !>   @param[in] B - Dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - Leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSgtsv2_nopivot` "hipsparseXgtsv2_nopivot()".
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -13909,24 +13183,15 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tridiagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   n           number of columns in the dense matrix B.
-  !>   @param[in]
-  !>   dl          lower diagonal of the tridiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of the tridiagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of the tridiagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   B           Dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb         Leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - size of the tridiagonal linear system (must be >= 2).
+  !>   @param[in] n - number of columns in the dense matrix B.
+  !>   @param[in] dl - lower diagonal of the tridiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of the tridiagonal system.
+  !>   @param[in] du - upper diagonal of the tridiagonal system. The last entry must be zero.
+  !>   @param[inout] B - Dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - Leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p ldb, \p dl, \p d,
@@ -14063,28 +13328,23 @@ module hipfort_hipsparse
   !>   "hipsparseXgtsv2StridedBatch()".
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  size of the tridiagonal linear system.
-  !>   @param[in]
-  !>   dl lower diagonal of the tridiagonal system where the ith system lower diagonal starts at
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - size of the tridiagonal linear system.
+  !>   @param[in] dl - lower diagonal of the tridiagonal system where the ith system lower diagonal
+  !>   starts at
   !>                      \p dl+batchStride*i.
-  !>   @param[in]
-  !>   d main diagonal of the tridiagonal system where the ith system diagonal starts at
+  !>   @param[in] d - main diagonal of the tridiagonal system where the ith system diagonal starts
+  !>   at
   !>                      \p d+batchStride*i.
-  !>   @param[in]
-  !>   du upper diagonal of the tridiagonal system where the ith system upper diagonal starts at
+  !>   @param[in] du - upper diagonal of the tridiagonal system where the ith system upper diagonal
+  !>   starts at
   !>                      \p du+batchStride*i.
-  !>   @param[inout]
-  !>   x Dense array of right-hand sides where the ith right-hand side starts at \p x+batchStride*i.
-  !>   @param[in]
-  !>   batchCount         The number of systems to solve.
-  !>   @param[in]
-  !>   batchStride The number of elements that separate each system, which must satisfy \p
-  !>   batchStride >= m.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[inout] x - Dense array of right-hand sides where the ith right-hand side starts at \p
+  !>   x+batchStride*i.
+  !>   @param[in] batchCount - The number of systems to solve.
+  !>   @param[in] batchStride - The number of elements that separate each system, which must satisfy
+  !>   \p batchStride >= m.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSgtsv2StridedBatch` "hipsparseXgtsv2StridedBatch()".
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -14287,25 +13547,17 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tridiagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   dl          lower diagonal of the tridiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of the tridiagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of the tridiagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   x Dense array of right-hand sides where the ith right-hand side starts at \p x+batchStride*i.
-  !>   @param[in]
-  !>   batchCount  The number of systems to solve.
-  !>   @param[in]
-  !>   batchStride The number of elements that separate each system, which must satisfy \p
-  !>   batchStride >= m.
-  !>   @param[in]
-  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - size of the tridiagonal linear system (must be >= 2).
+  !>   @param[in] dl - lower diagonal of the tridiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of the tridiagonal system.
+  !>   @param[in] du - upper diagonal of the tridiagonal system. The last entry must be zero.
+  !>   @param[inout] x - Dense array of right-hand sides where the ith right-hand side starts at \p
+  !>   x+batchStride*i.
+  !>   @param[in] batchCount - The number of systems to solve.
+  !>   @param[in] batchStride - The number of elements that separate each system, which must satisfy
+  !>   \p batchStride >= m.
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p batchCount, \p batchStride, \p dl,
@@ -14482,41 +13734,30 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   nb          number of block columns in the sparse BSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix, which must be non-negative.
+  !>   @param[in] nb - number of block columns in the sparse BSR matrix, which must be non-negative.
+  !>   @param[in] descrA - descriptor of the sparse BSR matrix. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   bsrValA array of \p nnzb*blockDim*blockDim containing the values of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrRowPtrA  array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrValA - array of \p nnzb*blockDim*blockDim containing the values of the sparse
+  !>   BSR matrix.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   blockDim    size of the blocks in the sparse BSR matrix. Must be positive.
-  !>   @param[in]
-  !>   descrC      descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] blockDim - size of the blocks in the sparse BSR matrix. Must be positive.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC array of \p nnzb*blockDim*blockDim elements containing the values of the sparse CSR
-  !>   matrix.
-  !>   @param[out]
-  !>   csrRowPtrC array of \p m+1 where \p m=mb*blockDim elements that point to the start of every
-  !>   row of the
+  !>   @param[out] csrValC - array of \p nnzb*blockDim*blockDim elements containing the values of
+  !>   the sparse CSR matrix.
+  !>   @param[out] csrRowPtrC - array of \p m+1 where \p m=mb*blockDim elements that point to the
+  !>   start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[out]
-  !>   csrColIndC array of \p nnzb*blockDim*blockDim elements containing the column indices of the
-  !>   sparse CSR matrix.
+  !>   @param[out] csrColIndC - array of \p nnzb*blockDim*blockDim elements containing the column
+  !>   indices of the sparse CSR matrix.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -14699,20 +13940,14 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   cooRowInd   array of \p nnz elements containing the row indices of the sparse COO
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] cooRowInd - array of \p nnz elements containing the row indices of the sparse COO
   !>               matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix. Must be non-negative.
-  !>   @param[out]
-  !>   csrRowPtr   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in] m - number of rows of the sparse CSR matrix. Must be non-negative.
+  !>   @param[out] csrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -14755,22 +13990,15 @@ module hipfort_hipsparse
   !>   in bytes required by `hipsparseXcoosortByRow`() and `hipsparseXcoosortByColumn`().
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                   number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n                   number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz                 number of non-zero entries of the sparse COO matrix.
-  !>   @param[in]
-  !>   cooRows             array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[in] cooRows - array of \p nnz elements containing the row indices of the sparse
   !>                       COO matrix.
-  !>   @param[in]
-  !>   cooCols             array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] cooCols - array of \p nnz elements containing the column indices of the sparse
   !>                       COO matrix.
-  !>   @param[out]
-  !>   pBufferSizeInBytes  number of bytes of the temporary storage buffer required by
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                       `hipsparseXcoosortByRow()` and `hipsparseXcoosortByColumn()`.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -14826,25 +14054,17 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse COO matrix.
-  !>   @param[inout]
-  !>   cooRows         array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[inout] cooRows - array of \p nnz elements containing the row indices of the sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   cooCols         array of \p nnz elements containing the column indices of the sparse
+  !>   @param[inout] cooCols - array of \p nnz elements containing the column indices of the sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   P               array of \p nnz integers containing the unsorted map indices. Can be
+  !>   @param[inout] P - array of \p nnz integers containing the unsorted map indices. Can be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   pBuffer         temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user. The size is returned by
   !>                   `hipsparseXcoosort_bufferSizeExt`().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -14901,25 +14121,17 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse COO matrix.
-  !>   @param[inout]
-  !>   cooRows         array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[inout] cooRows - array of \p nnz elements containing the row indices of the sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   cooCols         array of \p nnz elements containing the column indices of the sparse
+  !>   @param[inout] cooCols - array of \p nnz elements containing the column indices of the sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   P               array of \p nnz integers containing the unsorted map indices. Can be
+  !>   @param[inout] P - array of \p nnz integers containing the unsorted map indices. Can be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   pBuffer         temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user. The size is returned by
   !>                   `hipsparseXcoosort_bufferSizeExt`().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -14973,12 +14185,9 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPASRE library context queue.
-  !>   @param[in]
-  !>   n           size of the map \p p.
-  !>   @param[out]
-  !>   p           array of \p n integers containing the map.
+  !>   @param[in] handle - handle to the hipSPASRE library context queue.
+  !>   @param[in] n - size of the map \p p.
+  !>   @param[out] p - array of \p n integers containing the map.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p n, or \p p pointer is invalid.
@@ -15053,28 +14262,20 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>               any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   cscVal array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   cscRowInd integer array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   cscColPtr integer array of \p n+1 elements that contains the start of every column and the
-  !>   end of the last column plus one.
-  !>   @param[out]
-  !>   A           array of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld          leading dimension of dense array \p A. Must be at least \p m.
+  !>   @param[in] cscVal - array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) non-zero elements of
+  !>   matrix \p A.
+  !>   @param[in] cscRowInd - integer array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[in] cscColPtr - integer array of \p n+1 elements that contains the start of every
+  !>   column and the end of the last column plus one.
+  !>   @param[out] A - array of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of dense array \p A. Must be at least \p m.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -15200,22 +14401,15 @@ module hipfort_hipsparse
   !>   in bytes required by `hipsparseXcscsort()`. The temporary storage buffer must be
   !>   allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                   number of rows of the sparse CSC matrix.
-  !>   @param[in]
-  !>   n                   number of columns of the sparse CSC matrix.
-  !>   @param[in]
-  !>   nnz                 number of non-zero entries of the sparse CSC matrix.
-  !>   @param[in]
-  !>   cscColPtr           array of \p n+1 elements that point to the start of every column of
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSC matrix.
+  !>   @param[in] n - number of columns of the sparse CSC matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix.
+  !>   @param[in] cscColPtr - array of \p n+1 elements that point to the start of every column of
   !>                       the sparse CSC matrix.
-  !>   @param[in]
-  !>   cscRowInd           array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] cscRowInd - array of \p nnz elements containing the row indices of the sparse
   !>                       CSC matrix.
-  !>   @param[out]
-  !>   pBufferSizeInBytes  number of bytes of the temporary storage buffer required by
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                       `hipsparseXcscsort`().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -15272,28 +14466,19 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSC matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSC matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse CSC matrix.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSC matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSC matrix.
+  !>   @param[in] n - number of columns of the sparse CSC matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSC matrix. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   cscColPtr       array of \p n+1 elements that point to the start of every column of
+  !>   @param[in] cscColPtr - array of \p n+1 elements that point to the start of every column of
   !>                   the sparse CSC matrix.
-  !>   @param[inout]
-  !>   cscRowInd       array of \p nnz elements containing the row indices of the sparse
+  !>   @param[inout] cscRowInd - array of \p nnz elements containing the row indices of the sparse
   !>                   CSC matrix.
-  !>   @param[inout]
-  !>   P               array of \p nnz integers containing the unsorted map indices. Can be
+  !>   @param[inout] P - array of \p nnz integers containing the unsorted map indices. Can be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   pBuffer         temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user. The size is returned by
   !>                   `hipsparseXcscsort_bufferSizeExt`().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -15443,35 +14628,25 @@ module hipfort_hipsparse
   !>   \note
   !>   The routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
-  !>   or by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW` or by
   !>               `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA descriptor of the sparse CSR matrix. Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL`
-  !>   is supported.
-  !>   @param[in]
-  !>   csrRowPtrA integer array containing \p m+1 elements that points to the start of each row of
-  !>   the CSR matrix.
-  !>   @param[in]
-  !>   csrColIndA  integer array of the column indices for each non-zero element in the CSR matrix.
-  !>   @param[in]
-  !>   blockDim the block dimension of the BSR matrix, which is between \f$1\f$ and \f$\min(m,
-  !>   n)\f$.
-  !>   @param[in]
-  !>   descrC descriptor of the sparse BSR matrix. Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL`
-  !>   is supported.
-  !>   @param[out]
-  !>   bsrRowPtrC integer array containing \p mb+1 elements that point to the start of each block
-  !>   row of the BSR matrix.
-  !>   @param[out]
-  !>   bsrNnzb     total number of non-zero elements in device or host memory.
+  !>   @param[in] m - number of rows of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix. Currently, only
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in] csrRowPtrA - integer array containing \p m+1 elements that points to the start of
+  !>   each row of the CSR matrix.
+  !>   @param[in] csrColIndA - integer array of the column indices for each non-zero element in the
+  !>   CSR matrix.
+  !>   @param[in] blockDim - the block dimension of the BSR matrix, which is between \f$1\f$ and
+  !>   \f$\min(m, n)\f$.
+  !>   @param[in] descrC - descriptor of the sparse BSR matrix. Currently, only
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[out] bsrRowPtrC - integer array containing \p mb+1 elements that point to the start of
+  !>   each block row of the BSR matrix.
+  !>   @param[out] bsrNnzb - total number of non-zero elements in device or host memory.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p blockDim, \p csrRowPtrA, \p
@@ -15599,38 +14774,28 @@ module hipfort_hipsparse
   !>   \p hipsparseXcsr2bsr requires extra temporary storage that is allocated internally if
   !>   \p blockDim > 16.
   !>
-  !>   @param[in]
-  !>   handle       handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   m            number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n            number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA       descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix. Currently, only
   !>                `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA      array of \p nnz elements containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtrA   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrValA - array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
   !>                sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColIndA   array of \p nnz elements containing the column indices of the sparse CSR matrix.
-  !>   @param[in]
-  !>   blockDim     size of the blocks in the sparse BSR matrix.
-  !>   @param[in]
-  !>   descrC       descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] csrColIndA - array of \p nnz elements containing the column indices of the sparse
+  !>   CSR matrix.
+  !>   @param[in] blockDim - size of the blocks in the sparse BSR matrix.
+  !>   @param[in] descrC - descriptor of the sparse BSR matrix. Currently, only
   !>                `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   bsrValC array of \p nnzb*blockDim*blockDim containing the values of the sparse BSR matrix.
-  !>   @param[out]
-  !>   bsrRowPtrC   array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[out] bsrValC - array of \p nnzb*blockDim*blockDim containing the values of the sparse
+  !>   BSR matrix.
+  !>   @param[out] bsrRowPtrC - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>                sparse BSR matrix.
-  !>   @param[out]
-  !>   bsrColIndC array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
+  !>   @param[out] bsrColIndC - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p blockDim, \p bsrValC, \p
@@ -15811,20 +14976,14 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   csrRowPtr   array of \p m+1 elements that point to the start of every row
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] csrRowPtr - array of \p m+1 elements that point to the start of every row
   !>               of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix. Must be non-negative.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix. Must be non-negative.
-  !>   @param[out]
-  !>   cooRowInd   array of \p nnz elements containing the row indices of the sparse COO
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in] m - number of rows of the sparse CSR matrix. Must be non-negative.
+  !>   @param[out] cooRowInd - array of \p nnz elements containing the row indices of the sparse COO
   !>               matrix.
-  !>   @param[in]
-  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -15911,34 +15070,27 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   nnz number of non-zero entries of the sparse CSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   csrSortedVal    array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in] n - number of columns of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix, which must be
+  !>   non-negative.
+  !>   @param[in] csrSortedVal - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtr - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColInd array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrSortedColInd - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                   CSR matrix.
-  !>   @param[out]
-  !>   cscSortedVal    array of \p nnz elements of the sparse CSC matrix.
-  !>   @param[out]
-  !>   cscSortedRowInd array of \p nnz elements containing the row indices of the sparse CSC
+  !>   @param[out] cscSortedVal - array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[out] cscSortedRowInd - array of \p nnz elements containing the row indices of the
+  !>   sparse CSC
   !>                   matrix.
-  !>   @param[out]
-  !>   cscSortedColPtr array of \p n+1 elements that point to the start of every column of the
+  !>   @param[out] cscSortedColPtr - array of \p n+1 elements that point to the start of every
+  !>   column of the
   !>                   sparse CSC matrix.
-  !>   @param[in]
-  !>   copyValues      `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
-  !>   @param[in]
-  !>   idxBase         index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>   @param[in] copyValues - `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in] idxBase - index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
   !>                   `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -16096,41 +15248,29 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                  number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrVal             array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtr          array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csrVal - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>                      sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColInd          array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrColInd - array of \p nnz elements containing the column indices of the sparse
   !>                      CSR matrix.
-  !>   @param[in]
-  !>   cscVal             array of \p nnz elements of the sparse CSC matrix.
-  !>   @param[in]
-  !>   cscColPtr          array of \p n+1 elements that point to the start of every column of the
+  !>   @param[in] cscVal - array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[in] cscColPtr - array of \p n+1 elements that point to the start of every column of
+  !>   the
   !>                      sparse CSC matrix.
-  !>   @param[in]
-  !>   cscRowInd          array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] cscRowInd - array of \p nnz elements containing the row indices of the sparse
   !>                      CSC matrix.
-  !>   @param[in]
-  !>   valType The data type of the values arrays \p csrVal and \p cscVal. Can be HIP_R_32F,
+  !>   @param[in] valType - The data type of the values arrays \p csrVal and \p cscVal. Can be
+  !>   HIP_R_32F,
   !>                      HIP_R_64F, HIP_C_32F, or HIP_C_64F.
-  !>   @param[in]
-  !>   copyValues         `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
-  !>   @param[in]
-  !>   idxBase            `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
-  !>   @param[in]
-  !>   alg HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1, or HIPSPARSE_CSR2CSC_ALG2.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] copyValues - `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in] idxBase - `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in] alg - HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1, or
+  !>   HIPSPARSE_CSR2CSC_ALG2.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseCsr2cscEx2()`.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -16187,41 +15327,29 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrVal      array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtr   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csrVal - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColInd   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrColInd - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   cscVal      array of \p nnz elements of the sparse CSC matrix.
-  !>   @param[in]
-  !>   cscColPtr   array of \p n+1 elements that point to the start of every column of the
+  !>   @param[in] cscVal - array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[in] cscColPtr - array of \p n+1 elements that point to the start of every column of
+  !>   the
   !>               sparse CSC matrix.
-  !>   @param[in]
-  !>   cscRowInd   array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] cscRowInd - array of \p nnz elements containing the row indices of the sparse
   !>               CSC matrix.
-  !>   @param[in]
-  !>   valType     The data type of the values arrays \p csrVal and \p cscVal. Can be HIP_R_32F,
+  !>   @param[in] valType - The data type of the values arrays \p csrVal and \p cscVal. Can be
+  !>   HIP_R_32F,
   !>               HIP_R_64F, HIP_C_32F, or HIP_C_64F.
-  !>   @param[in]
-  !>   copyValues  `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
-  !>   @param[in]
-  !>   idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
-  !>   @param[in]
-  !>   alg         HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1 or HIPSPARSE_CSR2CSC_ALG2.
-  !>   @param[in]
-  !>   buffer      temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] copyValues - `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in] idxBase - `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in] alg - HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1 or
+  !>   HIPSPARSE_CSR2CSC_ALG2.
+  !>   @param[in] buffer - temporary storage buffer allocated by the user. The size is returned by
   !>               hipsparseCsr2cscEx2_bufferSize().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -16285,39 +15413,31 @@ module hipfort_hipsparse
   !>   \note
   !>   In the case of complex matrices, only the magnitude of the real part of \p tol is used.
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA        matrix descriptor for the CSR matrix.
-  !>   @param[in]
-  !>   csrValA       array of \p nnzA elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtrA    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] descrA - matrix descriptor for the CSR matrix.
+  !>   @param[in] csrValA - array of \p nnzA elements of the sparse CSR matrix.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
   !>                 uncompressed sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColIndA    array of \p nnzA elements containing the column indices of the uncompressed
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the
+  !>   uncompressed
   !>                 sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA          number of elements in the column indices and values arrays of the uncompressed
+  !>   @param[in] nnzA - number of elements in the column indices and values arrays of the
+  !>   uncompressed
   !>                 sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzPerRow array of length \p m containing the number of entries that will be kept per row in
+  !>   @param[in] nnzPerRow - array of length \p m containing the number of entries that will be
+  !>   kept per row in
   !>                 the final compressed CSR matrix.
-  !>   @param[out]
-  !>   csrValC       array of \p nnzC elements of the compressed sparse CSC matrix.
-  !>   @param[out]
-  !>   csrRowPtrC array of \p m+1 elements that point to the start of every column of the compressed
+  !>   @param[out] csrValC - array of \p nnzC elements of the compressed sparse CSC matrix.
+  !>   @param[out] csrRowPtrC - array of \p m+1 elements that point to the start of every column of
+  !>   the compressed
   !>                 sparse CSR matrix.
-  !>   @param[out]
-  !>   csrColIndC    array of \p nnzC elements containing the row indices of the compressed
+  !>   @param[out] csrColIndC - array of \p nnzC elements containing the row indices of the
+  !>   compressed
   !>                 sparse CSR matrix.
-  !>   @param[in]
-  !>   tol the non-negative tolerance used for compression. If \p tol is complex, then only the
-  !>   magnitude
+  !>   @param[in] tol - the non-negative tolerance used for compression. If \p tol is complex, then
+  !>   only the magnitude
   !>                 of the real part is used. Entries in the input uncompressed CSR array that are
   !>                 below the tolerance
   !>                 are removed in the output compressed CSR matrix.
@@ -16646,28 +15766,20 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A, the supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A, the supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>               any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[in]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   A           array of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld          leading dimension of dense array \p A. Must be at least \p m.
+  !>   @param[in] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of
+  !>   matrix \p A.
+  !>   @param[in] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[in] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[out] A - array of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of dense array \p A. Must be at least \p m.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -16799,31 +15911,24 @@ module hipfort_hipsparse
   !>   \note
   !>   The routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW`
   !>                      or by `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   m                  number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                  number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr          descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrVal             array of \p nnz elements containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtr integer array containing \p m+1 elements that point to the start of each row of the
+  !>   @param[in] csrVal - array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in] csrRowPtr - integer array containing \p m+1 elements that point to the start of
+  !>   each row of the CSR matrix.
+  !>   @param[in] csrColInd - integer array of the column indices for each non-zero element in the
   !>   CSR matrix.
-  !>   @param[in]
-  !>   csrColInd integer array of the column indices for each non-zero element in the CSR matrix.
-  !>   @param[in]
-  !>   rowBlockDim        the row block dimension of the general BSR matrix. Between 1 and \p m.
-  !>   @param[in]
-  !>   colBlockDim        the col block dimension of the general BSR matrix. Between 1 and \p n.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] rowBlockDim - the row block dimension of the general BSR matrix. Between 1 and \p
+  !>   m.
+  !>   @param[in] colBlockDim - the col block dimension of the general BSR matrix. Between 1 and \p
+  !>   n.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>   `hipsparseXcsr2gebsrNnz` ()
   !>                      and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
   !>
@@ -17062,44 +16167,32 @@ module hipfort_hipsparse
   !>
   !>   See `hipsparseScsr2gebsr()` for a full code example.
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
-  !>   or by
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW` or by
   !>                 `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   m             number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr     descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrRowPtr integer array containing \p m+1 elements that point to the start of each row of the
+  !>   @param[in] csrRowPtr - integer array containing \p m+1 elements that point to the start of
+  !>   each row of the CSR matrix.
+  !>   @param[in] csrColInd - integer array of the column indices for each non-zero element in the
   !>   CSR matrix.
-  !>   @param[in]
-  !>   csrColInd integer array of the column indices for each non-zero element in the CSR matrix.
-  !>   @param[in]
-  !>   bsr_descr     descriptor of the sparse general BSR matrix. Currently, only
+  !>   @param[in] bsr_descr - descriptor of the sparse general BSR matrix. Currently, only
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   bsrRowPtr integer array containing \p mb+1 elements that point to the start of each block row
-  !>   of the general BSR matrix.
+  !>   @param[out] bsrRowPtr - integer array containing \p mb+1 elements that point to the start of
+  !>   each block row of the general BSR matrix.
   !>
-  !>   @param[in]
-  !>   rowBlockDim the row block dimension of the general BSR matrix, which is between \f$1\f$ and
-  !>   \f$\min(m, n)\f$.
+  !>   @param[in] rowBlockDim - the row block dimension of the general BSR matrix, which is between
+  !>   \f$1\f$ and \f$\min(m, n)\f$.
   !>
-  !>   @param[in]
-  !>   colBlockDim the col block dimension of the general BSR matrix, which is between \f$1\f$ and
-  !>   \f$\min(m, n)\f$.
+  !>   @param[in] colBlockDim - the col block dimension of the general BSR matrix, which is between
+  !>   \f$1\f$ and \f$\min(m, n)\f$.
   !>
-  !>   @param[out]
-  !>   bsrNnzDevhost total number of non-zero elements in device or host memory.
+  !>   @param[out] bsrNnzDevhost - total number of non-zero elements in device or host memory.
   !>
-  !>   @param[in]
-  !>   pbuffer buffer allocated by the user whose size is determined by calling
+  !>   @param[in] pbuffer - buffer allocated by the user whose size is determined by calling
   !>   `hipsparseScsr2gebsr_bufferSize`
   !>                 "hipsparseXcsr2gebsr_bufferSize()".
   !>
@@ -17278,43 +16371,30 @@ module hipfort_hipsparse
   !>   \right]
   !>   \f]
   !>
-  !>   @param[in]
-  !>   handle       handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   m            number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n            number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrVal       array of \p nnz elements containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtr    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrVal - array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in] csrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>                sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColInd    array of \p nnz elements containing the column indices of the sparse CSR matrix.
-  !>   @param[in]
-  !>   bsr_descr    descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] csrColInd - array of \p nnz elements containing the column indices of the sparse
+  !>   CSR matrix.
+  !>   @param[in] bsr_descr - descriptor of the sparse BSR matrix. Currently, only
   !>                `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   bsrVal array of \p nnzb* \p rowBlockDim* \p colBlockDim containing the values of the sparse
-  !>   BSR matrix.
-  !>   @param[out]
-  !>   bsrRowPtr    array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[out] bsrVal - array of \p nnzb* \p rowBlockDim* \p colBlockDim containing the values
+  !>   of the sparse BSR matrix.
+  !>   @param[out] bsrRowPtr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>                sparse BSR matrix.
-  !>   @param[out]
-  !>   bsrColInd array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   rowBlockDim  row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   colBlockDim  col size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   pbuffer buffer allocated by the user. The buffer size is determined by calling
+  !>   @param[out] bsrColInd - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] rowBlockDim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] colBlockDim - col size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] pbuffer - buffer allocated by the user. The buffer size is determined by calling
   !>   `hipsparseScsr2gebsr_bufferSize`
   !>                "hipsparseXcsr2gebsr_bufferSize()".
   !>
@@ -17494,29 +16574,20 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle            handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                 number of rows of the sparse CSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   n                 number of columns of the sparse CSR matrix, which must be non-negative.
-  !>   @param[in]
-  !>   descrA            descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in] n - number of columns of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix. Currently, only
   !>                     `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrSortedValA     array containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedRowPtrA  array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrSortedValA - array containing the values of the sparse CSR matrix.
+  !>   @param[in] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                     sparse CSR matrix.
-  !>   @param[in]
-  !>   csrSortedColIndA  array containing the column indices of the sparse CSR matrix.
-  !>   @param[out]
-  !>   hybA              sparse matrix in HYB format.
-  !>   @param[in]
-  !>   userEllWidth      width of the ELL part of the HYB matrix (only required if
+  !>   @param[in] csrSortedColIndA - array containing the column indices of the sparse CSR matrix.
+  !>   @param[out] hybA - sparse matrix in HYB format.
+  !>   @param[in] userEllWidth - width of the ELL part of the HYB matrix (only required if
   !>                     \p partitionType == `HIPSPARSE_HYB_PARTITION_USER`). Must be non-negative.
-  !>   @param[in]
-  !>   partitionType     `HIPSPARSE_HYB_PARTITION_AUTO` (recommended),
+  !>   @param[in] partitionType - `HIPSPARSE_HYB_PARTITION_AUTO` (recommended),
   !>                     `HIPSPARSE_HYB_PARTITION_USER`, or
   !>                     `HIPSPARSE_HYB_PARTITION_MAX`.
   !>
@@ -17653,22 +16724,15 @@ module hipfort_hipsparse
   !>   in bytes required by `hipsparseXcsrsort()`. The temporary storage buffer must be allocated by
   !>   the user.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                   number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                   number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz                 number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtr           array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>                       sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColInd           array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrColInd - array of \p nnz elements containing the column indices of the sparse
   !>                       CSR matrix.
-  !>   @param[out]
-  !>   pBufferSizeInBytes  number of bytes of the temporary storage buffer required by
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                       `hipsparseXcsrsort`().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -17725,28 +16789,20 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA          descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix. Currently, only
   !>                   `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrRowPtr       array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix.
-  !>   @param[inout]
-  !>   csrColInd       array of \p nnz elements containing the column indices of the sparse
+  !>   @param[inout] csrColInd - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                   CSR matrix.
-  !>   @param[inout]
-  !>   P               array of \p nnz integers containing the unsorted map indices. Can be
+  !>   @param[inout] P - array of \p nnz integers containing the unsorted map indices. Can be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   pBuffer         temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] pBuffer - temporary storage buffer allocated by the user. The size is returned by
   !>                   `hipsparseXcsrsort_bufferSizeExt`().
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -18097,30 +17153,22 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
   !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle       handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m            number of rows of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   n            number of columns of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>                any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   A            array of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld           leading dimension of dense array \p A. Must be at least \p m.
-  !>   @param[in]
-  !>   nnzPerColumn array of size \p n containing the number of non-zero elements per column.
-  !>   @param[out]
-  !>   cscVal array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) nonzero elements of matrix \p A.
-  !>   @param[out]
-  !>   cscRowInd integer array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   cscColPtr integer array of \p n+1 elements that contains the start of every column and the
-  !>   end of the last column plus one.
+  !>   @param[in] A - array of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of dense array \p A. Must be at least \p m.
+  !>   @param[in] nnzPerColumn - array of size \p n containing the number of non-zero elements per
+  !>   column.
+  !>   @param[out] cscVal - array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) nonzero elements of
+  !>   matrix \p A.
+  !>   @param[out] cscRowInd - integer array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[out] cscColPtr - integer array of \p n+1 elements that contains the start of every
+  !>   column and the end of the last column plus one.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -18283,30 +17331,21 @@ module hipfort_hipsparse
   !>   the
   !>   application on the host before the entire result is ready.
   !>
-  !>   @param[in]
-  !>   handle       handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m            number of rows of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   n            number of columns of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>                any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   A            array of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld           leading dimension of dense array \p A, which must be at least \p m.
-  !>   @param[in]
-  !>   nnzPerRow    array of size \p m containing the number of non-zero elements per row.
-  !>   @param[out]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
+  !>   @param[in] A - array of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of dense array \p A, which must be at least \p m.
+  !>   @param[in] nnzPerRow - array of size \p m containing the number of non-zero elements per row.
+  !>   @param[out] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements
+  !>   of matrix \p A.
+  !>   @param[out] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[out] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -18493,44 +17532,31 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   descrA      descriptor of the sparse general BSR matrix. Currently, only
+  !>   @param[in] mb - number of block rows in the sparse general BSR matrix.
+  !>   @param[in] nb - number of block columns in the sparse general BSR matrix.
+  !>   @param[in] descrA - descriptor of the sparse general BSR matrix. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   bsrValA array of \p nnzb*rowBlockDim*colBlockDim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsrRowPtrA  array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrValA - array of \p nnzb*rowBlockDim*colBlockDim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   rowBlockDim row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   colBlockDim column size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   descrC      descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] rowBlockDim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] colBlockDim - column size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix. Currently, only
   !>               `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC array of \p nnzb*rowBlockDim*colBlockDim elements containing the values of the sparse
-  !>   CSR matrix.
-  !>   @param[out]
-  !>   csrRowPtrC array of \p m+1 where \p m=mb*rowBlockDim elements that point to the start of
-  !>   every row of the
+  !>   @param[out] csrValC - array of \p nnzb*rowBlockDim*colBlockDim elements containing the values
+  !>   of the sparse CSR matrix.
+  !>   @param[out] csrRowPtrC - array of \p m+1 where \p m=mb*rowBlockDim elements that point to the
+  !>   start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[out]
-  !>   csrColIndC array of \p nnzb*block_dim*block_dim elements containing the column indices of the
-  !>   sparse CSR matrix.
+  !>   @param[out] csrColIndC - array of \p nnzb*block_dim*block_dim elements containing the column
+  !>   indices of the sparse CSR matrix.
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nb, \p block_dim, \p bsrValA,
@@ -18696,29 +17722,20 @@ module hipfort_hipsparse
   !>
   !>   See `hipsparseSgebsr2gebsc()` for a complete code example.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   mb                 number of rows of the sparse General BSR matrix.
-  !>   @param[in]
-  !>   nb                 number of columns of the sparse General BSR matrix.
-  !>   @param[in]
-  !>   nnzb               number of non-zero entries of the sparse General BSR matrix.
-  !>   @param[in]
-  !>   bsrVal array of \p nnzb*rowBlockDim*colBlockDim containing the values of the sparse General
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] mb - number of rows of the sparse General BSR matrix.
+  !>   @param[in] nb - number of columns of the sparse General BSR matrix.
+  !>   @param[in] nnzb - number of non-zero entries of the sparse General BSR matrix.
+  !>   @param[in] bsrVal - array of \p nnzb*rowBlockDim*colBlockDim containing the values of the
+  !>   sparse General
   !>                      BSR matrix.
-  !>   @param[in]
-  !>   bsrRowPtr          array of \p mb+1 elements that point to the start of every row of the
+  !>   @param[in] bsrRowPtr - array of \p mb+1 elements that point to the start of every row of the
   !>                      sparse General BSR matrix.
-  !>   @param[in]
-  !>   bsrColInd          array of \p nnzb elements containing the column indices of the sparse
+  !>   @param[in] bsrColInd - array of \p nnzb elements containing the column indices of the sparse
   !>                      General BSR matrix.
-  !>   @param[in]
-  !>   rowBlockDim        row size of the blocks in the sparse General BSR matrix.
-  !>   @param[in]
-  !>   colBlockDim        column size of the blocks in the sparse General BSR matrix.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] rowBlockDim - row size of the blocks in the sparse General BSR matrix.
+  !>   @param[in] colBlockDim - column size of the blocks in the sparse General BSR matrix.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSgebsr2gebsc()`, hipsparseDgebsr2gebsc(),
   !>                      hipsparseCgebsr2gebsc(), and
   !>                      hipsparseZgebsr2gebsc().
@@ -18912,41 +17929,28 @@ module hipfort_hipsparse
   !>   This function is non-blocking and executed asynchronously with respect to the host.
   !>   It can return before the actual computation has finished.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   mb          number of rows of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nb          number of columns of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero entries of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsrVal array of \p nnzb * \p rowBlockDim * \p colBlockDim elements of the sparse general BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsrRowPtr   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] mb - number of rows of the sparse general BSR matrix.
+  !>   @param[in] nb - number of columns of the sparse general BSR matrix.
+  !>   @param[in] nnzb - number of non-zero entries of the sparse general BSR matrix.
+  !>   @param[in] bsrVal - array of \p nnzb * \p rowBlockDim * \p colBlockDim elements of the sparse
+  !>   general BSR matrix.
+  !>   @param[in] bsrRowPtr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsrColInd   array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] bsrColInd - array of \p nnz elements containing the column indices of the sparse
   !>               general BSR matrix.
-  !>   @param[in]
-  !>   rowBlockDim row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   colBlockDim col size of the blocks in the sparse general BSR matrix.
-  !>   @param[out]
-  !>   bscVal      array of \p nnz elements of the sparse BSC matrix.
-  !>   @param[out]
-  !>   bscRowInd   array of \p nnz elements containing the row indices of the sparse BSC
+  !>   @param[in] rowBlockDim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] colBlockDim - col size of the blocks in the sparse general BSR matrix.
+  !>   @param[out] bscVal - array of \p nnz elements of the sparse BSC matrix.
+  !>   @param[out] bscRowInd - array of \p nnz elements containing the row indices of the sparse BSC
   !>               matrix.
-  !>   @param[out]
-  !>   bscColPtr   array of \p n+1 elements that point to the start of every column of the
+  !>   @param[out] bscColPtr - array of \p n+1 elements that point to the start of every column of
+  !>   the
   !>               sparse BSC matrix.
-  !>   @param[in]
-  !>   copyValues  `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
-  !>   @param[in]
-  !>   idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] copyValues - `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in] idxBase - `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>               `hipsparseSgebsr2gebsc_bufferSize` "hipsparseXgebsr2gebsc_bufferSize()".
   !>
   !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -19096,40 +18100,28 @@ module hipfort_hipsparse
   !>   temporary storage
   !>   buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb                 number of block rows of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nb                 number of block columns of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb               number of blocks in the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrA the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
+  !>   @param[in] mb - number of block rows of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nb - number of block columns of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nnzb - number of blocks in the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] descrA - the descriptor of the general BSR sparse matrix \f$A\f$. The supported
+  !>   matrix type is
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the
   !>                      `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   bsrValA array of \p nnzb*rowBlockDimA*colBlockDimA containing the values of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrRowPtrA array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrValA - array of \p nnzb*rowBlockDimA*colBlockDimA containing the values of the
+  !>   sparse general BSR matrix \f$A\f$.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>                      sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   rowBlockDimA       row size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   colBlockDimA       column size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   rowBlockDimC       row size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   colBlockDimC       column size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse general BSR matrix \f$A\f$.
+  !>   @param[in] rowBlockDimA - row size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] colBlockDimA - column size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] rowBlockDimC - row size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] colBlockDimC - column size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>   `hipsparseXgebsr2gebsrNnz()`,
   !>                      `hipsparseSgebsr2gebsr()`, hipsparseDgebsr2gebsr(),
   !>                      hipsparseCgebsr2gebsr(), and
@@ -19299,48 +18291,36 @@ module hipfort_hipsparse
   !>   \details
   !>   The routine supports asynchronous execution.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb                 number of block rows of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nb                 number of block columns of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb               number of blocks in the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrA the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
+  !>   @param[in] mb - number of block rows of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nb - number of block columns of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nnzb - number of blocks in the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] descrA - the descriptor of the general BSR sparse matrix \f$A\f$. The supported
+  !>   matrix type is
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the
   !>                      `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   bsrRowPtrA array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>                      sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse
-  !>   general BSR matrix \p A.
-  !>   @param[in]
-  !>   rowBlockDimA       row size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   colBlockDimA       column size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrC the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse general BSR matrix \p A.
+  !>   @param[in] rowBlockDimA - row size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] colBlockDimA - column size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] descrC - the descriptor of the general BSR sparse matrix \f$C\f$. The supported
+  !>   matrix type is
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the
   !>                      `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   bsrRowPtrC array of \p mbC+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrRowPtrC - array of \p mbC+1 elements that point to the start of every block row
+  !>   of the
   !>                      sparse general BSR matrix \f$C\f$ where \p mbC = ( \p m+rowBlockDimC-1 ) /
   !>                      \p rowBlockDimC.
-  !>   @param[in]
-  !>   rowBlockDimC       row size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   colBlockDimC       column size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr total number of non-zero blocks in general BSR sparse matrix \f$C\f$,
-  !>   stored using device or host memory.
-  !>   @param[out]
-  !>   buffer buffer allocated by the user. The size is determined by calling
+  !>   @param[in] rowBlockDimC - row size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] colBlockDimC - column size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[out] nnzTotalDevHostPtr - total number of non-zero blocks in general BSR sparse matrix
+  !>   \f$C\f$, stored using device or host memory.
+  !>   @param[out] buffer - buffer allocated by the user. The size is determined by calling
   !>   `hipsparseSgebsr2gebsr_bufferSize`
   !>                      "hipsparseXgebsr2gebsr_bufferSize()".
   !>
@@ -19488,53 +18468,39 @@ module hipfort_hipsparse
   !>   \right]
   !>   \f]
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
   !>   `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   mb            number of block rows of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nb            number of block columns of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb          number of blocks in the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrA the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
+  !>   @param[in] mb - number of block rows of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nb - number of block columns of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nnzb - number of blocks in the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] descrA - the descriptor of the general BSR sparse matrix \f$A\f$. The supported
+  !>   matrix type is
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` and also any valid value of the
   !>                 `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   bsrValA array of \p nnzb*rowBlockDimA*colBlockDimA containing the values of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrRowPtrA    array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrValA - array of \p nnzb*rowBlockDimA*colBlockDimA containing the values of the
+  !>   sparse general BSR matrix \f$A\f$.
+  !>   @param[in] bsrRowPtrA - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>                 sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsrColIndA array of \p nnzb elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   rowBlockDimA  row size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   colBlockDimA  column size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descrC the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
+  !>   @param[in] bsrColIndA - array of \p nnzb elements containing the block column indices of the
+  !>   sparse general BSR matrix \f$A\f$.
+  !>   @param[in] rowBlockDimA - row size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] colBlockDimA - column size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] descrC - the descriptor of the general BSR sparse matrix \f$C\f$. The supported
+  !>   matrix type is
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the
   !>                 `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   bsrValC array of \p nnzbC*rowBlockDimC*colBlockDimC containing the values of the sparse
-  !>   general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   bsrRowPtrC    array of \p mbC+1 elements that point to the start of every block row of the
+  !>   @param[in] bsrValC - array of \p nnzbC*rowBlockDimC*colBlockDimC containing the values of the
+  !>   sparse general BSR matrix \f$C\f$.
+  !>   @param[in] bsrRowPtrC - array of \p mbC+1 elements that point to the start of every block row
+  !>   of the
   !>                 sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   bsrColIndC array of \p nnzbC elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   rowBlockDimC  row size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   colBlockDimC  column size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   buffer buffer allocated by the user. The size is determined by calling
+  !>   @param[in] bsrColIndC - array of \p nnzbC elements containing the block column indices of the
+  !>   sparse general BSR matrix \f$C\f$.
+  !>   @param[in] rowBlockDimC - row size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] colBlockDimC - column size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[out] buffer - buffer allocated by the user. The size is determined by calling
   !>   `hipsparseSgebsr2gebsr_bufferSize`
   !>                 "hipsparseXgebsr2gebsr_bufferSize()".
   !>
@@ -19730,20 +18696,15 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
   !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle            handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   descrA            descriptor of the sparse HYB matrix. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] descrA - descriptor of the sparse HYB matrix. Currently, only
   !>                     `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   hybA              sparse matrix in HYB format.
-  !>   @param[out]
-  !>   csrSortedValA     array containing the values of the sparse CSR matrix.
-  !>   @param[out]
-  !>   csrSortedRowPtrA  array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] hybA - sparse matrix in HYB format.
+  !>   @param[out] csrSortedValA - array containing the values of the sparse CSR matrix.
+  !>   @param[out] csrSortedRowPtrA - array of \p m+1 elements that point to the start of every row
+  !>   of the
   !>                     sparse CSR matrix.
-  !>   @param[out]
-  !>   csrSortedColIndA  array containing the column indices of the sparse CSR matrix.
+  !>   @param[out] csrSortedColIndA - array containing the column indices of the sparse CSR matrix.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -19899,26 +18860,18 @@ module hipfort_hipsparse
   !>   \note
   !>   The routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] dirA - direction that specifies whether to count non-zero elements by
+  !>   `HIPSPARSE_DIRECTION_ROW`
   !>                      or by `HIPSPARSE_DIRECTION_COLUMN`.
-  !>   @param[in]
-  !>   m                  number of rows of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   n                  number of columns of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   descrA             the descriptor of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                  array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                leading dimension of dense array \p A. Must be at least \p m.
-  !>   @param[out]
-  !>   nnzPerRowColumn array of size \p m or \p n containing the number of non-zero elements per row
-  !>   or column, respectively.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
+  !>   @param[in] m - number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] descrA - the descriptor of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A. Must be at least \p m.
+  !>   @param[out] nnzPerRowColumn - array of size \p m or \p n containing the number of non-zero
+  !>   elements per row or column, respectively.
+  !>   @param[out] nnzTotalDevHostPtr - total number of non-zero elements in device or host memory.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -20076,26 +19029,20 @@ module hipfort_hipsparse
   !>   \note
   !>   In the case of complex matrices, only the magnitude of the real part of \p tol is used.
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descrA        the descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrValA       array of \p nnzA elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtrA    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] descrA - the descriptor of the sparse CSR matrix.
+  !>   @param[in] csrValA - array of \p nnzA elements of the sparse CSR matrix.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
   !>                 uncompressed sparse CSR matrix.
-  !>   @param[out]
-  !>   nnzPerRow array of length \p m containing the number of entries that will be kept per row in
+  !>   @param[out] nnzPerRow - array of length \p m containing the number of entries that will be
+  !>   kept per row in
   !>                 the final compressed CSR matrix.
-  !>   @param[out]
-  !>   nnzC          number of elements in the column indices and values arrays of the compressed
+  !>   @param[out] nnzC - number of elements in the column indices and values arrays of the
+  !>   compressed
   !>                 sparse CSR matrix. Can be either host or device pointer.
-  !>   @param[in]
-  !>   tol the non-negative tolerance used for compression. If \p tol is complex, then only the
-  !>   magnitude
+  !>   @param[in] tol - the non-negative tolerance used for compression. If \p tol is complex, then
+  !>   only the magnitude
   !>                 of the real part is used. Entries in the input uncompressed CSR array that are
   !>                 below the tolerance
   !>                 are removed in output compressed CSR matrix.
@@ -20228,41 +19175,29 @@ module hipfort_hipsparse
   !>   is required by \p hipsparseXpruneCsr2csrNnz and \p hipsparseXpruneCsr2csr. The
   !>   temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                  number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA               number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA         array of \p m+1 elements that point to the start of every row of the
-  !>                      sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descrC             descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrRowPtrC         array of \p m+1 elements that point to the start of every row of the
-  !>                      sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrColIndC array of \p nnzC elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValC - array of \p nnzC elements containing the values of the sparse CSR matrix
   !>   C.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix C.
+  !>   @param[in] csrColIndC - array of \p nnzC elements containing the column indices of the sparse
+  !>   CSR matrix C.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>   `hipsparseSpruneCsr2csrNnz()`,
   !>                      hipsparseDpruneCsr2csrNnz(), `hipsparseSpruneCsr2csr()`, and
   !>                      hipsparseDpruneCsr2csr().
@@ -20345,41 +19280,29 @@ module hipfort_hipsparse
   !>   `hipsparseSpruneCsr2csr` "hipsparseXpruneCsr2csr()". The temporary storage buffer
   !>   must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                  number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA               number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA         array of \p m+1 elements that point to the start of every row of the
-  !>                      sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descrC             descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrRowPtrC         array of \p m+1 elements that point to the start of every row of the
-  !>                      sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrColIndC array of \p nnzC elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValC - array of \p nnzC elements containing the values of the sparse CSR matrix
   !>   C.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix C.
+  !>   @param[in] csrColIndC - array of \p nnzC elements containing the column indices of the sparse
+  !>   CSR matrix C.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>   `hipsparseSpruneCsr2csrNnz()`,
   !>                      hipsparseDpruneCsr2csrNnz(), `hipsparseSpruneCsr2csr()`, and
   !>                      hipsparseDpruneCsr2csr().
@@ -20471,38 +19394,26 @@ module hipfort_hipsparse
   !>
   !>   \note The routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                  number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA               number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA         array of \p m+1 elements that point to the start of every row of the
-  !>                      sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descrC             descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrRowPtrC         array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                      sparse CSR matrix C.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr total number of nonzero elements in device or host memory.
-  !>   @param[out]
-  !>   buffer buffer allocated by the user whose size is determined by calling
+  !>   @param[out] nnzTotalDevHostPtr - total number of nonzero elements in device or host memory.
+  !>   @param[out] buffer - buffer allocated by the user whose size is determined by calling
   !>   `hipsparseSpruneCsr2csr_bufferSize`
   !>                      "hipsparseXpruneCsr2csr_bufferSize()".
   !>
@@ -20607,41 +19518,29 @@ module hipfort_hipsparse
   !>   with respect to the host and can return control to the application on the host before the
   !>   entire result is ready.
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA          number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA        descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA       array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA    array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descrC        descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                 sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC       array of \p nnzC elements containing the values of the sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrRowPtrC    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrValC - array of \p nnzC elements containing the values of the sparse CSR
+  !>   matrix C.
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                 sparse CSR matrix C.
-  !>   @param[out]
-  !>   csrColIndC array of \p nnzC elements containing the column indices of the sparse CSR matrix
-  !>   C.
-  !>   @param[in]
-  !>   buffer buffer allocated by the user whose size is determined by calling
+  !>   @param[out] csrColIndC - array of \p nnzC elements containing the column indices of the
+  !>   sparse CSR matrix C.
+  !>   @param[in] buffer - buffer allocated by the user whose size is determined by calling
   !>   `hipsparseSpruneCsr2csr_bufferSize`
   !>                 "hipsparseXpruneCsr2csr_bufferSize()".
   !>
@@ -20734,42 +19633,29 @@ module hipfort_hipsparse
   !>   "hipsparseXpruneCsr2csrNnzByPercentage()".
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                   number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                   number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA                number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA              descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                       `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA          array of \p m+1 elements that point to the start of every row of the
-  !>                       sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   percentage          \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descrC              descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                       sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                       `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrRowPtrC          array of \p m+1 elements that point to the start of every row of the
-  !>                       sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrColIndC array of \p nnzC elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValC - array of \p nnzC elements containing the values of the sparse CSR matrix
   !>   C.
-  !>   @param[in]
-  !>   info                prune info structure.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
+  !>                       sparse CSR matrix C.
+  !>   @param[in] csrColIndC - array of \p nnzC elements containing the column indices of the sparse
+  !>   CSR matrix C.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>   `hipsparseSpruneCsr2csrNnzByPercentage()`,
   !>                       hipsparseDpruneCsr2csrNnzByPercentage(),
   !>                       hipsparseSpruneCsr2csrByPercentage(),
@@ -20858,42 +19744,29 @@ module hipfort_hipsparse
   !>   "hipsparseXpruneCsr2csrNnzByPercentage()".
   !>   The temporary storage buffer must be allocated by the user.
   !>
-  !>   @param[in]
-  !>   handle              handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                   number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                   number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA                number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA              descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                       `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA          array of \p m+1 elements that point to the start of every row of the
-  !>                       sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   percentage          \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descrC              descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                       sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                       `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrRowPtrC          array of \p m+1 elements that point to the start of every row of the
-  !>                       sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrColIndC array of \p nnzC elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValC - array of \p nnzC elements containing the values of the sparse CSR matrix
   !>   C.
-  !>   @param[in]
-  !>   info                prune info structure.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
+  !>                       sparse CSR matrix C.
+  !>   @param[in] csrColIndC - array of \p nnzC elements containing the column indices of the sparse
+  !>   CSR matrix C.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>   `hipsparseSpruneCsr2csrNnzByPercentage()`,
   !>                       hipsparseDpruneCsr2csrNnzByPercentage(),
   !>                       hipsparseSpruneCsr2csrByPercentage(),
@@ -20993,39 +19866,26 @@ module hipfort_hipsparse
   !>
   !>   \note The routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                  number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA               number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA             descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA         array of \p m+1 elements that point to the start of every row of the
-  !>                      sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   percentage         \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descrC             descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrRowPtrC         array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                      sparse CSR matrix C.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
-  !>   @param[in]
-  !>   info               prune info structure.
-  !>   @param[out]
-  !>   buffer             buffer allocated by the user whose size is determined by calling
+  !>   @param[out] nnzTotalDevHostPtr - total number of non-zero elements in device or host memory.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[out] buffer - buffer allocated by the user whose size is determined by calling
   !>                      `hipsparseSpruneCsr2csrByPercentage_bufferSize`
   !>                      "hipsparseXpruneCsr2csrByPercentage_bufferSize()".
   !>
@@ -21133,42 +19993,29 @@ module hipfort_hipsparse
   !>   on the host
   !>   before the entire result is ready.
   !>
-  !>   @param[in]
-  !>   handle        handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnzA          number of non-zeros in the sparse CSR matrix A.
-  !>   @param[in]
-  !>   descrA        descriptor of the sparse CSR matrix A. Currently, only
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnzA - number of non-zeros in the sparse CSR matrix A.
+  !>   @param[in] descrA - descriptor of the sparse CSR matrix A. Currently, only
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[in]
-  !>   csrValA       array of \p nnzA elements containing the values of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrRowPtrA    array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix A.
-  !>   @param[in]
-  !>   csrColIndA array of \p nnzA elements containing the column indices of the sparse CSR matrix
+  !>   @param[in] csrValA - array of \p nnzA elements containing the values of the sparse CSR matrix
   !>   A.
-  !>   @param[in]
-  !>   percentage    \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descrC        descriptor of the sparse CSR matrix C. Currently, only
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
+  !>                 sparse CSR matrix A.
+  !>   @param[in] csrColIndA - array of \p nnzA elements containing the column indices of the sparse
+  !>   CSR matrix A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descrC - descriptor of the sparse CSR matrix C. Currently, only
   !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
-  !>   @param[out]
-  !>   csrValC       array of \p nnz_C elements containing the values of the sparse CSR matrix C.
-  !>   @param[in]
-  !>   csrRowPtrC    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csrValC - array of \p nnz_C elements containing the values of the sparse CSR
+  !>   matrix C.
+  !>   @param[in] csrRowPtrC - array of \p m+1 elements that point to the start of every row of the
   !>                 sparse CSR matrix C.
-  !>   @param[out]
-  !>   csrColIndC array of \p nnz_C elements containing the column indices of the sparse CSR matrix
-  !>   C.
-  !>   @param[in]
-  !>   info          prune info structure.
-  !>   @param[in]
-  !>   buffer        buffer allocated by the user whose size is determined by calling
+  !>   @param[out] csrColIndC - array of \p nnz_C elements containing the column indices of the
+  !>   sparse CSR matrix C.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[in] buffer - buffer allocated by the user whose size is determined by calling
   !>                 `hipsparseSpruneCsr2csrByPercentage_bufferSize`
   !>                 "hipsparseXpruneCsr2csrByPercentage_bufferSize()".
   !>
@@ -21285,33 +20132,23 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   n                  number of columns of the dense matrix \p A. Must be non-negative.
-  !>   @param[in]
-  !>   A                  array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                leading dimension of dense array \p A. Must be at least \p m.
-  !>   @param[in]
-  !>   threshold pointer to the pruning non-negative threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] n - number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A. Must be at least \p m.
+  !>   @param[in] threshold - pointer to the pruning non-negative threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL`
   !>                      and any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[in]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of
+  !>   matrix \p A.
+  !>   @param[in] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[in] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSpruneDense2csrNnz()`, hipsparseDpruneDense2csrNnz(),
   !>                      `hipsparseSpruneDense2csr()`, and hipsparseDpruneDense2csr().
   !>
@@ -21517,28 +20354,18 @@ module hipfort_hipsparse
   !>   \note
   !>   The routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                  number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                  array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                leading dimension of the dense array \p A.
-  !>   @param[in]
-  !>   threshold pointer to the pruning non-negative threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descr              the descriptor of the dense matrix \p A.
-  !>   @param[out]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
-  !>   @param[out]
-  !>   buffer             buffer allocated by the user whose size is determined by calling
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of the dense array \p A.
+  !>   @param[in] threshold - pointer to the pruning non-negative threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A.
+  !>   @param[out] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[out] nnzTotalDevHostPtr - total number of non-zero elements in device or host memory.
+  !>   @param[out] buffer - buffer allocated by the user whose size is determined by calling
   !>                      `hipsparseSpruneDense2csr_bufferSize`
   !>                      "hipsparseXpruneDense2csr_bufferSize()" or
   !>                      `hipsparseSpruneDense2csr_bufferSizeExt`
@@ -21679,34 +20506,24 @@ module hipfort_hipsparse
   !>   and can
   !>   return control to the application on the host before the entire result is ready.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A           array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda         leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL`
   !>               and any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[out]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
+  !>   @param[out] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements
+  !>   of matrix \p A.
+  !>   @param[in] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[out] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
   !>
-  !>   @param[in]
-  !>   buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] buffer - temporary storage buffer allocated by the user. The size is returned by
   !>              `hipsparseSpruneDense2csr_bufferSize` "hipsparseXpruneDense2csr_bufferSize()" or
   !>              `hipsparseSpruneDense2csr_bufferSizeExt`
   !>              "hipsparseXpruneDense2csr_bufferSizeExt()".
@@ -21822,34 +20639,23 @@ module hipfort_hipsparse
   !>   the
   !>   application on the host before the entire result is ready.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                  number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                  array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage         \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>                      any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) nonzero elements of matrix \p A.
-  !>   @param[in]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[in]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   info               prune information structure.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) nonzero elements of
+  !>   matrix \p A.
+  !>   @param[in] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[in] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[in] myInfo - prune information structure.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSpruneDense2csrNnzByPercentage()` and
   !>                      hipsparseDpruneDense2csrNnzByPercentage().
   !>
@@ -21955,34 +20761,23 @@ module hipfort_hipsparse
   !>   the
   !>   application on the host before the entire result is ready.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                  number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                  array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage         \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>                      any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[in]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[in]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   info               prune information structure.
-  !>   @param[out]
-  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   @param[in] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of
+  !>   matrix \p A.
+  !>   @param[in] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[in] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[in] myInfo - prune information structure.
+  !>   @param[out] pBufferSizeInBytes - number of bytes of the temporary storage buffer required by
   !>                      `hipsparseSpruneDense2csrNnzByPercentage()` and
   !>                      hipsparseDpruneDense2csrNnzByPercentage().
   !>
@@ -22098,29 +20893,18 @@ module hipfort_hipsparse
   !>   \note
   !>   This routine supports asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle             handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m                  number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                  number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                  array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage         \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr              the descriptor of the dense matrix \p A.
-  !>   @param[out]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
-  !>   @param[in]
-  !>   info               prune information structure
-  !>   @param[out]
-  !>   buffer             buffer allocated by the user whose size is determined by calling
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A.
+  !>   @param[out] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[out] nnzTotalDevHostPtr - total number of non-zero elements in device or host memory.
+  !>   @param[in] myInfo - prune information structure
+  !>   @param[out] buffer - buffer allocated by the user whose size is determined by calling
   !>                      `hipsparseSpruneDense2csrByPercentage_bufferSize`
   !>                      "hipsparseXpruneDense2csrByPercentage_bufferSize()"
   !>                      or `hipsparseSpruneDense2csrByPercentage_bufferSizeExt`
@@ -22236,34 +21020,23 @@ module hipfort_hipsparse
   !>   \note
   !>   This routine support asynchronous execution if the pointer mode is set to device.
   !>
-  !>   @param[in]
-  !>   handle      handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A           array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda         leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage  \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
   !>               any valid value of the `hipsparseIndexBase_t`.
-  !>   @param[out]
-  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
-  !>   non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   info prune  information structure
-  !>   @param[in]
-  !>   buffer      temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[out] csrVal - array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements
+  !>   of matrix \p A.
+  !>   @param[in] csrRowPtr - integer array of \p m+1 elements that contains the start of every row
+  !>   and the end of the last row plus one.
+  !>   @param[out] csrColInd - integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column
+  !>   indices of the non-zero elements of matrix \p A.
+  !>   @param[in] myInfo - prune  information structure
+  !>   @param[in] buffer - temporary storage buffer allocated by the user. The size is returned by
   !>               `hipsparseSpruneDense2csrByPercentage_bufferSize`
   !>               "hipsparseXpruneDense2csrByPercentage_bufferSize()" or
   !>               `hipsparseSpruneDense2csrByPercentage_bufferSizeExt`
@@ -22367,34 +21140,24 @@ module hipfort_hipsparse
   !>   This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
   !>   removed in CUDA 13.0. This deprecation does not apply to the ROCm backend.
   !>
-  !>   @param[in]
-  !>   handle          handle to the hipSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of sparse matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of sparse matrix \f$A\f$. Must be non-negative.
-  !>   @param[in]
-  !>   descrA          sparse matrix descriptor.
-  !>   @param[in]
-  !>   csrValA         array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csrRowPtrA      array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the hipSPARSE library context queue.
+  !>   @param[in] m - number of rows of sparse matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] nnz - number of non-zero entries of sparse matrix \f$A\f$. Must be non-negative.
+  !>   @param[in] descrA - sparse matrix descriptor.
+  !>   @param[in] csrValA - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csrRowPtrA - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix.
-  !>   @param[in]
-  !>   csrColIndA      array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csrColIndA - array of \p nnz elements containing the column indices of the sparse
   !>                   CSR matrix.
-  !>   @param[in]
-  !>   fractionToColor fraction of nodes to be colored, which should be in the interval
+  !>   @param[in] fractionToColor - fraction of nodes to be colored, which should be in the interval
   !>   \f$[0.0,1.0]\f$. For example, \f$0.8\f$ implies that
   !>                   \f$80\f$ percent of nodes will be colored.
-  !>   @param[out]
-  !>   ncolors         resulting number of distinct colors.
-  !>   @param[out]
-  !>   coloring        resulting mapping of colors.
-  !>   @param[out]
-  !>   reordering optional resulting reordering permutation if \p reordering is a non-null pointer.
-  !>   @param[inout]
-  !>   info            structure that holds the information collected during the coloring algorithm.
+  !>   @param[out] ncolors - resulting number of distinct colors.
+  !>   @param[out] coloring - resulting mapping of colors.
+  !>   @param[out] reordering - optional resulting reordering permutation if \p reordering is a
+  !>   non-null pointer.
+  !>   @param[inout] myInfo - structure that holds the information collected during the coloring
+  !>   algorithm.
   !>
   !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
   !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.

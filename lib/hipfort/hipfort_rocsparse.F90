@@ -37,8 +37,7 @@ module hipfort_rocsparse
   !>   all subsequent library function calls. The handle should be destroyed at the end
   !>   using rocsparse_destroy_handle().
   !>
-  !>   @param[out]
-  !>   handle  the pointer to the handle to the rocSPARSE library context.
+  !>   @param[out] handle - the pointer to the handle to the rocSPARSE library context.
   !>
   !>   \retval rocsparse_status_success the initialization succeeded.
   !>   \retval rocsparse_status_invalid_handle \p handle pointer is invalid.
@@ -60,8 +59,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_handle destroys the rocSPARSE library context and releases all
   !>   resources used by the rocSPARSE library.
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
@@ -82,8 +80,8 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_destroy_error destroys the rocSPARSE error descriptor.
   !>
-  !>   @param[in]
-  !>   error  the pointer to the rocSPARSE error descriptor, which can be a null pointer.
+  !>   @param[in] error - the pointer to the rocSPARSE error descriptor, which can be a null
+  !>   pointer.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_internal_error an internal error occurred.
@@ -103,8 +101,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_error_message returns a C-style string that provides details for the error.
   !>
-  !>   @param[in]
-  !>   error  the error to the rocSPARSE error descriptor.
+  !>   @param[in] error - the error to the rocSPARSE error descriptor.
   !>
   !>   @return an error message from a rocSPARSE error descriptor.
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -127,8 +124,7 @@ module hipfort_rocsparse
   !>   representation of this status.
   !>   If the status is not recognized, the function returns "Unrecognized status code".
   !>
-  !>   @param[in]
-  !>   status  a rocSPARSE status.
+  !>   @param[in] status - a rocSPARSE status.
   !>
   !>   \retval pointer to null-terminated string.
   interface rocsparse_get_status_name
@@ -149,8 +145,7 @@ module hipfort_rocsparse
   !>   description as a string.
   !>   If the status is not recognized, the function returns "Unrecognized status code"
   !>
-  !>   @param[in]
-  !>   status  a rocSPARSE status.
+  !>   @param[in] status - a rocSPARSE status.
   !>
   !>   \retval pointer to null-terminated string.
   interface rocsparse_get_status_description
@@ -171,10 +166,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_set_stream specifies the stream to be used by the rocSPARSE library
   !>   context and all subsequent function calls.
   !>
-  !>   @param[inout]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[in]
-  !>   stream  the stream to be used by the rocSPARSE library context.
+  !>   @param[inout] handle - the handle to the rocSPARSE library context.
+  !>   @param[in] stream - the stream to be used by the rocSPARSE library context.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
@@ -218,10 +211,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_get_stream gets the rocSPARSE library context stream which will
   !>   be used for all subsequent function calls.
   !>
-  !>   @param[in]
-  !>   handle the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   stream the stream currently used by the rocSPARSE library context.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] stream - the stream currently used by the rocSPARSE library context.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
@@ -248,10 +239,8 @@ module hipfort_rocsparse
   !>   using host pointer mode. Valid pointer modes are `rocsparse_pointer_mode_host`
   !>   or `rocsparse_pointer_mode_device`.
   !>
-  !>   @param[in]
-  !>   handle          the handle to the rocSPARSE library context.
-  !>   @param[in]
-  !>   pointer_mode    the pointer mode to be used by the rocSPARSE library context.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[in] pointer_mode - the pointer mode to be used by the rocSPARSE library context.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
@@ -274,10 +263,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_get_pointer_mode gets the rocSPARSE library context pointer mode which
   !>   will be used for all subsequent function calls.
   !>
-  !>   @param[in]
-  !>   handle          the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   pointer_mode    the pointer mode that is currently used by the rocSPARSE library
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] pointer_mode - the pointer mode that is currently used by the rocSPARSE library
   !>                   context.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -303,10 +290,8 @@ module hipfort_rocsparse
   !>   - minor = version / 100 % 1000
   !>   - major = version / 100000
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   version the version number of the rocSPARSE library.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] version - the version number of the rocSPARSE library.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
@@ -334,10 +319,8 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_get_git_rev gets the rocSPARSE library git commit revision (SHA-1).
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   rev     the git commit revision (SHA-1).
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] rev - the git commit revision (SHA-1).
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
@@ -373,8 +356,7 @@ module hipfort_rocsparse
   !>   \ref rocsparse_set_mat_type, \ref rocsparse_set_mat_fill_mode, `rocsparse_set_mat_diag_type`,
   !>   \ref rocsparse_set_mat_index_base, and \ref rocsparse_set_mat_storage_mode APIs respectively.
   !>
-  !>   @param[out]
-  !>   descr   the pointer to the matrix descriptor.
+  !>   @param[out] descr - the pointer to the matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -394,10 +376,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_copy_mat_descr copies a matrix descriptor. Both source and destination
   !>   matrix descriptors must be initialized prior to calling \p rocsparse_copy_mat_descr.
   !>
-  !>   @param[out]
-  !>   dest    the pointer to the destination matrix descriptor.
-  !>   @param[in]
-  !>   src     the pointer to the source matrix descriptor.
+  !>   @param[out] dest - the pointer to the destination matrix descriptor.
+  !>   @param[in] src - the pointer to the source matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p src or \p dest pointer is invalid.
@@ -419,8 +399,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_mat_descr destroys a matrix descriptor and releases all
   !>   resources used by the descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
@@ -441,10 +420,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_set_mat_index_base sets the index base of a matrix descriptor. Valid
   !>   options are `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
-  !>   @param[inout]
-  !>   descr   the matrix descriptor.
-  !>   @param[in]
-  !>   base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -466,8 +443,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_get_mat_index_base returns the index base of a matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \returns `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   interface rocsparse_get_mat_index_base
@@ -489,10 +465,8 @@ module hipfort_rocsparse
   !>   `rocsparse_matrix_type_symmetric`, `rocsparse_matrix_type_hermitian`, or
   !>   `rocsparse_matrix_type_triangular`.
   !>
-  !>   @param[inout]
-  !>   descr   the matrix descriptor.
-  !>   @param[in]
-  !>   type    `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] myType - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>           `rocsparse_matrix_type_hermitian`, or
   !>           `rocsparse_matrix_type_triangular`.
   !>
@@ -516,8 +490,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_get_mat_type returns the matrix type of a matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \returns    `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or
@@ -540,10 +513,8 @@ module hipfort_rocsparse
   !>   Valid fill modes are `rocsparse_fill_mode_lower` or
   !>   `rocsparse_fill_mode_upper`.
   !>
-  !>   @param[inout]
-  !>   descr       the matrix descriptor.
-  !>   @param[in]
-  !>   fill_mode   `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] fill_mode - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -566,8 +537,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_get_mat_fill_mode returns the matrix fill mode of a matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \returns    `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
   interface rocsparse_get_mat_fill_mode
@@ -588,10 +558,8 @@ module hipfort_rocsparse
   !>   descriptor. Valid diagonal types are `rocsparse_diag_type_unit` or
   !>   `rocsparse_diag_type_non_unit`.
   !>
-  !>   @param[inout]
-  !>   descr       the matrix descriptor.
-  !>   @param[in]
-  !>   diag_type   `rocsparse_diag_type_unit` or `rocsparse_diag_type_non_unit`.
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] diag_type - `rocsparse_diag_type_unit` or `rocsparse_diag_type_non_unit`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -615,8 +583,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_get_mat_diag_type returns the matrix diagonal type of a matrix
   !>   descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \returns `rocsparse_diag_type_unit` or `rocsparse_diag_type_non_unit`.
   interface rocsparse_get_mat_diag_type
@@ -637,10 +604,8 @@ module hipfort_rocsparse
   !>   Valid fill modes are `rocsparse_storage_mode_sorted` or
   !>   `rocsparse_storage_mode_unsorted`.
   !>
-  !>   @param[inout]
-  !>   descr           the matrix descriptor.
-  !>   @param[in]
-  !>   storage_mode    `rocsparse_storage_mode_sorted` or
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] storage_mode - `rocsparse_storage_mode_sorted` or
   !>                   `rocsparse_storage_mode_unsorted`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -664,8 +629,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_get_mat_storage_mode returns the matrix storage mode of a matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \returns    `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_unsorted`.
   interface rocsparse_get_mat_storage_mode
@@ -685,8 +649,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_hyb_mat creates a structure that holds the matrix in \p HYB
   !>   storage format. It should be destroyed at the end using rocsparse_destroy_hyb_mat().
   !>
-  !>   @param[inout]
-  !>   hyb the pointer to the hybrid matrix.
+  !>   @param[inout] hyb - the pointer to the hybrid matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
@@ -707,10 +670,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_copy_hyb_mat copies a matrix info structure. Both source and destination
   !>   matrix info structure must be initialized prior to calling \p rocsparse_copy_hyb_mat.
   !>
-  !>   @param[out]
-  !>   dest    the pointer to the destination matrix info structure.
-  !>   @param[in]
-  !>   src     the pointer to the source matrix info structure.
+  !>   @param[out] dest - the pointer to the destination matrix info structure.
+  !>   @param[in] src - the pointer to the source matrix info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
@@ -731,8 +692,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_destroy_hyb_mat destroys a \p HYB structure.
   !>
-  !>   @param[in]
-  !>   hyb the hybrid matrix structure.
+  !>   @param[in] hyb - the hybrid matrix structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
@@ -755,8 +715,7 @@ module hipfort_rocsparse
   !>   that is gathered during the analysis routines available. It should be destroyed
   !>   at the end using `rocsparse_destroy_mat_info()`.
   !>
-  !>   @param[inout]
-  !>   info    the pointer to the info structure.
+  !>   @param[inout] myInfo - the pointer to the info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
@@ -776,10 +735,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_copy_mat_info copies a matrix info structure. Both source and destination
   !>   matrix info structure must be initialized prior to calling \p rocsparse_copy_mat_info.
   !>
-  !>   @param[out]
-  !>   dest    the pointer to the destination matrix info structure.
-  !>   @param[in]
-  !>   src     the pointer to the source matrix info structure.
+  !>   @param[out] dest - the pointer to the destination matrix info structure.
+  !>   @param[in] src - the pointer to the source matrix info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p src or \p dest pointer is invalid.
@@ -800,8 +757,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_destroy_mat_info destroys a matrix info structure.
   !>
-  !>   @param[in]
-  !>   info    the info structure.
+  !>   @param[in] myInfo - the info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
@@ -824,8 +780,7 @@ module hipfort_rocsparse
   !>   that is gathered during the analysis routines. It should be destroyed
   !>   at the end using rocsparse_destroy_color_info().
   !>
-  !>   @param[inout]
-  !>   info    the pointer to the info structure.
+  !>   @param[inout] myInfo - the pointer to the info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
@@ -845,10 +800,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_copy_color_info copies a color info structure. Both source and destination
   !>   color info structure must be initialized prior to calling \p rocsparse_copy_color_info.
   !>
-  !>   @param[out]
-  !>   dest    the pointer to the destination color info structure.
-  !>   @param[in]
-  !>   src     the pointer to the source color info structure.
+  !>   @param[out] dest - the pointer to the destination color info structure.
+  !>   @param[in] src - the pointer to the source color info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p src or \p dest pointer is invalid.
@@ -869,8 +822,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_destroy_color_info destroys a color info structure.
   !>
-  !>   @param[in]
-  !>   info    the info structure.
+  !>   @param[in] myInfo - the info structure.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
@@ -891,23 +843,15 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_spvec_descr creates a sparse vector descriptor. It should be
   !>   destroyed at the end using `rocsparse_destroy_mat_descr()`.
   !>
-  !>   @param[out]
-  !>   descr   the pointer to the sparse vector descriptor.
-  !>   @param[in]
-  !>   size   size of the sparse vector.
-  !>   @param[in]
-  !>   nnz   number of non-zeros in sparse vector.
-  !>   @param[in]
-  !>   indices indices of the sparse vector where non-zeros occur. Must be an array of length \p
-  !>   nnz.
-  !>   @param[in]
-  !>   values   non-zero values in the sparse vector. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   idx_type   `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base   `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse vector descriptor.
+  !>   @param[in] mySize - size of the sparse vector.
+  !>   @param[in] nnz - number of non-zeros in sparse vector.
+  !>   @param[in] indices - indices of the sparse vector where non-zeros occur. Must be an array of
+  !>   length \p nnz.
+  !>   @param[in] values - non-zero values in the sparse vector. Must be an array of length \p nnz.
+  !>   @param[in] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -960,8 +904,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_spvec_descr destroys a sparse vector descriptor and releases all
   !>   resources used by the descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
@@ -980,23 +923,15 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_spvec_get gets the fields of the sparse vector descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the pointer to the sparse vector descriptor.
-  !>   @param[out]
-  !>   size   size of the sparse vector.
-  !>   @param[out]
-  !>   nnz   number of non-zeros in sparse vector.
-  !>   @param[out]
-  !>   indices indices of the sparse vector where non-zeros occur. Must be an array of length \p
-  !>   nnz.
-  !>   @param[out]
-  !>   values   non-zero values in the sparse vector. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   idx_type   `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base   `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse vector descriptor.
+  !>   @param[out] mySize - size of the sparse vector.
+  !>   @param[out] nnz - number of non-zeros in sparse vector.
+  !>   @param[out] indices - indices of the sparse vector where non-zeros occur. Must be an array of
+  !>   length \p nnz.
+  !>   @param[out] values - non-zero values in the sparse vector. Must be an array of length \p nnz.
+  !>   @param[out] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1044,10 +979,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the index base stored in the sparse vector descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the pointer to the sparse vector descriptor.
-  !>   @param[out]
-  !>   idx_base   `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] descr - the pointer to the sparse vector descriptor.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -1067,10 +1000,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the values array stored in the sparse vector descriptor
   !>
-  !>   @param[in]
-  !>   descr   the pointer to the sparse vector descriptor.
-  !>   @param[out]
-  !>   values   non-zero values in the sparse vector. Must be an array of length \p nnz.
+  !>   @param[in] descr - the pointer to the sparse vector descriptor.
+  !>   @param[out] values - non-zero values in the sparse vector. Must be an array of length \p nnz.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -1100,10 +1031,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the values array in the sparse vector descriptor.
   !>
-  !>   @param[inout]
-  !>   descr   the pointer to the sparse vector descriptor.
-  !>   @param[in]
-  !>   values   non-zero values in the sparse vector. Must be an array of length \p nnz.
+  !>   @param[inout] descr - the pointer to the sparse vector descriptor.
+  !>   @param[in] values - non-zero values in the sparse vector. Must be an array of length \p nnz.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -1124,26 +1053,16 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_coo_descr creates a sparse COO matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   @param[out]
-  !>   descr       the pointer to the sparse COO matrix descriptor.
-  !>   @param[in]
-  !>   rows        number of rows in the COO matrix.
-  !>   @param[in]
-  !>   cols        number of columns in the COO matrix
-  !>   @param[in]
-  !>   nnz         number of non-zeros in the COO matrix.
-  !>   @param[in]
-  !>   coo_row_ind row indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   coo_col_ind column indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   coo_val     values of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse COO matrix descriptor.
+  !>   @param[in] rows - number of rows in the COO matrix.
+  !>   @param[in] cols - number of columns in the COO matrix
+  !>   @param[in] nnz - number of non-zeros in the COO matrix.
+  !>   @param[in] coo_row_ind - row indices of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[in] coo_col_ind - column indices of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[in] coo_val - values of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[in] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1200,24 +1119,16 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_coo_aos_descr creates a sparse COO AoS matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   @param[out]
-  !>   descr       the pointer to the sparse COO AoS matrix descriptor.
-  !>   @param[in]
-  !>   rows        number of rows in the COO AoS matrix.
-  !>   @param[in]
-  !>   cols        number of columns in the COO AoS matrix
-  !>   @param[in]
-  !>   nnz         number of non-zeros in the COO AoS matrix.
-  !>   @param[in]
-  !>   coo_ind     <row, column> indices of the COO AoS matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   coo_val     values of the COO AoS matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse COO AoS matrix descriptor.
+  !>   @param[in] rows - number of rows in the COO AoS matrix.
+  !>   @param[in] cols - number of columns in the COO AoS matrix
+  !>   @param[in] nnz - number of non-zeros in the COO AoS matrix.
+  !>   @param[in] coo_ind - <row, column> indices of the COO AoS matrix. Must be an array of length
+  !>   \p nnz.
+  !>   @param[in] coo_val - values of the COO AoS matrix. Must be an array of length \p nnz.
+  !>   @param[in] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1251,33 +1162,20 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_bsr_descr creates a sparse BSR matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   @param[out]
-  !>   descr        the pointer to the sparse BSR matrix descriptor.
-  !>   @param[in]
-  !>   brows        number of block rows in the BSR matrix.
-  !>   @param[in]
-  !>   bcols        number of block columns in the BSR matrix.
-  !>   @param[in]
-  !>   bnnz         number of non-zero blocks in the BSR matrix.
-  !>   @param[in]
-  !>   block_dir    direction of the internal block storage.
-  !>   @param[in]
-  !>   block_dim    dimension of the blocks.
-  !>   @param[in]
-  !>   bsr_row_ptr  row offsets of the BSR matrix (must be array of length \p brows+1 ).
-  !>   @param[in]
-  !>   bsr_col_ind  column indices of the BSR matrix (must be array of length \p bnnz ).
-  !>   @param[in]
-  !>   bsr_val values of the BSR matrix (must be array of length \p bnnz * \p block_dim * \p
-  !>   block_dim ).
-  !>   @param[in]
-  !>   row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse BSR matrix descriptor.
+  !>   @param[in] brows - number of block rows in the BSR matrix.
+  !>   @param[in] bcols - number of block columns in the BSR matrix.
+  !>   @param[in] bnnz - number of non-zero blocks in the BSR matrix.
+  !>   @param[in] block_dir - direction of the internal block storage.
+  !>   @param[in] block_dim - dimension of the blocks.
+  !>   @param[in] bsr_row_ptr - row offsets of the BSR matrix (must be array of length \p brows+1 ).
+  !>   @param[in] bsr_col_ind - column indices of the BSR matrix (must be array of length \p bnnz ).
+  !>   @param[in] bsr_val - values of the BSR matrix (must be array of length \p bnnz * \p block_dim
+  !>   * \p block_dim ).
+  !>   @param[in] row_ptr_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] col_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1341,28 +1239,17 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_csr_descr creates a sparse CSR matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   @param[out]
-  !>   descr        the pointer to the sparse CSR matrix descriptor.
-  !>   @param[in]
-  !>   rows         number of rows in the CSR matrix.
-  !>   @param[in]
-  !>   cols         number of columns in the CSR matrix
-  !>   @param[in]
-  !>   nnz          number of non-zeros in the CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr  row offsets of the CSR matrix. Must be an array of length \p rows+1.
-  !>   @param[in]
-  !>   csr_col_ind  column indices of the CSR matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   csr_val      values of the CSR matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse CSR matrix descriptor.
+  !>   @param[in] rows - number of rows in the CSR matrix.
+  !>   @param[in] cols - number of columns in the CSR matrix
+  !>   @param[in] nnz - number of non-zeros in the CSR matrix.
+  !>   @param[in] csr_row_ptr - row offsets of the CSR matrix. Must be an array of length \p rows+1.
+  !>   @param[in] csr_col_ind - column indices of the CSR matrix. Must be an array of length \p nnz.
+  !>   @param[in] csr_val - values of the CSR matrix. Must be an array of length \p nnz.
+  !>   @param[in] row_ptr_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] col_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1421,28 +1308,18 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_csc_descr creates a sparse CSC matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   @param[out]
-  !>   descr       the pointer to the sparse CSC matrix descriptor.
-  !>   @param[in]
-  !>   rows         number of rows in the CSC matrix.
-  !>   @param[in]
-  !>   cols         number of columns in the CSC matrix.
-  !>   @param[in]
-  !>   nnz          number of non-zeros in the CSC matrix.
-  !>   @param[in]
-  !>   csc_col_ptr  column offsets of the CSC matrix. Must be an array of length \p cols+1.
-  !>   @param[in]
-  !>   csc_row_ind  row indices of the CSC matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   csc_val      values of the CSC matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   col_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   row_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse CSC matrix descriptor.
+  !>   @param[in] rows - number of rows in the CSC matrix.
+  !>   @param[in] cols - number of columns in the CSC matrix.
+  !>   @param[in] nnz - number of non-zeros in the CSC matrix.
+  !>   @param[in] csc_col_ptr - column offsets of the CSC matrix. Must be an array of length \p
+  !>   cols+1.
+  !>   @param[in] csc_row_ind - row indices of the CSC matrix. Must be an array of length \p nnz.
+  !>   @param[in] csc_val - values of the CSC matrix. Must be an array of length \p nnz.
+  !>   @param[in] col_ptr_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] row_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1501,24 +1378,16 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_ell_descr creates a sparse ELL matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   @param[out]
-  !>   descr       the pointer to the sparse ELL matrix descriptor.
-  !>   @param[in]
-  !>   rows        number of rows in the ELL matrix.
-  !>   @param[in]
-  !>   cols        number of columns in the ELL matrix.
-  !>   @param[in]
-  !>   ell_col_ind column indices of the ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[in]
-  !>   ell_val     values of the ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[in]
-  !>   ell_width   width of the ELL matrix.
-  !>   @param[in]
-  !>   idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the sparse ELL matrix descriptor.
+  !>   @param[in] rows - number of rows in the ELL matrix.
+  !>   @param[in] cols - number of columns in the ELL matrix.
+  !>   @param[in] ell_col_ind - column indices of the ELL matrix. Must be an array of length \p
+  !>   rows*ell_width.
+  !>   @param[in] ell_val - values of the ELL matrix. Must be an array of length \p rows*ell_width.
+  !>   @param[in] ell_width - width of the ELL matrix.
+  !>   @param[in] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1555,30 +1424,20 @@ module hipfort_rocsparse
   !>
   !>   Currently the only routine that supports the Blocked ELL format is \ref rocsparse_spmm.
   !>
-  !>   @param[out]
-  !>   descr         the pointer to the sparse blocked ELL matrix descriptor.
-  !>   @param[in]
-  !>   rows          number of rows in the blocked ELL matrix.
-  !>   @param[in]
-  !>   cols          number of columns in the blocked ELL matrix
-  !>   @param[in]
-  !>   ell_block_dir `rocsparse_direction_row` or `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   ell_block_dim block dimension of the sparse blocked ELL matrix.
-  !>   @param[in]
-  !>   ell_cols column indices of the blocked ELL matrix. Must be an array of length \p
+  !>   @param[out] descr - the pointer to the sparse blocked ELL matrix descriptor.
+  !>   @param[in] rows - number of rows in the blocked ELL matrix.
+  !>   @param[in] cols - number of columns in the blocked ELL matrix
+  !>   @param[in] ell_block_dir - `rocsparse_direction_row` or `rocsparse_direction_column`.
+  !>   @param[in] ell_block_dim - block dimension of the sparse blocked ELL matrix.
+  !>   @param[in] ell_cols - column indices of the blocked ELL matrix. Must be an array of length \p
   !>   rows*ell_width.
-  !>   @param[in]
-  !>   ell_col_ind column indices of the blocked ELL matrix. Must be an array of length \p
+  !>   @param[in] ell_col_ind - column indices of the blocked ELL matrix. Must be an array of length
+  !>   \p rows*ell_width.
+  !>   @param[in] ell_val - values of the blocked ELL matrix. Must be an array of length \p
   !>   rows*ell_width.
-  !>   @param[in]
-  !>   ell_val       values of the blocked ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[in]
-  !>   idx_type      `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base      `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type     `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                 `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1639,34 +1498,22 @@ module hipfort_rocsparse
   !>
   !>   Currently the only routine that supports the sliced ELL format is \ref rocsparse_spmv.
   !>
-  !>   @param[out]
-  !>   descr                   the pointer to the sparse sliced ELL matrix descriptor.
-  !>   @param[in]
-  !>   rows                    number of rows in the sliced ELL matrix.
-  !>   @param[in]
-  !>   cols                    number of columns in the sliced ELL matrix.
-  !>   @param[in]
-  !>   nnz                     number of non-zeros in the sliced ELL matrix.
-  !>   @param[in]
-  !>   sell_slice_size         slice size in the sliced ELL matrix.
-  !>   @param[in]
-  !>   sell_colval_size        size of the column and value arrays in the sliced ELL matrix.
-  !>   @param[in]
-  !>   sell_slice_offsets slice offsets into column and value matrix. Must be an array of length \p
-  !>   nslices+1 where \p nslice=m/sell_slice_size.
-  !>   @param[in]
-  !>   sell_col_ind column indices of the sliced ELL matrix. Must be an array of length \p
+  !>   @param[out] descr - the pointer to the sparse sliced ELL matrix descriptor.
+  !>   @param[in] rows - number of rows in the sliced ELL matrix.
+  !>   @param[in] cols - number of columns in the sliced ELL matrix.
+  !>   @param[in] nnz - number of non-zeros in the sliced ELL matrix.
+  !>   @param[in] sell_slice_size - slice size in the sliced ELL matrix.
+  !>   @param[in] sell_colval_size - size of the column and value arrays in the sliced ELL matrix.
+  !>   @param[in] sell_slice_offsets - slice offsets into column and value matrix. Must be an array
+  !>   of length \p nslices+1 where \p nslice=m/sell_slice_size.
+  !>   @param[in] sell_col_ind - column indices of the sliced ELL matrix. Must be an array of length
+  !>   \p sell_colval_size.
+  !>   @param[in] sell_val - values of the sliced ELL matrix. Must be an array of length \p
   !>   sell_colval_size.
-  !>   @param[in]
-  !>   sell_val values of the sliced ELL matrix. Must be an array of length \p sell_colval_size.
-  !>   @param[in]
-  !>   sell_slice_offsets_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   sell_col_ind_type       `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[in]
-  !>   idx_base                `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   data_type               `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] sell_slice_offsets_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] sell_col_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                           `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -1735,8 +1582,7 @@ module hipfort_rocsparse
   !>
   !>   Currently the only routine that supports the Blocked ELL format is \ref rocsparse_spmm.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
@@ -1757,14 +1603,10 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_sparse_to_sparse_descr creates the descriptor of the sparse_to_sparse
   !>   algorithm.
   !>
-  !>   @param[out]
-  !>   descr        pointer to the descriptor of the sparse_to_sparse algorithm.
-  !>   @param[in]
-  !>   source       source sparse matrix descriptor.
-  !>   @param[in]
-  !>   target       target sparse matrix descriptor.
-  !>   @param[in]
-  !>   alg          algorithm for the sparse_to_sparse computation.
+  !>   @param[out] descr - pointer to the descriptor of the sparse_to_sparse algorithm.
+  !>   @param[in] source - source sparse matrix descriptor.
+  !>   @param[in] target - target sparse matrix descriptor.
+  !>   @param[in] alg - algorithm for the sparse_to_sparse computation.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_value if any required enumeration is invalid.
@@ -1791,8 +1633,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_sparse_to_sparse_permissive allows the routine to allocate an intermediate
   !>   sparse matrix
   !>   to perform the conversion. By default, the routine is not permissive.
-  !>   @param[in]
-  !>   descr        descriptor of the sparse_to_sparse algorithm.
+  !>   @param[in] descr - descriptor of the sparse_to_sparse algorithm.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_sparse_to_sparse_permissive
     function rocsparse_sparse_to_sparse_permissive_(descr) &
@@ -1812,8 +1653,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_sparse_to_sparse_descr destroys the descriptor of the sparse_to_sparse
   !>   algorithm.
   !>
-  !>   @param[in]
-  !>   descr        descriptor of the sparse_to_sparse algorithm.
+  !>   @param[in] descr - descriptor of the sparse_to_sparse algorithm.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_destroy_sparse_to_sparse_descr
     function rocsparse_destroy_sparse_to_sparse_descr_(descr) &
@@ -1832,14 +1672,10 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_create_extract_descr creates the descriptor of the extract algorithm.
   !>
-  !>   @param[out]
-  !>   descr        pointer to the descriptor of the extract algorithm.
-  !>   @param[in]
-  !>   source       source sparse matrix descriptor.
-  !>   @param[in]
-  !>   target       target sparse matrix descriptor.
-  !>   @param[in]
-  !>   alg          algorithm for the extract computation.
+  !>   @param[out] descr - pointer to the descriptor of the extract algorithm.
+  !>   @param[in] source - source sparse matrix descriptor.
+  !>   @param[in] target - target sparse matrix descriptor.
+  !>   @param[in] alg - algorithm for the extract computation.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_value if any required enumeration is invalid.
@@ -1866,8 +1702,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_extract_descr destroys the descriptor of the \ref rocsparse_extract
   !>   routine.
   !>
-  !>   @param[in]
-  !>   descr        descriptor of the extract routine.
+  !>   @param[in] descr - descriptor of the extract routine.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_destroy_extract_descr
     function rocsparse_destroy_extract_descr_(descr) bind(c, name="rocsparse_destroy_extract_descr")
@@ -1887,8 +1722,7 @@ module hipfort_rocsparse
   !>   rocsparse_spgeam_buffer_size and
   !>   `rocsparse_spgeam` routines.
   !>
-  !>   @param[out]
-  !>   descr        pointer to the descriptor of the SpGEAM routine.
+  !>   @param[out] descr - pointer to the descriptor of the SpGEAM routine.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -1910,8 +1744,7 @@ module hipfort_rocsparse
   !>   rocsparse_spgeam_buffer_size and
   !>   `rocsparse_spgeam` routines.
   !>
-  !>   @param[in]
-  !>   descr        descriptor of the SpGEAM routine.
+  !>   @param[in] descr - descriptor of the SpGEAM routine.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_destroy_spgeam_descr
     function rocsparse_destroy_spgeam_descr_(descr) bind(c, name="rocsparse_destroy_spgeam_descr")
@@ -1926,19 +1759,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the requested `rocsparse_spgeam_input` data in the SpGEAM descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the SpGEAM descriptor.
-  !>   @param[in]
-  !>   input       one of the values from `rocsparse_spgeam_input`.
-  !>   @param[in]
-  !>   data        input data.
-  !>   @param[in]
-  !>   data_size_in_bytes   input data size.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the SpGEAM descriptor.
+  !>   @param[in] input - one of the values from `rocsparse_spgeam_input`.
+  !>   @param[in] myData - input data.
+  !>   @param[in] data_size_in_bytes - input data size.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -1963,19 +1791,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the requested `rocsparse_spgeam_output` data from the SpGEAM descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the SpGEAM descriptor.
-  !>   @param[in]
-  !>   output      `rocsparse_spgeam_output_nnz`.
-  !>   @param[in]
-  !>   data        output data.
-  !>   @param[in]
-  !>   data_size_in_bytes   output data size.
-  !>   @param[out]
-  !>   error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the SpGEAM descriptor.
+  !>   @param[in] output - `rocsparse_spgeam_output_nnz`.
+  !>   @param[in] myData - output data.
+  !>   @param[in] data_size_in_bytes - output data size.
+  !>   @param[out] error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2005,8 +1828,7 @@ module hipfort_rocsparse
   !>   rocsparse_v2_spmv_buffer_size and
   !>   `rocsparse_v2_spmv` routines.
   !>
-  !>   @param[out]
-  !>   descr        pointer to the descriptor of the SpMV routine.
+  !>   @param[out] descr - pointer to the descriptor of the SpMV routine.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -2028,8 +1850,7 @@ module hipfort_rocsparse
   !>   rocsparse_v2_spmv_buffer_size and
   !>   `rocsparse_v2_spmv` routines.
   !>
-  !>   @param[in]
-  !>   descr        descriptor of the v2_spmv routine.
+  !>   @param[in] descr - descriptor of the v2_spmv routine.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_destroy_spmv_descr
     function rocsparse_destroy_spmv_descr_(descr) bind(c, name="rocsparse_destroy_spmv_descr")
@@ -2044,19 +1865,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the requested `rocsparse_spmv_input` data in the SpMV descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the SpMV descriptor.
-  !>   @param[in]
-  !>   input       one possible value of `rocsparse_spmv_input`.
-  !>   @param[in]
-  !>   in          input value.
-  !>   @param[in]
-  !>   size_in_bytes input value size in bytes.
-  !>   @param[out]
-  !>   error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the SpMV descriptor.
+  !>   @param[in] input - one possible value of `rocsparse_spmv_input`.
+  !>   @param[in] in - input value.
+  !>   @param[in] size_in_bytes - input value size in bytes.
+  !>   @param[out] error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p in is invalid.
@@ -2086,13 +1902,11 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsv_buffer_size and
   !>   `rocsparse_sptrsv` routines.
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   p_sptrsv_descr        pointer to the descriptor of the sptrsv routine.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] p_sptrsv_descr - pointer to the descriptor of the sptrsv routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
@@ -2118,13 +1932,11 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsv_buffer_size and
   !>   `rocsparse_sptrsv` routines.
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[in]
-  !>   sptrsv_descr        descriptor of the sptrsv routine.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[in] sptrsv_descr - descriptor of the sptrsv routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
@@ -2149,8 +1961,7 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsv_buffer_size and
   !>   `rocsparse_sptrsv` routines.
   !>
-  !>   @param[out]
-  !>   descr        pointer to the descriptor of the sptrsv routine.
+  !>   @param[out] descr - pointer to the descriptor of the sptrsv routine.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -2172,8 +1983,7 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsv_buffer_size and
   !>   `rocsparse_sptrsv` routines.
   !>
-  !>   @param[in]
-  !>   descr        descriptor of the sptrsv routine.
+  !>   @param[in] descr - descriptor of the sptrsv routine.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_destroy_sptrsv_descr
     function rocsparse_destroy_sptrsv_descr_(descr) bind(c, name="rocsparse_destroy_sptrsv_descr")
@@ -2188,19 +1998,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the requested `rocsparse_sptrsv_input` data in the sptrsv descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the sptrsv descriptor.
-  !>   @param[in]
-  !>   input       value of `rocsparse_sptrsv_input`.
-  !>   @param[in]
-  !>   data        input data.
-  !>   @param[in]
-  !>   data_size_in_bytes   input data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the sptrsv descriptor.
+  !>   @param[in] input - value of `rocsparse_sptrsv_input`.
+  !>   @param[in] myData - input data.
+  !>   @param[in] data_size_in_bytes - input data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2226,19 +2031,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the requested `rocsparse_sptrsv_output` data from the sptrsv descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the sptrsv descriptor.
-  !>   @param[in]
-  !>   output      value of `rocsparse_sptrsv_output`.
-  !>   @param[out]
-  !>   data        output data.
-  !>   @param[in]
-  !>   data_size_in_bytes   output data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the sptrsv descriptor.
+  !>   @param[in] output - value of `rocsparse_sptrsv_output`.
+  !>   @param[out] myData - output data.
+  !>   @param[in] data_size_in_bytes - output data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2268,8 +2068,7 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsm_buffer_size and
   !>   `rocsparse_sptrsm` routines.
   !>
-  !>   @param[out]
-  !>   descr        pointer to the descriptor of the sptrsm routine.
+  !>   @param[out] descr - pointer to the descriptor of the sptrsm routine.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -2291,8 +2090,7 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsm_buffer_size and
   !>   `rocsparse_sptrsm` routines.
   !>
-  !>   @param[in]
-  !>   descr        descriptor of the sptrsm routine.
+  !>   @param[in] descr - descriptor of the sptrsm routine.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_destroy_sptrsm_descr
     function rocsparse_destroy_sptrsm_descr_(descr) bind(c, name="rocsparse_destroy_sptrsm_descr")
@@ -2307,19 +2105,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the requested `rocsparse_sptrsm_input` data in the sptrsm descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the sptrsm descriptor.
-  !>   @param[in]
-  !>   input      value of `rocsparse_sptrsm_input`.
-  !>   @param[in]
-  !>   data        input data.
-  !>   @param[in]
-  !>   data_size   input data size.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the sptrsm descriptor.
+  !>   @param[in] input - value of `rocsparse_sptrsm_input`.
+  !>   @param[in] myData - input data.
+  !>   @param[in] data_size - input data size.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2344,19 +2137,14 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the requested `rocsparse_sptrsm_output` data from the sptrsm descriptor.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   descr       the pointer to the sptrsm descriptor.
-  !>   @param[in]
-  !>   output      value of `rocsparse_sptrsm_output`.
-  !>   @param[out]
-  !>   data        output data.
-  !>   @param[in]
-  !>   data_size_in_bytes   output data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] descr - the pointer to the sptrsm descriptor.
+  !>   @param[in] output - value of `rocsparse_sptrsm_output`.
+  !>   @param[out] myData - output data.
+  !>   @param[in] data_size_in_bytes - output data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2384,13 +2172,11 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_spic0_descr_create creates the descriptor of the configuration of the sparse
   !>   Incomplete Cholesky of level 0.
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   p_spic0_descr        pointer to the descriptor of the Spic0 routine.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] p_spic0_descr - pointer to the descriptor of the Spic0 routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
@@ -2415,13 +2201,11 @@ module hipfort_rocsparse
   !>   \p rocsparse_spic0_descr_destroy destroys the descriptor of the configuration of the sparse
   !>   Incomplete Cholesky of level 0.
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[in]
-  !>   spic0_descr        descriptor of the spic0 routine.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[in] spic0_descr - descriptor of the spic0 routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_spic0_descr_destroy
@@ -2455,19 +2239,14 @@ module hipfort_rocsparse
   !>   - `rocsparse_spic0_input_boost_tolerance` is a double pointer. Its device mode is determined
   !>   from the `rocsparse_handle`.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   spic0_descr       the pointer to the SpIC0 descriptor.
-  !>   @param[in]
-  !>   spic0_input       value of `rocsparse_spic0_input`.
-  !>   @param[in]
-  !>   input        input data.
-  !>   @param[in]
-  !>   input_size_in_bytes   input data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] spic0_descr - the pointer to the SpIC0 descriptor.
+  !>   @param[in] spic0_input - value of `rocsparse_spic0_input`.
+  !>   @param[in] input - input data.
+  !>   @param[in] input_size_in_bytes - input data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2498,19 +2277,14 @@ module hipfort_rocsparse
   !>   an array of size \p batch_count.
   !>   - `rocsparse_spic0_output_singularity_position` is \p int64_t. It will be considered as an
   !>   array of size \p batch_count.
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   spic0_descr       the pointer to the SpIC0 descriptor.
-  !>   @param[in]
-  !>   spic0_output      value of `rocsparse_spic0_output`.
-  !>   @param[out]
-  !>   output        output data
-  !>   @param[in]
-  !>   output_size_in_bytes   output data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] spic0_descr - the pointer to the SpIC0 descriptor.
+  !>   @param[in] spic0_output - value of `rocsparse_spic0_output`.
+  !>   @param[out] output - output data
+  !>   @param[in] output_size_in_bytes - output data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2540,13 +2314,11 @@ module hipfort_rocsparse
   !>   \p rocsparse_spilu0_descr_create creates the descriptor of the configuration of the sparse
   !>   Incomplete LU of level 0.
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[out]
-  !>   p_spilu0_descr        pointer to the descriptor of the Spilu0 routine.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] p_spilu0_descr - pointer to the descriptor of the Spilu0 routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
@@ -2571,13 +2343,11 @@ module hipfort_rocsparse
   !>   \p rocsparse_spilu0_descr_destroy destroys the descriptor of the configuration of the sparse
   !>   Incomplete LU of level 0.
   !>
-  !>   @param[in]
-  !>   handle  the handle to the rocSPARSE library context.
-  !>   @param[in]
-  !>   spilu0_descr        descriptor of the spilu0 routine.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[in] spilu0_descr - descriptor of the spilu0 routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   interface rocsparse_spilu0_descr_destroy
@@ -2613,19 +2383,14 @@ module hipfort_rocsparse
   !>   - `rocsparse_spilu0_input_boost_tolerance` is a double pointer. Its device mode is determined
   !>   from the `rocsparse_handle`. No batched boost tolerances can be specified.
   !>
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   spilu0_descr       the pointer to the SpILU0 descriptor.
-  !>   @param[in]
-  !>   spilu0_input       value of `rocsparse_spilu0_input`.
-  !>   @param[in]
-  !>   input        input data.
-  !>   @param[in]
-  !>   input_size_in_bytes   input data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] spilu0_descr - the pointer to the SpILU0 descriptor.
+  !>   @param[in] spilu0_input - value of `rocsparse_spilu0_input`.
+  !>   @param[in] input - input data.
+  !>   @param[in] input_size_in_bytes - input data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2656,19 +2421,14 @@ module hipfort_rocsparse
   !>   an array of size \p batch_count.
   !>   - `rocsparse_spilu0_output_singularity_position` is int64_t. It will be considered as an
   !>   array of size \p batch_count.
-  !>   @param[in]
-  !>   handle      the pointer to the handle to the rocSPARSE library context.
-  !>   @param[inout]
-  !>   spilu0_descr       the pointer to the SpILU0 descriptor.
-  !>   @param[in]
-  !>   spilu0_output      value of `rocsparse_spilu0_output`.
-  !>   @param[out]
-  !>   output        output data.
-  !>   @param[in]
-  !>   output_size_in_bytes   output data size in bytes.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] spilu0_descr - the pointer to the SpILU0 descriptor.
+  !>   @param[in] spilu0_output - value of `rocsparse_spilu0_output`.
+  !>   @param[out] output - output data.
+  !>   @param[in] output_size_in_bytes - output data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2696,26 +2456,17 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_coo_get gets the fields of the sparse COO matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse COO matrix descriptor.
-  !>   @param[out]
-  !>   rows        number of rows in the sparse COO matrix.
-  !>   @param[out]
-  !>   cols        number of columns in the sparse COO matrix.
-  !>   @param[out]
-  !>   nnz         number of non-zeros in sparse COO matrix.
-  !>   @param[out]
-  !>   coo_row_ind row indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   coo_col_ind column indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   coo_val     values of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse COO matrix descriptor.
+  !>   @param[out] rows - number of rows in the sparse COO matrix.
+  !>   @param[out] cols - number of columns in the sparse COO matrix.
+  !>   @param[out] nnz - number of non-zeros in sparse COO matrix.
+  !>   @param[out] coo_row_ind - row indices of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[out] coo_col_ind - column indices of the COO matrix. Must be an array of length \p
+  !>   nnz.
+  !>   @param[out] coo_val - values of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[out] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2771,24 +2522,16 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_coo_aos_get gets the fields of the sparse COO AoS matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse COO AoS matrix descriptor.
-  !>   @param[out]
-  !>   rows        number of rows in the sparse COO AoS matrix.
-  !>   @param[out]
-  !>   cols        number of columns in the sparse COO AoS matrix.
-  !>   @param[out]
-  !>   nnz         number of non-zeros in the sparse COO AoS matrix.
-  !>   @param[out]
-  !>   coo_ind     <row, columns> indices of the COO AoS matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   coo_val     values of the COO AoS matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse COO AoS matrix descriptor.
+  !>   @param[out] rows - number of rows in the sparse COO AoS matrix.
+  !>   @param[out] cols - number of columns in the sparse COO AoS matrix.
+  !>   @param[out] nnz - number of non-zeros in the sparse COO AoS matrix.
+  !>   @param[out] coo_ind - <row, columns> indices of the COO AoS matrix. Must be an array of
+  !>   length \p nnz.
+  !>   @param[out] coo_val - values of the COO AoS matrix. Must be an array of length \p nnz.
+  !>   @param[out] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2841,28 +2584,19 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_csr_get gets the fields of the sparse CSR matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr        the pointer to the sparse CSR matrix descriptor.
-  !>   @param[out]
-  !>   rows         number of rows in the CSR matrix.
-  !>   @param[out]
-  !>   cols         number of columns in the CSR matrix.
-  !>   @param[out]
-  !>   nnz          number of non-zeros in the CSR matrix.
-  !>   @param[out]
-  !>   csr_row_ptr  row offsets of the CSR matrix. Must be an array of length \p rows+1.
-  !>   @param[out]
-  !>   csr_col_ind  column indices of the CSR matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   csr_val      values of the CSR matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse CSR matrix descriptor.
+  !>   @param[out] rows - number of rows in the CSR matrix.
+  !>   @param[out] cols - number of columns in the CSR matrix.
+  !>   @param[out] nnz - number of non-zeros in the CSR matrix.
+  !>   @param[out] csr_row_ptr - row offsets of the CSR matrix. Must be an array of length \p
+  !>   rows+1.
+  !>   @param[out] csr_col_ind - column indices of the CSR matrix. Must be an array of length \p
+  !>   nnz.
+  !>   @param[out] csr_val - values of the CSR matrix. Must be an array of length \p nnz.
+  !>   @param[out] row_ptr_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] col_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2920,28 +2654,18 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_csc_get gets the fields of the sparse CSC matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr        the pointer to the sparse CSC matrix descriptor.
-  !>   @param[out]
-  !>   rows         number of rows in the CSC matrix.
-  !>   @param[out]
-  !>   cols         number of columns in the CSC matrix
-  !>   @param[out]
-  !>   nnz          number of non-zeros in the CSC matrix.
-  !>   @param[out]
-  !>   csc_col_ptr  column offsets of the CSC matrix. Must be an array of length \p cols+1.
-  !>   @param[out]
-  !>   csc_row_ind  row indices of the CSC matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   csc_val      values of the CSC matrix. Must be an array of length \p nnz.
-  !>   @param[out]
-  !>   col_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   row_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse CSC matrix descriptor.
+  !>   @param[out] rows - number of rows in the CSC matrix.
+  !>   @param[out] cols - number of columns in the CSC matrix
+  !>   @param[out] nnz - number of non-zeros in the CSC matrix.
+  !>   @param[out] csc_col_ptr - column offsets of the CSC matrix. Must be an array of length \p
+  !>   cols+1.
+  !>   @param[out] csc_row_ind - row indices of the CSC matrix. Must be an array of length \p nnz.
+  !>   @param[out] csc_val - values of the CSC matrix. Must be an array of length \p nnz.
+  !>   @param[out] col_ptr_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] row_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -2999,24 +2723,16 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_ell_get gets the fields of the sparse ELL matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse ELL matrix descriptor.
-  !>   @param[out]
-  !>   rows        number of rows in the ELL matrix.
-  !>   @param[out]
-  !>   cols        number of columns in the ELL matrix.
-  !>   @param[out]
-  !>   ell_col_ind column indices of the ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[out]
-  !>   ell_val     values of the ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[out]
-  !>   ell_width   width of the ELL matrix.
-  !>   @param[out]
-  !>   idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse ELL matrix descriptor.
+  !>   @param[out] rows - number of rows in the ELL matrix.
+  !>   @param[out] cols - number of columns in the ELL matrix.
+  !>   @param[out] ell_col_ind - column indices of the ELL matrix. Must be an array of length \p
+  !>   rows*ell_width.
+  !>   @param[out] ell_val - values of the ELL matrix. Must be an array of length \p rows*ell_width.
+  !>   @param[out] ell_width - width of the ELL matrix.
+  !>   @param[out] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -3070,30 +2786,20 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_bell_get gets the fields of the sparse blocked ELL matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr         the pointer to the sparse blocked ELL matrix descriptor.
-  !>   @param[out]
-  !>   rows          number of rows in the blocked ELL matrix.
-  !>   @param[out]
-  !>   cols          number of columns in the blocked ELL matrix.
-  !>   @param[out]
-  !>   ell_block_dir `rocsparse_direction_row` or `rocsparse_direction_column`.
-  !>   @param[out]
-  !>   ell_block_dim block dimension of the sparse blocked ELL matrix.
-  !>   @param[out]
-  !>   ell_cols column indices of the blocked ELL matrix. Must be an array of length \p
+  !>   @param[in] descr - the pointer to the sparse blocked ELL matrix descriptor.
+  !>   @param[out] rows - number of rows in the blocked ELL matrix.
+  !>   @param[out] cols - number of columns in the blocked ELL matrix.
+  !>   @param[out] ell_block_dir - `rocsparse_direction_row` or `rocsparse_direction_column`.
+  !>   @param[out] ell_block_dim - block dimension of the sparse blocked ELL matrix.
+  !>   @param[out] ell_cols - column indices of the blocked ELL matrix. Must be an array of length
+  !>   \p rows*ell_width.
+  !>   @param[out] ell_col_ind - column indices of the blocked ELL matrix. Must be an array of
+  !>   length \p rows*ell_width.
+  !>   @param[out] ell_val - values of the blocked ELL matrix. Must be an array of length \p
   !>   rows*ell_width.
-  !>   @param[out]
-  !>   ell_col_ind column indices of the blocked ELL matrix. Must be an array of length \p
-  !>   rows*ell_width.
-  !>   @param[out]
-  !>   ell_val       values of the blocked ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[out]
-  !>   idx_type      `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base      `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type     `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                 `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -3151,35 +2857,23 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_sell_get gets the fields of the sparse sliced ELL matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr                  the pointer to the sparse sliced ELL matrix descriptor.
-  !>   @param[out]
-  !>   rows                   number of rows in the sliced ELL matrix.
-  !>   @param[out]
-  !>   cols                   number of columns in the sliced ELL matrix.
-  !>   @param[out]
-  !>   nnz                    number of non-zeros in the sliced ELL matrix.
-  !>   @param[out]
-  !>   sell_slice_size        slice size in the sliced ELL matrix.
-  !>   @param[out]
-  !>   sell_colval_size       actual number of elements stored in the sliced ELL matrix.
-  !>   @param[out]
-  !>   sell_slice_offsets slice offsets array in the sliced ELL matrix. Must be an array of length
-  !>   \p nslices + 1
+  !>   @param[in] descr - the pointer to the sparse sliced ELL matrix descriptor.
+  !>   @param[out] rows - number of rows in the sliced ELL matrix.
+  !>   @param[out] cols - number of columns in the sliced ELL matrix.
+  !>   @param[out] nnz - number of non-zeros in the sliced ELL matrix.
+  !>   @param[out] sell_slice_size - slice size in the sliced ELL matrix.
+  !>   @param[out] sell_colval_size - actual number of elements stored in the sliced ELL matrix.
+  !>   @param[out] sell_slice_offsets - slice offsets array in the sliced ELL matrix. Must be an
+  !>   array of length \p nslices + 1
   !>                          where \p nslices=(rows-1)/sell_slice_size+1.
-  !>   @param[out]
-  !>   sell_col_ind column indices of the sliced ELL matrix. Must be an array of length \p
+  !>   @param[out] sell_col_ind - column indices of the sliced ELL matrix. Must be an array of
+  !>   length \p sell_colval_size.
+  !>   @param[out] sell_val - values of the sliced ELL matrix. Must be an array of length \p
   !>   sell_colval_size.
-  !>   @param[out]
-  !>   sell_val values of the sliced ELL matrix. Must be an array of length \p sell_colval_size.
-  !>   @param[out]
-  !>   sell_slice_offsets_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   sell_col_ind_type       `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base                `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type               `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] sell_slice_offsets_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] sell_col_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                           `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -3244,33 +2938,22 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_bsr_get gets the fields of the sparse BSR matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr        the pointer to the sparse BSR matrix descriptor.
-  !>   @param[out]
-  !>   brows        number of block rows in the BSR matrix.
-  !>   @param[out]
-  !>   bcols        number of block columns in the BSR matrix.
-  !>   @param[out]
-  !>   bnnz         number of non-zero blocks in the BSR matrix.
-  !>   @param[out]
-  !>   block_dir    storage layout of the dense block matrices.
-  !>   @param[out]
-  !>   block_dim    block dimension.
-  !>   @param[out]
-  !>   bsr_row_ptr  row offsets of the BSR matrix. Must be an array of length \p brows+1.
-  !>   @param[out]
-  !>   bsr_col_ind  column indices of the BSR matrix. Must be an array of length \p bnnz.
-  !>   @param[out]
-  !>   bsr_val values of the BSR matrix (must be array of length \p bnnz * \p block_dim * \p
-  !>   block_dim ).
-  !>   @param[out]
-  !>   row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
-  !>   @param[out]
-  !>   idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[out]
-  !>   data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the sparse BSR matrix descriptor.
+  !>   @param[out] brows - number of block rows in the BSR matrix.
+  !>   @param[out] bcols - number of block columns in the BSR matrix.
+  !>   @param[out] bnnz - number of non-zero blocks in the BSR matrix.
+  !>   @param[out] block_dir - storage layout of the dense block matrices.
+  !>   @param[out] block_dim - block dimension.
+  !>   @param[out] bsr_row_ptr - row offsets of the BSR matrix. Must be an array of length \p
+  !>   brows+1.
+  !>   @param[out] bsr_col_ind - column indices of the BSR matrix. Must be an array of length \p
+  !>   bnnz.
+  !>   @param[out] bsr_val - values of the BSR matrix (must be array of length \p bnnz * \p
+  !>   block_dim * \p block_dim ).
+  !>   @param[out] row_ptr_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] col_ind_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -3330,14 +3013,10 @@ module hipfort_rocsparse
   !>   \brief Set the row indices, column indices, and values array in the sparse COO matrix
   !>   descriptor.
   !>
-  !>   @param[inout]
-  !>   descr   the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   coo_row_ind row indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   coo_col_ind column indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   coo_val     values of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] coo_row_ind - row indices of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[in] coo_col_ind - column indices of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[in] coo_val - values of the COO matrix. Must be an array of length \p nnz.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p coo_row_ind, \p coo_col_ind, or \p
@@ -3360,12 +3039,10 @@ module hipfort_rocsparse
   !>   \brief Set the <row, column> indices and values array in the sparse COO AoS matrix
   !>   descriptor.
   !>
-  !>   @param[inout]
-  !>   descr   the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   coo_ind <row, column> indices of the COO matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   coo_val values of the COO matrix. Must be an array of length \p nnz.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] coo_ind - <row, column> indices of the COO matrix. Must be an array of length \p
+  !>   nnz.
+  !>   @param[in] coo_val - values of the COO matrix. Must be an array of length \p nnz.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p coo_ind, or \p coo_val is invalid.
@@ -3386,14 +3063,10 @@ module hipfort_rocsparse
   !>   \brief Set the row offsets, column indices, and values array in the sparse CSR matrix
   !>   descriptor.
   !>
-  !>   @param[inout]
-  !>   descr   the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   csr_row_ptr  row offsets of the CSR matrix. Must be an array of length \p rows+1.
-  !>   @param[in]
-  !>   csr_col_ind  column indices of the CSR matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   csr_val      values of the CSR matrix. Must be an array of length \p nnz.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] csr_row_ptr - row offsets of the CSR matrix. Must be an array of length \p rows+1.
+  !>   @param[in] csr_col_ind - column indices of the CSR matrix. Must be an array of length \p nnz.
+  !>   @param[in] csr_val - values of the CSR matrix. Must be an array of length \p nnz.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p coo_ind, or \p coo_val is invalid.
@@ -3415,14 +3088,11 @@ module hipfort_rocsparse
   !>   \brief Set the column offsets, row indices, and values array in the sparse CSC matrix
   !>   descriptor.
   !>
-  !>   @param[inout]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   csc_col_ptr column offsets of the CSC matrix. Must be an array of length \p cols+1.
-  !>   @param[in]
-  !>   csc_row_ind row indices of the CSC matrix. Must be an array of length \p nnz.
-  !>   @param[in]
-  !>   csc_val     values of the CSC matrix. Must be an array of length \p nnz.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] csc_col_ptr - column offsets of the CSC matrix. Must be an array of length \p
+  !>   cols+1.
+  !>   @param[in] csc_row_ind - row indices of the CSC matrix. Must be an array of length \p nnz.
+  !>   @param[in] csc_val - values of the CSC matrix. Must be an array of length \p nnz.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p csc_col_ptr, \p csc_row_ind, or \p
@@ -3444,12 +3114,10 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the column indices and values array in the sparse ELL matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   ell_col_ind column indices of the ELL matrix. Must be an array of length \p rows*ell_width.
-  !>   @param[in]
-  !>   ell_val     values of the ELL matrix. Must be an array of length \p rows*ell_width.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] ell_col_ind - column indices of the ELL matrix. Must be an array of length \p
+  !>   rows*ell_width.
+  !>   @param[in] ell_val - values of the ELL matrix. Must be an array of length \p rows*ell_width.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p ell_col_ind, or \p ell_val is
@@ -3471,14 +3139,12 @@ module hipfort_rocsparse
   !>   \brief Set the row offsets, column indices, and values array in the sparse BSR matrix
   !>   descriptor
   !>
-  !>   @param[inout]
-  !>   descr   the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   bsr_row_ptr  row offsets of the BSR matrix. Must be an array of length \p rows+1.
-  !>   @param[in]
-  !>   bsr_col_ind  column indices of the BSR matrix. Must be an array of length \p nnzb.
-  !>   @param[in]
-  !>   bsr_val values of the BSR matrix. Must be an array of length \p nnzb*block_dim*block_dim.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] bsr_row_ptr - row offsets of the BSR matrix. Must be an array of length \p rows+1.
+  !>   @param[in] bsr_col_ind - column indices of the BSR matrix. Must be an array of length \p
+  !>   nnzb.
+  !>   @param[in] bsr_val - values of the BSR matrix. Must be an array of length \p
+  !>   nnzb*block_dim*block_dim.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p bsr_row_ptr, \p bsr_col_ind, or \p
@@ -3500,13 +3166,11 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the column indices and values array in the sparse Blocked ELL matrix descriptor
   !>
-  !>   @param[inout]
-  !>   descr   the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   bell_col_ind column indices of the Blocked ELL matrix. Must be an array of length \p
-  !>   mb*ell_cols/ell_block_size.
-  !>   @param[in]
-  !>   bell_val      values of the Blocked ELL matrix. Must be an array of length \p m*ell_cols.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] bell_col_ind - column indices of the Blocked ELL matrix. Must be an array of
+  !>   length \p mb*ell_cols/ell_block_size.
+  !>   @param[in] bell_val - values of the Blocked ELL matrix. Must be an array of length \p
+  !>   m*ell_cols.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p bell_col_ind, or \p bell_val is
@@ -3527,14 +3191,10 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the number of rows, columns, and non-zeros from the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[out]
-  !>   rows        number of rows in the sparse matrix.
-  !>   @param[out]
-  !>   cols        number of columns in the sparse matrix.
-  !>   @param[out]
-  !>   nnz         number of non-zeros in sparse matrix.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[out] rows - number of rows in the sparse matrix.
+  !>   @param[out] cols - number of columns in the sparse matrix.
+  !>   @param[out] nnz - number of non-zeros in sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3555,10 +3215,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the sparse matrix format from the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[out]
-  !>   format      `rocsparse_format_coo`, `rocsparse_format_coo_aos`,
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[out] myFormat - `rocsparse_format_coo`, `rocsparse_format_coo_aos`,
   !>               `rocsparse_format_csr`, `rocsparse_format_csc`, or
   !>               `rocsparse_format_ell`
   !>
@@ -3579,10 +3237,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the sparse matrix index base from the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[out]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3602,10 +3258,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the values array from the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr     the pointer to the sparse matrix descriptor.
-  !>   @param[out]
-  !>   values    values array of the sparse matrix.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[out] values - values array of the sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -3635,10 +3289,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the values array in the sparse matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr     the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   values    values array of the sparse matrix.
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] values - values array of the sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -3659,10 +3311,8 @@ module hipfort_rocsparse
   !>   \note The returned number of non-zeros is the number of elements of the array of values of
   !>   the sparse matrix.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[out]
-  !>   nnz the number of non-zeros of the sparse matrix.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[out] nnz - the number of non-zeros of the sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p nnz is invalid.
@@ -3687,10 +3337,8 @@ module hipfort_rocsparse
   !>   \note In the case of a sparse matrix with the format `rocsparse_format_bell`, the operation
   !>   will return an error.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   nnz         number of non-zeros of the sparse matrix.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] nnz - number of non-zeros of the sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3709,10 +3357,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the strided batch count from the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[out]
-  !>   batch_count batch_count of the sparse matrix.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[out] batch_count - batch_count of the sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3732,10 +3378,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the strided batch count in the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   batch_count batch_count of the sparse matrix.
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] batch_count - batch_count of the sparse matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3755,12 +3399,9 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the batch count and batch stride in the sparse COO matrix descriptor
   !>
-  !>   @param[inout]
-  !>   descr        the pointer to the sparse COO matrix descriptor.
-  !>   @param[in]
-  !>   batch_count  batch_count of the sparse COO matrix.
-  !>   @param[in]
-  !>   batch_stride batch stride of the sparse COO matrix.
+  !>   @param[inout] descr - the pointer to the sparse COO matrix descriptor.
+  !>   @param[in] batch_count - batch_count of the sparse COO matrix.
+  !>   @param[in] batch_stride - batch stride of the sparse COO matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3782,14 +3423,11 @@ module hipfort_rocsparse
   !>   \brief Set the batch count, row offset batch stride, and the column indices batch stride in
   !>   the sparse CSR matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr                       the pointer to the sparse CSR matrix descriptor.
-  !>   @param[in]
-  !>   batch_count                 batch_count of the sparse CSR matrix.
-  !>   @param[in]
-  !>   offsets_batch_stride        row offset batch stride of the sparse CSR matrix.
-  !>   @param[in]
-  !>   columns_values_batch_stride column indices batch stride of the sparse CSR matrix.
+  !>   @param[inout] descr - the pointer to the sparse CSR matrix descriptor.
+  !>   @param[in] batch_count - batch_count of the sparse CSR matrix.
+  !>   @param[in] offsets_batch_stride - row offset batch stride of the sparse CSR matrix.
+  !>   @param[in] columns_values_batch_stride - column indices batch stride of the sparse CSR
+  !>   matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3814,14 +3452,10 @@ module hipfort_rocsparse
   !>   \brief Set the batch count, column offset batch stride, and the row indices batch stride in
   !>   the sparse CSC matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr                       the pointer to the sparse CSC matrix descriptor.
-  !>   @param[in]
-  !>   batch_count                 batch_count of the sparse CSC matrix.
-  !>   @param[in]
-  !>   offsets_batch_stride        column offset batch stride of the sparse CSC matrix.
-  !>   @param[in]
-  !>   rows_values_batch_stride    row indices batch stride of the sparse CSC matrix.
+  !>   @param[inout] descr - the pointer to the sparse CSC matrix descriptor.
+  !>   @param[in] batch_count - batch_count of the sparse CSC matrix.
+  !>   @param[in] offsets_batch_stride - column offset batch stride of the sparse CSC matrix.
+  !>   @param[in] rows_values_batch_stride - row indices batch stride of the sparse CSC matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -3845,15 +3479,11 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the requested attribute data from the sparse matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   attribute `rocsparse_spmat_fill_mode`, `rocsparse_spmat_diag_type`,
+  !>   @param[in] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] attribute - `rocsparse_spmat_fill_mode`, `rocsparse_spmat_diag_type`,
   !>             `rocsparse_spmat_matrix_type`, or `rocsparse_spmat_storage_mode`.
-  !>   @param[out]
-  !>   data      attribute data.
-  !>   @param[in]
-  !>   data_size attribute data size.
+  !>   @param[out] myData - attribute data.
+  !>   @param[in] data_size - attribute data size.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -3876,15 +3506,11 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the requested attribute data in the sparse matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr       the pointer to the sparse matrix descriptor.
-  !>   @param[in]
-  !>   attribute `rocsparse_spmat_fill_mode`, `rocsparse_spmat_diag_type`,
+  !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
+  !>   @param[in] attribute - `rocsparse_spmat_fill_mode`, `rocsparse_spmat_diag_type`,
   !>             `rocsparse_spmat_matrix_type`, or `rocsparse_spmat_storage_mode`.
-  !>   @param[in]
-  !>   data      attribute data.
-  !>   @param[in]
-  !>   data_size attribute data size.
+  !>   @param[in] myData - attribute data.
+  !>   @param[in] data_size - attribute data size.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -3910,14 +3536,10 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_dnvec_descr creates a dense vector descriptor. It should be
   !>   destroyed at the end using rocsparse_destroy_dnvec_descr().
   !>
-  !>   @param[out]
-  !>   descr   the pointer to the dense vector descriptor.
-  !>   @param[in]
-  !>   size   size of the dense vector.
-  !>   @param[in]
-  !>   values   non-zero values in the dense vector. Must be an array of length \p size.
-  !>   @param[in]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] descr - the pointer to the dense vector descriptor.
+  !>   @param[in] mySize - size of the dense vector.
+  !>   @param[in] values - non-zero values in the dense vector. Must be an array of length \p size.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -3959,8 +3581,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_dnvec_descr destroys a dense vector descriptor and releases all
   !>   resources used by the descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
@@ -3979,14 +3600,10 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_dnvec_get gets the fields of the dense vector descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the pointer to the dense vector descriptor.
-  !>   @param[out]
-  !>   size   size of the dense vector.
-  !>   @param[out]
-  !>   values   non-zero values in the dense vector. Must be an array of length \p size.
-  !>   @param[out]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] descr - the pointer to the dense vector descriptor.
+  !>   @param[out] mySize - size of the dense vector.
+  !>   @param[out] values - non-zero values in the dense vector. Must be an array of length \p size.
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -4023,10 +3640,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the values array from a dense vector descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
-  !>   @param[out]
-  !>   values   non-zero values in the dense vector. Must be an array of length \p size.
+  !>   @param[in] descr - the matrix descriptor.
+  !>   @param[out] values - non-zero values in the dense vector. Must be an array of length \p size.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr or \p values is invalid.
@@ -4056,10 +3671,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the values array in a dense vector descriptor.
   !>
-  !>   @param[inout]
-  !>   descr   the matrix descriptor.
-  !>   @param[in]
-  !>   values   non-zero values in the dense vector. Must be an array of length \p size.
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] values - non-zero values in the dense vector. Must be an array of length \p size.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr or \p values is invalid.
@@ -4080,23 +3693,16 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_dnmat_descr creates a dense matrix descriptor. It should be
   !>   destroyed at the end using rocsparse_destroy_dnmat_descr().
   !>
-  !>   @param[out]
-  !>   descr     the pointer to the dense matrix descriptor.
-  !>   @param[in]
-  !>   rows      number of rows in the dense matrix.
-  !>   @param[in]
-  !>   cols      number of columns in the dense matrix.
-  !>   @param[in]
-  !>   ld        leading dimension of the dense matrix.
-  !>   @param[in]
-  !>   values    non-zero values in the dense vector. Must be an array of length
+  !>   @param[out] descr - the pointer to the dense matrix descriptor.
+  !>   @param[in] rows - number of rows in the dense matrix.
+  !>   @param[in] cols - number of columns in the dense matrix.
+  !>   @param[in] ld - leading dimension of the dense matrix.
+  !>   @param[in] values - non-zero values in the dense vector. Must be an array of length
   !>             \p ld*rows if \p order=rocsparse_order_column or \p ld*cols if \p
   !>             order=rocsparse_order_row.
-  !>   @param[in]
-  !>   data_type `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>             `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
-  !>   @param[in]
-  !>   order     `rocsparse_order_row` or `rocsparse_order_column`.
+  !>   @param[in] order - `rocsparse_order_row` or `rocsparse_order_column`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -4143,8 +3749,7 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_dnmat_descr destroys a dense matrix descriptor and releases all
   !>   resources used by the descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the matrix descriptor.
+  !>   @param[in] descr - the matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
@@ -4161,23 +3766,16 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the fields of the dense matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the pointer to the dense matrix descriptor.
-  !>   @param[out]
-  !>   rows   number of rows in the dense matrix.
-  !>   @param[out]
-  !>   cols   number of columns in the dense matrix.
-  !>   @param[out]
-  !>   ld        leading dimension of the dense matrix.
-  !>   @param[out]
-  !>   values    non-zero values in the dense matrix. Must be an array of length
+  !>   @param[in] descr - the pointer to the dense matrix descriptor.
+  !>   @param[out] rows - number of rows in the dense matrix.
+  !>   @param[out] cols - number of columns in the dense matrix.
+  !>   @param[out] ld - leading dimension of the dense matrix.
+  !>   @param[out] values - non-zero values in the dense matrix. Must be an array of length
   !>             \p ld*rows if \p order=rocsparse_order_column or \p ld*cols if \p
   !>             order=rocsparse_order_row.
-  !>   @param[out]
-  !>   data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
-  !>   @param[out]
-  !>   order     `rocsparse_order_row` or `rocsparse_order_column`.
+  !>   @param[out] order - `rocsparse_order_row` or `rocsparse_order_column`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -4220,10 +3818,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the values array from the dense matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr   the pointer to the dense matrix descriptor.
-  !>   @param[out]
-  !>   values    non-zero values in the dense matrix. Must be an array of length
+  !>   @param[in] descr - the pointer to the dense matrix descriptor.
+  !>   @param[out] values - non-zero values in the dense matrix. Must be an array of length
   !>             \p ld*rows if \p order=rocsparse_order_column or \p ld*cols if \p
   !>             order=rocsparse_order_row.
   !>
@@ -4255,10 +3851,8 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the values array in a dense matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr   the matrix descriptor.
-  !>   @param[in]
-  !>   values    non-zero values in the dense matrix. Must be an array of length
+  !>   @param[inout] descr - the matrix descriptor.
+  !>   @param[in] values - non-zero values in the dense matrix. Must be an array of length
   !>             \p ld*rows if \p order=rocsparse_order_column or \p ld*cols if \p
   !>             order=rocsparse_order_row.
   !>
@@ -4278,12 +3872,9 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the batch count and batch stride from the dense matrix descriptor.
   !>
-  !>   @param[in]
-  !>   descr        the pointer to the dense matrix descriptor.
-  !>   @param[out]
-  !>   batch_count  the batch count in the dense matrix.
-  !>   @param[out]
-  !>   batch_stride the batch stride in the dense matrix.
+  !>   @param[in] descr - the pointer to the dense matrix descriptor.
+  !>   @param[out] batch_count - the batch count in the dense matrix.
+  !>   @param[out] batch_stride - the batch stride in the dense matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -4304,12 +3895,9 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the batch count and batch stride in the dense matrix descriptor.
   !>
-  !>   @param[inout]
-  !>   descr        the pointer to the dense matrix descriptor.
-  !>   @param[in]
-  !>   batch_count  the batch count in the dense matrix.
-  !>   @param[in]
-  !>   batch_stride the batch stride in the dense matrix.
+  !>   @param[inout] descr - the pointer to the dense matrix descriptor.
+  !>   @param[in] batch_count - the batch count in the dense matrix.
+  !>   @param[in] batch_stride - the batch stride in the dense matrix.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -4330,12 +3918,9 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Get the batch count and batch stride from the dense vector descriptor.
   !>
-  !>   @param[in]
-  !>   descr        the pointer to the dense vector descriptor.
-  !>   @param[out]
-  !>   batch_count  the batch count in the dense vector.
-  !>   @param[out]
-  !>   batch_stride the batch stride in the dense vector.
+  !>   @param[in] descr - the pointer to the dense vector descriptor.
+  !>   @param[out] batch_count - the batch count in the dense vector.
+  !>   @param[out] batch_stride - the batch stride in the dense vector.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -4356,12 +3941,9 @@ module hipfort_rocsparse
   !>  \ingroup aux_module
   !>   \brief Set the batch count and batch stride in the dense vector descriptor.
   !>
-  !>   @param[inout]
-  !>   descr        the pointer to the dense vector descriptor.
-  !>   @param[in]
-  !>   batch_count  the batch count in the dense vector.
-  !>   @param[in]
-  !>   batch_stride the batch stride in the dense vector.
+  !>   @param[inout] descr - the pointer to the dense vector descriptor.
+  !>   @param[in] batch_count - the batch count in the dense vector.
+  !>   @param[in] batch_stride - the batch stride in the dense vector.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -4672,41 +4254,30 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns in the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_descr   descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nb - number of block columns in the sparse BSR matrix.
+  !>   @param[in] bsr_descr - descriptor of the sparse BSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val array of \p nnzb*block_dim*block_dim containing the values of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_val - array of \p nnzb*block_dim*block_dim containing the values of the sparse
+  !>   BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   size of the blocks in the sparse BSR matrix.
-  !>   @param[in]
-  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - size of the blocks in the sparse BSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val array of \p nnzb*block_dim*block_dim elements containing the values of the sparse CSR
-  !>   matrix.
-  !>   @param[out]
-  !>   csr_row_ptr array of \p m+1 where \p m=mb*block_dim elements that point to the start of every
-  !>   row of the
-  !>               sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_col_ind array of \p nnzb*block_dim*block_dim elements containing the column indices of
+  !>   @param[out] csr_val - array of \p nnzb*block_dim*block_dim elements containing the values of
   !>   the sparse CSR matrix.
+  !>   @param[out] csr_row_ptr - array of \p m+1 where \p m=mb*block_dim elements that point to the
+  !>   start of every row of the
+  !>               sparse CSR matrix.
+  !>   @param[out] csr_col_ind - array of \p nnzb*block_dim*block_dim elements containing the column
+  !>   indices of the sparse CSR matrix.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -4857,29 +4428,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   block_dim   block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   value scalar value that is set on the diagonal of the last block when the matrix expands
-  !>   outside of \p m x \p m.
-  !>   @param[in]
-  !>   bsr_descr   descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse BSR matrix.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myValue - scalar value that is set on the diagonal of the last block when the
+  !>   matrix expands outside of \p m x \p m.
+  !>   @param[in] bsr_descr - descriptor of the sparse BSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[inout]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[inout] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -4991,20 +4554,16 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
+  !>   COO
   !>               matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[out] csr_row_ptr - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5047,29 +4606,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse COO matrix.
-  !>   @param[in]
-  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[in] descr - the descriptor of the column-oriented dense matrix \p A. The supported
+  !>   matrix type is
   !>               `rocsparse_matrix_type_general` and also any valid value of the
   !>               `rocsparse_index_base`.
-  !>   @param[in]
-  !>   coo_val     array of \p nnz non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   coo_row_ind integer array of \p nnz row indices of the non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   coo_col_ind integer array of \p nnz column indices of the non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   A           array of dimensions (\p ld, \p n).
+  !>   @param[in] coo_val - array of \p nnz non-zero elements of matrix \p A.
+  !>   @param[in] coo_row_ind - integer array of \p nnz row indices of the non-zero elements of
+  !>   matrix \p A.
+  !>   @param[in] coo_col_ind - integer array of \p nnz column indices of the non-zero elements of
+  !>   matrix \p A.
+  !>   @param[out] A - array of dimensions (\p ld, \p n).
   !>
-  !>   @param[out]
-  !>   ld          leading dimension of column-oriented dense matrix \p A.
+  !>   @param[out] ld - leading dimension of column-oriented dense matrix \p A.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5199,22 +4751,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse COO matrix.
-  !>   @param[in]
-  !>   coo_row_ind     array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[in] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>                   COO matrix.
-  !>   @param[in]
-  !>   coo_col_ind     array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] coo_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>                   COO matrix.
-  !>   @param[out]
-  !>   buffer_size     number of bytes of the temporary storage buffer required by
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                   `rocsparse_coosort_by_row`() and `rocsparse_coosort_by_column`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -5269,25 +4814,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse COO matrix.
-  !>   @param[inout]
-  !>   coo_row_ind     array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[inout] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   coo_col_ind     array of \p nnz elements containing the column indices of the sparse
+  !>   @param[inout] coo_col_ind - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   perm            array of \p nnz integers containing the unsorted map indices, which can be
+  !>   @param[inout] perm - array of \p nnz integers containing the unsorted map indices, which can
+  !>   be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>                   `rocsparse_coosort_buffer_size`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -5346,25 +4886,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse COO matrix.
-  !>   @param[inout]
-  !>   coo_row_ind     array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[inout] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   coo_col_ind     array of \p nnz elements containing the column indices of the sparse
+  !>   @param[inout] coo_col_ind - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                   COO matrix.
-  !>   @param[inout]
-  !>   perm            array of \p nnz integers containing the unsorted map indices, which can be
+  !>   @param[inout] perm - array of \p nnz integers containing the unsorted map indices, which can
+  !>   be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>                   `rocsparse_coosort_buffer_size`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -5411,31 +4946,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in] descr - the descriptor of the column-oriented dense matrix \p A. The supported
+  !>   matrix type is
   !>               `rocsparse_matrix_type_general` and also any valid value of the
   !>               `rocsparse_index_base`.
-  !>   @param[in]
-  !>   csc_val array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[in]
-  !>   csc_col_ptr integer array of \p n+1 elements that contains the start of every column and the
-  !>   end of the last
+  !>   @param[in] csc_val - array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[in] csc_col_ptr - integer array of \p n+1 elements that contains the start of every
+  !>   column and the end of the last
   !>               column plus one.
-  !>   @param[in]
-  !>   csc_row_ind integer array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) column indices
-  !>   of the non-zero
+  !>   @param[in] csc_row_ind - integer array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] )
+  !>   column indices of the non-zero
   !>               elements of matrix \p A.
-  !>   @param[out]
-  !>   A           array of dimensions (\p ld, \p n).
-  !>   @param[out]
-  !>   ld          leading dimension of column-oriented dense matrix \p A.
+  !>   @param[out] A - array of dimensions (\p ld, \p n).
+  !>   @param[out] ld - leading dimension of column-oriented dense matrix \p A.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5561,22 +5088,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSC matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSC matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_col_ptr     array of \p n+1 elements that point to the start of every column of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSC matrix.
+  !>   @param[in] n - number of columns of the sparse CSC matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix.
+  !>   @param[in] csc_col_ptr - array of \p n+1 elements that point to the start of every column of
   !>                   the sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_row_ind     array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] csc_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>                   CSC matrix.
-  !>   @param[out]
-  !>   buffer_size     number of bytes of the temporary storage buffer required by
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                   `rocsparse_cscsort`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -5629,28 +5149,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSC matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSC matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse CSC matrix.
-  !>   @param[in]
-  !>   descr           descriptor of the sparse CSC matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSC matrix.
+  !>   @param[in] n - number of columns of the sparse CSC matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix.
+  !>   @param[in] descr - descriptor of the sparse CSC matrix. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csc_col_ptr     array of \p n+1 elements that point to the start of every column of
+  !>   @param[in] csc_col_ptr - array of \p n+1 elements that point to the start of every column of
   !>                   the sparse CSC matrix.
-  !>   @param[inout]
-  !>   csc_row_ind     array of \p nnz elements containing the row indices of the sparse
+  !>   @param[inout] csc_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>                   CSC matrix.
-  !>   @param[inout]
-  !>   perm            array of \p nnz integers containing the unsorted map indices, which can be
+  !>   @param[inout] perm - array of \p nnz integers containing the unsorted map indices, which can
+  !>   be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>                   `rocsparse_cscsort_buffer_size`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -5705,42 +5218,32 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
   !>
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>               `rocsparse_direction_column`.
   !>
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
-  !>   the CSR matrix.
+  !>   @param[in] csr_row_ptr - integer array containing \p m+1 elements that point to the start of
+  !>   each row of the CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_col_ind integer array of the column indices for each non-zero element in the CSR matrix.
+  !>   @param[in] csr_col_ind - integer array of the column indices for each non-zero element in the
+  !>   CSR matrix.
   !>
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and min(m, n).
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and min(m, n).
   !>
-  !>   @param[in]
-  !>   bsr_descr    descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] bsr_descr - descriptor of the sparse BSR matrix. Currently, only
   !>                `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block
-  !>   row of the BSR matrix.
+  !>   @param[out] bsr_row_ptr - integer array containing \p mb+1 elements that point to the start
+  !>   of each block row of the BSR matrix.
   !>
-  !>   @param[out]
-  !>   bsr_nnz     total number of non-zero elements in device or host memory.
+  !>   @param[out] bsr_nnz - total number of non-zero elements in device or host memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5809,38 +5312,28 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   m            number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n            number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val      array of \p nnz elements containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr  array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val - array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>                sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind  array of \p nnz elements containing the column indices of the sparse CSR matrix.
-  !>   @param[in]
-  !>   block_dim    size of the blocks in the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_descr    descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
+  !>   CSR matrix.
+  !>   @param[in] block_dim - size of the blocks in the sparse BSR matrix.
+  !>   @param[in] bsr_descr - descriptor of the sparse BSR matrix. Currently, only
   !>                `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_val array of \p nnzb*block_dim*block_dim containing the values of the sparse BSR matrix.
-  !>   @param[out]
-  !>   bsr_row_ptr  array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[out] bsr_val - array of \p nnzb*block_dim*block_dim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[out] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                sparse BSR matrix.
-  !>   @param[out]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
+  !>   @param[out] bsr_col_ind - array of \p nnzb elements containing the block column indices of
+  !>   the sparse BSR matrix.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5988,20 +5481,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row
   !>               of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[out]
-  !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[out] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
+  !>   COO
   !>               matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -6046,24 +5534,16 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   copy_values `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] copy_values - `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scsr2csc "rocsparse_Xcsr2csc()".
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -6128,36 +5608,26 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   csc_val     array of \p nnz elements of the sparse CSC matrix.
-  !>   @param[out]
-  !>   csc_row_ind array of \p nnz elements containing the row indices of the sparse CSC
+  !>   @param[out] csc_val - array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[out] csc_row_ind - array of \p nnz elements containing the row indices of the sparse
+  !>   CSC
   !>               matrix.
-  !>   @param[out]
-  !>   csc_col_ptr array of \p n+1 elements that point to the start of every column of the
+  !>   @param[out] csc_col_ptr - array of \p n+1 elements that point to the start of every column of
+  !>   the
   !>               sparse CSC matrix.
-  !>   @param[in]
-  !>   copy_values `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] copy_values - `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>               rocsparse_csr2csc_buffer_size().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -6371,41 +5841,32 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr_A       matrix descriptor for the CSR matrix.
-  !>   @param[in]
-  !>   csr_val_A     array of \p nnz_A elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] descr_A - matrix descriptor for the CSR matrix.
+  !>   @param[in] csr_val_A - array of \p nnz_A elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                 uncompressed sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the uncompressed
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   uncompressed
   !>                 sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A         number of elements in the column indices and values arrays of the uncompressed
+  !>   @param[in] nnz_A - number of elements in the column indices and values arrays of the
+  !>   uncompressed
   !>                 sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_per_row array of length \p m containing the number of entries that will be kept per row
-  !>   in
+  !>   @param[in] nnz_per_row - array of length \p m containing the number of entries that will be
+  !>   kept per row in
   !>                 the final compressed CSR matrix.
-  !>   @param[out]
-  !>   csr_val_C     array of \p nnz_C elements of the compressed sparse CSC matrix.
-  !>   @param[out]
-  !>   csr_row_ptr_C array of \p m+1 elements that point to the start of every column of the
+  !>   @param[out] csr_val_C - array of \p nnz_C elements of the compressed sparse CSC matrix.
+  !>   @param[out] csr_row_ptr_C - array of \p m+1 elements that point to the start of every column
+  !>   of the compressed
+  !>                 sparse CSR matrix.
+  !>   @param[out] csr_col_ind_C - array of \p nnz_C elements containing the row indices of the
   !>   compressed
   !>                 sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_col_ind_C array of \p nnz_C elements containing the row indices of the compressed
-  !>                 sparse CSR matrix.
-  !>   @param[in]
-  !>   tol the non-negative tolerance used for compression. If \p tol is complex, then only the
-  !>   magnitude
+  !>   @param[in] tol - the non-negative tolerance used for compression. If \p tol is complex, then
+  !>   only the magnitude
   !>                 of the real part is used. Entries in the input uncompressed CSR array that are
   !>                 below the tolerance
   !>                 are removed in the output-compressed CSR matrix.
@@ -6551,31 +6012,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in] descr - the descriptor of the column-oriented dense matrix \p A. The supported
+  !>   matrix type is
   !>               `rocsparse_matrix_type_general` and also any valid value of the
   !>               `rocsparse_index_base`.
-  !>   @param[in]
-  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[in]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last
+  !>   @param[in] csr_val - array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[in] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last
   !>               row plus one.
-  !>   @param[in]
-  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
-  !>   of the non-zero
+  !>   @param[in] csr_col_ind - integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] )
+  !>   column indices of the non-zero
   !>               elements of matrix \p A.
-  !>   @param[out]
-  !>   A           array of dimensions (\p ld, \p n).
-  !>   @param[out]
-  !>   ld          leading dimension of column-oriented dense matrix \p A.
+  !>   @param[out] A - array of dimensions (\p ld, \p n).
+  !>   @param[out] ld - leading dimension of column-oriented dense matrix \p A.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -6700,21 +6153,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   ell_descr   descriptor of the sparse ELL matrix. Currently, only
+  !>   @param[in] ell_descr - descriptor of the sparse ELL matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   ell_width   pointer to the number of non-zero elements per row in ELL storage
+  !>   @param[out] ell_width - pointer to the number of non-zero elements per row in ELL storage
   !>               format.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -6764,29 +6211,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val     array containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val - array containing the values of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array containing the column indices of the sparse CSR matrix.
-  !>   @param[in]
-  !>   ell_descr   descriptor of the sparse ELL matrix. Currently, only
+  !>   @param[in] csr_col_ind - array containing the column indices of the sparse CSR matrix.
+  !>   @param[in] ell_descr - descriptor of the sparse ELL matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   ell_width   number of non-zero elements per row in ELL storage format.
-  !>   @param[out]
-  !>   ell_val     array of \p m times \p ell_width elements of the sparse ELL matrix.
-  !>   @param[out]
-  !>   ell_col_ind array of \p m times \p ell_width elements containing the column indices
+  !>   @param[in] ell_width - number of non-zero elements per row in ELL storage format.
+  !>   @param[out] ell_val - array of \p m times \p ell_width elements of the sparse ELL matrix.
+  !>   @param[out] ell_col_ind - array of \p m times \p ell_width elements containing the column
+  !>   indices
   !>               of the sparse ELL matrix.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -6921,42 +6359,34 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
   !>
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>               `rocsparse_direction_column`.
   !>
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                `rocsparse_matrix_type_general` is supported.
   !>
-  !>   @param[in]
-  !>   csr_val      array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements containing the values of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
-  !>   the CSR matrix.
+  !>   @param[in] csr_row_ptr - integer array containing \p m+1 elements that point to the start of
+  !>   each row of the CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_col_ind  integer array of the column indices for each non-zero element in the CSR matrix.
+  !>   @param[in] csr_col_ind - integer array of the column indices for each non-zero element in the
+  !>   CSR matrix.
   !>
-  !>   @param[in]
-  !>   row_block_dim   the row block dimension of the general BSR matrix. Between 1 and \p m.
+  !>   @param[in] row_block_dim - the row block dimension of the general BSR matrix. Between 1 and
+  !>   \p m.
   !>
-  !>   @param[in]
-  !>   col_block_dim   the col block dimension of the general BSR matrix. Between 1 and \p n.
+  !>   @param[in] col_block_dim - the col block dimension of the general BSR matrix. Between 1 and
+  !>   \p n.
   !>
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by \ref
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by \ref
   !>   rocsparse_csr2gebsr_nnz
   !>                and \ref rocsparse_scsr2gebsr "rocsparse_Xcsr2gebsr()".
   !>
@@ -7100,43 +6530,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle           handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                    `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   m                number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr        descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                    `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
-  !>   the CSR matrix.
+  !>   @param[in] csr_row_ptr - integer array containing \p m+1 elements that point to the start of
+  !>   each row of the CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_col_ind integer array of the column indices for each non-zero element in the CSR matrix.
+  !>   @param[in] csr_col_ind - integer array of the column indices for each non-zero element in the
+  !>   CSR matrix.
   !>
-  !>   @param[in]
-  !>   bsr_descr        descriptor of the sparse general BSR matrix. Currently, only
+  !>   @param[in] bsr_descr - descriptor of the sparse general BSR matrix. Currently, only
   !>                    `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block
-  !>   row of the
+  !>   @param[out] bsr_row_ptr - integer array containing \p mb+1 elements that point to the start
+  !>   of each block row of the
   !>                    general BSR matrix.
-  !>   @param[in]
-  !>   row_block_dim the row block dimension of the general BSR matrix. Between \f$1\f$ and
-  !>   \f$\min(m, n)\f$.
-  !>   @param[in]
-  !>   col_block_dim the col block dimension of the general BSR matrix. Between \f$1\f$ and
-  !>   \f$\min(m, n)\f$.
-  !>   @param[out]
-  !>   bsr_nnz_devhost  total number of non-zero elements in device or host memory.
-  !>   @param[in]
-  !>   temp_buffer      buffer allocated by the user. Its size is determined by calling
+  !>   @param[in] row_block_dim - the row block dimension of the general BSR matrix. Between \f$1\f$
+  !>   and \f$\min(m, n)\f$.
+  !>   @param[in] col_block_dim - the col block dimension of the general BSR matrix. Between \f$1\f$
+  !>   and \f$\min(m, n)\f$.
+  !>   @param[out] bsr_nnz_devhost - total number of non-zero elements in device or host memory.
+  !>   @param[in] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                    \ref rocsparse_scsr2gebsr_buffer_size "rocsparse_Xcsr2gebsr_buffer_size()".
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -7211,43 +6629,30 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle         handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   m              number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n              number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_descr      descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>                  `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val        array of \p nnz elements containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr    array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val - array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>                  sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse CSR matrix.
-  !>   @param[in]
-  !>   bsr_descr      descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
+  !>   CSR matrix.
+  !>   @param[in] bsr_descr - descriptor of the sparse BSR matrix. Currently, only
   !>                  `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_val array of \p nnzb* \p row_block_dim* \p col_block_dim containing the values of the
-  !>   sparse BSR matrix.
-  !>   @param[out]
-  !>   bsr_row_ptr    array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[out] bsr_val - array of \p nnzb* \p row_block_dim* \p col_block_dim containing the
+  !>   values of the sparse BSR matrix.
+  !>   @param[out] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                  sparse BSR matrix.
-  !>   @param[out]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   row_block_dim  row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   col_block_dim  col size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   temp_buffer    buffer allocated by the user. Its size is determined by calling
+  !>   @param[out] bsr_col_ind - array of \p nnzb elements containing the block column indices of
+  !>   the sparse BSR matrix.
+  !>   @param[in] row_block_dim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] col_block_dim - col size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                  \ref rocsparse_scsr2gebsr_buffer_size "rocsparse_Xcsr2gebsr_buffer_size()".
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -7405,29 +6810,19 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr           descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val         array containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val - array containing the values of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind     array containing the column indices of the sparse CSR matrix.
-  !>   @param[out]
-  !>   hyb             sparse matrix in HYB format.
-  !>   @param[in]
-  !>   user_ell_width  width of the ELL part of the HYB matrix (only required if
+  !>   @param[in] csr_col_ind - array containing the column indices of the sparse CSR matrix.
+  !>   @param[out] hyb - sparse matrix in HYB format.
+  !>   @param[in] user_ell_width - width of the ELL part of the HYB matrix (only required if
   !>                   \p partition_type == `rocsparse_hyb_partition_user`).
-  !>   @param[in]
-  !>   partition_type  `rocsparse_hyb_partition_auto` (recommended),
+  !>   @param[in] partition_type - `rocsparse_hyb_partition_auto` (recommended),
   !>                   `rocsparse_hyb_partition_user`, or
   !>                   `rocsparse_hyb_partition_max`.
   !>
@@ -7566,22 +6961,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind     array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>                   CSR matrix.
-  !>   @param[out]
-  !>   buffer_size     number of bytes of the temporary storage buffer required by
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                   `rocsparse_csrsort`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -7634,28 +7022,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz             number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr           descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix.
-  !>   @param[inout]
-  !>   csr_col_ind     array of \p nnz elements containing the column indices of the sparse
+  !>   @param[inout] csr_col_ind - array of \p nnz elements containing the column indices of the
+  !>   sparse
   !>                   CSR matrix.
-  !>   @param[inout]
-  !>   perm            array of \p nnz integers containing the unsorted map indices, which can be
+  !>   @param[inout] perm - array of \p nnz integers containing the unsorted map indices, which can
+  !>   be
   !>                   \p NULL.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>                   `rocsparse_csrsort_buffer_size`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -7708,29 +7090,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m            number of rows of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   n            number of columns of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in] descr - the descriptor of the column-oriented dense matrix \p A. The supported
+  !>   matrix type is
   !>                `rocsparse_matrix_type_general` and also any valid value of the
   !>                `rocsparse_index_base`.
-  !>   @param[in]
-  !>   A            column-oriented dense matrix of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld           leading dimension of column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   nnz_per_rows array of size \p n containing the number of non-zero elements per row.
-  !>   @param[out]
-  !>   coo_val
+  !>   @param[in] A - column-oriented dense matrix of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of column-oriented dense matrix \p A.
+  !>   @param[in] nnz_per_rows - array of size \p n containing the number of non-zero elements per
+  !>   row.
+  !>   @param[out] coo_val
   !>                array of nnz nonzero elements of matrix \p A.
-  !>   @param[out]
-  !>   coo_row_ind  integer array of nnz row indices of the non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   coo_col_ind  integer array of nnz column indices of the non-zero elements of matrix \p A.
+  !>   @param[out] coo_row_ind - integer array of nnz row indices of the non-zero elements of matrix
+  !>   \p A.
+  !>   @param[out] coo_col_ind - integer array of nnz column indices of the non-zero elements of
+  !>   matrix \p A.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -7867,32 +7243,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle           handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m                number of rows of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   n                number of columns of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in] descr - the descriptor of the column-oriented dense matrix \p A. The supported
+  !>   matrix type is
   !>                    `rocsparse_matrix_type_general` and also any valid value of the
   !>                    `rocsparse_index_base`.
-  !>   @param[in]
-  !>   A                column-oriented dense matrix of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld               leading dimension of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   nnz_per_columns  array of size \p n containing the number of non-zero elements per column.
-  !>   @param[out]
-  !>   csc_val array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[out]
-  !>   csc_col_ptr integer array of \p n+1 elements that contains the start of every column and the
-  !>   end of the last column
+  !>   @param[in] A - column-oriented dense matrix of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of the column-oriented dense matrix \p A.
+  !>   @param[in] nnz_per_columns - array of size \p n containing the number of non-zero elements
+  !>   per column.
+  !>   @param[out] csc_val - array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[out] csc_col_ptr - integer array of \p n+1 elements that contains the start of every
+  !>   column and the end of the last column
   !>                    plus one.
-  !>   @param[out]
-  !>   csc_row_ind integer array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) column indices
-  !>   of the non-zero elements
+  !>   @param[out] csc_row_ind - integer array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] )
+  !>   column indices of the non-zero elements
   !>                    of matrix \p A.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -8028,31 +7396,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows of the column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   n             number of columns of the column-oriented dense dense matrix \p A.
-  !>   @param[in]
-  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in] n - number of columns of the column-oriented dense dense matrix \p A.
+  !>   @param[in] descr - the descriptor of the column-oriented dense matrix \p A. The supported
+  !>   matrix type is
   !>                 `rocsparse_matrix_type_general` and also any valid value of the
   !>                 `rocsparse_index_base`.
-  !>   @param[in]
-  !>   A             column-oriented dense matrix of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld            leading dimension of column-oriented dense matrix \p A.
-  !>   @param[in]
-  !>   nnz_per_rows  array of size \p n containing the number of non-zero elements per row.
-  !>   @param[out]
-  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[out]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
-  !>   of the non-zero elements of
+  !>   @param[in] A - column-oriented dense matrix of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of column-oriented dense matrix \p A.
+  !>   @param[in] nnz_per_rows - array of size \p n containing the number of non-zero elements per
+  !>   row.
+  !>   @param[out] csr_val - array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[out] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[out] csr_col_ind - integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] )
+  !>   column indices of the non-zero elements of
   !>                 matrix \p A.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -8193,28 +7553,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse ELL matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_descr   descriptor of the sparse ELL matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse ELL matrix.
+  !>   @param[in] n - number of columns of the sparse ELL matrix.
+  !>   @param[in] ell_descr - descriptor of the sparse ELL matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   ell_width   number of non-zero elements per row in ELL storage format.
-  !>   @param[in]
-  !>   ell_col_ind array of \p m times \p ell_width elements containing the column indices
+  !>   @param[in] ell_width - number of non-zero elements per row in ELL storage format.
+  !>   @param[in] ell_col_ind - array of \p m times \p ell_width elements containing the column
+  !>   indices
   !>               of the sparse ELL matrix.
-  !>   @param[in]
-  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_row_ptr - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>               sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_nnz     pointer to the total number of non-zero elements in CSR storage
+  !>   @param[out] csr_nnz - pointer to the total number of non-zero elements in CSR storage
   !>               format.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -8267,32 +7620,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse ELL matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_descr   descriptor of the sparse ELL matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse ELL matrix.
+  !>   @param[in] n - number of columns of the sparse ELL matrix.
+  !>   @param[in] ell_descr - descriptor of the sparse ELL matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   ell_width   number of non-zero elements per row in ELL storage format.
-  !>   @param[in]
-  !>   ell_val     array of \p m times \p ell_width elements of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_col_ind array of \p m times \p ell_width elements containing the column indices
+  !>   @param[in] ell_width - number of non-zero elements per row in ELL storage format.
+  !>   @param[in] ell_val - array of \p m times \p ell_width elements of the sparse ELL matrix.
+  !>   @param[in] ell_col_ind - array of \p m times \p ell_width elements containing the column
+  !>   indices
   !>               of the sparse ELL matrix.
-  !>   @param[in]
-  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val     array containing the values of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_val - array containing the values of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_col_ind array containing the column indices of the sparse CSR matrix.
+  !>   @param[out] csr_col_ind - array containing the column indices of the sparse CSR matrix.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -8441,44 +7784,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsr_descr   descriptor of the sparse general BSR matrix. Currently, only
+  !>   @param[in] mb - number of block rows in the sparse general BSR matrix.
+  !>   @param[in] nb - number of block columns in the sparse general BSR matrix.
+  !>   @param[in] bsr_descr - descriptor of the sparse general BSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val array of \p nnzb*row_block_dim*col_block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_val - array of \p nnzb*row_block_dim*col_block_dim containing the values of
+  !>   the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   row_block_dim   row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   col_block_dim   column size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] row_block_dim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] col_block_dim - column size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] csr_descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val array of \p nnzb*row_block_dim*col_block_dim elements containing the values of the
-  !>   sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_row_ptr array of \p m+1 where \p m=mb*row_block_dim elements that point to the start of
-  !>   every row of the
+  !>   @param[out] csr_val - array of \p nnzb*row_block_dim*col_block_dim elements containing the
+  !>   values of the sparse CSR matrix.
+  !>   @param[out] csr_row_ptr - array of \p m+1 where \p m=mb*row_block_dim elements that point to
+  !>   the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_col_ind array of \p nnzb*block_dim*block_dim elements containing the column indices of
-  !>   the sparse CSR matrix.
+  !>   @param[out] csr_col_ind - array of \p nnzb*block_dim*block_dim elements containing the column
+  !>   indices of the sparse CSR matrix.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -8626,29 +7956,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   mb           number of rows of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nb           number of columns of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nnzb         number of non-zero entries of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsr_val array of \p nnzb*row_block_dim*col_block_dim containing the values of the sparse
-  !>   general BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] mb - number of rows of the sparse general BSR matrix.
+  !>   @param[in] nb - number of columns of the sparse general BSR matrix.
+  !>   @param[in] nnzb - number of non-zero entries of the sparse general BSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb*row_block_dim*col_block_dim containing the values of
+  !>   the sparse general BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every row of
+  !>   the
   !>               sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the column indices of the
+  !>   sparse
   !>               general BSR matrix.
-  !>   @param[in]
-  !>   row_block_dim   row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   col_block_dim   col size of the blocks in the sparse general BSR matrix.
-  !>   @param[out]
-  !>   p_buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] row_block_dim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] col_block_dim - col size of the blocks in the sparse general BSR matrix.
+  !>   @param[out] p_buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_sgebsr2gebsc(), rocsparse_dgebsr2gebsc(), rocsparse_cgebsr2gebsc(), and
   !>               rocsparse_zgebsr2gebsc().
   !>
@@ -8803,41 +8125,30 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle         handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   mb             number of rows of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nb             number of columns of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   nnzb           number of non-zero entries of the sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsr_val array of \p nnzb * \p row_block_dim * \p col_block_dim elements of the sparse general
-  !>   BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr    array of \p mb+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] mb - number of rows of the sparse general BSR matrix.
+  !>   @param[in] nb - number of columns of the sparse general BSR matrix.
+  !>   @param[in] nnzb - number of non-zero entries of the sparse general BSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb * \p row_block_dim * \p col_block_dim elements of the
+  !>   sparse general BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every row of
+  !>   the
   !>                  sparse general BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind    array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>                  general BSR matrix.
-  !>   @param[in]
-  !>   row_block_dim  row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   col_block_dim  col size of the blocks in the sparse general BSR matrix.
-  !>   @param[out]
-  !>   bsc_val        array of \p nnz elements of the sparse BSC matrix.
-  !>   @param[out]
-  !>   bsc_row_ind    array of \p nnz elements containing the row indices of the sparse BSC
+  !>   @param[in] row_block_dim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] col_block_dim - col size of the blocks in the sparse general BSR matrix.
+  !>   @param[out] bsc_val - array of \p nnz elements of the sparse BSC matrix.
+  !>   @param[out] bsc_row_ind - array of \p nnz elements containing the row indices of the sparse
+  !>   BSC
   !>                  matrix.
-  !>   @param[out]
-  !>   bsc_col_ptr    array of \p nb+1 elements that point to the start of every column of the
+  !>   @param[out] bsc_col_ptr - array of \p nb+1 elements that point to the start of every column
+  !>   of the
   !>                  sparse BSC matrix.
-  !>   @param[in]
-  !>   copy_values    `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
-  !>   @param[in]
-  !>   idx_base       `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   temp_buffer    temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[in] copy_values - `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>                  \ref rocsparse_sgebsr2gebsc_buffer_size
   !>                  "rocsparse_Xgebsr2gebsc_buffer_size()".
   !>
@@ -8999,41 +8310,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle           handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb               number of block rows of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nb               number of block columns of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb             number of blocks in the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
+  !>   @param[in] mb - number of block rows of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nb - number of block columns of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nnzb - number of blocks in the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] descr_A - the descriptor of the general BSR sparse matrix \f$A\f$. The supported
+  !>   matrix type is
   !>                    `rocsparse_matrix_type_general` and also any valid value of the
   !>                    `rocsparse_index_base`.
-  !>   @param[in]
-  !>   bsr_val_A array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values of the
-  !>   sparse general BSR
+  !>   @param[in] bsr_val_A - array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values
+  !>   of the sparse general BSR
   !>                    matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A    array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                    sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A array of \p nnzb elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   row_block_dim_A  row size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   col_block_dim_A  column size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   row_block_dim_C  row size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   col_block_dim_C  column size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb elements containing the block column indices of
+  !>   the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] row_block_dim_A - row size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] col_block_dim_A - column size of the blocks in the sparse general BSR matrix
+  !>   \f$A\f$.
+  !>   @param[in] row_block_dim_C - row size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] col_block_dim_C - column size of the blocks in the sparse general BSR matrix
+  !>   \f$C\f$.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>   `rocsparse_gebsr2gebsr_nnz` () and
   !>                    \ref rocsparse_sgebsr2gebsr "rocsparse_Xgebsr2gebsr()".
   !>
@@ -9170,48 +8471,38 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle                  handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb                      number of block rows of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nb                      number of block columns of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb                    number of blocks in the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
+  !>   @param[in] mb - number of block rows of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nb - number of block columns of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nnzb - number of blocks in the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] descr_A - the descriptor of the general BSR sparse matrix \f$A\f$. The supported
+  !>   matrix type is
   !>                           `rocsparse_matrix_type_general` and also any valid value of the
   !>                           `rocsparse_index_base`.
-  !>   @param[in]
-  !>   bsr_row_ptr_A array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                           sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A array of \p nnzb elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   row_block_dim_A         row size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   col_block_dim_A         column size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_C the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb elements containing the block column indices of
+  !>   the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] row_block_dim_A - row size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] col_block_dim_A - column size of the blocks in the sparse general BSR matrix
+  !>   \f$A\f$.
+  !>   @param[in] descr_C - the descriptor of the general BSR sparse matrix \f$C\f$. The supported
+  !>   matrix type is
   !>                           `rocsparse_matrix_type_general` and also any valid value of the
   !>                           `rocsparse_index_base`.
-  !>   @param[in]
-  !>   bsr_row_ptr_C array of \p mb_C+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_row_ptr_C - array of \p mb_C+1 elements that point to the start of every block
+  !>   row of the
   !>                           sparse general BSR matrix \f$C\f$ where \p
   !>                           mb_C=(m+row_block_dim_C-1)/row_block_dim_C.
-  !>   @param[in]
-  !>   row_block_dim_C         row size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   col_block_dim_C         column size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnz_total_dev_host_ptr total number of non-zero blocks in general BSR sparse matrix \f$C\f$
-  !>   stored using device or host memory.
-  !>   @param[out]
-  !>   temp_buffer             buffer allocated by the user whose size is determined by calling
+  !>   @param[in] row_block_dim_C - row size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] col_block_dim_C - column size of the blocks in the sparse general BSR matrix
+  !>   \f$C\f$.
+  !>   @param[out] nnz_total_dev_host_ptr - total number of non-zero blocks in general BSR sparse
+  !>   matrix \f$C\f$ stored using device or host memory.
+  !>   @param[out] temp_buffer - buffer allocated by the user whose size is determined by calling
   !>                           \ref rocsparse_sgebsr2gebsr_buffer_size
   !>                           "rocsparse_Xgebsr2gebsr_buffer_size()".
   !>
@@ -9301,53 +8592,41 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle           handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks, `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb               number of block rows of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nb               number of block columns of the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb             number of blocks in the general BSR sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
+  !>   @param[in] mb - number of block rows of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nb - number of block columns of the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] nnzb - number of blocks in the general BSR sparse matrix \f$A\f$.
+  !>   @param[in] descr_A - the descriptor of the general BSR sparse matrix \f$A\f$. The supported
+  !>   matrix type is
   !>                    `rocsparse_matrix_type_general` and also any valid value of the
   !>                    `rocsparse_index_base`.
-  !>   @param[in]
-  !>   bsr_val_A array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values of the
-  !>   sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A    array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_val_A - array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values
+  !>   of the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                    sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A array of \p nnzb elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   row_block_dim_A  row size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   col_block_dim_A  column size of the blocks in the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_C the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb elements containing the block column indices of
+  !>   the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] row_block_dim_A - row size of the blocks in the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] col_block_dim_A - column size of the blocks in the sparse general BSR matrix
+  !>   \f$A\f$.
+  !>   @param[in] descr_C - the descriptor of the general BSR sparse matrix \f$C\f$. The supported
+  !>   matrix type is
   !>                    `rocsparse_matrix_type_general` and also any valid value of the
   !>                    `rocsparse_index_base`.
-  !>   @param[in]
-  !>   bsr_val_C array of \p nnzb_C*row_block_dim_C*col_block_dim_C containing the values of the
-  !>   sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_C array of \p mb_C+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_val_C - array of \p nnzb_C*row_block_dim_C*col_block_dim_C containing the
+  !>   values of the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] bsr_row_ptr_C - array of \p mb_C+1 elements that point to the start of every block
+  !>   row of the
   !>                    sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_C array of \p nnzb_C elements containing the block column indices of the sparse
-  !>   general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   row_block_dim_C  row size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   col_block_dim_C  column size of the blocks in the sparse general BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   temp_buffer      buffer allocated by the user. Its size is determined by calling
+  !>   @param[in] bsr_col_ind_C - array of \p nnzb_C elements containing the block column indices of
+  !>   the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] row_block_dim_C - row size of the blocks in the sparse general BSR matrix \f$C\f$.
+  !>   @param[in] col_block_dim_C - column size of the blocks in the sparse general BSR matrix
+  !>   \f$C\f$.
+  !>   @param[out] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                    \ref rocsparse_sgebsr2gebsr_buffer_size
   !>                    "rocsparse_Xgebsr2gebsr_buffer_size()".
   !>
@@ -9494,18 +8773,13 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr           descriptor of the sparse HYB matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse HYB matrix. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   hyb             sparse matrix in HYB format.
-  !>   @param[in]
-  !>   csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] hyb - sparse matrix in HYB format.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>                   sparse CSR matrix.
-  !>   @param[out]
-  !>   buffer_size     number of bytes of the temporary storage buffer required by
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                   \ref rocsparse_shyb2csr "rocsparse_Xhyb2csr()".
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -9559,22 +8833,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr           descriptor of the sparse HYB matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse HYB matrix. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   hyb             sparse matrix in HYB format.
-  !>   @param[out]
-  !>   csr_val         array containing the values of the sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] hyb - sparse matrix in HYB format.
+  !>   @param[out] csr_val - array containing the values of the sparse CSR matrix.
+  !>   @param[out] csr_row_ptr - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix.
-  !>   @param[out]
-  !>   csr_col_ind     array containing the column indices of the sparse CSR matrix.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[out] csr_col_ind - array containing the column indices of the sparse CSR matrix.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>                   `rocsparse_hyb2csr_buffer_size`().
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -9700,12 +8969,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   n           size of the map \p p.
-  !>   @param[out]
-  !>   p           array of \p n integers containing the map.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] n - size of the map \p p.
+  !>   @param[out] p - array of \p n integers containing the map.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -9753,16 +9019,11 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   n           size of the permutation vector \p p.
-  !>   @param[in]
-  !>   p           array of \p n integers containing the permutation vector to inverse.
-  !>   @param[out]
-  !>   q           array of \p n integers containing the invsrse of the permutation vector.
-  !>   @param[in]
-  !>   base        `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] n - size of the permutation vector \p p.
+  !>   @param[in] p - array of \p n integers containing the permutation vector to inverse.
+  !>   @param[out] q - array of \p n integers containing the invsrse of the permutation vector.
+  !>   @param[in] base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -9805,14 +9066,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   n           size of the map \p p.
-  !>   @param[out]
-  !>   p           array of \p n integers containing the map.
-  !>   @param[in]
-  !>   indextype the integer type of \p p. Can be \p rocsparse_indextype_i32 or \p
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] n - size of the map \p p.
+  !>   @param[out] p - array of \p n integers containing the map.
+  !>   @param[in] indextype - the integer type of \p p. Can be \p rocsparse_indextype_i32 or \p
   !>   rocsparse_indextype_i64.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -9859,27 +9116,19 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle                  handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                           `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   m                       number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                       number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   descr                   the descriptor of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                       array of dimensions (\p ld, \p n).
-  !>   @param[in]
-  !>   ld                      leading dimension of dense array \p A.
-  !>   @param[out]
-  !>   nnz_per_row_columns array of size \p m or \p n containing the number of non-zero elements per
-  !>   row or column, respectively.
-  !>   @param[out]
-  !>   nnz_total_dev_host_ptr  total number of non-zero elements in device or host memory.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p ld, \p n).
+  !>   @param[in] ld - leading dimension of dense array \p A.
+  !>   @param[out] nnz_per_row_columns - array of size \p m or \p n containing the number of
+  !>   non-zero elements per row or column, respectively.
+  !>   @param[out] nnz_total_dev_host_ptr - total number of non-zero elements in device or host
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -10006,30 +9255,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
   !>
-  !>   @param[in]
-  !>   m             number of rows of the sparse CSR matrix.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   descr_A       the descriptor of the sparse CSR matrix.
+  !>   @param[in] descr_A - the descriptor of the sparse CSR matrix.
   !>
-  !>   @param[in]
-  !>   csr_val_A     array of \p nnz_A elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val_A - array of \p nnz_A elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                 uncompressed sparse CSR matrix.
-  !>   @param[out]
-  !>   nnz_per_row array of length \p m containing the number of entries that will be kept per row
-  !>   in
+  !>   @param[out] nnz_per_row - array of length \p m containing the number of entries that will be
+  !>   kept per row in
   !>                 the final compressed CSR matrix.
-  !>   @param[out]
-  !>   nnz_C         number of elements in the column indices and values arrays of the compressed
+  !>   @param[out] nnz_C - number of elements in the column indices and values arrays of the
+  !>   compressed
   !>                 sparse CSR matrix. It can be either a host or device pointer.
-  !>   @param[in]
-  !>   tol the non-negative tolerance used for compression. If \p tol is complex, then only the
-  !>   magnitude
+  !>   @param[in] tol - the non-negative tolerance used for compression. If \p tol is complex, then
+  !>   only the magnitude
   !>                 of the real part is used. Entries in the input uncompressed CSR array that are
   !>                 below the tolerance
   !>                 are removed in the output compressed CSR matrix.
@@ -10157,41 +9400,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnz_A - number of non-zeros in the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_A - array of \p nnz_A elements containing the values of the sparse CSR
   !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   sparse CSR matrix \f$A\f$.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] csr_descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_col_ind_C array of \p nnz_C elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_C - array of \p nnz_C elements containing the values of the sparse CSR
   !>   matrix \f$C\f$.
-  !>   @param[out]
-  !>   buffer_size   number of bytes of the temporary storage buffer required by
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$C\f$.
+  !>   @param[in] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
+  !>   sparse CSR matrix \f$C\f$.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                 \ref rocsparse_sprune_csr2csr_nnz "rocsparse_Xprune_csr2csr_nnz()" and
   !>                 \ref rocsparse_sprune_csr2csr "rocsparse_Xprune_csr2csr()".
   !>
@@ -10274,38 +9507,29 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle                 handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m                      number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                      number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A                  number of non-zeros in the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_descr_A            descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnz_A - number of non-zeros in the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                          `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A          array of \p m+1 elements that point to the start of every row of the
-  !>                          sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_A - array of \p nnz_A elements containing the values of the sparse CSR
   !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   csr_descr_C            descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                          sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   sparse CSR matrix \f$A\f$.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold which can exist in
+  !>   either host or device memory.
+  !>   @param[in] csr_descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                          `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_row_ptr_C          array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                          sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnz_total_dev_host_ptr total number of non-zero elements in device or host memory.
-  !>   @param[out]
-  !>   temp_buffer            buffer allocated by the user. Its size is determined by calling
+  !>   @param[out] nnz_total_dev_host_ptr - total number of non-zero elements in device or host
+  !>   memory.
+  !>   @param[out] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                          \ref rocsparse_sprune_csr2csr_buffer_size
   !>                          "rocsparse_Xprune_csr2csr_buffer_size()".
   !>
@@ -10405,41 +9629,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnz_A - number of non-zeros in the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_A - array of \p nnz_A elements containing the values of the sparse CSR
   !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   sparse CSR matrix \f$A\f$.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] csr_descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csr_col_ind_C array of \p nnz_C elements containing the column indices of the sparse CSR
+  !>   @param[out] csr_val_C - array of \p nnz_C elements containing the values of the sparse CSR
   !>   matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer   buffer allocated by the user. Its size is determined by calling
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$C\f$.
+  !>   @param[out] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
+  !>   sparse CSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                 \ref rocsparse_sprune_csr2csr_buffer_size
   !>                 "rocsparse_Xprune_csr2csr_buffer_size()".
   !>
@@ -10532,42 +9746,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnz_A - number of non-zeros in the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_A - array of \p nnz_A elements containing the values of the sparse CSR
   !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   percentage    \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   sparse CSR matrix \f$A\f$.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] csr_descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_col_ind_C array of \p nnz_C elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_C - array of \p nnz_C elements containing the values of the sparse CSR
   !>   matrix \f$C\f$.
-  !>   @param[in]
-  !>   info          prune info structure.
-  !>   @param[out]
-  !>   buffer_size   number of bytes of the temporary storage buffer required by
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$C\f$.
+  !>   @param[in] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
+  !>   sparse CSR matrix \f$C\f$.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                 \ref rocsparse_sprune_csr2csr_nnz_by_percentage
   !>                 "rocsparse_Xprune_csr2csr_nnz_by_percentage()" and
   !>                 \ref rocsparse_sprune_csr2csr_by_percentage
@@ -10659,39 +9862,29 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle                 handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m                      number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n                      number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A                  number of non-zeros in the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_descr_A            descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnz_A - number of non-zeros in the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                          `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A          array of \p m+1 elements that point to the start of every row of the
-  !>                          sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_A - array of \p nnz_A elements containing the values of the sparse CSR
   !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   percentage             \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   csr_descr_C            descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                          sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   sparse CSR matrix \f$A\f$.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] csr_descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                          `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_row_ptr_C          array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                          sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnz_total_dev_host_ptr total number of non-zero elements in device or host memory.
-  !>   @param[in]
-  !>   info                   prune info structure.
-  !>   @param[out]
-  !>   temp_buffer            buffer allocated by the user. Its size is determined by calling
+  !>   @param[out] nnz_total_dev_host_ptr - total number of non-zero elements in device or host
+  !>   memory.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[out] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                          \ref rocsparse_sprune_csr2csr_by_percentage_buffer_size
   !>                          "rocsparse_Xprune_csr2csr_by_percentage_buffer_size()".
   !>
@@ -10816,42 +10009,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m             number of rows in the sparse CSR matrix.
-  !>   @param[in]
-  !>   n             number of columns in the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows in the sparse CSR matrix.
+  !>   @param[in] n - number of columns in the sparse CSR matrix.
+  !>   @param[in] nnz_A - number of non-zeros in the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A array of \p nnz_A elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_val_A - array of \p nnz_A elements containing the values of the sparse CSR
   !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   percentage    \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
+  !>   sparse CSR matrix \f$A\f$.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] csr_descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                 `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C array of \p m+1 elements that point to the start of every row of the
-  !>                 sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csr_col_ind_C array of \p nnz_C elements containing the column indices of the sparse CSR
+  !>   @param[out] csr_val_C - array of \p nnz_C elements containing the values of the sparse CSR
   !>   matrix \f$C\f$.
-  !>   @param[in]
-  !>   info          prune info structure.
-  !>   @param[in]
-  !>   temp_buffer   buffer allocated by the user. Its size is determined by calling
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
+  !>                 sparse CSR matrix \f$C\f$.
+  !>   @param[out] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
+  !>   sparse CSR matrix \f$C\f$.
+  !>   @param[in] myInfo - prune info structure.
+  !>   @param[in] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                 \ref rocsparse_sprune_csr2csr_buffer_size
   !>                 "rocsparse_Xprune_csr2csr_buffer_size()".
   !>
@@ -10945,34 +10127,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A           array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda         leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   threshold pointer to the pruning non-negative threshold which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A, the supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] threshold - pointer to the pruning non-negative threshold which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A, the supported matrix type is
   !>   `rocsparse_matrix_type_general` and
   !>               also any valid value of the `rocsparse_index_base`.
-  !>   @param[in]
-  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[in]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[in]
-  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
-  !>   of the non-zero elements of matrix \p A.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] csr_val - array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[in] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[in] csr_col_ind - integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] )
+  !>   column indices of the non-zero elements of matrix \p A.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sprune_dense2csr_nnz "rocsparse_Xprune_dense2csr_nnz()" and
   !>               \ref rocsparse_sprune_dense2csr "rocsparse_Xprune_dense2csr()".
   !>
@@ -11051,28 +10222,19 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle                 handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m                      number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                      number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                      array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                    leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   threshold pointer to the pruning non-negative threshold which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descr                  the descriptor of the dense matrix \p A.
-  !>   @param[out]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   nnz_total_dev_host_ptr total number of non-zero elements in device or host memory.
-  !>   @param[out]
-  !>   temp_buffer            buffer allocated by the user. Its size is determined by calling
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] threshold - pointer to the pruning non-negative threshold which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A.
+  !>   @param[out] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[out] nnz_total_dev_host_ptr - total number of non-zero elements in device or host
+  !>   memory.
+  !>   @param[out] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                          \ref rocsparse_sprune_dense2csr_buffer_size
   !>                          "rocsparse_Xprune_dense2csr_buffer_size()".
   !>
@@ -11166,34 +10328,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A           array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda         leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
-  !>   device memory.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] threshold - pointer to the non-negative pruning threshold, which can exist in
+  !>   either host or device memory.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `rocsparse_matrix_type_general` and
   !>               also any valid value of the `rocsparse_index_base`.
-  !>   @param[out]
-  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[in]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
-  !>   of the non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[out] csr_val - array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[in] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[out] csr_col_ind - integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] )
+  !>   column indices of the non-zero elements of matrix \p A.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>               \ref rocsparse_sprune_dense2csr_buffer_size
   !>               "rocsparse_Xprune_dense2csr_buffer_size()".
   !>
@@ -11279,35 +10431,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A           array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda         leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage  \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `rocsparse_matrix_type_general`
   !>               and also any valid value of the `rocsparse_index_base`.
-  !>   @param[in]
-  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[in]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[in]
-  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
-  !>   of the non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   info prune  information structure.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] csr_val - array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[in] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[in] csr_col_ind - integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] )
+  !>   column indices of the non-zero elements of matrix \p A.
+  !>   @param[in] myInfo - prune  information structure.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sprune_dense2csr_nnz_by_percentage
   !>               "rocsparse_Xprune_dense2csr_nnz_by_percentage()" and
   !>               \ref rocsparse_sprune_dense2csr_by_percentage
@@ -11394,29 +10534,19 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle                 handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m                      number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n                      number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A                      array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda                    leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage             \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr                  the descriptor of the dense matrix \p A.
-  !>   @param[out]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   nnz_total_dev_host_ptr total number of non-zero elements in device or host memory.
-  !>   @param[in]
-  !>   info prune             information structure.
-  !>   @param[out]
-  !>   temp_buffer            buffer allocated by the user. Its size is determined by calling
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A.
+  !>   @param[out] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[out] nnz_total_dev_host_ptr - total number of non-zero elements in device or host
+  !>   memory.
+  !>   @param[in] myInfo - prune             information structure.
+  !>   @param[out] temp_buffer - buffer allocated by the user. Its size is determined by calling
   !>                          \ref rocsparse_sprune_dense2csr_by_percentage_buffer_size
   !>                          "rocsparse_Xprune_dense2csr_by_percentage_buffer_size()".
   !>
@@ -11535,35 +10665,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix \p A.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix \p A.
-  !>   @param[in]
-  !>   A           array of dimensions (\p lda, \p n).
-  !>   @param[in]
-  !>   lda         leading dimension of dense array \p A.
-  !>   @param[in]
-  !>   percentage  \p percentage>=0 and \p percentage<=100.
-  !>   @param[in]
-  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the dense matrix \p A.
+  !>   @param[in] n - number of columns of the dense matrix \p A.
+  !>   @param[in] A - array of dimensions (\p lda, \p n).
+  !>   @param[in] lda - leading dimension of dense array \p A.
+  !>   @param[in] percentage - \p percentage>=0 and \p percentage<=100.
+  !>   @param[in] descr - the descriptor of the dense matrix \p A. The supported matrix type is
   !>   `rocsparse_matrix_type_general` and
   !>               also any valid value of the `rocsparse_index_base`.
-  !>   @param[out]
-  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
-  !>   \p A.
-  !>   @param[in]
-  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
-  !>   of the last row plus one.
-  !>   @param[out]
-  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
-  !>   of the non-zero elements of matrix \p A.
-  !>   @param[in]
-  !>   info prune  information structure.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>   @param[out] csr_val - array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero
+  !>   elements of matrix \p A.
+  !>   @param[in] csr_row_ptr - integer array of \p m+1 elements that contains the start of every
+  !>   row and the end of the last row plus one.
+  !>   @param[out] csr_col_ind - integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] )
+  !>   column indices of the non-zero elements of matrix \p A.
+  !>   @param[in] myInfo - prune  information structure.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
+  !>   by
   !>               \ref rocsparse_sprune_dense2csr_by_percentage_buffer_size
   !>               "rocsparse_Xprune_dense2csr_by_percentage_buffer_size()".
   !>
@@ -11650,51 +10769,39 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                   `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   mb              number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   nb              number of block columns of the sparse BSR matrix \f$op(B)\f$ and
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   block_dim the block dimension of the BSR matrix \f$A\f$. Between 1 and m where \p
-  !>   m=mb*block_dim.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] block_dim - the block dimension of the BSR matrix \f$A\f$. Between 1 and m where
+  !>   \p m=mb*block_dim.
+  !>   @param[in] descr_A - descriptor of the sparse BSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A   array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] nnzb_A - number of non-zero block entries of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A   array of \p nnzb_A elements containing the column indices of the
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb_A elements containing the column indices of the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse BSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_B   array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] nnzb_B - number of non-zero block entries of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_row_ptr_B - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_B   array of \p nnzb_B elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_B - array of \p nnzb_B elements containing the block column indices of
+  !>   the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse BSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_row_ptr_C   array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[out] bsr_row_ptr_C - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                   sparse BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnzb_C          pointer to the number of non-zero block entries of the sparse BSR
+  !>   @param[out] nnzb_C - pointer to the number of non-zero block entries of the sparse BSR
   !>                   matrix \f$C\f$. \p nnzb_C can be a host or device pointer.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -11761,63 +10868,45 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                   `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   mb               number of rows of the sparse BSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   nb               number of columns of the sparse BSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   block_dim the block dimension of the BSR matrix \f$A\f$. Between 1 and m where \p
-  !>   m=mb*block_dim.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] mb - number of rows of the sparse BSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] nb - number of columns of the sparse BSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix \f$A\f$. Between 1 and m where
+  !>   \p m=mb*block_dim.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_A           number of non-zero block entries of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_val_A       array of \p nnzb_A block elements of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[in] nnzb_A - number of non-zero block entries of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_val_A - array of \p nnzb_A block elements of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A   array of \p nnzb_A block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb_A block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_B - descriptor of the sparse BSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_val_B       array of \p nnzb_B block elements of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_B array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[in] nnzb_B - number of non-zero block entries of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_val_B - array of \p nnzb_B block elements of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_row_ptr_B - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_B   array of \p nnzb_B block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_B - array of \p nnzb_B block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse BSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_val_C       array of block elements of the sparse BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_C array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[out] bsr_val_C - array of block elements of the sparse BSR matrix \f$C\f$.
+  !>   @param[in] bsr_row_ptr_C - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   bsr_col_ind_C   array of block elements containing the block column indices of the
+  !>   @param[out] bsr_col_ind_C - array of block elements containing the block column indices of
+  !>   the
   !>                   sparse BSR matrix \f$C\f$.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -11981,70 +11070,51 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                   `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$,
   !>                   and \f$D\f$.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   mb              number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   nb              number of block columns of the sparse BSR matrix \f$op(B)\f$ and
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   kb              number of block columns of the sparse BSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] kb - number of block columns of the sparse BSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse BSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   block_dim       the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] block_dim - the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and
+  !>   \f$D\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse BSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A   array of \p mb+1 elements (\f$op(A) == A\f$, \p kb+1 otherwise)
+  !>   @param[in] nnzb_A - number of non-zero block entries of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 elements (\f$op(A) == A\f$, \p kb+1 otherwise)
   !>                   that point to the start of every block row of the sparse BSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A   array of \p nnzb_A elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb_A elements containing the block column indices of
+  !>   the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse BSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_B   array of \p kb+1 elements (\f$op(B) == B\f$, \p mb+1 otherwise)
+  !>   @param[in] nnzb_B - number of non-zero block entries of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_row_ptr_B - array of \p kb+1 elements (\f$op(B) == B\f$, \p mb+1 otherwise)
   !>                   that point to the start of every block row of the sparse BSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_B   array of \p nnzb_B elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_B - array of \p nnzb_B elements containing the block column indices of
+  !>   the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse BSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_D - descriptor of the sparse BSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_D          number of non-zero block entries of the sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_D   array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] nnzb_D - number of non-zero block entries of the sparse BSR matrix \f$D\f$.
+  !>   @param[in] bsr_row_ptr_D - array of \p mb+1 elements that point to the start of every block
+  !>   row of the
   !>                   sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_D   array of \p nnzb_D elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind_D - array of \p nnzb_D elements containing the block column indices of
+  !>   the sparse
   !>                   BSR matrix \f$D\f$.
-  !>   @param[inout]
-  !>   info_C          structure that holds metadata for the sparse BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   buffer_size     number of bytes of the temporary storage buffer required by
+  !>   @param[inout] info_C - structure that holds metadata for the sparse BSR matrix \f$C\f$.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                   `rocsparse_bsrgemm_nnzb()`, rocsparse_sbsrgemm(), rocsparse_dbsrgemm(),
   !>                   rocsparse_cbsrgemm(), and rocsparse_zbsrgemm().
   !>
@@ -12226,78 +11296,58 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                   `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$,
   !>                   and \f$D\f$.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   mb              number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   nb              number of block columns of the sparse BSR matrix \f$op(B)\f$ and
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   kb              number of block columns of the sparse BSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] kb - number of block columns of the sparse BSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse BSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   block_dim       the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] block_dim - the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and
+  !>   \f$D\f$.
+  !>   @param[in] descr_A - descriptor of the sparse BSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A   array of \p mb+1 block elements (\f$op(A) == A\f$, \p kb+1 otherwise)
+  !>   @param[in] nnzb_A - number of non-zero block entries of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 block elements (\f$op(A) == A\f$, \p kb+1
+  !>   otherwise)
   !>                   that point to the start of every row of the sparse BSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A   array of \p nnzb_A block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb_A block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse BSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_B   array of \p kb+1 block elements (\f$op(B) == B\f$, \p mb+1 otherwise)
+  !>   @param[in] nnzb_B - number of non-zero block entries of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_row_ptr_B - array of \p kb+1 block elements (\f$op(B) == B\f$, \p mb+1
+  !>   otherwise)
   !>                   that point to the start of every block row of the sparse BSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_B   array of \p nnzb_B block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_B - array of \p nnzb_B block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse BSR matrix \f$D\f$. Currently, only
+  !>   @param[in] descr_D - descriptor of the sparse BSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_D          number of non-zero block entries of the sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_D array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[in] nnzb_D - number of non-zero block entries of the sparse BSR matrix \f$D\f$.
+  !>   @param[in] bsr_row_ptr_D - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_D array of \p nnzb_D block elements containing the block column indices of the
-  !>   sparse
+  !>   @param[in] bsr_col_ind_D - array of \p nnzb_D block elements containing the block column
+  !>   indices of the sparse
   !>                   BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse BSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_row_ptr_C array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[out] bsr_row_ptr_C - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnzb_C          pointer to the number of non-zero block entries of the sparse BSR
+  !>   @param[out] nnzb_C - pointer to the number of non-zero block entries of the sparse BSR
   !>                   matrix \f$C\f$.
-  !>   @param[in]
-  !>   info_C          structure that holds metadata for the sparse BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned
+  !>   @param[in] info_C - structure that holds metadata for the sparse BSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
   !>                   by rocsparse_sbsrgemm_buffer_size(),
   !>                   rocsparse_dbsrgemm_buffer_size(), rocsparse_cbsrgemm_buffer_size(), or
   !>                   rocsparse_zbsrgemm_buffer_size().
@@ -12409,89 +11459,65 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>                   `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$,
   !>                   and \f$D\f$.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   mb              number of block rows of the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   nb              number of block columns of the sparse BSR matrix \f$op(B)\f$ and
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   kb              number of block columns of the sparse BSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] kb - number of block columns of the sparse BSR matrix \f$op(A)\f$ and number of
   !>                   block rows of the sparse BSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   block_dim       the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] block_dim - the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and
+  !>   \f$D\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse BSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_val_A       array of \p nnzb_A block elements of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_A   array of \p mb+1 block elements (\f$op(A) == A\f$, \p kb+1 otherwise)
+  !>   @param[in] nnzb_A - number of non-zero block entries of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_val_A - array of \p nnzb_A block elements of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr_A - array of \p mb+1 block elements (\f$op(A) == A\f$, \p kb+1
+  !>   otherwise)
   !>                   that point to the start of every block row of the sparse BSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_A   array of \p nnzb_A block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_A - array of \p nnzb_A block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse BSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_val_B       array of \p nnzb_B block elements of the sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_B   array of \p kb+1 block elements (\f$op(B) == B\f$, \p mb+1 otherwise)
+  !>   @param[in] nnzb_B - number of non-zero block entries of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_val_B - array of \p nnzb_B block elements of the sparse BSR matrix \f$B\f$.
+  !>   @param[in] bsr_row_ptr_B - array of \p kb+1 block elements (\f$op(B) == B\f$, \p mb+1
+  !>   otherwise)
   !>                   that point to the start of every block row of the sparse BSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_B   array of \p nnzb_B block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_B - array of \p nnzb_B block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse BSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_D - descriptor of the sparse BSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnzb_D          number of non-zero block entries of the sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_val_D       array of \p nnzb_D block elements of the sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_D array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[in] nnzb_D - number of non-zero block entries of the sparse BSR matrix \f$D\f$.
+  !>   @param[in] bsr_val_D - array of \p nnzb_D block elements of the sparse BSR matrix \f$D\f$.
+  !>   @param[in] bsr_row_ptr_D - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   bsr_col_ind_D   array of \p nnzb_D block elements containing the block column indices of the
+  !>   @param[in] bsr_col_ind_D - array of \p nnzb_D block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse BSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   bsr_val_C       array of \p nnzb_C elements of the sparse BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr_C array of \p mb+1 block elements that point to the start of every block row of
-  !>   the
+  !>   @param[out] bsr_val_C - array of \p nnzb_C elements of the sparse BSR matrix \f$C\f$.
+  !>   @param[in] bsr_row_ptr_C - array of \p mb+1 block elements that point to the start of every
+  !>   block row of the
   !>                   sparse BSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   bsr_col_ind_C   array of \p nnzb_C block elements containing the block column indices of the
+  !>   @param[out] bsr_col_ind_C - array of \p nnzb_C block elements containing the block column
+  !>   indices of the
   !>                   sparse BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   info_C          structure that holds metadata for the sparse BSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned
+  !>   @param[in] info_C - structure that holds metadata for the sparse BSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
   !>                   by rocsparse_sbsrgemm_buffer_size(),
   !>                   rocsparse_dbsrgemm_buffer_size(), rocsparse_cbsrgemm_buffer_size(), or
   !>                   rocsparse_zbsrgemm_buffer_size().
@@ -12709,42 +11735,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnz_C           pointer to the number of non-zero entries of the sparse CSR
+  !>   @param[out] nnz_C - pointer to the number of non-zero entries of the sparse CSR
   !>                   matrix \f$C\f$. \p nnz_C can be a host or device pointer.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -12814,52 +11829,36 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_val_A       array of \p nnz_A elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_val_A - array of \p nnz_A elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_val_B       array of \p nnz_B elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_val_B - array of \p nnz_B elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val_C       array of elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_val_C - array of elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csr_col_ind_C   array of elements containing the column indices of the
+  !>   @param[out] csr_col_ind_C - array of elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -13043,63 +12042,43 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_D - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_D   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_D - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_row_ptr_D - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_col_ind_D   array of \p nnz_D elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind_D - array of \p nnz_D elements containing the column indices of the
+  !>   sparse
   !>                   CSR matrix \f$D\f$.
-  !>   @param[inout]
-  !>   info_C          structure that holds metadata for the sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   buffer_size     number of bytes of the temporary storage buffer required by
+  !>   @param[inout] info_C - structure that holds metadata for the sparse CSR matrix \f$C\f$.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>                   `rocsparse_csrgemm_nnz`() and \ref rocsparse_scsrgemm "rocsparse_Xcsrgemm()".
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -13305,68 +12284,48 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] descr_D - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_D   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_D - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_row_ptr_D - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_col_ind_D   array of \p nnz_D elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind_D - array of \p nnz_D elements containing the column indices of the
+  !>   sparse
   !>                   CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   nnz_C           pointer to the number of non-zero entries of the sparse CSR
+  !>   @param[out] nnz_C - pointer to the number of non-zero entries of the sparse CSR
   !>                   matrix \f$C\f$.
-  !>   @param[in]
-  !>   info_C          structure that holds meta data for the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user, size is returned
+  !>   @param[in] info_C - structure that holds meta data for the sparse CSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user, size is returned
   !>                   by rocsparse_scsrgemm_buffer_size(),
   !>                   rocsparse_dcsrgemm_buffer_size(), rocsparse_ccsrgemm_buffer_size(), or
   !>                   rocsparse_zcsrgemm_buffer_size().
@@ -13490,80 +12449,53 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_val_A       array of \p nnz_A elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_val_A - array of \p nnz_A elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_val_B       array of \p nnz_B elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_val_B - array of \p nnz_B elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_D - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_val_D       array of \p nnz_D elements of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_D   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_D - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_val_D - array of \p nnz_D elements of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_row_ptr_D - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_col_ind_D   array of \p nnz_D elements containing the column indices of the
+  !>   @param[in] csr_col_ind_D - array of \p nnz_D elements containing the column indices of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[out]
-  !>   csr_val_C       array of \p nnz_C elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[out] csr_val_C - array of \p nnz_C elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csr_col_ind_C   array of \p nnz_C elements containing the column indices of the
+  !>   @param[out] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   info_C          structure that holds meta data for the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user, size is returned
+  !>   @param[in] info_C - structure that holds meta data for the sparse CSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user, size is returned
   !>                   by rocsparse_scsrgemm_buffer_size(),
   !>                   rocsparse_dcsrgemm_buffer_size(), rocsparse_ccsrgemm_buffer_size(), or
   !>                   rocsparse_zcsrgemm_buffer_size().
@@ -13948,70 +12880,48 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] descr_D - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_D   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_D - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_row_ptr_D - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_col_ind_D   array of \p nnz_D elements containing the column indices of the
+  !>   @param[in] csr_col_ind_D - array of \p nnz_D elements containing the column indices of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_C           number of non-zero entries of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_C - number of non-zero entries of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csr_col_ind_C   array of \p nnz_C elements containing the column indices of the
+  !>   @param[out] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   info_C          structure that holds metadata for the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned
+  !>   @param[in] info_C - structure that holds metadata for the sparse CSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
   !>                   by rocsparse_scsrgemm_buffer_size(),
   !>                   rocsparse_dcsrgemm_buffer_size(), rocsparse_ccsrgemm_buffer_size(), or
   !>                   rocsparse_zcsrgemm_buffer_size().
@@ -14239,82 +13149,54 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A         matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B         matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m               number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   n               number of columns of the sparse CSR matrix \f$op(B)\f$ and
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$op(A)\f$ and \f$C\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and
   !>                   \f$C\f$.
-  !>   @param[in]
-  !>   k               number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$op(A)\f$ and number of
   !>                   rows of the sparse CSR matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   alpha           scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr_A - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_val_A       array of \p nnz_A elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_A   array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
+  !>   @param[in] nnz_A - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_val_A - array of \p nnz_A elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr_A - array of \p m+1 elements (\f$op(A) == A\f$, \p k+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(A)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_A   array of \p nnz_A elements containing the column indices of the
+  !>   @param[in] csr_col_ind_A - array of \p nnz_A elements containing the column indices of the
   !>                   sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr_B - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_val_B       array of \p nnz_B elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_B   array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
+  !>   @param[in] nnz_B - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_val_B - array of \p nnz_B elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr_B - array of \p k+1 elements (\f$op(B) == B\f$, \p m+1 otherwise)
   !>                   that point to the start of every row of the sparse CSR matrix
   !>                   \f$op(B)\f$.
-  !>   @param[in]
-  !>   csr_col_ind_B   array of \p nnz_B elements containing the column indices of the
+  !>   @param[in] csr_col_ind_B - array of \p nnz_B elements containing the column indices of the
   !>                   sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta            scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] descr_D - descriptor of the sparse CSR matrix \f$D\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_val_D       array of \p nnz_D elements of the sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_D   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_D - number of non-zero entries of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_val_D - array of \p nnz_D elements of the sparse CSR matrix \f$D\f$.
+  !>   @param[in] csr_row_ptr_D - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   csr_col_ind_D   array of \p nnz_D elements containing the column indices of the
+  !>   @param[in] csr_col_ind_D - array of \p nnz_D elements containing the column indices of the
   !>                   sparse CSR matrix \f$D\f$.
-  !>   @param[in]
-  !>   descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
+  !>   @param[in] descr_C - descriptor of the sparse CSR matrix \f$C\f$. Currently, only
   !>                   `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   nnz_C           number of non-zero entries of the sparse CSR matrix \f$C\f$.
-  !>   @param[out]
-  !>   csr_val_C       array of \p nnz_C elements of the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] nnz_C - number of non-zero entries of the sparse CSR matrix \f$C\f$.
+  !>   @param[out] csr_val_C - array of \p nnz_C elements of the sparse CSR matrix \f$C\f$.
+  !>   @param[in] csr_row_ptr_C - array of \p m+1 elements that point to the start of every row of
+  !>   the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   csr_col_ind_C   array of \p nnz_C elements containing the column indices of the
+  !>   @param[in] csr_col_ind_C - array of \p nnz_C elements containing the column indices of the
   !>                   sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   info_C          structure that holds metadata for the sparse CSR matrix \f$C\f$.
-  !>   @param[in]
-  !>   temp_buffer     temporary storage buffer allocated by the user. The size is returned
+  !>   @param[in] info_C - structure that holds metadata for the sparse CSR matrix \f$C\f$.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. The size is returned
   !>                   by rocsparse_scsrgemm_buffer_size(),
   !>                   rocsparse_dcsrgemm_buffer_size(), rocsparse_ccsrgemm_buffer_size(), or
   !>                   rocsparse_zcsrgemm_buffer_size().
@@ -14706,16 +13588,11 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   x           sparse matrix descriptor.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           dense matrix descriptor.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] x - sparse matrix descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - dense matrix descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -14786,19 +13663,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   mat         matrix descriptor.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   stage       check_matrix stage for the matrix computation.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer. buffer_size is set when
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] mat - matrix descriptor.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] stage - check_matrix stage for the matrix computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. buffer_size is set
+  !>   when
   !>               \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When a nullptr is
+  !>   passed,
   !>               the required allocation size (in bytes) is written to \p buffer_size and
   !>               function returns without performing the checking operation.
   !>
@@ -14920,19 +13793,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   mat_A        dense matrix descriptor.
-  !>   @param[in]
-  !>   mat_B        sparse matrix descriptor.
-  !>   @param[in]
-  !>   alg          algorithm for the dense to sparse computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] mat_A - dense matrix descriptor.
+  !>   @param[in] mat_B - sparse matrix descriptor.
+  !>   @param[in] alg - algorithm for the dense to sparse computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. buffer_size is set
+  !>   when
   !>                \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When a nullptr is
+  !>   passed,
   !>                the required allocation size (in bytes) is written to \p buffer_size and the
   !>                function returns without performing the dense to sparse operation.
   !>
@@ -14976,18 +13845,12 @@ module hipfort_rocsparse
   !>   This routine does not support batched computation.
   !>
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        descriptor of the extract algorithm.
-  !>   @param[in]
-  !>   source       source sparse matrix descriptor.
-  !>   @param[in]
-  !>   target       target sparse matrix descriptor.
-  !>   @param[in]
-  !>   stage        stage of the extract computation.
-  !>   @param[out]
-  !>   buffer_size_in_bytes  size in bytes of the buffer.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the extract algorithm.
+  !>   @param[in] source - source sparse matrix descriptor.
+  !>   @param[in] target - target sparse matrix descriptor.
+  !>   @param[in] stage - stage of the extract computation.
+  !>   @param[out] buffer_size_in_bytes - size in bytes of the buffer.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -15027,12 +13890,9 @@ module hipfort_rocsparse
   !>   This routine is asynchronous with respect to the host.
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        descriptor of the extract algorithm.
-  !>   @param[out]
-  !>   nnz          the number of non-zeros.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the extract algorithm.
+  !>   @param[out] nnz - the number of non-zeros.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -15182,20 +14042,13 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        descriptor of the extract algorithm.
-  !>   @param[in]
-  !>   source       sparse matrix descriptor.
-  !>   @param[in]
-  !>   target       sparse matrix descriptor.
-  !>   @param[in]
-  !>   stage        stage of the extract computation.
-  !>   @param[in]
-  !>   buffer_size_in_bytes  size in bytes of the \p buffer.
-  !>   @param[in]
-  !>   buffer  temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the extract algorithm.
+  !>   @param[in] source - sparse matrix descriptor.
+  !>   @param[in] target - sparse matrix descriptor.
+  !>   @param[in] stage - stage of the extract computation.
+  !>   @param[in] buffer_size_in_bytes - size in bytes of the \p buffer.
+  !>   @param[in] buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -15262,12 +14115,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   y            dense vector \f$y\f$.
-  !>   @param[out]
-  !>   x            sparse vector \f$x\f$.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] y - dense vector \f$y\f$.
+  !>   @param[out] x - sparse vector \f$x\f$.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -15331,16 +14181,11 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   c           pointer to the cosine element of \f$G\f$, which can be on host or device.
-  !>   @param[in]
-  !>   s           pointer to the sine element of \f$G\f$, which can be on host or device.
-  !>   @param[inout]
-  !>   x           sparse vector \f$x\f$.
-  !>   @param[inout]
-  !>   y           dense vector \f$y\f$.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] c - pointer to the cosine element of \f$G\f$, which can be on host or device.
+  !>   @param[in] s - pointer to the sine element of \f$G\f$, which can be on host or device.
+  !>   @param[inout] x - sparse vector \f$x\f$.
+  !>   @param[inout] y - dense vector \f$y\f$.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -15402,12 +14247,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   x            sparse vector \f$x\f$.
-  !>   @param[out]
-  !>   y            dense vector \f$y\f$.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] x - sparse vector \f$x\f$.
+  !>   @param[out] y - dense vector \f$y\f$.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -15436,28 +14278,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   opA          dense matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   opB          dense matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat_A        dense matrix \f$A\f$ descriptor.
-  !>   @param[in]
-  !>   mat_B        dense matrix \f$B\f$ descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   mat_C        sparse matrix \f$C\f$ descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SDDMM computation.
-  !>   @param[in]
-  !>   alg specification of the algorithm to use.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] opA - dense matrix \f$A\f$ operation type.
+  !>   @param[in] opB - dense matrix \f$B\f$ operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat_A - dense matrix \f$A\f$ descriptor.
+  !>   @param[in] mat_B - dense matrix \f$B\f$ descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] mat_C - sparse matrix \f$C\f$ descriptor.
+  !>   @param[in] compute_type - floating point precision for the SDDMM computation.
+  !>   @param[in] alg - specification of the algorithm to use.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_value the value of \p opA or \p opB is incorrect.
@@ -15498,28 +14329,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   opA          dense matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   opB          dense matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat_A        dense matrix \f$A\f$ descriptor.
-  !>   @param[in]
-  !>   mat_B        dense matrix \f$B\f$ descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   mat_C        sparse matrix \f$C\f$ descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SDDMM computation.
-  !>   @param[in]
-  !>   alg specification of the algorithm to use.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] opA - dense matrix \f$A\f$ operation type.
+  !>   @param[in] opB - dense matrix \f$B\f$ operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat_A - dense matrix \f$A\f$ descriptor.
+  !>   @param[in] mat_B - dense matrix \f$B\f$ descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] mat_C - sparse matrix \f$C\f$ descriptor.
+  !>   @param[in] compute_type - floating point precision for the SDDMM computation.
+  !>   @param[in] alg - specification of the algorithm to use.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>   The size must be greater or equal to the size obtained with \ref rocsparse_sddmm_buffer_size.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -15654,28 +14474,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   opA          dense matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   opB          dense matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat_A        dense matrix \f$A\f$ descriptor.
-  !>   @param[in]
-  !>   mat_B        dense matrix \f$B\f$ descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   mat_C        sparse matrix \f$C\f$ descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SDDMM computation.
-  !>   @param[in]
-  !>   alg specification of the algorithm to use.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] opA - dense matrix \f$A\f$ operation type.
+  !>   @param[in] opB - dense matrix \f$B\f$ operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat_A - dense matrix \f$A\f$ descriptor.
+  !>   @param[in] mat_B - dense matrix \f$B\f$ descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] mat_C - sparse matrix \f$C\f$ descriptor.
+  !>   @param[in] compute_type - floating point precision for the SDDMM computation.
+  !>   @param[in] alg - specification of the algorithm to use.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>   The size must be greater or equal to the size obtained with \ref rocsparse_sddmm_buffer_size.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -15787,19 +14596,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   mat_A        sparse matrix descriptor.
-  !>   @param[in]
-  !>   mat_B        dense matrix descriptor.
-  !>   @param[in]
-  !>   alg          algorithm for the sparse to dense computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] mat_A - sparse matrix descriptor.
+  !>   @param[in] mat_B - dense matrix descriptor.
+  !>   @param[in] alg - algorithm for the sparse to dense computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. buffer_size is set
+  !>   when
   !>                \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When a nullptr is
+  !>   passed,
   !>                the required allocation size (in bytes) is written to \p buffer_size and the
   !>                function returns without performing the sparse to dense operation.
   !>
@@ -15830,18 +14635,12 @@ module hipfort_rocsparse
   !>   \p rocsparse_sparse_to_sparse_buffer_size calculates the required buffer size in bytes for a
   !>   given stage \p stage.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        descriptor of the sparse_to_sparse algorithm.
-  !>   @param[in]
-  !>   source       source sparse matrix descriptor.
-  !>   @param[in]
-  !>   target       target sparse matrix descriptor.
-  !>   @param[in]
-  !>   stage        stage of the sparse_to_sparse computation.
-  !>   @param[out]
-  !>   buffer_size_in_bytes  size in bytes of the \p buffer
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse_to_sparse algorithm.
+  !>   @param[in] source - source sparse matrix descriptor.
+  !>   @param[in] target - target sparse matrix descriptor.
+  !>   @param[in] stage - stage of the sparse_to_sparse computation.
+  !>   @param[out] buffer_size_in_bytes - size in bytes of the \p buffer
   !>
   !>   \note
   !>   This routine does not support batched computation.
@@ -15885,20 +14684,13 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        descriptor of the sparse_to_sparse algorithm.
-  !>   @param[in]
-  !>   source       sparse matrix descriptor.
-  !>   @param[in]
-  !>   target       sparse matrix descriptor.
-  !>   @param[in]
-  !>   stage        stage of the sparse_to_sparse computation.
-  !>   @param[in]
-  !>   buffer_size_in_bytes  size in bytes of the \p buffer.
-  !>   @param[in]
-  !>   buffer  temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse_to_sparse algorithm.
+  !>   @param[in] source - sparse matrix descriptor.
+  !>   @param[in] target - sparse matrix descriptor.
+  !>   @param[in] stage - stage of the sparse_to_sparse computation.
+  !>   @param[in] buffer_size_in_bytes - size in bytes of the \p buffer.
+  !>   @param[in] buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \par Example
@@ -15931,23 +14723,16 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        SpGEAM descriptor.
-  !>   @param[in]
-  !>   mat_A        sparse matrix \f$A\f$ descriptor.
-  !>   @param[in]
-  !>   mat_B        sparse matrix \f$B\f$ descriptor.
-  !>   @param[in]
-  !>   mat_C        sparse matrix \f$C\f$ descriptor.
-  !>   @param[in]
-  !>   stage        SpGEAM stage for the SpGEAM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer.
-  !>   @param[out]
-  !>   error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - SpGEAM descriptor.
+  !>   @param[in] mat_A - sparse matrix \f$A\f$ descriptor.
+  !>   @param[in] mat_B - sparse matrix \f$B\f$ descriptor.
+  !>   @param[in] mat_C - sparse matrix \f$C\f$ descriptor.
+  !>   @param[in] stage - SpGEAM stage for the SpGEAM computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer.
+  !>   @param[out] error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -16114,26 +14899,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        SpGEAM descriptor.
-  !>   @param[in]
-  !>   mat_A        sparse matrix \f$A\f$ descriptor.
-  !>   @param[in]
-  !>   mat_B        sparse matrix \f$B\f$ descriptor.
-  !>   @param[out]
-  !>   mat_C        sparse matrix \f$C\f$ descriptor.
-  !>   @param[in]
-  !>   stage        SpGEAM stage for the SpGEAM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. \p buffer_size is
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - SpGEAM descriptor.
+  !>   @param[in] mat_A - sparse matrix \f$A\f$ descriptor.
+  !>   @param[in] mat_B - sparse matrix \f$B\f$ descriptor.
+  !>   @param[out] mat_C - sparse matrix \f$C\f$ descriptor.
+  !>   @param[in] stage - SpGEAM stage for the SpGEAM computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. \p buffer_size is
   !>                determined by calling \ref rocsparse_spgeam_buffer_size.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user.
-  !>   @param[out]
-  !>   error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
+  !>   @param[out] error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -16300,35 +15077,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A      sparse matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B      sparse matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   A            sparse matrix \f$A\f$ descriptor.
-  !>   @param[in]
-  !>   B            sparse matrix \f$B\f$ descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   D            sparse matrix \f$D\f$ descriptor.
-  !>   @param[out]
-  !>   C            sparse matrix \f$C\f$ descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpGEMM computation.
-  !>   @param[in]
-  !>   alg          SpGEMM algorithm for the SpGEMM computation.
-  !>   @param[in]
-  !>   stage        SpGEMM stage for the SpGEMM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - sparse matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - sparse matrix \f$B\f$ operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] A - sparse matrix \f$A\f$ descriptor.
+  !>   @param[in] B - sparse matrix \f$B\f$ descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] D - sparse matrix \f$D\f$ descriptor.
+  !>   @param[out] C - sparse matrix \f$C\f$ descriptor.
+  !>   @param[in] compute_type - floating point precision for the SpGEMM computation.
+  !>   @param[in] alg - SpGEMM algorithm for the SpGEMM computation.
+  !>   @param[in] stage - SpGEMM stage for the SpGEMM computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. buffer_size is set
+  !>   when
   !>                \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When a nullptr is
+  !>   passed,
   !>                the required allocation size (in bytes) is written to \p buffer_size and the
   !>                function returns without performing the SpGEMM operation.
   !>
@@ -16388,21 +15153,14 @@ module hipfort_rocsparse
   !>   \note
   !>   Supported formats are `rocsparse_format_csr` and `rocsparse_format_bsr`.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   spic0_descr Spic0 descriptor.
-  !>   @param[in]
-  !>   A            descriptor of the matrix to factorize.
-  !>   @param[in]
-  !>   P            descriptor of the factorization. In-place \p P = \p A is allowed.
-  !>   @param[in]
-  !>   spic0_stage stage for the Spic0 computation.
-  !>   @param[out]
-  !>   p_buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] spic0_descr - Spic0 descriptor.
+  !>   @param[in] A - descriptor of the matrix to factorize.
+  !>   @param[in] P - descriptor of the factorization. In-place \p P = \p A is allowed.
+  !>   @param[in] spic0_stage - stage for the Spic0 computation.
+  !>   @param[out] p_buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if error descriptor is not required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -16481,23 +15239,16 @@ module hipfort_rocsparse
   !>   This routine only supports uniform strided batched computation, that is, the same sparsity
   !>   pattern but strided batched values of the matrices.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   spic0_descr Spic0 descriptor
-  !>   @param[in]
-  !>   A            descriptor of the matrix to factorize.
-  !>   @param[out]
-  !>   P            descriptor of the factorization. In-place \p P = \p A is allowed.
-  !>   @param[in]
-  !>   spic0_stage stage for the Spic0 computation.
-  !>   @param[in]
-  !>   buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[in]
-  !>   buffer       buffer allocated by the user.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] spic0_descr - Spic0 descriptor
+  !>   @param[in] A - descriptor of the matrix to factorize.
+  !>   @param[out] P - descriptor of the factorization. In-place \p P = \p A is allowed.
+  !>   @param[in] spic0_stage - stage for the Spic0 computation.
+  !>   @param[in] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[in] buffer - buffer allocated by the user.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -16543,21 +15294,15 @@ module hipfort_rocsparse
   !>   \note
   !>   Supported formats are `rocsparse_format_csr` and `rocsparse_format_bsr`.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   spilu0_descr Spilu0 descriptor.
-  !>   @param[in]
-  !>   A            descriptor of the matrix to factorize.
-  !>   @param[in]
-  !>   P            descriptor of the factorization.
-  !>   @param[in]
-  !>   spilu0_stage stage for the Spilu0 computation.
-  !>   @param[out]
-  !>   p_buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if the user is not interested in obtaining an error descriptor.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] spilu0_descr - Spilu0 descriptor.
+  !>   @param[in] A - descriptor of the matrix to factorize.
+  !>   @param[in] P - descriptor of the factorization.
+  !>   @param[in] spilu0_stage - stage for the Spilu0 computation.
+  !>   @param[out] p_buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if the user is not interested in
+  !>   obtaining an error descriptor.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -16635,23 +15380,16 @@ module hipfort_rocsparse
   !>   This routine only supports uniform batched computation, that is, same sparsity pattern but
   !>   batched values of the matrices.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   spilu0_descr Spilu0 descriptor.
-  !>   @param[in]
-  !>   A            descriptor of the matrix to factorize.
-  !>   @param[out]
-  !>   P            descriptor of the factorization.
-  !>   @param[in]
-  !>   spilu0_stage stage for the Spilu0 computation.
-  !>   @param[in]
-  !>   buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[in]
-  !>   buffer       buffer allocated by the user.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] spilu0_descr - Spilu0 descriptor.
+  !>   @param[in] A - descriptor of the matrix to factorize.
+  !>   @param[out] P - descriptor of the factorization.
+  !>   @param[in] spilu0_stage - stage for the Spilu0 computation.
+  !>   @param[in] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[in] buffer - buffer allocated by the user.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -16759,40 +15497,27 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle        handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   host_nmaxiter maximum number of iteration on input and number of iteration on output. If the
-  !>   output number of iterations is strictly less than the input maximum number of iterations,
-  !>   then the algorithm converged.
-  !>   @param[in]
-  !>   host_tol if the pointer is null, then the loop will execute \p nmaxiter[0] iterations. The
-  !>   precision is float for f32-based calculations (including the complex case) and double for
-  !>   f64-based calculations (including the complex case).
-  !>   @param[out]
-  !>   host_history Optional array to record the norm of the residual before each iteration. The
-  !>   precision is float for f32-based calculations (including the complex case) and double for
-  !>   f64-based calculations (including the complex case).
-  !>   @param[in]
-  !>   trans         matrix operation type.
-  !>   @param[in]
-  !>   alpha         scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat           matrix descriptor.
-  !>   @param[in]
-  !>   x             vector descriptor.
-  !>   @param[inout]
-  !>   y             vector descriptor.
-  !>   @param[in]
-  !>   compute_type  floating point precision for the SpITSV computation.
-  !>   @param[in]
-  !>   alg           SpITSV algorithm for the SpITSV computation.
-  !>   @param[in]
-  !>   stage         SpITSV stage for the SpITSV computation.
-  !>   @param[out]
-  !>   buffer_size   number of bytes of the temporary storage buffer.
-  !>   @param[in]
-  !>   temp_buffer   temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] host_nmaxiter - maximum number of iteration on input and number of iteration on
+  !>   output. If the output number of iterations is strictly less than the input maximum number of
+  !>   iterations, then the algorithm converged.
+  !>   @param[in] host_tol - if the pointer is null, then the loop will execute \p nmaxiter[0]
+  !>   iterations. The precision is float for f32-based calculations (including the complex case)
+  !>   and double for f64-based calculations (including the complex case).
+  !>   @param[out] host_history - Optional array to record the norm of the residual before each
+  !>   iteration. The precision is float for f32-based calculations (including the complex case) and
+  !>   double for f64-based calculations (including the complex case).
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat - matrix descriptor.
+  !>   @param[in] x - vector descriptor.
+  !>   @param[inout] y - vector descriptor.
+  !>   @param[in] compute_type - floating point precision for the SpITSV computation.
+  !>   @param[in] alg - SpITSV algorithm for the SpITSV computation.
+  !>   @param[in] stage - SpITSV stage for the SpITSV computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When a nullptr is
+  !>   passed,
   !>                 the required allocation size (in bytes) is written to \p buffer_size and
   !>                 function returns without performing the SpITSV operation.
   !>
@@ -17058,32 +15783,19 @@ module hipfort_rocsparse
   !>   \note
   !>   Currently, only CSR, CSC, COO, BSR, and blocked ELL sparse formats are supported.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A      matrix operation type.
-  !>   @param[in]
-  !>   trans_B      matrix operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat_A        matrix descriptor.
-  !>   @param[in]
-  !>   mat_B        matrix descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   mat_C        matrix descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpMM computation.
-  !>   @param[in]
-  !>   alg          SpMM algorithm for the SpMM computation.
-  !>   @param[in]
-  !>   stage        SpMM stage for the SpMM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix operation type.
+  !>   @param[in] trans_B - matrix operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat_A - matrix descriptor.
+  !>   @param[in] mat_B - matrix descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[in] mat_C - matrix descriptor.
+  !>   @param[in] compute_type - floating point precision for the SpMM computation.
+  !>   @param[in] alg - SpMM algorithm for the SpMM computation.
+  !>   @param[in] stage - SpMM stage for the SpMM computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When the
   !>                `rocsparse_spmm_stage_buffer_size` stage is passed in, the required
   !>                allocation size (in bytes) is written to \p buffer_size and function
   !>                returns without performing the SpMM operation.
@@ -17289,31 +16001,20 @@ module hipfort_rocsparse
   !>   support execution in a hipGraph context. The `rocsparse_spmv_stage_preprocess` stage does not
   !>   support hipGraph.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans        matrix operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat          matrix descriptor.
-  !>   @param[in]
-  !>   x            vector descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y            vector descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpMV computation.
-  !>   @param[in]
-  !>   alg          SpMV algorithm for the SpMV computation.
-  !>   @param[in]
-  !>   stage        SpMV stage for the SpMV computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat - matrix descriptor.
+  !>   @param[in] x - vector descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - vector descriptor.
+  !>   @param[in] compute_type - floating point precision for the SpMV computation.
+  !>   @param[in] alg - SpMV algorithm for the SpMV computation.
+  !>   @param[in] stage - SpMV stage for the SpMV computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. buffer_size is set
+  !>   when
   !>                \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When the
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When the
   !>                `rocsparse_spmv_stage_buffer_size` stage is passed,
   !>                the required allocation size (in bytes) is written to \p buffer_size and
   !>                function returns without performing the SpMV operation.
@@ -17457,30 +16158,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A      matrix operation type for the sparse matrix \f$op(A)\f$.
-  !>   @param[in]
-  !>   trans_B      matrix operation type for the dense matrix \f$op(B)\f$.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   matA         sparse matrix descriptor.
-  !>   @param[in]
-  !>   matB         dense matrix descriptor.
-  !>   @param[inout]
-  !>   matC         dense matrix descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpSM computation.
-  !>   @param[in]
-  !>   alg          SpSM algorithm for the SpSM computation.
-  !>   @param[in]
-  !>   stage        SpSM stage for the SpSM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix operation type for the sparse matrix \f$op(A)\f$.
+  !>   @param[in] trans_B - matrix operation type for the dense matrix \f$op(B)\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] matA - sparse matrix descriptor.
+  !>   @param[in] matB - dense matrix descriptor.
+  !>   @param[inout] matC - dense matrix descriptor.
+  !>   @param[in] compute_type - floating point precision for the SpSM computation.
+  !>   @param[in] alg - SpSM algorithm for the SpSM computation.
+  !>   @param[in] stage - SpSM stage for the SpSM computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When the
   !>                `rocsparse_spsm_stage_buffer_size` stage is passed in,
   !>                the required allocation size (in bytes) is written to \p buffer_size, and the
   !>                function returns without performing the SpSM operation.
@@ -17593,28 +16282,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans        matrix operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat          matrix descriptor.
-  !>   @param[in]
-  !>   x            vector descriptor.
-  !>   @param[inout]
-  !>   y            vector descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpSV computation.
-  !>   @param[in]
-  !>   alg          SpSV algorithm for the SpSV computation.
-  !>   @param[in]
-  !>   stage        SpSV stage for the SpSV computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat - matrix descriptor.
+  !>   @param[in] x - vector descriptor.
+  !>   @param[inout] y - vector descriptor.
+  !>   @param[in] compute_type - floating point precision for the SpSV computation.
+  !>   @param[in] alg - SpSV algorithm for the SpSV computation.
+  !>   @param[in] stage - SpSV stage for the SpSV computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When the
   !>                `rocsparse_spsv_stage_buffer_size` stage is passed,
   !>                the required allocation size (in bytes) is written to \p buffer_size and the
   !>                function returns without performing the SpSV operation.
@@ -17666,23 +16344,16 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched execution.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   sptrsm_descr SpTrSM descriptor.
-  !>   @param[in]
-  !>   A  sparse matrix descriptor.
-  !>   @param[in]
-  !>   X            dense matrix descriptor.
-  !>   @param[in]
-  !>   Y            dense matrix descriptor.
-  !>   @param[in]
-  !>   sptrsm_stage stage for the SpTrSM computation.
-  !>   @param[out]
-  !>   buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] sptrsm_descr - SpTrSM descriptor.
+  !>   @param[in] A - sparse matrix descriptor.
+  !>   @param[in] X - dense matrix descriptor.
+  !>   @param[in] Y - dense matrix descriptor.
+  !>   @param[in] sptrsm_stage - stage for the SpTrSM computation.
+  !>   @param[out] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -17805,25 +16476,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched execution.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   sptrsm_descr           SpTrSM routine descriptor.
-  !>   @param[in]
-  !>   A           sparse matrix descriptor.
-  !>   @param[in]
-  !>   X           dense matrix descriptor.
-  !>   @param[inout]
-  !>   Y           dense matrix descriptor.
-  !>   @param[in]
-  !>   sptrsm_stage SpTrSM stage for the SpTrSM computation.
-  !>   @param[out]
-  !>   buffer_size_in_bytes  number of bytes of the temporary storage buffer.
-  !>   @param[in]
-  !>   buffer  temporary storage buffer allocated by the user.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] sptrsm_descr - SpTrSM routine descriptor.
+  !>   @param[in] A - sparse matrix descriptor.
+  !>   @param[in] X - dense matrix descriptor.
+  !>   @param[inout] Y - dense matrix descriptor.
+  !>   @param[in] sptrsm_stage - SpTrSM stage for the SpTrSM computation.
+  !>   @param[out] buffer_size_in_bytes - number of bytes of the temporary storage buffer.
+  !>   @param[in] buffer - temporary storage buffer allocated by the user.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -17866,23 +16529,16 @@ module hipfort_rocsparse
   !>   This routine does not support batched computation.
   !>
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   sptrsv_descr SpTrSV descriptor.
-  !>   @param[in]
-  !>   spmat_descr  sparse matrix descriptor.
-  !>   @param[in]
-  !>   x            dense vector descriptor.
-  !>   @param[in]
-  !>   y            dense vector descriptor.
-  !>   @param[in]
-  !>   sptrsv_stage stage for the SpTrSV computation.
-  !>   @param[out]
-  !>   buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] sptrsv_descr - SpTrSV descriptor.
+  !>   @param[in] spmat_descr - sparse matrix descriptor.
+  !>   @param[in] x - dense vector descriptor.
+  !>   @param[in] y - dense vector descriptor.
+  !>   @param[in] sptrsv_stage - stage for the SpTrSV computation.
+  !>   @param[out] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -17973,25 +16629,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   sptrsv_descr descriptor of the routine.
-  !>   @param[in]
-  !>   A            matrix descriptor.
-  !>   @param[in]
-  !>   x            vector descriptor.
-  !>   @param[inout]
-  !>   y            vector descriptor.
-  !>   @param[in]
-  !>   sptrsv_stage stage for the SpTRSV computation.
-  !>   @param[in]
-  !>   buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[in]
-  !>   buffer       buffer allocated by the user.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if the user is not interested in obtaining an error descriptor.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] sptrsv_descr - descriptor of the routine.
+  !>   @param[in] A - matrix descriptor.
+  !>   @param[in] x - vector descriptor.
+  !>   @param[inout] y - vector descriptor.
+  !>   @param[in] sptrsv_stage - stage for the SpTRSV computation.
+  !>   @param[in] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[in] buffer - buffer allocated by the user.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if the user is not interested in
+  !>   obtaining an error descriptor.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -18094,23 +16742,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans        sparse vector operation type.
-  !>   @param[in]
-  !>   x            sparse vector descriptor.
-  !>   @param[in]
-  !>   y            dense vector descriptor.
-  !>   @param[out]
-  !>   result       pointer to the result, which can be in host or device memory.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpVV computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - sparse vector operation type.
+  !>   @param[in] x - sparse vector descriptor.
+  !>   @param[in] y - dense vector descriptor.
+  !>   @param[out] myResult - pointer to the result, which can be in host or device memory.
+  !>   @param[in] compute_type - floating point precision for the SpVV computation.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer. buffer_size is set
+  !>   when
   !>                \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user. When a nullptr is
+  !>   passed,
   !>                the required allocation size (in bytes) is written to \p buffer_size and the
   !>                function returns without performing the SpVV operation.
   !>
@@ -18150,23 +16792,16 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        SpMV descriptor.
-  !>   @param[in]
-  !>   mat          sparse matrix descriptor.
-  !>   @param[in]
-  !>   x            dense vector descriptor.
-  !>   @param[in]
-  !>   y            dense vector descriptor.
-  !>   @param[in]
-  !>   stage        Version 2 SpMV stage for the SpMV computation.
-  !>   @param[out]
-  !>   buffer_size_in_bytes  number of bytes of the buffer.
-  !>   @param[out]
-  !>   error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - SpMV descriptor.
+  !>   @param[in] mat - sparse matrix descriptor.
+  !>   @param[in] x - dense vector descriptor.
+  !>   @param[in] y - dense vector descriptor.
+  !>   @param[in] stage - Version 2 SpMV stage for the SpMV computation.
+  !>   @param[out] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[out] error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18355,30 +16990,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support batched computation.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr        SpMV descriptor.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat          matrix descriptor.
-  !>   @param[in]
-  !>   x            vector descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y            vector descriptor.
-  !>   @param[in]
-  !>   stage        SpMV stage of the SpMV algorithm.
-  !>   @param[in]
-  !>   buffer_size_in_bytes size in bytes of the buffer, which must be greater or equal to the
-  !>   buffer size obtained from \ref rocsparse_v2_spmv_buffer_size.
-  !>   @param[in]
-  !>   buffer       temporary buffer allocated by the user.
-  !>   @param[out]
-  !>   error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - SpMV descriptor.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] mat - matrix descriptor.
+  !>   @param[in] x - vector descriptor.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - vector descriptor.
+  !>   @param[in] stage - SpMV stage of the SpMV algorithm.
+  !>   @param[in] buffer_size_in_bytes - size in bytes of the buffer, which must be greater or equal
+  !>   to the buffer size obtained from \ref rocsparse_v2_spmv_buffer_size.
+  !>   @param[in] buffer - temporary buffer allocated by the user.
+  !>   @param[out] error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context \p handle was not initialized.
@@ -18434,21 +17059,17 @@ module hipfort_rocsparse
   !>   - Both scalar and compute data types must be set on the descriptor before calling this
   !>   function.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   descr           SpMV descriptor.
-  !>   @param[in]
-  !>   num_extras      number of extra terms (gamma/z pairs).
-  !>   @param[in]
-  !>   gamma_vec dense vector descriptor containing gamma scalars. Must have a data type matching
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] descr - SpMV descriptor.
+  !>   @param[in] num_extras - number of extra terms (gamma/z pairs).
+  !>   @param[in] gamma_vec - dense vector descriptor containing gamma scalars. Must have a data
+  !>   type matching
   !>                   the scalar datatype and a size equal to \p num_extras.
-  !>   @param[in]
-  !>   z_vecs          array of dense vector descriptors for z vectors. All vectors must have a
+  !>   @param[in] z_vecs - array of dense vector descriptors for z vectors. All vectors must have a
   !>                   data type matching the compute data type and have the same size.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18482,13 +17103,11 @@ module hipfort_rocsparse
   !>   \p rocsparse_spmv_clear_extra clears the extra parameters set by
   !>   \ref rocsparse_spmv_set_extra.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   descr           SpMV descriptor.
-  !>   @param[out]
-  !>   p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
-  !>   null pointer can be passed if an error descriptor is not required.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] descr - SpMV descriptor.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18531,21 +17150,14 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of vector \f$x\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   x_val       array of \p nnz elements containing the values of \f$x\f$.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of vector \f$x\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] x_val - array of \p nnz elements containing the values of \f$x\f$.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[inout]
-  !>   y           array of values in dense format.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[inout] y - array of values in dense format.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18673,21 +17285,14 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of vector \f$x\f$.
-  !>   @param[in]
-  !>   x_val       array of \p nnz values.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of vector \f$x\f$.
+  !>   @param[in] x_val - array of \p nnz values.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   y           array of values in dense format.
-  !>   @param[out]
-  !>   result      pointer to the result, which can be in host or device memory.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] y - array of values in dense format.
+  !>   @param[out] myResult - pointer to the result, which can be in host or device memory.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18769,21 +17374,14 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of vector \f$x\f$.
-  !>   @param[in]
-  !>   x_val       array of \p nnz values.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of vector \f$x\f$.
+  !>   @param[in] x_val - array of \p nnz values.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   y           array of values in dense format.
-  !>   @param[out]
-  !>   result      pointer to the result, which can be in host or device memory.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] y - array of values in dense format.
+  !>   @param[out] myResult - pointer to the result, which can be in host or device memory.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18909,19 +17507,13 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$.
-  !>   @param[in]
-  !>   y           array of values in dense format.
-  !>   @param[out]
-  !>   x_val       array of \p nnz elements containing the values of \f$x\f$.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$.
+  !>   @param[in] y - array of values in dense format.
+  !>   @param[out] x_val - array of \p nnz elements containing the values of \f$x\f$.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19039,19 +17631,13 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$.
-  !>   @param[inout]
-  !>   y           array of values in dense format.
-  !>   @param[out]
-  !>   x_val       array of \p nnz elements containing the non-zero values of \f$x\f$.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$.
+  !>   @param[inout] y - array of values in dense format.
+  !>   @param[out] x_val - array of \p nnz elements containing the non-zero values of \f$x\f$.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19171,23 +17757,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$.
-  !>   @param[inout]
-  !>   x_val       array of \p nnz elements containing the non-zero values of \f$x\f$.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$.
+  !>   @param[inout] x_val - array of \p nnz elements containing the non-zero values of \f$x\f$.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of \f$x\f$.
-  !>   @param[inout]
-  !>   y           array of values in dense format.
-  !>   @param[in]
-  !>   c           pointer to the cosine element of \f$G\f$, can be on the host or device.
-  !>   @param[in]
-  !>   s           pointer to the sine element of \f$G\f$, can be on the host or device.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[inout] y - array of values in dense format.
+  !>   @param[in] c - pointer to the cosine element of \f$G\f$, can be on the host or device.
+  !>   @param[in] s - pointer to the sine element of \f$G\f$, can be on the host or device.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19265,19 +17843,13 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of \f$x\f$.
-  !>   @param[in]
-  !>   x_val       array of \p nnz elements containing the non-zero values of \f$x\f$.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the non-zero
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] nnz - number of non-zero entries of \f$x\f$.
+  !>   @param[in] x_val - array of \p nnz elements containing the non-zero values of \f$x\f$.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the non-zero
   !>               values of x.
-  !>   @param[inout]
-  !>   y           array of values in dense format.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[inout] y - array of values in dense format.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19416,33 +17988,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim     block dimension of the sparse BSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19612,43 +18174,29 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim     block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   x           array of \p nb*block_dim elements (\f$op(A) = A\f$) or \p mb*block_dim
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[in] x - array of \p nb*block_dim elements (\f$op(A) = A\f$) or \p mb*block_dim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p mb*block_dim elements (\f$op(A) = A\f$) or \p nb*block_dim
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p mb*block_dim elements (\f$op(A) = A\f$) or \p nb*block_dim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19809,10 +18357,8 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during analysis step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19848,12 +18394,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19888,32 +18432,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnz containing the block column indices of the sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim     block dimension of the sparse BSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_sbsrsv_analysis(), rocsparse_dbsrsv_analysis(),
   !>               rocsparse_cbsrsv_analysis(), rocsparse_zbsrsv_analysis(),
   !>               rocsparse_sbsrsv_solve(), rocsparse_dbsrsv_solve(),
@@ -20070,38 +18603,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnz containing the block column indices of the sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim     block dimension of the sparse BSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -20249,10 +18769,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -20347,40 +18866,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnz containing the block column indices of the sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim     block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   x           array of \p m elements, holding the right-hand side.
-  !>   @param[out]
-  !>   y           array of \p m elements, holding the solution.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] x - array of \p m elements, holding the right-hand side.
+  !>   @param[out] y - array of \p m elements, holding the solution.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -20566,50 +19070,34 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   size_of_mask number of updated block rows of the array \p y.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns of the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] size_of_mask - number of updated block rows of the array \p y.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix.
+  !>   @param[in] nb - number of block columns of the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
   !>
-  !>   @param[in]
-  !>   bsr_mask_ptr array of \p size_of_mask elements that give the indices of the updated block
-  !>   rows.
+  !>   @param[in] bsr_mask_ptr - array of \p size_of_mask elements that give the indices of the
+  !>   updated block rows.
   !>
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb elements that point to the start of every block row of
+  !>   @param[in] bsr_row_ptr - array of \p mb elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_end_ptr array of \p mb elements that point to the end of every block row of
+  !>   @param[in] bsr_end_ptr - array of \p mb elements that point to the end of every block row of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim     block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   x           array of \p nb*block_dim elements (\f$op(A) = A\f$) or \p mb*block_dim
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[in] x - array of \p nb*block_dim elements (\f$op(A) = A\f$) or \p mb*block_dim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p mb*block_dim elements (\f$op(A) = A\f$) or \p nb*block_dim
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p mb*block_dim elements (\f$op(A) = A\f$) or \p nb*block_dim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -20811,36 +19299,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse COO matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse COO matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse COO matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   coo_val     array of \p nnz elements of the sparse COO matrix.
-  !>   @param[in]
-  !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
+  !>   @param[in] coo_val - array of \p nnz elements of the sparse COO matrix.
+  !>   @param[in] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
+  !>   COO
   !>               matrix.
-  !>   @param[in]
-  !>   coo_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] coo_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               COO matrix.
-  !>   @param[in]
-  !>   x           array of \p n elements (\f$op(A) = A\f$) or \p m elements
+  !>   @param[in] x - array of \p n elements (\f$op(A) = A\f$) or \p m elements
   !>               (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) = A\f$) or \p n elements
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) = A\f$) or \p n elements
   !>               (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -20992,14 +19468,11 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -21031,28 +19504,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scsritsv_analysis "rocsparse_Xcsritsv_analysis()" and
   !>               \ref rocsparse_scsritsv_solve "rocsparse_Xcsritsv_solve()".
   !>
@@ -21172,34 +19635,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -21315,12 +19766,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -21403,44 +19852,29 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle         handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   host_nmaxiter maximum number of iterations on input and number of iterations on output. If
-  !>   the output number of iterations is strictly less than the input maximum number of iterations,
-  !>   then the algorithm converged.
-  !>   @param[in]
-  !>   host_tol       if the pointer is null then loop will execute \p nmaxiter[0] iterations.
-  !>   @param[out]
-  !>   host_history   optional array to record the norm of the residual before each iteration.
-  !>   @param[in]
-  !>   trans          matrix operation type.
-  !>   @param[in]
-  !>   m              number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz            number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   alpha          scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr          descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val        array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr    array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] host_nmaxiter - maximum number of iterations on input and number of iterations
+  !>   on output. If the output number of iterations is strictly less than the input maximum number
+  !>   of iterations, then the algorithm converged.
+  !>   @param[in] host_tol - if the pointer is null then loop will execute \p nmaxiter[0]
+  !>   iterations.
+  !>   @param[out] host_history - optional array to record the norm of the residual before each
+  !>   iteration.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>                  of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind    array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>                  CSR matrix.
-  !>   @param[in]
-  !>   info           structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   x              array of \p m elements, holding the right-hand side.
-  !>   @param[inout]
-  !>   y              array of \p m elements, holding the solution.
-  !>   @param[in]
-  !>   policy         `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer    temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] x - array of \p m elements, holding the right-hand side.
+  !>   @param[inout] y - array of \p m elements, holding the solution.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -21733,47 +20167,32 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   host_nmaxiter maximum number of iterations on input and number of iterations on output. If
-  !>   the output number of iterations is strictly less than the input maximum number of iterations,
-  !>   then the algorithm converged.
-  !>   @param[in]
-  !>   host_nfreeiter number of free iterations, that is, the number of iterations performed without
-  !>   stopping criteria evaluation between two iterations with stopping criteria evaluation.
-  !>   @param[in]
-  !>   host_tol          if the pointer is null, then loop will execute \p nmaxiter[0] iterations.
-  !>   @param[out]
-  !>   host_history      optional array to record the norm of the residual before each iteration.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] host_nmaxiter - maximum number of iterations on input and number of iterations
+  !>   on output. If the output number of iterations is strictly less than the input maximum number
+  !>   of iterations, then the algorithm converged.
+  !>   @param[in] host_nfreeiter - number of free iterations, that is, the number of iterations
+  !>   performed without stopping criteria evaluation between two iterations with stopping criteria
+  !>   evaluation.
+  !>   @param[in] host_tol - if the pointer is null, then loop will execute \p nmaxiter[0]
+  !>   iterations.
+  !>   @param[out] host_history - optional array to record the norm of the residual before each
+  !>   iteration.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   x           array of \p m elements, holding the right-hand side.
-  !>   @param[inout]
-  !>   y           array of \p m elements, holding the solution.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] x - array of \p m elements, holding the right-hand side.
+  !>   @param[inout] y - array of \p m elements, holding the solution.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -22028,28 +20447,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -22185,10 +20594,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -22282,39 +20690,26 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   info information collected by \ref rocsparse_scsrmv_analysis "rocsparse_Xcsrmv_analysis()",
+  !>   @param[in] myInfo - information collected by \ref rocsparse_scsrmv_analysis
+  !>   "rocsparse_Xcsrmv_analysis()",
   !>               which can be \p NULL if no information is available.
-  !>   @param[in]
-  !>   x           array of \p n elements (\f$op(A) == A\f$) or \p m elements
+  !>   @param[in] x - array of \p n elements (\f$op(A) == A\f$) or \p m elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -22471,14 +20866,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, can be in host or device memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -22519,28 +20910,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scsrsv_analysis "rocsparse_Xcsrsv_analysis()" and
   !>               \ref rocsparse_scsrsv_solve "rocsparse_Xcsrsv_solve()".
   !>
@@ -22692,34 +21073,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -22861,12 +21230,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -22964,36 +21331,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   x           array of \p m elements, holding the right-hand side.
-  !>   @param[out]
-  !>   y           array of \p m elements, holding the solution.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] x - array of \p m elements, holding the right-hand side.
+  !>   @param[out] y - array of \p m elements, holding the solution.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -23182,34 +21535,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse ELL matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse ELL matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse ELL matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the sparse ELL matrix.
+  !>   @param[in] n - number of columns of the sparse ELL matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse ELL matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   ell_val     array that contains the elements of the sparse ELL matrix. Padded
+  !>   @param[in] ell_val - array that contains the elements of the sparse ELL matrix. Padded
   !>               elements should be zero.
-  !>   @param[in]
-  !>   ell_col_ind array that contains the column indices of the sparse ELL matrix.
+  !>   @param[in] ell_col_ind - array that contains the column indices of the sparse ELL matrix.
   !>               Padded column indices should be -1.
-  !>   @param[in]
-  !>   ell_width   number of non-zero elements per row of the sparse ELL matrix.
-  !>   @param[in]
-  !>   x           array of \p n elements (\f$op(A) == A\f$) or \p m elements
+  !>   @param[in] ell_width - number of non-zero elements per row of the sparse ELL matrix.
+  !>   @param[in] x - array of \p n elements (\f$op(A) == A\f$) or \p m elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -23371,42 +21712,28 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of GEBSR blocks.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   nb          number of block columns of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse GEBSR matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of GEBSR blocks.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] mb - number of block rows of the sparse GEBSR matrix.
+  !>   @param[in] nb - number of block columns of the sparse GEBSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse GEBSR matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse GEBSR matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse GEBSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnz containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnz containing the block column indices of the sparse
   !>               GEBSR matrix.
-  !>   @param[in]
-  !>   row_block_dim row block dimension of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   col_block_dim column block dimension of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   x           array of \p nb*col_block_dim elements (\f$op(A) = A\f$) or \p mb*row_block_dim
+  !>   @param[in] row_block_dim - row block dimension of the sparse GEBSR matrix.
+  !>   @param[in] col_block_dim - column block dimension of the sparse GEBSR matrix.
+  !>   @param[in] x - array of \p nb*col_block_dim elements (\f$op(A) = A\f$) or \p mb*row_block_dim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p mb*row_block_dim elements (\f$op(A) = A\f$) or \p nb*col_block_dim
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p mb*row_block_dim elements (\f$op(A) = A\f$) or \p
+  !>   nb*col_block_dim
   !>               elements (\f$op(A) = A^T\f$ or \f$op(A) = A^H\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -23567,18 +21894,12 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries in the sparse vector.
-  !>   @param[out]
-  !>   buffer_size temporary storage buffer size.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the dense matrix.
+  !>   @param[in] n - number of columns of the dense matrix.
+  !>   @param[in] nnz - number of non-zero entries in the sparse vector.
+  !>   @param[out] buffer_size - temporary storage buffer size.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -23687,35 +22008,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   m           number of rows of the dense matrix.
-  !>   @param[in]
-  !>   n           number of columns of the dense matrix.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   A           pointer to the dense matrix.
-  !>   @param[in]
-  !>   lda         leading dimension of the dense matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries in the sparse vector.
-  !>   @param[in]
-  !>   x_val       array of \p nnz elements containing the values of the sparse vector.
-  !>   @param[in]
-  !>   x_ind       array of \p nnz elements containing the indices of the sparse vector.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] m - number of rows of the dense matrix.
+  !>   @param[in] n - number of columns of the dense matrix.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] A - pointer to the dense matrix.
+  !>   @param[in] lda - leading dimension of the dense matrix.
+  !>   @param[in] nnz - number of non-zero entries in the sparse vector.
+  !>   @param[in] x_val - array of \p nnz elements containing the values of the sparse vector.
+  !>   @param[in] x_ind - array of \p nnz elements containing the indices of the sparse vector.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   idx_base    rocsparse_index_base_zero or rocsparse_index_base_one.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer.
+  !>   @param[in] idx_base - rocsparse_index_base_zero or rocsparse_index_base_one.
+  !>   @param[in] temp_buffer - temporary storage buffer.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -23882,24 +22189,16 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans       matrix operation type.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse HYB matrix. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans - matrix operation type.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse HYB matrix. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   hyb         matrix in HYB storage format.
-  !>   @param[in]
-  !>   x           array of \p n elements (\f$op(A) == A\f$) or \p m elements
+  !>   @param[in] hyb - matrix in HYB storage format.
+  !>   @param[in] x - array of \p n elements (\f$op(A) == A\f$) or \p m elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -24057,55 +22356,40 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks. Can be `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks. Can be `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   trans_A matrix \f$A\f$ operation type. Currently, only `rocsparse_operation_none` is
-  !>   supported.
-  !>   @param[in]
-  !>   trans_B matrix \f$B\f$ operation type. Currently, only `rocsparse_operation_none` and
-  !>   rocsparse_operation_transpose
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type. Currently, only
+  !>   `rocsparse_operation_none` is supported.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type. Currently, only
+  !>   `rocsparse_operation_none` and rocsparse_operation_transpose
   !>               are supported.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   n           number of columns of the column-oriented dense matrix \f$op(B)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   kb          number of block columns of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \f$op(B)\f$ and \f$C\f$.
+  !>   @param[in] kb - number of block columns of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix \f$A\f$. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb*block_dim*block_dim elements of the sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_val - array of \p nnzb*block_dim*block_dim elements of the sparse BSR matrix
+  !>   \f$A\f$.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   block_dim   size of the blocks in the sparse BSR matrix.
-  !>   @param[in]
-  !>   B           column-oriented dense matrix of dimension \f$ldb \times n\f$ (\f$op(B) == B\f$),
+  !>   @param[in] block_dim - size of the blocks in the sparse BSR matrix.
+  !>   @param[in] B - column-oriented dense matrix of dimension \f$ldb \times n\f$ (\f$op(B) ==
+  !>   B\f$),
   !>               \f$ldb \times k\f$ otherwise.
-  !>   @param[in]
-  !>   ldb leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$ (\f$ op(B) == B\f$)
-  !>   where \f$k = block\_dim \times kb\f$,
+  !>   @param[in] ldb - leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$ (\f$ op(B)
+  !>   == B\f$) where \f$k = block\_dim \times kb\f$,
   !>   \f$\max{(1, n)}\f$ otherwise.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C           column-oriented dense matrix of  dimension \f$ldc \times n\f$.
-  !>   @param[in]
-  !>   ldc leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$ (\f$ op(A) == A\f$)
-  !>   where \f$m = block\_dim \times mb\f$,
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - column-oriented dense matrix of  dimension \f$ldc \times n\f$.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$ (\f$ op(A)
+  !>   == A\f$) where \f$m = block\_dim \times mb\f$,
   !>   \f$\max{(1, k)}\f$ where \f$k = block\_dim \times kb\f$ otherwise.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -24287,12 +22571,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -24327,36 +22609,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans_A     matrix A operation type.
-  !>   @param[in]
-  !>   trans_X     matrix X operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   nrhs        number of columns of the column-oriented dense matrix op(X).
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans_A - matrix A operation type.
+  !>   @param[in] trans_X - matrix X operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix A.
+  !>   @param[in] nrhs - number of columns of the column-oriented dense matrix op(X).
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix A.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix A.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb containing the block column indices of the sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim   block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sbsrsm_analysis "rocsparse_Xbsrsm_analysis()" and
   !>               \ref rocsparse_sbsrsm_solve "rocsparse_Xbsrsm_solve()".
   !>
@@ -24520,41 +22789,26 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans_A     matrix A operation type.
-  !>   @param[in]
-  !>   trans_X     matrix X operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   nrhs        number of columns of the column-oriented dense matrix op(X).
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans_A - matrix A operation type.
+  !>   @param[in] trans_X - matrix X operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix A.
+  !>   @param[in] nrhs - number of columns of the column-oriented dense matrix op(X).
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix A.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix A.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix A.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix A.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb containing the block column indices of the sparse
   !>               BSR matrix A.
-  !>   @param[in]
-  !>   block_dim   block dimension of the sparse BSR matrix A.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix A.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -24711,10 +22965,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -24947,48 +23200,29 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         matrix storage of BSR blocks.
-  !>   @param[in]
-  !>   trans_A     matrix A operation type.
-  !>   @param[in]
-  !>   trans_X     matrix X operation type.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   nrhs        number of columns of the column-oriented dense matrix op(X).
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix A.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of BSR blocks.
+  !>   @param[in] trans_A - matrix A operation type.
+  !>   @param[in] trans_X - matrix X operation type.
+  !>   @param[in] mb - number of block rows of the sparse BSR matrix A.
+  !>   @param[in] nrhs - number of columns of the column-oriented dense matrix op(X).
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse BSR matrix A.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix A.
+  !>   @param[in] bsr_val - array of \p nnzb blocks of the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of
   !>               the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb containing the block column indices of the sparse
   !>               BSR matrix.
-  !>   @param[in]
-  !>   block_dim   block dimension of the sparse BSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   B           column-oriented dense matrix B with leading dimension \p ldb.
-  !>   @param[in]
-  !>   ldb         leading dimension of rhs matrix B.
-  !>   @param[out]
-  !>   X           column-oriented dense solution matrix X with leading dimension \p ldx.
-  !>   @param[in]
-  !>   ldx         leading dimension of solution matrix X.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] block_dim - block dimension of the sparse BSR matrix.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] B - column-oriented dense matrix B with leading dimension \p ldb.
+  !>   @param[in] ldb - leading dimension of rhs matrix B.
+  !>   @param[out] X - column-oriented dense solution matrix X with leading dimension \p ldx.
+  !>   @param[in] ldx - leading dimension of solution matrix X.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -25215,45 +23449,29 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A     matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B     matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   n           number of columns of the column-oriented dense matrix \f$op(B)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   k           number of columns of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix \f$A\f$. Currently, only
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \f$op(B)\f$ and \f$C\f$.
+  !>   @param[in] k - number of columns of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix \f$A\f$. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix \f$A\f$.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   B           column-oriented dense matrix of dimension \f$ldb \times n\f$ (\f$op(B) == B\f$),
+  !>   @param[in] B - column-oriented dense matrix of dimension \f$ldb \times n\f$ (\f$op(B) ==
+  !>   B\f$),
   !>               \f$ldb \times k\f$ otherwise.
-  !>   @param[in]
-  !>   ldb         leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$
+  !>   @param[in] ldb - leading dimension of \f$B\f$, must be at least \f$\max{(1, k)}\f$
   !>               (\f$op(B) == B\f$), \f$\max{(1, n)}\f$ otherwise.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C           column-oriented dense matrix of dimension \f$ldc \times n\f$.
-  !>   @param[in]
-  !>   ldc         leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - column-oriented dense matrix of dimension \f$ldc \times n\f$.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, must be at least \f$\max{(1, m)}\f$
   !>               (\f$op(A) == A\f$), \f$\max{(1, k)}\f$ otherwise.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -25425,12 +23643,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -25465,41 +23681,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A     matrix A operation type.
-  !>   @param[in]
-  !>   trans_B     matrix B operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   nrhs        number of columns of the column-oriented dense matrix op(B).
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix A operation type.
+  !>   @param[in] trans_B - matrix B operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix A.
+  !>   @param[in] nrhs - number of columns of the column-oriented dense matrix op(B).
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix A.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix A.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix A.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix A.
-  !>   @param[in]
-  !>   B column-oriented dense matrix of dimension \p m \f$\times\f$ \p nrhs elements of the rhs
-  !>   matrix B.
-  !>   @param[in]
-  !>   ldb         leading dimension of rhs matrix B.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] B - column-oriented dense matrix of dimension \p m \f$\times\f$ \p nrhs elements
+  !>   of the rhs matrix B.
+  !>   @param[in] ldb - leading dimension of rhs matrix B.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_scsrsm_analysis(), rocsparse_dcsrsm_analysis(),
   !>               rocsparse_ccsrsm_analysis(), rocsparse_zcsrsm_analysis(),
   !>               rocsparse_scsrsm_solve(), rocsparse_dcsrsm_solve(),
@@ -25677,44 +23877,27 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A     matrix A operation type.
-  !>   @param[in]
-  !>   trans_B     matrix B operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   nrhs        number of columns of the column-oriented dense matrix op(B).
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix A operation type.
+  !>   @param[in] trans_B - matrix B operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix A.
+  !>   @param[in] nrhs - number of columns of the column-oriented dense matrix op(B).
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix A.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix A.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix A.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix A.
-  !>   @param[in]
-  !>   B column-oriented dense matrix of dimension \p m \f$\times\f$ \p nrhs elements of the rhs
-  !>   matrix B.
-  !>   @param[in]
-  !>   ldb         leading dimension of rhs matrix B.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] B - column-oriented dense matrix of dimension \p m \f$\times\f$ \p nrhs elements
+  !>   of the rhs matrix B.
+  !>   @param[in] ldb - leading dimension of rhs matrix B.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -25880,10 +24063,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -26061,41 +24243,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A     matrix A operation type.
-  !>   @param[in]
-  !>   trans_B     matrix B operation type.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   nrhs        number of columns of the column-oriented dense matrix op(B).
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix A operation type.
+  !>   @param[in] trans_B - matrix B operation type.
+  !>   @param[in] m - number of rows of the sparse CSR matrix A.
+  !>   @param[in] nrhs - number of columns of the column-oriented dense matrix op(B).
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix A.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix A.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix A.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix A.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix A.
-  !>   @param[inout]
-  !>   B column-oriented dense matrix of dimension \p m \f$\times\f$ \p nrhs elements of the rhs
-  !>   matrix B.
-  !>   @param[in]
-  !>   ldb         leading dimension of rhs matrix B.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[inout] B - column-oriented dense matrix of dimension \p m \f$\times\f$ \p nrhs
+  !>   elements of the rhs matrix B.
+  !>   @param[in] ldb - leading dimension of rhs matrix B.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -26291,58 +24457,41 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir the storage format of the blocks. Can be `rocsparse_direction_row` or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - the storage format of the blocks. Can be `rocsparse_direction_row` or
   !>   `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   trans_A matrix \f$A\f$ operation type. Currently, only `rocsparse_operation_none` is
-  !>   supported.
-  !>   @param[in]
-  !>   trans_B matrix \f$B\f$ operation type. Currently, only `rocsparse_operation_none` and
-  !>   rocsparse_operation_transpose
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type. Currently, only
+  !>   `rocsparse_operation_none` is supported.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type. Currently, only
+  !>   `rocsparse_operation_none` and rocsparse_operation_transpose
   !>               are supported.
-  !>   @param[in]
-  !>   mb          number of block rows of the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   n           number of columns of the column-oriented dense matrix \f$op(B)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   kb          number of block columns of the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnzb        number of non-zero blocks of the sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse general BSR matrix \f$A\f$. Currently, only
+  !>   @param[in] mb - number of block rows of the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] n - number of columns of the column-oriented dense matrix \f$op(B)\f$ and \f$C\f$.
+  !>   @param[in] kb - number of block columns of the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse general BSR matrix \f$A\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] descr - descriptor of the sparse general BSR matrix \f$A\f$. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   bsr_val array of \p nnzb*row_block_dim*col_block_dim elements of the sparse general BSR
-  !>   matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] bsr_val - array of \p nnzb*row_block_dim*col_block_dim elements of the sparse
+  !>   general BSR matrix \f$A\f$.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse
   !>               general BSR matrix \f$A\f$.
-  !>   @param[in]
-  !>   row_block_dim   row size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   col_block_dim   column size of the blocks in the sparse general BSR matrix.
-  !>   @param[in]
-  !>   B           column-oriented dense matrix of dimension \f$ldb \times n\f$ (\f$op(B) == B\f$),
+  !>   @param[in] row_block_dim - row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] col_block_dim - column size of the blocks in the sparse general BSR matrix.
+  !>   @param[in] B - column-oriented dense matrix of dimension \f$ldb \times n\f$ (\f$op(B) ==
+  !>   B\f$),
   !>               \f$ldb \times k\f$ otherwise.
-  !>   @param[in]
-  !>   ldb leading dimension of \f$B\f$, which must be at least \f$\max{(1, k)}\f$ (\f$ op(B) ==
-  !>   B\f$) where \f$k = col\_block\_dim \times kb\f$,
+  !>   @param[in] ldb - leading dimension of \f$B\f$, which must be at least \f$\max{(1, k)}\f$ (\f$
+  !>   op(B) == B\f$) where \f$k = col\_block\_dim \times kb\f$,
   !>   \f$\max{(1, n)}\f$ otherwise.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C           column-oriented dense matrix of dimension \f$ldc \times n\f$.
-  !>   @param[in]
-  !>   ldc leading dimension of \f$C\f$, which must be at least \f$\max{(1, m)}\f$ (\f$ op(A) ==
-  !>   A\f$) where \f$m = row\_block\_dim \times mb\f$,
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - column-oriented dense matrix of dimension \f$ldc \times n\f$.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, which must be at least \f$\max{(1, m)}\f$ (\f$
+  !>   op(A) == A\f$) where \f$m = row\_block\_dim \times mb\f$,
   !>   \f$\max{(1, k)}\f$ where \f$k = col\_block\_dim \times kb\f$ otherwise.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -26559,47 +24708,31 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   trans_A     matrix \f$A\f$ operation type.
-  !>   @param[in]
-  !>   trans_B     matrix \f$B\f$ operation type.
-  !>   @param[in]
-  !>   m           number of rows of the column-oriented dense matrix \f$A\f$.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix \f$op(B)\f$ and \f$C\f$.
-  !>   @param[in]
-  !>   k           number of columns of the column-oriented dense matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   alpha       scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   A           array of dimension \f$lda \times k\f$ (\f$op(A) == A\f$) or
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] trans_A - matrix \f$A\f$ operation type.
+  !>   @param[in] trans_B - matrix \f$B\f$ operation type.
+  !>   @param[in] m - number of rows of the column-oriented dense matrix \f$A\f$.
+  !>   @param[in] n - number of columns of the sparse CSR matrix \f$op(B)\f$ and \f$C\f$.
+  !>   @param[in] k - number of columns of the column-oriented dense matrix \f$A\f$.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] alpha - scalar \f$\alpha\f$.
+  !>   @param[in] A - array of dimension \f$lda \times k\f$ (\f$op(A) == A\f$) or
   !>               \f$lda \times m\f$ (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   lda         leading dimension of \f$A\f$, must be at least \f$m\f$
+  !>   @param[in] lda - leading dimension of \f$A\f$, must be at least \f$m\f$
   !>               (\f$op(A) == A\f$) or \f$k\f$ (\f$op(A) == A^T\f$ or
   !>               \f$op(A) == A^H\f$).
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix \f$B\f$. Currently, only
+  !>   @param[in] descr - descriptor of the sparse CSR matrix \f$B\f$. Currently, only
   !>               `rocsparse_matrix_type_general` is supported.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix \f$B\f$.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix \f$B\f$.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse CSR
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
+  !>   CSR
   !>               matrix \f$B\f$.
-  !>   @param[in]
-  !>   beta        scalar \f$\beta\f$.
-  !>   @param[inout]
-  !>   C column-oriented dense matrix of dimension \f$ldc \times n\f$ that holds the values of
-  !>   \f$C\f$.
-  !>   @param[in]
-  !>   ldc         leading dimension of \f$C\f$, must be at least \f$m\f$.
+  !>   @param[in] beta - scalar \f$\beta\f$.
+  !>   @param[inout] C - column-oriented dense matrix of dimension \f$ldc \times n\f$ that holds the
+  !>   values of \f$C\f$.
+  !>   @param[in] ldc - leading dimension of \f$C\f$, must be at least \f$m\f$.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -26773,12 +24906,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -26818,33 +24949,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>               `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val array of length \p nnzb*block_dim*block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of length \p nnzb*block_dim*block_dim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and m, where \p m=mb*block_dim.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and m, where \p
+  !>   m=mb*block_dim.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sbsric0_analysis "rocsparse_Xbsric0_analysis()" and
   !>               \ref rocsparse_sbsric0 "rocsparse_Xbsric0()".
   !>
@@ -26993,39 +25115,28 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specified whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specified whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>               `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val array of length \p nnzb*block_dim*block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of length \p nnzb*block_dim*block_dim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and m, where \p m=mb*block_dim.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and m, where \p
+  !>   m=mb*block_dim.
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27169,10 +25280,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27232,35 +25342,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specified whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specified whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>               `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[inout]
-  !>   bsr_val array of length \p nnzb*block_dim*block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[inout] bsr_val - array of length \p nnzb*block_dim*block_dim containing the values of
+  !>   the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and m, where \p m=mb*block_dim.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and m, where \p
+  !>   m=mb*block_dim.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27415,12 +25515,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27460,16 +25558,11 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info            structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   enable_boost    enable/disable numeric boost.
-  !>   @param[in]
-  !>   boost_tol       tolerance to determine whether a numerical value is replaced or not.
-  !>   @param[in]
-  !>   boost_val       boost value to replace a numerical value.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] enable_boost - enable/disable numeric boost.
+  !>   @param[in] boost_tol - tolerance to determine whether a numerical value is replaced or not.
+  !>   @param[in] boost_val - boost value to replace a numerical value.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27586,33 +25679,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
-  !>   or by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specifies whether to count non-zero elements by
+  !>   `rocsparse_direction_row` or by
   !>               `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val array of length \p nnzb*block_dim*block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of length \p nnzb*block_dim*block_dim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and m, where \p m=mb*block_dim.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and m, where \p
+  !>   m=mb*block_dim.
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sbsrilu0_analysis "rocsparse_Xbsrilu0_analysis()" and
   !>               \ref rocsparse_sbsrilu0 "rocsparse_Xbsrilu0()".
   !>
@@ -27761,38 +25845,27 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         direction that specified whether to count non-zero elements by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specified whether to count non-zero elements by
   !>               `rocsparse_direction_row` or by `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_val array of length \p nnzb*block_dim*block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[in] bsr_val - array of length \p nnzb*block_dim*block_dim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and m, where \p m=mb*block_dim.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and m, where \p
+  !>   m=mb*block_dim.
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27936,10 +26009,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -27998,34 +26070,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir         direction that specified whether to count non-zero elements by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - direction that specified whether to count non-zero elements by
   !>               `rocsparse_direction_row` or by `rocsparse_direction_column`.
-  !>   @param[in]
-  !>   mb          number of block rows in the sparse BSR matrix.
-  !>   @param[in]
-  !>   nnzb        number of non-zero block entries of the sparse BSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse BSR matrix.
-  !>   @param[inout]
-  !>   bsr_val array of length \p nnzb*block_dim*block_dim containing the values of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every block row of the
+  !>   @param[in] mb - number of block rows in the sparse BSR matrix.
+  !>   @param[in] nnzb - number of non-zero block entries of the sparse BSR matrix.
+  !>   @param[in] descr - descriptor of the sparse BSR matrix.
+  !>   @param[inout] bsr_val - array of length \p nnzb*block_dim*block_dim containing the values of
+  !>   the sparse BSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every block row
+  !>   of the
   !>               sparse BSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
-  !>   matrix.
-  !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and m, where \p m=mb*block_dim.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the block column indices of the
+  !>   sparse BSR matrix.
+  !>   @param[in] block_dim - the block dimension of the BSR matrix. Between 1 and m, where \p
+  !>   m=mb*block_dim.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28174,12 +26236,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28217,12 +26277,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to singular pivot \f$k\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to singular pivot \f$k\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28255,12 +26313,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   tolerance    tolerance for detecting singular pivot (\f$|L_{j,j}|  &le; \text{tolerance}\f$).
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] tolerance - tolerance for detecting singular pivot (\f$|L_{j,j}| &le;
+  !>   \text{tolerance}\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28292,12 +26348,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   tolerance obtain tolerance for detecting singular pivot (\f$|L_{j,j}| &le;
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] tolerance - obtain tolerance for detecting singular pivot (\f$|L_{j,j}| &le;
   !>   \text{tolerance}\f$).
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -28335,26 +26388,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scsric0_analysis "rocsparse_Xcsric0_analysis()" and
   !>               \ref rocsparse_scsric0 "rocsparse_Xcsric0()".
   !>
@@ -28495,32 +26539,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28657,10 +26690,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28821,28 +26853,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[inout]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[inout] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -28984,12 +27006,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to zero pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to zero pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29023,12 +27043,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   tolerance tolerance value to determine singular pivot \f$|A_{j,j}| &le; \text{tolerance}\f$,
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] tolerance - tolerance value to determine singular pivot \f$|A_{j,j}| &le;
+  !>   \text{tolerance}\f$,
   !>                where variable tolerance is in host memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -29060,13 +27078,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   tolerance obtain tolerance value to determine the singular pivot \f$|A_{j,j}| &le;
-  !>   \text{tolerance}\f$,
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] tolerance - obtain tolerance value to determine the singular pivot \f$|A_{j,j}|
+  !>   &le; \text{tolerance}\f$,
   !>               where variable tolerance is in host memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -29104,12 +27119,10 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[inout]
-  !>   position    pointer to singular pivot \f$j\f$, which can be in host or device memory.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[inout] position - pointer to singular pivot \f$j\f$, which can be in host or device
+  !>   memory.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29148,16 +27161,11 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle          handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   info            structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   enable_boost    enable/disable numeric boost.
-  !>   @param[in]
-  !>   boost_tol       tolerance to determine whether a numerical value is replaced or not.
-  !>   @param[in]
-  !>   boost_val       boost value to replace a numerical value.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] enable_boost - enable/disable numeric boost.
+  !>   @param[in] boost_tol - tolerance to determine whether a numerical value is replaced or not.
+  !>   @param[in] boost_val - boost value to replace a numerical value.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29273,26 +27281,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[out] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()" and
   !>               \ref rocsparse_scsrilu0 "rocsparse_Xcsrilu0()".
   !>
@@ -29434,32 +27433,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[out]
-  !>   info        structure that holds the information collected during
+  !>   @param[out] myInfo - structure that holds the information collected during
   !>               the analysis step.
-  !>   @param[in]
-  !>   analysis    `rocsparse_analysis_policy_reuse` or
+  !>   @param[in] analysis - `rocsparse_analysis_policy_reuse` or
   !>               `rocsparse_analysis_policy_force`.
-  !>   @param[in]
-  !>   solve       `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] solve - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29596,10 +27584,9 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[inout]
-  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[inout] myInfo - structure that holds the information collected during the analysis
+  !>   step.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29743,28 +27730,18 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   descr       descriptor of the sparse CSR matrix.
-  !>   @param[inout]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] descr - descriptor of the sparse CSR matrix.
+  !>   @param[inout] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   info        structure that holds the information collected during the analysis step.
-  !>   @param[in]
-  !>   policy      `rocsparse_solve_policy_auto`.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] myInfo - structure that holds the information collected during the analysis step.
+  !>   @param[in] policy - `rocsparse_solve_policy_auto`.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29907,30 +27884,19 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg         algorithm to use, `rocsparse_itilu0_alg`.
-  !>   @param[in]
-  !>   option      combination of enumeration values from `rocsparse_itilu0_option`.
-  !>   @param[in]
-  !>   nmaxiter     maximum number of iterations.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use, `rocsparse_itilu0_alg`.
+  !>   @param[in] option - combination of enumeration values from `rocsparse_itilu0_option`.
+  !>   @param[in] nmaxiter - maximum number of iterations.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   datatype    Type of numerical values, `rocsparse_datatype`.
-  !>   @param[out]
-  !>   buffer_size size of the temporary storage buffer allocated by the user.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] datatype - Type of numerical values, `rocsparse_datatype`.
+  !>   @param[out] buffer_size - size of the temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -29979,32 +27945,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg         algorithm to use, `rocsparse_itilu0_alg`.
-  !>   @param[in]
-  !>   option      combination of enumeration values from `rocsparse_itilu0_option`.
-  !>   @param[in]
-  !>   nmaxiter    maximum number of iterations.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use, `rocsparse_itilu0_alg`.
+  !>   @param[in] option - combination of enumeration values from `rocsparse_itilu0_option`.
+  !>   @param[in] nmaxiter - maximum number of iterations.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   datatype    type of numerical values, `rocsparse_datatype`.
-  !>   @param[in]
-  !>   buffer_size size of the storage buffer allocated by the user.
-  !>   @param[in]
-  !>   buffer      storage buffer allocated by the user.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] datatype - type of numerical values, `rocsparse_datatype`.
+  !>   @param[in] buffer_size - size of the storage buffer allocated by the user.
+  !>   @param[in] buffer - storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -30117,38 +28071,24 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg         algorithm to use, `rocsparse_itilu0_alg`
-  !>   @param[in]
-  !>   option      combination of enumeration values from `rocsparse_itilu0_option`.
-  !>   @param[inout]
-  !>   nmaxiter maximum number of iterations on input and number of iterations on output. If the
-  !>   output number of iterations is strictly less than the input maximum number of iterations,
-  !>   then the algorithm converged.
-  !>   @param[in]
-  !>   tol tolerance to use for stopping criteria.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use, `rocsparse_itilu0_alg`
+  !>   @param[in] option - combination of enumeration values from `rocsparse_itilu0_option`.
+  !>   @param[inout] nmaxiter - maximum number of iterations on input and number of iterations on
+  !>   output. If the output number of iterations is strictly less than the input maximum number of
+  !>   iterations, then the algorithm converged.
+  !>   @param[in] tol - tolerance to use for stopping criteria.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[inout]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[out]
-  !>   ilu0        incomplete factorization.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   buffer_size size of the storage buffer allocated by the user.
-  !>   @param[in]
-  !>   buffer      storage buffer allocated by the user.
+  !>   @param[inout] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[out] ilu0 - incomplete factorization.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] buffer_size - size of the storage buffer allocated by the user.
+  !>   @param[in] buffer - storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_value \p alg or \p base is invalid.
@@ -30312,41 +28252,26 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg         algorithm to use, `rocsparse_itilu0_alg`.
-  !>   @param[in]
-  !>   option      combination of enumeration values from `rocsparse_itilu0_option`.
-  !>   @param[inout]
-  !>   nmaxiter maximum number of iterations on input and number of iterations on output. If the
-  !>   output number of iterations is strictly less than the input maximum number of iterations,
-  !>   then the algorithm converged.
-  !>   @param[inout]
-  !>   nfreeiter number of free iterations, that is, the number of iterations the algorithm will
-  !>   perform without stopping criteria evaluations.
-  !>   @param[in]
-  !>   tol tolerance to use for stopping criteria.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use, `rocsparse_itilu0_alg`.
+  !>   @param[in] option - combination of enumeration values from `rocsparse_itilu0_option`.
+  !>   @param[inout] nmaxiter - maximum number of iterations on input and number of iterations on
+  !>   output. If the output number of iterations is strictly less than the input maximum number of
+  !>   iterations, then the algorithm converged.
+  !>   @param[inout] nfreeiter - number of free iterations, that is, the number of iterations the
+  !>   algorithm will perform without stopping criteria evaluations.
+  !>   @param[in] tol - tolerance to use for stopping criteria.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start
   !>               of every row of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[inout]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[out]
-  !>   ilu0        incomplete factorization.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   buffer_size size of the storage buffer allocated by the user.
-  !>   @param[in]
-  !>   buffer      storage buffer allocated by the user.
+  !>   @param[inout] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[out] ilu0 - incomplete factorization.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] buffer_size - size of the storage buffer allocated by the user.
+  !>   @param[in] buffer - storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_value \p alg or \p base is invalid.
@@ -30516,18 +28441,12 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg         algorithm to use, `rocsparse_itilu0_alg`.
-  !>   @param[out]
-  !>   niter       number of performed iterations.
-  !>   @param[out]
-  !>   data        norms.
-  !>   @param[in]
-  !>   buffer_size size of the buffer allocated by the user.
-  !>   @param[in]
-  !>   buffer buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use, `rocsparse_itilu0_alg`.
+  !>   @param[out] niter - number of performed iterations.
+  !>   @param[out] myData - norms.
+  !>   @param[in] buffer_size - size of the buffer allocated by the user.
+  !>   @param[in] buffer - buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -30611,33 +28530,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg          algorithm to solve the linear system.
-  !>   @param[in]
-  !>   m            size of the pentadiagonal linear system.
-  !>   @param[in]
-  !>   ds           lower diagonal (distance 2) of pentadiagonal system. The first two entries
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to solve the linear system.
+  !>   @param[in] m - size of the pentadiagonal linear system.
+  !>   @param[in] ds - lower diagonal (distance 2) of pentadiagonal system. The first two entries
   !>                must be zero.
-  !>   @param[in]
-  !>   dl           lower diagonal of pentadiagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d            main diagonal of pentadiagonal system.
-  !>   @param[in]
-  !>   du           upper diagonal of pentadiagonal system. The last entry must be zero.
-  !>   @param[in]
-  !>   dw           upper diagonal (distance 2) of pentadiagonal system. The last two entries
+  !>   @param[in] dl - lower diagonal of pentadiagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of pentadiagonal system.
+  !>   @param[in] du - upper diagonal of pentadiagonal system. The last entry must be zero.
+  !>   @param[in] dw - upper diagonal (distance 2) of pentadiagonal system. The last two entries
   !>                must be zero.
-  !>   @param[in]
-  !>   x            Dense array of right-hand-sides, with dimension \p batch_stride by \p m.
-  !>   @param[in]
-  !>   batch_count  The number of systems to solve.
-  !>   @param[in]
-  !>   batch_stride The number of elements that separate consecutive elements in a system.
+  !>   @param[in] x - Dense array of right-hand-sides, with dimension \p batch_stride by \p m.
+  !>   @param[in] batch_count - The number of systems to solve.
+  !>   @param[in] batch_stride - The number of elements that separate consecutive elements in a
+  !>   system.
   !>                Must satisfy \p batch_stride >= \p batch_count.
-  !>   @param[out]
-  !>   buffer_size  Number of bytes of the temporary storage buffer required.
+  !>   @param[out] buffer_size - Number of bytes of the temporary storage buffer required.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -30850,33 +28758,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle       handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg          algorithm to solve the linear system.
-  !>   @param[in]
-  !>   m            size of the pentadiagonal linear system.
-  !>   @param[inout]
-  !>   ds           lower diagonal (distance 2) of pentadiagonal system. The first two entries
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to solve the linear system.
+  !>   @param[in] m - size of the pentadiagonal linear system.
+  !>   @param[inout] ds - lower diagonal (distance 2) of pentadiagonal system. The first two entries
   !>                must be zero.
-  !>   @param[inout]
-  !>   dl           lower diagonal of pentadiagonal system. The first entry must be zero.
-  !>   @param[inout]
-  !>   d            main diagonal of pentadiagonal system.
-  !>   @param[inout]
-  !>   du           upper diagonal of pentadiagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   dw           upper diagonal (distance 2) of pentadiagonal system. The last two entries
+  !>   @param[inout] dl - lower diagonal of pentadiagonal system. The first entry must be zero.
+  !>   @param[inout] d - main diagonal of pentadiagonal system.
+  !>   @param[inout] du - upper diagonal of pentadiagonal system. The last entry must be zero.
+  !>   @param[inout] dw - upper diagonal (distance 2) of pentadiagonal system. The last two entries
   !>                must be zero.
-  !>   @param[inout]
-  !>   x            Dense array of right-hand-sides, with dimension \p batch_stride by \p m.
-  !>   @param[in]
-  !>   batch_count  The number of systems to solve.
-  !>   @param[in]
-  !>   batch_stride The number of elements that separate consecutive elements in a system.
+  !>   @param[inout] x - Dense array of right-hand-sides, with dimension \p batch_stride by \p m.
+  !>   @param[in] batch_count - The number of systems to solve.
+  !>   @param[in] batch_stride - The number of elements that separate consecutive elements in a
+  !>   system.
   !>                Must satisfy \p batch_stride >= \p batch_count.
-  !>   @param[in]
-  !>   temp_buffer  Temporary storage buffer allocated by the user.
+  !>   @param[in] temp_buffer - Temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -31016,24 +28913,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   n           number of columns in the dense matrix B.
-  !>   @param[in]
-  !>   dl          lower diagonal of tri-diagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of tri-diagonal system. The last entry must be zero.
-  !>   @param[in]
-  !>   B           dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb         leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - size of the tri-diagonal linear system (must be >= 2).
+  !>   @param[in] n - number of columns in the dense matrix B.
+  !>   @param[in] dl - lower diagonal of tri-diagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of tri-diagonal system.
+  !>   @param[in] du - upper diagonal of tri-diagonal system. The last entry must be zero.
+  !>   @param[in] B - dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_sgtsv(), rocsparse_dgtsv(), rocsparse_cgtsv(),
   !>               and rocsparse_zgtsv().
   !>
@@ -31178,24 +29066,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   n           number of columns in the dense matrix B.
-  !>   @param[in]
-  !>   dl          lower diagonal of tri-diagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of tri-diagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   B           dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb         leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - size of the tri-diagonal linear system (must be >= 2).
+  !>   @param[in] n - number of columns in the dense matrix B.
+  !>   @param[in] dl - lower diagonal of tri-diagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of tri-diagonal system.
+  !>   @param[in] du - upper diagonal of tri-diagonal system. The last entry must be zero.
+  !>   @param[inout] B - dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -31318,24 +29197,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   n           number of columns in the dense matrix B.
-  !>   @param[in]
-  !>   dl          lower diagonal of tri-diagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of tri-diagonal system. The last entry must be zero.
-  !>   @param[in]
-  !>   B           dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb         leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - size of the tri-diagonal linear system (must be >= 2).
+  !>   @param[in] n - number of columns in the dense matrix B.
+  !>   @param[in] dl - lower diagonal of tri-diagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of tri-diagonal system.
+  !>   @param[in] du - upper diagonal of tri-diagonal system. The last entry must be zero.
+  !>   @param[in] B - dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_sgtsv_no_pivot(), rocsparse_dgtsv_no_pivot(),
   !>               rocsparse_cgtsv_no_pivot(),
   !>               and rocsparse_zgtsv_no_pivot().
@@ -31484,24 +29354,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   n           number of columns in the dense matrix B.
-  !>   @param[in]
-  !>   dl          lower diagonal of tri-diagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of tri-diagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   B           dense matrix of size ( \p ldb, \p n ).
-  !>   @param[in]
-  !>   ldb         leading dimension of B. Must satisfy \p ldb >= max(1, m).
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - size of the tri-diagonal linear system (must be >= 2).
+  !>   @param[in] n - number of columns in the dense matrix B.
+  !>   @param[in] dl - lower diagonal of tri-diagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of tri-diagonal system.
+  !>   @param[in] du - upper diagonal of tri-diagonal system. The last entry must be zero.
+  !>   @param[inout] B - dense matrix of size ( \p ldb, \p n ).
+  !>   @param[in] ldb - leading dimension of B. Must satisfy \p ldb >= max(1, m).
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -31630,28 +29491,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system.
-  !>   @param[in]
-  !>   dl lower diagonal of tri-diagonal system, where the ith system lower diagonal starts at \p
-  !>   dl+batch_stride*i.
-  !>   @param[in]
-  !>   d main diagonal of tri-diagonal system, where the ith system diagonal starts at \p
-  !>   d+batch_stride*i.
-  !>   @param[in]
-  !>   du upper diagonal of tri-diagonal system, where the ith system upper diagonal starts at \p
-  !>   du+batch_stride*i.
-  !>   @param[inout]
-  !>   x dense array of righthand-sides where the ith righthand-side starts at \p x+batch_stride*i.
-  !>   @param[in]
-  !>   batch_count the number of systems to solve.
-  !>   @param[in]
-  !>   batch_stride the number of elements that separate each system. Must satisfy \p batch_stride
-  !>   >= \p m.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - size of the tri-diagonal linear system.
+  !>   @param[in] dl - lower diagonal of tri-diagonal system, where the ith system lower diagonal
+  !>   starts at \p dl+batch_stride*i.
+  !>   @param[in] d - main diagonal of tri-diagonal system, where the ith system diagonal starts at
+  !>   \p d+batch_stride*i.
+  !>   @param[in] du - upper diagonal of tri-diagonal system, where the ith system upper diagonal
+  !>   starts at \p du+batch_stride*i.
+  !>   @param[inout] x - dense array of righthand-sides where the ith righthand-side starts at \p
+  !>   x+batch_stride*i.
+  !>   @param[in] batch_count - the number of systems to solve.
+  !>   @param[in] batch_stride - the number of elements that separate each system. Must satisfy \p
+  !>   batch_stride >= \p m.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sgtsv_no_pivot_strided_batch
   !>               "rocsparse_Xgtsv_no_pivot_strided_batch()".
   !>
@@ -31839,26 +29692,17 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system (must be >= 2).
-  !>   @param[in]
-  !>   dl          lower diagonal of tri-diagonal system. The first entry must be zero.
-  !>   @param[in]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[in]
-  !>   du          upper diagonal of tri-diagonal system. The last entry must be zero.
-  !>   @param[inout]
-  !>   x dense array of righthand-sides, where the ith right-hand side starts at \p
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - size of the tri-diagonal linear system (must be >= 2).
+  !>   @param[in] dl - lower diagonal of tri-diagonal system. The first entry must be zero.
+  !>   @param[in] d - main diagonal of tri-diagonal system.
+  !>   @param[in] du - upper diagonal of tri-diagonal system. The last entry must be zero.
+  !>   @param[inout] x - dense array of righthand-sides, where the ith right-hand side starts at \p
   !>   x+batch_stride*i.
-  !>   @param[in]
-  !>   batch_count the number of systems to solve.
-  !>   @param[in]
-  !>   batch_stride the number of elements that separate each system. Must satisfy \p batch_stride
-  !>   >= \p m.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] batch_count - the number of systems to solve.
+  !>   @param[in] batch_stride - the number of elements that separate each system. Must satisfy \p
+  !>   batch_stride >= \p m.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -31987,35 +29831,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg algorithm to use when solving tridiagonal systems. Options are Thomas (
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use when solving tridiagonal systems. Options are Thomas (
   !>   `rocsparse_gtsv_interleaved_alg_thomas` ),
   !>               LU ( `rocsparse_gtsv_interleaved_alg_lu` ), or QR (
   !>               `rocsparse_gtsv_interleaved_alg_qr` ). Passing
   !>               `rocsparse_gtsv_interleaved_alg_default` defaults to using the QR algorithm. The
   !>               Thomas algorithm is the fastest but is not
   !>               stable, while LU and QR are slower but are stable.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system.
-  !>   @param[in]
-  !>   dl lower diagonal of tri-diagonal system. The first element of the lower diagonal must be
-  !>   zero.
-  !>   @param[in]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[in]
-  !>   du upper diagonal of tri-diagonal system. The last element of the upper diagonal must be
-  !>   zero.
-  !>   @param[inout]
-  !>   x           dense array of right-hand sides with dimension \p batch_stride by \p m.
-  !>   @param[in]
-  !>   batch_count the number of systems to solve.
-  !>   @param[in]
-  !>   batch_stride the number of elements that separate consecutive elements in a system. Must
-  !>   satisfy \p batch_stride >= \p batch_count.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] m - size of the tri-diagonal linear system.
+  !>   @param[in] dl - lower diagonal of tri-diagonal system. The first element of the lower
+  !>   diagonal must be zero.
+  !>   @param[in] d - main diagonal of tri-diagonal system.
+  !>   @param[in] du - upper diagonal of tri-diagonal system. The last element of the upper diagonal
+  !>   must be zero.
+  !>   @param[inout] x - dense array of right-hand sides with dimension \p batch_stride by \p m.
+  !>   @param[in] batch_count - the number of systems to solve.
+  !>   @param[in] batch_stride - the number of elements that separate consecutive elements in a
+  !>   system. Must satisfy \p batch_stride >= \p batch_count.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_sgtsv_interleaved_batch "rocsparse_Xgtsv_interleaved_batch()".
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
@@ -32189,35 +30023,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine supports execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   alg algorithm to use when solving tridiagonal systems. Options are Thomas (
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alg - algorithm to use when solving tridiagonal systems. Options are Thomas (
   !>   `rocsparse_gtsv_interleaved_alg_thomas` ),
   !>               LU ( `rocsparse_gtsv_interleaved_alg_lu` ), or QR (
   !>               `rocsparse_gtsv_interleaved_alg_qr` ). Passing
   !>               `rocsparse_gtsv_interleaved_alg_default` defaults to using the QR algorithm. The
   !>               Thomas algorithm is the fastest but is not
   !>               stable, while LU and QR are slower but are stable.
-  !>   @param[in]
-  !>   m           size of the tri-diagonal linear system.
-  !>   @param[inout]
-  !>   dl lower diagonal of tri-diagonal system. The first element of the lower diagonal must be
-  !>   zero.
-  !>   @param[inout]
-  !>   d           main diagonal of tri-diagonal system.
-  !>   @param[inout]
-  !>   du upper diagonal of tri-diagonal system. The last element of the upper diagonal must be
-  !>   zero.
-  !>   @param[inout]
-  !>   x           dense array of right-hand sides, with dimension \p batch_stride by \p m.
-  !>   @param[in]
-  !>   batch_count the number of systems to solve.
-  !>   @param[in]
-  !>   batch_stride the number of elements that separate consecutive elements in a system. Must
-  !>   satisfy \p batch_stride >= \p batch_count.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] m - size of the tri-diagonal linear system.
+  !>   @param[inout] dl - lower diagonal of tri-diagonal system. The first element of the lower
+  !>   diagonal must be zero.
+  !>   @param[inout] d - main diagonal of tri-diagonal system.
+  !>   @param[inout] du - upper diagonal of tri-diagonal system. The last element of the upper
+  !>   diagonal must be zero.
+  !>   @param[inout] x - dense array of right-hand sides, with dimension \p batch_stride by \p m.
+  !>   @param[in] batch_count - the number of systems to solve.
+  !>   @param[in] batch_stride - the number of elements that separate consecutive elements in a
+  !>   system. Must satisfy \p batch_stride >= \p batch_count.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -32334,33 +30158,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of sparse matrix \f$A\f$.
-  !>   @param[in]
-  !>   descr      sparse matrix descriptor.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of sparse matrix \f$A\f$.
+  !>   @param[in] nnz - number of non-zero entries of sparse matrix \f$A\f$.
+  !>   @param[in] descr - sparse matrix descriptor.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   fraction_to_color fraction of nodes to be colored, which should be in the interval [0.0,1.0],
-  !>   for example, 0.8 implies that 80 percent of nodes will be colored.
-  !>   @param[out]
-  !>   ncolors      resulting number of distinct colors.
-  !>   @param[out]
-  !>   coloring     resulting mapping of colors.
-  !>   @param[out]
-  !>   reordering optional resulting reordering permutation if \p reordering is a non-null pointer.
-  !>   @param[inout]
-  !>   info    structure that holds the information collected during the coloring algorithm.
+  !>   @param[in] fraction_to_color - fraction of nodes to be colored, which should be in the
+  !>   interval [0.0,1.0], for example, 0.8 implies that 80 percent of nodes will be colored.
+  !>   @param[out] ncolors - resulting number of distinct colors.
+  !>   @param[out] coloring - resulting mapping of colors.
+  !>   @param[out] reordering - optional resulting reordering permutation if \p reordering is a
+  !>   non-null pointer.
+  !>   @param[inout] myInfo - structure that holds the information collected during the coloring
+  !>   algorithm.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -32491,33 +30305,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   coo_val     array of \p nnz elements of the sparse COO matrix.
-  !>   @param[in]
-  !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] coo_val - array of \p nnz elements of the sparse COO matrix.
+  !>   @param[in] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>               COO matrix.
-  !>   @param[in]
-  !>   coo_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] coo_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               COO matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scheck_matrix_coo "rocsparse_Xcheck_matrix_coo()".
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -32649,35 +30451,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse COO matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse COO matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse COO matrix.
-  !>   @param[in]
-  !>   coo_val     array of \p nnz elements of the sparse COO matrix.
-  !>   @param[in]
-  !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse COO matrix.
+  !>   @param[in] n - number of columns of the sparse COO matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse COO matrix.
+  !>   @param[in] coo_val - array of \p nnz elements of the sparse COO matrix.
+  !>   @param[in] coo_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>               COO matrix.
-  !>   @param[in]
-  !>   coo_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] coo_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               COO matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -32848,33 +30637,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSC matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSC matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_val     array of \p nnz elements of the sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_col_ptr array of \p m+1 elements that point to the start of every column of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSC matrix.
+  !>   @param[in] n - number of columns of the sparse CSC matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix.
+  !>   @param[in] csc_val - array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[in] csc_col_ptr - array of \p m+1 elements that point to the start of every column of
+  !>   the
   !>               sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_row_ind array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] csc_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>               CSC matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               \ref rocsparse_scheck_matrix_csc "rocsparse_Xcheck_matrix_csc()".
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -33006,35 +30784,23 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSC matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSC matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_val     array of \p nnz elements of the sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_col_ptr array of \p m+1 elements that point to the start of every column of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSC matrix.
+  !>   @param[in] n - number of columns of the sparse CSC matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSC matrix.
+  !>   @param[in] csc_val - array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[in] csc_col_ptr - array of \p m+1 elements that point to the start of every column of
+  !>   the
   !>               sparse CSC matrix.
-  !>   @param[in]
-  !>   csc_row_ind array of \p nnz elements containing the row indices of the sparse
+  !>   @param[in] csc_row_ind - array of \p nnz elements containing the row indices of the sparse
   !>               CSC matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -33207,33 +30973,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_scheck_matrix_csr(), rocsparse_dcheck_matrix_csr(),
   !>               rocsparse_ccheck_matrix_csr(), and rocsparse_zcheck_matrix_csr().
   !>
@@ -33366,35 +31120,22 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse CSR matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse CSR matrix.
-  !>   @param[in]
-  !>   nnz         number of non-zero entries of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse CSR matrix.
+  !>   @param[in] n - number of columns of the sparse CSR matrix.
+  !>   @param[in] nnz - number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in] csr_val - array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in] csr_row_ptr - array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
-  !>   @param[in]
-  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>   @param[in] csr_col_ind - array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -33565,31 +31306,20 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse ELL matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_width   number of non-zero elements per row of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_val     array that contains the elements of the sparse ELL matrix. Padded
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse ELL matrix.
+  !>   @param[in] n - number of columns of the sparse ELL matrix.
+  !>   @param[in] ell_width - number of non-zero elements per row of the sparse ELL matrix.
+  !>   @param[in] ell_val - array that contains the elements of the sparse ELL matrix. Padded
   !>               elements should be zero.
-  !>   @param[in]
-  !>   ell_col_ind array that contains the column indices of the sparse ELL matrix.
+  !>   @param[in] ell_col_ind - array that contains the column indices of the sparse ELL matrix.
   !>               Padded column indices should be -1.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_scheck_matrix_ell(), rocsparse_dcheck_matrix_ell(),
   !>               rocsparse_ccheck_matrix_ell(), and rocsparse_zcheck_matrix_ell().
   !>
@@ -33711,33 +31441,21 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   m           number of rows of the sparse ELL matrix.
-  !>   @param[in]
-  !>   n           number of columns of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_width   number of non-zero elements per row of the sparse ELL matrix.
-  !>   @param[in]
-  !>   ell_val     array that contains the elements of the sparse ELL matrix. Padded
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] m - number of rows of the sparse ELL matrix.
+  !>   @param[in] n - number of columns of the sparse ELL matrix.
+  !>   @param[in] ell_width - number of non-zero elements per row of the sparse ELL matrix.
+  !>   @param[in] ell_val - array that contains the elements of the sparse ELL matrix. Padded
   !>               elements should be zero.
-  !>   @param[in]
-  !>   ell_col_ind array that contains the column indices of the sparse ELL matrix.
+  !>   @param[in] ell_col_ind - array that contains the column indices of the sparse ELL matrix.
   !>               Padded column indices should be -1.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -33847,39 +31565,25 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir          matrix storage of GEBSC blocks.
-  !>   @param[in]
-  !>   mb           number of block rows of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   nb           number of block columns of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   nnzb         number of non-zero blocks of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   row_block_dim row block dimension of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   col_block_dim column block dimension of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   bsc_val     array of \p nnzb elements of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   bsc_col_ptr array of \p nb+1 elements that point to the start of every column of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of GEBSC blocks.
+  !>   @param[in] mb - number of block rows of the sparse GEBSC matrix.
+  !>   @param[in] nb - number of block columns of the sparse GEBSC matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse GEBSC matrix.
+  !>   @param[in] row_block_dim - row block dimension of the sparse GEBSC matrix.
+  !>   @param[in] col_block_dim - column block dimension of the sparse GEBSC matrix.
+  !>   @param[in] bsc_val - array of \p nnzb elements of the sparse GEBSC matrix.
+  !>   @param[in] bsc_col_ptr - array of \p nb+1 elements that point to the start of every column of
+  !>   the
   !>               sparse GEBSC matrix.
-  !>   @param[in]
-  !>   bsc_row_ind array of \p nnzb elements containing the row indices of the sparse
+  !>   @param[in] bsc_row_ind - array of \p nnzb elements containing the row indices of the sparse
   !>               GEBSC matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_scheck_matrix_gebsc(), rocsparse_dcheck_matrix_gebsc(),
   !>               rocsparse_ccheck_matrix_gebsc(), and rocsparse_zcheck_matrix_gebsc().
   !>
@@ -34024,41 +31728,26 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir          matrix storage of GEBSC blocks.
-  !>   @param[in]
-  !>   mb           number of block rows of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   nb           number of block columns of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   nnzb         number of non-zero blocks of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   row_block_dim row block dimension of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   col_block_dim column block dimension of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   bsc_val     array of \p nnzb elements of the sparse GEBSC matrix.
-  !>   @param[in]
-  !>   bsc_col_ptr array of \p nb+1 elements that point to the start of every column of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of GEBSC blocks.
+  !>   @param[in] mb - number of block rows of the sparse GEBSC matrix.
+  !>   @param[in] nb - number of block columns of the sparse GEBSC matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse GEBSC matrix.
+  !>   @param[in] row_block_dim - row block dimension of the sparse GEBSC matrix.
+  !>   @param[in] col_block_dim - column block dimension of the sparse GEBSC matrix.
+  !>   @param[in] bsc_val - array of \p nnzb elements of the sparse GEBSC matrix.
+  !>   @param[in] bsc_col_ptr - array of \p nb+1 elements that point to the start of every column of
+  !>   the
   !>               sparse GEBSC matrix.
-  !>   @param[in]
-  !>   bsc_row_ind array of \p nnzb elements containing the row indices of the sparse
+  !>   @param[in] bsc_row_ind - array of \p nnzb elements containing the row indices of the sparse
   !>               GEBSC matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -34187,39 +31876,26 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir          matrix storage of GEBSR blocks.
-  !>   @param[in]
-  !>   mb           number of block rows of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   nb           number of block columns of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   nnzb         number of non-zero blocks of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   row_block_dim row block dimension of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   col_block_dim column block dimension of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb elements of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of GEBSR blocks.
+  !>   @param[in] mb - number of block rows of the sparse GEBSR matrix.
+  !>   @param[in] nb - number of block columns of the sparse GEBSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse GEBSR matrix.
+  !>   @param[in] row_block_dim - row block dimension of the sparse GEBSR matrix.
+  !>   @param[in] col_block_dim - column block dimension of the sparse GEBSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb elements of the sparse GEBSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every row of
+  !>   the
   !>               sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the column indices of the
+  !>   sparse
   !>               GEBSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_scheck_matrix_gebsr(), rocsparse_dcheck_matrix_gebsr(),
   !>               rocsparse_ccheck_matrix_gebsr(), and rocsparse_zcheck_matrix_gebsr().
   !>
@@ -34369,41 +32045,27 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   dir          matrix storage of GEBSR blocks.
-  !>   @param[in]
-  !>   mb           number of block rows of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   nb           number of block columns of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   nnzb         number of non-zero blocks of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   row_block_dim row block dimension of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   col_block_dim column block dimension of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_val     array of \p nnzb elements of the sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every row of the
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] dir - matrix storage of GEBSR blocks.
+  !>   @param[in] mb - number of block rows of the sparse GEBSR matrix.
+  !>   @param[in] nb - number of block columns of the sparse GEBSR matrix.
+  !>   @param[in] nnzb - number of non-zero blocks of the sparse GEBSR matrix.
+  !>   @param[in] row_block_dim - row block dimension of the sparse GEBSR matrix.
+  !>   @param[in] col_block_dim - column block dimension of the sparse GEBSR matrix.
+  !>   @param[in] bsr_val - array of \p nnzb elements of the sparse GEBSR matrix.
+  !>   @param[in] bsr_row_ptr - array of \p mb+1 elements that point to the start of every row of
+  !>   the
   !>               sparse GEBSR matrix.
-  !>   @param[in]
-  !>   bsr_col_ind array of \p nnzb elements containing the column indices of the sparse
+  !>   @param[in] bsr_col_ind - array of \p nnzb elements containing the column indices of the
+  !>   sparse
   !>               GEBSR matrix.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -34595,21 +32257,14 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   hyb         matrix in HYB storage format.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] hyb - matrix in HYB storage format.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] buffer_size - number of bytes of the temporary storage buffer required by
   !>               rocsparse_check_matrix_hyb().
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
@@ -34659,23 +32314,15 @@ module hipfort_rocsparse
   !>   \note
   !>   This routine does not support execution in a hipGraph context.
   !>
-  !>   @param[in]
-  !>   handle      handle to the rocSPARSE library context queue.
-  !>   @param[in]
-  !>   hyb         matrix in HYB storage format.
-  !>   @param[in]
-  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
-  !>   @param[in]
-  !>   matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] hyb - matrix in HYB storage format.
+  !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in] matrix_type - `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
   !>               `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
-  !>   @param[in]
-  !>   uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
-  !>   @param[in]
-  !>   storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
-  !>   @param[out]
-  !>   data_status modified to indicate the status of the data.
-  !>   @param[in]
-  !>   temp_buffer temporary storage buffer allocated by the user.
+  !>   @param[in] uplo - `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
+  !>   @param[in] storage - `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
+  !>   @param[out] data_status - modified to indicate the status of the data.
+  !>   @param[in] temp_buffer - temporary storage buffer allocated by the user.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
