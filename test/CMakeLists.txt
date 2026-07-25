@@ -13,7 +13,22 @@ endif()
 # cmake-based test infrastructure
 
 if(BUILD_TESTING)
+  # The Intel compilers (ifx/ifort) do not recognize the .f03/.f08 source
+  # extensions and skip such files ("no action performed"). Force Fortran
+  # compilation by inserting -Tf immediately before the source in the compile
+  # rule (set_source_files_properties(LANGUAGE Fortran) alone is not enough).
+  if(CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
+    string(REPLACE "<SOURCE>" "-Tf <SOURCE>"
+           CMAKE_Fortran_COMPILE_OBJECT "${CMAKE_Fortran_COMPILE_OBJECT}")
+  endif()
+
   function(hipfort_add_test lib func dir)
+    # The Fortran 2008 array interfaces are disabled on the Intel compilers
+    # (see USE_FPOINTER_INTERFACES in lib/CMakeLists.txt), so the f2008 tests
+    # cannot be built there; skip them.
+    if(dir STREQUAL "f2008" AND CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
+      return()
+    endif()
     # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
     if(dir STREQUAL "f2008")
       set(ext "f08")
@@ -361,6 +376,11 @@ if(BUILD_TESTING)
   if(CMAKE_HIP_COMPILER)
     enable_language(HIP)
     foreach(std IN ITEMS f2003 f2008)
+      # The f2008 interfaces are disabled on the Intel compilers, so skip the
+      # f2008 vecadd test there (see USE_FPOINTER_INTERFACES in lib/CMakeLists.txt).
+      if(std STREQUAL "f2008" AND CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
+        continue()
+      endif()
       # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
       if(std STREQUAL "f2008")
         set(ext "f08")
