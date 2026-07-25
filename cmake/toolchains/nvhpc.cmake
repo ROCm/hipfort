@@ -3,10 +3,11 @@
 # Usage:
 #   cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/nvhpc.cmake
 #
-# NOTE: hipfort selects the NVIDIA code path (USE_CUDA_NAMES) from the platform
-# reported by find_package(hip), *not* from this file. To build the CUDA backend
-# you must have HIP configured for NVIDIA and CUDA available. Set HIP_PLATFORM
-# and ROCM_PATH below (or on the command line) to match your installation.
+# NOTE: this toolchain only selects the NVIDIA HPC compilers. nvfortran compiles
+# the hipfort sources, but hipfort's CMake currently exports usable targets
+# (hipfort::*) and a package config only for the AMD platform (HIP_PLATFORM=amd);
+# the NVIDIA/CUDA backend is not wired up yet. Set HIP_PLATFORM/ROCM_PATH below to
+# match your installation.
 
 set(CMAKE_Fortran_COMPILER nvfortran CACHE FILEPATH "NVIDIA Fortran compiler")
 set(CMAKE_C_COMPILER       nvc       CACHE FILEPATH "NVIDIA C compiler")
