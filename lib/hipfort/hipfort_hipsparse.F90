@@ -142,7 +142,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGetVersion_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: version
+      integer(c_int) :: version
     end function
   end interface
 
@@ -2507,7 +2507,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -2542,7 +2542,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -2577,7 +2577,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -2612,7 +2612,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -3863,7 +3863,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -3896,7 +3896,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -3929,7 +3929,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -3962,7 +3962,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -4460,7 +4460,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -4481,7 +4481,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -4502,7 +4502,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -4523,7 +4523,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -6741,7 +6741,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_float) :: alpha
+      type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -6750,7 +6750,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -6782,7 +6782,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_double) :: alpha
+      type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -6791,7 +6791,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -6823,7 +6823,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -6832,7 +6832,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -6864,7 +6864,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -6873,7 +6873,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -11509,7 +11509,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -11541,7 +11541,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -11573,7 +11573,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -11605,7 +11605,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -12473,7 +12473,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -12505,7 +12505,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -12537,7 +12537,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -12569,7 +12569,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -13836,7 +13836,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: du
       type(c_ptr),value :: x
       integer(c_int),value :: batchCount
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -13862,7 +13862,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: du
       type(c_ptr),value :: x
       integer(c_int),value :: batchCount
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -13888,7 +13888,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: du
       type(c_ptr),value :: x
       integer(c_int),value :: batchCount
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -13914,7 +13914,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: du
       type(c_ptr),value :: x
       integer(c_int),value :: batchCount
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -16592,7 +16592,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
       integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)),value :: alg
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -17292,7 +17292,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -17326,7 +17326,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -17360,7 +17360,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -17394,7 +17394,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -19228,7 +19228,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -19255,7 +19255,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -19282,7 +19282,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -19309,7 +19309,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColInd
       integer(c_int),value :: rowBlockDim
       integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -19645,7 +19645,7 @@ module hipfort_hipsparse
       integer(c_int),value :: colBlockDimA
       integer(c_int),value :: rowBlockDimC
       integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -19682,7 +19682,7 @@ module hipfort_hipsparse
       integer(c_int),value :: colBlockDimA
       integer(c_int),value :: rowBlockDimC
       integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -19719,7 +19719,7 @@ module hipfort_hipsparse
       integer(c_int),value :: colBlockDimA
       integer(c_int),value :: rowBlockDimC
       integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -19756,7 +19756,7 @@ module hipfort_hipsparse
       integer(c_int),value :: colBlockDimA
       integer(c_int),value :: rowBlockDimC
       integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -20785,12 +20785,12 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      real(c_float) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descrC
       type(c_ptr),value :: csrValC
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -20822,12 +20822,12 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      real(c_double) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descrC
       type(c_ptr),value :: csrValC
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -20910,12 +20910,12 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      real(c_float) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descrC
       type(c_ptr),value :: csrValC
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -20947,12 +20947,12 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      real(c_double) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descrC
       type(c_ptr),value :: csrValC
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21309,7 +21309,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21349,7 +21349,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21443,7 +21443,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21483,7 +21483,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtrC
       type(c_ptr),value :: csrColIndC
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21850,12 +21850,12 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_float) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descr
       type(c_ptr),value :: csrVal
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21885,12 +21885,12 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_double) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descr
       type(c_ptr),value :: csrVal
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21920,12 +21920,12 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_float) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descr
       type(c_ptr),value :: csrVal
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21955,12 +21955,12 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_double) :: threshold
+      type(c_ptr),value :: threshold
       type(c_ptr),value :: descr
       type(c_ptr),value :: csrVal
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -22401,7 +22401,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -22437,7 +22437,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -22542,7 +22542,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -22578,7 +22578,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -23147,7 +23147,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGet_
       type(c_ptr),value :: spVecDescr
       type(c_ptr),value :: mySize
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
       type(c_ptr),value :: idxType
@@ -23172,7 +23172,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGet_
       type(c_ptr),value :: spVecDescr
       type(c_ptr),value :: mySize
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
       type(c_ptr),value :: idxType
@@ -23595,9 +23595,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: cooRowInd
       type(c_ptr) :: cooColInd
       type(c_ptr) :: cooValues
@@ -23622,9 +23622,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCooGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: cooRowInd
       type(c_ptr) :: cooColInd
       type(c_ptr) :: cooValues
@@ -23649,9 +23649,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooAoSGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: cooInd
       type(c_ptr) :: cooValues
       type(c_ptr),value :: idxType
@@ -23675,9 +23675,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsrGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: csrRowOffsets
       type(c_ptr) :: csrColInd
       type(c_ptr) :: csrValues
@@ -23703,9 +23703,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCsrGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: csrRowOffsets
       type(c_ptr) :: csrColInd
       type(c_ptr) :: csrValues
@@ -23731,9 +23731,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCscGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: cscColOffsets
       type(c_ptr) :: cscRowInd
       type(c_ptr) :: cscValues
@@ -23759,9 +23759,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCscGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
       type(c_ptr) :: cscColOffsets
       type(c_ptr) :: cscRowInd
       type(c_ptr) :: cscValues
@@ -23787,8 +23787,8 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseBlockedEllGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
       type(c_ptr),value :: ellBlockSize
       type(c_ptr),value :: ellCols
       type(c_ptr) :: ellColInd
@@ -23814,8 +23814,8 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstBlockedEllGet_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
       type(c_ptr),value :: ellBlockSize
       type(c_ptr),value :: ellCols
       type(c_ptr) :: ellColInd
@@ -23909,9 +23909,9 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetSize_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
-      type(c_ptr),value :: nnz
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
+      integer(c_int64_t) :: nnz
     end function
   end interface
 
@@ -24313,8 +24313,8 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGet_
       type(c_ptr),value :: dnMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
       type(c_ptr),value :: ld
       type(c_ptr) :: values
       type(c_ptr),value :: valueType
@@ -24335,8 +24335,8 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnMatGet_
       type(c_ptr),value :: dnMatDescr
-      type(c_ptr),value :: rows
-      type(c_ptr),value :: cols
+      integer(c_int64_t) :: rows
+      integer(c_int64_t) :: cols
       type(c_ptr),value :: ld
       type(c_ptr) :: values
       type(c_ptr),value :: valueType
@@ -24461,14 +24461,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)),value :: alg
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseDenseToSparse_bufferSize_rank_0,&
-      hipsparseDenseToSparse_bufferSize_rank_1
-#endif
   end interface
 
   interface hipsparseDenseToSparse_analysis
@@ -24586,7 +24580,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: C
       integer(kind(HIP_R_32F)),value :: computeType
       integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)),value :: alg
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -24662,14 +24656,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)),value :: alg
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseSparseToDense_bufferSize_rank_0,&
-      hipsparseSparseToDense_bufferSize_rank_1
-#endif
   end interface
 
   interface hipsparseSparseToDense
@@ -24950,7 +24938,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: matC
       integer(kind(HIP_R_32F)),value :: computeType
       integer(kind(HIPSPARSE_MM_ALG_DEFAULT)),value :: alg
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -25036,7 +25024,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: vecY
       integer(kind(HIP_R_32F)),value :: computeType
       integer(kind(HIPSPARSE_MV_ALG_DEFAULT)),value :: alg
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -25147,7 +25135,7 @@ module hipfort_hipsparse
       integer(kind(HIP_R_32F)),value :: computeType
       integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
       type(c_ptr),value :: spsmDescr
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -25285,7 +25273,7 @@ module hipfort_hipsparse
       integer(kind(HIP_R_32F)),value :: computeType
       integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
       type(c_ptr),value :: spsvDescr
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -25363,7 +25351,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: vecY
       type(c_ptr),value :: myResult
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
     end function
   end interface
 
@@ -26591,11 +26579,11 @@ module hipfort_hipsparse
       integer(c_int),target :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSbsrsv2_bufferSizeExt_rank_0 = hipsparseSbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSbsrsv2_bufferSizeExt_rank_1(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26615,11 +26603,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSbsrsv2_bufferSizeExt_rank_1 = hipsparseSbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26639,11 +26627,11 @@ module hipfort_hipsparse
       integer(c_int),target :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDbsrsv2_bufferSizeExt_rank_0 = hipsparseDbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDbsrsv2_bufferSizeExt_rank_1(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26663,11 +26651,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDbsrsv2_bufferSizeExt_rank_1 = hipsparseDbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseCbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26687,11 +26675,11 @@ module hipfort_hipsparse
       integer(c_int),target :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCbsrsv2_bufferSizeExt_rank_0 = hipsparseCbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseCbsrsv2_bufferSizeExt_rank_1(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26711,11 +26699,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCbsrsv2_bufferSizeExt_rank_1 = hipsparseCbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseZbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26735,11 +26723,11 @@ module hipfort_hipsparse
       integer(c_int),target :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZbsrsv2_bufferSizeExt_rank_0 = hipsparseZbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseZbsrsv2_bufferSizeExt_rank_1(handle,dirA,transA,mb,nnzb,descrA, &
@@ -26759,11 +26747,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
       integer(c_int) :: blockDim
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZbsrsv2_bufferSizeExt_rank_1 = hipsparseZbsrsv2_bufferSizeExt_(handle,dirA,transA, &
         mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
-        blockDim,myInfo,c_loc(pBufferSizeInBytes))
+        blockDim,myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSbsrsv2_analysis_rank_0(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
@@ -27805,11 +27793,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrsv2_bufferSizeExt_rank_0 = hipsparseScsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsrsv2_bufferSizeExt_rank_1(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27827,11 +27815,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrsv2_bufferSizeExt_rank_1 = hipsparseScsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27849,11 +27837,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrsv2_bufferSizeExt_rank_0 = hipsparseDcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrsv2_bufferSizeExt_rank_1(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27871,11 +27859,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrsv2_bufferSizeExt_rank_1 = hipsparseDcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27893,11 +27881,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrsv2_bufferSizeExt_rank_0 = hipsparseCcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrsv2_bufferSizeExt_rank_1(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27915,11 +27903,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrsv2_bufferSizeExt_rank_1 = hipsparseCcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27937,11 +27925,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrsv2_bufferSizeExt_rank_0 = hipsparseZcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrsv2_bufferSizeExt_rank_1(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -27959,11 +27947,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrsv2_bufferSizeExt_rank_1 = hipsparseZcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsrsv2_analysis_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
@@ -30664,7 +30652,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_float) :: alpha
+      real(c_float),target :: alpha
       type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
@@ -30673,11 +30661,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrsm2_bufferSizeExt_rank_0 = hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseScsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30694,7 +30682,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_float) :: alpha
+      real(c_float),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30703,11 +30691,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrsm2_bufferSizeExt_rank_1 = hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseScsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30724,7 +30712,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_float) :: alpha
+      real(c_float),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30733,11 +30721,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrsm2_bufferSizeExt_full_rank = hipsparseScsrsm2_bufferSizeExt_(handle,algo, &
-        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30754,7 +30742,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_double) :: alpha
+      real(c_double),target :: alpha
       type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
@@ -30763,11 +30751,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrsm2_bufferSizeExt_rank_0 = hipsparseDcsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30784,7 +30772,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_double) :: alpha
+      real(c_double),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30793,11 +30781,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrsm2_bufferSizeExt_rank_1 = hipsparseDcsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30814,7 +30802,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_double) :: alpha
+      real(c_double),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30823,11 +30811,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrsm2_bufferSizeExt_full_rank = hipsparseDcsrsm2_bufferSizeExt_(handle,algo, &
-        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30844,7 +30832,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target :: alpha
       type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
@@ -30853,11 +30841,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrsm2_bufferSizeExt_rank_0 = hipsparseCcsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30874,7 +30862,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30883,11 +30871,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrsm2_bufferSizeExt_rank_1 = hipsparseCcsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30904,7 +30892,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30913,11 +30901,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrsm2_bufferSizeExt_full_rank = hipsparseCcsrsm2_bufferSizeExt_(handle,algo, &
-        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30934,7 +30922,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target :: alpha
       type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
@@ -30943,11 +30931,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrsm2_bufferSizeExt_rank_0 = hipsparseZcsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30964,7 +30952,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -30973,11 +30961,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrsm2_bufferSizeExt_rank_1 = hipsparseZcsrsm2_bufferSizeExt_(handle,algo,transA, &
-        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
@@ -30994,7 +30982,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:) :: alpha
       type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -31003,11 +30991,11 @@ module hipfort_hipsparse
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrsm2_bufferSizeExt_full_rank = hipsparseZcsrsm2_bufferSizeExt_(handle,algo, &
-        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
-        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+        transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
     function hipsparseScsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
@@ -35208,11 +35196,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsric02_bufferSizeExt_rank_0 = hipsparseScsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsric02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35229,11 +35217,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsric02_bufferSizeExt_rank_1 = hipsparseScsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -35250,11 +35238,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsric02_bufferSizeExt_rank_0 = hipsparseDcsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsric02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35271,11 +35259,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsric02_bufferSizeExt_rank_1 = hipsparseDcsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -35292,11 +35280,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsric02_bufferSizeExt_rank_0 = hipsparseCcsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsric02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35313,11 +35301,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsric02_bufferSizeExt_rank_1 = hipsparseCcsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -35334,11 +35322,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsric02_bufferSizeExt_rank_0 = hipsparseZcsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsric02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35355,11 +35343,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsric02_bufferSizeExt_rank_1 = hipsparseZcsric02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsric02_analysis_rank_0(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA, &
@@ -35880,11 +35868,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrilu02_bufferSizeExt_rank_0 = hipsparseScsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsrilu02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35901,11 +35889,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrilu02_bufferSizeExt_rank_1 = hipsparseScsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -35922,11 +35910,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrilu02_bufferSizeExt_rank_0 = hipsparseDcsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsrilu02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35943,11 +35931,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrilu02_bufferSizeExt_rank_1 = hipsparseDcsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -35964,11 +35952,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrilu02_bufferSizeExt_rank_0 = hipsparseCcsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsrilu02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -35985,11 +35973,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrilu02_bufferSizeExt_rank_1 = hipsparseCcsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -36006,11 +35994,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrilu02_bufferSizeExt_rank_0 = hipsparseZcsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsrilu02_bufferSizeExt_rank_1(handle,m,nnz,descrA,csrSortedValA, &
@@ -36027,11 +36015,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrilu02_bufferSizeExt_rank_1 = hipsparseZcsrilu02_bufferSizeExt_(handle,m,nnz, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsrilu02_analysis_rank_0(handle,m,nnz,descrA,csrSortedValA, &
@@ -39710,11 +39698,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsr2gebsr_bufferSize_rank_0 = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseScsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39733,11 +39721,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsr2gebsr_bufferSize_rank_1 = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39756,11 +39744,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsr2gebsr_bufferSize_rank_0 = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39779,11 +39767,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsr2gebsr_bufferSize_rank_1 = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39802,11 +39790,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsr2gebsr_bufferSize_rank_0 = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseCcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39825,11 +39813,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsr2gebsr_bufferSize_rank_1 = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39848,11 +39836,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsr2gebsr_bufferSize_rank_0 = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseZcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
@@ -39871,11 +39859,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_int) :: rowBlockDim
       integer(c_int) :: colBlockDim
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsr2gebsr_bufferSize_rank_1 = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n, &
         csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
-        c_loc(pBufferSizeInBytes))
+        pBufferSizeInBytes)
     end function
 
     function hipsparseXcsr2gebsrNnz_rank_0(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr, &
@@ -41438,11 +41426,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSgebsr2gebsr_bufferSize_rank_0 = hipsparseSgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseSgebsr2gebsr_bufferSize_rank_1(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41465,11 +41453,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSgebsr2gebsr_bufferSize_rank_1 = hipsparseSgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseDgebsr2gebsr_bufferSize_rank_0(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41492,11 +41480,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDgebsr2gebsr_bufferSize_rank_0 = hipsparseDgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseDgebsr2gebsr_bufferSize_rank_1(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41519,11 +41507,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDgebsr2gebsr_bufferSize_rank_1 = hipsparseDgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseCgebsr2gebsr_bufferSize_rank_0(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41546,11 +41534,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCgebsr2gebsr_bufferSize_rank_0 = hipsparseCgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseCgebsr2gebsr_bufferSize_rank_1(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41573,11 +41561,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCgebsr2gebsr_bufferSize_rank_1 = hipsparseCgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseZgebsr2gebsr_bufferSize_rank_0(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41600,11 +41588,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZgebsr2gebsr_bufferSize_rank_0 = hipsparseZgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseZgebsr2gebsr_bufferSize_rank_1(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
@@ -41627,11 +41615,11 @@ module hipfort_hipsparse
       integer(c_int) :: colBlockDimA
       integer(c_int) :: rowBlockDimC
       integer(c_int) :: colBlockDimC
-      integer(c_int),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZgebsr2gebsr_bufferSize_rank_1 = hipsparseZgebsr2gebsr_bufferSize_(handle,dirA,mb, &
         nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
-        colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(pBufferSizeInBytes))
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
     end function
 
     function hipsparseXgebsr2gebsrNnz_rank_0(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA,bsrColIndA, &
@@ -42466,16 +42454,16 @@ module hipfort_hipsparse
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csr_bufferSize_rank_0 = hipsparseSpruneCsr2csr_bufferSize_(handle,m,n, &
-        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csr_bufferSize_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
@@ -42492,16 +42480,16 @@ module hipfort_hipsparse
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float) :: threshold
+      real(c_float),target,dimension(:) :: threshold
       type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csr_bufferSize_rank_1 = hipsparseSpruneCsr2csr_bufferSize_(handle,m,n, &
-        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csr_bufferSize_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
@@ -42518,16 +42506,16 @@ module hipfort_hipsparse
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csr_bufferSize_rank_0 = hipsparseDpruneCsr2csr_bufferSize_(handle,m,n, &
-        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csr_bufferSize_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
@@ -42544,16 +42532,16 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double) :: threshold
+      real(c_double),target,dimension(:) :: threshold
       type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csr_bufferSize_rank_1 = hipsparseDpruneCsr2csr_bufferSize_(handle,m,n, &
-        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csr_bufferSizeExt_rank_0(handle,m,n,nnzA,descrA,csrValA, &
@@ -42570,16 +42558,16 @@ module hipfort_hipsparse
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_0 = hipsparseSpruneCsr2csr_bufferSizeExt_(handle, &
-        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csr_bufferSizeExt_rank_1(handle,m,n,nnzA,descrA,csrValA, &
@@ -42596,16 +42584,16 @@ module hipfort_hipsparse
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float) :: threshold
+      real(c_float),target,dimension(:) :: threshold
       type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_1 = hipsparseSpruneCsr2csr_bufferSizeExt_(handle, &
-        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csr_bufferSizeExt_rank_0(handle,m,n,nnzA,descrA,csrValA, &
@@ -42622,16 +42610,16 @@ module hipfort_hipsparse
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_0 = hipsparseDpruneCsr2csr_bufferSizeExt_(handle, &
-        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csr_bufferSizeExt_rank_1(handle,m,n,nnzA,descrA,csrValA, &
@@ -42648,16 +42636,16 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double) :: threshold
+      real(c_double),target,dimension(:) :: threshold
       type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_1 = hipsparseDpruneCsr2csr_bufferSizeExt_(handle, &
-        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
-        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csrNnz_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
@@ -42885,12 +42873,12 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0 = &
         hipsparseSpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1(handle,m,n,nnzA,descrA,csrValA, &
@@ -42914,12 +42902,12 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1 = &
         hipsparseSpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0(handle,m,n,nnzA,descrA,csrValA, &
@@ -42943,12 +42931,12 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0 = &
         hipsparseDpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1(handle,m,n,nnzA,descrA,csrValA, &
@@ -42972,12 +42960,12 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1 = &
         hipsparseDpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,nnzA,descrA, &
@@ -43001,12 +42989,12 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0 = &
         hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,nnzA,descrA, &
@@ -43030,12 +43018,12 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1 = &
         hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,nnzA,descrA, &
@@ -43059,12 +43047,12 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0 = &
         hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,nnzA,descrA, &
@@ -43088,12 +43076,12 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1 = &
         hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
-        c_loc(csrColIndC),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneCsr2csrNnzByPercentage_rank_0(handle,m,n,nnzA,descrA,csrValA, &
@@ -43319,16 +43307,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      real(c_float) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSize_rank_0 = hipsparseSpruneDense2csr_bufferSize_(handle,m, &
-        n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csr_bufferSize_rank_1(handle,m,n,A,lda,threshold,descr,csrVal, &
@@ -43342,16 +43330,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_float) :: threshold
+      real(c_float),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSize_rank_1 = hipsparseSpruneDense2csr_bufferSize_(handle,m, &
-        n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csr_bufferSize_full_rank(handle,m,n,A,lda,threshold,descr, &
@@ -43365,16 +43353,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float) :: threshold
+      real(c_float),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSize_full_rank = hipsparseSpruneDense2csr_bufferSize_(handle, &
-        m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csr_bufferSize_rank_0(handle,m,n,A,lda,threshold,descr,csrVal, &
@@ -43388,16 +43376,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      real(c_double) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSize_rank_0 = hipsparseDpruneDense2csr_bufferSize_(handle,m, &
-        n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csr_bufferSize_rank_1(handle,m,n,A,lda,threshold,descr,csrVal, &
@@ -43411,16 +43399,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_double) :: threshold
+      real(c_double),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSize_rank_1 = hipsparseDpruneDense2csr_bufferSize_(handle,m, &
-        n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csr_bufferSize_full_rank(handle,m,n,A,lda,threshold,descr, &
@@ -43434,16 +43422,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double) :: threshold
+      real(c_double),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSize_full_rank = hipsparseDpruneDense2csr_bufferSize_(handle, &
-        m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csr_bufferSizeExt_rank_0(handle,m,n,A,lda,threshold,descr, &
@@ -43457,16 +43445,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      real(c_float) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSizeExt_rank_0 = hipsparseSpruneDense2csr_bufferSizeExt_( &
-        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csr_bufferSizeExt_rank_1(handle,m,n,A,lda,threshold,descr, &
@@ -43480,16 +43468,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_float) :: threshold
+      real(c_float),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSizeExt_rank_1 = hipsparseSpruneDense2csr_bufferSizeExt_( &
-        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csr_bufferSizeExt_full_rank(handle,m,n,A,lda,threshold,descr, &
@@ -43503,16 +43491,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float) :: threshold
+      real(c_float),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSizeExt_full_rank = hipsparseSpruneDense2csr_bufferSizeExt_( &
-        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csr_bufferSizeExt_rank_0(handle,m,n,A,lda,threshold,descr, &
@@ -43526,16 +43514,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      real(c_double) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSizeExt_rank_0 = hipsparseDpruneDense2csr_bufferSizeExt_( &
-        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csr_bufferSizeExt_rank_1(handle,m,n,A,lda,threshold,descr, &
@@ -43549,16 +43537,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_double) :: threshold
+      real(c_double),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1 = hipsparseDpruneDense2csr_bufferSizeExt_( &
-        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csr_bufferSizeExt_full_rank(handle,m,n,A,lda,threshold,descr, &
@@ -43572,16 +43560,16 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double) :: threshold
+      real(c_double),target,dimension(:) :: threshold
       type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSizeExt_full_rank = hipsparseDpruneDense2csr_bufferSizeExt_( &
-        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
-        c_loc(pBufferSizeInBytes))
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrNnz_rank_0(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
@@ -43859,11 +43847,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0 = &
         hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
-        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1(handle,m,n,A,lda,percentage, &
@@ -43883,11 +43871,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1 = &
         hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
-        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank(handle,m,n,A,lda, &
@@ -43907,11 +43895,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank = &
         hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
-        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage, &
@@ -43931,11 +43919,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0 = &
         hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
-        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1(handle,m,n,A,lda,percentage, &
@@ -43955,11 +43943,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1 = &
         hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
-        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank(handle,m,n,A,lda, &
@@ -43979,11 +43967,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank = &
         hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
-        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda, &
@@ -44003,11 +43991,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0 = &
         hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
-        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,A,lda, &
@@ -44027,11 +44015,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1 = &
         hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
-        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank(handle,m,n,A,lda, &
@@ -44051,11 +44039,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank = &
         hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
-        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda, &
@@ -44075,11 +44063,11 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0 = &
         hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
-        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,A,lda, &
@@ -44099,11 +44087,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1 = &
         hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
-        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank(handle,m,n,A,lda, &
@@ -44123,11 +44111,11 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
+      integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank = &
         hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
-        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
     function hipsparseSpruneDense2csrNnzByPercentage_rank_0(handle,m,n,A,lda,percentage,descr, &
@@ -44590,66 +44578,6 @@ module hipfort_hipsparse
       !
       hipsparseZcsrcolor_rank_1 = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
-    end function
-
-    function hipsparseDenseToSparse_bufferSize_rank_0(handle,matA,matB,alg,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_bufferSize_rank_0
-      type(c_ptr) :: handle
-      type(c_ptr) :: matA
-      type(c_ptr) :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)) :: alg
-      integer(c_size_t),target :: pBufferSizeInBytes
-      !
-      hipsparseDenseToSparse_bufferSize_rank_0 = hipsparseDenseToSparse_bufferSize_(handle,matA, &
-        matB,alg,c_loc(pBufferSizeInBytes))
-    end function
-
-    function hipsparseDenseToSparse_bufferSize_rank_1(handle,matA,matB,alg,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_bufferSize_rank_1
-      type(c_ptr) :: handle
-      type(c_ptr) :: matA
-      type(c_ptr) :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)) :: alg
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
-      !
-      hipsparseDenseToSparse_bufferSize_rank_1 = hipsparseDenseToSparse_bufferSize_(handle,matA, &
-        matB,alg,c_loc(pBufferSizeInBytes))
-    end function
-
-    function hipsparseSparseToDense_bufferSize_rank_0(handle,matA,matB,alg,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSparseToDense_bufferSize_rank_0
-      type(c_ptr) :: handle
-      type(c_ptr) :: matA
-      type(c_ptr) :: matB
-      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)) :: alg
-      integer(c_size_t),target :: pBufferSizeInBytes
-      !
-      hipsparseSparseToDense_bufferSize_rank_0 = hipsparseSparseToDense_bufferSize_(handle,matA, &
-        matB,alg,c_loc(pBufferSizeInBytes))
-    end function
-
-    function hipsparseSparseToDense_bufferSize_rank_1(handle,matA,matB,alg,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSparseToDense_bufferSize_rank_1
-      type(c_ptr) :: handle
-      type(c_ptr) :: matA
-      type(c_ptr) :: matB
-      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)) :: alg
-      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
-      !
-      hipsparseSparseToDense_bufferSize_rank_1 = hipsparseSparseToDense_bufferSize_(handle,matA, &
-        matB,alg,c_loc(pBufferSizeInBytes))
     end function
 
 #endif

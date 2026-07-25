@@ -80,7 +80,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetVersion_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: version
+      integer(c_int) :: version
     end function
   end interface
 

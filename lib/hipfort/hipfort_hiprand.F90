@@ -858,7 +858,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_
-      type(c_ptr),value :: version
+      integer(c_int) :: version
     end function
   end interface
 

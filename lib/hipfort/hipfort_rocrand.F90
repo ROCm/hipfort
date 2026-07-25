@@ -794,7 +794,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
-      type(c_ptr),value :: version
+      integer(c_int) :: version
     end function
   end interface
 
