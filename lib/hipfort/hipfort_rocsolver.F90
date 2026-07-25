@@ -6835,7 +6835,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -6853,7 +6853,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -6871,7 +6871,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -6889,7 +6889,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -6907,7 +6907,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -6925,7 +6925,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -6943,7 +6943,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -6961,7 +6961,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -7459,7 +7459,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -7477,7 +7477,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -7495,7 +7495,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -7513,7 +7513,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -7531,7 +7531,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -7549,7 +7549,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -7567,7 +7567,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -7585,7 +7585,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -8089,7 +8089,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8115,7 +8115,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8141,7 +8141,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8167,7 +8167,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8193,7 +8193,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8213,7 +8213,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8233,7 +8233,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8253,7 +8253,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8783,7 +8783,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8809,7 +8809,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8835,7 +8835,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8861,7 +8861,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8887,7 +8887,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8907,7 +8907,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8927,7 +8927,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -8947,7 +8947,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9480,7 +9480,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9505,7 +9505,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9530,7 +9530,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9555,7 +9555,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9580,7 +9580,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9599,7 +9599,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9618,7 +9618,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -9637,7 +9637,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10098,7 +10098,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10123,7 +10123,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10148,7 +10148,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10173,7 +10173,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10558,7 +10558,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10583,7 +10583,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10608,7 +10608,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -10633,7 +10633,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11015,7 +11015,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11040,7 +11040,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11065,7 +11065,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11090,7 +11090,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11536,7 +11536,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11561,7 +11561,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11586,7 +11586,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11611,7 +11611,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11636,7 +11636,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11655,7 +11655,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11674,7 +11674,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -11693,7 +11693,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12154,7 +12154,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12179,7 +12179,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12204,7 +12204,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12229,7 +12229,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12614,7 +12614,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12639,7 +12639,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12664,7 +12664,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -12689,7 +12689,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -13071,7 +13071,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -13096,7 +13096,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -13121,7 +13121,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -13146,7 +13146,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -13603,7 +13603,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -13635,7 +13635,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -13667,7 +13667,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -13699,7 +13699,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -14231,7 +14231,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -14263,7 +14263,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -14295,7 +14295,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -14327,7 +14327,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -14868,11 +14868,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -14896,11 +14896,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -14924,11 +14924,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -14952,11 +14952,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -14981,11 +14981,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15004,11 +15004,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15027,11 +15027,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15050,11 +15050,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15608,11 +15608,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -15630,11 +15630,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -15652,11 +15652,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -15674,11 +15674,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -15696,11 +15696,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15718,11 +15718,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15740,11 +15740,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -15762,11 +15762,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -16239,11 +16239,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -16267,11 +16267,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -16295,11 +16295,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -16323,11 +16323,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -16770,9 +16770,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -16790,9 +16790,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -16810,9 +16810,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -16830,9 +16830,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -16850,9 +16850,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -16870,9 +16870,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -16890,9 +16890,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -16910,9 +16910,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -17319,7 +17319,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_sgetri_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -17344,7 +17344,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_dgetri_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -17369,7 +17369,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_cgetri_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -17394,7 +17394,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_zgetri_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -17720,7 +17720,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_sgetri_npvt_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -17737,7 +17737,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_dgetri_npvt_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -17754,7 +17754,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_cgetri_npvt_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -17771,7 +17771,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_zgetri_npvt_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18159,9 +18159,9 @@ module hipfort_rocsolver
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18181,9 +18181,9 @@ module hipfort_rocsolver
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18203,9 +18203,9 @@ module hipfort_rocsolver
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18225,9 +18225,9 @@ module hipfort_rocsolver
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18673,7 +18673,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18691,7 +18691,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18709,7 +18709,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18727,7 +18727,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -18745,7 +18745,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -18763,7 +18763,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -18781,7 +18781,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -18799,7 +18799,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -19264,7 +19264,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -19282,7 +19282,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -19300,7 +19300,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -19318,7 +19318,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -19336,7 +19336,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -19354,7 +19354,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -19372,7 +19372,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -19390,7 +19390,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
@@ -19897,9 +19897,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -19917,9 +19917,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -19937,9 +19937,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -19957,9 +19957,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -19977,9 +19977,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -19997,9 +19997,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -20017,9 +20017,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -20037,9 +20037,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       integer(c_int64_t),value :: batch_count
     end function
@@ -20520,9 +20520,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20541,9 +20541,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20562,9 +20562,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20583,9 +20583,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20945,7 +20945,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20963,7 +20963,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20981,7 +20981,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -20999,7 +20999,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -21533,7 +21533,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -21572,7 +21572,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -21611,7 +21611,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -21650,7 +21650,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -22237,7 +22237,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -22266,7 +22266,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -22295,7 +22295,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -22324,7 +22324,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: S
       integer(c_int64_t),value :: strideS
@@ -22885,7 +22885,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: abstol
       type(c_ptr),value :: residual
@@ -22918,7 +22918,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: abstol
       type(c_ptr),value :: residual
@@ -22951,7 +22951,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: abstol
       type(c_ptr),value :: residual
@@ -22984,7 +22984,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_svect_all)),value :: right_svect
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: abstol
       type(c_ptr),value :: residual
@@ -23657,7 +23657,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_srange_all)),value :: srange
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -23694,7 +23694,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_srange_all)),value :: srange
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -23731,7 +23731,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_srange_all)),value :: srange
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -23768,7 +23768,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_srange_all)),value :: srange
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -24397,7 +24397,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -24427,7 +24427,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -24537,7 +24537,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -24567,7 +24567,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -25188,7 +25188,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -25218,7 +25218,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -25328,7 +25328,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -25358,7 +25358,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -25977,9 +25977,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -25997,9 +25997,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -26085,9 +26085,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -26105,9 +26105,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -26689,9 +26689,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -26709,9 +26709,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -26797,9 +26797,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -26817,9 +26817,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_eform_ax)),value :: itype
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
@@ -27437,7 +27437,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27467,7 +27467,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27497,7 +27497,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27521,7 +27521,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27604,7 +27604,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27634,7 +27634,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27664,7 +27664,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -27688,7 +27688,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28418,7 +28418,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28448,7 +28448,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28478,7 +28478,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28502,7 +28502,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28591,7 +28591,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28621,7 +28621,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28651,7 +28651,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -28675,7 +28675,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29246,7 +29246,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29267,7 +29267,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29330,7 +29330,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29351,7 +29351,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29834,9 +29834,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29859,9 +29859,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29956,9 +29956,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -29981,9 +29981,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -30589,7 +30589,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: abstol
       type(c_ptr),value :: residual
@@ -30616,7 +30616,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: abstol
       type(c_ptr),value :: residual
@@ -30722,7 +30722,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: abstol
       type(c_ptr),value :: residual
@@ -30749,7 +30749,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: abstol
       type(c_ptr),value :: residual
@@ -31433,7 +31433,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -31443,7 +31443,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -31466,7 +31466,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -31476,7 +31476,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -31596,7 +31596,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -31606,7 +31606,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -31629,7 +31629,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -31639,7 +31639,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -32355,9 +32355,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -32388,9 +32388,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -32504,9 +32504,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -32537,9 +32537,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -33260,9 +33260,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -33293,9 +33293,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -33420,9 +33420,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -33453,9 +33453,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       integer(c_int64_t),value :: strideD
@@ -34176,9 +34176,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float),value :: abstol
       type(c_ptr),value :: residual
@@ -34205,9 +34205,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double),value :: abstol
       type(c_ptr),value :: residual
@@ -34316,9 +34316,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float),value :: abstol
       type(c_ptr),value :: residual
@@ -34345,9 +34345,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_evect_original)),value :: evect
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double),value :: abstol
       type(c_ptr),value :: residual
@@ -35165,9 +35165,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -35177,7 +35177,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -35201,9 +35201,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -35213,7 +35213,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -35367,9 +35367,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -35379,7 +35379,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -35403,9 +35403,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -35415,7 +35415,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: ifail
       integer(c_int64_t),value :: strideF
@@ -36052,11 +36052,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_sgetri_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36080,11 +36080,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_dgetri_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36108,11 +36108,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_cgetri_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36136,11 +36136,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_zgetri_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36496,9 +36496,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_sgetri_npvt_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36515,9 +36515,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_dgetri_npvt_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36534,9 +36534,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_cgetri_npvt_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36553,9 +36553,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_zgetri_npvt_outofplace_batched_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36884,7 +36884,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36903,7 +36903,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36922,7 +36922,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -36941,7 +36941,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -37389,7 +37389,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -37415,7 +37415,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -37441,7 +37441,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -37467,7 +37467,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -37993,7 +37993,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -38019,7 +38019,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -38045,7 +38045,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -38071,7 +38071,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
@@ -38532,11 +38532,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -38555,11 +38555,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -38578,11 +38578,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -38601,11 +38601,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -39267,13 +39267,13 @@ module hipfort_rocsolver
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr) :: X
+      type(c_ptr),value :: X
       integer(c_int),value :: ldx
       integer(c_int),value :: batch_count
     end function
@@ -39292,13 +39292,13 @@ module hipfort_rocsolver
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr) :: X
+      type(c_ptr),value :: X
       integer(c_int),value :: ldx
       integer(c_int),value :: batch_count
     end function
@@ -39317,13 +39317,13 @@ module hipfort_rocsolver
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr) :: X
+      type(c_ptr),value :: X
       integer(c_int),value :: ldx
       integer(c_int),value :: batch_count
     end function
@@ -39342,13 +39342,13 @@ module hipfort_rocsolver
       integer(c_int),value :: nb
       integer(c_int),value :: nblocks
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr) :: X
+      type(c_ptr),value :: X
       integer(c_int),value :: ldx
       integer(c_int),value :: batch_count
     end function
@@ -40955,7 +40955,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -40964,7 +40964,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -40985,7 +40985,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -40994,7 +40994,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -41097,7 +41097,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -41106,7 +41106,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -41127,7 +41127,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -41136,7 +41136,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -41919,9 +41919,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -41930,7 +41930,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -41952,9 +41952,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -41963,7 +41963,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -42098,9 +42098,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_float),value :: vl
       real(c_float),value :: vu
@@ -42109,7 +42109,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
@@ -42131,9 +42131,9 @@ module hipfort_rocsolver
       integer(kind(rocblas_erange_all)),value :: erange
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       real(c_double),value :: vl
       real(c_double),value :: vu
@@ -42142,7 +42142,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
       integer(c_int64_t),value :: strideW
-      type(c_ptr) :: Z
+      type(c_ptr),value :: Z
       integer(c_int),value :: ldz
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
