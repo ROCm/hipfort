@@ -4,6 +4,10 @@
 
 ### Added
 
+* hipfort now builds with the Intel Fortran compilers (`ifx`/`ifort`). On Intel,
+  the Fortran 2003 (`type(c_ptr)`) interfaces are used; the Fortran 2008 array
+  interfaces stay disabled there because their generic interfaces are rejected as
+  ambiguous by the Intel front end.
 * **hipFFTW support.** Added Fortran interfaces to the FFTW3-compatible hipFFTW
   library, in new `hipfort_hipfftw` modules, plus a `hipfort::hipfftw` CMake target.
 * **Regenerated all Fortran bindings** against the ROCm 7.14.0 API. This covers the

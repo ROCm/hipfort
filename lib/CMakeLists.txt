@@ -22,6 +22,19 @@ file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
 file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
 set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
 
+# The Fortran 2008 array interfaces (USE_FPOINTER_INTERFACES) rely on generic
+# interfaces that the Intel compilers (ifx/ifort) reject as ambiguous. Build the
+# Fortran 2003 (type(c_ptr)) interfaces there instead.
+set(HIPFORT_USE_FPOINTER_INTERFACES OFF)
+if(CMAKE_Fortran_COMPILER_SUPPORTS_F08 AND NOT CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
+  set(HIPFORT_USE_FPOINTER_INTERFACES ON)
+elseif(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+  message(STATUS "Intel Fortran (${CMAKE_Fortran_COMPILER_ID}) detected: building the "
+                 "Fortran 2003 (type(c_ptr)) interfaces; the Fortran 2008 array "
+                 "interfaces are disabled to avoid a generic-interface ambiguity "
+                 "rejected by ifx/ifort.")
+endif()
+
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn
     set(HIPFORT_LIB      "hipfort-${HIPFORT_ARCH}")
@@ -33,9 +46,9 @@ set(HIPFORT_ARCH "amdgcn")
       PUBLIC
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/hipfort/amdgcn>
     )
-    IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+    IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
-    ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+    ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-amdgcn
     # CMAKE_INSTALL_LIBDIR/INCLUDEDIR already carry the toolchain-specific
@@ -61,9 +74,9 @@ set(HIPFORT_ARCH "nvptx")
     ADD_LIBRARY(${HIPFORT_LIB} STATIC 
          ${HIPFORT_SRC_HIP} 
          )
-    IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+    IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
-    ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+    ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_CUDA_NAMES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-nvptx
