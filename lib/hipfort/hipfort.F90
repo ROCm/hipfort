@@ -35,6 +35,24 @@ module hipfort
   use hipfort_auxiliary
   implicit none
 
+  interface hipCreateChannelDesc
+#ifdef USE_CUDA_NAMES
+    function hipCreateChannelDesc_(x,y,z,w,f) bind(c, name="cudaCreateChannelDesc")
+#else
+    function hipCreateChannelDesc_(x,y,z,w,f) bind(c, name="hipCreateChannelDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      type(c_ptr) :: hipCreateChannelDesc_
+      integer(c_int),value :: x
+      integer(c_int),value :: y
+      integer(c_int),value :: z
+      integer(c_int),value :: w
+      integer(kind(hipChannelFormatKindSigned)),value :: f
+    end function
+  end interface
+
   !>   @defgroup API HIP API
   !>
   !>
@@ -186,6 +204,32 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceGetName_
       type(c_ptr),value :: name
       integer(c_int),value :: len
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  !>  @brief Returns an UUID for the device.[BETA]
+  !>  @param [out] uuid UUID for the device
+  !>  @param [in] device device ordinal
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`,
+  !>  `hipErrorNotInitialized`,
+  !>  `hipErrorDeinitialized`
+  interface hipDeviceGetUuid
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetUuid_(uuid,device) bind(c, name="cuDeviceGetUuid")
+#else
+    function hipDeviceGetUuid_(uuid,device) bind(c, name="hipDeviceGetUuid")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetUuid_
+      type(hipUUID) :: uuid
       integer(c_int),value :: device
     end function
   end interface
@@ -375,6 +419,30 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Set a list of devices that can be used.
+  !>
+  !>  @param[in] device_arr - List of devices to try
+  !>  @param[in] len - Number of devices in specified list
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+  !>
+  !>  @see `hipGetDevice`, `hipGetDeviceCount`. `hipSetDevice`. `hipGetDeviceProperties`.
+  !>  `hipSetDeviceFlags`. `hipChooseDevice`
+  interface hipSetValidDevices
+#ifdef USE_CUDA_NAMES
+    function hipSetValidDevices_(device_arr,len) bind(c, name="cudaSetValidDevices")
+#else
+    function hipSetValidDevices_(device_arr,len) bind(c, name="hipSetValidDevices")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_
+      type(c_ptr),value :: device_arr
+      integer(c_int),value :: len
+    end function
+  end interface
+
   !>  @brief Return the default device id for the calling host thread.
   !>
   !>  @param [out] deviceId *device is written with the default device
@@ -447,6 +515,135 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Returns the default memory pool of the specified device
+  !>
+  !>  @param [out] mem_pool Default memory pool to return
+  !>  @param [in] device    Device index for query the default memory pool
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`, `hipErrorNotSupported`
+  !>
+  !>  @see hipDeviceGetDefaultMemPool, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
+  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  interface hipDeviceGetDefaultMemPool
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetDefaultMemPool_(mem_pool,device) &
+        bind(c, name="cudaDeviceGetDefaultMemPool")
+#else
+    function hipDeviceGetDefaultMemPool_(mem_pool,device) bind(c, name="hipDeviceGetDefaultMemPool")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetDefaultMemPool_
+      type(c_ptr) :: mem_pool
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  !>  @brief Sets the current memory pool of a device
+  !>
+  !>  The memory pool must be local to the specified device.
+  !>  @p hipMallocAsync allocates from the current mempool of the provided stream's device.
+  !>  By default, a device's current memory pool is its default memory pool.
+  !>
+  !>  @note Use @p hipMallocFromPoolAsync for asynchronous memory allocations from a device
+  !>  different than the one the stream runs on.
+  !>
+  !>  @param [in] device   Device index for the update
+  !>  @param [in] mem_pool Memory pool for update as the current on the specified device
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDevice`, `hipErrorNotSupported`
+  !>
+  !>  @see hipDeviceGetDefaultMemPool, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
+  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  interface hipDeviceSetMemPool
+#ifdef USE_CUDA_NAMES
+    function hipDeviceSetMemPool_(device,mem_pool) bind(c, name="cudaDeviceSetMemPool")
+#else
+    function hipDeviceSetMemPool_(device,mem_pool) bind(c, name="hipDeviceSetMemPool")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceSetMemPool_
+      integer(c_int),value :: device
+      type(c_ptr),value :: mem_pool
+    end function
+  end interface
+
+  !>  @brief Gets the current memory pool for the specified device
+  !>
+  !>  Returns the last pool provided to @p hipDeviceSetMemPool for this device
+  !>  or the device's default memory pool if @p hipDeviceSetMemPool has never been called.
+  !>  By default the current mempool is the default mempool for a device,
+  !>  otherwise the returned pool must have been set with @p hipDeviceSetMemPool.
+  !>
+  !>  @param [out] mem_pool Current memory pool on the specified device
+  !>  @param [in] device    Device index to query the current memory pool
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
+  !>
+  !>  @see hipDeviceGetDefaultMemPool, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
+  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  interface hipDeviceGetMemPool
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetMemPool_(mem_pool,device) bind(c, name="cudaDeviceGetMemPool")
+#else
+    function hipDeviceGetMemPool_(mem_pool,device) bind(c, name="hipDeviceGetMemPool")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetMemPool_
+      type(c_ptr) :: mem_pool
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  !>  @brief Gets the maximum width for 1D linear textures on the specified device
+  !>
+  !>  This function queries the maximum width, in elements, of 1D linear textures that can be
+  !>  allocated
+  !>  on the specified device. The maximum width depends on the texture element size and the
+  !>  hardware
+  !>  limitations of the device.
+  !>
+  !>  @param [out] max_width Maximum width, in elements, of 1D linear textures that the device can
+  !>  support
+  !>  @param [in] desc       Requested channel format
+  !>  @param [in] device     Device index to query for maximum 1D texture width
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDevice`
+  !>
+  !>  @see hipDeviceGetAttribute, hipMalloc, hipTexRefSetAddressMode
+  interface hipDeviceGetTexture1DLinearMaxWidth
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetTexture1DLinearMaxWidth_(max_width,desc,device) &
+        bind(c, name="cudaDeviceGetTexture1DLinearMaxWidth")
+#else
+    function hipDeviceGetTexture1DLinearMaxWidth_(max_width,desc,device) &
+        bind(c, name="hipDeviceGetTexture1DLinearMaxWidth")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetTexture1DLinearMaxWidth_
+      type(c_ptr),value :: max_width
+      type(hipChannelFormatDesc) :: desc
+      integer(c_int),value :: device
+    end function
+  end interface
+
   !>  @brief Set L1/Shared cache partition.
   !>
   !>  @param [in] cacheConfig Cache configuration
@@ -512,6 +709,39 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceGetLimit_
       integer(c_size_t) :: pValue
       integer(kind(hipLimitStackSize)),value :: limit
+    end function
+  end interface
+
+  !>  @brief Sets resource limits of current device.
+  !>
+  !>  As the input enum limit,
+  !>  `hipLimitStackSize` sets the limit value of the stack size on the current GPU device, per
+  !>  thread.
+  !>  The limit size can get via hipDeviceGetLimit. The size is in units of 256 dwords, up to the
+  !>  limit
+  !>  (128K - 16).
+  !>
+  !>  `hipLimitMallocHeapSize` sets the limit value of the heap used by the malloc()/free()
+  !>  calls. For limit size, use the `hipDeviceGetLimit` API.
+  !>
+  !>  Any other input as default, the funtion will return hipErrorUnsupportedLimit.
+  !>
+  !>  @param [in] limit Enum of hipLimit_t to set
+  !>  @param [in] value The size of limit value in bytes
+  !>
+  !>  @returns `hipSuccess`, `hipErrorUnsupportedLimit`, `hipErrorInvalidValue`
+  interface hipDeviceSetLimit
+#ifdef USE_CUDA_NAMES
+    function hipDeviceSetLimit_(limit,myValue) bind(c, name="cudaDeviceSetLimit")
+#else
+    function hipDeviceSetLimit_(limit,myValue) bind(c, name="hipDeviceSetLimit")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceSetLimit_
+      integer(kind(hipLimitStackSize)),value :: limit
+      integer(c_size_t),value :: myValue
     end function
   end interface
 
@@ -618,6 +848,28 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipSetDeviceFlags_
       integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Device which matches hipDeviceProp_t is returned
+  !>
+  !>  @param [out] device Pointer of the device
+  !>  @param [in]  prop Pointer of the properties
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipChooseDeviceR0600
+#ifdef USE_CUDA_NAMES
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
+#else
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipChooseDeviceR0600_
+      type(c_ptr),value :: device
+      type(hipDeviceProp_t) :: prop
     end function
   end interface
 
@@ -936,6 +1188,27 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Return last error returned by any HIP runtime API call and resets the stored error code
+  !>  to
+  !>  `hipSuccess`
+  !>
+  !>  @returns return code from last HIP called from the active host thread
+  !>
+  !>  Returns the last error that has been returned by any of the runtime calls in the same host
+  !>  thread, and then resets the saved error to `hipSuccess`.
+  !>
+  !>  @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
+#ifndef USE_CUDA_NAMES
+  interface hipExtGetLastError
+    function hipExtGetLastError_() bind(c, name="hipExtGetLastError")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtGetLastError_
+    end function
+  end interface
+#endif
+
   !>  @brief Return last error returned by any HIP runtime API call.
   !>
   !>  @returns `hipSuccess`
@@ -956,6 +1229,86 @@ module hipfort
       integer(kind(hipSuccess)) :: hipPeekAtLastError_
     end function
   end interface
+
+  !>  @brief Return hip error as text string form.
+  !>
+  !>  @param hip_error - Error code to convert to name.
+  !>  @returns const char pointer to the NULL-terminated error name
+  !>
+  !>  @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
+  interface hipGetErrorName
+#ifdef USE_CUDA_NAMES
+    function hipGetErrorName_(hip_error) bind(c, name="cudaGetErrorName")
+#else
+    function hipGetErrorName_(hip_error) bind(c, name="hipGetErrorName")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      character(c_char) :: hipGetErrorName_
+      integer(kind(hipSuccess)),value :: hip_error
+    end function
+  end interface
+
+  !>  @brief Return handy text string message to explain the error which occurred
+  !>
+  !>  @param hipError - Error code to convert to string.
+  !>  @returns const char pointer to the NULL-terminated error string
+  !>
+  !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
+  interface hipGetErrorString
+#ifdef USE_CUDA_NAMES
+    function hipGetErrorString_(hipError) bind(c, name="cudaGetErrorString")
+#else
+    function hipGetErrorString_(hipError) bind(c, name="hipGetErrorString")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      character(c_char) :: hipGetErrorString_
+      integer(kind(hipSuccess)),value :: hipError
+    end function
+  end interface
+
+  !>  @brief Return hip error as text string form.
+  !>
+  !>  @param [in] hipError Error code to convert to string.
+  !>  @param [out] errorString char pointer to the NULL-terminated error string
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
+#ifndef USE_CUDA_NAMES
+  interface hipDrvGetErrorName
+    function hipDrvGetErrorName_(hipError,errorString) bind(c, name="hipDrvGetErrorName")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvGetErrorName_
+      integer(kind(hipSuccess)),value :: hipError
+      type(c_ptr) :: errorString
+    end function
+  end interface
+#endif
+
+  !>  @brief Return handy text string message to explain the error which occurred
+  !>
+  !>  @param [in] hipError Error code to convert to string.
+  !>  @param [out] errorString char pointer to the NULL-terminated error string
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
+#ifndef USE_CUDA_NAMES
+  interface hipDrvGetErrorString
+    function hipDrvGetErrorString_(hipError,errorString) bind(c, name="hipDrvGetErrorString")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvGetErrorString_
+      integer(kind(hipSuccess)),value :: hipError
+      type(c_ptr) :: errorString
+    end function
+  end interface
+#endif
 
   !>  @brief Creates an asynchronous stream.
   !>
@@ -1252,6 +1605,29 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Queries the Id of a stream.
+  !>
+  !>  @param[in] stream - Stream to be queried
+  !>  flags - Pointer to an unsigned long long in which the stream's id is returned
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`.
+  !>
+  !>  @see hipStreamCreateWithFlags, hipStreamGetFlags, hipStreamCreateWithPriority,
+  !>  hipStreamGetPriority
+  interface hipStreamGetId
+#ifdef USE_CUDA_NAMES
+    function hipStreamGetId_(stream,streamId) bind(c, name="cudaStreamGetId")
+#else
+    function hipStreamGetId_(stream,streamId) bind(c, name="hipStreamGetId")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetId_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: streamId
+    end function
+  end interface
+
   !>  @brief Queries the priority of a stream.
   !>
   !>  @param[in] stream - Stream to be queried
@@ -1273,6 +1649,30 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamGetPriority_
       type(c_ptr),value :: stream
       type(c_ptr),value :: priority
+    end function
+  end interface
+
+  !>  @brief Gets the device associated with the stream.
+  !>
+  !>  @param[in] stream - Stream to be queried
+  !>  @param[out] device - Device associated with the stream
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorContextIsDestroyed`,
+  !>  `hipErrorInvalidHandle`,
+  !>  `hipErrorNotInitialized`, `hipErrorDeinitialized`, `hipErrorInvalidContext`
+  !>
+  !>  @see hipStreamCreate, hipStreamDestroy, hipDeviceGetStreamPriorityRange
+  interface hipStreamGetDevice
+#ifdef USE_CUDA_NAMES
+    function hipStreamGetDevice_(stream,device) bind(c, name="cudaStreamGetDevice")
+#else
+    function hipStreamGetDevice_(stream,device) bind(c, name="hipStreamGetDevice")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetDevice_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: device
     end function
   end interface
 
@@ -1372,6 +1772,175 @@ module hipfort
     end function
   end interface
 
+  !> @brief Sets stream attribute. Updated attribute is applied to work submitted to the stream.
+  !>  @param[in] stream - Stream to set attributes to
+  !>  @param[in] attr - Attribute ID for the attribute to set
+  !>  @param[in] myValue - Attribute value for the attribute to set
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
+  interface hipStreamSetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipStreamSetAttribute_(stream,attr,myValue) bind(c, name="cudaStreamSetAttribute")
+#else
+    function hipStreamSetAttribute_(stream,attr,myValue) bind(c, name="hipStreamSetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamSetAttribute_
+      type(c_ptr),value :: stream
+      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  !> @brief queries stream attribute.
+  !>  @param[in] stream - Stream to geet attributes from
+  !>  @param[in] attr - Attribute ID for the attribute to query
+  !>  value - Attribute value output
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
+  interface hipStreamGetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipStreamGetAttribute_(stream,attr,value_out) bind(c, name="cudaStreamGetAttribute")
+#else
+    function hipStreamGetAttribute_(stream,attr,value_out) bind(c, name="hipStreamGetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetAttribute_
+      type(c_ptr),value :: stream
+      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
+      type(c_ptr),value :: value_out
+    end function
+  end interface
+
+  !> @brief Copies attributes from source stream to destination stream.
+  !>  @param[in] dst - Destination stream
+  !>  @param[in] src - Source stream
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipStreamCopyAttributes
+#ifdef USE_CUDA_NAMES
+    function hipStreamCopyAttributes_(dst,src) bind(c, name="cudaStreamCopyAttributes")
+#else
+    function hipStreamCopyAttributes_(dst,src) bind(c, name="hipStreamCopyAttributes")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamCopyAttributes_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+    end function
+  end interface
+
+  !>  @brief Enqueues a wait command to the stream.[BETA]
+  !>
+  !>  @param [in] stream - Stream identifier
+  !>  @param [in] ptr    - Pointer to memory object allocated using `hipMallocSignalMemory` flag
+  !>  @param [in] value  - Value to be used in compare operation
+  !>  @param [in] flags - Defines the compare operation, supported values are
+  !>  `hipStreamWaitValueGte`
+  !>  `hipStreamWaitValueEq`, `hipStreamWaitValueAnd` and `hipStreamWaitValueNor`
+  !>  @param [in] mask   - Mask to be applied on value at memory before it is compared with value,
+  !>  default value is set to enable every bit
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  Enqueues a wait command to the stream, all operations enqueued on this stream after this, will
+  !>  not execute until the defined wait condition is true.
+  !>
+  !>  `hipStreamWaitValueGte`: waits until *ptr&mask >= value
+  !>
+  !>  `hipStreamWaitValueEq` : waits until *ptr&mask == value
+  !>
+  !>  `hipStreamWaitValueAnd`: waits until ((*ptr&mask) & value) != 0
+  !>
+  !>  `hipStreamWaitValueNor`: waits until ~((*ptr&mask) | (value&mask)) != 0
+  !>
+  !>  @note when using `hipStreamWaitValueNor`, mask is applied on both 'value' and '*ptr'.
+  !>
+  !>  @note Support for `hipStreamWaitValue32` can be queried using 'hipDeviceGetAttribute()' and
+  !>  'hipDeviceAttributeCanUseStreamWaitValue' flag.
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @see hipExtMallocWithFlags, hipFree, hipStreamWaitValue64, hipStreamWriteValue64,
+  !>  hipStreamWriteValue32, hipDeviceGetAttribute
+  interface hipStreamWaitValue32
+#ifdef USE_CUDA_NAMES
+    function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
+        bind(c, name="cuStreamWaitValue32")
+#else
+    function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
+        bind(c, name="hipStreamWaitValue32")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamWaitValue32_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: ptr
+      integer(c_int32_t),value :: myValue
+      integer(c_int),value :: flags
+      integer(c_int32_t),value :: mask
+    end function
+  end interface
+
+  !>  @brief Enqueues a wait command to the stream.[BETA]
+  !>
+  !>  @param [in] stream - Stream identifier
+  !>  @param [in] ptr    - Pointer to memory object allocated using 'hipMallocSignalMemory' flag
+  !>  @param [in] value  - Value to be used in compare operation
+  !>  @param [in] flags - Defines the compare operation, supported values are
+  !>  `hipStreamWaitValueGte`
+  !>  `hipStreamWaitValueEq`, `hipStreamWaitValueAnd` and `hipStreamWaitValueNor`.
+  !>  @param [in] mask   - Mask to be applied on value at memory before it is compared with value
+  !>  default value is set to enable every bit
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  Enqueues a wait command to the stream, all operations enqueued on this stream after this, will
+  !>  not execute until the defined wait condition is true.
+  !>
+  !>  `hipStreamWaitValueGte`: waits until *ptr&mask >= value
+  !>
+  !>  `hipStreamWaitValueEq` : waits until *ptr&mask == value
+  !>
+  !>  `hipStreamWaitValueAnd`: waits until ((*ptr&mask) & value) != 0
+  !>
+  !>  `hipStreamWaitValueNor`: waits until ~((*ptr&mask) | (value&mask)) != 0
+  !>
+  !>  @note when using `hipStreamWaitValueNor`, mask is applied on both 'value' and '*ptr'.
+  !>
+  !>  @note Support for hipStreamWaitValue64 can be queried using 'hipDeviceGetAttribute()' and
+  !>  'hipDeviceAttributeCanUseStreamWaitValue' flag.
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @see hipExtMallocWithFlags, hipFree, hipStreamWaitValue32, hipStreamWriteValue64,
+  !>  hipStreamWriteValue32, hipDeviceGetAttribute
+  interface hipStreamWaitValue64
+#ifdef USE_CUDA_NAMES
+    function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
+        bind(c, name="cuStreamWaitValue64")
+#else
+    function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
+        bind(c, name="hipStreamWaitValue64")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamWaitValue64_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: ptr
+      integer(c_int64_t),value :: myValue
+      integer(c_int),value :: flags
+      integer(c_int64_t),value :: mask
+    end function
+  end interface
+
   !>  @brief Enqueues a write command to the stream.[BETA]
   !>
   !>  @param [in] stream - Stream identifier
@@ -1439,6 +2008,180 @@ module hipfort
       type(c_ptr),value :: ptr
       integer(c_int64_t),value :: myValue
       integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Enqueues an array of stream memory operations in the stream.[BETA]
+  !>
+  !>  @param [in] stream      - Stream identifier
+  !>  @param [in] count       - The number of operations in the array. Must be less than 256
+  !>  @param [in] paramArray  - The types and parameters of the individual operations.
+  !>  @param [in] flags       - Reserved for future expansion; must be 0.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  Batch operations to synchronize the stream via memory operations.
+  !>
+  !>  @warning This API is marked as beta, meaning, while this is feature complete,
+  !>  it is still open to changes and may have outstanding issues.
+  !>
+  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
+  !>  hipStreamWaitValue64. hipStreamWriteValue64
+  interface hipStreamBatchMemOp
+#ifdef USE_CUDA_NAMES
+    function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="cuStreamBatchMemOp")
+#else
+    function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="hipStreamBatchMemOp")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamBatchMemOp_
+      type(c_ptr),value :: stream
+      integer(c_int),value :: count
+      type(c_ptr),value :: paramArray
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Creates a batch memory operation node and adds it to a graph.[BETA]
+  !>
+  !>  @param [in] phGraphNode      - Returns the newly created node
+  !>  @param [in] hGraph           - Graph to which to add the node
+  !>  @param [in] dependencies     -  Dependencies of the node
+  !>  @param [in] numDependencies  - Number of dependencies
+  !>  @param [in] nodeParams       - Parameters for the node
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @warning This API is marked as beta, meaning, while this is feature complete,
+  !>  it is still open to changes and may have outstanding issues.
+  !>
+  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
+  !>  hipStreamWaitValue64. hipStreamWriteValue64, hipStreamBatchMemOp
+  interface hipGraphAddBatchMemOpNode
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddBatchMemOpNode_(phGraphNode,hGraph,dependencies,numDependencies, &
+        nodeParams) &
+        bind(c, name="cuGraphAddBatchMemOpNode")
+#else
+    function hipGraphAddBatchMemOpNode_(phGraphNode,hGraph,dependencies,numDependencies, &
+        nodeParams) &
+        bind(c, name="hipGraphAddBatchMemOpNode")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphAddBatchMemOpNode_
+      type(c_ptr) :: phGraphNode
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipBatchMemOpNodeParams) :: nodeParams
+    end function
+  end interface
+
+  !>  @brief Returns a batch mem op node's parameters.[BETA]
+  !>
+  !>  @param [in] hNode           - Node to get the parameters for
+  !>  @param [in] nodeParams_out  - Pointer to return the parameters
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  Returns the parameters of batch mem op node hNode in nodeParams_out.
+  !>  The paramArray returned in nodeParams_out is owned by the node.
+  !>  This memory remains valid until the node is destroyed or its parameters are modified,
+  !>  and should not be modified directly.
+  !>
+  !>  @warning This API is marked as beta, meaning, while this is feature complete,
+  !>  it is still open to changes and may have outstanding issues.
+  !>
+  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
+  !>  hipStreamWaitValue64. hipStreamWriteValue64. hipGraphBatchMemOpNodeSetParams
+  interface hipGraphBatchMemOpNodeGetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphBatchMemOpNodeGetParams_(hNode,nodeParams_out) &
+        bind(c, name="cuGraphBatchMemOpNodeGetParams")
+#else
+    function hipGraphBatchMemOpNodeGetParams_(hNode,nodeParams_out) &
+        bind(c, name="hipGraphBatchMemOpNodeGetParams")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphBatchMemOpNodeGetParams_
+      type(c_ptr),value :: hNode
+      type(hipBatchMemOpNodeParams) :: nodeParams_out
+    end function
+  end interface
+
+  !>  @brief Sets the batch mem op node's parameters.[BETA]
+  !>
+  !>  @param [in] hNode       - Node to set the parameters for
+  !>  @param [in] nodeParams  - Parameters to copy
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  Sets the parameters of batch mem op node hNode to nodeParams.
+  !>
+  !>  @warning This API is marked as beta, meaning, while this is feature complete,
+  !>  it is still open to changes and may have outstanding issues.
+  !>
+  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
+  !>  hipStreamWaitValue64. hipStreamWriteValue64, hipGraphBatchMemOpNodeGetParams
+  interface hipGraphBatchMemOpNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphBatchMemOpNodeSetParams_(hNode,nodeParams) &
+        bind(c, name="cuGraphBatchMemOpNodeSetParams")
+#else
+    function hipGraphBatchMemOpNodeSetParams_(hNode,nodeParams) &
+        bind(c, name="hipGraphBatchMemOpNodeSetParams")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphBatchMemOpNodeSetParams_
+      type(c_ptr),value :: hNode
+      type(hipBatchMemOpNodeParams) :: nodeParams
+    end function
+  end interface
+
+  !>  @brief Sets the parameters for a batch mem op node in the given graphExec.[BETA]
+  !>
+  !>  @param [in] hGraphExec  - The executable graph in which to set the specified node
+  !>  @param [in] hNode - Batch mem op node from the graph from which graphExec was instantiated
+  !>  @param [in] nodeParams  - Updated Parameters to set
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  Sets the parameters of a batch mem op node in an executable graph hGraphExec.
+  !>  The node is identified by the corresponding node hNode in the non-executable graph,
+  !>  from which the executable graph was instantiated.
+  !>
+  !>  @warning This API is marked as beta, meaning, while this is feature complete,
+  !>  it is still open to changes and may have outstanding issues.
+  !>
+  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
+  !>  hipStreamWaitValue64. hipStreamWriteValue64, hipStreamBatchMemOp
+  interface hipGraphExecBatchMemOpNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphExecBatchMemOpNodeSetParams_(hGraphExec,hNode,nodeParams) &
+        bind(c, name="cuGraphExecBatchMemOpNodeSetParams")
+#else
+    function hipGraphExecBatchMemOpNodeSetParams_(hGraphExec,hNode,nodeParams) &
+        bind(c, name="hipGraphExecBatchMemOpNodeSetParams")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecBatchMemOpNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(hipBatchMemOpNodeParams) :: nodeParams
     end function
   end interface
 
@@ -1511,6 +2254,56 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipEventCreate_
       type(c_ptr) :: event
+    end function
+  end interface
+
+  !>  @brief Record an event in the specified stream.
+  !>
+  !>  @param[in] event - event to record.
+  !>  @param[in] stream - stream in which to record event.
+  !>  @param[in] flags - parameter for operations
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`,
+  !>  `hipErrorInvalidHandle`, `hipErrorLaunchFailure`
+  !>
+  !>  hipEventQuery() or hipEventSynchronize() must be used to determine when the event
+  !>  transitions from "recording" (after hipEventRecord() is called) to "recorded"
+  !>  (when timestamps are set, if requested).
+  !>
+  !>  Events which are recorded in a non-NULL stream will transition to
+  !>  from recording to "recorded" state when they reach the head of
+  !>  the specified stream, after all previous
+  !>  commands in that stream have completed executing.
+  !>
+  !>  Flags include:
+  !>    hipEventRecordDefault: Default event creation flag.
+  !>    hipEventRecordExternal: Event is captured in the graph as an external event node when
+  !>                            performing stream capture
+  !>
+  !>  If hipEventRecord() has been previously called on this event, then this call will overwrite
+  !>  any
+  !>  existing state in event.
+  !>
+  !>  If this function is called on an event that is currently being recorded, results are undefined
+  !>  - either outstanding recording may save state into the event, and the order is not guaranteed.
+  !>
+  !>  @note: If this function is not called before use hipEventQuery() or hipEventSynchronize(),
+  !>  `hipSuccess` is returned, meaning no pending event in the stream.
+  !>
+  !>  @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize,
+  !>  hipEventDestroy, hipEventElapsedTime
+  interface hipEventRecordWithFlags
+#ifdef USE_CUDA_NAMES
+    function hipEventRecordWithFlags_(event,stream,flags) bind(c, name="cudaEventRecordWithFlags")
+#else
+    function hipEventRecordWithFlags_(event,stream,flags) bind(c, name="hipEventRecordWithFlags")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipEventRecordWithFlags_
+      type(c_ptr),value :: event
+      type(c_ptr),value :: stream
+      integer(c_int),value :: flags
     end function
   end interface
 
@@ -1661,6 +2454,32 @@ module hipfort
     end function
   end interface
 
+  !>   @brief Sets information on the specified pointer.[BETA]
+  !>
+  !>   @param [in]      value     Sets pointer attribute value
+  !>   @param [in]      attribute  Attribute to set
+  !>   @param [in]      ptr      Pointer to set attributes for
+  !>
+  !>   @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+  !>
+  !>   @warning This API is marked as Beta. While this feature is complete, it can
+  !>            change and might have outstanding issues.
+  interface hipPointerSetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipPointerSetAttribute_(myValue,attribute,ptr) bind(c, name="cuPointerSetAttribute")
+#else
+    function hipPointerSetAttribute_(myValue,attribute,ptr) bind(c, name="hipPointerSetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipPointerSetAttribute_
+      type(c_ptr),value :: myValue
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),value :: attribute
+      type(c_ptr),value :: ptr
+    end function
+  end interface
+
   !>   @brief Returns attributes for the specified pointer
   !>
   !>   @param [out]  attributes  attributes for the specified pointer
@@ -1755,6 +2574,44 @@ module hipfort
     end function
   end interface
 
+  !> -------------------------------------------------------------------------------------------------
+  !> -------------------------------------------------------------------------------------------------
+  !>   @defgroup External External Resource Interoperability
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the external resource interoperability functions of HIP runtime API.
+  !>
+  !>
+  !>
+  !>   @brief Imports an external semaphore.
+  !>
+  !>   @param[out] extSem_out - External semaphores to be waited on
+  !>   @param[in] semHandleDesc - Semaphore import handle descriptor
+  !>
+  !>   @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+  !>
+  !>   @see
+  !>
+  !>   @note  This API is currently not supported on Linux.
+  interface hipImportExternalSemaphore
+#ifdef USE_CUDA_NAMES
+    function hipImportExternalSemaphore_(extSem_out,semHandleDesc) &
+        bind(c, name="cudaImportExternalSemaphore")
+#else
+    function hipImportExternalSemaphore_(extSem_out,semHandleDesc) &
+        bind(c, name="hipImportExternalSemaphore")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipImportExternalSemaphore_
+      type(c_ptr) :: extSem_out
+      type(hipExternalSemaphoreHandleDesc) :: semHandleDesc
+    end function
+  end interface
+
   !>   @brief Signals a set of external semaphore objects.
   !>
   !>   @param[in] extSemArray - External semaphores to be waited on
@@ -1844,6 +2701,32 @@ module hipfort
     end function
   end interface
 
+  !>   @brief Imports an external memory object.
+  !>
+  !>   @param[out] extMem_out - Returned handle to an external memory object
+  !>   @param[in] memHandleDesc - Memory import handle descriptor
+  !>
+  !>   @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+  !>
+  !>   @see
+  interface hipImportExternalMemory
+#ifdef USE_CUDA_NAMES
+    function hipImportExternalMemory_(extMem_out,memHandleDesc) &
+        bind(c, name="cudaImportExternalMemory")
+#else
+    function hipImportExternalMemory_(extMem_out,memHandleDesc) &
+        bind(c, name="hipImportExternalMemory")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipImportExternalMemory_
+      type(c_ptr) :: extMem_out
+      type(hipExternalMemoryHandleDesc) :: memHandleDesc
+    end function
+  end interface
+
   !>   @brief Maps a buffer onto an imported memory object.
   !>
   !>   @param[out] devPtr - Returned device pointer to buffer
@@ -1890,6 +2773,37 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDestroyExternalMemory_
       type(c_ptr),value :: extMem
+    end function
+  end interface
+
+  !>   @brief Maps a mipmapped array onto an external memory object.
+  !>
+  !>   @param[out] mipmap - mipmapped array to return
+  !>   @param[in] extMem - external memory object handle
+  !>   @param[in] mipmapDesc - external mipmapped array descriptor
+  !>
+  !>   Returned mipmapped array must be freed using hipFreeMipmappedArray.
+  !>
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
+  !>
+  !>   @see hipImportExternalMemory, hipDestroyExternalMemory, hipExternalMemoryGetMappedBuffer,
+  !>  hipFreeMipmappedArray
+  interface hipExternalMemoryGetMappedMipmappedArray
+#ifdef USE_CUDA_NAMES
+    function hipExternalMemoryGetMappedMipmappedArray_(mipmap,extMem,mipmapDesc) &
+        bind(c, name="cudaExternalMemoryGetMappedMipmappedArray")
+#else
+    function hipExternalMemoryGetMappedMipmappedArray_(mipmap,extMem,mipmapDesc) &
+        bind(c, name="hipExternalMemoryGetMappedMipmappedArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipExternalMemoryGetMappedMipmappedArray_
+      type(c_ptr) :: mipmap
+      type(c_ptr),value :: extMem
+      type(hipExternalMemoryMipmappedArrayDesc) :: mipmapDesc
     end function
   end interface
 
@@ -2003,6 +2917,37 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Prefetches memory to the specified destination device using HIP.
+  !>
+  !>  @param [in] dev_ptr    pointer to be prefetched
+  !>  @param [in] count      size in bytes for prefetching
+  !>  @param [in] location   destination location to prefetch to
+  !>  @param [in] flags      flags for future use, must be zero now.
+  !>  @param [in] stream     stream to enqueue prefetch operation
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPrefetchAsync_v2
+#ifdef USE_CUDA_NAMES
+    function hipMemPrefetchAsync_v2_(dev_ptr,count,location,flags,stream) &
+        bind(c, name="cuMemPrefetchAsync_v2")
+#else
+    function hipMemPrefetchAsync_v2_(dev_ptr,count,location,flags,stream) &
+        bind(c, name="hipMemPrefetchAsync_v2")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchAsync_v2_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: location
+      integer(c_int),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
   !>  @brief Advise about the usage of a given memory range to HIP.
   !>
   !>  @param [in] dev_ptr  pointer to memory to set the advice for
@@ -2035,6 +2980,41 @@ module hipfort
       integer(c_size_t),value :: count
       integer(kind(hipMemAdviseSetReadMostly)),value :: advice
       integer(c_int),value :: device
+    end function
+  end interface
+
+  !>  @brief Advise about the usage of a given memory range to HIP.
+  !>
+  !>  @param [in] dev_ptr    pointer to memory to set the advice for
+  !>  @param [in] count      size in bytes of the memory range, it should be CPU page size alligned.
+  !>  @param [in] advice     advice to be applied for the specified memory range
+  !>  @param [in] location   location to apply the advice for
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  This HIP API advises about the usage to be applied on unified memory allocation in the
+  !>  range starting from the pointer address devPtr, with the size of count bytes.
+  !>  The memory range must refer to managed memory allocated via the API hipMallocManaged, and the
+  !>  range will be handled with proper round down and round up respectively in the driver to
+  !>  be aligned to CPU page size, the same way as corresponding CUDA API behaves in CUDA version
+  !>  8.0
+  !>  and afterwards.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemAdvise_v2
+#ifdef USE_CUDA_NAMES
+    function hipMemAdvise_v2_(dev_ptr,count,advice,location) bind(c, name="cuMemAdvise_v2")
+#else
+    function hipMemAdvise_v2_(dev_ptr,count,advice,location) bind(c, name="hipMemAdvise_v2")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemAdvise_v2_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(kind(hipMemAdviseSetReadMostly)),value :: advice
+      type(c_ptr),value :: location
     end function
   end interface
 
@@ -2134,6 +3114,600 @@ module hipfort
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: length
       integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Allocates memory with stream ordered semantics
+  !>
+  !>  Inserts a memory allocation operation into @p stream.
+  !>  A pointer to the allocated memory is returned immediately in *dptr.
+  !>  The allocation must not be accessed until the allocation operation completes.
+  !>  The allocation comes from the memory pool associated with the stream's device.
+  !>
+  !>  @note The default memory pool of a device contains device memory from that device.
+  !>  @note Basic stream ordering allows future work submitted into the same stream to use the
+  !>   allocation. Stream query, stream synchronize, and HIP events can be used to guarantee that
+  !>   the allocation operation completes before work submitted in a separate stream runs.
+  !>  @note During stream capture, this function results in the creation of an allocation node.
+  !>   In this case, the allocation is owned by the graph instead of the memory pool. The memory
+  !>   pool's properties are used to set the node's creation parameters.
+  !>
+  !>  @param [out] dev_ptr  Returned device pointer of memory allocation
+  !>  @param [in] size      Number of bytes to allocate
+  !>  @param [in] stream    The stream establishing the stream ordering contract and
+  !>                        the memory pool to allocate from
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`, `hipErrorOutOfMemory`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipFreeAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
+  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMallocAsync
+#ifdef USE_CUDA_NAMES
+    function hipMallocAsync_(dev_ptr,mySize,stream) bind(c, name="cudaMallocAsync")
+#else
+    function hipMallocAsync_(dev_ptr,mySize,stream) bind(c, name="hipMallocAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMallocAsync_
+      type(c_ptr) :: dev_ptr
+      integer(c_size_t),value :: mySize
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Frees memory with stream ordered semantics
+  !>
+  !>  Inserts a free operation into @p stream.
+  !>  The allocation must not be used after stream execution reaches the free.
+  !>  After this API returns, accessing the memory from any subsequent work launched on the GPU
+  !>  or querying its pointer attributes results in undefined behavior.
+  !>
+  !>  @note During stream capture, this function results in the creation of a free node and
+  !>  must therefore be passed the address of a graph allocation.
+  !>
+  !>  @param [in] dev_ptr Pointer to device memory to free
+  !>  @param [in] stream The stream, where the destruciton will occur according to the execution
+  !>  order
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
+  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipFreeAsync
+#ifdef USE_CUDA_NAMES
+    function hipFreeAsync_(dev_ptr,stream) bind(c, name="cudaFreeAsync")
+#else
+    function hipFreeAsync_(dev_ptr,stream) bind(c, name="hipFreeAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipFreeAsync_
+      type(c_ptr),value :: dev_ptr
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Releases freed memory back to the OS
+  !>
+  !>  Releases memory back to the OS until the pool contains fewer than @p min_bytes_to_keep
+  !>  reserved bytes, or there is no more memory that the allocator can safely release.
+  !>  The allocator cannot release OS allocations that back outstanding asynchronous allocations.
+  !>  The OS allocations may happen at different granularity from the user allocations.
+  !>
+  !>  @note Allocations that have not been freed count as outstanding.
+  !>  @note Allocations that have been asynchronously freed but whose completion has
+  !>  not been observed on the host (eg. by a synchronize) can count as outstanding.
+  !>
+  !>  @param[in] mem_pool - The memory pool to trim allocations
+  !>  @param[in] min_bytes_to_hold - If the pool has less than min_bytes_to_hold reserved,
+  !>  then the TrimTo operation is a no-op.  Otherwise the memory pool will contain
+  !>  at least min_bytes_to_hold bytes reserved after the operation.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
+  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolTrimTo
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolTrimTo_(mem_pool,min_bytes_to_hold) bind(c, name="cudaMemPoolTrimTo")
+#else
+    function hipMemPoolTrimTo_(mem_pool,min_bytes_to_hold) bind(c, name="hipMemPoolTrimTo")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolTrimTo_
+      type(c_ptr),value :: mem_pool
+      integer(c_size_t),value :: min_bytes_to_hold
+    end function
+  end interface
+
+  !>  @brief Sets attributes of a memory pool
+  !>
+  !>  Supported attributes are:
+  !>  - @p hipMemPoolAttrReleaseThreshold: (value type = cuuint64_t)
+  !>                                   Amount of reserved memory in bytes to hold onto before trying
+  !>                                   to release memory back to the OS. When more than the release
+  !>                                   threshold bytes of memory are held by the memory pool, the
+  !>                                   allocator will try to release memory back to the OS on the
+  !>                                   next call to stream, event or context synchronize. (default
+  !>                                   0)
+  !>  - @p hipMemPoolReuseFollowEventDependencies: (value type = int)
+  !>                                   Allow @p hipMallocAsync to use memory asynchronously freed
+  !>                                   in another stream as long as a stream ordering dependency
+  !>                                   of the allocating stream on the free action exists.
+  !>                                   HIP events and null stream interactions can create the
+  !>                                   required
+  !>                                   stream ordered dependencies. (default enabled)
+  !>  - @p hipMemPoolReuseAllowOpportunistic: (value type = int)
+  !>                                   Allow reuse of already completed frees when there is no
+  !>  dependency between the free and allocation. (default enabled)
+  !>  - @p hipMemPoolReuseAllowInternalDependencies: (value type = int)
+  !>                                   Allow @p hipMallocAsync to insert new stream dependencies
+  !>                                   in order to establish the stream ordering required to reuse
+  !>                                   a piece of memory released by @p hipFreeAsync (default
+  !>                                   enabled).
+  !>
+  !>  @param [in] mem_pool The memory pool to modify
+  !>  @param [in] attr     The attribute to modify
+  !>  @param [in] value    Pointer to the value to assign
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
+  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolSetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolSetAttribute_(mem_pool,attr,myValue) bind(c, name="cudaMemPoolSetAttribute")
+#else
+    function hipMemPoolSetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolSetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolSetAttribute_
+      type(c_ptr),value :: mem_pool
+      integer(kind(hipMemPoolReuseFollowEventDependencies)),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  !>  @brief Gets attributes of a memory pool
+  !>
+  !>  Supported attributes are:
+  !>  - @p hipMemPoolAttrReleaseThreshold: (value type = cuuint64_t)
+  !>                                   Amount of reserved memory in bytes to hold onto before trying
+  !>                                   to release memory back to the OS. When more than the release
+  !>                                   threshold bytes of memory are held by the memory pool, the
+  !>                                   allocator will try to release memory back to the OS on the
+  !>                                   next call to stream, event or context synchronize. (default
+  !>                                   0)
+  !>  - @p hipMemPoolReuseFollowEventDependencies: (value type = int)
+  !>                                   Allow @p hipMallocAsync to use memory asynchronously freed
+  !>                                   in another stream as long as a stream ordering dependency
+  !>                                   of the allocating stream on the free action exists.
+  !>                                   HIP events and null stream interactions can create the
+  !>                                   required
+  !>                                   stream ordered dependencies. (default enabled)
+  !>  - @p hipMemPoolReuseAllowOpportunistic: (value type = int)
+  !>                                   Allow reuse of already completed frees when there is no
+  !>  dependency between the free and allocation. (default enabled)
+  !>  - @p hipMemPoolReuseAllowInternalDependencies: (value type = int)
+  !>                                   Allow @p hipMallocAsync to insert new stream dependencies
+  !>                                   in order to establish the stream ordering required to reuse
+  !>                                   a piece of memory released by @p hipFreeAsync (default
+  !>                                   enabled).
+  !>
+  !>  @param [in] mem_pool The memory pool to get attributes of
+  !>  @param [in] attr     The attribute to get
+  !>  @param [in] value    Retrieved value
+  !>
+  !>  @returns  `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync,
+  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess,
+  !>  hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolGetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolGetAttribute_(mem_pool,attr,myValue) bind(c, name="cudaMemPoolGetAttribute")
+#else
+    function hipMemPoolGetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolGetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolGetAttribute_
+      type(c_ptr),value :: mem_pool
+      integer(kind(hipMemPoolReuseFollowEventDependencies)),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  !>  @brief Controls visibility of the specified pool between devices
+  !>
+  !>  @param [in] mem_pool   Memory pool for acccess change
+  !>  @param [in] desc_list  Array of access descriptors. Each descriptor instructs the access to
+  !>  enable for a single gpu
+  !>  @param [in] count  Number of descriptors in the map array.
+  !>
+  !>  @returns  `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
+  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolSetAccess
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolSetAccess_(mem_pool,desc_list,count) bind(c, name="cudaMemPoolSetAccess")
+#else
+    function hipMemPoolSetAccess_(mem_pool,desc_list,count) bind(c, name="hipMemPoolSetAccess")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolSetAccess_
+      type(c_ptr),value :: mem_pool
+      type(hipMemAccessDesc) :: desc_list
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  !>  @brief Returns the accessibility of a pool from a device
+  !>
+  !>  Returns the accessibility of the pool's memory from the specified location.
+  !>
+  !>  @param [out] flags    Accessibility of the memory pool from the specified location/device
+  !>  @param [in] mem_pool   Memory pool being queried
+  !>  @param [in] location  Location/device for memory pool access
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
+  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolGetAccess
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolGetAccess_(flags,mem_pool,location) bind(c, name="cudaMemPoolGetAccess")
+#else
+    function hipMemPoolGetAccess_(flags,mem_pool,location) bind(c, name="hipMemPoolGetAccess")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolGetAccess_
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: mem_pool
+      type(hipMemLocation) :: location
+    end function
+  end interface
+
+  !>  @brief Creates a memory pool
+  !>
+  !>  Creates a HIP memory pool and returns the handle in @p mem_pool. The @p pool_props determines
+  !>  the properties of the pool such as the backing device and IPC capabilities.
+  !>
+  !>  By default, the memory pool will be accessible from the device it is allocated on.
+  !>
+  !>  @param [out] mem_pool    Contains createed memory pool
+  !>  @param [in] pool_props   Memory pool properties
+  !>
+  !>  @note Specifying hipMemHandleTypeNone creates a memory pool that will not support IPC.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
+  !>  hipMemPoolDestroy, hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute,
+  !>  hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolCreate
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolCreate_(mem_pool,pool_props) bind(c, name="cudaMemPoolCreate")
+#else
+    function hipMemPoolCreate_(mem_pool,pool_props) bind(c, name="hipMemPoolCreate")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolCreate_
+      type(c_ptr) :: mem_pool
+      type(hipMemPoolProps) :: pool_props
+    end function
+  end interface
+
+  !>  @brief Destroys the specified memory pool
+  !>
+  !>  If any pointers obtained from this pool haven't been freed or
+  !>  the pool has free operations that haven't completed
+  !>  when @p hipMemPoolDestroy is invoked, the function will return immediately and the
+  !>  resources associated with the pool will be released automatically
+  !>  once there are no more outstanding allocations.
+  !>
+  !>  Destroying the current mempool of a device sets the default mempool of
+  !>  that device as the current mempool for that device.
+  !>
+  !>  @param [in] mem_pool Memory pool for destruction
+  !>
+  !>  @note A device's default memory pool cannot be destroyed.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
+  !>  hipMemPoolCreate hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute,
+  !>  hipMemPoolSetAccess, hipMemPoolGetAccess
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolDestroy
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolDestroy_(mem_pool) bind(c, name="cudaMemPoolDestroy")
+#else
+    function hipMemPoolDestroy_(mem_pool) bind(c, name="hipMemPoolDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolDestroy_
+      type(c_ptr),value :: mem_pool
+    end function
+  end interface
+
+  !>  @brief Allocates memory from a specified pool with stream ordered semantics.
+  !>
+  !>  Inserts an allocation operation into @p stream.
+  !>  A pointer to the allocated memory is returned immediately in @p dev_ptr.
+  !>  The allocation must not be accessed until the allocation operation completes.
+  !>  The allocation comes from the specified memory pool.
+  !>
+  !>  @note The specified memory pool may be from a device different than that of the specified @p
+  !>  stream.
+  !>
+  !>  Basic stream ordering allows future work submitted into the same stream to use the allocation.
+  !>  Stream query, stream synchronize, and HIP events can be used to guarantee that the allocation
+  !>  operation completes before work submitted in a separate stream runs.
+  !>
+  !>  @note During stream capture, this function results in the creation of an allocation node. In
+  !>  this
+  !>  case, the allocation is owned by the graph instead of the memory pool. The memory pool's
+  !>  properties are used to set the node's creation parameters.
+  !>
+  !>  @param [out] dev_ptr Returned device pointer
+  !>  @param [in] size     Number of bytes to allocate
+  !>  @param [in] mem_pool The pool to allocate from
+  !>  @param [in] stream   The stream establishing the stream ordering semantic
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`, `hipErrorOutOfMemory`
+  !>
+  !>  @see hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute, hipMemPoolCreate
+  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess,
+  !>  hipMemPoolGetAccess,
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMallocFromPoolAsync
+#ifdef USE_CUDA_NAMES
+    function hipMallocFromPoolAsync_(dev_ptr,mySize,mem_pool,stream) &
+        bind(c, name="cudaMallocFromPoolAsync")
+#else
+    function hipMallocFromPoolAsync_(dev_ptr,mySize,mem_pool,stream) &
+        bind(c, name="hipMallocFromPoolAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMallocFromPoolAsync_
+      type(c_ptr) :: dev_ptr
+      integer(c_size_t),value :: mySize
+      type(c_ptr),value :: mem_pool
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Exports a memory pool to the requested handle type.
+  !>
+  !>  Given an IPC capable mempool, create an OS handle to share the pool with another process.
+  !>  A recipient process can convert the shareable handle into a mempool with @p
+  !>  hipMemPoolImportFromShareableHandle. Individual pointers can then be shared with the @p
+  !>  hipMemPoolExportPointer and @p hipMemPoolImportPointer APIs. The implementation of what the
+  !>  shareable handle is and how it can be transferred is defined by the requested handle type.
+  !>
+  !>  @note To create an IPC capable mempool, create a mempool with a @p hipMemAllocationHandleType
+  !>  other than @p hipMemHandleTypeNone.
+  !>
+  !>  @param [out] shared_handle Pointer to the location in which to store the requested handle
+  !>  @param [in] mem_pool       Pool to export
+  !>  @param [in] handle_type    The type of handle to create
+  !>  @param [in] flags          Must be 0
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
+  !>
+  !>  @see hipMemPoolImportFromShareableHandle
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolExportToShareableHandle
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolExportToShareableHandle_(shared_handle,mem_pool,handle_type,flags) &
+        bind(c, name="cudaMemPoolExportToShareableHandle")
+#else
+    function hipMemPoolExportToShareableHandle_(shared_handle,mem_pool,handle_type,flags) &
+        bind(c, name="hipMemPoolExportToShareableHandle")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolExportToShareableHandle_
+      type(c_ptr),value :: shared_handle
+      type(c_ptr),value :: mem_pool
+      integer(kind(hipMemHandleTypeNone)),value :: handle_type
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Imports a memory pool from a shared handle.
+  !>
+  !>  Specific allocations can be imported from the imported pool with @p hipMemPoolImportPointer.
+  !>
+  !>  @note Imported memory pools do not support creating new allocations.
+  !>  As such imported memory pools may not be used in @p hipDeviceSetMemPool
+  !>  or @p hipMallocFromPoolAsync calls.
+  !>
+  !>  @param [out] mem_pool     Returned memory pool
+  !>  @param [in] shared_handle OS handle of the pool to open
+  !>  @param [in] handle_type   The type of handle being imported
+  !>  @param [in] flags         Must be 0
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
+  !>
+  !>  @see hipMemPoolExportToShareableHandle
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolImportFromShareableHandle
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolImportFromShareableHandle_(mem_pool,shared_handle,handle_type,flags) &
+        bind(c, name="cudaMemPoolImportFromShareableHandle")
+#else
+    function hipMemPoolImportFromShareableHandle_(mem_pool,shared_handle,handle_type,flags) &
+        bind(c, name="hipMemPoolImportFromShareableHandle")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolImportFromShareableHandle_
+      type(c_ptr) :: mem_pool
+      type(c_ptr),value :: shared_handle
+      integer(kind(hipMemHandleTypeNone)),value :: handle_type
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Export data to share a memory pool allocation between processes.
+  !>
+  !>  Constructs @p export_data for sharing a specific allocation from an already shared memory
+  !>  pool.
+  !>  The recipient process can import the allocation with the @p hipMemPoolImportPointer api.
+  !>  The data is not a handle and may be shared through any IPC mechanism.
+  !>
+  !>  @param[out] export_data - Returned export data
+  !>  @param[in] dev_ptr - Pointer to memory being exported
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
+  !>
+  !>  @see hipMemPoolImportPointer
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolExportPointer
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolExportPointer_(export_data,dev_ptr) bind(c, name="cudaMemPoolExportPointer")
+#else
+    function hipMemPoolExportPointer_(export_data,dev_ptr) bind(c, name="hipMemPoolExportPointer")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolExportPointer_
+      type(hipMemPoolPtrExportData) :: export_data
+      type(c_ptr),value :: dev_ptr
+    end function
+  end interface
+
+  !>  @brief Import a memory pool allocation from another process.
+  !>
+  !>  Returns in @p dev_ptr a pointer to the imported memory.
+  !>  The imported memory must not be accessed before the allocation operation completes
+  !>  in the exporting process. The imported memory must be freed from all importing processes
+  !>  before
+  !>  being freed in the exporting process. The pointer may be freed with @p hipFree
+  !>  or @p hipFreeAsync. If @p hipFreeAsync is used, the free must be completed
+  !>  on the importing process before the free operation on the exporting process.
+  !>
+  !>  @note The @p hipFreeAsync api may be used in the exporting process before
+  !>  the @p hipFreeAsync operation completes in its stream as long as the
+  !>  @p hipFreeAsync in the exporting process specifies a stream with
+  !>  a stream dependency on the importing process's @p hipFreeAsync.
+  !>
+  !>  @param [out] dev_ptr     Pointer to imported memory
+  !>  @param [in] mem_pool     Memory pool from which to import a pointer
+  !>  @param [in] export_data  Data specifying the memory to import
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`, `hipErrorOutOfMemory`
+  !>
+  !>  @see hipMemPoolExportPointer
+  !>
+  !>  @warning This API is marked as Beta. While this feature is complete, it can
+  !>           change and might have outstanding issues.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMemPoolImportPointer
+#ifdef USE_CUDA_NAMES
+    function hipMemPoolImportPointer_(dev_ptr,mem_pool,export_data) &
+        bind(c, name="cudaMemPoolImportPointer")
+#else
+    function hipMemPoolImportPointer_(dev_ptr,mem_pool,export_data) &
+        bind(c, name="hipMemPoolImportPointer")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolImportPointer_
+      type(c_ptr) :: dev_ptr
+      type(c_ptr),value :: mem_pool
+      type(hipMemPoolPtrExportData) :: export_data
     end function
   end interface
 
@@ -2394,6 +3968,112 @@ module hipfort
     end function
   end interface
 
+  !>   @brief Copies from one 1D array to device memory.
+  !>
+  !>   @param[out] dstDevice - Destination device pointer
+  !>   @param[in] srcArray - Source array
+  !>   @param[in] srcOffset - Offset in bytes of source array
+  !>   @param[in] ByteCount - Size of memory copy in bytes
+  !>
+  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>   `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue`
+  !>
+  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
+  interface hipMemcpyAtoD
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="cuMemcpyAtoD")
+#else
+    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="hipMemcpyAtoD")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyAtoD_
+      type(c_ptr),value :: dstDevice
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: ByteCount
+    end function
+  end interface
+
+  !>   @brief Copies from device memory to a 1D array.
+  !>
+  !>   @param[out] dstArray - Destination array
+  !>   @param[in] dstOffset - Offset in bytes of destination array
+  !>   @param[in] srcDevice - Source device pointer
+  !>   @param[in] ByteCount - Size of memory copy in bytes
+  !>
+  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>   `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue`
+  !>
+  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
+  interface hipMemcpyDtoA
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="cuMemcpyDtoA")
+#else
+    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="hipMemcpyDtoA")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyDtoA_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcDevice
+      integer(c_size_t),value :: ByteCount
+    end function
+  end interface
+
+  !>   @brief Copies from one 1D array to another.
+  !>
+  !>   @param[out] dstArray - Destination array
+  !>   @param[in] dstOffset - Offset in bytes of destination array
+  !>   @param[in] srcArray - Source array
+  !>   @param[in] srcOffset - Offset in bytes of source array
+  !>   @param[in] ByteCount - Size of memory copy in bytes
+  !>
+  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>   `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue`
+  !>
+  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
+  interface hipMemcpyAtoA
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
+        bind(c, name="cuMemcpyAtoA")
+#else
+    function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
+        bind(c, name="hipMemcpyAtoA")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyAtoA_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: ByteCount
+    end function
+  end interface
+
   !>   @brief Copy data from Host to Device asynchronously
   !>
   !>   @param[out] dst - Data being copy to
@@ -2496,6 +4176,82 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Copies from one 1D array to host memory.
+  !>
+  !>   @param[out] dstHost - Destination pointer
+  !>   @param[in] srcArray - Source array
+  !>   @param[in] srcOffset - Offset in bytes of source array
+  !>   @param[in] ByteCount - Size of memory copy in bytes
+  !>   @param[in] stream - Stream identifier
+  !>
+  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>   `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue`
+  !>
+  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
+  interface hipMemcpyAtoHAsync
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
+        bind(c, name="cuMemcpyAtoHAsync")
+#else
+    function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
+        bind(c, name="hipMemcpyAtoHAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyAtoHAsync_
+      type(c_ptr),value :: dstHost
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: ByteCount
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Copies from host memory to a 1D array.
+  !>
+  !>   @param[out] dstArray - Destination array
+  !>   @param[in] dstOffset - Offset in bytes of destination array
+  !>   @param[in] srcHost - Source host pointer
+  !>   @param[in] ByteCount - Size of memory copy in bytes
+  !>   @param[in] stream - Stream identifier
+  !>
+  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>   `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue`
+  !>
+  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
+  interface hipMemcpyHtoAAsync
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
+        bind(c, name="cuMemcpyHtoAAsync")
+#else
+    function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
+        bind(c, name="hipMemcpyHtoAAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyHtoAAsync_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcHost
+      integer(c_size_t),value :: ByteCount
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
   !>   @brief Returns a global pointer from a module.
   !>   @ingroup Module
   !>
@@ -2566,6 +4322,45 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetSymbolSize_
       integer(c_size_t) :: mySize
       type(c_ptr),value :: symbol
+    end function
+  end interface
+
+  !>  @brief Gets the pointer of requested HIP driver function.
+  !>
+  !>  @param[in] symbol - The Symbol name of the driver function to request.
+  !>  @param[out] pfn - Output pointer to the requested driver function.
+  !>  @param[in] hipVersion - The HIP version for the requested driver function symbol.
+  !>  HIP version is defined as 100*version_major + version_minor. For example, in HIP 6.1, the
+  !>  hipversion is 601, for the symbol function "hipGetDeviceProperties", the specified hipVersion
+  !>  601
+  !>  is greater or equal to the version 600, the symbol function will be handle properly as backend
+  !>  compatible function.
+  !>
+  !>  @param[in] flags - Currently only default flag is suppported.
+  !>  @param[out] symbolStatus - Optional enumeration for returned status of searching for symbol
+  !>  driver
+  !>  function based on the input hipVersion.
+  !>
+  !>  Returns hipSuccess if the returned pfn is addressed to the pointer of found driver function.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
+  interface hipGetProcAddress
+#ifdef USE_CUDA_NAMES
+    function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
+        bind(c, name="cuGetProcAddress")
+#else
+    function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
+        bind(c, name="hipGetProcAddress")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetProcAddress_
+      type(c_ptr),value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int),value :: hipVersion
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: symbolStatus
     end function
   end interface
 
@@ -3026,6 +4821,186 @@ module hipfort
     end function
   end interface
 
+  !>   @brief Fills 2D memory range of 'width' 8-bit values synchronously to the specified char
+  !>   value.
+  !>  Height specifies numbers of rows to set and dstPitch speicifies the number of bytes between
+  !>  each
+  !>  row.
+  !>   @param[in] dst - Pointer to device memory
+  !>   @param[in] dstPitch - Pitch of dst device pointer
+  !>   @param[in] myValue - value to set
+  !>   @param[in] width - Width of row
+  !>   @param[in] height - Number of rows
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemsetD2D8
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D8")
+#else
+    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D8")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemsetD2D8_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      type(c_ptr),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  !>   @brief Fills 2D memory range of 'width' 8-bit values asynchronously to the specified char
+  !>   value.
+  !>  Height specifies numbers of rows to set and dstPitch speicifies the number of bytes between
+  !>  each
+  !>  row.
+  !>   @param[in] dst - Pointer to device memory
+  !>   @param[in] dstPitch - Pitch of dst device pointer
+  !>   @param[in] myValue - value to set
+  !>   @param[in] width - Width of row
+  !>   @param[in] height - Number of rows
+  !>   @param[in] stream - Stream Identifier
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemsetD2D8Async
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD2D8Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="cuMemsetD2D8Async")
+#else
+    function hipMemsetD2D8Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="hipMemsetD2D8Async")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemsetD2D8Async_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      type(c_ptr),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>   @brief Fills 2D memory range of 'width' 16-bit values synchronously to the specified short
+  !>  value. Height specifies numbers of rows to set and dstPitch speicifies the number of bytes
+  !>  between each row.
+  !>   @param[in] dst - Pointer to device memory
+  !>   @param[in] dstPitch - Pitch of dst device pointer
+  !>   @param[in] myValue - value to set
+  !>   @param[in] width - Width of row
+  !>   @param[in] height - Number of rows
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemsetD2D16
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D16")
+#else
+    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D16")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemsetD2D16_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_short),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  !>   @brief Fills 2D memory range of 'width' 16-bit values asynchronously to the specified short
+  !>  value. Height specifies numbers of rows to set and dstPitch speicifies the number of bytes
+  !>  between each row.
+  !>   @param[in] dst - Pointer to device memory
+  !>   @param[in] dstPitch - Pitch of dst device pointer
+  !>   @param[in] myValue - value to set
+  !>   @param[in] width - Width of row
+  !>   @param[in] height - Number of rows
+  !>   @param[in] stream - Stream Identifier
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemsetD2D16Async
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD2D16Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="cuMemsetD2D16Async")
+#else
+    function hipMemsetD2D16Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="hipMemsetD2D16Async")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemsetD2D16Async_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_short),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>   @brief Fills 2D memory range of 'width' 32-bit values synchronously to the specified int
+  !>   value.
+  !>  Height specifies numbers of rows to set and dstPitch speicifies the number of bytes between
+  !>  each
+  !>  row.
+  !>   @param[in] dst - Pointer to device memory
+  !>   @param[in] dstPitch - Pitch of dst device pointer
+  !>   @param[in] myValue - value to set
+  !>   @param[in] width - Width of row
+  !>   @param[in] height - Number of rows
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemsetD2D32
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D32")
+#else
+    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D32")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemsetD2D32_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  !>   @brief Fills 2D memory range of 'width' 32-bit values asynchronously to the specified int
+  !>  value. Height specifies numbers of rows to set and dstPitch speicifies the number of bytes
+  !>  between each row.
+  !>   @param[in] dst - Pointer to device memory
+  !>   @param[in] dstPitch - Pitch of dst device pointer
+  !>   @param[in] myValue - value to set
+  !>   @param[in] width - Width of row
+  !>   @param[in] height - Number of rows
+  !>   @param[in] stream - Stream Identifier
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemsetD2D32Async
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD2D32Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="cuMemsetD2D32Async")
+#else
+    function hipMemsetD2D32Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="hipMemsetD2D32Async")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemsetD2D32Async_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
   !>  @brief Query memory info.
   !>
   !>  On ROCM, this function gets the actual free memory left on the current device, so supports
@@ -3220,27 +5195,6 @@ module hipfort
     end function
   end interface
 
-  !>  @brief Frees a mipmapped array on the device.
-  !>
-  !>  @param[in] mipmappedArray - Pointer to mipmapped array to free
-  !>
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipFreeMipmappedArray
-#ifdef USE_CUDA_NAMES
-    function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
-#else
-    function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipFreeMipmappedArray_
-      type(c_ptr),value :: mipmappedArray
-    end function
-  end interface
-
   !>   @brief Allocate an array on the device.
   !>
   !>   @param[out] array - Pointer to allocated array in device memory
@@ -3268,62 +5222,98 @@ module hipfort
     end function
   end interface
 
-  !>  @brief Allocate a mipmapped array on the device.
+  !>  @brief Gets info about the specified array
   !>
-  !>  @param[out] mipmappedArray - Pointer to allocated mipmapped array in device memory
-  !>  @param[in] desc - Requested channel format
-  !>  @param[in] extent - Requested allocation size (width field in elements)
-  !>  @param[in] numLevels - Number of mipmap levels to allocate
-  !>  @param[in] flags - Flags for extensions
+  !>  @param[out] desc - Returned array type
+  !>  @param[out] extent - Returned array shape. 2D arrays will have depth of zero
+  !>  @param[out] flags - Returned array flags
+  !>  @param[in] array - The HIP array to get info for
   !>
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`, `hipErrorMemoryAllocation`
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue` `hipErrorInvalidHandle`
   !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMallocMipmappedArray
+  !>  @see hipArrayGetDescriptor, hipArray3DGetDescriptor
+  interface hipArrayGetInfo
 #ifdef USE_CUDA_NAMES
-    function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) &
-        bind(c, name="cudaMallocMipmappedArray")
+    function hipArrayGetInfo_(desc,extent,flags,array) bind(c, name="cudaArrayGetInfo")
 #else
-    function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) &
-        bind(c, name="hipMallocMipmappedArray")
+    function hipArrayGetInfo_(desc,extent,flags,array) bind(c, name="hipArrayGetInfo")
 #endif
       use iso_c_binding
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(kind(hipSuccess)) :: hipMallocMipmappedArray_
-      type(c_ptr) :: mipmappedArray
+      integer(kind(hipSuccess)) :: hipArrayGetInfo_
       type(hipChannelFormatDesc) :: desc
-      type(c_ptr),value :: extent
-      integer(c_int),value :: numLevels
-      integer(c_int),value :: flags
+      type(hipExtent) :: extent
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: array
     end function
   end interface
 
-  !>  @brief Gets a mipmap level of a HIP mipmapped array.
+  !>  @brief Gets a 1D or 2D array descriptor
   !>
-  !>  @param[out] levelArray - Returned mipmap level HIP array
-  !>  @param[in] mipmappedArray - HIP mipmapped array
-  !>  @param[in] level - Mipmap level
+  !>  @param[out] pArrayDescriptor - Returned array descriptor
+  !>  @param[in] array - Array to get descriptor of
   !>
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>  `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue` `hipErrorInvalidHandle`
   !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipGetMipmappedArrayLevel
+  !>  @see hipArray3DCreate, hipArray3DGetDescriptor, hipArrayCreate, hipArrayDestroy, hipMemAlloc,
+  !>  hipMemAllocHost, hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned,
+  !>  hipMemcpy3D, hipMemcpy3DAsync, hipMemcpyAtoA, hipMemcpyAtoD, hipMemcpyAtoH,
+  !>  hipMemcpyAtoHAsync,
+  !>  hipMemcpyDtoA, hipMemcpyDtoD, hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync,
+  !>  hipMemcpyHtoA, hipMemcpyHtoAAsync, hipMemcpyHtoD, hipMemcpyHtoDAsync, hipMemFree,
+  !>  hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo, hipMemHostAlloc,
+  !>  hipMemHostGetDevicePointer, hipMemsetD8, hipMemsetD16, hipMemsetD32, hipArrayGetInfo
+  interface hipArrayGetDescriptor
 #ifdef USE_CUDA_NAMES
-    function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) &
-        bind(c, name="cudaGetMipmappedArrayLevel")
+    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArrayGetDescriptor")
 #else
-    function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) &
-        bind(c, name="hipGetMipmappedArrayLevel")
+    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="hipArrayGetDescriptor")
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
-      integer(kind(hipSuccess)) :: hipGetMipmappedArrayLevel_
-      type(c_ptr) :: levelArray
-      type(c_ptr),value :: mipmappedArray
-      integer(c_int),value :: level
+      integer(kind(hipSuccess)) :: hipArrayGetDescriptor_
+      type(HIP_ARRAY_DESCRIPTOR) :: pArrayDescriptor
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  !>  @brief Gets a 3D array descriptor
+  !>
+  !>  @param[out] pArrayDescriptor - Returned 3D array descriptor
+  !>  @param[in] array - 3D array to get descriptor of
+  !>
+  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>  `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidValue` `hipErrorInvalidHandle`, `hipErrorContextIsDestroyed`
+  !>
+  !>  @see hipArray3DCreate, hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc,
+  !>  hipMemAllocHost, hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned,
+  !>  hipMemcpy3D, hipMemcpy3DAsync, hipMemcpyAtoA, hipMemcpyAtoD, hipMemcpyAtoH,
+  !>  hipMemcpyAtoHAsync,
+  !>  hipMemcpyDtoA, hipMemcpyDtoD, hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync,
+  !>  hipMemcpyHtoA, hipMemcpyHtoAAsync, hipMemcpyHtoD, hipMemcpyHtoDAsync, hipMemFree,
+  !>  hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo, hipMemHostAlloc,
+  !>  hipMemHostGetDevicePointer, hipMemsetD8, hipMemsetD16, hipMemsetD32, hipArrayGetInfo
+  interface hipArray3DGetDescriptor
+#ifdef USE_CUDA_NAMES
+    function hipArray3DGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArray3DGetDescriptor")
+#else
+    function hipArray3DGetDescriptor_(pArrayDescriptor,array) &
+        bind(c, name="hipArray3DGetDescriptor")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipArray3DGetDescriptor_
+      type(HIP_ARRAY3D_DESCRIPTOR) :: pArrayDescriptor
+      type(c_ptr),value :: array
     end function
   end interface
 
@@ -3448,6 +5438,48 @@ module hipfort
       integer(c_size_t),value :: height
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>   @brief Copies data between host and device.
+  !>
+  !>   @param[in] dst - Destination memory address
+  !>   @param[in] wOffsetDst - Destination starting X offset
+  !>   @param[in] hOffsetDst - Destination starting Y offset
+  !>   @param[in] src - Source memory address
+  !>   @param[in] wOffsetSrc - Source starting X offset
+  !>   @param[in] hOffsetSrc - Source starting Y offset (columns in bytes)
+  !>   @param[in] width - Width of matrix transfer (columns in bytes)
+  !>   @param[in] height - Height of matrix transfer (rows)
+  !>   @param[in] myKind - Type of transfer
+  !>
+  !>   @returns     `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidMemcpyDirection`
+  !>
+  !>   @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>  hipMemcpyAsync
+  interface hipMemcpy2DArrayToArray
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy2DArrayToArray_(dst,wOffsetDst,hOffsetDst,src,wOffsetSrc,hOffsetSrc,width, &
+        height,myKind) &
+        bind(c, name="cudaMemcpy2DArrayToArray")
+#else
+    function hipMemcpy2DArrayToArray_(dst,wOffsetDst,hOffsetDst,src,wOffsetSrc,hOffsetSrc,width, &
+        height,myKind) &
+        bind(c, name="hipMemcpy2DArrayToArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpy2DArrayToArray_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffsetDst
+      integer(c_size_t),value :: hOffsetDst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffsetSrc
+      integer(c_size_t),value :: hOffsetSrc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
   end interface
 
@@ -3755,6 +5787,144 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Get information on memory allocations.
+  !>
+  !>  @param [out] pbase - BAse pointer address
+  !>  @param [out] psize - Size of allocation
+  !>  @param [in]  dptr- Device Pointer
+  !>
+  !>  @returns `hipSuccess`, `hipErrorNotFound`
+  !>
+  !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  interface hipMemGetAddressRange
+#ifdef USE_CUDA_NAMES
+    function hipMemGetAddressRange_(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
+#else
+    function hipMemGetAddressRange_(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAddressRange_
+      type(c_ptr) :: pbase
+      integer(c_size_t) :: psize
+      type(c_ptr),value :: dptr
+    end function
+  end interface
+
+  !>  @brief Perform Batch of 1D copies
+  !>
+  !>  @param [in] dsts      - Array of destination pointers
+  !>  @param [in] srcs      - Array of source pointers.
+  !>  @param [in] sizes     - Array of sizes for memcpy operations
+  !>  @param [in] count     - Size of dsts, srcs and sizes arrays
+  !>  @param [in] attrs     - Array of memcpy attributes (not supported)
+  !>  @param [in] attrsIdxs - Array of indices to map attrs to copies (not supported)
+  !>  @param [in] numAttrs  - Size of attrs and attrsIdxs arrays (not supported)
+  !>  @param [in] failIdx   - Pointer to a location to return failure index inside the batch
+  !>  @param [in] stream    - stream used to enqueue operations in.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemcpyBatchAsync
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
+        bind(c, name="cudaMemcpyBatchAsync")
+#else
+    function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
+        bind(c, name="hipMemcpyBatchAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      type(hipMemcpyAttributes) :: attrs
+      type(c_ptr),value :: attrsIdxs
+      integer(c_size_t),value :: numAttrs
+      type(c_ptr),value :: failIdx
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Perform Batch of 3D copies
+  !>
+  !>  @param [in] numOps  - Total number of memcpy operations.
+  !>  @param [in] opList  - Array of size numOps containing the actual memcpy operations.
+  !>  @param [in] failIdx - Pointer to a location to return the index of the copy where a failure
+  !>                      - was encountered.
+  !>  @param [in] flags   - Flags for future use, must be zero now.
+  !>  @param [in] stream  - The stream to enqueue the operations in.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipMemcpy3DBatchAsync
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
+        bind(c, name="cudaMemcpy3DBatchAsync")
+#else
+    function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
+        bind(c, name="hipMemcpy3DBatchAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpy3DBatchAsync_
+      integer(c_size_t),value :: numOps
+      type(hipMemcpy3DBatchOp) :: opList
+      type(c_ptr),value :: failIdx
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Performs 3D memory copies between devices
+  !>  This API is asynchronous with respect to host
+  !>
+  !>  @param [in] p  - Parameters for memory copy
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, hipErrorInvalidDevice
+  interface hipMemcpy3DPeer
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy3DPeer_(p) bind(c, name="cudaMemcpy3DPeer")
+#else
+    function hipMemcpy3DPeer_(p) bind(c, name="hipMemcpy3DPeer")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpy3DPeer_
+      type(hipMemcpy3DPeerParms) :: p
+    end function
+  end interface
+
+  !>  @brief Performs 3D memory copies between devices asynchronously
+  !>
+  !>  @param [in] p  - Parameters for memory copy
+  !>  @param [in] stream - Stream to enqueue operation in.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, hipErrorInvalidDevice
+  interface hipMemcpy3DPeerAsync
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy3DPeerAsync_(p,stream) bind(c, name="cudaMemcpy3DPeerAsync")
+#else
+    function hipMemcpy3DPeerAsync_(p,stream) bind(c, name="hipMemcpy3DPeerAsync")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpy3DPeerAsync_
+      type(hipMemcpy3DPeerParms) :: p
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
   !>   @defgroup PeerToPeer PeerToPeer Device Memory Access
@@ -3851,32 +6021,6 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceDisablePeerAccess_
       integer(c_int),value :: peerDeviceId
-    end function
-  end interface
-
-  !>  @brief Get information on memory allocations.
-  !>
-  !>  @param [out] pbase - BAse pointer address
-  !>  @param [out] psize - Size of allocation
-  !>  @param [in]  dptr- Device Pointer
-  !>
-  !>  @returns `hipSuccess`, `hipErrorNotFound`
-  !>
-  !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  interface hipMemGetAddressRange
-#ifdef USE_CUDA_NAMES
-    function hipMemGetAddressRange_(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
-#else
-    function hipMemGetAddressRange_(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemGetAddressRange_
-      type(c_ptr) :: pbase
-      integer(c_size_t) :: psize
-      type(c_ptr),value :: dptr
     end function
   end interface
 
@@ -4536,6 +6680,39 @@ module hipfort
     end function
   end interface
 
+  !> -------------------------------------------------------------------------------------------------
+  !> -------------------------------------------------------------------------------------------------
+  !>
+  !>   @defgroup Module Module Management
+  !>
+  !>   @ingroup API
+  !>   This section describes the module management functions of HIP runtime API.
+  !>
+  !>
+  !>
+  !>  @brief Loads fatbin object
+  !>
+  !>  @param [in] fatbin  fatbin to be loaded as a module
+  !>  @param [out] module  Module
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
+  !>  `hipErrorFileNotFound`,
+  !>  `hipErrorOutOfMemory`, `hipErrorSharedObjectInitFailed`, `hipErrorNotInitialized`
+  interface hipModuleLoadFatBinary
+#ifdef USE_CUDA_NAMES
+    function hipModuleLoadFatBinary_(myModule,fatbin) bind(c, name="cuModuleLoadFatBinary")
+#else
+    function hipModuleLoadFatBinary_(myModule,fatbin) bind(c, name="hipModuleLoadFatBinary")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadFatBinary_
+      type(c_ptr) :: myModule
+      type(c_ptr),value :: fatbin
+    end function
+  end interface
+
   !>  @brief Loads code object from file into a module the currrent context.
   !>
   !>  @param [in] fname  Filename of code object to load
@@ -4609,6 +6786,221 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Returns the number of functions within a module.
+  !>
+  !>  @param [in] mod  Module to get function count from
+  !>  @param [out] count  function count from module
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
+  !>  `hipErrorNotInitialized`,
+  !>  `hipErrorNotFound`,
+  interface hipModuleGetFunctionCount
+#ifdef USE_CUDA_NAMES
+    function hipModuleGetFunctionCount_(count,mod) bind(c, name="cuModuleGetFunctionCount")
+#else
+    function hipModuleGetFunctionCount_(count,mod) bind(c, name="hipModuleGetFunctionCount")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_
+      type(c_ptr),value :: count
+      type(c_ptr),value :: mod
+    end function
+  end interface
+
+  !>  @brief Load hip Library from inmemory object
+  !>
+  !>  @param [out] library Output Library
+  !>  @param [in] code In memory object
+  !>  @param [in] jitOptions JIT options, CUDA only
+  !>  @param [in] jitOptionsValues JIT options values, CUDA only
+  !>  @param [in] numJitOptions Number of JIT options
+  !>  @param [in] libraryOptions Library options
+  !>  @param [in] libraryOptionValues Library options values
+  !>  @param [in] numLibraryOptions Number of library options
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`,
+  interface hipLibraryLoadData
+#ifdef USE_CUDA_NAMES
+    function hipLibraryLoadData_(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions) &
+        bind(c, name="cudaLibraryLoadData")
+#else
+    function hipLibraryLoadData_(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions) &
+        bind(c, name="hipLibraryLoadData")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_
+      type(c_ptr) :: library
+      type(c_ptr),value :: code
+      type(c_ptr),value :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int),value :: numJitOptions
+      type(c_ptr),value :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int),value :: numLibraryOptions
+    end function
+  end interface
+
+  !>  @brief Load hip Library from file
+  !>
+  !>  @param [out] library Output Library
+  !>  @param [in] fileName file which contains code object
+  !>  @param [in] jitOptions JIT options, CUDA only
+  !>  @param [in] jitOptionsValues JIT options values, CUDA only
+  !>  @param [in] numJitOptions Number of JIT options
+  !>  @param [in] libraryOptions Library options
+  !>  @param [in] libraryOptionValues Library options values
+  !>  @param [in] numLibraryOptions Number of library options
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  interface hipLibraryLoadFromFile
+#ifdef USE_CUDA_NAMES
+    function hipLibraryLoadFromFile_(library,fileName,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions) &
+        bind(c, name="cudaLibraryLoadFromFile")
+#else
+    function hipLibraryLoadFromFile_(library,fileName,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions) &
+        bind(c, name="hipLibraryLoadFromFile")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_
+      type(c_ptr) :: library
+      type(c_ptr),value :: fileName
+      type(c_ptr),value :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int),value :: numJitOptions
+      type(c_ptr),value :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int),value :: numLibraryOptions
+    end function
+  end interface
+
+  !>  @brief Unload HIP Library
+  !>
+  !>  @param [in] library Input created hip library
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  interface hipLibraryUnload
+#ifdef USE_CUDA_NAMES
+    function hipLibraryUnload_(library) bind(c, name="cudaLibraryUnload")
+#else
+    function hipLibraryUnload_(library) bind(c, name="hipLibraryUnload")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryUnload_
+      type(c_ptr),value :: library
+    end function
+  end interface
+
+  !>  @brief Get Kernel object from library
+  !>
+  !>  @param [out] pKernel Output kernel object
+  !>  @param [in] library Input hip library
+  !>  @param [in] name kernel name to be searched for
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  interface hipLibraryGetKernel
+#ifdef USE_CUDA_NAMES
+    function hipLibraryGetKernel_(pKernel,library,name) bind(c, name="cudaLibraryGetKernel")
+#else
+    function hipLibraryGetKernel_(pKernel,library,name) bind(c, name="hipLibraryGetKernel")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetKernel_
+      type(c_ptr) :: pKernel
+      type(c_ptr),value :: library
+      type(c_ptr),value :: name
+    end function
+  end interface
+
+  !>  @brief Get Kernel count in library
+  !>
+  !>  @param [out] count Count of kernels in library
+  !>  @param [in] library Input created hip library
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  interface hipLibraryGetKernelCount
+#ifdef USE_CUDA_NAMES
+    function hipLibraryGetKernelCount_(count,library) bind(c, name="cudaLibraryGetKernelCount")
+#else
+    function hipLibraryGetKernelCount_(count,library) bind(c, name="hipLibraryGetKernelCount")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_
+      type(c_ptr),value :: count
+      type(c_ptr),value :: library
+    end function
+  end interface
+
+  !>  @brief Retrieve kernel handles within a library
+  !>
+  !>  @param [out] kernels Buffer for kernel handles
+  !>  @param [in] numKernels Maximum number of kernel handles to return to buffer
+  !>  @param [in] library Library handle to query from
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  interface hipLibraryEnumerateKernels
+#ifdef USE_CUDA_NAMES
+    function hipLibraryEnumerateKernels_(kernels,numKernels,library) &
+        bind(c, name="cudaLibraryEnumerateKernels")
+#else
+    function hipLibraryEnumerateKernels_(kernels,numKernels,library) &
+        bind(c, name="hipLibraryEnumerateKernels")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryEnumerateKernels_
+      type(c_ptr) :: kernels
+      integer(c_int),value :: numKernels
+      type(c_ptr),value :: library
+    end function
+  end interface
+
+  !>  @brief Returns a Library Handle
+  !>
+  !>  @param [out] library Returned Library handle
+  !>  @param [in] kernel Kernel to retrieve library Handle
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
+  interface hipKernelGetLibrary
+    function hipKernelGetLibrary_(library,kernel) bind(c, name="hipKernelGetLibrary")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipKernelGetLibrary_
+      type(c_ptr) :: library
+      type(c_ptr),value :: kernel
+    end function
+  end interface
+#endif
+
+  !>  @brief Returns a Kernel Name
+  !>
+  !>  @param [out] name Returned Kernel Name
+  !>  @param [in] kernel Kernel handle to retrieve name
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
+  interface hipKernelGetName
+    function hipKernelGetName_(name,kernel) bind(c, name="hipKernelGetName")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipKernelGetName_
+      type(c_ptr) :: name
+      type(c_ptr),value :: kernel
+    end function
+  end interface
+#endif
+
   !>  @brief Find out attributes for a given function.
   !>  @ingroup Execution
   !>  @param [out] attr  Attributes of funtion
@@ -4651,6 +7043,54 @@ module hipfort
       type(c_ptr),value :: myValue
       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)),value :: attrib
       type(c_ptr),value :: hfunc
+    end function
+  end interface
+
+  !>  @brief Gets pointer to device entry function that matches entry function symbolPtr.
+  !>
+  !>  @param [out] functionPtr  Device entry function
+  !>  @param [in]  symbolPtr  Pointer to device entry function to search for
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidDeviceFunction`
+  interface hipGetFuncBySymbol
+#ifdef USE_CUDA_NAMES
+    function hipGetFuncBySymbol_(functionPtr,symbolPtr) bind(c, name="cudaGetFuncBySymbol")
+#else
+    function hipGetFuncBySymbol_(functionPtr,symbolPtr) bind(c, name="hipGetFuncBySymbol")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetFuncBySymbol_
+      type(c_ptr) :: functionPtr
+      type(c_ptr),value :: symbolPtr
+    end function
+  end interface
+
+  !>  @brief Gets function pointer of a requested HIP API
+  !>
+  !>  @param [in]  symbol  The API base name
+  !>  @param [out] funcPtr  Pointer to the requested function
+  !>  @param [in]  flags  Flags for the search
+  !>  @param [out] driverStatus  Optional returned status of the search
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGetDriverEntryPoint
+#ifdef USE_CUDA_NAMES
+    function hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus) &
+        bind(c, name="cudaGetDriverEntryPoint")
+#else
+    function hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus) &
+        bind(c, name="hipGetDriverEntryPoint")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_
+      type(c_ptr),value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: driverStatus
     end function
   end interface
 
@@ -4746,6 +7186,153 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Adds bitcode data to be linked with options.
+  !>  @param [in] state hip link state
+  !>  @param [in] type  Type of the input data or bitcode
+  !>  @param [in] data  Input data which is null terminated
+  !>  @param [in] size  Size of the input data
+  !>  @param [in] name  Optional name for this input
+  !>  @param [in] numOptions  Size of the options
+  !>  @param [in] options  Array of options applied to this input
+  !>  @param [in] optionValues  Array of option values cast to void*
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`
+  !>
+  !>  If adding the file fails, it will
+  !>  @return `hipErrorInvalidConfiguration`
+  !>
+  !>  @see hipError_t
+  interface hipLinkAddData
+#ifdef USE_CUDA_NAMES
+    function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
+        bind(c, name="cuLinkAddData")
+#else
+    function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
+        bind(c, name="hipLinkAddData")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_
+      type(c_ptr),value :: state
+      integer(kind(hipJitInputCubin)),value :: myType
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: mySize
+      type(c_ptr),value :: name
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+    end function
+  end interface
+
+  !>  @brief Adds a file with bitcode to be linked with options.
+  !>  @param [in] state hip link state
+  !>  @param [in] type  Type of the input data or bitcode
+  !>  @param [in] path  Path to the input file where bitcode is present
+  !>  @param [in] numOptions  Size of the options
+  !>  @param [in] options  Array of options applied to this input
+  !>  @param [in] optionValues  Array of option values cast to void*
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  If adding the file fails, it will
+  !>  @return `hipErrorInvalidConfiguration`
+  !>
+  !>  @see hipError_t
+  interface hipLinkAddFile
+#ifdef USE_CUDA_NAMES
+    function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
+        bind(c, name="cuLinkAddFile")
+#else
+    function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
+        bind(c, name="hipLinkAddFile")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_
+      type(c_ptr),value :: state
+      integer(kind(hipJitInputCubin)),value :: myType
+      type(c_ptr),value :: path
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+    end function
+  end interface
+
+  !>  @brief Completes the linking of the given program.
+  !>  @param [in]   state hip link state
+  !>  @param [out]  hipBinOut  Upon success, points to the output binary
+  !>  @param [out]  sizeOut  Size of the binary is stored (optional)
+  !>
+  !>  @returns `hipSuccess` `hipErrorInvalidValue`
+  !>
+  !>  If adding the data fails, it will
+  !>  @return `hipErrorInvalidConfiguration`
+  !>
+  !>  @see hipError_t
+  interface hipLinkComplete
+#ifdef USE_CUDA_NAMES
+    function hipLinkComplete_(state,hipBinOut,sizeOut) bind(c, name="cuLinkComplete")
+#else
+    function hipLinkComplete_(state,hipBinOut,sizeOut) bind(c, name="hipLinkComplete")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkComplete_
+      type(c_ptr),value :: state
+      type(c_ptr) :: hipBinOut
+      type(c_ptr),value :: sizeOut
+    end function
+  end interface
+
+  !>  @brief Creates a linker instance with options.
+  !>  @param [in] numOptions  Number of options
+  !>  @param [in] options  Array of options
+  !>  @param [in] optionValues  Array of option values cast to void*
+  !>  @param [out] stateOut  hip link state created upon success
+  !>
+  !>  @returns `hipSuccess` `hipErrorInvalidValue` `hipErrorInvalidConfiguration`
+  !>
+  !>  @see hipSuccess
+  interface hipLinkCreate
+#ifdef USE_CUDA_NAMES
+    function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="cuLinkCreate")
+#else
+    function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="hipLinkCreate")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+    end function
+  end interface
+
+  !>  @brief Deletes the linker instance.
+  !>  @param [in] state link state instance
+  !>
+  !>  @returns `hipSuccess` `hipErrorInvalidValue`
+  !>
+  !>  @see hipSuccess
+  interface hipLinkDestroy
+#ifdef USE_CUDA_NAMES
+    function hipLinkDestroy_(state) bind(c, name="cuLinkDestroy")
+#else
+    function hipLinkDestroy_(state) bind(c, name="hipLinkDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkDestroy_
+      type(c_ptr),value :: state
+    end function
+  end interface
+
   !>  @brief launches kernel f with launch parameters and shared memory on stream with arguments
   !>  passed
   !>  to kernelparams or extra
@@ -4801,6 +7388,88 @@ module hipfort
       type(c_ptr) :: extra
     end function
   end interface
+
+  !>  \addtogroup ModuleCooperativeG Cooperative groups kernel launch of Module management.
+  !>  \ingroup Module
+  !>
+  !>
+  !>  @brief launches kernel f with launch parameters and shared memory on stream with arguments
+  !>  passed
+  !>  to kernelParams, where thread blocks can cooperate and synchronize as they execute
+  !>
+  !>  @param [in] f              Kernel to launch.
+  !>  @param [in] gridDimX       X grid dimension specified as multiple of blockDimX.
+  !>  @param [in] gridDimY       Y grid dimension specified as multiple of blockDimY.
+  !>  @param [in] gridDimZ       Z grid dimension specified as multiple of blockDimZ.
+  !>  @param [in] blockDimX      X block dimension specified in work-items.
+  !>  @param [in] blockDimY      Y block dimension specified in work-items.
+  !>  @param [in] blockDimZ      Z block dimension specified in work-items.
+  !>  @param [in] sharedMemBytes Amount of dynamic shared memory to allocate for this kernel. The
+  !>  HIP-Clang compiler provides support for extern shared declarations.
+  !>  @param [in] stream         Stream where the kernel should be dispatched. May be 0,
+  !>  in which case the default stream is used with associated synchronization rules.
+  !>  @param [in] kernelParams   A list of kernel arguments.
+  !>
+  !>  Please note, HIP does not support kernel launch with total work items defined in dimension
+  !>  with
+  !>  size \f$ gridDim \cdot blockDim &ge; 2^{32} \f$.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>  `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidHandle`, `hipErrorInvalidImage`, `hipErrorInvalidValue`,
+  !>  `hipErrorInvalidConfiguration`, `hipErrorLaunchFailure`, `hipErrorLaunchOutOfResources`,
+  !>  `hipErrorLaunchTimeOut`, `hipErrorCooperativeLaunchTooLarge`, `hipErrorSharedObjectInitFailed`
+#ifndef USE_CUDA_NAMES
+  interface hipModuleLaunchCooperativeKernel
+    function hipModuleLaunchCooperativeKernel_(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY, &
+        blockDimZ,sharedMemBytes,stream,kernelParams) &
+        bind(c, name="hipModuleLaunchCooperativeKernel")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLaunchCooperativeKernel_
+      type(c_ptr),value :: f
+      integer(c_int),value :: gridDimX
+      integer(c_int),value :: gridDimY
+      integer(c_int),value :: gridDimZ
+      integer(c_int),value :: blockDimX
+      integer(c_int),value :: blockDimY
+      integer(c_int),value :: blockDimZ
+      integer(c_int),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+      type(c_ptr) :: kernelParams
+    end function
+  end interface
+#endif
+
+  !>  @brief Launches kernels on multiple devices where thread blocks can cooperate and
+  !>  synchronize as they execute.
+  !>
+  !>  @param [in] launchParamsList         List of launch parameters, one per device.
+  !>  @param [in] numDevices               Size of the launchParamsList array.
+  !>  @param [in] flags                    Flags to control launch behavior.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
+  !>  `hipErrorInvalidContext`,
+  !>  `hipErrorInvalidHandle`, `hipErrorInvalidImage`, `hipErrorInvalidValue`,
+  !>  `hipErrorInvalidConfiguration`, `hipErrorInvalidResourceHandle`, `hipErrorLaunchFailure`,
+  !>  `hipErrorLaunchOutOfResources`, `hipErrorLaunchTimeOut`, `hipErrorCooperativeLaunchTooLarge`,
+  !>  `hipErrorSharedObjectInitFailed`
+#ifndef USE_CUDA_NAMES
+  interface hipModuleLaunchCooperativeKernelMultiDevice
+    function hipModuleLaunchCooperativeKernelMultiDevice_(launchParamsList,numDevices,flags) &
+        bind(c, name="hipModuleLaunchCooperativeKernelMultiDevice")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLaunchCooperativeKernelMultiDevice_
+      type(hipFunctionLaunchParams) :: launchParamsList
+      integer(c_int),value :: numDevices
+      integer(c_int),value :: flags
+    end function
+  end interface
+#endif
 
   !>  @brief Launches kernel f with launch parameters and shared memory on stream with arguments
   !>  passed
@@ -4899,6 +7568,99 @@ module hipfort
       type(hipLaunchParams) :: launchParamsList
       integer(c_int),value :: numDevices
       integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Launches a HIP kernel using a generic function pointer and the specified configuration.
+  !>  @ingroup Execution
+  !>
+  !>  This function is equivalent to hipLaunchKernelEx but accepts the kernel as a generic function
+  !>  pointer.
+  !>
+  !>  @param [in] config                 Pointer to the kernel launch configuration structure.
+  !>  @param [in] fPtr                   Pointer to the device kernel function.
+  !>  @param [in] args                   Array of pointers to the kernel arguments.
+  !>
+  !>  @returns `hipSuccess` if the kernel is launched successfully, otherwise an appropriate error
+  !>  code.
+  interface hipLaunchKernelExC
+#ifdef USE_CUDA_NAMES
+    function hipLaunchKernelExC_(config,fPtr,args) bind(c, name="cudaLaunchKernelExC")
+#else
+    function hipLaunchKernelExC_(config,fPtr,args) bind(c, name="hipLaunchKernelExC")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipLaunchKernelExC_
+      type(hipLaunchConfig_t) :: config
+      type(c_ptr),value :: fPtr
+      type(c_ptr) :: args
+    end function
+  end interface
+
+  !>  @brief Launches a HIP kernel using the driver API with the specified configuration.
+  !>  @ingroup Execution
+  !>
+  !>  This function dispatches the device kernel represented by a HIP function object.
+  !>  It passes both the kernel parameters and any extra configuration arguments to the kernel
+  !>  launch.
+  !>
+  !>  @param [in] config  Pointer to the kernel launch configuration structure.
+  !>  @param [in] f       HIP function object representing the device kernel to be launched.
+  !>  @param [in] params  Array of pointers to the kernel parameters.
+  !>  @param [in] extra   Array of pointers for additional launch parameters or extra configuration
+  !>  data.
+  !>
+  !>  @returns `hipSuccess` if the kernel is launched successfully, otherwise an appropriate error
+  !>  code.
+#ifndef USE_CUDA_NAMES
+  interface hipDrvLaunchKernelEx
+    function hipDrvLaunchKernelEx_(config,f,params,extra) bind(c, name="hipDrvLaunchKernelEx")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvLaunchKernelEx_
+      type(HIP_LAUNCH_CONFIG) :: config
+      type(c_ptr),value :: f
+      type(c_ptr) :: params
+      type(c_ptr) :: extra
+    end function
+  end interface
+#endif
+
+  !>  @brief Returns a handle for the address range requested.
+  !>
+  !>  This function returns a handle to a device pointer created using either hipMalloc set of APIs
+  !>  or through hipMemAddressReserve (as long as the ptr is mapped).
+  !>
+  !>  @param [out] handle     Ptr to the handle where the fd or other types will be returned.
+  !>  @param [in] dptr        Device ptr for which we get the handle.
+  !>  @param [in] size        Size of the address range.
+  !>  @param [in] handleType  Type of the handle requested for the address range.
+  !>  @param [in] flags       Any flags set regarding the handle requested.
+  !>
+  !>  @returns `hipSuccess` if the kernel is launched successfully, otherwise an appropriate error
+  !>  code.
+  interface hipMemGetHandleForAddressRange
+#ifdef USE_CUDA_NAMES
+    function hipMemGetHandleForAddressRange_(handle,dptr,mySize,handleType,flags) &
+        bind(c, name="cuMemGetHandleForAddressRange")
+#else
+    function hipMemGetHandleForAddressRange_(handle,dptr,mySize,handleType,flags) &
+        bind(c, name="hipMemGetHandleForAddressRange")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetHandleForAddressRange_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: dptr
+      integer(c_size_t),value :: mySize
+      integer(kind(hipMemRangeHandleTypeDmaBufFd)),value :: handleType
+      integer(c_int64_t),value :: flags
     end function
   end interface
 
@@ -5013,6 +7775,32 @@ module hipfort
   !>  @brief Returns occupancy for a device function.
   !>
   !>  @param [out] numBlocks        Returned occupancy
+  !>  @param [in]  f                Kernel function(hipFunction_t) for which occupancy is calulated
+  !>  @param [in]  blockSize        Block size the kernel is intended to be launched with
+  !>  @param [in]  dynSharedMemPerBlk Dynamic shared memory usage (in bytes) intended for each block
+  !>  @param [in]  flags            Extra flags for occupancy calculation (only default supported)
+  !>  @returns  `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
+  interface hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk,flags) &
+        bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
+      type(c_ptr),value :: numBlocks
+      type(c_ptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: flags
+    end function
+  end interface
+#endif
+
+  !>  @brief Returns occupancy for a device function.
+  !>
+  !>  @param [out] numBlocks        Returned occupancy
   !>  @param [in]  f                Kernel function for which occupancy is calulated
   !>  @param [in]  blockSize        Block size the kernel is intended to be launched with
   !>  @param [in]  dynSharedMemPerBlk Dynamic shared memory usage (in bytes) intended for each block
@@ -5100,6 +7888,40 @@ module hipfort
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
+    end function
+  end interface
+
+  !>  @brief Returns dynamic shared memory available per block when launching numBlocks blocks on
+  !>  SM.
+  !>
+  !>  @ingroup Occupancy
+  !>  Returns in \p *dynamicSmemSize the maximum size of dynamic shared memory /
+  !>  to allow numBlocks blocks per SM.
+  !>
+  !>  @param [out] dynamicSmemSize Returned maximum dynamic shared memory.
+  !>  @param [in]  f               Kernel function for which occupancy is calculated.
+  !>  @param [in]  numBlocks       Number of blocks to fit on SM
+  !>  @param [in]  blockSize       Size of the block
+  !>
+  !>  @return `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidDeviceFunction`,
+  !>  `hipErrorInvalidValue`,
+  !>  `hipErrorUnknown`
+  interface hipOccupancyAvailableDynamicSMemPerBlock
+#ifdef USE_CUDA_NAMES
+    function hipOccupancyAvailableDynamicSMemPerBlock_(dynamicSmemSize,f,numBlocks,blockSize) &
+        bind(c, name="cudaOccupancyAvailableDynamicSMemPerBlock")
+#else
+    function hipOccupancyAvailableDynamicSMemPerBlock_(dynamicSmemSize,f,numBlocks,blockSize) &
+        bind(c, name="hipOccupancyAvailableDynamicSMemPerBlock")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_
+      type(c_ptr),value :: dynamicSmemSize
+      type(c_ptr),value :: f
+      integer(c_int),value :: numBlocks
+      integer(c_int),value :: blockSize
     end function
   end interface
 
@@ -5251,6 +8073,46 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Enqueues a host function call in a stream.
+  !>
+  !>  @param [in] stream - The stream to enqueue work in.
+  !>  @param [in] fn - The function to call once enqueued preceeding operations are complete.
+  !>  @param [in] userData - User-specified data to be passed to the function.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidResourceHandle`, `hipErrorInvalidValue`,
+  !>  `hipErrorNotSupported`
+  !>
+  !>  The host function to call in this API will be executed after the preceding operations in
+  !>  the stream are complete. The function is a blocking operation that blocks operations in the
+  !>  stream that follow it, until the function is returned.
+  !>  Event synchronization and internal callback functions make sure enqueued operations will
+  !>  execute in order, in the stream.
+  !>
+  !>  The host function must not make any HIP API calls. The host function is non-reentrant. It must
+  !>  not perform sychronization with any operation that may depend on other processing execution
+  !>  but is not enqueued to run earlier in the stream.
+  !>
+  !>  Host functions that are enqueued respectively in different non-blocking streams can run
+  !>  concurrently.
+  !>
+  !>  @warning  This API is marked as beta, meaning, while this is feature complete,
+  !>  it is still open to changes and may have outstanding issues.
+  interface hipLaunchHostFunc
+#ifdef USE_CUDA_NAMES
+    function hipLaunchHostFunc_(stream,fn,userData) bind(c, name="cudaLaunchHostFunc")
+#else
+    function hipLaunchHostFunc_(stream,fn,userData) bind(c, name="hipLaunchHostFunc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLaunchHostFunc_
+      type(c_ptr),value :: stream
+      type(c_funptr),value :: fn
+      type(c_ptr),value :: userData
+    end function
+  end interface
+
   !>  Copies memory for 2D arrays.
   !>
   !>  @param pCopy - Parameters for the memory copy
@@ -5313,6 +8175,643 @@ module hipfort
       type(c_ptr),value :: startEvent
       type(c_ptr),value :: stopEvent
       integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Creates a texture object.
+  !>
+  !>  @param [out] pTexObject  pointer to the texture object to create
+  !>  @param [in] pResDesc  pointer to resource descriptor
+  !>  @param [in] pTexDesc  pointer to texture descriptor
+  !>  @param [in] pResViewDesc  pointer to resource view descriptor
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`, `hipErrorOutOfMemory`
+  !>
+  !>  @note 3D linear filter isn't supported on GFX90A boards, on which the API @p
+  !>  hipCreateTextureObject will return hipErrorNotSupported.
+  interface hipCreateTextureObject
+#ifdef USE_CUDA_NAMES
+    function hipCreateTextureObject_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
+        bind(c, name="cudaCreateTextureObject")
+#else
+    function hipCreateTextureObject_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
+        bind(c, name="hipCreateTextureObject")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipCreateTextureObject_
+      type(c_ptr) :: pTexObject
+      type(hipResourceDesc) :: pResDesc
+      type(hipTextureDesc) :: pTexDesc
+      type(hipResourceViewDesc) :: pResViewDesc
+    end function
+  end interface
+
+  !>  @brief Destroys a texture object.
+  !>
+  !>  @param [in] textureObject  texture object to destroy
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipDestroyTextureObject
+#ifdef USE_CUDA_NAMES
+    function hipDestroyTextureObject_(textureObject) bind(c, name="cudaDestroyTextureObject")
+#else
+    function hipDestroyTextureObject_(textureObject) bind(c, name="hipDestroyTextureObject")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDestroyTextureObject_
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  !>  @brief Gets the channel descriptor in an array.
+  !>
+  !>  @param [in] desc  pointer to channel format descriptor
+  !>  @param [out] array  memory array on the device
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGetChannelDesc
+#ifdef USE_CUDA_NAMES
+    function hipGetChannelDesc_(desc,array) bind(c, name="cudaGetChannelDesc")
+#else
+    function hipGetChannelDesc_(desc,array) bind(c, name="hipGetChannelDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetChannelDesc_
+      type(hipChannelFormatDesc) :: desc
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  !>  @brief Gets resource descriptor for the texture object.
+  !>
+  !>  @param [out] pResDesc  pointer to resource descriptor
+  !>  @param [in] textureObject  texture object
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGetTextureObjectResourceDesc
+#ifdef USE_CUDA_NAMES
+    function hipGetTextureObjectResourceDesc_(pResDesc,textureObject) &
+        bind(c, name="cudaGetTextureObjectResourceDesc")
+#else
+    function hipGetTextureObjectResourceDesc_(pResDesc,textureObject) &
+        bind(c, name="hipGetTextureObjectResourceDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceDesc_
+      type(hipResourceDesc) :: pResDesc
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  !>  @brief Gets resource view descriptor for the texture object.
+  !>
+  !>  @param [out] pResViewDesc  pointer to resource view descriptor
+  !>  @param [in] textureObject  texture object
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGetTextureObjectResourceViewDesc
+#ifdef USE_CUDA_NAMES
+    function hipGetTextureObjectResourceViewDesc_(pResViewDesc,textureObject) &
+        bind(c, name="cudaGetTextureObjectResourceViewDesc")
+#else
+    function hipGetTextureObjectResourceViewDesc_(pResViewDesc,textureObject) &
+        bind(c, name="hipGetTextureObjectResourceViewDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceViewDesc_
+      type(hipResourceViewDesc) :: pResViewDesc
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  !>  @brief Gets texture descriptor for the texture object.
+  !>
+  !>  @param [out] pTexDesc  pointer to texture descriptor
+  !>  @param [in] textureObject  texture object
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGetTextureObjectTextureDesc
+#ifdef USE_CUDA_NAMES
+    function hipGetTextureObjectTextureDesc_(pTexDesc,textureObject) &
+        bind(c, name="cudaGetTextureObjectTextureDesc")
+#else
+    function hipGetTextureObjectTextureDesc_(pTexDesc,textureObject) &
+        bind(c, name="hipGetTextureObjectTextureDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureObjectTextureDesc_
+      type(hipTextureDesc) :: pTexDesc
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  !>  @brief Creates a texture object.
+  !>
+  !>  @param [out] pTexObject  pointer to texture object to create
+  !>  @param [in] pResDesc  pointer to resource descriptor
+  !>  @param [in] pTexDesc  pointer to texture descriptor
+  !>  @param [in] pResViewDesc  pointer to resource view descriptor
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipTexObjectCreate
+#ifdef USE_CUDA_NAMES
+    function hipTexObjectCreate_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
+        bind(c, name="cudaTexObjectCreate")
+#else
+    function hipTexObjectCreate_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
+        bind(c, name="hipTexObjectCreate")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexObjectCreate_
+      type(c_ptr) :: pTexObject
+      type(HIP_RESOURCE_DESC) :: pResDesc
+      type(HIP_TEXTURE_DESC) :: pTexDesc
+      type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
+    end function
+  end interface
+
+  !>  @brief Destroys a texture object.
+  !>
+  !>  @param [in] texObject  texture object to destroy
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipTexObjectDestroy
+#ifdef USE_CUDA_NAMES
+    function hipTexObjectDestroy_(texObject) bind(c, name="cudaTexObjectDestroy")
+#else
+    function hipTexObjectDestroy_(texObject) bind(c, name="hipTexObjectDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexObjectDestroy_
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  !>  @brief Gets resource descriptor of a texture object.
+  !>
+  !>  @param [out] pResDesc  pointer to resource descriptor
+  !>  @param [in] texObject  texture object
+  !>
+  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
+  interface hipTexObjectGetResourceDesc
+#ifdef USE_CUDA_NAMES
+    function hipTexObjectGetResourceDesc_(pResDesc,texObject) &
+        bind(c, name="cudaTexObjectGetResourceDesc")
+#else
+    function hipTexObjectGetResourceDesc_(pResDesc,texObject) &
+        bind(c, name="hipTexObjectGetResourceDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexObjectGetResourceDesc_
+      type(HIP_RESOURCE_DESC) :: pResDesc
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  !>  @brief Gets resource view descriptor of a texture object.
+  !>
+  !>  @param [out] pResViewDesc  pointer to resource view descriptor
+  !>  @param [in] texObject  texture object
+  !>
+  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
+  interface hipTexObjectGetResourceViewDesc
+#ifdef USE_CUDA_NAMES
+    function hipTexObjectGetResourceViewDesc_(pResViewDesc,texObject) &
+        bind(c, name="cudaTexObjectGetResourceViewDesc")
+#else
+    function hipTexObjectGetResourceViewDesc_(pResViewDesc,texObject) &
+        bind(c, name="hipTexObjectGetResourceViewDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexObjectGetResourceViewDesc_
+      type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  !>  @brief Gets texture descriptor of a texture object.
+  !>
+  !>  @param [out] pTexDesc  pointer to texture descriptor
+  !>  @param [in] texObject  texture object
+  !>
+  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
+  interface hipTexObjectGetTextureDesc
+#ifdef USE_CUDA_NAMES
+    function hipTexObjectGetTextureDesc_(pTexDesc,texObject) &
+        bind(c, name="cudaTexObjectGetTextureDesc")
+#else
+    function hipTexObjectGetTextureDesc_(pTexDesc,texObject) &
+        bind(c, name="hipTexObjectGetTextureDesc")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexObjectGetTextureDesc_
+      type(HIP_TEXTURE_DESC) :: pTexDesc
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  !>  @brief Allocate a mipmapped array on the device.
+  !>
+  !>  @param[out] mipmappedArray - Pointer to allocated mipmapped array in device memory
+  !>  @param[in] desc - Requested channel format
+  !>  @param[in] extent - Requested allocation size (width field in elements)
+  !>  @param[in] numLevels - Number of mipmap levels to allocate
+  !>  @param[in] flags - Flags for extensions
+  !>
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`, `hipErrorMemoryAllocation`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMallocMipmappedArray
+#ifdef USE_CUDA_NAMES
+    function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) &
+        bind(c, name="cudaMallocMipmappedArray")
+#else
+    function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) &
+        bind(c, name="hipMallocMipmappedArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMallocMipmappedArray_
+      type(c_ptr) :: mipmappedArray
+      type(hipChannelFormatDesc) :: desc
+      type(c_ptr),value :: extent
+      integer(c_int),value :: numLevels
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Frees a mipmapped array on the device.
+  !>
+  !>  @param[in] mipmappedArray - Pointer to mipmapped array to free
+  !>
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipFreeMipmappedArray
+#ifdef USE_CUDA_NAMES
+    function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
+#else
+    function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipFreeMipmappedArray_
+      type(c_ptr),value :: mipmappedArray
+    end function
+  end interface
+
+  !>  @brief Gets a mipmap level of a HIP mipmapped array.
+  !>
+  !>  @param[out] levelArray - Returned mipmap level HIP array
+  !>  @param[in] mipmappedArray - HIP mipmapped array
+  !>  @param[in] level - Mipmap level
+  !>
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipGetMipmappedArrayLevel
+#ifdef USE_CUDA_NAMES
+    function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) &
+        bind(c, name="cudaGetMipmappedArrayLevel")
+#else
+    function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) &
+        bind(c, name="hipGetMipmappedArrayLevel")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetMipmappedArrayLevel_
+      type(c_ptr) :: levelArray
+      type(c_ptr),value :: mipmappedArray
+      integer(c_int),value :: level
+    end function
+  end interface
+
+  !>  @brief Create a mipmapped array.
+  !>
+  !>  @param [out] pHandle  pointer to mipmapped array
+  !>  @param [in] pMipmappedArrayDesc  mipmapped array descriptor
+  !>  @param [in] numMipmapLevels  mipmap level
+  !>
+  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMipmappedArrayCreate
+#ifdef USE_CUDA_NAMES
+    function hipMipmappedArrayCreate_(pHandle,pMipmappedArrayDesc,numMipmapLevels) &
+        bind(c, name="cudaMipmappedArrayCreate")
+#else
+    function hipMipmappedArrayCreate_(pHandle,pMipmappedArrayDesc,numMipmapLevels) &
+        bind(c, name="hipMipmappedArrayCreate")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMipmappedArrayCreate_
+      type(c_ptr) :: pHandle
+      type(HIP_ARRAY3D_DESCRIPTOR) :: pMipmappedArrayDesc
+      integer(c_int),value :: numMipmapLevels
+    end function
+  end interface
+
+  !>  @brief Destroy a mipmapped array.
+  !>
+  !>  @param [out] hMipmappedArray  pointer to mipmapped array to destroy
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMipmappedArrayDestroy
+#ifdef USE_CUDA_NAMES
+    function hipMipmappedArrayDestroy_(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
+#else
+    function hipMipmappedArrayDestroy_(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMipmappedArrayDestroy_
+      type(c_ptr),value :: hMipmappedArray
+    end function
+  end interface
+
+  !>  @brief Get a mipmapped array on a mipmapped level.
+  !>
+  !>  @param [in] pLevelArray Pointer of array
+  !>  @param [out] hMipMappedArray Pointer of mipmapped array on the requested mipmap level
+  !>  @param [out] level  Mipmap level
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+  interface hipMipmappedArrayGetLevel
+#ifdef USE_CUDA_NAMES
+    function hipMipmappedArrayGetLevel_(pLevelArray,hMipMappedArray,level) &
+        bind(c, name="cudaMipmappedArrayGetLevel")
+#else
+    function hipMipmappedArrayGetLevel_(pLevelArray,hMipMappedArray,level) &
+        bind(c, name="hipMipmappedArrayGetLevel")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMipmappedArrayGetLevel_
+      type(c_ptr) :: pLevelArray
+      type(c_ptr),value :: hMipMappedArray
+      integer(c_int),value :: level
+    end function
+  end interface
+
+  !>  @brief  Binds a mipmapped array to a texture [Deprecated]
+  !>
+  !>  @param [in] tex  pointer to the texture reference to bind
+  !>  @param [in] mipmappedArray memory mipmapped array on the device
+  !>  @param [in] desc  opointer to the channel format
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipBindTextureToMipmappedArray
+#ifdef USE_CUDA_NAMES
+    function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) &
+        bind(c, name="cudaBindTextureToMipmappedArray")
+#else
+    function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) &
+        bind(c, name="hipBindTextureToMipmappedArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTextureToMipmappedArray_
+      type(textureReference) :: tex
+      type(c_ptr),value :: mipmappedArray
+      type(hipChannelFormatDesc) :: desc
+    end function
+  end interface
+
+  !>  @brief Gets the texture reference related with the symbol [Deprecated]
+  !>
+  !>  @param [out] texref  texture reference
+  !>  @param [in] symbol  pointer to the symbol related with the texture for the reference
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>  @warning This API is deprecated.
+#ifndef USE_CUDA_NAMES
+  interface hipGetTextureReference
+    function hipGetTextureReference_(texref,symbol) bind(c, name="hipGetTextureReference")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureReference_
+      type(c_ptr) :: texref
+      type(c_ptr),value :: symbol
+    end function
+  end interface
+#endif
+
+  !>  @brief Gets the border color used by a texture reference [Deprecated]
+  !>
+  !>  @param [out] pBorderColor  Returned Type and Value of RGBA color.
+  !>  @param [in] texRef  Texture reference.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>  @warning This API is deprecated.
+  interface hipTexRefGetBorderColor
+#ifdef USE_CUDA_NAMES
+    function hipTexRefGetBorderColor_(pBorderColor,texRef) bind(c, name="cuTexRefGetBorderColor")
+#else
+    function hipTexRefGetBorderColor_(pBorderColor,texRef) bind(c, name="hipTexRefGetBorderColor")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_
+      type(c_ptr),value :: pBorderColor
+      type(textureReference) :: texRef
+    end function
+  end interface
+
+  !>  @brief Gets the array bound to a texture reference [Deprecated]
+  !>
+  !>
+  !>  @param [in] pArray  Returned array.
+  !>  @param [in] texRef  texture reference.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>  @warning This API is deprecated.
+  interface hipTexRefGetArray
+#ifdef USE_CUDA_NAMES
+    function hipTexRefGetArray_(pArray,texRef) bind(c, name="cuTexRefGetArray")
+#else
+    function hipTexRefGetArray_(pArray,texRef) bind(c, name="hipTexRefGetArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetArray_
+      type(c_ptr) :: pArray
+      type(textureReference) :: texRef
+    end function
+  end interface
+
+  !>  @brief Sets address mode for a texture reference [Deprecated]
+  !>
+  !>  @param [in] texRef  texture reference.
+  !>  @param [in] dim  Dimension of the texture.
+  !>  @param [in] am  Value of the texture address mode.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>  @warning This API is deprecated.
+  interface hipTexRefSetAddressMode
+#ifdef USE_CUDA_NAMES
+    function hipTexRefSetAddressMode_(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
+#else
+    function hipTexRefSetAddressMode_(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetAddressMode_
+      type(textureReference) :: texRef
+      integer(c_int),value :: dim
+      integer(kind(hipAddressModeWrap)),value :: am
+    end function
+  end interface
+
+  !>  @brief Binds an array as a texture reference [Deprecated]
+  !>
+  !>  @param [in] tex  Pointer texture reference.
+  !>  @param [in] array  Array to bind.
+  !>  @param [in] flags  Flags should be set as HIP_TRSA_OVERRIDE_FORMAT, as a valid value.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @warning This API is deprecated.
+  interface hipTexRefSetArray
+#ifdef USE_CUDA_NAMES
+    function hipTexRefSetArray_(tex,array,flags) bind(c, name="cudaTexRefSetArray")
+#else
+    function hipTexRefSetArray_(tex,array,flags) bind(c, name="hipTexRefSetArray")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetArray_
+      type(textureReference) :: tex
+      type(c_ptr),value :: array
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Set filter mode for a texture reference [Deprecated]
+  !>
+  !>  @param [in] texRef  Pointer texture reference.
+  !>  @param [in] fm  Value of texture filter mode.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @warning This API is deprecated.
+  interface hipTexRefSetFilterMode
+#ifdef USE_CUDA_NAMES
+    function hipTexRefSetFilterMode_(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
+#else
+    function hipTexRefSetFilterMode_(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetFilterMode_
+      type(textureReference) :: texRef
+      integer(kind(hipFilterModePoint)),value :: fm
+    end function
+  end interface
+
+  !>  @brief Set flags for a texture reference [Deprecated]
+  !>
+  !>  @param [in] texRef  Pointer texture reference.
+  !>  @param [in] Flags  Value of flags.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @warning This API is deprecated.
+  interface hipTexRefSetFlags
+#ifdef USE_CUDA_NAMES
+    function hipTexRefSetFlags_(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
+#else
+    function hipTexRefSetFlags_(texRef,Flags) bind(c, name="hipTexRefSetFlags")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetFlags_
+      type(textureReference) :: texRef
+      integer(c_int),value :: Flags
+    end function
+  end interface
+
+  !>  @brief Set format for a texture reference [Deprecated]
+  !>
+  !>  @param [in] texRef  Pointer texture reference.
+  !>  @param [in] fmt  Value of format.
+  !>  @param [in] NumPackedComponents  Number of components per array.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @warning This API is deprecated.
+  interface hipTexRefSetFormat
+#ifdef USE_CUDA_NAMES
+    function hipTexRefSetFormat_(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
+#else
+    function hipTexRefSetFormat_(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetFormat_
+      type(textureReference) :: texRef
+      integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),value :: fmt
+      integer(c_int),value :: NumPackedComponents
     end function
   end interface
 
@@ -5784,420 +9283,6 @@ module hipfort
     end function
   end interface
 
-  !>  @brief  Binds a mipmapped array to a texture [Deprecated]
-  !>
-  !>  @param [in] tex  pointer to the texture reference to bind
-  !>  @param [in] mipmappedArray memory mipmapped array on the device
-  !>  @param [in] desc  opointer to the channel format
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipBindTextureToMipmappedArray
-#ifdef USE_CUDA_NAMES
-    function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) &
-        bind(c, name="cudaBindTextureToMipmappedArray")
-#else
-    function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) &
-        bind(c, name="hipBindTextureToMipmappedArray")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipBindTextureToMipmappedArray_
-      type(textureReference) :: tex
-      type(c_ptr),value :: mipmappedArray
-      type(hipChannelFormatDesc) :: desc
-    end function
-  end interface
-
-  !>  @brief Creates a texture object.
-  !>
-  !>  @param [out] pTexObject  pointer to the texture object to create
-  !>  @param [in] pResDesc  pointer to resource descriptor
-  !>  @param [in] pTexDesc  pointer to texture descriptor
-  !>  @param [in] pResViewDesc  pointer to resource view descriptor
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`, `hipErrorOutOfMemory`
-  !>
-  !>  @note 3D linear filter isn't supported on GFX90A boards, on which the API @p
-  !>  hipCreateTextureObject will return hipErrorNotSupported.
-  interface hipCreateTextureObject
-#ifdef USE_CUDA_NAMES
-    function hipCreateTextureObject_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
-        bind(c, name="cudaCreateTextureObject")
-#else
-    function hipCreateTextureObject_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
-        bind(c, name="hipCreateTextureObject")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipCreateTextureObject_
-      type(c_ptr) :: pTexObject
-      type(hipResourceDesc) :: pResDesc
-      type(hipTextureDesc) :: pTexDesc
-      type(hipResourceViewDesc) :: pResViewDesc
-    end function
-  end interface
-
-  !>  @brief Destroys a texture object.
-  !>
-  !>  @param [in] textureObject  texture object to destroy
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipDestroyTextureObject
-#ifdef USE_CUDA_NAMES
-    function hipDestroyTextureObject_(textureObject) bind(c, name="cudaDestroyTextureObject")
-#else
-    function hipDestroyTextureObject_(textureObject) bind(c, name="hipDestroyTextureObject")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDestroyTextureObject_
-      type(c_ptr),value :: textureObject
-    end function
-  end interface
-
-  !>  @brief Gets the channel descriptor in an array.
-  !>
-  !>  @param [in] desc  pointer to channel format descriptor
-  !>  @param [out] array  memory array on the device
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGetChannelDesc
-#ifdef USE_CUDA_NAMES
-    function hipGetChannelDesc_(desc,array) bind(c, name="cudaGetChannelDesc")
-#else
-    function hipGetChannelDesc_(desc,array) bind(c, name="hipGetChannelDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetChannelDesc_
-      type(hipChannelFormatDesc) :: desc
-      type(c_ptr),value :: array
-    end function
-  end interface
-
-  !>  @brief Gets resource descriptor for the texture object.
-  !>
-  !>  @param [out] pResDesc  pointer to resource descriptor
-  !>  @param [in] textureObject  texture object
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGetTextureObjectResourceDesc
-#ifdef USE_CUDA_NAMES
-    function hipGetTextureObjectResourceDesc_(pResDesc,textureObject) &
-        bind(c, name="cudaGetTextureObjectResourceDesc")
-#else
-    function hipGetTextureObjectResourceDesc_(pResDesc,textureObject) &
-        bind(c, name="hipGetTextureObjectResourceDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceDesc_
-      type(hipResourceDesc) :: pResDesc
-      type(c_ptr),value :: textureObject
-    end function
-  end interface
-
-  !>  @brief Gets resource view descriptor for the texture object.
-  !>
-  !>  @param [out] pResViewDesc  pointer to resource view descriptor
-  !>  @param [in] textureObject  texture object
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGetTextureObjectResourceViewDesc
-#ifdef USE_CUDA_NAMES
-    function hipGetTextureObjectResourceViewDesc_(pResViewDesc,textureObject) &
-        bind(c, name="cudaGetTextureObjectResourceViewDesc")
-#else
-    function hipGetTextureObjectResourceViewDesc_(pResViewDesc,textureObject) &
-        bind(c, name="hipGetTextureObjectResourceViewDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceViewDesc_
-      type(hipResourceViewDesc) :: pResViewDesc
-      type(c_ptr),value :: textureObject
-    end function
-  end interface
-
-  !>  @brief Gets texture descriptor for the texture object.
-  !>
-  !>  @param [out] pTexDesc  pointer to texture descriptor
-  !>  @param [in] textureObject  texture object
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGetTextureObjectTextureDesc
-#ifdef USE_CUDA_NAMES
-    function hipGetTextureObjectTextureDesc_(pTexDesc,textureObject) &
-        bind(c, name="cudaGetTextureObjectTextureDesc")
-#else
-    function hipGetTextureObjectTextureDesc_(pTexDesc,textureObject) &
-        bind(c, name="hipGetTextureObjectTextureDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetTextureObjectTextureDesc_
-      type(hipTextureDesc) :: pTexDesc
-      type(c_ptr),value :: textureObject
-    end function
-  end interface
-
-  !>  @brief Sets address mode for a texture reference [Deprecated]
-  !>
-  !>  @param [in] texRef  texture reference.
-  !>  @param [in] dim  Dimension of the texture.
-  !>  @param [in] am  Value of the texture address mode.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>  @warning This API is deprecated.
-  interface hipTexRefSetAddressMode
-#ifdef USE_CUDA_NAMES
-    function hipTexRefSetAddressMode_(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
-#else
-    function hipTexRefSetAddressMode_(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefSetAddressMode_
-      type(textureReference) :: texRef
-      integer(c_int),value :: dim
-      integer(kind(hipAddressModeWrap)),value :: am
-    end function
-  end interface
-
-  !>  @brief Binds an array as a texture reference [Deprecated]
-  !>
-  !>  @param [in] tex  Pointer texture reference.
-  !>  @param [in] array  Array to bind.
-  !>  @param [in] flags  Flags should be set as HIP_TRSA_OVERRIDE_FORMAT, as a valid value.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @warning This API is deprecated.
-  interface hipTexRefSetArray
-#ifdef USE_CUDA_NAMES
-    function hipTexRefSetArray_(tex,array,flags) bind(c, name="cudaTexRefSetArray")
-#else
-    function hipTexRefSetArray_(tex,array,flags) bind(c, name="hipTexRefSetArray")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefSetArray_
-      type(textureReference) :: tex
-      type(c_ptr),value :: array
-      integer(c_int),value :: flags
-    end function
-  end interface
-
-  !>  @brief Set filter mode for a texture reference [Deprecated]
-  !>
-  !>  @param [in] texRef  Pointer texture reference.
-  !>  @param [in] fm  Value of texture filter mode.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @warning This API is deprecated.
-  interface hipTexRefSetFilterMode
-#ifdef USE_CUDA_NAMES
-    function hipTexRefSetFilterMode_(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
-#else
-    function hipTexRefSetFilterMode_(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefSetFilterMode_
-      type(textureReference) :: texRef
-      integer(kind(hipFilterModePoint)),value :: fm
-    end function
-  end interface
-
-  !>  @brief Set flags for a texture reference [Deprecated]
-  !>
-  !>  @param [in] texRef  Pointer texture reference.
-  !>  @param [in] Flags  Value of flags.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @warning This API is deprecated.
-  interface hipTexRefSetFlags
-#ifdef USE_CUDA_NAMES
-    function hipTexRefSetFlags_(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
-#else
-    function hipTexRefSetFlags_(texRef,Flags) bind(c, name="hipTexRefSetFlags")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefSetFlags_
-      type(textureReference) :: texRef
-      integer(c_int),value :: Flags
-    end function
-  end interface
-
-  !>  @brief Set format for a texture reference [Deprecated]
-  !>
-  !>  @param [in] texRef  Pointer texture reference.
-  !>  @param [in] fmt  Value of format.
-  !>  @param [in] NumPackedComponents  Number of components per array.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @warning This API is deprecated.
-  interface hipTexRefSetFormat
-#ifdef USE_CUDA_NAMES
-    function hipTexRefSetFormat_(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
-#else
-    function hipTexRefSetFormat_(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefSetFormat_
-      type(textureReference) :: texRef
-      integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),value :: fmt
-      integer(c_int),value :: NumPackedComponents
-    end function
-  end interface
-
-  !>  @brief Creates a texture object.
-  !>
-  !>  @param [out] pTexObject  pointer to texture object to create
-  !>  @param [in] pResDesc  pointer to resource descriptor
-  !>  @param [in] pTexDesc  pointer to texture descriptor
-  !>  @param [in] pResViewDesc  pointer to resource view descriptor
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipTexObjectCreate
-#ifdef USE_CUDA_NAMES
-    function hipTexObjectCreate_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
-        bind(c, name="cudaTexObjectCreate")
-#else
-    function hipTexObjectCreate_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
-        bind(c, name="hipTexObjectCreate")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexObjectCreate_
-      type(c_ptr) :: pTexObject
-      type(HIP_RESOURCE_DESC) :: pResDesc
-      type(HIP_TEXTURE_DESC) :: pTexDesc
-      type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
-    end function
-  end interface
-
-  !>  @brief Destroys a texture object.
-  !>
-  !>  @param [in] texObject  texture object to destroy
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipTexObjectDestroy
-#ifdef USE_CUDA_NAMES
-    function hipTexObjectDestroy_(texObject) bind(c, name="cudaTexObjectDestroy")
-#else
-    function hipTexObjectDestroy_(texObject) bind(c, name="hipTexObjectDestroy")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexObjectDestroy_
-      type(c_ptr),value :: texObject
-    end function
-  end interface
-
-  !>  @brief Gets resource descriptor of a texture object.
-  !>
-  !>  @param [out] pResDesc  pointer to resource descriptor
-  !>  @param [in] texObject  texture object
-  !>
-  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
-  interface hipTexObjectGetResourceDesc
-#ifdef USE_CUDA_NAMES
-    function hipTexObjectGetResourceDesc_(pResDesc,texObject) &
-        bind(c, name="cudaTexObjectGetResourceDesc")
-#else
-    function hipTexObjectGetResourceDesc_(pResDesc,texObject) &
-        bind(c, name="hipTexObjectGetResourceDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexObjectGetResourceDesc_
-      type(HIP_RESOURCE_DESC) :: pResDesc
-      type(c_ptr),value :: texObject
-    end function
-  end interface
-
-  !>  @brief Gets resource view descriptor of a texture object.
-  !>
-  !>  @param [out] pResViewDesc  pointer to resource view descriptor
-  !>  @param [in] texObject  texture object
-  !>
-  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
-  interface hipTexObjectGetResourceViewDesc
-#ifdef USE_CUDA_NAMES
-    function hipTexObjectGetResourceViewDesc_(pResViewDesc,texObject) &
-        bind(c, name="cudaTexObjectGetResourceViewDesc")
-#else
-    function hipTexObjectGetResourceViewDesc_(pResViewDesc,texObject) &
-        bind(c, name="hipTexObjectGetResourceViewDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexObjectGetResourceViewDesc_
-      type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
-      type(c_ptr),value :: texObject
-    end function
-  end interface
-
-  !>  @brief Gets texture descriptor of a texture object.
-  !>
-  !>  @param [out] pTexDesc  pointer to texture descriptor
-  !>  @param [in] texObject  texture object
-  !>
-  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
-  interface hipTexObjectGetTextureDesc
-#ifdef USE_CUDA_NAMES
-    function hipTexObjectGetTextureDesc_(pTexDesc,texObject) &
-        bind(c, name="cudaTexObjectGetTextureDesc")
-#else
-    function hipTexObjectGetTextureDesc_(pTexDesc,texObject) &
-        bind(c, name="hipTexObjectGetTextureDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexObjectGetTextureDesc_
-      type(HIP_TEXTURE_DESC) :: pTexDesc
-      type(c_ptr),value :: texObject
-    end function
-  end interface
-
   !>  @brief Sets border color for a texture reference [Deprecated]
   !>
   !>  @param [in] texRef  Pointer of texture reference.
@@ -6326,81 +9411,80 @@ module hipfort
     end function
   end interface
 
-  !>  @brief Create a mipmapped array.
+  !>   @defgroup Callback Callback Activity APIs
   !>
-  !>  @param [out] pHandle  pointer to mipmapped array
-  !>  @param [in] pMipmappedArrayDesc  mipmapped array descriptor
-  !>  @param [in] numMipmapLevels  mipmap level
+  !>   This section describes the callback/Activity of HIP runtime API.
   !>
-  !>  @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
   !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMipmappedArrayCreate
-#ifdef USE_CUDA_NAMES
-    function hipMipmappedArrayCreate_(pHandle,pMipmappedArrayDesc,numMipmapLevels) &
-        bind(c, name="cudaMipmappedArrayCreate")
-#else
-    function hipMipmappedArrayCreate_(pHandle,pMipmappedArrayDesc,numMipmapLevels) &
-        bind(c, name="hipMipmappedArrayCreate")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMipmappedArrayCreate_
-      type(c_ptr) :: pHandle
-      type(HIP_ARRAY3D_DESCRIPTOR) :: pMipmappedArrayDesc
-      integer(c_int),value :: numMipmapLevels
-    end function
-  end interface
-
-  !>  @brief Destroy a mipmapped array.
+  !>  @brief Returns HIP API name by ID.
   !>
-  !>  @param [out] hMipmappedArray  pointer to mipmapped array to destroy
+  !>  @param [in] id ID of HIP API
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMipmappedArrayDestroy
-#ifdef USE_CUDA_NAMES
-    function hipMipmappedArrayDestroy_(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
-#else
-    function hipMipmappedArrayDestroy_(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
-#endif
+#ifndef USE_CUDA_NAMES
+  interface hipApiName
+    function hipApiName_(id) bind(c, name="hipApiName")
       use iso_c_binding
       use hipfort_enums
       implicit none
-      integer(kind(hipSuccess)) :: hipMipmappedArrayDestroy_
-      type(c_ptr),value :: hMipmappedArray
+      character(c_char) :: hipApiName_
+      integer(c_int32_t),value :: id
     end function
   end interface
+#endif
 
-  !>  @brief Get a mipmapped array on a mipmapped level.
+  !>  @brief Returns kernel name reference by function name.
   !>
-  !>  @param [in] pLevelArray Pointer of array
-  !>  @param [out] hMipMappedArray Pointer of mipmapped array on the requested mipmap level
-  !>  @param [out] level  Mipmap level
+  !>  @param [in] f Name of function
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMipmappedArrayGetLevel
-#ifdef USE_CUDA_NAMES
-    function hipMipmappedArrayGetLevel_(pLevelArray,hMipMappedArray,level) &
-        bind(c, name="cudaMipmappedArrayGetLevel")
-#else
-    function hipMipmappedArrayGetLevel_(pLevelArray,hMipMappedArray,level) &
-        bind(c, name="hipMipmappedArrayGetLevel")
-#endif
+#ifndef USE_CUDA_NAMES
+  interface hipKernelNameRef
+    function hipKernelNameRef_(f) bind(c, name="hipKernelNameRef")
       use iso_c_binding
       use hipfort_enums
       implicit none
-      integer(kind(hipSuccess)) :: hipMipmappedArrayGetLevel_
-      type(c_ptr) :: pLevelArray
-      type(c_ptr),value :: hMipMappedArray
-      integer(c_int),value :: level
+      character(c_char) :: hipKernelNameRef_
+      type(c_ptr),value :: f
     end function
   end interface
+#endif
+
+  !>  @brief Retrives kernel for a given host pointer, unless stated otherwise.
+  !>
+  !>  @param [in] hostFunction Pointer of host function.
+  !>  @param [in] stream Stream the kernel is executed on.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
+  interface hipKernelNameRefByPtr
+    function hipKernelNameRefByPtr_(hostFunction,stream) bind(c, name="hipKernelNameRefByPtr")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      character(c_char) :: hipKernelNameRefByPtr_
+      type(c_ptr),value :: hostFunction
+      type(c_ptr),value :: stream
+    end function
+  end interface
+#endif
+
+  !>  @brief Returns device ID on the stream.
+  !>
+  !>  @param [in] stream Stream of device executed on.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
+  interface hipGetStreamDeviceId
+    function hipGetStreamDeviceId_(stream) bind(c, name="hipGetStreamDeviceId")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipGetStreamDeviceId_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+#endif
 
   !>  @brief Begins graph capture on a stream.
   !>
@@ -6420,6 +9504,49 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamBeginCapture_
       type(c_ptr),value :: stream
+      integer(kind(hipStreamCaptureModeGlobal)),value :: mode
+    end function
+  end interface
+
+  !>  @brief Begins graph capture on a stream to an existing graph.
+  !>
+  !>  @param [in] stream - Stream to initiate capture.
+  !>  @param [in] graph - Graph to capture into.
+  !>  @param [in] dependencies - Dependencies of the first node captured in the stream. Can be NULL
+  !>  if
+  !>  numDependencies is 0.
+  !>  @param [in] dependencyData - Optional array of data associated with each dependency.
+  !>  @param [in] numDependencies - Number of dependencies.
+  !>  @param [in] mode - Controls the interaction of this capture sequence with other API calls that
+  !> are not safe.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  @warning param "const hipGraphEdgeData* dependencyData" is currently not supported and has to
+  !>  be
+  !> passed as nullptr. This API is marked as beta, meaning, while this is feature complete, it is
+  !> still
+  !> open to changes and may have outstanding issues.
+  interface hipStreamBeginCaptureToGraph
+#ifdef USE_CUDA_NAMES
+    function hipStreamBeginCaptureToGraph_(stream,graph,dependencies,dependencyData, &
+        numDependencies,mode) &
+        bind(c, name="cudaStreamBeginCaptureToGraph")
+#else
+    function hipStreamBeginCaptureToGraph_(stream,graph,dependencies,dependencyData, &
+        numDependencies,mode) &
+        bind(c, name="hipStreamBeginCaptureToGraph")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamBeginCaptureToGraph_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: graph
+      type(c_ptr) :: dependencies
+      type(hipGraphEdgeData) :: dependencyData
+      integer(c_size_t),value :: numDependencies
       integer(kind(hipStreamCaptureModeGlobal)),value :: mode
     end function
   end interface
@@ -6549,6 +9676,26 @@ module hipfort
       type(c_ptr) :: dependencies
       integer(c_size_t),value :: numDependencies
       integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Swaps the stream capture mode of a thread.
+  !>
+  !>  @param [in] mode - Pointer to mode value to swap with the current mode.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipThreadExchangeStreamCaptureMode
+#ifdef USE_CUDA_NAMES
+    function hipThreadExchangeStreamCaptureMode_(mode) &
+        bind(c, name="cudaThreadExchangeStreamCaptureMode")
+#else
+    function hipThreadExchangeStreamCaptureMode_(mode) &
+        bind(c, name="hipThreadExchangeStreamCaptureMode")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipThreadExchangeStreamCaptureMode_
+      type(c_ptr),value :: mode
     end function
   end interface
 
@@ -6931,6 +10078,31 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Creates an executable graph from a graph.
+  !>
+  !>  @param [out] pGraphExec - Pointer to instantiated executable graph.
+  !>  @param [in] graph - Instance of graph to instantiate.
+  !>  @param [in] instantiateParams - Graph instantiation Params
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGraphInstantiateWithParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphInstantiateWithParams_(pGraphExec,graph,instantiateParams) &
+        bind(c, name="cudaGraphInstantiateWithParams")
+#else
+    function hipGraphInstantiateWithParams_(pGraphExec,graph,instantiateParams) &
+        bind(c, name="hipGraphInstantiateWithParams")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphInstantiateWithParams_
+      type(c_ptr) :: pGraphExec
+      type(c_ptr),value :: graph
+      type(hipGraphInstantiateParams) :: instantiateParams
+    end function
+  end interface
+
   !>  @brief Launches an executable graph in the specified stream.
   !>
   !>  @param [in] graphExec - Instance of executable graph to launch.
@@ -6948,6 +10120,123 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphLaunch_
       type(c_ptr),value :: graphExec
       type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Uploads an executable graph to a stream
+  !>
+  !>  @param [in] graphExec - Instance of executable graph to be uploaded.
+  !>  @param [in] stream - Instance of stream to which the executable graph is uploaded to.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGraphUpload
+#ifdef USE_CUDA_NAMES
+    function hipGraphUpload_(graphExec,stream) bind(c, name="cudaGraphUpload")
+#else
+    function hipGraphUpload_(graphExec,stream) bind(c, name="hipGraphUpload")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphUpload_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  !>  @brief Creates a kernel execution node and adds it to a graph.
+  !>
+  !>  @param [out] pGraphNode - Pointer to kernel graph node that is created.
+  !>  @param [in] graph - Instance of graph to add the created node to.
+  !>  @param [in] pDependencies - Pointer to the dependencies on the kernel execution node.
+  !>  @param [in] numDependencies - Number of dependencies.
+  !>  @param [in] nodeParams - Pointer to the node parameters.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
+  interface hipGraphAddNode
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
+        bind(c, name="cudaGraphAddNode")
+#else
+    function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
+        bind(c, name="hipGraphAddNode")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphAddNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipGraphNodeParams) :: nodeParams
+    end function
+  end interface
+
+  !>  @brief Return the flags of an executable graph.
+  !>
+  !>  @param [in] graphExec - Executable graph to get the flags from.
+  !>  @param [out] flags - Flags used to instantiate this executable graph.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
+  interface hipGraphExecGetFlags
+#ifdef USE_CUDA_NAMES
+    function hipGraphExecGetFlags_(graphExec,flags) bind(c, name="cudaGraphExecGetFlags")
+#else
+    function hipGraphExecGetFlags_(graphExec,flags) bind(c, name="hipGraphExecGetFlags")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecGetFlags_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: flags
+    end function
+  end interface
+
+  !>  @brief Updates parameters of a graph's node.
+  !>
+  !>  @param [in] node - Instance of the node to set parameters for.
+  !>  @param [in] nodeParams - Pointer to the parameters to be set.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`,
+  !>  `hipErrorNotSupported`.
+  interface hipGraphNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="cudaGraphNodeSetParams")
+#else
+    function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="hipGraphNodeSetParams")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeSetParams_
+      type(c_ptr),value :: node
+      type(hipGraphNodeParams) :: nodeParams
+    end function
+  end interface
+
+  !>  @brief Updates parameters of an executable graph's node.
+  !>
+  !>  @param [in] graphExec - Instance of the executable graph.
+  !>  @param [in] node - Instance of the node to set parameters to.
+  !>  @param [in] nodeParams - Pointer to the parameters to be set.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`,
+  !>  `hipErrorNotSupported`.
+  interface hipGraphExecNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
+        bind(c, name="cudaGraphExecNodeSetParams")
+#else
+    function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
+        bind(c, name="hipGraphExecNodeSetParams")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecNodeSetParams_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: node
+      type(hipGraphNodeParams) :: nodeParams
     end function
   end interface
 
@@ -7100,6 +10389,35 @@ module hipfort
 
   !>  @brief Creates a memcpy node and adds it to a graph.
   !>
+  !>  @param [out] phGraphNode - Pointer to graph node that is created.
+  !>  @param [in] hGraph - Instance of graph to add the created node to.
+  !>  @param [in] dependencies - const pointer to the dependencies of the memcpy execution node.
+  !>  @param [in] numDependencies - The number of dependencies.
+  !>  @param [in] copyParams - const pointer to the parameters for the memory copy.
+  !>  @param [in] ctx - context related to current device.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
+  interface hipDrvGraphAddMemcpyNode
+    function hipDrvGraphAddMemcpyNode_(phGraphNode,hGraph,dependencies,numDependencies,copyParams, &
+        ctx) &
+        bind(c, name="hipDrvGraphAddMemcpyNode")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvGraphAddMemcpyNode_
+      type(c_ptr) :: phGraphNode
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      type(HIP_MEMCPY3D) :: copyParams
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+#endif
+
+  !>  @brief Creates a memcpy node and adds it to a graph.
+  !>
   !>  @param [out] pGraphNode - Pointer to graph node that is created.
   !>  @param [in] graph - Instance of graph to add the created node to.
   !>  @param [in] pDependencies - const pointer to the dependencies of the memcpy execution node.
@@ -7170,6 +10488,54 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphMemcpyNodeSetParams_
       type(c_ptr),value :: node
       type(hipMemcpy3DParms) :: pNodeParams
+    end function
+  end interface
+
+  !>  @brief Sets a node's attribute.
+  !>
+  !>  @param [in] hNode - Instance of the node to set parameters of.
+  !>  @param [in] attr - The attribute type to be set.
+  !>  @param [in] value - const pointer to the parameters.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGraphKernelNodeSetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipGraphKernelNodeSetAttribute_(hNode,attr,myValue) &
+        bind(c, name="cudaGraphKernelNodeSetAttribute")
+#else
+    function hipGraphKernelNodeSetAttribute_(hNode,attr,myValue) &
+        bind(c, name="hipGraphKernelNodeSetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphKernelNodeSetAttribute_
+      type(c_ptr),value :: hNode
+      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  !>  @brief Gets a node's attribute.
+  !>
+  !>  @param [in] hNode - Instance of the node to set parameters of.
+  !>  @param [in] attr - The attribute type to be set.
+  !>  @param [in] value - const pointer to the parameters.
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  interface hipGraphKernelNodeGetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipGraphKernelNodeGetAttribute_(hNode,attr,myValue) &
+        bind(c, name="cudaGraphKernelNodeGetAttribute")
+#else
+    function hipGraphKernelNodeGetAttribute_(hNode,attr,myValue) &
+        bind(c, name="hipGraphKernelNodeGetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphKernelNodeGetAttribute_
+      type(c_ptr),value :: hNode
+      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
+      type(c_ptr),value :: myValue
     end function
   end interface
 
@@ -7984,3372 +11350,6 @@ module hipfort
       type(c_ptr),value :: hGraphExec
       type(c_ptr),value :: hNode
       type(c_ptr),value :: event
-    end function
-  end interface
-
-  interface hipCreateChannelDesc
-#ifdef USE_CUDA_NAMES
-    function hipCreateChannelDesc_(x,y,z,w,f) bind(c, name="cudaCreateChannelDesc")
-#else
-    function hipCreateChannelDesc_(x,y,z,w,f) bind(c, name="hipCreateChannelDesc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      type(c_ptr) :: hipCreateChannelDesc_
-      integer(c_int),value :: x
-      integer(c_int),value :: y
-      integer(c_int),value :: z
-      integer(c_int),value :: w
-      integer(kind(hipChannelFormatKindSigned)),value :: f
-    end function
-  end interface
-
-  !>  @brief Returns an UUID for the device.[BETA]
-  !>  @param [out] uuid UUID for the device
-  !>  @param [in] device device ordinal
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`,
-  !>  `hipErrorNotInitialized`,
-  !>  `hipErrorDeinitialized`
-  interface hipDeviceGetUuid
-#ifdef USE_CUDA_NAMES
-    function hipDeviceGetUuid_(uuid,device) bind(c, name="cuDeviceGetUuid")
-#else
-    function hipDeviceGetUuid_(uuid,device) bind(c, name="hipDeviceGetUuid")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipDeviceGetUuid_
-      type(hipUUID) :: uuid
-      integer(c_int),value :: device
-    end function
-  end interface
-
-  !>  @brief Set a list of devices that can be used.
-  !>
-  !>  @param[in] device_arr - List of devices to try
-  !>  @param[in] len - Number of devices in specified list
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
-  !>
-  !>  @see `hipGetDevice`, `hipGetDeviceCount`. `hipSetDevice`. `hipGetDeviceProperties`.
-  !>  `hipSetDeviceFlags`. `hipChooseDevice`
-  interface hipSetValidDevices
-#ifdef USE_CUDA_NAMES
-    function hipSetValidDevices_(device_arr,len) bind(c, name="cudaSetValidDevices")
-#else
-    function hipSetValidDevices_(device_arr,len) bind(c, name="hipSetValidDevices")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipSetValidDevices_
-      type(c_ptr),value :: device_arr
-      integer(c_int),value :: len
-    end function
-  end interface
-
-  !>  @brief Returns the default memory pool of the specified device
-  !>
-  !>  @param [out] mem_pool Default memory pool to return
-  !>  @param [in] device    Device index for query the default memory pool
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`, `hipErrorNotSupported`
-  !>
-  !>  @see hipDeviceGetDefaultMemPool, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
-  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  interface hipDeviceGetDefaultMemPool
-#ifdef USE_CUDA_NAMES
-    function hipDeviceGetDefaultMemPool_(mem_pool,device) &
-        bind(c, name="cudaDeviceGetDefaultMemPool")
-#else
-    function hipDeviceGetDefaultMemPool_(mem_pool,device) bind(c, name="hipDeviceGetDefaultMemPool")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDeviceGetDefaultMemPool_
-      type(c_ptr) :: mem_pool
-      integer(c_int),value :: device
-    end function
-  end interface
-
-  !>  @brief Sets the current memory pool of a device
-  !>
-  !>  The memory pool must be local to the specified device.
-  !>  @p hipMallocAsync allocates from the current mempool of the provided stream's device.
-  !>  By default, a device's current memory pool is its default memory pool.
-  !>
-  !>  @note Use @p hipMallocFromPoolAsync for asynchronous memory allocations from a device
-  !>  different than the one the stream runs on.
-  !>
-  !>  @param [in] device   Device index for the update
-  !>  @param [in] mem_pool Memory pool for update as the current on the specified device
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDevice`, `hipErrorNotSupported`
-  !>
-  !>  @see hipDeviceGetDefaultMemPool, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
-  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  interface hipDeviceSetMemPool
-#ifdef USE_CUDA_NAMES
-    function hipDeviceSetMemPool_(device,mem_pool) bind(c, name="cudaDeviceSetMemPool")
-#else
-    function hipDeviceSetMemPool_(device,mem_pool) bind(c, name="hipDeviceSetMemPool")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDeviceSetMemPool_
-      integer(c_int),value :: device
-      type(c_ptr),value :: mem_pool
-    end function
-  end interface
-
-  !>  @brief Gets the current memory pool for the specified device
-  !>
-  !>  Returns the last pool provided to @p hipDeviceSetMemPool for this device
-  !>  or the device's default memory pool if @p hipDeviceSetMemPool has never been called.
-  !>  By default the current mempool is the default mempool for a device,
-  !>  otherwise the returned pool must have been set with @p hipDeviceSetMemPool.
-  !>
-  !>  @param [out] mem_pool Current memory pool on the specified device
-  !>  @param [in] device    Device index to query the current memory pool
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
-  !>
-  !>  @see hipDeviceGetDefaultMemPool, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
-  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  interface hipDeviceGetMemPool
-#ifdef USE_CUDA_NAMES
-    function hipDeviceGetMemPool_(mem_pool,device) bind(c, name="cudaDeviceGetMemPool")
-#else
-    function hipDeviceGetMemPool_(mem_pool,device) bind(c, name="hipDeviceGetMemPool")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDeviceGetMemPool_
-      type(c_ptr) :: mem_pool
-      integer(c_int),value :: device
-    end function
-  end interface
-
-  !>  @brief Gets the maximum width for 1D linear textures on the specified device
-  !>
-  !>  This function queries the maximum width, in elements, of 1D linear textures that can be
-  !>  allocated
-  !>  on the specified device. The maximum width depends on the texture element size and the
-  !>  hardware
-  !>  limitations of the device.
-  !>
-  !>  @param [out] max_width Maximum width, in elements, of 1D linear textures that the device can
-  !>  support
-  !>  @param [in] desc       Requested channel format
-  !>  @param [in] device     Device index to query for maximum 1D texture width
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDevice`
-  !>
-  !>  @see hipDeviceGetAttribute, hipMalloc, hipTexRefSetAddressMode
-  interface hipDeviceGetTexture1DLinearMaxWidth
-#ifdef USE_CUDA_NAMES
-    function hipDeviceGetTexture1DLinearMaxWidth_(max_width,desc,device) &
-        bind(c, name="cudaDeviceGetTexture1DLinearMaxWidth")
-#else
-    function hipDeviceGetTexture1DLinearMaxWidth_(max_width,desc,device) &
-        bind(c, name="hipDeviceGetTexture1DLinearMaxWidth")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipDeviceGetTexture1DLinearMaxWidth_
-      type(c_ptr),value :: max_width
-      type(hipChannelFormatDesc) :: desc
-      integer(c_int),value :: device
-    end function
-  end interface
-
-  !>  @brief Sets resource limits of current device.
-  !>
-  !>  As the input enum limit,
-  !>  `hipLimitStackSize` sets the limit value of the stack size on the current GPU device, per
-  !>  thread.
-  !>  The limit size can get via hipDeviceGetLimit. The size is in units of 256 dwords, up to the
-  !>  limit
-  !>  (128K - 16).
-  !>
-  !>  `hipLimitMallocHeapSize` sets the limit value of the heap used by the malloc()/free()
-  !>  calls. For limit size, use the `hipDeviceGetLimit` API.
-  !>
-  !>  Any other input as default, the funtion will return hipErrorUnsupportedLimit.
-  !>
-  !>  @param [in] limit Enum of hipLimit_t to set
-  !>  @param [in] value The size of limit value in bytes
-  !>
-  !>  @returns `hipSuccess`, `hipErrorUnsupportedLimit`, `hipErrorInvalidValue`
-  interface hipDeviceSetLimit
-#ifdef USE_CUDA_NAMES
-    function hipDeviceSetLimit_(limit,myValue) bind(c, name="cudaDeviceSetLimit")
-#else
-    function hipDeviceSetLimit_(limit,myValue) bind(c, name="hipDeviceSetLimit")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDeviceSetLimit_
-      integer(kind(hipLimitStackSize)),value :: limit
-      integer(c_size_t),value :: myValue
-    end function
-  end interface
-
-  !>  @brief Device which matches hipDeviceProp_t is returned
-  !>
-  !>  @param [out] device Pointer of the device
-  !>  @param [in]  prop Pointer of the properties
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipChooseDeviceR0600
-#ifdef USE_CUDA_NAMES
-    function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
-#else
-    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipChooseDeviceR0600_
-      type(c_ptr),value :: device
-      type(hipDeviceProp_t) :: prop
-    end function
-  end interface
-
-  !>  @brief Return last error returned by any HIP runtime API call and resets the stored error code
-  !>  to
-  !>  `hipSuccess`
-  !>
-  !>  @returns return code from last HIP called from the active host thread
-  !>
-  !>  Returns the last error that has been returned by any of the runtime calls in the same host
-  !>  thread, and then resets the saved error to `hipSuccess`.
-  !>
-  !>  @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
-#ifndef USE_CUDA_NAMES
-  interface hipExtGetLastError
-    function hipExtGetLastError_() bind(c, name="hipExtGetLastError")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipExtGetLastError_
-    end function
-  end interface
-#endif
-
-  !>  @brief Return hip error as text string form.
-  !>
-  !>  @param hip_error - Error code to convert to name.
-  !>  @returns const char pointer to the NULL-terminated error name
-  !>
-  !>  @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
-  interface hipGetErrorName
-#ifdef USE_CUDA_NAMES
-    function hipGetErrorName_(hip_error) bind(c, name="cudaGetErrorName")
-#else
-    function hipGetErrorName_(hip_error) bind(c, name="hipGetErrorName")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      character(c_char) :: hipGetErrorName_
-      integer(kind(hipSuccess)),value :: hip_error
-    end function
-  end interface
-
-  !>  @brief Return handy text string message to explain the error which occurred
-  !>
-  !>  @param hipError - Error code to convert to string.
-  !>  @returns const char pointer to the NULL-terminated error string
-  !>
-  !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
-  interface hipGetErrorString
-#ifdef USE_CUDA_NAMES
-    function hipGetErrorString_(hipError) bind(c, name="cudaGetErrorString")
-#else
-    function hipGetErrorString_(hipError) bind(c, name="hipGetErrorString")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      character(c_char) :: hipGetErrorString_
-      integer(kind(hipSuccess)),value :: hipError
-    end function
-  end interface
-
-  !>  @brief Return hip error as text string form.
-  !>
-  !>  @param [in] hipError Error code to convert to string.
-  !>  @param [out] errorString char pointer to the NULL-terminated error string
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
-#ifndef USE_CUDA_NAMES
-  interface hipDrvGetErrorName
-    function hipDrvGetErrorName_(hipError,errorString) bind(c, name="hipDrvGetErrorName")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDrvGetErrorName_
-      integer(kind(hipSuccess)),value :: hipError
-      type(c_ptr) :: errorString
-    end function
-  end interface
-#endif
-
-  !>  @brief Return handy text string message to explain the error which occurred
-  !>
-  !>  @param [in] hipError Error code to convert to string.
-  !>  @param [out] errorString char pointer to the NULL-terminated error string
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
-#ifndef USE_CUDA_NAMES
-  interface hipDrvGetErrorString
-    function hipDrvGetErrorString_(hipError,errorString) bind(c, name="hipDrvGetErrorString")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipDrvGetErrorString_
-      integer(kind(hipSuccess)),value :: hipError
-      type(c_ptr) :: errorString
-    end function
-  end interface
-#endif
-
-  !>  @brief Queries the Id of a stream.
-  !>
-  !>  @param[in] stream - Stream to be queried
-  !>  flags - Pointer to an unsigned long long in which the stream's id is returned
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`.
-  !>
-  !>  @see hipStreamCreateWithFlags, hipStreamGetFlags, hipStreamCreateWithPriority,
-  !>  hipStreamGetPriority
-  interface hipStreamGetId
-#ifdef USE_CUDA_NAMES
-    function hipStreamGetId_(stream,streamId) bind(c, name="cudaStreamGetId")
-#else
-    function hipStreamGetId_(stream,streamId) bind(c, name="hipStreamGetId")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamGetId_
-      type(c_ptr),value :: stream
-      type(c_ptr),value :: streamId
-    end function
-  end interface
-
-  !>  @brief Gets the device associated with the stream.
-  !>
-  !>  @param[in] stream - Stream to be queried
-  !>  @param[out] device - Device associated with the stream
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorContextIsDestroyed`,
-  !>  `hipErrorInvalidHandle`,
-  !>  `hipErrorNotInitialized`, `hipErrorDeinitialized`, `hipErrorInvalidContext`
-  !>
-  !>  @see hipStreamCreate, hipStreamDestroy, hipDeviceGetStreamPriorityRange
-  interface hipStreamGetDevice
-#ifdef USE_CUDA_NAMES
-    function hipStreamGetDevice_(stream,device) bind(c, name="cudaStreamGetDevice")
-#else
-    function hipStreamGetDevice_(stream,device) bind(c, name="hipStreamGetDevice")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamGetDevice_
-      type(c_ptr),value :: stream
-      type(c_ptr),value :: device
-    end function
-  end interface
-
-  !> @brief Sets stream attribute. Updated attribute is applied to work submitted to the stream.
-  !>  @param[in] stream - Stream to set attributes to
-  !>  @param[in] attr - Attribute ID for the attribute to set
-  !>  @param[in] myValue - Attribute value for the attribute to set
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
-  interface hipStreamSetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipStreamSetAttribute_(stream,attr,myValue) bind(c, name="cudaStreamSetAttribute")
-#else
-    function hipStreamSetAttribute_(stream,attr,myValue) bind(c, name="hipStreamSetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamSetAttribute_
-      type(c_ptr),value :: stream
-      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
-      type(c_ptr),value :: myValue
-    end function
-  end interface
-
-  !> @brief queries stream attribute.
-  !>  @param[in] stream - Stream to geet attributes from
-  !>  @param[in] attr - Attribute ID for the attribute to query
-  !>  value - Attribute value output
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
-  interface hipStreamGetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipStreamGetAttribute_(stream,attr,value_out) bind(c, name="cudaStreamGetAttribute")
-#else
-    function hipStreamGetAttribute_(stream,attr,value_out) bind(c, name="hipStreamGetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamGetAttribute_
-      type(c_ptr),value :: stream
-      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
-      type(c_ptr),value :: value_out
-    end function
-  end interface
-
-  !> @brief Copies attributes from source stream to destination stream.
-  !>  @param[in] dst - Destination stream
-  !>  @param[in] src - Source stream
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipStreamCopyAttributes
-#ifdef USE_CUDA_NAMES
-    function hipStreamCopyAttributes_(dst,src) bind(c, name="cudaStreamCopyAttributes")
-#else
-    function hipStreamCopyAttributes_(dst,src) bind(c, name="hipStreamCopyAttributes")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamCopyAttributes_
-      type(c_ptr),value :: dst
-      type(c_ptr),value :: src
-    end function
-  end interface
-
-  !>  @brief Enqueues a wait command to the stream.[BETA]
-  !>
-  !>  @param [in] stream - Stream identifier
-  !>  @param [in] ptr    - Pointer to memory object allocated using `hipMallocSignalMemory` flag
-  !>  @param [in] value  - Value to be used in compare operation
-  !>  @param [in] flags - Defines the compare operation, supported values are
-  !>  `hipStreamWaitValueGte`
-  !>  `hipStreamWaitValueEq`, `hipStreamWaitValueAnd` and `hipStreamWaitValueNor`
-  !>  @param [in] mask   - Mask to be applied on value at memory before it is compared with value,
-  !>  default value is set to enable every bit
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  Enqueues a wait command to the stream, all operations enqueued on this stream after this, will
-  !>  not execute until the defined wait condition is true.
-  !>
-  !>  `hipStreamWaitValueGte`: waits until *ptr&mask >= value
-  !>
-  !>  `hipStreamWaitValueEq` : waits until *ptr&mask == value
-  !>
-  !>  `hipStreamWaitValueAnd`: waits until ((*ptr&mask) & value) != 0
-  !>
-  !>  `hipStreamWaitValueNor`: waits until ~((*ptr&mask) | (value&mask)) != 0
-  !>
-  !>  @note when using `hipStreamWaitValueNor`, mask is applied on both 'value' and '*ptr'.
-  !>
-  !>  @note Support for `hipStreamWaitValue32` can be queried using 'hipDeviceGetAttribute()' and
-  !>  'hipDeviceAttributeCanUseStreamWaitValue' flag.
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @see hipExtMallocWithFlags, hipFree, hipStreamWaitValue64, hipStreamWriteValue64,
-  !>  hipStreamWriteValue32, hipDeviceGetAttribute
-  interface hipStreamWaitValue32
-#ifdef USE_CUDA_NAMES
-    function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
-        bind(c, name="cuStreamWaitValue32")
-#else
-    function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
-        bind(c, name="hipStreamWaitValue32")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamWaitValue32_
-      type(c_ptr),value :: stream
-      type(c_ptr),value :: ptr
-      integer(c_int32_t),value :: myValue
-      integer(c_int),value :: flags
-      integer(c_int32_t),value :: mask
-    end function
-  end interface
-
-  !>  @brief Enqueues a wait command to the stream.[BETA]
-  !>
-  !>  @param [in] stream - Stream identifier
-  !>  @param [in] ptr    - Pointer to memory object allocated using 'hipMallocSignalMemory' flag
-  !>  @param [in] value  - Value to be used in compare operation
-  !>  @param [in] flags - Defines the compare operation, supported values are
-  !>  `hipStreamWaitValueGte`
-  !>  `hipStreamWaitValueEq`, `hipStreamWaitValueAnd` and `hipStreamWaitValueNor`.
-  !>  @param [in] mask   - Mask to be applied on value at memory before it is compared with value
-  !>  default value is set to enable every bit
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  Enqueues a wait command to the stream, all operations enqueued on this stream after this, will
-  !>  not execute until the defined wait condition is true.
-  !>
-  !>  `hipStreamWaitValueGte`: waits until *ptr&mask >= value
-  !>
-  !>  `hipStreamWaitValueEq` : waits until *ptr&mask == value
-  !>
-  !>  `hipStreamWaitValueAnd`: waits until ((*ptr&mask) & value) != 0
-  !>
-  !>  `hipStreamWaitValueNor`: waits until ~((*ptr&mask) | (value&mask)) != 0
-  !>
-  !>  @note when using `hipStreamWaitValueNor`, mask is applied on both 'value' and '*ptr'.
-  !>
-  !>  @note Support for hipStreamWaitValue64 can be queried using 'hipDeviceGetAttribute()' and
-  !>  'hipDeviceAttributeCanUseStreamWaitValue' flag.
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @see hipExtMallocWithFlags, hipFree, hipStreamWaitValue32, hipStreamWriteValue64,
-  !>  hipStreamWriteValue32, hipDeviceGetAttribute
-  interface hipStreamWaitValue64
-#ifdef USE_CUDA_NAMES
-    function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
-        bind(c, name="cuStreamWaitValue64")
-#else
-    function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
-        bind(c, name="hipStreamWaitValue64")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamWaitValue64_
-      type(c_ptr),value :: stream
-      type(c_ptr),value :: ptr
-      integer(c_int64_t),value :: myValue
-      integer(c_int),value :: flags
-      integer(c_int64_t),value :: mask
-    end function
-  end interface
-
-  !>  @brief Enqueues an array of stream memory operations in the stream.[BETA]
-  !>
-  !>  @param [in] stream      - Stream identifier
-  !>  @param [in] count       - The number of operations in the array. Must be less than 256
-  !>  @param [in] paramArray  - The types and parameters of the individual operations.
-  !>  @param [in] flags       - Reserved for future expansion; must be 0.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  Batch operations to synchronize the stream via memory operations.
-  !>
-  !>  @warning This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
-  !>
-  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
-  !>  hipStreamWaitValue64. hipStreamWriteValue64
-  interface hipStreamBatchMemOp
-#ifdef USE_CUDA_NAMES
-    function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="cuStreamBatchMemOp")
-#else
-    function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="hipStreamBatchMemOp")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamBatchMemOp_
-      type(c_ptr),value :: stream
-      integer(c_int),value :: count
-      type(c_ptr),value :: paramArray
-      integer(c_int),value :: flags
-    end function
-  end interface
-
-  !>  @brief Creates a batch memory operation node and adds it to a graph.[BETA]
-  !>
-  !>  @param [in] phGraphNode      - Returns the newly created node
-  !>  @param [in] hGraph           - Graph to which to add the node
-  !>  @param [in] dependencies     -  Dependencies of the node
-  !>  @param [in] numDependencies  - Number of dependencies
-  !>  @param [in] nodeParams       - Parameters for the node
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @warning This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
-  !>
-  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
-  !>  hipStreamWaitValue64. hipStreamWriteValue64, hipStreamBatchMemOp
-  interface hipGraphAddBatchMemOpNode
-#ifdef USE_CUDA_NAMES
-    function hipGraphAddBatchMemOpNode_(phGraphNode,hGraph,dependencies,numDependencies, &
-        nodeParams) &
-        bind(c, name="cuGraphAddBatchMemOpNode")
-#else
-    function hipGraphAddBatchMemOpNode_(phGraphNode,hGraph,dependencies,numDependencies, &
-        nodeParams) &
-        bind(c, name="hipGraphAddBatchMemOpNode")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphAddBatchMemOpNode_
-      type(c_ptr) :: phGraphNode
-      type(c_ptr),value :: hGraph
-      type(c_ptr) :: dependencies
-      integer(c_size_t),value :: numDependencies
-      type(hipBatchMemOpNodeParams) :: nodeParams
-    end function
-  end interface
-
-  !>  @brief Returns a batch mem op node's parameters.[BETA]
-  !>
-  !>  @param [in] hNode           - Node to get the parameters for
-  !>  @param [in] nodeParams_out  - Pointer to return the parameters
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  Returns the parameters of batch mem op node hNode in nodeParams_out.
-  !>  The paramArray returned in nodeParams_out is owned by the node.
-  !>  This memory remains valid until the node is destroyed or its parameters are modified,
-  !>  and should not be modified directly.
-  !>
-  !>  @warning This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
-  !>
-  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
-  !>  hipStreamWaitValue64. hipStreamWriteValue64. hipGraphBatchMemOpNodeSetParams
-  interface hipGraphBatchMemOpNodeGetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphBatchMemOpNodeGetParams_(hNode,nodeParams_out) &
-        bind(c, name="cuGraphBatchMemOpNodeGetParams")
-#else
-    function hipGraphBatchMemOpNodeGetParams_(hNode,nodeParams_out) &
-        bind(c, name="hipGraphBatchMemOpNodeGetParams")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphBatchMemOpNodeGetParams_
-      type(c_ptr),value :: hNode
-      type(hipBatchMemOpNodeParams) :: nodeParams_out
-    end function
-  end interface
-
-  !>  @brief Sets the batch mem op node's parameters.[BETA]
-  !>
-  !>  @param [in] hNode       - Node to set the parameters for
-  !>  @param [in] nodeParams  - Parameters to copy
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  Sets the parameters of batch mem op node hNode to nodeParams.
-  !>
-  !>  @warning This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
-  !>
-  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
-  !>  hipStreamWaitValue64. hipStreamWriteValue64, hipGraphBatchMemOpNodeGetParams
-  interface hipGraphBatchMemOpNodeSetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphBatchMemOpNodeSetParams_(hNode,nodeParams) &
-        bind(c, name="cuGraphBatchMemOpNodeSetParams")
-#else
-    function hipGraphBatchMemOpNodeSetParams_(hNode,nodeParams) &
-        bind(c, name="hipGraphBatchMemOpNodeSetParams")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphBatchMemOpNodeSetParams_
-      type(c_ptr),value :: hNode
-      type(hipBatchMemOpNodeParams) :: nodeParams
-    end function
-  end interface
-
-  !>  @brief Sets the parameters for a batch mem op node in the given graphExec.[BETA]
-  !>
-  !>  @param [in] hGraphExec  - The executable graph in which to set the specified node
-  !>  @param [in] hNode - Batch mem op node from the graph from which graphExec was instantiated
-  !>  @param [in] nodeParams  - Updated Parameters to set
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  Sets the parameters of a batch mem op node in an executable graph hGraphExec.
-  !>  The node is identified by the corresponding node hNode in the non-executable graph,
-  !>  from which the executable graph was instantiated.
-  !>
-  !>  @warning This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
-  !>
-  !>  @see hipStreamWriteValue32, hipStreamWaitValue32,
-  !>  hipStreamWaitValue64. hipStreamWriteValue64, hipStreamBatchMemOp
-  interface hipGraphExecBatchMemOpNodeSetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphExecBatchMemOpNodeSetParams_(hGraphExec,hNode,nodeParams) &
-        bind(c, name="cuGraphExecBatchMemOpNodeSetParams")
-#else
-    function hipGraphExecBatchMemOpNodeSetParams_(hGraphExec,hNode,nodeParams) &
-        bind(c, name="hipGraphExecBatchMemOpNodeSetParams")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphExecBatchMemOpNodeSetParams_
-      type(c_ptr),value :: hGraphExec
-      type(c_ptr),value :: hNode
-      type(hipBatchMemOpNodeParams) :: nodeParams
-    end function
-  end interface
-
-  !>  @brief Record an event in the specified stream.
-  !>
-  !>  @param[in] event - event to record.
-  !>  @param[in] stream - stream in which to record event.
-  !>  @param[in] flags - parameter for operations
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`,
-  !>  `hipErrorInvalidHandle`, `hipErrorLaunchFailure`
-  !>
-  !>  hipEventQuery() or hipEventSynchronize() must be used to determine when the event
-  !>  transitions from "recording" (after hipEventRecord() is called) to "recorded"
-  !>  (when timestamps are set, if requested).
-  !>
-  !>  Events which are recorded in a non-NULL stream will transition to
-  !>  from recording to "recorded" state when they reach the head of
-  !>  the specified stream, after all previous
-  !>  commands in that stream have completed executing.
-  !>
-  !>  Flags include:
-  !>    hipEventRecordDefault: Default event creation flag.
-  !>    hipEventRecordExternal: Event is captured in the graph as an external event node when
-  !>                            performing stream capture
-  !>
-  !>  If hipEventRecord() has been previously called on this event, then this call will overwrite
-  !>  any
-  !>  existing state in event.
-  !>
-  !>  If this function is called on an event that is currently being recorded, results are undefined
-  !>  - either outstanding recording may save state into the event, and the order is not guaranteed.
-  !>
-  !>  @note: If this function is not called before use hipEventQuery() or hipEventSynchronize(),
-  !>  `hipSuccess` is returned, meaning no pending event in the stream.
-  !>
-  !>  @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize,
-  !>  hipEventDestroy, hipEventElapsedTime
-  interface hipEventRecordWithFlags
-#ifdef USE_CUDA_NAMES
-    function hipEventRecordWithFlags_(event,stream,flags) bind(c, name="cudaEventRecordWithFlags")
-#else
-    function hipEventRecordWithFlags_(event,stream,flags) bind(c, name="hipEventRecordWithFlags")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipEventRecordWithFlags_
-      type(c_ptr),value :: event
-      type(c_ptr),value :: stream
-      integer(c_int),value :: flags
-    end function
-  end interface
-
-  !>   @brief Sets information on the specified pointer.[BETA]
-  !>
-  !>   @param [in]      value     Sets pointer attribute value
-  !>   @param [in]      attribute  Attribute to set
-  !>   @param [in]      ptr      Pointer to set attributes for
-  !>
-  !>   @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
-  !>
-  !>   @warning This API is marked as Beta. While this feature is complete, it can
-  !>            change and might have outstanding issues.
-  interface hipPointerSetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipPointerSetAttribute_(myValue,attribute,ptr) bind(c, name="cuPointerSetAttribute")
-#else
-    function hipPointerSetAttribute_(myValue,attribute,ptr) bind(c, name="hipPointerSetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipPointerSetAttribute_
-      type(c_ptr),value :: myValue
-      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),value :: attribute
-      type(c_ptr),value :: ptr
-    end function
-  end interface
-
-  !> -------------------------------------------------------------------------------------------------
-  !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup External External Resource Interoperability
-  !>
-  !>   @ingroup API
-  !>
-  !>   This section describes the external resource interoperability functions of HIP runtime API.
-  !>
-  !>
-  !>
-  !>   @brief Imports an external semaphore.
-  !>
-  !>   @param[out] extSem_out - External semaphores to be waited on
-  !>   @param[in] semHandleDesc - Semaphore import handle descriptor
-  !>
-  !>   @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
-  !>
-  !>   @see
-  !>
-  !>   @note  This API is currently not supported on Linux.
-  interface hipImportExternalSemaphore
-#ifdef USE_CUDA_NAMES
-    function hipImportExternalSemaphore_(extSem_out,semHandleDesc) &
-        bind(c, name="cudaImportExternalSemaphore")
-#else
-    function hipImportExternalSemaphore_(extSem_out,semHandleDesc) &
-        bind(c, name="hipImportExternalSemaphore")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipImportExternalSemaphore_
-      type(c_ptr) :: extSem_out
-      type(hipExternalSemaphoreHandleDesc) :: semHandleDesc
-    end function
-  end interface
-
-  !>   @brief Imports an external memory object.
-  !>
-  !>   @param[out] extMem_out - Returned handle to an external memory object
-  !>   @param[in] memHandleDesc - Memory import handle descriptor
-  !>
-  !>   @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
-  !>
-  !>   @see
-  interface hipImportExternalMemory
-#ifdef USE_CUDA_NAMES
-    function hipImportExternalMemory_(extMem_out,memHandleDesc) &
-        bind(c, name="cudaImportExternalMemory")
-#else
-    function hipImportExternalMemory_(extMem_out,memHandleDesc) &
-        bind(c, name="hipImportExternalMemory")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipImportExternalMemory_
-      type(c_ptr) :: extMem_out
-      type(hipExternalMemoryHandleDesc) :: memHandleDesc
-    end function
-  end interface
-
-  !>   @brief Maps a mipmapped array onto an external memory object.
-  !>
-  !>   @param[out] mipmap - mipmapped array to return
-  !>   @param[in] extMem - external memory object handle
-  !>   @param[in] mipmapDesc - external mipmapped array descriptor
-  !>
-  !>   Returned mipmapped array must be freed using hipFreeMipmappedArray.
-  !>
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
-  !>
-  !>   @see hipImportExternalMemory, hipDestroyExternalMemory, hipExternalMemoryGetMappedBuffer,
-  !>  hipFreeMipmappedArray
-  interface hipExternalMemoryGetMappedMipmappedArray
-#ifdef USE_CUDA_NAMES
-    function hipExternalMemoryGetMappedMipmappedArray_(mipmap,extMem,mipmapDesc) &
-        bind(c, name="cudaExternalMemoryGetMappedMipmappedArray")
-#else
-    function hipExternalMemoryGetMappedMipmappedArray_(mipmap,extMem,mipmapDesc) &
-        bind(c, name="hipExternalMemoryGetMappedMipmappedArray")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipExternalMemoryGetMappedMipmappedArray_
-      type(c_ptr) :: mipmap
-      type(c_ptr),value :: extMem
-      type(hipExternalMemoryMipmappedArrayDesc) :: mipmapDesc
-    end function
-  end interface
-
-  !>  @brief Prefetches memory to the specified destination device using HIP.
-  !>
-  !>  @param [in] dev_ptr    pointer to be prefetched
-  !>  @param [in] count      size in bytes for prefetching
-  !>  @param [in] location   destination location to prefetch to
-  !>  @param [in] flags      flags for future use, must be zero now.
-  !>  @param [in] stream     stream to enqueue prefetch operation
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPrefetchAsync_v2
-#ifdef USE_CUDA_NAMES
-    function hipMemPrefetchAsync_v2_(dev_ptr,count,location,flags,stream) &
-        bind(c, name="cuMemPrefetchAsync_v2")
-#else
-    function hipMemPrefetchAsync_v2_(dev_ptr,count,location,flags,stream) &
-        bind(c, name="hipMemPrefetchAsync_v2")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPrefetchAsync_v2_
-      type(c_ptr),value :: dev_ptr
-      integer(c_size_t),value :: count
-      type(c_ptr),value :: location
-      integer(c_int),value :: flags
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Advise about the usage of a given memory range to HIP.
-  !>
-  !>  @param [in] dev_ptr    pointer to memory to set the advice for
-  !>  @param [in] count      size in bytes of the memory range, it should be CPU page size alligned.
-  !>  @param [in] advice     advice to be applied for the specified memory range
-  !>  @param [in] location   location to apply the advice for
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  This HIP API advises about the usage to be applied on unified memory allocation in the
-  !>  range starting from the pointer address devPtr, with the size of count bytes.
-  !>  The memory range must refer to managed memory allocated via the API hipMallocManaged, and the
-  !>  range will be handled with proper round down and round up respectively in the driver to
-  !>  be aligned to CPU page size, the same way as corresponding CUDA API behaves in CUDA version
-  !>  8.0
-  !>  and afterwards.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemAdvise_v2
-#ifdef USE_CUDA_NAMES
-    function hipMemAdvise_v2_(dev_ptr,count,advice,location) bind(c, name="cuMemAdvise_v2")
-#else
-    function hipMemAdvise_v2_(dev_ptr,count,advice,location) bind(c, name="hipMemAdvise_v2")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemAdvise_v2_
-      type(c_ptr),value :: dev_ptr
-      integer(c_size_t),value :: count
-      integer(kind(hipMemAdviseSetReadMostly)),value :: advice
-      type(c_ptr),value :: location
-    end function
-  end interface
-
-  !>  @brief Allocates memory with stream ordered semantics
-  !>
-  !>  Inserts a memory allocation operation into @p stream.
-  !>  A pointer to the allocated memory is returned immediately in *dptr.
-  !>  The allocation must not be accessed until the allocation operation completes.
-  !>  The allocation comes from the memory pool associated with the stream's device.
-  !>
-  !>  @note The default memory pool of a device contains device memory from that device.
-  !>  @note Basic stream ordering allows future work submitted into the same stream to use the
-  !>   allocation. Stream query, stream synchronize, and HIP events can be used to guarantee that
-  !>   the allocation operation completes before work submitted in a separate stream runs.
-  !>  @note During stream capture, this function results in the creation of an allocation node.
-  !>   In this case, the allocation is owned by the graph instead of the memory pool. The memory
-  !>   pool's properties are used to set the node's creation parameters.
-  !>
-  !>  @param [out] dev_ptr  Returned device pointer of memory allocation
-  !>  @param [in] size      Number of bytes to allocate
-  !>  @param [in] stream    The stream establishing the stream ordering contract and
-  !>                        the memory pool to allocate from
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`, `hipErrorOutOfMemory`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipFreeAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
-  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMallocAsync
-#ifdef USE_CUDA_NAMES
-    function hipMallocAsync_(dev_ptr,mySize,stream) bind(c, name="cudaMallocAsync")
-#else
-    function hipMallocAsync_(dev_ptr,mySize,stream) bind(c, name="hipMallocAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMallocAsync_
-      type(c_ptr) :: dev_ptr
-      integer(c_size_t),value :: mySize
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Frees memory with stream ordered semantics
-  !>
-  !>  Inserts a free operation into @p stream.
-  !>  The allocation must not be used after stream execution reaches the free.
-  !>  After this API returns, accessing the memory from any subsequent work launched on the GPU
-  !>  or querying its pointer attributes results in undefined behavior.
-  !>
-  !>  @note During stream capture, this function results in the creation of a free node and
-  !>  must therefore be passed the address of a graph allocation.
-  !>
-  !>  @param [in] dev_ptr Pointer to device memory to free
-  !>  @param [in] stream The stream, where the destruciton will occur according to the execution
-  !>  order
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipMemPoolTrimTo, hipMemPoolGetAttribute,
-  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipFreeAsync
-#ifdef USE_CUDA_NAMES
-    function hipFreeAsync_(dev_ptr,stream) bind(c, name="cudaFreeAsync")
-#else
-    function hipFreeAsync_(dev_ptr,stream) bind(c, name="hipFreeAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipFreeAsync_
-      type(c_ptr),value :: dev_ptr
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Releases freed memory back to the OS
-  !>
-  !>  Releases memory back to the OS until the pool contains fewer than @p min_bytes_to_keep
-  !>  reserved bytes, or there is no more memory that the allocator can safely release.
-  !>  The allocator cannot release OS allocations that back outstanding asynchronous allocations.
-  !>  The OS allocations may happen at different granularity from the user allocations.
-  !>
-  !>  @note Allocations that have not been freed count as outstanding.
-  !>  @note Allocations that have been asynchronously freed but whose completion has
-  !>  not been observed on the host (eg. by a synchronize) can count as outstanding.
-  !>
-  !>  @param[in] mem_pool - The memory pool to trim allocations
-  !>  @param[in] min_bytes_to_hold - If the pool has less than min_bytes_to_hold reserved,
-  !>  then the TrimTo operation is a no-op.  Otherwise the memory pool will contain
-  !>  at least min_bytes_to_hold bytes reserved after the operation.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
-  !>  hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolTrimTo
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolTrimTo_(mem_pool,min_bytes_to_hold) bind(c, name="cudaMemPoolTrimTo")
-#else
-    function hipMemPoolTrimTo_(mem_pool,min_bytes_to_hold) bind(c, name="hipMemPoolTrimTo")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolTrimTo_
-      type(c_ptr),value :: mem_pool
-      integer(c_size_t),value :: min_bytes_to_hold
-    end function
-  end interface
-
-  !>  @brief Sets attributes of a memory pool
-  !>
-  !>  Supported attributes are:
-  !>  - @p hipMemPoolAttrReleaseThreshold: (value type = cuuint64_t)
-  !>                                   Amount of reserved memory in bytes to hold onto before trying
-  !>                                   to release memory back to the OS. When more than the release
-  !>                                   threshold bytes of memory are held by the memory pool, the
-  !>                                   allocator will try to release memory back to the OS on the
-  !>                                   next call to stream, event or context synchronize. (default
-  !>                                   0)
-  !>  - @p hipMemPoolReuseFollowEventDependencies: (value type = int)
-  !>                                   Allow @p hipMallocAsync to use memory asynchronously freed
-  !>                                   in another stream as long as a stream ordering dependency
-  !>                                   of the allocating stream on the free action exists.
-  !>                                   HIP events and null stream interactions can create the
-  !>                                   required
-  !>                                   stream ordered dependencies. (default enabled)
-  !>  - @p hipMemPoolReuseAllowOpportunistic: (value type = int)
-  !>                                   Allow reuse of already completed frees when there is no
-  !>  dependency between the free and allocation. (default enabled)
-  !>  - @p hipMemPoolReuseAllowInternalDependencies: (value type = int)
-  !>                                   Allow @p hipMallocAsync to insert new stream dependencies
-  !>                                   in order to establish the stream ordering required to reuse
-  !>                                   a piece of memory released by @p hipFreeAsync (default
-  !>                                   enabled).
-  !>
-  !>  @param [in] mem_pool The memory pool to modify
-  !>  @param [in] attr     The attribute to modify
-  !>  @param [in] value    Pointer to the value to assign
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
-  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolSetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolSetAttribute_(mem_pool,attr,myValue) bind(c, name="cudaMemPoolSetAttribute")
-#else
-    function hipMemPoolSetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolSetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolSetAttribute_
-      type(c_ptr),value :: mem_pool
-      integer(kind(hipMemPoolReuseFollowEventDependencies)),value :: attr
-      type(c_ptr),value :: myValue
-    end function
-  end interface
-
-  !>  @brief Gets attributes of a memory pool
-  !>
-  !>  Supported attributes are:
-  !>  - @p hipMemPoolAttrReleaseThreshold: (value type = cuuint64_t)
-  !>                                   Amount of reserved memory in bytes to hold onto before trying
-  !>                                   to release memory back to the OS. When more than the release
-  !>                                   threshold bytes of memory are held by the memory pool, the
-  !>                                   allocator will try to release memory back to the OS on the
-  !>                                   next call to stream, event or context synchronize. (default
-  !>                                   0)
-  !>  - @p hipMemPoolReuseFollowEventDependencies: (value type = int)
-  !>                                   Allow @p hipMallocAsync to use memory asynchronously freed
-  !>                                   in another stream as long as a stream ordering dependency
-  !>                                   of the allocating stream on the free action exists.
-  !>                                   HIP events and null stream interactions can create the
-  !>                                   required
-  !>                                   stream ordered dependencies. (default enabled)
-  !>  - @p hipMemPoolReuseAllowOpportunistic: (value type = int)
-  !>                                   Allow reuse of already completed frees when there is no
-  !>  dependency between the free and allocation. (default enabled)
-  !>  - @p hipMemPoolReuseAllowInternalDependencies: (value type = int)
-  !>                                   Allow @p hipMallocAsync to insert new stream dependencies
-  !>                                   in order to establish the stream ordering required to reuse
-  !>                                   a piece of memory released by @p hipFreeAsync (default
-  !>                                   enabled).
-  !>
-  !>  @param [in] mem_pool The memory pool to get attributes of
-  !>  @param [in] attr     The attribute to get
-  !>  @param [in] value    Retrieved value
-  !>
-  !>  @returns  `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync,
-  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess,
-  !>  hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolGetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolGetAttribute_(mem_pool,attr,myValue) bind(c, name="cudaMemPoolGetAttribute")
-#else
-    function hipMemPoolGetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolGetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolGetAttribute_
-      type(c_ptr),value :: mem_pool
-      integer(kind(hipMemPoolReuseFollowEventDependencies)),value :: attr
-      type(c_ptr),value :: myValue
-    end function
-  end interface
-
-  !>  @brief Controls visibility of the specified pool between devices
-  !>
-  !>  @param [in] mem_pool   Memory pool for acccess change
-  !>  @param [in] desc_list  Array of access descriptors. Each descriptor instructs the access to
-  !>  enable for a single gpu
-  !>  @param [in] count  Number of descriptors in the map array.
-  !>
-  !>  @returns  `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
-  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolSetAccess
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolSetAccess_(mem_pool,desc_list,count) bind(c, name="cudaMemPoolSetAccess")
-#else
-    function hipMemPoolSetAccess_(mem_pool,desc_list,count) bind(c, name="hipMemPoolSetAccess")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolSetAccess_
-      type(c_ptr),value :: mem_pool
-      type(hipMemAccessDesc) :: desc_list
-      integer(c_size_t),value :: count
-    end function
-  end interface
-
-  !>  @brief Returns the accessibility of a pool from a device
-  !>
-  !>  Returns the accessibility of the pool's memory from the specified location.
-  !>
-  !>  @param [out] flags    Accessibility of the memory pool from the specified location/device
-  !>  @param [in] mem_pool   Memory pool being queried
-  !>  @param [in] location  Location/device for memory pool access
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
-  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolGetAccess
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolGetAccess_(flags,mem_pool,location) bind(c, name="cudaMemPoolGetAccess")
-#else
-    function hipMemPoolGetAccess_(flags,mem_pool,location) bind(c, name="hipMemPoolGetAccess")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolGetAccess_
-      type(c_ptr),value :: flags
-      type(c_ptr),value :: mem_pool
-      type(hipMemLocation) :: location
-    end function
-  end interface
-
-  !>  @brief Creates a memory pool
-  !>
-  !>  Creates a HIP memory pool and returns the handle in @p mem_pool. The @p pool_props determines
-  !>  the properties of the pool such as the backing device and IPC capabilities.
-  !>
-  !>  By default, the memory pool will be accessible from the device it is allocated on.
-  !>
-  !>  @param [out] mem_pool    Contains createed memory pool
-  !>  @param [in] pool_props   Memory pool properties
-  !>
-  !>  @note Specifying hipMemHandleTypeNone creates a memory pool that will not support IPC.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
-  !>  hipMemPoolDestroy, hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute,
-  !>  hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolCreate
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolCreate_(mem_pool,pool_props) bind(c, name="cudaMemPoolCreate")
-#else
-    function hipMemPoolCreate_(mem_pool,pool_props) bind(c, name="hipMemPoolCreate")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolCreate_
-      type(c_ptr) :: mem_pool
-      type(hipMemPoolProps) :: pool_props
-    end function
-  end interface
-
-  !>  @brief Destroys the specified memory pool
-  !>
-  !>  If any pointers obtained from this pool haven't been freed or
-  !>  the pool has free operations that haven't completed
-  !>  when @p hipMemPoolDestroy is invoked, the function will return immediately and the
-  !>  resources associated with the pool will be released automatically
-  !>  once there are no more outstanding allocations.
-  !>
-  !>  Destroying the current mempool of a device sets the default mempool of
-  !>  that device as the current mempool for that device.
-  !>
-  !>  @param [in] mem_pool Memory pool for destruction
-  !>
-  !>  @note A device's default memory pool cannot be destroyed.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @see hipMallocFromPoolAsync, hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute,
-  !>  hipMemPoolCreate hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute,
-  !>  hipMemPoolSetAccess, hipMemPoolGetAccess
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolDestroy
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolDestroy_(mem_pool) bind(c, name="cudaMemPoolDestroy")
-#else
-    function hipMemPoolDestroy_(mem_pool) bind(c, name="hipMemPoolDestroy")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolDestroy_
-      type(c_ptr),value :: mem_pool
-    end function
-  end interface
-
-  !>  @brief Allocates memory from a specified pool with stream ordered semantics.
-  !>
-  !>  Inserts an allocation operation into @p stream.
-  !>  A pointer to the allocated memory is returned immediately in @p dev_ptr.
-  !>  The allocation must not be accessed until the allocation operation completes.
-  !>  The allocation comes from the specified memory pool.
-  !>
-  !>  @note The specified memory pool may be from a device different than that of the specified @p
-  !>  stream.
-  !>
-  !>  Basic stream ordering allows future work submitted into the same stream to use the allocation.
-  !>  Stream query, stream synchronize, and HIP events can be used to guarantee that the allocation
-  !>  operation completes before work submitted in a separate stream runs.
-  !>
-  !>  @note During stream capture, this function results in the creation of an allocation node. In
-  !>  this
-  !>  case, the allocation is owned by the graph instead of the memory pool. The memory pool's
-  !>  properties are used to set the node's creation parameters.
-  !>
-  !>  @param [out] dev_ptr Returned device pointer
-  !>  @param [in] size     Number of bytes to allocate
-  !>  @param [in] mem_pool The pool to allocate from
-  !>  @param [in] stream   The stream establishing the stream ordering semantic
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`, `hipErrorOutOfMemory`
-  !>
-  !>  @see hipMallocAsync, hipFreeAsync, hipMemPoolGetAttribute, hipMemPoolCreate
-  !>  hipMemPoolTrimTo, hipDeviceSetMemPool, hipMemPoolSetAttribute, hipMemPoolSetAccess,
-  !>  hipMemPoolGetAccess,
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMallocFromPoolAsync
-#ifdef USE_CUDA_NAMES
-    function hipMallocFromPoolAsync_(dev_ptr,mySize,mem_pool,stream) &
-        bind(c, name="cudaMallocFromPoolAsync")
-#else
-    function hipMallocFromPoolAsync_(dev_ptr,mySize,mem_pool,stream) &
-        bind(c, name="hipMallocFromPoolAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMallocFromPoolAsync_
-      type(c_ptr) :: dev_ptr
-      integer(c_size_t),value :: mySize
-      type(c_ptr),value :: mem_pool
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Exports a memory pool to the requested handle type.
-  !>
-  !>  Given an IPC capable mempool, create an OS handle to share the pool with another process.
-  !>  A recipient process can convert the shareable handle into a mempool with @p
-  !>  hipMemPoolImportFromShareableHandle. Individual pointers can then be shared with the @p
-  !>  hipMemPoolExportPointer and @p hipMemPoolImportPointer APIs. The implementation of what the
-  !>  shareable handle is and how it can be transferred is defined by the requested handle type.
-  !>
-  !>  @note To create an IPC capable mempool, create a mempool with a @p hipMemAllocationHandleType
-  !>  other than @p hipMemHandleTypeNone.
-  !>
-  !>  @param [out] shared_handle Pointer to the location in which to store the requested handle
-  !>  @param [in] mem_pool       Pool to export
-  !>  @param [in] handle_type    The type of handle to create
-  !>  @param [in] flags          Must be 0
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
-  !>
-  !>  @see hipMemPoolImportFromShareableHandle
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolExportToShareableHandle
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolExportToShareableHandle_(shared_handle,mem_pool,handle_type,flags) &
-        bind(c, name="cudaMemPoolExportToShareableHandle")
-#else
-    function hipMemPoolExportToShareableHandle_(shared_handle,mem_pool,handle_type,flags) &
-        bind(c, name="hipMemPoolExportToShareableHandle")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolExportToShareableHandle_
-      type(c_ptr),value :: shared_handle
-      type(c_ptr),value :: mem_pool
-      integer(kind(hipMemHandleTypeNone)),value :: handle_type
-      integer(c_int),value :: flags
-    end function
-  end interface
-
-  !>  @brief Imports a memory pool from a shared handle.
-  !>
-  !>  Specific allocations can be imported from the imported pool with @p hipMemPoolImportPointer.
-  !>
-  !>  @note Imported memory pools do not support creating new allocations.
-  !>  As such imported memory pools may not be used in @p hipDeviceSetMemPool
-  !>  or @p hipMallocFromPoolAsync calls.
-  !>
-  !>  @param [out] mem_pool     Returned memory pool
-  !>  @param [in] shared_handle OS handle of the pool to open
-  !>  @param [in] handle_type   The type of handle being imported
-  !>  @param [in] flags         Must be 0
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
-  !>
-  !>  @see hipMemPoolExportToShareableHandle
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolImportFromShareableHandle
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolImportFromShareableHandle_(mem_pool,shared_handle,handle_type,flags) &
-        bind(c, name="cudaMemPoolImportFromShareableHandle")
-#else
-    function hipMemPoolImportFromShareableHandle_(mem_pool,shared_handle,handle_type,flags) &
-        bind(c, name="hipMemPoolImportFromShareableHandle")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolImportFromShareableHandle_
-      type(c_ptr) :: mem_pool
-      type(c_ptr),value :: shared_handle
-      integer(kind(hipMemHandleTypeNone)),value :: handle_type
-      integer(c_int),value :: flags
-    end function
-  end interface
-
-  !>  @brief Export data to share a memory pool allocation between processes.
-  !>
-  !>  Constructs @p export_data for sharing a specific allocation from an already shared memory
-  !>  pool.
-  !>  The recipient process can import the allocation with the @p hipMemPoolImportPointer api.
-  !>  The data is not a handle and may be shared through any IPC mechanism.
-  !>
-  !>  @param[out] export_data - Returned export data
-  !>  @param[in] dev_ptr - Pointer to memory being exported
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
-  !>
-  !>  @see hipMemPoolImportPointer
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolExportPointer
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolExportPointer_(export_data,dev_ptr) bind(c, name="cudaMemPoolExportPointer")
-#else
-    function hipMemPoolExportPointer_(export_data,dev_ptr) bind(c, name="hipMemPoolExportPointer")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolExportPointer_
-      type(hipMemPoolPtrExportData) :: export_data
-      type(c_ptr),value :: dev_ptr
-    end function
-  end interface
-
-  !>  @brief Import a memory pool allocation from another process.
-  !>
-  !>  Returns in @p dev_ptr a pointer to the imported memory.
-  !>  The imported memory must not be accessed before the allocation operation completes
-  !>  in the exporting process. The imported memory must be freed from all importing processes
-  !>  before
-  !>  being freed in the exporting process. The pointer may be freed with @p hipFree
-  !>  or @p hipFreeAsync. If @p hipFreeAsync is used, the free must be completed
-  !>  on the importing process before the free operation on the exporting process.
-  !>
-  !>  @note The @p hipFreeAsync api may be used in the exporting process before
-  !>  the @p hipFreeAsync operation completes in its stream as long as the
-  !>  @p hipFreeAsync in the exporting process specifies a stream with
-  !>  a stream dependency on the importing process's @p hipFreeAsync.
-  !>
-  !>  @param [out] dev_ptr     Pointer to imported memory
-  !>  @param [in] mem_pool     Memory pool from which to import a pointer
-  !>  @param [in] export_data  Data specifying the memory to import
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`, `hipErrorOutOfMemory`
-  !>
-  !>  @see hipMemPoolExportPointer
-  !>
-  !>  @warning This API is marked as Beta. While this feature is complete, it can
-  !>           change and might have outstanding issues.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-  interface hipMemPoolImportPointer
-#ifdef USE_CUDA_NAMES
-    function hipMemPoolImportPointer_(dev_ptr,mem_pool,export_data) &
-        bind(c, name="cudaMemPoolImportPointer")
-#else
-    function hipMemPoolImportPointer_(dev_ptr,mem_pool,export_data) &
-        bind(c, name="hipMemPoolImportPointer")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemPoolImportPointer_
-      type(c_ptr) :: dev_ptr
-      type(c_ptr),value :: mem_pool
-      type(hipMemPoolPtrExportData) :: export_data
-    end function
-  end interface
-
-  !>   @brief Copies from one 1D array to device memory.
-  !>
-  !>   @param[out] dstDevice - Destination device pointer
-  !>   @param[in] srcArray - Source array
-  !>   @param[in] srcOffset - Offset in bytes of source array
-  !>   @param[in] ByteCount - Size of memory copy in bytes
-  !>
-  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>   `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue`
-  !>
-  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
-  interface hipMemcpyAtoD
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="cuMemcpyAtoD")
-#else
-    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="hipMemcpyAtoD")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpyAtoD_
-      type(c_ptr),value :: dstDevice
-      type(c_ptr),value :: srcArray
-      integer(c_size_t),value :: srcOffset
-      integer(c_size_t),value :: ByteCount
-    end function
-  end interface
-
-  !>   @brief Copies from device memory to a 1D array.
-  !>
-  !>   @param[out] dstArray - Destination array
-  !>   @param[in] dstOffset - Offset in bytes of destination array
-  !>   @param[in] srcDevice - Source device pointer
-  !>   @param[in] ByteCount - Size of memory copy in bytes
-  !>
-  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>   `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue`
-  !>
-  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
-  interface hipMemcpyDtoA
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="cuMemcpyDtoA")
-#else
-    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="hipMemcpyDtoA")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpyDtoA_
-      type(c_ptr),value :: dstArray
-      integer(c_size_t),value :: dstOffset
-      type(c_ptr),value :: srcDevice
-      integer(c_size_t),value :: ByteCount
-    end function
-  end interface
-
-  !>   @brief Copies from one 1D array to another.
-  !>
-  !>   @param[out] dstArray - Destination array
-  !>   @param[in] dstOffset - Offset in bytes of destination array
-  !>   @param[in] srcArray - Source array
-  !>   @param[in] srcOffset - Offset in bytes of source array
-  !>   @param[in] ByteCount - Size of memory copy in bytes
-  !>
-  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>   `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue`
-  !>
-  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
-  interface hipMemcpyAtoA
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
-        bind(c, name="cuMemcpyAtoA")
-#else
-    function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
-        bind(c, name="hipMemcpyAtoA")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpyAtoA_
-      type(c_ptr),value :: dstArray
-      integer(c_size_t),value :: dstOffset
-      type(c_ptr),value :: srcArray
-      integer(c_size_t),value :: srcOffset
-      integer(c_size_t),value :: ByteCount
-    end function
-  end interface
-
-  !>  @brief Copies from one 1D array to host memory.
-  !>
-  !>   @param[out] dstHost - Destination pointer
-  !>   @param[in] srcArray - Source array
-  !>   @param[in] srcOffset - Offset in bytes of source array
-  !>   @param[in] ByteCount - Size of memory copy in bytes
-  !>   @param[in] stream - Stream identifier
-  !>
-  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>   `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue`
-  !>
-  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
-  interface hipMemcpyAtoHAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
-        bind(c, name="cuMemcpyAtoHAsync")
-#else
-    function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
-        bind(c, name="hipMemcpyAtoHAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpyAtoHAsync_
-      type(c_ptr),value :: dstHost
-      type(c_ptr),value :: srcArray
-      integer(c_size_t),value :: srcOffset
-      integer(c_size_t),value :: ByteCount
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Copies from host memory to a 1D array.
-  !>
-  !>   @param[out] dstArray - Destination array
-  !>   @param[in] dstOffset - Offset in bytes of destination array
-  !>   @param[in] srcHost - Source host pointer
-  !>   @param[in] ByteCount - Size of memory copy in bytes
-  !>   @param[in] stream - Stream identifier
-  !>
-  !>   @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>   `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue`
-  !>
-  !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !>  hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !>  hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !>  hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !>  hipMemHostAlloc, hipMemHostGetDevicePointer
-  interface hipMemcpyHtoAAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
-        bind(c, name="cuMemcpyHtoAAsync")
-#else
-    function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
-        bind(c, name="hipMemcpyHtoAAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpyHtoAAsync_
-      type(c_ptr),value :: dstArray
-      integer(c_size_t),value :: dstOffset
-      type(c_ptr),value :: srcHost
-      integer(c_size_t),value :: ByteCount
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Gets the pointer of requested HIP driver function.
-  !>
-  !>  @param[in] symbol - The Symbol name of the driver function to request.
-  !>  @param[out] pfn - Output pointer to the requested driver function.
-  !>  @param[in] hipVersion - The HIP version for the requested driver function symbol.
-  !>  HIP version is defined as 100*version_major + version_minor. For example, in HIP 6.1, the
-  !>  hipversion is 601, for the symbol function "hipGetDeviceProperties", the specified hipVersion
-  !>  601
-  !>  is greater or equal to the version 600, the symbol function will be handle properly as backend
-  !>  compatible function.
-  !>
-  !>  @param[in] flags - Currently only default flag is suppported.
-  !>  @param[out] symbolStatus - Optional enumeration for returned status of searching for symbol
-  !>  driver
-  !>  function based on the input hipVersion.
-  !>
-  !>  Returns hipSuccess if the returned pfn is addressed to the pointer of found driver function.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
-  interface hipGetProcAddress
-#ifdef USE_CUDA_NAMES
-    function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
-        bind(c, name="cuGetProcAddress")
-#else
-    function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
-        bind(c, name="hipGetProcAddress")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetProcAddress_
-      type(c_ptr),value :: symbol
-      type(c_ptr) :: pfn
-      integer(c_int),value :: hipVersion
-      integer(c_int64_t),value :: flags
-      type(c_ptr),value :: symbolStatus
-    end function
-  end interface
-
-  !>   @brief Fills 2D memory range of 'width' 8-bit values synchronously to the specified char
-  !>   value.
-  !>  Height specifies numbers of rows to set and dstPitch speicifies the number of bytes between
-  !>  each
-  !>  row.
-  !>   @param[in] dst - Pointer to device memory
-  !>   @param[in] dstPitch - Pitch of dst device pointer
-  !>   @param[in] myValue - value to set
-  !>   @param[in] width - Width of row
-  !>   @param[in] height - Number of rows
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemsetD2D8
-#ifdef USE_CUDA_NAMES
-    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D8")
-#else
-    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D8")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemsetD2D8_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dstPitch
-      type(c_ptr),value :: myValue
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-    end function
-  end interface
-
-  !>   @brief Fills 2D memory range of 'width' 8-bit values asynchronously to the specified char
-  !>   value.
-  !>  Height specifies numbers of rows to set and dstPitch speicifies the number of bytes between
-  !>  each
-  !>  row.
-  !>   @param[in] dst - Pointer to device memory
-  !>   @param[in] dstPitch - Pitch of dst device pointer
-  !>   @param[in] myValue - value to set
-  !>   @param[in] width - Width of row
-  !>   @param[in] height - Number of rows
-  !>   @param[in] stream - Stream Identifier
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemsetD2D8Async
-#ifdef USE_CUDA_NAMES
-    function hipMemsetD2D8Async_(dst,dstPitch,myValue,width,height,stream) &
-        bind(c, name="cuMemsetD2D8Async")
-#else
-    function hipMemsetD2D8Async_(dst,dstPitch,myValue,width,height,stream) &
-        bind(c, name="hipMemsetD2D8Async")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemsetD2D8Async_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dstPitch
-      type(c_ptr),value :: myValue
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>   @brief Fills 2D memory range of 'width' 16-bit values synchronously to the specified short
-  !>  value. Height specifies numbers of rows to set and dstPitch speicifies the number of bytes
-  !>  between each row.
-  !>   @param[in] dst - Pointer to device memory
-  !>   @param[in] dstPitch - Pitch of dst device pointer
-  !>   @param[in] myValue - value to set
-  !>   @param[in] width - Width of row
-  !>   @param[in] height - Number of rows
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemsetD2D16
-#ifdef USE_CUDA_NAMES
-    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D16")
-#else
-    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D16")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemsetD2D16_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dstPitch
-      integer(c_short),value :: myValue
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-    end function
-  end interface
-
-  !>   @brief Fills 2D memory range of 'width' 16-bit values asynchronously to the specified short
-  !>  value. Height specifies numbers of rows to set and dstPitch speicifies the number of bytes
-  !>  between each row.
-  !>   @param[in] dst - Pointer to device memory
-  !>   @param[in] dstPitch - Pitch of dst device pointer
-  !>   @param[in] myValue - value to set
-  !>   @param[in] width - Width of row
-  !>   @param[in] height - Number of rows
-  !>   @param[in] stream - Stream Identifier
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemsetD2D16Async
-#ifdef USE_CUDA_NAMES
-    function hipMemsetD2D16Async_(dst,dstPitch,myValue,width,height,stream) &
-        bind(c, name="cuMemsetD2D16Async")
-#else
-    function hipMemsetD2D16Async_(dst,dstPitch,myValue,width,height,stream) &
-        bind(c, name="hipMemsetD2D16Async")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemsetD2D16Async_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dstPitch
-      integer(c_short),value :: myValue
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>   @brief Fills 2D memory range of 'width' 32-bit values synchronously to the specified int
-  !>   value.
-  !>  Height specifies numbers of rows to set and dstPitch speicifies the number of bytes between
-  !>  each
-  !>  row.
-  !>   @param[in] dst - Pointer to device memory
-  !>   @param[in] dstPitch - Pitch of dst device pointer
-  !>   @param[in] myValue - value to set
-  !>   @param[in] width - Width of row
-  !>   @param[in] height - Number of rows
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemsetD2D32
-#ifdef USE_CUDA_NAMES
-    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D32")
-#else
-    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D32")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemsetD2D32_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dstPitch
-      integer(c_int),value :: myValue
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-    end function
-  end interface
-
-  !>   @brief Fills 2D memory range of 'width' 32-bit values asynchronously to the specified int
-  !>  value. Height specifies numbers of rows to set and dstPitch speicifies the number of bytes
-  !>  between each row.
-  !>   @param[in] dst - Pointer to device memory
-  !>   @param[in] dstPitch - Pitch of dst device pointer
-  !>   @param[in] myValue - value to set
-  !>   @param[in] width - Width of row
-  !>   @param[in] height - Number of rows
-  !>   @param[in] stream - Stream Identifier
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemsetD2D32Async
-#ifdef USE_CUDA_NAMES
-    function hipMemsetD2D32Async_(dst,dstPitch,myValue,width,height,stream) &
-        bind(c, name="cuMemsetD2D32Async")
-#else
-    function hipMemsetD2D32Async_(dst,dstPitch,myValue,width,height,stream) &
-        bind(c, name="hipMemsetD2D32Async")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemsetD2D32Async_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dstPitch
-      integer(c_int),value :: myValue
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Gets info about the specified array
-  !>
-  !>  @param[out] desc - Returned array type
-  !>  @param[out] extent - Returned array shape. 2D arrays will have depth of zero
-  !>  @param[out] flags - Returned array flags
-  !>  @param[in] array - The HIP array to get info for
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue` `hipErrorInvalidHandle`
-  !>
-  !>  @see hipArrayGetDescriptor, hipArray3DGetDescriptor
-  interface hipArrayGetInfo
-#ifdef USE_CUDA_NAMES
-    function hipArrayGetInfo_(desc,extent,flags,array) bind(c, name="cudaArrayGetInfo")
-#else
-    function hipArrayGetInfo_(desc,extent,flags,array) bind(c, name="hipArrayGetInfo")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipArrayGetInfo_
-      type(hipChannelFormatDesc) :: desc
-      type(hipExtent) :: extent
-      type(c_ptr),value :: flags
-      type(c_ptr),value :: array
-    end function
-  end interface
-
-  !>  @brief Gets a 1D or 2D array descriptor
-  !>
-  !>  @param[out] pArrayDescriptor - Returned array descriptor
-  !>  @param[in] array - Array to get descriptor of
-  !>
-  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>  `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue` `hipErrorInvalidHandle`
-  !>
-  !>  @see hipArray3DCreate, hipArray3DGetDescriptor, hipArrayCreate, hipArrayDestroy, hipMemAlloc,
-  !>  hipMemAllocHost, hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned,
-  !>  hipMemcpy3D, hipMemcpy3DAsync, hipMemcpyAtoA, hipMemcpyAtoD, hipMemcpyAtoH,
-  !>  hipMemcpyAtoHAsync,
-  !>  hipMemcpyDtoA, hipMemcpyDtoD, hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync,
-  !>  hipMemcpyHtoA, hipMemcpyHtoAAsync, hipMemcpyHtoD, hipMemcpyHtoDAsync, hipMemFree,
-  !>  hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo, hipMemHostAlloc,
-  !>  hipMemHostGetDevicePointer, hipMemsetD8, hipMemsetD16, hipMemsetD32, hipArrayGetInfo
-  interface hipArrayGetDescriptor
-#ifdef USE_CUDA_NAMES
-    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArrayGetDescriptor")
-#else
-    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="hipArrayGetDescriptor")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipArrayGetDescriptor_
-      type(HIP_ARRAY_DESCRIPTOR) :: pArrayDescriptor
-      type(c_ptr),value :: array
-    end function
-  end interface
-
-  !>  @brief Gets a 3D array descriptor
-  !>
-  !>  @param[out] pArrayDescriptor - Returned 3D array descriptor
-  !>  @param[in] array - 3D array to get descriptor of
-  !>
-  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>  `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidValue` `hipErrorInvalidHandle`, `hipErrorContextIsDestroyed`
-  !>
-  !>  @see hipArray3DCreate, hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc,
-  !>  hipMemAllocHost, hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned,
-  !>  hipMemcpy3D, hipMemcpy3DAsync, hipMemcpyAtoA, hipMemcpyAtoD, hipMemcpyAtoH,
-  !>  hipMemcpyAtoHAsync,
-  !>  hipMemcpyDtoA, hipMemcpyDtoD, hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync,
-  !>  hipMemcpyHtoA, hipMemcpyHtoAAsync, hipMemcpyHtoD, hipMemcpyHtoDAsync, hipMemFree,
-  !>  hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo, hipMemHostAlloc,
-  !>  hipMemHostGetDevicePointer, hipMemsetD8, hipMemsetD16, hipMemsetD32, hipArrayGetInfo
-  interface hipArray3DGetDescriptor
-#ifdef USE_CUDA_NAMES
-    function hipArray3DGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArray3DGetDescriptor")
-#else
-    function hipArray3DGetDescriptor_(pArrayDescriptor,array) &
-        bind(c, name="hipArray3DGetDescriptor")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipArray3DGetDescriptor_
-      type(HIP_ARRAY3D_DESCRIPTOR) :: pArrayDescriptor
-      type(c_ptr),value :: array
-    end function
-  end interface
-
-  !>   @brief Copies data between host and device.
-  !>
-  !>   @param[in] dst - Destination memory address
-  !>   @param[in] wOffsetDst - Destination starting X offset
-  !>   @param[in] hOffsetDst - Destination starting Y offset
-  !>   @param[in] src - Source memory address
-  !>   @param[in] wOffsetSrc - Source starting X offset
-  !>   @param[in] hOffsetSrc - Source starting Y offset (columns in bytes)
-  !>   @param[in] width - Width of matrix transfer (columns in bytes)
-  !>   @param[in] height - Height of matrix transfer (rows)
-  !>   @param[in] myKind - Type of transfer
-  !>
-  !>   @returns     `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidMemcpyDirection`
-  !>
-  !>   @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !>  hipMemcpyAsync
-  interface hipMemcpy2DArrayToArray
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy2DArrayToArray_(dst,wOffsetDst,hOffsetDst,src,wOffsetSrc,hOffsetSrc,width, &
-        height,myKind) &
-        bind(c, name="cudaMemcpy2DArrayToArray")
-#else
-    function hipMemcpy2DArrayToArray_(dst,wOffsetDst,hOffsetDst,src,wOffsetSrc,hOffsetSrc,width, &
-        height,myKind) &
-        bind(c, name="hipMemcpy2DArrayToArray")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpy2DArrayToArray_
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: wOffsetDst
-      integer(c_size_t),value :: hOffsetDst
-      type(c_ptr),value :: src
-      integer(c_size_t),value :: wOffsetSrc
-      integer(c_size_t),value :: hOffsetSrc
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-      integer(kind(hipMemcpyHostToHost)),value :: myKind
-    end function
-  end interface
-
-  !>  @brief Perform Batch of 1D copies
-  !>
-  !>  @param [in] dsts      - Array of destination pointers
-  !>  @param [in] srcs      - Array of source pointers.
-  !>  @param [in] sizes     - Array of sizes for memcpy operations
-  !>  @param [in] count     - Size of dsts, srcs and sizes arrays
-  !>  @param [in] attrs     - Array of memcpy attributes (not supported)
-  !>  @param [in] attrsIdxs - Array of indices to map attrs to copies (not supported)
-  !>  @param [in] numAttrs  - Size of attrs and attrsIdxs arrays (not supported)
-  !>  @param [in] failIdx   - Pointer to a location to return failure index inside the batch
-  !>  @param [in] stream    - stream used to enqueue operations in.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemcpyBatchAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
-        bind(c, name="cudaMemcpyBatchAsync")
-#else
-    function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
-        bind(c, name="hipMemcpyBatchAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_
-      type(c_ptr) :: dsts
-      type(c_ptr) :: srcs
-      type(c_ptr),value :: sizes
-      integer(c_size_t),value :: count
-      type(hipMemcpyAttributes) :: attrs
-      type(c_ptr),value :: attrsIdxs
-      integer(c_size_t),value :: numAttrs
-      type(c_ptr),value :: failIdx
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Perform Batch of 3D copies
-  !>
-  !>  @param [in] numOps  - Total number of memcpy operations.
-  !>  @param [in] opList  - Array of size numOps containing the actual memcpy operations.
-  !>  @param [in] failIdx - Pointer to a location to return the index of the copy where a failure
-  !>                      - was encountered.
-  !>  @param [in] flags   - Flags for future use, must be zero now.
-  !>  @param [in] stream  - The stream to enqueue the operations in.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipMemcpy3DBatchAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
-        bind(c, name="cudaMemcpy3DBatchAsync")
-#else
-    function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
-        bind(c, name="hipMemcpy3DBatchAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpy3DBatchAsync_
-      integer(c_size_t),value :: numOps
-      type(hipMemcpy3DBatchOp) :: opList
-      type(c_ptr),value :: failIdx
-      integer(c_int64_t),value :: flags
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Performs 3D memory copies between devices
-  !>  This API is asynchronous with respect to host
-  !>
-  !>  @param [in] p  - Parameters for memory copy
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, hipErrorInvalidDevice
-  interface hipMemcpy3DPeer
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy3DPeer_(p) bind(c, name="cudaMemcpy3DPeer")
-#else
-    function hipMemcpy3DPeer_(p) bind(c, name="hipMemcpy3DPeer")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpy3DPeer_
-      type(hipMemcpy3DPeerParms) :: p
-    end function
-  end interface
-
-  !>  @brief Performs 3D memory copies between devices asynchronously
-  !>
-  !>  @param [in] p  - Parameters for memory copy
-  !>  @param [in] stream - Stream to enqueue operation in.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, hipErrorInvalidDevice
-  interface hipMemcpy3DPeerAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy3DPeerAsync_(p,stream) bind(c, name="cudaMemcpy3DPeerAsync")
-#else
-    function hipMemcpy3DPeerAsync_(p,stream) bind(c, name="hipMemcpy3DPeerAsync")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemcpy3DPeerAsync_
-      type(hipMemcpy3DPeerParms) :: p
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !> -------------------------------------------------------------------------------------------------
-  !> -------------------------------------------------------------------------------------------------
-  !>
-  !>   @defgroup Module Module Management
-  !>
-  !>   @ingroup API
-  !>   This section describes the module management functions of HIP runtime API.
-  !>
-  !>
-  !>
-  !>  @brief Loads fatbin object
-  !>
-  !>  @param [in] fatbin  fatbin to be loaded as a module
-  !>  @param [out] module  Module
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
-  !>  `hipErrorFileNotFound`,
-  !>  `hipErrorOutOfMemory`, `hipErrorSharedObjectInitFailed`, `hipErrorNotInitialized`
-  interface hipModuleLoadFatBinary
-#ifdef USE_CUDA_NAMES
-    function hipModuleLoadFatBinary_(myModule,fatbin) bind(c, name="cuModuleLoadFatBinary")
-#else
-    function hipModuleLoadFatBinary_(myModule,fatbin) bind(c, name="hipModuleLoadFatBinary")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipModuleLoadFatBinary_
-      type(c_ptr) :: myModule
-      type(c_ptr),value :: fatbin
-    end function
-  end interface
-
-  !>  @brief Returns the number of functions within a module.
-  !>
-  !>  @param [in] mod  Module to get function count from
-  !>  @param [out] count  function count from module
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
-  !>  `hipErrorNotInitialized`,
-  !>  `hipErrorNotFound`,
-  interface hipModuleGetFunctionCount
-#ifdef USE_CUDA_NAMES
-    function hipModuleGetFunctionCount_(count,mod) bind(c, name="cuModuleGetFunctionCount")
-#else
-    function hipModuleGetFunctionCount_(count,mod) bind(c, name="hipModuleGetFunctionCount")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_
-      type(c_ptr),value :: count
-      type(c_ptr),value :: mod
-    end function
-  end interface
-
-  !>  @brief Load hip Library from inmemory object
-  !>
-  !>  @param [out] library Output Library
-  !>  @param [in] code In memory object
-  !>  @param [in] jitOptions JIT options, CUDA only
-  !>  @param [in] jitOptionsValues JIT options values, CUDA only
-  !>  @param [in] numJitOptions Number of JIT options
-  !>  @param [in] libraryOptions Library options
-  !>  @param [in] libraryOptionValues Library options values
-  !>  @param [in] numLibraryOptions Number of library options
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`,
-  interface hipLibraryLoadData
-#ifdef USE_CUDA_NAMES
-    function hipLibraryLoadData_(library,code,jitOptions,jitOptionsValues,numJitOptions, &
-        libraryOptions,libraryOptionValues,numLibraryOptions) &
-        bind(c, name="cudaLibraryLoadData")
-#else
-    function hipLibraryLoadData_(library,code,jitOptions,jitOptionsValues,numJitOptions, &
-        libraryOptions,libraryOptionValues,numLibraryOptions) &
-        bind(c, name="hipLibraryLoadData")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLibraryLoadData_
-      type(c_ptr) :: library
-      type(c_ptr),value :: code
-      type(c_ptr),value :: jitOptions
-      type(c_ptr) :: jitOptionsValues
-      integer(c_int),value :: numJitOptions
-      type(c_ptr),value :: libraryOptions
-      type(c_ptr) :: libraryOptionValues
-      integer(c_int),value :: numLibraryOptions
-    end function
-  end interface
-
-  !>  @brief Load hip Library from file
-  !>
-  !>  @param [out] library Output Library
-  !>  @param [in] fileName file which contains code object
-  !>  @param [in] jitOptions JIT options, CUDA only
-  !>  @param [in] jitOptionsValues JIT options values, CUDA only
-  !>  @param [in] numJitOptions Number of JIT options
-  !>  @param [in] libraryOptions Library options
-  !>  @param [in] libraryOptionValues Library options values
-  !>  @param [in] numLibraryOptions Number of library options
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-  interface hipLibraryLoadFromFile
-#ifdef USE_CUDA_NAMES
-    function hipLibraryLoadFromFile_(library,fileName,jitOptions,jitOptionsValues,numJitOptions, &
-        libraryOptions,libraryOptionValues,numLibraryOptions) &
-        bind(c, name="cudaLibraryLoadFromFile")
-#else
-    function hipLibraryLoadFromFile_(library,fileName,jitOptions,jitOptionsValues,numJitOptions, &
-        libraryOptions,libraryOptionValues,numLibraryOptions) &
-        bind(c, name="hipLibraryLoadFromFile")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_
-      type(c_ptr) :: library
-      type(c_ptr),value :: fileName
-      type(c_ptr),value :: jitOptions
-      type(c_ptr) :: jitOptionsValues
-      integer(c_int),value :: numJitOptions
-      type(c_ptr),value :: libraryOptions
-      type(c_ptr) :: libraryOptionValues
-      integer(c_int),value :: numLibraryOptions
-    end function
-  end interface
-
-  !>  @brief Unload HIP Library
-  !>
-  !>  @param [in] library Input created hip library
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-  interface hipLibraryUnload
-#ifdef USE_CUDA_NAMES
-    function hipLibraryUnload_(library) bind(c, name="cudaLibraryUnload")
-#else
-    function hipLibraryUnload_(library) bind(c, name="hipLibraryUnload")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLibraryUnload_
-      type(c_ptr),value :: library
-    end function
-  end interface
-
-  !>  @brief Get Kernel object from library
-  !>
-  !>  @param [out] pKernel Output kernel object
-  !>  @param [in] library Input hip library
-  !>  @param [in] name kernel name to be searched for
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-  interface hipLibraryGetKernel
-#ifdef USE_CUDA_NAMES
-    function hipLibraryGetKernel_(pKernel,library,name) bind(c, name="cudaLibraryGetKernel")
-#else
-    function hipLibraryGetKernel_(pKernel,library,name) bind(c, name="hipLibraryGetKernel")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLibraryGetKernel_
-      type(c_ptr) :: pKernel
-      type(c_ptr),value :: library
-      type(c_ptr),value :: name
-    end function
-  end interface
-
-  !>  @brief Get Kernel count in library
-  !>
-  !>  @param [out] count Count of kernels in library
-  !>  @param [in] library Input created hip library
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-  interface hipLibraryGetKernelCount
-#ifdef USE_CUDA_NAMES
-    function hipLibraryGetKernelCount_(count,library) bind(c, name="cudaLibraryGetKernelCount")
-#else
-    function hipLibraryGetKernelCount_(count,library) bind(c, name="hipLibraryGetKernelCount")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_
-      type(c_ptr),value :: count
-      type(c_ptr),value :: library
-    end function
-  end interface
-
-  !>  @brief Retrieve kernel handles within a library
-  !>
-  !>  @param [out] kernels Buffer for kernel handles
-  !>  @param [in] numKernels Maximum number of kernel handles to return to buffer
-  !>  @param [in] library Library handle to query from
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-  interface hipLibraryEnumerateKernels
-#ifdef USE_CUDA_NAMES
-    function hipLibraryEnumerateKernels_(kernels,numKernels,library) &
-        bind(c, name="cudaLibraryEnumerateKernels")
-#else
-    function hipLibraryEnumerateKernels_(kernels,numKernels,library) &
-        bind(c, name="hipLibraryEnumerateKernels")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLibraryEnumerateKernels_
-      type(c_ptr) :: kernels
-      integer(c_int),value :: numKernels
-      type(c_ptr),value :: library
-    end function
-  end interface
-
-  !>  @brief Returns a Library Handle
-  !>
-  !>  @param [out] library Returned Library handle
-  !>  @param [in] kernel Kernel to retrieve library Handle
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipKernelGetLibrary
-    function hipKernelGetLibrary_(library,kernel) bind(c, name="hipKernelGetLibrary")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipKernelGetLibrary_
-      type(c_ptr) :: library
-      type(c_ptr),value :: kernel
-    end function
-  end interface
-#endif
-
-  !>  @brief Returns a Kernel Name
-  !>
-  !>  @param [out] name Returned Kernel Name
-  !>  @param [in] kernel Kernel handle to retrieve name
-  !>  @return `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipKernelGetName
-    function hipKernelGetName_(name,kernel) bind(c, name="hipKernelGetName")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipKernelGetName_
-      type(c_ptr) :: name
-      type(c_ptr),value :: kernel
-    end function
-  end interface
-#endif
-
-  !>  @brief Gets pointer to device entry function that matches entry function symbolPtr.
-  !>
-  !>  @param [out] functionPtr  Device entry function
-  !>  @param [in]  symbolPtr  Pointer to device entry function to search for
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidDeviceFunction`
-  interface hipGetFuncBySymbol
-#ifdef USE_CUDA_NAMES
-    function hipGetFuncBySymbol_(functionPtr,symbolPtr) bind(c, name="cudaGetFuncBySymbol")
-#else
-    function hipGetFuncBySymbol_(functionPtr,symbolPtr) bind(c, name="hipGetFuncBySymbol")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetFuncBySymbol_
-      type(c_ptr) :: functionPtr
-      type(c_ptr),value :: symbolPtr
-    end function
-  end interface
-
-  !>  @brief Gets function pointer of a requested HIP API
-  !>
-  !>  @param [in]  symbol  The API base name
-  !>  @param [out] funcPtr  Pointer to the requested function
-  !>  @param [in]  flags  Flags for the search
-  !>  @param [out] driverStatus  Optional returned status of the search
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGetDriverEntryPoint
-#ifdef USE_CUDA_NAMES
-    function hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus) &
-        bind(c, name="cudaGetDriverEntryPoint")
-#else
-    function hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus) &
-        bind(c, name="hipGetDriverEntryPoint")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_
-      type(c_ptr),value :: symbol
-      type(c_ptr) :: funcPtr
-      integer(c_int64_t),value :: flags
-      type(c_ptr),value :: driverStatus
-    end function
-  end interface
-
-  !>  @brief Adds bitcode data to be linked with options.
-  !>  @param [in] state hip link state
-  !>  @param [in] type  Type of the input data or bitcode
-  !>  @param [in] data  Input data which is null terminated
-  !>  @param [in] size  Size of the input data
-  !>  @param [in] name  Optional name for this input
-  !>  @param [in] numOptions  Size of the options
-  !>  @param [in] options  Array of options applied to this input
-  !>  @param [in] optionValues  Array of option values cast to void*
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`
-  !>
-  !>  If adding the file fails, it will
-  !>  @return `hipErrorInvalidConfiguration`
-  !>
-  !>  @see hipError_t
-  interface hipLinkAddData
-#ifdef USE_CUDA_NAMES
-    function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
-        bind(c, name="cuLinkAddData")
-#else
-    function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
-        bind(c, name="hipLinkAddData")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLinkAddData_
-      type(c_ptr),value :: state
-      integer(kind(hipJitInputCubin)),value :: myType
-      type(c_ptr),value :: myData
-      integer(c_size_t),value :: mySize
-      type(c_ptr),value :: name
-      integer(c_int),value :: numOptions
-      type(c_ptr),value :: options
-      type(c_ptr) :: optionValues
-    end function
-  end interface
-
-  !>  @brief Adds a file with bitcode to be linked with options.
-  !>  @param [in] state hip link state
-  !>  @param [in] type  Type of the input data or bitcode
-  !>  @param [in] path  Path to the input file where bitcode is present
-  !>  @param [in] numOptions  Size of the options
-  !>  @param [in] options  Array of options applied to this input
-  !>  @param [in] optionValues  Array of option values cast to void*
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  If adding the file fails, it will
-  !>  @return `hipErrorInvalidConfiguration`
-  !>
-  !>  @see hipError_t
-  interface hipLinkAddFile
-#ifdef USE_CUDA_NAMES
-    function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
-        bind(c, name="cuLinkAddFile")
-#else
-    function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
-        bind(c, name="hipLinkAddFile")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLinkAddFile_
-      type(c_ptr),value :: state
-      integer(kind(hipJitInputCubin)),value :: myType
-      type(c_ptr),value :: path
-      integer(c_int),value :: numOptions
-      type(c_ptr),value :: options
-      type(c_ptr) :: optionValues
-    end function
-  end interface
-
-  !>  @brief Completes the linking of the given program.
-  !>  @param [in]   state hip link state
-  !>  @param [out]  hipBinOut  Upon success, points to the output binary
-  !>  @param [out]  sizeOut  Size of the binary is stored (optional)
-  !>
-  !>  @returns `hipSuccess` `hipErrorInvalidValue`
-  !>
-  !>  If adding the data fails, it will
-  !>  @return `hipErrorInvalidConfiguration`
-  !>
-  !>  @see hipError_t
-  interface hipLinkComplete
-#ifdef USE_CUDA_NAMES
-    function hipLinkComplete_(state,hipBinOut,sizeOut) bind(c, name="cuLinkComplete")
-#else
-    function hipLinkComplete_(state,hipBinOut,sizeOut) bind(c, name="hipLinkComplete")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLinkComplete_
-      type(c_ptr),value :: state
-      type(c_ptr) :: hipBinOut
-      type(c_ptr),value :: sizeOut
-    end function
-  end interface
-
-  !>  @brief Creates a linker instance with options.
-  !>  @param [in] numOptions  Number of options
-  !>  @param [in] options  Array of options
-  !>  @param [in] optionValues  Array of option values cast to void*
-  !>  @param [out] stateOut  hip link state created upon success
-  !>
-  !>  @returns `hipSuccess` `hipErrorInvalidValue` `hipErrorInvalidConfiguration`
-  !>
-  !>  @see hipSuccess
-  interface hipLinkCreate
-#ifdef USE_CUDA_NAMES
-    function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="cuLinkCreate")
-#else
-    function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="hipLinkCreate")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLinkCreate_
-      integer(c_int),value :: numOptions
-      type(c_ptr),value :: options
-      type(c_ptr) :: optionValues
-      type(c_ptr) :: stateOut
-    end function
-  end interface
-
-  !>  @brief Deletes the linker instance.
-  !>  @param [in] state link state instance
-  !>
-  !>  @returns `hipSuccess` `hipErrorInvalidValue`
-  !>
-  !>  @see hipSuccess
-  interface hipLinkDestroy
-#ifdef USE_CUDA_NAMES
-    function hipLinkDestroy_(state) bind(c, name="cuLinkDestroy")
-#else
-    function hipLinkDestroy_(state) bind(c, name="hipLinkDestroy")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLinkDestroy_
-      type(c_ptr),value :: state
-    end function
-  end interface
-
-  !>  \addtogroup ModuleCooperativeG Cooperative groups kernel launch of Module management.
-  !>  \ingroup Module
-  !>
-  !>
-  !>  @brief launches kernel f with launch parameters and shared memory on stream with arguments
-  !>  passed
-  !>  to kernelParams, where thread blocks can cooperate and synchronize as they execute
-  !>
-  !>  @param [in] f              Kernel to launch.
-  !>  @param [in] gridDimX       X grid dimension specified as multiple of blockDimX.
-  !>  @param [in] gridDimY       Y grid dimension specified as multiple of blockDimY.
-  !>  @param [in] gridDimZ       Z grid dimension specified as multiple of blockDimZ.
-  !>  @param [in] blockDimX      X block dimension specified in work-items.
-  !>  @param [in] blockDimY      Y block dimension specified in work-items.
-  !>  @param [in] blockDimZ      Z block dimension specified in work-items.
-  !>  @param [in] sharedMemBytes Amount of dynamic shared memory to allocate for this kernel. The
-  !>  HIP-Clang compiler provides support for extern shared declarations.
-  !>  @param [in] stream         Stream where the kernel should be dispatched. May be 0,
-  !>  in which case the default stream is used with associated synchronization rules.
-  !>  @param [in] kernelParams   A list of kernel arguments.
-  !>
-  !>  Please note, HIP does not support kernel launch with total work items defined in dimension
-  !>  with
-  !>  size \f$ gridDim \cdot blockDim &ge; 2^{32} \f$.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>  `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidHandle`, `hipErrorInvalidImage`, `hipErrorInvalidValue`,
-  !>  `hipErrorInvalidConfiguration`, `hipErrorLaunchFailure`, `hipErrorLaunchOutOfResources`,
-  !>  `hipErrorLaunchTimeOut`, `hipErrorCooperativeLaunchTooLarge`, `hipErrorSharedObjectInitFailed`
-#ifndef USE_CUDA_NAMES
-  interface hipModuleLaunchCooperativeKernel
-    function hipModuleLaunchCooperativeKernel_(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY, &
-        blockDimZ,sharedMemBytes,stream,kernelParams) &
-        bind(c, name="hipModuleLaunchCooperativeKernel")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipModuleLaunchCooperativeKernel_
-      type(c_ptr),value :: f
-      integer(c_int),value :: gridDimX
-      integer(c_int),value :: gridDimY
-      integer(c_int),value :: gridDimZ
-      integer(c_int),value :: blockDimX
-      integer(c_int),value :: blockDimY
-      integer(c_int),value :: blockDimZ
-      integer(c_int),value :: sharedMemBytes
-      type(c_ptr),value :: stream
-      type(c_ptr) :: kernelParams
-    end function
-  end interface
-#endif
-
-  !>  @brief Launches kernels on multiple devices where thread blocks can cooperate and
-  !>  synchronize as they execute.
-  !>
-  !>  @param [in] launchParamsList         List of launch parameters, one per device.
-  !>  @param [in] numDevices               Size of the launchParamsList array.
-  !>  @param [in] flags                    Flags to control launch behavior.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorDeinitialized`, `hipErrorNotInitialized`,
-  !>  `hipErrorInvalidContext`,
-  !>  `hipErrorInvalidHandle`, `hipErrorInvalidImage`, `hipErrorInvalidValue`,
-  !>  `hipErrorInvalidConfiguration`, `hipErrorInvalidResourceHandle`, `hipErrorLaunchFailure`,
-  !>  `hipErrorLaunchOutOfResources`, `hipErrorLaunchTimeOut`, `hipErrorCooperativeLaunchTooLarge`,
-  !>  `hipErrorSharedObjectInitFailed`
-#ifndef USE_CUDA_NAMES
-  interface hipModuleLaunchCooperativeKernelMultiDevice
-    function hipModuleLaunchCooperativeKernelMultiDevice_(launchParamsList,numDevices,flags) &
-        bind(c, name="hipModuleLaunchCooperativeKernelMultiDevice")
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipModuleLaunchCooperativeKernelMultiDevice_
-      type(hipFunctionLaunchParams) :: launchParamsList
-      integer(c_int),value :: numDevices
-      integer(c_int),value :: flags
-    end function
-  end interface
-#endif
-
-  !>  @brief Launches a HIP kernel using a generic function pointer and the specified configuration.
-  !>  @ingroup Execution
-  !>
-  !>  This function is equivalent to hipLaunchKernelEx but accepts the kernel as a generic function
-  !>  pointer.
-  !>
-  !>  @param [in] config                 Pointer to the kernel launch configuration structure.
-  !>  @param [in] fPtr                   Pointer to the device kernel function.
-  !>  @param [in] args                   Array of pointers to the kernel arguments.
-  !>
-  !>  @returns `hipSuccess` if the kernel is launched successfully, otherwise an appropriate error
-  !>  code.
-  interface hipLaunchKernelExC
-#ifdef USE_CUDA_NAMES
-    function hipLaunchKernelExC_(config,fPtr,args) bind(c, name="cudaLaunchKernelExC")
-#else
-    function hipLaunchKernelExC_(config,fPtr,args) bind(c, name="hipLaunchKernelExC")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipLaunchKernelExC_
-      type(hipLaunchConfig_t) :: config
-      type(c_ptr),value :: fPtr
-      type(c_ptr) :: args
-    end function
-  end interface
-
-  !>  @brief Launches a HIP kernel using the driver API with the specified configuration.
-  !>  @ingroup Execution
-  !>
-  !>  This function dispatches the device kernel represented by a HIP function object.
-  !>  It passes both the kernel parameters and any extra configuration arguments to the kernel
-  !>  launch.
-  !>
-  !>  @param [in] config  Pointer to the kernel launch configuration structure.
-  !>  @param [in] f       HIP function object representing the device kernel to be launched.
-  !>  @param [in] params  Array of pointers to the kernel parameters.
-  !>  @param [in] extra   Array of pointers for additional launch parameters or extra configuration
-  !>  data.
-  !>
-  !>  @returns `hipSuccess` if the kernel is launched successfully, otherwise an appropriate error
-  !>  code.
-#ifndef USE_CUDA_NAMES
-  interface hipDrvLaunchKernelEx
-    function hipDrvLaunchKernelEx_(config,f,params,extra) bind(c, name="hipDrvLaunchKernelEx")
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipDrvLaunchKernelEx_
-      type(HIP_LAUNCH_CONFIG) :: config
-      type(c_ptr),value :: f
-      type(c_ptr) :: params
-      type(c_ptr) :: extra
-    end function
-  end interface
-#endif
-
-  !>  @brief Returns a handle for the address range requested.
-  !>
-  !>  This function returns a handle to a device pointer created using either hipMalloc set of APIs
-  !>  or through hipMemAddressReserve (as long as the ptr is mapped).
-  !>
-  !>  @param [out] handle     Ptr to the handle where the fd or other types will be returned.
-  !>  @param [in] dptr        Device ptr for which we get the handle.
-  !>  @param [in] size        Size of the address range.
-  !>  @param [in] handleType  Type of the handle requested for the address range.
-  !>  @param [in] flags       Any flags set regarding the handle requested.
-  !>
-  !>  @returns `hipSuccess` if the kernel is launched successfully, otherwise an appropriate error
-  !>  code.
-  interface hipMemGetHandleForAddressRange
-#ifdef USE_CUDA_NAMES
-    function hipMemGetHandleForAddressRange_(handle,dptr,mySize,handleType,flags) &
-        bind(c, name="cuMemGetHandleForAddressRange")
-#else
-    function hipMemGetHandleForAddressRange_(handle,dptr,mySize,handleType,flags) &
-        bind(c, name="hipMemGetHandleForAddressRange")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipMemGetHandleForAddressRange_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: dptr
-      integer(c_size_t),value :: mySize
-      integer(kind(hipMemRangeHandleTypeDmaBufFd)),value :: handleType
-      integer(c_int64_t),value :: flags
-    end function
-  end interface
-
-  !>  @brief Returns occupancy for a device function.
-  !>
-  !>  @param [out] numBlocks        Returned occupancy
-  !>  @param [in]  f                Kernel function(hipFunction_t) for which occupancy is calulated
-  !>  @param [in]  blockSize        Block size the kernel is intended to be launched with
-  !>  @param [in]  dynSharedMemPerBlk Dynamic shared memory usage (in bytes) intended for each block
-  !>  @param [in]  flags            Extra flags for occupancy calculation (only default supported)
-  !>  @returns  `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(numBlocks,f,blockSize, &
-        dynSharedMemPerBlk,flags) &
-        bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
-      type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: f
-      integer(c_int),value :: blockSize
-      integer(c_size_t),value :: dynSharedMemPerBlk
-      integer(c_int),value :: flags
-    end function
-  end interface
-#endif
-
-  !>  @brief Returns dynamic shared memory available per block when launching numBlocks blocks on
-  !>  SM.
-  !>
-  !>  @ingroup Occupancy
-  !>  Returns in \p *dynamicSmemSize the maximum size of dynamic shared memory /
-  !>  to allow numBlocks blocks per SM.
-  !>
-  !>  @param [out] dynamicSmemSize Returned maximum dynamic shared memory.
-  !>  @param [in]  f               Kernel function for which occupancy is calculated.
-  !>  @param [in]  numBlocks       Number of blocks to fit on SM
-  !>  @param [in]  blockSize       Size of the block
-  !>
-  !>  @return `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidDeviceFunction`,
-  !>  `hipErrorInvalidValue`,
-  !>  `hipErrorUnknown`
-  interface hipOccupancyAvailableDynamicSMemPerBlock
-#ifdef USE_CUDA_NAMES
-    function hipOccupancyAvailableDynamicSMemPerBlock_(dynamicSmemSize,f,numBlocks,blockSize) &
-        bind(c, name="cudaOccupancyAvailableDynamicSMemPerBlock")
-#else
-    function hipOccupancyAvailableDynamicSMemPerBlock_(dynamicSmemSize,f,numBlocks,blockSize) &
-        bind(c, name="hipOccupancyAvailableDynamicSMemPerBlock")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_
-      type(c_ptr),value :: dynamicSmemSize
-      type(c_ptr),value :: f
-      integer(c_int),value :: numBlocks
-      integer(c_int),value :: blockSize
-    end function
-  end interface
-
-  !>  @brief Enqueues a host function call in a stream.
-  !>
-  !>  @param [in] stream - The stream to enqueue work in.
-  !>  @param [in] fn - The function to call once enqueued preceeding operations are complete.
-  !>  @param [in] userData - User-specified data to be passed to the function.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidResourceHandle`, `hipErrorInvalidValue`,
-  !>  `hipErrorNotSupported`
-  !>
-  !>  The host function to call in this API will be executed after the preceding operations in
-  !>  the stream are complete. The function is a blocking operation that blocks operations in the
-  !>  stream that follow it, until the function is returned.
-  !>  Event synchronization and internal callback functions make sure enqueued operations will
-  !>  execute in order, in the stream.
-  !>
-  !>  The host function must not make any HIP API calls. The host function is non-reentrant. It must
-  !>  not perform sychronization with any operation that may depend on other processing execution
-  !>  but is not enqueued to run earlier in the stream.
-  !>
-  !>  Host functions that are enqueued respectively in different non-blocking streams can run
-  !>  concurrently.
-  !>
-  !>  @warning  This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
-  interface hipLaunchHostFunc
-#ifdef USE_CUDA_NAMES
-    function hipLaunchHostFunc_(stream,fn,userData) bind(c, name="cudaLaunchHostFunc")
-#else
-    function hipLaunchHostFunc_(stream,fn,userData) bind(c, name="hipLaunchHostFunc")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipLaunchHostFunc_
-      type(c_ptr),value :: stream
-      type(c_funptr),value :: fn
-      type(c_ptr),value :: userData
-    end function
-  end interface
-
-  !>  @brief Gets the texture reference related with the symbol [Deprecated]
-  !>
-  !>  @param [out] texref  texture reference
-  !>  @param [in] symbol  pointer to the symbol related with the texture for the reference
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>  @warning This API is deprecated.
-#ifndef USE_CUDA_NAMES
-  interface hipGetTextureReference
-    function hipGetTextureReference_(texref,symbol) bind(c, name="hipGetTextureReference")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGetTextureReference_
-      type(c_ptr) :: texref
-      type(c_ptr),value :: symbol
-    end function
-  end interface
-#endif
-
-  !>  @brief Gets the border color used by a texture reference [Deprecated]
-  !>
-  !>  @param [out] pBorderColor  Returned Type and Value of RGBA color.
-  !>  @param [in] texRef  Texture reference.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>  @warning This API is deprecated.
-  interface hipTexRefGetBorderColor
-#ifdef USE_CUDA_NAMES
-    function hipTexRefGetBorderColor_(pBorderColor,texRef) bind(c, name="cuTexRefGetBorderColor")
-#else
-    function hipTexRefGetBorderColor_(pBorderColor,texRef) bind(c, name="hipTexRefGetBorderColor")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_
-      type(c_ptr),value :: pBorderColor
-      type(textureReference) :: texRef
-    end function
-  end interface
-
-  !>  @brief Gets the array bound to a texture reference [Deprecated]
-  !>
-  !>
-  !>  @param [in] pArray  Returned array.
-  !>  @param [in] texRef  texture reference.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>  @warning This API is deprecated.
-  interface hipTexRefGetArray
-#ifdef USE_CUDA_NAMES
-    function hipTexRefGetArray_(pArray,texRef) bind(c, name="cuTexRefGetArray")
-#else
-    function hipTexRefGetArray_(pArray,texRef) bind(c, name="hipTexRefGetArray")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipTexRefGetArray_
-      type(c_ptr) :: pArray
-      type(textureReference) :: texRef
-    end function
-  end interface
-
-  !>   @defgroup Callback Callback Activity APIs
-  !>
-  !>   This section describes the callback/Activity of HIP runtime API.
-  !>
-  !>
-  !>  @brief Returns HIP API name by ID.
-  !>
-  !>  @param [in] id ID of HIP API
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipApiName
-    function hipApiName_(id) bind(c, name="hipApiName")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      character(c_char) :: hipApiName_
-      integer(c_int32_t),value :: id
-    end function
-  end interface
-#endif
-
-  !>  @brief Returns kernel name reference by function name.
-  !>
-  !>  @param [in] f Name of function
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipKernelNameRef
-    function hipKernelNameRef_(f) bind(c, name="hipKernelNameRef")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      character(c_char) :: hipKernelNameRef_
-      type(c_ptr),value :: f
-    end function
-  end interface
-#endif
-
-  !>  @brief Retrives kernel for a given host pointer, unless stated otherwise.
-  !>
-  !>  @param [in] hostFunction Pointer of host function.
-  !>  @param [in] stream Stream the kernel is executed on.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipKernelNameRefByPtr
-    function hipKernelNameRefByPtr_(hostFunction,stream) bind(c, name="hipKernelNameRefByPtr")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      character(c_char) :: hipKernelNameRefByPtr_
-      type(c_ptr),value :: hostFunction
-      type(c_ptr),value :: stream
-    end function
-  end interface
-#endif
-
-  !>  @brief Returns device ID on the stream.
-  !>
-  !>  @param [in] stream Stream of device executed on.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipGetStreamDeviceId
-    function hipGetStreamDeviceId_(stream) bind(c, name="hipGetStreamDeviceId")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(c_int) :: hipGetStreamDeviceId_
-      type(c_ptr),value :: stream
-    end function
-  end interface
-#endif
-
-  !>  @brief Begins graph capture on a stream to an existing graph.
-  !>
-  !>  @param [in] stream - Stream to initiate capture.
-  !>  @param [in] graph - Graph to capture into.
-  !>  @param [in] dependencies - Dependencies of the first node captured in the stream. Can be NULL
-  !>  if
-  !>  numDependencies is 0.
-  !>  @param [in] dependencyData - Optional array of data associated with each dependency.
-  !>  @param [in] numDependencies - Number of dependencies.
-  !>  @param [in] mode - Controls the interaction of this capture sequence with other API calls that
-  !> are not safe.
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  @warning param "const hipGraphEdgeData* dependencyData" is currently not supported and has to
-  !>  be
-  !> passed as nullptr. This API is marked as beta, meaning, while this is feature complete, it is
-  !> still
-  !> open to changes and may have outstanding issues.
-  interface hipStreamBeginCaptureToGraph
-#ifdef USE_CUDA_NAMES
-    function hipStreamBeginCaptureToGraph_(stream,graph,dependencies,dependencyData, &
-        numDependencies,mode) &
-        bind(c, name="cudaStreamBeginCaptureToGraph")
-#else
-    function hipStreamBeginCaptureToGraph_(stream,graph,dependencies,dependencyData, &
-        numDependencies,mode) &
-        bind(c, name="hipStreamBeginCaptureToGraph")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipStreamBeginCaptureToGraph_
-      type(c_ptr),value :: stream
-      type(c_ptr),value :: graph
-      type(c_ptr) :: dependencies
-      type(hipGraphEdgeData) :: dependencyData
-      integer(c_size_t),value :: numDependencies
-      integer(kind(hipStreamCaptureModeGlobal)),value :: mode
-    end function
-  end interface
-
-  !>  @brief Swaps the stream capture mode of a thread.
-  !>
-  !>  @param [in] mode - Pointer to mode value to swap with the current mode.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipThreadExchangeStreamCaptureMode
-#ifdef USE_CUDA_NAMES
-    function hipThreadExchangeStreamCaptureMode_(mode) &
-        bind(c, name="cudaThreadExchangeStreamCaptureMode")
-#else
-    function hipThreadExchangeStreamCaptureMode_(mode) &
-        bind(c, name="hipThreadExchangeStreamCaptureMode")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipThreadExchangeStreamCaptureMode_
-      type(c_ptr),value :: mode
-    end function
-  end interface
-
-  !>  @brief Creates an executable graph from a graph.
-  !>
-  !>  @param [out] pGraphExec - Pointer to instantiated executable graph.
-  !>  @param [in] graph - Instance of graph to instantiate.
-  !>  @param [in] instantiateParams - Graph instantiation Params
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGraphInstantiateWithParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphInstantiateWithParams_(pGraphExec,graph,instantiateParams) &
-        bind(c, name="cudaGraphInstantiateWithParams")
-#else
-    function hipGraphInstantiateWithParams_(pGraphExec,graph,instantiateParams) &
-        bind(c, name="hipGraphInstantiateWithParams")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphInstantiateWithParams_
-      type(c_ptr) :: pGraphExec
-      type(c_ptr),value :: graph
-      type(hipGraphInstantiateParams) :: instantiateParams
-    end function
-  end interface
-
-  !>  @brief Uploads an executable graph to a stream
-  !>
-  !>  @param [in] graphExec - Instance of executable graph to be uploaded.
-  !>  @param [in] stream - Instance of stream to which the executable graph is uploaded to.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGraphUpload
-#ifdef USE_CUDA_NAMES
-    function hipGraphUpload_(graphExec,stream) bind(c, name="cudaGraphUpload")
-#else
-    function hipGraphUpload_(graphExec,stream) bind(c, name="hipGraphUpload")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphUpload_
-      type(c_ptr),value :: graphExec
-      type(c_ptr),value :: stream
-    end function
-  end interface
-
-  !>  @brief Creates a kernel execution node and adds it to a graph.
-  !>
-  !>  @param [out] pGraphNode - Pointer to kernel graph node that is created.
-  !>  @param [in] graph - Instance of graph to add the created node to.
-  !>  @param [in] pDependencies - Pointer to the dependencies on the kernel execution node.
-  !>  @param [in] numDependencies - Number of dependencies.
-  !>  @param [in] nodeParams - Pointer to the node parameters.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
-  interface hipGraphAddNode
-#ifdef USE_CUDA_NAMES
-    function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
-        bind(c, name="cudaGraphAddNode")
-#else
-    function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
-        bind(c, name="hipGraphAddNode")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphAddNode_
-      type(c_ptr) :: pGraphNode
-      type(c_ptr),value :: graph
-      type(c_ptr) :: pDependencies
-      integer(c_size_t),value :: numDependencies
-      type(hipGraphNodeParams) :: nodeParams
-    end function
-  end interface
-
-  !>  @brief Return the flags of an executable graph.
-  !>
-  !>  @param [in] graphExec - Executable graph to get the flags from.
-  !>  @param [out] flags - Flags used to instantiate this executable graph.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
-  interface hipGraphExecGetFlags
-#ifdef USE_CUDA_NAMES
-    function hipGraphExecGetFlags_(graphExec,flags) bind(c, name="cudaGraphExecGetFlags")
-#else
-    function hipGraphExecGetFlags_(graphExec,flags) bind(c, name="hipGraphExecGetFlags")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphExecGetFlags_
-      type(c_ptr),value :: graphExec
-      type(c_ptr),value :: flags
-    end function
-  end interface
-
-  !>  @brief Updates parameters of a graph's node.
-  !>
-  !>  @param [in] node - Instance of the node to set parameters for.
-  !>  @param [in] nodeParams - Pointer to the parameters to be set.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`,
-  !>  `hipErrorNotSupported`.
-  interface hipGraphNodeSetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="cudaGraphNodeSetParams")
-#else
-    function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="hipGraphNodeSetParams")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphNodeSetParams_
-      type(c_ptr),value :: node
-      type(hipGraphNodeParams) :: nodeParams
-    end function
-  end interface
-
-  !>  @brief Updates parameters of an executable graph's node.
-  !>
-  !>  @param [in] graphExec - Instance of the executable graph.
-  !>  @param [in] node - Instance of the node to set parameters to.
-  !>  @param [in] nodeParams - Pointer to the parameters to be set.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`,
-  !>  `hipErrorNotSupported`.
-  interface hipGraphExecNodeSetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
-        bind(c, name="cudaGraphExecNodeSetParams")
-#else
-    function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
-        bind(c, name="hipGraphExecNodeSetParams")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphExecNodeSetParams_
-      type(c_ptr),value :: graphExec
-      type(c_ptr),value :: node
-      type(hipGraphNodeParams) :: nodeParams
-    end function
-  end interface
-
-  !>  @brief Creates a memcpy node and adds it to a graph.
-  !>
-  !>  @param [out] phGraphNode - Pointer to graph node that is created.
-  !>  @param [in] hGraph - Instance of graph to add the created node to.
-  !>  @param [in] dependencies - const pointer to the dependencies of the memcpy execution node.
-  !>  @param [in] numDependencies - The number of dependencies.
-  !>  @param [in] copyParams - const pointer to the parameters for the memory copy.
-  !>  @param [in] ctx - context related to current device.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-#ifndef USE_CUDA_NAMES
-  interface hipDrvGraphAddMemcpyNode
-    function hipDrvGraphAddMemcpyNode_(phGraphNode,hGraph,dependencies,numDependencies,copyParams, &
-        ctx) &
-        bind(c, name="hipDrvGraphAddMemcpyNode")
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipDrvGraphAddMemcpyNode_
-      type(c_ptr) :: phGraphNode
-      type(c_ptr),value :: hGraph
-      type(c_ptr) :: dependencies
-      integer(c_size_t),value :: numDependencies
-      type(HIP_MEMCPY3D) :: copyParams
-      type(c_ptr),value :: ctx
-    end function
-  end interface
-#endif
-
-  !>  @brief Sets a node's attribute.
-  !>
-  !>  @param [in] hNode - Instance of the node to set parameters of.
-  !>  @param [in] attr - The attribute type to be set.
-  !>  @param [in] value - const pointer to the parameters.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGraphKernelNodeSetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipGraphKernelNodeSetAttribute_(hNode,attr,myValue) &
-        bind(c, name="cudaGraphKernelNodeSetAttribute")
-#else
-    function hipGraphKernelNodeSetAttribute_(hNode,attr,myValue) &
-        bind(c, name="hipGraphKernelNodeSetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphKernelNodeSetAttribute_
-      type(c_ptr),value :: hNode
-      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
-      type(c_ptr),value :: myValue
-    end function
-  end interface
-
-  !>  @brief Gets a node's attribute.
-  !>
-  !>  @param [in] hNode - Instance of the node to set parameters of.
-  !>  @param [in] attr - The attribute type to be set.
-  !>  @param [in] value - const pointer to the parameters.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipGraphKernelNodeGetAttribute
-#ifdef USE_CUDA_NAMES
-    function hipGraphKernelNodeGetAttribute_(hNode,attr,myValue) &
-        bind(c, name="cudaGraphKernelNodeGetAttribute")
-#else
-    function hipGraphKernelNodeGetAttribute_(hNode,attr,myValue) &
-        bind(c, name="hipGraphKernelNodeGetAttribute")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(kind(hipSuccess)) :: hipGraphKernelNodeGetAttribute_
-      type(c_ptr),value :: hNode
-      integer(kind(hipLaunchAttributeAccessPolicyWindow)),value :: attr
-      type(c_ptr),value :: myValue
     end function
   end interface
 
