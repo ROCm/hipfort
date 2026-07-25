@@ -112,7 +112,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDriverGetVersion_
-      type(c_ptr),value :: driverVersion
+      integer(c_int) :: driverVersion
     end function
   end interface
 
@@ -138,7 +138,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipRuntimeGetVersion_
-      type(c_ptr),value :: runtimeVersion
+      integer(c_int) :: runtimeVersion
     end function
   end interface
 
@@ -180,8 +180,8 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceComputeCapability_
-      type(c_ptr),value :: major
-      type(c_ptr),value :: minor
+      integer(c_int) :: major
+      integer(c_int) :: minor
       integer(c_int),value :: device
     end function
   end interface
@@ -509,7 +509,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetAttribute_
-      type(c_ptr),value :: pi
+      integer(c_int) :: pi
       integer(kind(hipDeviceAttributeCudaCompatibleBegin)),value :: attr
       integer(c_int),value :: deviceId
     end function
@@ -782,7 +782,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGetDeviceFlags_
-      type(c_ptr),value :: flags
+      integer(c_int) :: flags
     end function
   end interface
 
@@ -898,8 +898,8 @@ module hipfort
       integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_
       integer(c_int),value :: device1
       integer(c_int),value :: device2
-      type(c_ptr),value :: linktype
-      type(c_ptr),value :: hopcount
+      integer(c_int32_t) :: linktype
+      integer(c_int32_t) :: hopcount
     end function
   end interface
 
@@ -1441,8 +1441,8 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_
-      type(c_ptr),value :: leastPriority
-      type(c_ptr),value :: greatestPriority
+      integer(c_int) :: leastPriority
+      integer(c_int) :: greatestPriority
     end function
   end interface
 
@@ -1601,7 +1601,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetFlags_
       type(c_ptr),value :: stream
-      type(c_ptr),value :: flags
+      integer(c_int) :: flags
     end function
   end interface
 
@@ -1648,7 +1648,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetPriority_
       type(c_ptr),value :: stream
-      type(c_ptr),value :: priority
+      integer(c_int) :: priority
     end function
   end interface
 
@@ -2420,7 +2420,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipEventElapsedTime_
-      type(c_ptr),value :: ms
+      real(c_float) :: ms
       type(c_ptr),value :: start
       type(c_ptr),value :: myStop
     end function
@@ -5966,7 +5966,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_
-      type(c_ptr),value :: canAccessPeer
+      integer(c_int) :: canAccessPeer
       integer(c_int),value :: deviceId
       integer(c_int),value :: peerDeviceId
     end function
@@ -6299,7 +6299,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetApiVersion_
       type(c_ptr),value :: ctx
-      type(c_ptr),value :: apiVersion
+      integer(c_int) :: apiVersion
     end function
   end interface
 
@@ -6468,7 +6468,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetFlags_
-      type(c_ptr),value :: flags
+      integer(c_int) :: flags
     end function
   end interface
 
@@ -6569,8 +6569,8 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_
       integer(c_int),value :: dev
-      type(c_ptr),value :: flags
-      type(c_ptr),value :: active
+      integer(c_int) :: flags
+      integer(c_int) :: active
     end function
   end interface
 
@@ -6804,7 +6804,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_
-      type(c_ptr),value :: count
+      integer(c_int) :: count
       type(c_ptr),value :: mod
     end function
   end interface
@@ -6936,7 +6936,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_
-      type(c_ptr),value :: count
+      integer(c_int) :: count
       type(c_ptr),value :: library
     end function
   end interface
@@ -7699,8 +7699,8 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_
-      type(c_ptr),value :: gridSize
-      type(c_ptr),value :: blockSize
+      integer(c_int) :: gridSize
+      integer(c_int) :: blockSize
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
@@ -7735,8 +7735,8 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_
-      type(c_ptr),value :: gridSize
-      type(c_ptr),value :: blockSize
+      integer(c_int) :: gridSize
+      integer(c_int) :: blockSize
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
@@ -7765,7 +7765,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_
-      type(c_ptr),value :: numBlocks
+      integer(c_int) :: numBlocks
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
@@ -7789,7 +7789,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
-      type(c_ptr),value :: numBlocks
+      integer(c_int) :: numBlocks
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
@@ -11756,7 +11756,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphNodeGetEnabled_
       type(c_ptr),value :: hGraphExec
       type(c_ptr),value :: hNode
-      type(c_ptr),value :: isEnabled
+      integer(c_int) :: isEnabled
     end function
   end interface
 
