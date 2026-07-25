@@ -1658,7 +1658,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetDevice_
       type(c_ptr),value :: stream
-      type(c_ptr),value :: device
+      integer(c_int) :: device
     end function
   end interface
 
