@@ -41,8 +41,8 @@
 * **Scalar output arguments are now passed by reference.** Interfaces that return a
   single value through a pointer now take a plain `integer`/`real` scalar, instead
   of a `type(c_ptr), value`. This covers `hipDeviceGetAttribute`, `hipDeviceTotalMem`,
-  the `*_bufferSize`/`*_bufferSizeExt` queries, and the version and descriptor
-  getters. Call them directly, for example
+  `hipStreamGetDevice`, the `*_bufferSize`/`*_bufferSizeExt` queries, and the version
+  and descriptor getters. Call them directly, for example
   `istat = hipDeviceGetAttribute(value, attr, dev)`, with no `C_LOC(value)`. Existing
   code that passes `C_LOC(x)` to these routines must now pass `x`.
 * Derived types are emitted in per-library `hipfort_<lib>_types` modules. A module is
@@ -67,15 +67,6 @@
   `cudaError_t` directly against `cudaSuccess`, instead of translating it through
   `hipCUDAErrorTohipError`. Failures report the native status code.
 
-### Fixed
-
-* `hipGetDeviceProperties` now binds the `hipGetDevicePropertiesR0600` symbol, which
-  matches the ROCm 6.0+ `hipDeviceProp_t` layout. It previously bound the legacy
-  symbol, whose older layout produced wrong device-property field values.
-* `fftw_iodim64` members now use `c_ptrdiff_t` instead of `c_long`, matching FFTW's
-  `ptrdiff_t` fields. This gives the correct struct layout on LLP64 platforms such
-  as Windows.
-
 ### Removed
 
 * Removed the deprecated `hipfc` compiler wrapper, the `Makefile.hipfort` include
@@ -87,6 +78,15 @@
   were removed in ROCm 7.1.0.
 * Removed the unused legacy `lib/modules-amdgcn` modules (`hip_blas`,
   `rocblas_module`, `rocfft`, `rocsparse_module`, and related enum modules).
+
+### Fixed
+
+* `hipGetDeviceProperties` now binds the `hipGetDevicePropertiesR0600` symbol, which
+  matches the ROCm 6.0+ `hipDeviceProp_t` layout. It previously bound the legacy
+  symbol, whose older layout produced wrong device-property field values.
+* `fftw_iodim64` members now use `c_ptrdiff_t` instead of `c_long`, matching FFTW's
+  `ptrdiff_t` fields. This gives the correct struct layout on LLP64 platforms such
+  as Windows.
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 
