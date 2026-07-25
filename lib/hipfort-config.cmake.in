@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved.
+# Copyright (c) 2023-2026 Advanced Micro Devices, Inc. All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,27 @@
 
 include(CMakeFindDependencyMacro)
 
-set(_hipfort_supported_components hip
+set(_hipfort_supported_components hip roctx
   rocblas rocfft rocrand rocsolver rocsparse
   hipblas hipfft hipfftw hiprand hipsolver hipsparse)
+
+# Most components map 1:1 to a ROCm package of the same name. A few do not:
+# hipfftw is provided by the hipfft package (there is no standalone hipfftw
+# package), and roctx by rocprofiler-sdk-roctx.
+set(_hipfort_hipfftw_dependency hipfft)
+set(_hipfort_roctx_dependency rocprofiler-sdk-roctx)
 
 include("${CMAKE_CURRENT_LIST_DIR}/hipfort-amdgcn-targets.cmake")
 foreach(_comp ${hipfort_FIND_COMPONENTS})
   if (NOT _comp IN_LIST _hipfort_supported_components)
     set(hipfort_FOUND False)
     set(hipfort_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
+    continue()
   endif()
   include("${CMAKE_CURRENT_LIST_DIR}/hipfort-${_comp}-targets.cmake")
-  find_dependency(${_comp})
+  if(DEFINED _hipfort_${_comp}_dependency)
+    find_dependency(${_hipfort_${_comp}_dependency})
+  else()
+    find_dependency(${_comp})
+  endif()
 endforeach()
