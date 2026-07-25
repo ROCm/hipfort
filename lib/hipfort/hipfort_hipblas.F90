@@ -224,21 +224,15 @@ module hipfort_hipblas
   end interface
 
   !>  \brief Copy vector from host to device.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 number of elements in the vector.
-  !>     @param[in]
-  !>     elemSize    [int]
+  !>     @param[in] elemSize - [int]
   !>                 Size of both vectors in bytes.
-  !>     @param[in]
-  !>     x           pointer to vector on the host.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] x - pointer to vector on the host.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of the vector.
-  !>     @param[out]
-  !>     y           pointer to vector on the device.
-  !>     @param[in]
-  !>     incy        [int]
+  !>     @param[out] y - pointer to vector on the device.
+  !>     @param[in] incy - [int]
   !>                 specifies the increment for the elements of the vector.
   interface hipblasSetVector
 #ifdef USE_CUDA_NAMES
@@ -260,21 +254,15 @@ module hipfort_hipblas
   end interface
 
   !>  \brief Copy vector from device to host.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 number of elements in the vector.
-  !>     @param[in]
-  !>     elemSize    [int]
+  !>     @param[in] elemSize - [int]
   !>                 Size of both vectors in bytes.
-  !>     @param[in]
-  !>     x           pointer to vector on the device.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] x - pointer to vector on the device.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of the vector.
-  !>     @param[out]
-  !>     y           pointer to vector on the host.
-  !>     @param[in]
-  !>     incy        [int]
+  !>     @param[out] y - pointer to vector on the host.
+  !>     @param[in] incy - [int]
   !>                 specifies the increment for the elements of the vector.
   interface hipblasGetVector
 #ifdef USE_CUDA_NAMES
@@ -296,24 +284,17 @@ module hipfort_hipblas
   end interface
 
   !>  \brief Copy matrix from host to device.
-  !>     @param[in]
-  !>     rows        [int]
+  !>     @param[in] rows - [int]
   !>                 number of rows in the matrix.
-  !>     @param[in]
-  !>     cols        [int]
+  !>     @param[in] cols - [int]
   !>                 number of columns in the matrix.
-  !>     @param[in]
-  !>     elemSize   [int]
+  !>     @param[in] elemSize - [int]
   !>                 number of bytes per element in the matrix.
-  !>     @param[in]
-  !>     AP          pointer to matrix on the host.
-  !>     @param[in]
-  !>     lda         [int]
+  !>     @param[in] AP - pointer to matrix on the host.
+  !>     @param[in] lda - [int]
   !>                 specifies the leading dimension of A. lda >= rows.
-  !>     @param[out]
-  !>     BP           pointer to matrix on the GPU.
-  !>     @param[in]
-  !>     ldb         [int]
+  !>     @param[out] BP - pointer to matrix on the GPU.
+  !>     @param[in] ldb - [int]
   !>                 specifies the leading dimension of B. ldb >= rows.
   interface hipblasSetMatrix
 #ifdef USE_CUDA_NAMES
@@ -336,24 +317,17 @@ module hipfort_hipblas
   end interface
 
   !>  \brief Copy matrix from device to host.
-  !>     @param[in]
-  !>     rows        [int]
+  !>     @param[in] rows - [int]
   !>                 number of rows in the matrix.
-  !>     @param[in]
-  !>     cols        [int]
+  !>     @param[in] cols - [int]
   !>                 number of columns in the matrix.
-  !>     @param[in]
-  !>     elemSize   [int]
+  !>     @param[in] elemSize - [int]
   !>                 number of bytes per element in the matrix.
-  !>     @param[in]
-  !>     AP          pointer to matrix on the GPU.
-  !>     @param[in]
-  !>     lda         [int]
+  !>     @param[in] AP - pointer to matrix on the GPU.
+  !>     @param[in] lda - [int]
   !>                 specifies the leading dimension of A. lda >= rows.
-  !>     @param[out]
-  !>     BP          pointer to matrix on the host.
-  !>     @param[in]
-  !>     ldb         [int]
+  !>     @param[out] BP - pointer to matrix on the host.
+  !>     @param[in] ldb - [int]
   !>                 specifies the leading dimension of B. ldb >= rows.
   interface hipblasGetMatrix
 #ifdef USE_CUDA_NAMES
@@ -381,24 +355,17 @@ module hipfort_hipblas
   !>     asynchronously.
   !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
   !>     synchronous.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 number of elements in the vector.
-  !>     @param[in]
-  !>     elemSize   [int]
+  !>     @param[in] elemSize - [int]
   !>                 number of bytes per element in the matrix.
-  !>     @param[in]
-  !>     x           pointer to vector on the host.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] x - pointer to vector on the host.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of the vector.
-  !>     @param[out]
-  !>     y           pointer to vector on the device.
-  !>     @param[in]
-  !>     incy        [int]
+  !>     @param[out] y - pointer to vector on the device.
+  !>     @param[in] incy - [int]
   !>                 specifies the increment for the elements of the vector.
-  !>     @param[in]
-  !>     stream      specifies the stream into which this transfer request is queued.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
   interface hipblasSetVectorAsync
 #ifdef USE_CUDA_NAMES
     function hipblasSetVectorAsync_(n,elemSize,x,incx,y,incy,stream) &
@@ -427,24 +394,17 @@ module hipfort_hipblas
   !>     asynchronously.
   !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
   !>     synchronous.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 number of elements in the vector.
-  !>     @param[in]
-  !>     elemSize   [int]
+  !>     @param[in] elemSize - [int]
   !>                 number of bytes per element in the matrix.
-  !>     @param[in]
-  !>     x           pointer to vector on the device.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] x - pointer to vector on the device.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of the vector.
-  !>     @param[out]
-  !>     y           pointer to vector on the host.
-  !>     @param[in]
-  !>     incy        [int]
+  !>     @param[out] y - pointer to vector on the host.
+  !>     @param[in] incy - [int]
   !>                 specifies the increment for the elements of the vector.
-  !>     @param[in]
-  !>     stream      specifies the stream into which this transfer request is queued.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
   interface hipblasGetVectorAsync
 #ifdef USE_CUDA_NAMES
     function hipblasGetVectorAsync_(n,elemSize,x,incx,y,incy,stream) &
@@ -473,27 +433,19 @@ module hipfort_hipblas
   !>     asynchronously.
   !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
   !>     synchronous.
-  !>     @param[in]
-  !>     rows        [int]
+  !>     @param[in] rows - [int]
   !>                 number of rows in matrices.
-  !>     @param[in]
-  !>     cols        [int]
+  !>     @param[in] cols - [int]
   !>                 number of columns in matrices.
-  !>     @param[in]
-  !>     elemSize   [int]
+  !>     @param[in] elemSize - [int]
   !>                 number of bytes per element in the matrix.
-  !>     @param[in]
-  !>     AP           pointer to matrix on the host.
-  !>     @param[in]
-  !>     lda         [int]
+  !>     @param[in] AP - pointer to matrix on the host.
+  !>     @param[in] lda - [int]
   !>                 specifies the leading dimension of A. lda >= rows.
-  !>     @param[out]
-  !>     BP           pointer to matrix on the GPU.
-  !>     @param[in]
-  !>     ldb         [int]
+  !>     @param[out] BP - pointer to matrix on the GPU.
+  !>     @param[in] ldb - [int]
   !>                 specifies the leading dimension of B. ldb >= rows.
-  !>     @param[in]
-  !>     stream      specifies the stream into which this transfer request is queued.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
   interface hipblasSetMatrixAsync
 #ifdef USE_CUDA_NAMES
     function hipblasSetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) &
@@ -523,27 +475,19 @@ module hipfort_hipblas
   !>     asynchronously.
   !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
   !>     synchronous.
-  !>     @param[in]
-  !>     rows        [int]
+  !>     @param[in] rows - [int]
   !>                 number of rows in matrices.
-  !>     @param[in]
-  !>     cols        [int]
+  !>     @param[in] cols - [int]
   !>                 number of columns in matrices.
-  !>     @param[in]
-  !>     elemSize   [int]
+  !>     @param[in] elemSize - [int]
   !>                 number of bytes per element in the matrix.
-  !>     @param[in]
-  !>     AP          pointer to matrix on the GPU.
-  !>     @param[in]
-  !>     lda         [int]
+  !>     @param[in] AP - pointer to matrix on the GPU.
+  !>     @param[in] lda - [int]
   !>                 specifies the leading dimension of A. lda >= rows.
-  !>     @param[out]
-  !>     BP           pointer to matrix on the host.
-  !>     @param[in]
-  !>     ldb         [int]
+  !>     @param[out] BP - pointer to matrix on the host.
+  !>     @param[in] ldb - [int]
   !>                 specifies the leading dimension of B. ldb >= rows.
-  !>     @param[in]
-  !>     stream      specifies the stream into which this transfer request is queued.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
   interface hipblasGetMatrixAsync
 #ifdef USE_CUDA_NAMES
     function hipblasGetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) &
@@ -686,19 +630,14 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the amax index.
   !>               Return value is 0.0 if n, incx<=0.
   interface hipblasIsamax
@@ -878,22 +817,16 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each vector x_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch. Must be > 0.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device or host array of pointers of batchCount size for results.
   !>               Return value is 0 if n, incx<=0.
 #ifndef USE_CUDA_NAMES
@@ -1049,25 +982,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each vector x_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the pointer increment between one x_i and the next x_(i + 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device or host pointer for storing contiguous batchCount results.
   !>               Return value is 0 if n <= 0, incx<=0.
 #ifndef USE_CUDA_NAMES
@@ -1255,19 +1181,14 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the amin index.
   !>               Return value is 0.0 if n, incx<=0.
   interface hipblasIsamin
@@ -1447,22 +1368,16 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each vector x_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch. Must be > 0.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device or host pointers to array of batchCount size for results.
   !>               Return value is 0 if n, incx<=0.
 #ifndef USE_CUDA_NAMES
@@ -1618,25 +1533,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each vector x_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the pointer increment between one x_i and the next x_(i + 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device or host pointer to array for storing contiguous batchCount results.
   !>               Return value is 0 if n <= 0, incx<=0.
 #ifndef USE_CUDA_NAMES
@@ -1825,19 +1733,14 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x. incx must be > 0.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the asum product.
   !>               Return value is 0.0 if n <= 0.
   interface hipblasSasum
@@ -2020,22 +1923,16 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each vector x_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device array or host array of batchCount size for results.
   !>               Return value is 0.0 if n, incx<=0.
 #ifndef USE_CUDA_NAMES
@@ -2194,28 +2091,21 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each vector x_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stride_x. However, the user should
   !>               take care to ensure that stride_x is of an appropriate size. For a typical
   !>               case, this means stride_x >= n * incx.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device pointer or host pointer to array for storing contiguous batchCount
   !>               results.
   !>               Return value is 0.0 if n, incx<=0.
@@ -2406,23 +2296,16 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to specify the scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] alpha - device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[out]
-  !>     y         device pointer storing vector y.
-  !>     @param[inout]
-  !>     incy      [int]
+  !>     @param[out] y - device pointer storing vector y.
+  !>     @param[inout] incy - [int]
   !>               specifies the increment for the elements of y.
 #ifndef USE_CUDA_NAMES
   interface hipblasHaxpy
@@ -2652,27 +2535,19 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[in]
-  !>     alpha     specifies the scalar alpha.
-  !>     @param[in]
-  !>     x         pointer storing vector x on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] alpha - specifies the scalar alpha.
+  !>     @param[in] x - pointer storing vector x on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[out]
-  !>     y         pointer storing vector y on the GPU.
-  !>     @param[inout]
-  !>     incy      [int]
+  !>     @param[out] y - pointer storing vector y on the GPU.
+  !>     @param[inout] incy - [int]
   !>               specifies the increment for the elements of y.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasHaxpyBatched
@@ -2883,32 +2758,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
-  !>     @param[in]
-  !>     alpha     specifies the scalar alpha.
-  !>     @param[in]
-  !>     x         pointer storing vector x on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] n - [int]
+  !>     @param[in] alpha - specifies the scalar alpha.
+  !>     @param[in] x - pointer storing vector x on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the increment between vectors of x.
-  !>     @param[out]
-  !>     y         pointer storing vector y on the GPU.
-  !>     @param[inout]
-  !>     incy      [int]
+  !>     @param[out] y - pointer storing vector y on the GPU.
+  !>     @param[inout] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stridey   [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               specifies the increment between vectors of y.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasHaxpyStridedBatched
@@ -3169,21 +3034,15 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x to be copied to y.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[out]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[out] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasScopy
 #ifdef USE_CUDA_NAMES
@@ -3375,24 +3234,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i to be copied to y_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[out]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[out] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasScopyBatched
@@ -3560,36 +3412,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i to be copied to y_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector (x_1) in the batch.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector (x_1) in the batch.
+  !>     @param[in] incx - [int]
   !>               specifies the increments for the elements of vectors x_i.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
   !>                 There are no restrictions placed on stridex. However, the user should
   !>                 ensure that stridex is of an appropriate size. For a typical
   !>                 case, this means stridex >= n * incx.
-  !>     @param[out]
-  !>     y         device pointer to the first vector (y_1) in the batch.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[out] y - device pointer to the first vector (y_1) in the batch.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of vectors y_i.
-  !>     @param[in]
-  !>     stridey     [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
   !>                 There are no restrictions placed on stridey. However, the user should
   !>                 ensure that stridey is of an appropriate size. For a typical
   !>                 case this means stridey >= n * incy. stridey should be non zero.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasScopyStridedBatched
@@ -3798,24 +3641,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``bf``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the dot product.
   !>               Return value is 0.0 if n <= 0.
 #ifndef USE_CUDA_NAMES
@@ -4184,27 +4020,19 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``bf``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device array or host array of batchCount size to store the dot products of each
   !>               batch.
   !>               Returns 0.0 for each element if n <= 0.
@@ -4547,33 +4375,23 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``bf``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector (x_1) in the batch.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector (x_1) in the batch.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer to the first vector (y_1) in the batch.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer to the first vector (y_1) in the batch.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey     [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device array or host array of batchCount size to store the dot products of each
   !>               batch.
   !>               Returns 0.0 for each element if n <= 0.
@@ -4992,19 +4810,14 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``sc``, and ``dz``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``sc``, and ``dz``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the nrm2 product.
   !>               Return value is 0.0 if n, incx<=0.
   interface hipblasSnrm2
@@ -5187,22 +5000,16 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``sc``, and ``dz``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each x_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device pointer or host pointer to array of batchCount size for nrm2 results.
   !>               Return value is 0.0 for each element if n <= 0, incx<=0.
 #ifndef USE_CUDA_NAMES
@@ -5361,28 +5168,21 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``sc``, and ``dz``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each x_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex. However, the user should
   !>               ensure that stridex is of an appropriate size. For a typical
   !>               case, this means stridex >= n * incx.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device pointer or host pointer to array for storing contiguous batchCount
   !>               results.
   !>               Return value is 0.0 for each element if n <= 0, incx<=0.
@@ -5573,27 +5373,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``sc``, and ``dz``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, ``z``, ``cs``, and ``zd``.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in the x and y vectors.
-  !>     @param[inout]
-  !>     x       device pointer storing vector x.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of x.
-  !>     @param[inout]
-  !>     y       device pointer storing vector y.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of y.
-  !>     @param[in]
-  !>     c device pointer or host pointer storing the scalar cosine component of the rotation
-  !>     matrix.
-  !>     @param[in]
-  !>     s device pointer or host pointer storing the scalar sine component of the rotation matrix.
+  !>     @param[in] c - device pointer or host pointer storing the scalar cosine component of the
+  !>     rotation matrix.
+  !>     @param[in] s - device pointer or host pointer storing the scalar sine component of the
+  !>     rotation matrix.
   interface hipblasSrot
 #ifdef USE_CUDA_NAMES
     function hipblasSrot_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasSrot_v2")
@@ -5894,28 +5687,21 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``sc``, and ``dz``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in each x_i and y_i vectors.
-  !>     @param[inout]
-  !>     x       device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[inout] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of each x_i.
-  !>     @param[inout]
-  !>     y       device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of each y_i.
-  !>     @param[in]
-  !>     c device pointer or host pointer to the scalar cosine component of the rotation matrix.
-  !>     @param[in]
-  !>     s       device pointer or host pointer to the scalar sine component of the rotation matrix.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] c - device pointer or host pointer to the scalar cosine component of the
+  !>     rotation matrix.
+  !>     @param[in] s - device pointer or host pointer to the scalar sine component of the rotation
+  !>     matrix.
+  !>     @param[in] batchCount - [int]
   !>                 the number of x and y arrays, that is, the number of batches.
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotBatched
@@ -6181,34 +5967,25 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``sc``, and ``dz``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in each x_i and y_i vectors.
-  !>     @param[inout]
-  !>     x       device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[inout] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of each x_i.
-  !>     @param[in]
-  !>     stridex [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>              specifies the increment from the beginning of x_i to the beginning of x_(i+1).
-  !>     @param[inout]
-  !>     y       device pointer to the first vector y_1.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[inout] y - device pointer to the first vector y_1.
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of each y_i.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>              specifies the increment from the beginning of y_i to the beginning of y_(i+1).
-  !>     @param[in]
-  !>     c device pointer or host pointer to the scalar cosine component of the rotation matrix.
-  !>     @param[in]
-  !>     s       device pointer or host pointer to the scalar sine component of the rotation matrix.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] c - device pointer or host pointer to the scalar cosine component of the
+  !>     rotation matrix.
+  !>     @param[in] s - device pointer or host pointer to the scalar sine component of the rotation
+  !>     matrix.
+  !>     @param[in] batchCount - [int]
   !>             the number of x and y arrays, that is, the number of batches.
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotStridedBatched
@@ -6536,17 +6313,16 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[inout]
-  !>     a       device pointer or host pointer to the input vector element, overwritten with r.
-  !>     @param[inout]
-  !>     b       device pointer or host pointer to the input vector element, overwritten with z.
-  !>     @param[inout]
-  !>     c       device pointer or host pointer to the cosine element of the Givens rotation.
-  !>     @param[inout]
-  !>     s       device pointer or host pointer to the sine element of the Givens rotation.
+  !>     @param[inout] a - device pointer or host pointer to the input vector element, overwritten
+  !>     with r.
+  !>     @param[inout] b - device pointer or host pointer to the input vector element, overwritten
+  !>     with z.
+  !>     @param[inout] c - device pointer or host pointer to the cosine element of the Givens
+  !>     rotation.
+  !>     @param[inout] s - device pointer or host pointer to the sine element of the Givens
+  !>     rotation.
   interface hipblasSrotg
 #ifdef USE_CUDA_NAMES
     function hipblasSrotg_(handle,a,b,c,s) bind(c, name="cublasSrotg_v2")
@@ -6698,23 +6474,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[inout]
-  !>     a device array of device pointers storing each single input vector element a_i, overwritten
-  !>     with r_i.
-  !>     @param[inout]
-  !>     b device array of device pointers storing each single input vector element b_i, overwritten
-  !>     with z_i.
-  !>     @param[inout]
-  !>     c device array of device pointers storing each cosine element of the Givens rotation for
-  !>     the batch.
-  !>     @param[inout]
-  !>     s device array of device pointers storing each sine element of the Givens rotation for the
-  !>     batch.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[inout] a - device array of device pointers storing each single input vector element
+  !>     a_i, overwritten with r_i.
+  !>     @param[inout] b - device array of device pointers storing each single input vector element
+  !>     b_i, overwritten with z_i.
+  !>     @param[inout] c - device array of device pointers storing each cosine element of the Givens
+  !>     rotation for the batch.
+  !>     @param[inout] s - device array of device pointers storing each sine element of the Givens
+  !>     rotation for the batch.
+  !>     @param[in] batchCount - [int]
   !>                 number of batches (length of arrays a, b, c, and s).
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotgBatched
@@ -6871,35 +6641,25 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[inout]
-  !>     a device strided_batched pointer or host strided_batched pointer to the first single input
-  !>     vector element a_1, overwritten with r.
-  !>     @param[in]
-  !>     stridea [hipblasStride]
+  !>     @param[inout] a - device strided_batched pointer or host strided_batched pointer to the
+  !>     first single input vector element a_1, overwritten with r.
+  !>     @param[in] stridea - [hipblasStride]
   !>              distance between elements of a in batch (distance between a_i and a_(i + 1)).
-  !>     @param[inout]
-  !>     b device strided_batched pointer or host strided_batched pointer to the first single input
-  !>     vector element b_1, overwritten with z.
-  !>     @param[in]
-  !>     strideb [hipblasStride]
+  !>     @param[inout] b - device strided_batched pointer or host strided_batched pointer to the
+  !>     first single input vector element b_1, overwritten with z.
+  !>     @param[in] strideb - [hipblasStride]
   !>              distance between elements of b in batch (distance between b_i and b_(i + 1)).
-  !>     @param[inout]
-  !>     c device strided_batched pointer or host strided_batched pointer to the first cosine
-  !>     element of the Givens rotations c_1.
-  !>     @param[in]
-  !>     stridec [hipblasStride]
+  !>     @param[inout] c - device strided_batched pointer or host strided_batched pointer to the
+  !>     first cosine element of the Givens rotations c_1.
+  !>     @param[in] stridec - [hipblasStride]
   !>              distance between elements of c in batch (distance between c_i and c_(i + 1)).
-  !>     @param[inout]
-  !>     s device strided_batched pointer or host strided_batched pointer to the sine element of the
-  !>     Givens rotations s_1.
-  !>     @param[in]
-  !>     strides [hipblasStride]
+  !>     @param[inout] s - device strided_batched pointer or host strided_batched pointer to the
+  !>     sine element of the Givens rotations s_1.
+  !>     @param[in] strides - [hipblasStride]
   !>              distance between elements of s in batch (distance between s_i and s_(i + 1)).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of batches (length of arrays a, b, c, and s).
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotgStridedBatched
@@ -7094,24 +6854,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : ``s`` and ``d``.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in the x and y vectors.
-  !>     @param[inout]
-  !>     x       device pointer storing vector x.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of x.
-  !>     @param[inout]
-  !>     y       device pointer storing vector y.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of y.
-  !>     @param[in]
-  !>     param   device vector or host vector of five elements defining the rotation.
+  !>     @param[in] param - device vector or host vector of five elements defining the rotation.
   !>             param can be stored in either the host or device memory. The location is specified
   !>             by calling hipblasSetPointerMode.
   !>             - param[0] = flag
@@ -7225,24 +6978,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in the x and y vectors.
-  !>     @param[inout]
-  !>     x       device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[inout] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of each x_i.
-  !>     @param[inout]
-  !>     y       device array of device pointers storing each vector y_1.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[inout] y - device array of device pointers storing each vector y_1.
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of each y_i.
-  !>     @param[in]
-  !>     param   device array of device vectors of five elements defining the rotation.
+  !>     @param[in] param - device array of device vectors of five elements defining the rotation.
   !>             param can ONLY be stored on the device for the batched version of this function.
   !>             - param[0] = flag
   !>             - param[1] = H11
@@ -7254,8 +7000,7 @@ module hipfort_hipblas
   !>             - flag =  0 => H = ( 1.0 H12 H21 1.0 )
   !>             - flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             - flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 the number of x and y arrays, that is, the number of batches.
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotmBatched
@@ -7347,31 +7092,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in the x and y vectors.
-  !>     @param[inout]
-  !>     x       device pointer pointing to first strided batched vector x_1.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[inout] x - device pointer pointing to first strided batched vector x_1.
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of each x_i.
-  !>     @param[in]
-  !>     stridex [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>              specifies the increment between the beginning of x_i and x_(i + 1).
-  !>     @param[inout]
-  !>     y       device pointer pointing to the first strided batched vector y_1.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[inout] y - device pointer pointing to the first strided batched vector y_1.
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of each y_i.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>              specifies the increment between the beginning of y_i and y_(i + 1).
-  !>     @param[in]
-  !>     param device pointer pointing to first array of five elements defining the rotation
-  !>     (param_1).
+  !>     @param[in] param - device pointer pointing to first array of five elements defining the
+  !>     rotation (param_1).
   !>             param can ONLY be stored on the device for the strided_batched version of this
   !>             function.
   !>             - param[0] = flag
@@ -7384,11 +7120,9 @@ module hipfort_hipblas
   !>             - flag =  0 => H = ( 1.0 H12 H21 1.0 )
   !>             - flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             - flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
-  !>     @param[in]
-  !>     strideParam [hipblasStride]
+  !>     @param[in] strideParam - [hipblasStride]
   !>                  specifies the increment between the beginning of param_i and param_(i + 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 the number of x and y arrays, that is, the number of batches.
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotmStridedBatched
@@ -7513,19 +7247,13 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : ``s`` and ``d``.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[inout]
-  !>     d1      device pointer or host pointer to input scalar that is overwritten.
-  !>     @param[inout]
-  !>     d2      device pointer or host pointer to input scalar that is overwritten.
-  !>     @param[inout]
-  !>     x1      device pointer or host pointer to input scalar that is overwritten.
-  !>     @param[in]
-  !>     y1      device pointer or host pointer to input scalar.
-  !>     @param[out]
-  !>     param   device vector or host vector of five elements defining the rotation.
+  !>     @param[inout] d1 - device pointer or host pointer to input scalar that is overwritten.
+  !>     @param[inout] d2 - device pointer or host pointer to input scalar that is overwritten.
+  !>     @param[inout] x1 - device pointer or host pointer to input scalar that is overwritten.
+  !>     @param[in] y1 - device pointer or host pointer to input scalar.
+  !>     @param[out] param - device vector or host vector of five elements defining the rotation.
   !>             param can be stored in either host or device memory. The location is specified by
   !>             calling hipblasSetPointerMode.
   !>             - param[0] = flag
@@ -7625,20 +7353,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[inout]
-  !>     d1      device batched array or host batched array of input scalars that is overwritten.
-  !>     @param[inout]
-  !>     d2      device batched array or host batched array of input scalars that is overwritten.
-  !>     @param[inout]
-  !>     x1      device batched array or host batched array of input scalars that is overwritten.
-  !>     @param[in]
-  !>     y1      device batched array or host batched array of input scalars.
-  !>     @param[out]
-  !>     param device batched array or host batched array of vectors of five elements defining the
-  !>     rotation.
+  !>     @param[inout] d1 - device batched array or host batched array of input scalars that is
+  !>     overwritten.
+  !>     @param[inout] d2 - device batched array or host batched array of input scalars that is
+  !>     overwritten.
+  !>     @param[inout] x1 - device batched array or host batched array of input scalars that is
+  !>     overwritten.
+  !>     @param[in] y1 - device batched array or host batched array of input scalars.
+  !>     @param[out] param - device batched array or host batched array of vectors of five elements
+  !>     defining the rotation.
   !>             param can be stored in either host or device memory. The location is specified by
   !>             calling hipblasSetPointerMode.
   !>             - param[0] = flag
@@ -7651,8 +7376,7 @@ module hipfort_hipblas
   !>             - flag =  0 => H = ( 1.0 H12 H21 1.0 )
   !>             - flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             - flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 the number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotmgBatched
@@ -7745,35 +7469,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[inout]
-  !>     d1 device strided_batched array or host strided_batched array of input scalars that is
-  !>     overwritten.
-  !>     @param[in]
-  !>     strided1 [hipblasStride]
+  !>     @param[inout] d1 - device strided_batched array or host strided_batched array of input
+  !>     scalars that is overwritten.
+  !>     @param[in] strided1 - [hipblasStride]
   !>               specifies the increment between the beginning of d1_i and d1_(i+1).
-  !>     @param[inout]
-  !>     d2 device strided_batched array or host strided_batched array of input scalars that is
-  !>     overwritten.
-  !>     @param[in]
-  !>     strided2 [hipblasStride]
+  !>     @param[inout] d2 - device strided_batched array or host strided_batched array of input
+  !>     scalars that is overwritten.
+  !>     @param[in] strided2 - [hipblasStride]
   !>               specifies the increment between the beginning of d2_i and d2_(i+1).
-  !>     @param[inout]
-  !>     x1 device strided_batched array or host strided_batched array of input scalars that is
-  !>     overwritten.
-  !>     @param[in]
-  !>     stridex1 [hipblasStride]
+  !>     @param[inout] x1 - device strided_batched array or host strided_batched array of input
+  !>     scalars that is overwritten.
+  !>     @param[in] stridex1 - [hipblasStride]
   !>               specifies the increment between the beginning of x1_i and x1_(i+1).
-  !>     @param[in]
-  !>     y1      device strided_batched array or host strided_batched array of input scalars.
-  !>     @param[in]
-  !>     stridey1 [hipblasStride]
+  !>     @param[in] y1 - device strided_batched array or host strided_batched array of input
+  !>     scalars.
+  !>     @param[in] stridey1 - [hipblasStride]
   !>               specifies the increment between the beginning of y1_i and y1_(i+1).
-  !>     @param[out]
-  !>     param device stridedBatched array or host stridedBatched array of vectors of five elements
-  !>     defining the rotation.
+  !>     @param[out] param - device stridedBatched array or host stridedBatched array of vectors of
+  !>     five elements defining the rotation.
   !>             param can be stored in either host or device memory. The location is specified by
   !>             calling hipblasSetPointerMode.
   !>             - param[0] = flag
@@ -7786,11 +7501,9 @@ module hipfort_hipblas
   !>             - flag =  0 => H = ( 1.0 H12 H21 1.0 )
   !>             - flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             - flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
-  !>     @param[in]
-  !>     strideParam [hipblasStride]
+  !>     @param[in] strideParam - [hipblasStride]
   !>                  specifies the increment between the beginning of param_i and param_(i + 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 the number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSrotmgStridedBatched
@@ -7902,18 +7615,13 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``cs``, and ``zd``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, ``z``, ``cs``, and ``zd``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer for the scalar alpha.
-  !>     @param[inout]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] alpha - device pointer or host pointer for the scalar alpha.
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   interface hipblasSscal
 #ifdef USE_CUDA_NAMES
@@ -8179,21 +7887,15 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``cs``, and ``zd``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle      [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>                 handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 the number of elements in each x_i.
-  !>     @param[in]
-  !>     alpha       host pointer or device pointer for the scalar alpha.
-  !>     @param[inout]
-  !>     x           device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] alpha - host pointer or device pointer for the scalar alpha.
+  !>     @param[inout] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 specifies the number of batches in x.
 #ifndef USE_CUDA_NAMES
   interface hipblasSscalBatched
@@ -8423,27 +8125,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, ``z``, ``cs``, and ``zd``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>      @param[in]
-  !>     handle      [hipblasHandle_t]
+  !>      @param[in] handle - [hipblasHandle_t]
   !>                 handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 the number of elements in each x_i.
-  !>     @param[in]
-  !>     alpha       host pointer or device pointer for the scalar alpha.
-  !>     @param[inout]
-  !>     x           device pointer to the first vector (x_1) in the batch.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] alpha - host pointer or device pointer for the scalar alpha.
+  !>     @param[inout] x - device pointer to the first vector (x_1) in the batch.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x. However, the user should
   !>                 ensure that stride_x is of an appropriate size. For a typical
   !>                 case, this means stride_x >= n * incx.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 specifies the number of batches in x.
 #ifndef USE_CUDA_NAMES
   interface hipblasSscalStridedBatched
@@ -8719,21 +8414,15 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[inout]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasSswap
 #ifdef USE_CUDA_NAMES
@@ -8922,24 +8611,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[inout]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSswapBatched
@@ -9104,36 +8786,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[inout]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex. However, the user should
   !>               ensure that stridex is of an appropriate size. For a typical
   !>               case, this means stridex >= n * incx.
-  !>     @param[inout]
-  !>     y         device pointer to the first vector y_1.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[inout] y - device pointer to the first vector y_1.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stridey   [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
   !>               There are no restrictions placed on stridey. However, the user should
   !>               ensure that stridey is of an appropriate size. For a typical
   !>               case, this means stridey >= n * incy. stridey should be non zero.
-  !>      @param[in]
-  !>      batchCount [int]
+  !>      @param[in] batchCount - [int]
   !>                  number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSswapStridedBatched
@@ -9342,28 +9015,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     trans     [hipblasOperation_t]
+  !>     @param[in] trans - [hipblasOperation_t]
   !>               indicates whether matrix A is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               number of rows of matrix A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of columns of matrix A.
-  !>     @param[in]
-  !>     kl        [int]
+  !>     @param[in] kl - [int]
   !>               number of sub-diagonals of A.
-  !>     @param[in]
-  !>     ku        [int]
+  !>     @param[in] ku - [int]
   !>               number of super-diagonals of A.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>         AP    device pointer storing banded matrix A.
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer storing banded matrix A.
   !>               The leading (kl + ku + 1) by n part of the matrix contains the coefficients
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
@@ -9379,20 +9044,14 @@ module hipfort_hipblas
   !>                 0 0 0 0 5 4 1    ->     0 0 0 0 0 0 0
   !>               Note that empty elements that don't correspond to data will not
   !>               be referenced.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. Must be >= (kl + ku + 1).
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasSgbmv
 #ifdef USE_CUDA_NAMES
@@ -9671,28 +9330,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     trans     [hipblasOperation_t]
+  !>     @param[in] trans - [hipblasOperation_t]
   !>               indicates whether matrix A is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               number of rows of each matrix A_i.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of columns of each matrix A_i.
-  !>     @param[in]
-  !>     kl        [int]
+  !>     @param[in] kl - [int]
   !>               number of sub-diagonals of each A_i.
-  !>     @param[in]
-  !>     ku        [int]
+  !>     @param[in] ku - [int]
   !>               number of super-diagonals of each A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>         AP    device array of device pointers storing each banded matrix A_i.
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each banded matrix A_i.
   !>               The leading (kl + ku + 1) by n part of the matrix contains the coefficients
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
@@ -9708,23 +9359,16 @@ module hipfort_hipblas
   !>                 0 0 0 0 5 4 1    ->    0 0 0 0 0 0 0
   !>               Note that empty elements that don't correspond to data will not
   !>               be referenced.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be >= (kl + ku + 1).
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 specifies the number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgbmvBatched
@@ -9967,28 +9611,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     trans     [hipblasOperation_t]
+  !>     @param[in] trans - [hipblasOperation_t]
   !>               indicates whether matrix A is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               number of rows of matrix A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of columns of matrix A.
-  !>     @param[in]
-  !>     kl        [int]
+  !>     @param[in] kl - [int]
   !>               number of sub-diagonals of A.
-  !>     @param[in]
-  !>     ku        [int]
+  !>     @param[in] ku - [int]
   !>               number of super-diagonals of A.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>         AP    device pointer to first banded matrix (A_1).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer to first banded matrix (A_1).
   !>               The leading (kl + ku + 1) by n part of the matrix contains the coefficients
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
@@ -10004,32 +9640,22 @@ module hipfort_hipblas
   !>                 0 0 0 0 5 4 1    ->   0 0 0 0 0 0 0
   !>               Note that empty elements that don't correspond to data will not
   !>               be referenced.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. Must be >= (kl + ku + 1).
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x         device pointer to first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer to first vector (y_1).
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer to first vector (y_1).
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 specifies the number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgbmvStridedBatched
@@ -10322,36 +9948,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     trans     [hipblasOperation_t]
+  !>     @param[in] trans - [hipblasOperation_t]
   !>               indicates whether matrix A is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               number of rows of matrix A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of columns of matrix A.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasSgemv
 #ifdef USE_CUDA_NAMES
@@ -10613,39 +10227,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle      [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>                 handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     trans       [hipblasOperation_t]
+  !>     @param[in] trans - [hipblasOperation_t]
   !>                 indicates whether matrices A_i are tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     m           [int]
+  !>     @param[in] m - [int]
   !>                 number of rows of each matrix A_i.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 number of columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha       device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda         [int]
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>                 specifies the leading dimension of each matrix A_i.
-  !>     @param[in]
-  !>     x           device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     beta        device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y           device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy        [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>                 specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
   interface hipblasSgemvBatched
 #ifdef USE_CUDA_NAMES
@@ -10887,55 +10488,39 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle      [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>                 handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA      [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>                 indicates whether matrices A_i are tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     m           [int]
+  !>     @param[in] m - [int]
   !>                 number of rows of matrices A_i.
-  !>     @param[in]
-  !>     n           [int]
+  !>     @param[in] n - [int]
   !>                 number of columns of matrices A_i.
-  !>     @param[in]
-  !>     alpha       device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP          device pointer to the first matrix (A_1) in the batch.
-  !>     @param[in]
-  !>     lda         [int]
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer to the first matrix (A_1) in the batch.
+  !>     @param[in] lda - [int]
   !>                 specifies the leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     strideA     [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x           device pointer to the first vector (x_1) in the batch.
-  !>     @param[in]
-  !>     incx        [int]
+  !>     @param[in] x - device pointer to the first vector (x_1) in the batch.
+  !>     @param[in] incx - [int]
   !>                 specifies the increment for the elements of vectors x_i.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
   !>                 There are no restrictions placed on stridex. However, the user should
   !>                 ensure that stridex is of an appropriate size. When trans equals HIPBLAS_OP_N,
   !>                 this typically means stridex >= n * incx. Otherwise, stridex >= m * incx.
-  !>     @param[in]
-  !>     beta        device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y           device pointer to the first vector (y_1) in the batch.
-  !>     @param[in]
-  !>     incy        [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer to the first vector (y_1) in the batch.
+  !>     @param[in] incy - [int]
   !>                 specifies the increment for the elements of vectors y_i.
-  !>     @param[in]
-  !>     stridey     [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
   !>                 There are no restrictions placed on stridey. However, the user should
   !>                 ensure that stridey is of an appropriate size. When trans equals HIPBLAS_OP_N,
   !>                 this typically means stridey >= m * incy. Otherwise, stridey >= n * incy.
   !>                 stridey should be non zero.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
   interface hipblasSgemvStridedBatched
 #ifdef USE_CUDA_NAMES
@@ -11243,32 +10828,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               the number of rows of the matrix A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of columns of the matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   interface hipblasSger
 #ifdef USE_CUDA_NAMES
@@ -11608,35 +11183,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               the number of rows of each matrix A_i.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgerBatched
@@ -11930,50 +11494,36 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               the number of rows of each matrix A_i.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer to the first vector (x_1) in the batch.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector (x_1) in the batch.
+  !>     @param[in] incx - [int]
   !>               specifies the increments for the elements of each vector x_i.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex. However, the user should
   !>               ensure that stridex is of an appropriate size. For a typical
   !>               case, this means stridex >= m * incx.
-  !>     @param[inout]
-  !>     y         device pointer to the first vector (y_1) in the batch.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[inout] y - device pointer to the first vector (y_1) in the batch.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     stridey   [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
   !>               There are no restrictions placed on stridey. However, the user should
   !>               ensure that stridey is of an appropriate size. For a typical
   !>               case, this means stridey >= n * incy.
-  !>     @param[inout]
-  !>     AP        device pointer to the first matrix (A_1) in the batch.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device pointer to the first matrix (A_1) in the batch.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     strideA     [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one matrix (A_i) to the next one (A_i+1)
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgerStridedBatched
@@ -12355,23 +11905,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is being supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is being supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of the matrix A.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               the number of super-diagonals of the matrix A. Must be >= 0.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer storing matrix A. Of dimension (lda, n).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer storing matrix A. Of dimension (lda, n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The leading (k + 1) by n part of A must contain the upper
   !>                 triangular band part of the Hermitian matrix, with the leading
@@ -12398,20 +11942,14 @@ module hipfort_hipblas
   !>                     ->                                (0, 0) (0, 0) (7, 7) (4, 0)
   !>               - As a Hermitian matrix, the imaginary part of the main diagonal
   !>               of A will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. Must be >= k + 1.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasChbmv
 #ifdef USE_CUDA_NAMES
@@ -12550,25 +12088,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is being
   !>               supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is being
   !>               supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               the number of super-diagonals of each matrix A_i. Must be >= 0.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device array of device pointers storing each matrix_i A of dimension (lda, n).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The leading (k + 1) by n part of each A_i must contain the upper
   !>                 triangular band part of the Hermitian matrix, with the leading
@@ -12595,23 +12128,16 @@ module hipfort_hipblas
   !>                     ->                                (0, 0) (0, 0) (7, 7) (4, 0)
   !>               - As a Hermitian matrix, the imaginary part of the main diagonal
   !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be >= max(1, n).
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChbmvBatched
@@ -12728,25 +12254,20 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is being
   !>               supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is being
   !>               supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               the number of super-diagonals of each matrix A_i. Must be >= 0.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device array pointing to the first matrix A_1. Each A_i is of dimension (lda, n).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device array pointing to the first matrix A_1. Each A_i is of dimension
+  !>     (lda, n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The leading (k + 1) by n part of each A_i must contain the upper
   !>                 triangular band part of the Hermitian matrix, with the leading
@@ -12773,32 +12294,22 @@ module hipfort_hipblas
   !>                     ->                              (0, 0) (0, 0) (7, 7) (4, 0)
   !>               - As a Hermitian matrix, the imaginary part of the main diagonal
   !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be >= max(1, n).
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x         device array pointing to the first vector y_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array pointing to the first vector y_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array pointing to the first vector y_1.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array pointing to the first vector y_1.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChbmvStridedBatched
@@ -12944,22 +12455,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: the upper triangular part of the Hermitian matrix A is
   !>               supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: the lower triangular part of the Hermitian matrix A is
   !>               supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of the matrix A.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer storing matrix A. Of dimension (lda, n).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer storing matrix A. Of dimension (lda, n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular part of A must contain
   !>                 the upper triangular part of a Hermitian matrix. The lower
@@ -12970,20 +12476,14 @@ module hipfort_hipblas
   !>                 triangular part of A will not be referenced.
   !>               - As a Hermitian matrix, the imaginary part of the main diagonal
   !>               of A will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. Must be >= max(1, n).
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasChemv
 #ifdef USE_CUDA_NAMES
@@ -13117,22 +12617,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: the upper triangular part of the Hermitian matrix A is
   !>               supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: the lower triangular part of the Hermitian matrix A is
   !>               supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device array of device pointers storing each matrix A_i of dimension (lda, n).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i of dimension (lda,
+  !>     n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular part of each A_i must contain
   !>                 the upper triangular part of a Hermitian matrix. The lower
@@ -13143,23 +12639,16 @@ module hipfort_hipblas
   !>                 triangular part of each A_i will not be referenced.
   !>               - As a Hermitian matrix, the imaginary part of the main diagonal
   !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be >= max(1, n).
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChemvBatched
@@ -13271,22 +12760,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: the upper triangular part of the Hermitian matrix A is
   !>               supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: the lower triangular part of the Hermitian matrix A is
   !>               supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device array of device pointers storing each matrix A_i of dimension (lda, n).
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i of dimension (lda,
+  !>     n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular part of each A_i must contain
   !>                 the upper triangular part of a Hermitian matrix. The lower
@@ -13297,33 +12782,23 @@ module hipfort_hipblas
   !>                 triangular part of each A_i will not be referenced.
   !>               - As a Hermitian matrix, the imaginary part of the main diagonal
   !>               of each A_i will not be referenced and is assumed to be == 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be >= max(1, n).
-  !>     @param[in]
-  !>     strideA    [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one (A_i) to the next (A_i+1).
   !>
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChemvStridedBatched
@@ -13464,28 +12939,21 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is supplied in A.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is supplied in A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     AP        device pointer storing the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the specified triangular portion of
   !>               the Hermitian matrix A. Of size (lda * n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied. The lower
@@ -13496,8 +12964,7 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. Must be at least max(1, n).
   interface hipblasCher
 #ifdef USE_CUDA_NAMES
@@ -13610,30 +13077,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               A.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the specified triangular portion of
+  !>     @param[inout] AP - device array of device pointers storing the specified triangular portion
+  !>     of
   !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
   !>               least size batchCount.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -13647,11 +13108,9 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be at least max(1, n).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCherBatched
@@ -13750,33 +13209,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               A.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               A.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer pointing to the first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the specified triangular portion of
+  !>     @param[inout] AP - device array of device pointers storing the specified triangular portion
+  !>     of
   !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The
@@ -13789,14 +13241,11 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     strideA    [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one (A_i) to the next (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCherStridedBatched
@@ -13921,33 +13370,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     AP        device pointer storing the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the specified triangular portion of
   !>               the Hermitian matrix A. Of size (lda, n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied. The lower
@@ -13960,8 +13400,7 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. Must be at least max(lda, 1).
   interface hipblasCher2
 #ifdef USE_CUDA_NAMES
@@ -14086,33 +13525,25 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[inout]
-  !>     AP        device array of device pointers storing the specified triangular portion of
+  !>     @param[inout] AP - device array of device pointers storing the specified triangular portion
+  !>     of
   !>               each Hermitian matrix A_i of size (lda, n).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The
@@ -14125,11 +13556,9 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be at least max(lda, 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCher2Batched
@@ -14236,42 +13665,31 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer pointing to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the stride between the beginning of one vector (x_i) and the next
   !>               (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer pointing to the first vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer pointing to the first vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               specifies the stride between the beginning of one vector (y_i) and the next
   !>               (y_i+1).
-  !>     @param[inout]
-  !>     AP device pointer pointing to the first matrix (A_1). Stores the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device pointer pointing to the first matrix (A_1). Stores the specified
+  !>     triangular portion of
   !>               each Hermitian matrix A_i.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The
@@ -14284,15 +13702,12 @@ module hipfort_hipblas
   !>               - Note that the imaginary part of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. Must be at least max(lda, 1).
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               specifies the stride between the beginning of one matrix (A_i) and the next
   !>               (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCher2StridedBatched
@@ -14430,22 +13845,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: the upper triangular part of the Hermitian matrix A is
   !>               supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: the lower triangular part of the Hermitian matrix A is
   !>               supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of the matrix A. Must be >= 0.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) / 2).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
@@ -14474,17 +13885,12 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>               to be 0.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasChpmv
 #ifdef USE_CUDA_NAMES
@@ -14609,22 +14015,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: the upper triangular part of each Hermitian matrix A_i
   !>               is supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: the lower triangular part of each Hermitian matrix A_i
   !>               is supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP device pointer of device pointers storing the packed version of the specified triangular
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer of device pointers storing the packed version of the
+  !>     specified triangular
   !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n * (n + 1)) /
   !>             2).
   !>             - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -14654,20 +14056,14 @@ module hipfort_hipblas
   !>             - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>             assumed
   !>               to be 0.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChpmvBatched
@@ -14776,22 +14172,18 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: the upper triangular part of each Hermitian matrix A_i
   !>               is supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: the lower triangular part of each Hermitian matrix A_i
   !>               is supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the order of each matrix A_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP device pointer pointing to the beginning of the first matrix (AP_1). Stores the packed
+  !>     @param[in] alpha - device pointer or host pointer to scalar alpha.
+  !>     @param[in] AP - device pointer pointing to the beginning of the first matrix (AP_1). Stores
+  !>     the packed
   !>               version of the specified triangular portion of each Hermitian matrix AP_i of size
   !>               ((n * (n + 1)) / 2).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -14821,29 +14213,20 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (AP_i) to the next one (AP_i+1).
-  !>     @param[in]
-  !>     x         device array pointing to the beginning of the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array pointing to the beginning of the first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[inout]
-  !>     y         device array pointing to the beginning of the first vector (y_1).
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[inout] y - device array pointing to the beginning of the first vector (y_1).
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChpmvStridedBatched
@@ -14978,28 +14361,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) / 2).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
@@ -15134,31 +14511,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     AP device array of device pointers storing the packed version of the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device array of device pointers storing the packed version of the
+  !>     specified triangular portion of
   !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
   !>               least size batchCount.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -15188,8 +14558,7 @@ module hipfort_hipblas
   !>               - Note that the imaginary part of the diagonal elements are not accessed and are
   !>               assumed
   !>               to be 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChprBatched
@@ -15285,34 +14654,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer pointing to the first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[inout]
-  !>     AP device array of device pointers storing the packed version of the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device array of device pointers storing the packed version of the
+  !>     specified triangular portion of
   !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
@@ -15341,11 +14702,9 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     strideA   [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one (A_i) to the next (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChprStridedBatched
@@ -15462,33 +14821,25 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) / 2).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
@@ -15633,36 +14984,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[inout]
-  !>     AP device array of device pointers storing the packed version of the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device array of device pointers storing the packed version of the
+  !>     specified triangular portion of
   !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
   !>               least size batchCount.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -15692,8 +15034,7 @@ module hipfort_hipblas
   !>               - Note that the imaginary parts of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChpr2Batched
@@ -15797,42 +15138,31 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer pointing to the first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer pointing to the first vector (y_1).
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer pointing to the first vector (y_1).
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[inout]
-  !>     AP device array of device pointers storing the packed version of the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device array of device pointers storing the packed version of the
+  !>     specified triangular portion of
   !>               each Hermitian matrix A_i. Points to the first matrix (A_1).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
@@ -15861,11 +15191,9 @@ module hipfort_hipblas
   !>               - Note that the imaginary part of the diagonal elements are not accessed and are
   !>               assumed
   !>                 to be 0.
-  !>     @param[in]
-  !>     strideA    [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one (A_i) to the next (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChpr2StridedBatched
@@ -15996,39 +15324,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : ``s`` and ``d``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] n - [int]
+  !>     @param[in] k - [int]
   !>               specifies the number of sub- and super-diagonals.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               specifies the scalar alpha.
-  !>     @param[in]
-  !>     AP         pointer storing matrix A on the GPU.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of matrix A.
-  !>     @param[in]
-  !>     x         pointer storing vector x on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - pointer storing vector x on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      specifies the scalar beta.
-  !>     @param[out]
-  !>     y         pointer storing vector y on the GPU.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - specifies the scalar beta.
+  !>     @param[out] y - pointer storing vector y on the GPU.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasSsbmv
 #ifdef USE_CUDA_NAMES
@@ -16167,43 +15483,30 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of rows and columns of each matrix A_i.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               specifies the number of sub- and super-diagonals.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each matrix A_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[out]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[out] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsbmvBatched
@@ -16320,58 +15623,42 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of rows and columns of each matrix A_i.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               specifies the number of sub- and super-diagonals.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device pointer to the first matrix A_1 on the GPU.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - device pointer to the first matrix A_1 on the GPU.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each matrix A_i.
-  !>     @param[in]
-  !>     strideA     [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1 on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1 on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
   !>                 There are no restrictions placed on stridex. However, the user should
   !>                 ensure that stridex is of an appropriate size.
   !>                 This typically means stridex >= n * incx. stridex should be non zero.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[out]
-  !>     y         device pointer to the first vector y_1 on the GPU.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[out] y - device pointer to the first vector y_1 on the GPU.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     stridey     [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
   !>                 There are no restrictions placed on stridey. However, the user should
   !>                 ensure that stridey is of an appropriate size.
   !>                 This typically means stridey >= n * incy. stridey should be non zero.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsbmvStridedBatched
@@ -16516,33 +15803,23 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : ``s`` and ``d``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] n - [int]
+  !>     @param[in] alpha
   !>               specifies the scalar alpha.
-  !>     @param[in]
-  !>     AP         pointer storing matrix A on the GPU.
-  !>     @param[in]
-  !>     x         pointer storing vector x on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
+  !>     @param[in] x - pointer storing vector x on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      specifies the scalar beta.
-  !>     @param[out]
-  !>     y         pointer storing vector y on the GPU.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - specifies the scalar beta.
+  !>     @param[out] y - pointer storing vector y on the GPU.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasSspmv
 #ifdef USE_CUDA_NAMES
@@ -16667,37 +15944,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of rows and columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[out]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[out] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSspmvBatched
@@ -16806,52 +16072,38 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of rows and columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        Device pointer to the first matrix A_1 on the GPU.
-  !>     @param[in]
-  !>     strideA    [hipblasStride]
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU.
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x         Device pointer to the first vector x_1 on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - Device pointer to the first vector x_1 on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
   !>                 There are no restrictions placed on stridex. However, the user should
   !>                 take care to ensure that stridex is of an appropriate size.
   !>                 This typically means stridex >= n * incx. stridex should be non zero.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[out]
-  !>     y         Device pointer to the first vector y_1 on the GPU.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[out] y - Device pointer to the first vector y_1 on the GPU.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     stridey     [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
   !>                 There are no restrictions placed on stridey. However, the user should
   !>                 take care to ensure that stridey is of an appropriate size.
   !>                 This typically means stridey >= n * incy. stridey should be non zero.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSspmvStridedBatched
@@ -16986,28 +16238,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               the symmetric matrix A. Of at least size ((n * (n + 1)) / 2).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the symmetric matrix A is supplied.
@@ -17225,31 +16471,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     AP device array of device pointers storing the packed version of the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device array of device pointers storing the packed version of the
+  !>     specified triangular portion of
   !>               each symmetric matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
   !>               least size batchCount.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -17278,8 +16517,7 @@ module hipfort_hipblas
   !>                         2 5 6 7    -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsprBatched
@@ -17455,33 +16693,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer pointing to the first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               each symmetric matrix A_i. Points to the first A_1.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each symmetric matrix A_i is supplied.
@@ -17509,11 +16740,9 @@ module hipfort_hipblas
   !>                         2 5 6 7    -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     @param[in]
-  !>     strideA    [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one (A_i) to the next (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsprStridedBatched
@@ -17732,33 +16961,25 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : ``s`` and ``d``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of A is supplied in AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of A is supplied in AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               the symmetric matrix A. Of at least size ((n * (n + 1)) / 2).
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the symmetric matrix A is supplied.
@@ -17902,36 +17123,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[inout]
-  !>     AP device array of device pointers storing the packed version of the specified triangular
-  !>     portion of
+  !>     @param[inout] AP - device array of device pointers storing the packed version of the
+  !>     specified triangular portion of
   !>               each symmetric matrix A_i of at least size ((n * (n + 1)) / 2). Array is of at
   !>               least size batchCount.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
@@ -17960,8 +17172,7 @@ module hipfort_hipblas
   !>                         2 5 6 7    -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSspr2Batched
@@ -18065,41 +17276,31 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in
   !>               AP.
   !>               - HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in
   !>               AP.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A_i. Must be at least 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer pointing to the first vector (x_1).
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer pointing to the first vector (x_1).
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer pointing to the first vector (y_1).
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer pointing to the first vector (y_1).
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey  [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[inout]
-  !>     AP        device pointer storing the packed version of the specified triangular portion of
+  !>     @param[inout] AP - device pointer storing the packed version of the specified triangular
+  !>     portion of
   !>               each symmetric matrix A_i. Points to the first A_1.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each symmetric matrix A_i is supplied.
@@ -18127,11 +17328,9 @@ module hipfort_hipblas
   !>                         2 5 6 7    -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     @param[in]
-  !>     strideA   [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one (A_i) to the next (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSspr2StridedBatched
@@ -18262,36 +17461,25 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] n - [int]
+  !>     @param[in] alpha
   !>               specifies the scalar alpha.
-  !>     @param[in]
-  !>     AP         pointer storing matrix A on the GPU.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     x         pointer storing vector x on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - pointer storing vector x on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     beta      specifies the scalar beta.
-  !>     @param[out]
-  !>     y         pointer storing vector y on the GPU.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - specifies the scalar beta.
+  !>     @param[out] y - pointer storing vector y on the GPU.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
   interface hipblasSsymv
 #ifdef USE_CUDA_NAMES
@@ -18545,40 +17733,28 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of rows and columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP        device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each matrix A_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[out]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[out] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsymvBatched
@@ -18788,55 +17964,40 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of rows and columns of each matrix A_i.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     AP         Device pointer to the first matrix A_1 on the GPU.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each matrix A_i.
-  !>     @param[in]
-  !>     strideA     [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>                 stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x         Device pointer to the first vector x_1 on the GPU.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - Device pointer to the first vector x_1 on the GPU.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each vector x_i.
-  !>     @param[in]
-  !>     stridex     [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
   !>                 There are no restrictions placed on stridex. However, the user should
   !>                 take care to ensure that stridex is of an appropriate size.
   !>                 This typically means stridex >= n * incx. stridex should be non zero.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer to scalar beta.
-  !>     @param[out]
-  !>     y         Device pointer to the first vector y_1 on the GPU.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] beta - device pointer or host pointer to scalar beta.
+  !>     @param[out] y - Device pointer to the first vector y_1 on the GPU.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each vector y_i.
-  !>     @param[in]
-  !>     stridey     [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
   !>                 There are no restrictions placed on stridey. However, the user should
   !>                 take care to ensure that stridey is of an appropriate size.
   !>                 This typically means stridey >= n * incy. stridey should be non zero.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsymvStridedBatched
@@ -19103,31 +18264,23 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   interface hipblasSsyr
 #ifdef USE_CUDA_NAMES
@@ -19338,33 +18491,24 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyrBatched
@@ -19548,39 +18692,28 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the pointer increment between vectors (x_i) and (x_i+1).
-  !>     @param[inout]
-  !>     AP         device pointer to the first matrix A_1.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device pointer to the first matrix A_1.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     strideA   [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyrStridedBatched
@@ -19815,36 +18948,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   interface hipblasSsyr2
 #ifdef USE_CUDA_NAMES
@@ -20079,38 +19202,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[inout]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyr2Batched
@@ -20309,47 +19421,33 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of each matrix A.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>               device pointer or host pointer to scalar alpha.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the pointer increment between vectors (x_i) and (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer to the first vector y_1.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] y - device pointer to the first vector y_1.
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey   [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               specifies the pointer increment between vectors (y_i) and (y_i+1).
-  !>     @param[inout]
-  !>     AP         device pointer to the first matrix A_1.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[inout] AP - device pointer to the first matrix A_1.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     strideA   [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyr2StridedBatched
@@ -20610,33 +19708,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: A is an upper banded triangular matrix.
   !>               - HIPBLAS_FILL_MODE_LOWER: A is a lower banded triangular matrix.
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               indicates whether matrix A is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     diag      [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>               - HIPBLAS_DIAG_UNIT: The main diagonal of A is assumed to consist of only
   !>                                      1's and is not referenced.
   !>               - HIPBLAS_DIAG_NON_UNIT: No assumptions are made of A's main diagonal.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of the matrix represented by A.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER, k specifies the number of super-diagonals
   !>                 of the matrix A.
   !>               - if uplo == HIPBLAS_FILL_MODE_LOWER, k specifies the number of sub-diagonals
   !>                 of the matrix A.
   !>               - k must satisfy k > 0 && k < lda.
-  !>     @param[in]
-  !>     AP         device pointer storing banded triangular matrix A.
+  !>     @param[in] AP - device pointer storing banded triangular matrix A.
   !>                - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The matrix represented is an upper banded triangular matrix
   !>                 with the main diagonal and k super-diagonals. Everything
@@ -20663,13 +19754,10 @@ module hipfort_hipblas
   !>                       9 7 3 0 0     ->      9 8 7 0 0
   !>                       0 8 8 4 0     ->      0 0 0 0 0
   !>                       0 0 7 9 5     ->      0 0 0 0 0
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A. lda must satisfy lda > k.
-  !>     @param[inout]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   interface hipblasStbmv
 #ifdef USE_CUDA_NAMES
@@ -20907,33 +19995,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: each A_i is an upper banded triangular matrix.
   !>               - HIPBLAS_FILL_MODE_LOWER: each A_i is a  lower banded triangular matrix.
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               indicates whether each matrix A_i is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     diag      [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>               - HIPBLAS_DIAG_UNIT: The main diagonal of each A_i is assumed to consist of only
   !>                                      1's and is not referenced.
   !>               - HIPBLAS_DIAG_NON_UNIT: No assumptions are made of each A_i's main diagonal.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of the matrix represented by each A_i.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER, k specifies the number of super-diagonals
   !>               of each matrix A_i.
   !>               - if uplo == HIPBLAS_FILL_MODE_LOWER, k specifies the number of sub-diagonals
   !>               of each matrix A_i.
   !>               - k must satisfy k > 0 && k < lda.
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each banded triangular matrix A_i.
+  !>     @param[in] AP - device array of device pointers storing each banded triangular matrix A_i.
   !>                - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The matrix represented is an upper banded triangular matrix
   !>                 with the main diagonal and k super-diagonals. Everything
@@ -20960,16 +20041,12 @@ module hipfort_hipblas
   !>                       9 7 3 0 0        ->      9 8 7 0 0
   !>                       0 8 8 4 0        ->      0 0 0 0 0
   !>                       0 0 7 9 5        ->      0 0 0 0 0
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. lda must satisfy lda > k.
-  !>     @param[inout]
-  !>     x         device array of device pointer storing each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device array of device pointer storing each vector x_i.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStbmvBatched
@@ -21171,34 +20248,27 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               - HIPBLAS_FILL_MODE_UPPER: each A_i is an upper banded triangular matrix.
   !>               - HIPBLAS_FILL_MODE_LOWER: each A_i is a lower banded triangular matrix.
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               indicates whether each matrix A_i is tranposed (conjugated) or not.
-  !>     @param[in]
-  !>     diag      [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>               - HIPBLAS_DIAG_UNIT: The main diagonal of each A_i is assumed to consist of only
   !>                                      1's and is not referenced.
   !>               - HIPBLAS_DIAG_NON_UNIT: No assumptions are made of each A_i's main diagonal.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of rows and columns of the matrix represented by each A_i.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER, k specifies the number of super-diagonals
   !>               of each matrix A_i.
   !>               - if uplo == HIPBLAS_FILL_MODE_LOWER, k specifies the number of sub-diagonals
   !>               of each matrix A_i.
   !>               - k must satisfy k > 0 && k < lda.
-  !>     @param[in]
-  !>     AP device array to the first matrix A_i of the batch. Stores each banded triangular matrix
-  !>     A_i.
+  !>     @param[in] AP - device array to the first matrix A_i of the batch. Stores each banded
+  !>     triangular matrix A_i.
   !>               - if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The matrix represented is an upper banded triangular matrix
   !>                 with the main diagonal and k super-diagonals. Everything
@@ -21225,22 +20295,16 @@ module hipfort_hipblas
   !>                       9 7 3 0 0     ->         9 8 7 0 0
   !>                       0 8 8 4 0     ->         0 0 0 0 0
   !>                       0 0 7 9 5     ->         0 0 0 0 0
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i. lda must satisfy lda > k.
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one A_i matrix to the next A_(i + 1).
-  !>     @param[inout]
-  !>     x         device array to the first vector x_i of the batch.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device array to the first vector x_i of the batch.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one x_i matrix to the next x_(i + 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStbmvStridedBatched
@@ -21490,52 +20554,43 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>                - HIPBLAS_OP_N: Solves A*x = b
   !>                - HIPBLAS_OP_T: Solves A**T*x = b
   !>                - HIPBLAS_OP_C: Solves A**H*x = b
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT: A is assumed to be unit triangular (that is, the diagonal
   !>             elements
   !>                                        of A are not used in computations).
   !>             - HIPBLAS_DIAG_NON_UNIT: A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of b. n >= 0.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               - if(uplo == HIPBLAS_FILL_MODE_UPPER),
   !>                 k specifies the number of super-diagonals of A.
   !>               - if(uplo == HIPBLAS_FILL_MODE_LOWER),
   !>                 k specifies the number of sub-diagonals of A.
   !>               - k >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device pointer storing the matrix A in banded format.
+  !>     @param[in] AP - device pointer storing the matrix A in banded format.
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   !>               lda >= (k + 1).
   !>
-  !>     @param[inout]
-  !>     x         device pointer storing input vector b. Overwritten by the output vector x.
+  !>     @param[inout] x - device pointer storing input vector b. Overwritten by the output vector
+  !>     x.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   interface hipblasStbsv
 #ifdef USE_CUDA_NAMES
@@ -21772,56 +20827,45 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>                - HIPBLAS_OP_N: Solves A_i*x_i = b_i
   !>                - HIPBLAS_OP_T: Solves A_i**T*x_i = b_i
   !>                - HIPBLAS_OP_C: Solves A_i**H*x_i = b_i
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (that is, the
   !>             diagonal elements
   !>                                        of each A_i are not used in computations).
   !>             - HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of each b_i. n >= 0.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               - if(uplo == HIPBLAS_FILL_MODE_UPPER),
   !>                 k specifies the number of super-diagonals of each A_i.
   !>               - if(uplo == HIPBLAS_FILL_MODE_LOWER),
   !>                 k specifies the number of sub-diagonals of each A_i.
   !>               - k >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device vector of device pointers storing each matrix A_i in banded format.
+  !>     @param[in] AP - device vector of device pointers storing each matrix A_i in banded format.
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
   !>               lda >= (k + 1).
   !>
-  !>     @param[inout]
-  !>     x device vector of device pointers storing each input vector b_i. Overwritten by each
-  !>     output
+  !>     @param[inout] x - device vector of device pointers storing each input vector b_i.
+  !>     Overwritten by each output
   !>               vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStbsvBatched
@@ -22022,62 +21066,50 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>                - HIPBLAS_OP_N: Solves A_i*x_i = b_i
   !>                - HIPBLAS_OP_T: Solves A_i**T*x_i = b_i
   !>                - HIPBLAS_OP_C: Solves A_i**H*x_i = b_i
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (that is, the
   !>             diagonal elements
   !>                                        of each A_i are not used in computations).
   !>             - HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of each b_i. n >= 0.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               - if(uplo == HIPBLAS_FILL_MODE_UPPER),
   !>                 k specifies the number of super-diagonals of each A_i.
   !>               - if(uplo == HIPBLAS_FILL_MODE_LOWER),
   !>                 k specifies the number of sub-diagonals of each A_i.
   !>               - k >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device pointer pointing to the first banded matrix A_1.
+  !>     @param[in] AP - device pointer pointing to the first banded matrix A_1.
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
   !>               lda >= (k + 1).
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               specifies the distance between the start of one matrix (A_i) and the next
   !>               (A_i+1).
   !>
-  !>     @param[inout]
-  !>     x device pointer pointing to the first input vector b_1. Overwritten by output vectors x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[inout] x - device pointer pointing to the first input vector b_1. Overwritten by
+  !>     output vectors x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               specifies the distance between the start of one vector (x_i) and the next
   !>               (x_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStbsvStridedBatched
@@ -22330,29 +21362,23 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows of A. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP       device pointer storing matrix A,
+  !>     @param[in] AP - device pointer storing matrix A,
   !>             of dimension at least ( n * ( n + 1 ) / 2 ).
   !>           - Before entry with uplo = HIPBLAS_FILL_MODE_UPPER, the array A
   !>           must contain the upper triangular matrix packed sequentially,
@@ -22365,11 +21391,9 @@ module hipfort_hipblas
   !>           - Note that when DIAG = HIPBLAS_DIAG_UNIT, the diagonal elements of A are
   !>           not referenced, but are assumed to be unity.
   !>
-  !>     @param[in]
-  !>     x       device pointer storing vector x.
+  !>     @param[in] x - device pointer storing vector x.
   !>
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[in] incx - [int]
   !>             specifies the increment for the elements of x. incx must not be zero.
   interface hipblasStpmv
 #ifdef USE_CUDA_NAMES
@@ -22578,40 +21602,31 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of matrices A_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device pointer storing pointer of matrices A_i
+  !>     @param[in] AP - device pointer storing pointer of matrices A_i
   !>               of dimension ( lda, n ).
   !>
-  !>     @param[in]
-  !>     x         device pointer storing vectors x_i.
+  !>     @param[in] x - device pointer storing vectors x_i.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of vectors x_i.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               The number of batched matrices/vectors.
 #ifndef USE_CUDA_NAMES
   interface hipblasStpmvBatched
@@ -22798,48 +21813,37 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of matrices A_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device pointer of the matrix A_0
+  !>     @param[in] AP - device pointer of the matrix A_0
   !>               of dimension ( lda, n ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one A_i matrix to the next A_{i + 1}.
   !>
-  !>     @param[in]
-  !>     x         device pointer storing the vector x_0.
+  !>     @param[in] x - device pointer storing the vector x_0.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of one vector x.
   !>
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one x_i vector to the next x_{i + 1}.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               The number of batched matrices/vectors.
 #ifndef USE_CUDA_NAMES
   interface hipblasStpmvStridedBatched
@@ -23072,41 +22076,33 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: Solves A*x = b
   !>             - HIPBLAS_OP_T: Solves A**T*x = b
   !>             - HIPBLAS_OP_C: Solves A**H*x = b
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT: A is assumed to be unit triangular (that is, the diagonal
   !>             elements
   !>                                        of A are not used in computations).
   !>             - HIPBLAS_DIAG_NON_UNIT: A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of b. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device pointer storing the packed version of matrix A
+  !>     @param[in] AP - device pointer storing the packed version of matrix A
   !>               of dimension >= (n * (n + 1) / 2).
   !>
-  !>     @param[inout]
-  !>     x         device pointer storing vector b on input, overwritten by x on output.
+  !>     @param[inout] x - device pointer storing vector b on input, overwritten by x on output.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   interface hipblasStpsv
 #ifdef USE_CUDA_NAMES
@@ -23316,45 +22312,37 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: Solves A*x = b
   !>             - HIPBLAS_OP_T: Solves A**T*x = b
   !>             - HIPBLAS_OP_C: Solves A**H*x = b
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (that is, the
   !>             diagonal elements
   !>                                        of each A_i are not used in computations).
   !>             - HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of each b_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device array of device pointers storing the packed versions of each matrix A_i
+  !>     @param[in] AP - device array of device pointers storing the packed versions of each matrix
+  !>     A_i
   !>               of dimension >= (n * (n + 1) / 2).
   !>
-  !>     @param[inout]
-  !>     x device array of device pointers storing each input vector b_i, overwritten by x_i on
-  !>     output.
+  !>     @param[inout] x - device array of device pointers storing each input vector b_i,
+  !>     overwritten by x_i on output.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 specifies the number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStpsvBatched
@@ -23540,51 +22528,41 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: Solves A*x = b
   !>             - HIPBLAS_OP_T: Solves A**T*x = b
   !>             - HIPBLAS_OP_C: Solves A**H*x = b
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (that is, the
   !>             diagonal elements
   !>                                        of each A_i are not used in computations).
   !>             - HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of each b_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device pointer pointing to the first packed matrix A_1
+  !>     @param[in] AP - device pointer pointing to the first packed matrix A_1
   !>               of dimension >= (n * (n + 1) / 2).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the beginning of one packed matrix (AP_i) to the next (AP_i+1).
   !>
-  !>     @param[inout]
-  !>     x device pointer pointing to the first input vector b_1. Overwritten by each x_i on output.
+  !>     @param[inout] x - device pointer pointing to the first input vector b_1. Overwritten by
+  !>     each x_i on output.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the beginning of one vector (x_i) to the next (x_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 specifies the number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStpsvStridedBatched
@@ -23817,41 +22795,32 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of A. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device pointer storing matrix A,
+  !>     @param[in] AP - device pointer storing matrix A,
   !>               of dimension ( lda, n ).
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   !>               lda = max( 1, n ).
   !>
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
+  !>     @param[in] x - device pointer storing vector x.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   interface hipblasStrmv
 #ifdef USE_CUDA_NAMES
@@ -24080,45 +23049,35 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of matrices A_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device pointer storing pointer of matrices A_i,
+  !>     @param[in] AP - device pointer storing pointer of matrices A_i,
   !>               of dimension ( lda, n ).
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A_i.
   !>               lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     x         device pointer storing vectors x_i.
+  !>     @param[in] x - device pointer storing vectors x_i.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of vectors x_i.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               The number of batched matrices/vectors.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrmvBatched
@@ -24313,53 +23272,41 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of matrices A_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device pointer of the matrix A_0,
+  !>     @param[in] AP - device pointer of the matrix A_0,
   !>               of dimension ( lda, n ).
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A_i.
   !>               lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one A_i matrix to the next A_{i + 1}.
   !>
-  !>     @param[in]
-  !>     x         device pointer storing the vector x_0.
+  !>     @param[in] x - device pointer storing the vector x_0.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of one vector x.
   !>
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one x_i vector to the next x_{i + 1}.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               The number of batched matrices/vectors.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrmvStridedBatched
@@ -24603,41 +23550,32 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of b. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP        device pointer storing matrix A,
+  !>     @param[in] AP - device pointer storing matrix A,
   !>               of dimension ( lda, n ).
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   !>               lda = max( 1, n ).
   !>
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
+  !>     @param[in] x - device pointer storing vector x.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   interface hipblasStrsv
 #ifdef USE_CUDA_NAMES
@@ -24867,44 +23805,34 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of b. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
   !>               lda = max(1, n).
   !>
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch
 #ifndef USE_CUDA_NAMES
   interface hipblasStrsvBatched
@@ -25098,52 +24026,41 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA     [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               n specifies the number of rows of each b_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     AP         device pointer to the first matrix (A_1) in the batch, of dimension ( lda, n ).
+  !>     @param[in] AP - device pointer to the first matrix (A_1) in the batch, of dimension ( lda,
+  !>     n ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one A_i matrix to the next A_(i + 1).
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
   !>               lda = max( 1, n ).
   !>
-  !>     @param[in, out]
-  !>     x         device pointer to the first vector (x_1) in the batch.
+  !>     @param[in, out] x - device pointer to the first vector (x_1) in the batch.
   !>
-  !>     @param[in]
-  !>     stridex [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>              stride from the start of one x_i vector to the next x_(i + 1).
   !>
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrsvStridedBatched
@@ -25393,42 +24310,28 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               number or rows of matrices op( A ) and C.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of columns of matrices op( B ) and C.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               number of columns of matrix op( A ) and number of rows of matrix op( B ).
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] alpha - device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     BP         device pointer storing matrix B.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] BP - device pointer storing matrix B.
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of B.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in, out]
-  !>     CP         device pointer storing matrix C on the GPU.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] beta - device pointer or host pointer specifying the scalar beta.
+  !>     @param[in, out] CP - device pointer storing matrix C on the GPU.
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
   interface hipblasHgemm
 #ifdef USE_CUDA_NAMES
@@ -25770,45 +24673,30 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] alpha - device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     BP         device array of device pointers storing each matrix B_i.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] BP - device array of device pointers storing each matrix B_i.
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of each B_i.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in, out]
-  !>     CP         device array of device pointers storing each matrix C_i.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] beta - device pointer or host pointer specifying the scalar beta.
+  !>     @param[in, out] CP - device array of device pointers storing each matrix C_i.
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of each C_i.
-  !>     @param[in]
-  !>     batchCount
+  !>     @param[in] batchCount
   !>               [int]
   !>               number of gemm operations in the batch.
   interface hipblasHgemmBatched
@@ -26154,54 +25042,36 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``h``, ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     AP         device pointer pointing to the first matrix A_1.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] alpha - device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in] AP - device pointer pointing to the first matrix A_1.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one A_i matrix to the next A_(i + 1).
-  !>     @param[in]
-  !>     BP         device pointer pointing to the first matrix B_1.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] BP - device pointer pointing to the first matrix B_1.
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of each B_i.
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one B_i matrix to the next B_(i + 1).
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in, out]
-  !>     CP         device pointer pointing to the first matrix C_1.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] beta - device pointer or host pointer specifying the scalar beta.
+  !>     @param[in, out] CP - device pointer pointing to the first matrix C_1.
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of each C_i.
-  !>     @param[in]
-  !>     strideC  [hipblasStride]
+  !>     @param[in] strideC - [hipblasStride]
   !>               stride from the start of one C_i matrix to the next C_(i + 1).
-  !>     @param[in]
-  !>     batchCount
+  !>     @param[in] batchCount
   !>               [int]
   !>               number of gemm operatons in the batch.
   interface hipblasHgemmStridedBatched
@@ -26600,57 +25470,46 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C:  op(A) = A^H
   !>             - HIPBLAS_ON_N:  op(A) = A
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and A does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP       pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>              Matrix dimension is ( lda, k ) when transA = HIPBLAS_OP_N. Otherwise, (lda, n).
   !>              Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>             The imaginary component of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasCherk
 #ifdef USE_CUDA_NAMES
@@ -26788,59 +25647,48 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C: op(A) = A^H
   !>             - HIPBLAS_OP_N: op(A) = A
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and A does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP       device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     k)
   !>              when transA is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCherkBatched
@@ -26956,68 +25804,54 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C: op(A) = A^H
   !>             - HIPBLAS_OP_N: op(A) = A
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and A does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
   !>             when transA is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      Device pointer to the first matrix C_1 on the GPU.
+  !>     @param[in] CP - Device pointer to the first matrix C_1 on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCherkStridedBatched
@@ -27162,66 +25996,53 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C:  op( A ) = A^H, op( B ) = B^H
   !>             - HIPBLAS_OP_N:  op( A ) = A, op( B ) = B
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>             Matrix dimension is ( lda, k ) when trans = HIPBLAS_OP_N. Otherwise, (lda, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
-  !>     @param[in]
-  !>     BP      pointer storing matrix B on the GPU.
+  !>     @param[in] BP - pointer storing matrix B on the GPU.
   !>             Matrix dimension is ( ldb, k ) when trans = HIPBLAS_OP_N. Otherwise, (ldb, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasCherkx
 #ifdef USE_CUDA_NAMES
@@ -27371,70 +26192,58 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C: op(A) = A^H
   !>             - HIPBLAS_OP_N: op(A) = A
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     BP      device array of device pointers storing each matrix_i B of dimension (ldb, k)
+  !>     @param[in] BP - device array of device pointers storing each matrix_i B of dimension (ldb,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCherkxBatched
@@ -27566,82 +26375,65 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C: op( A_i ) = A_i^H, op( B_i ) = B_i^H
   !>             - HIPBLAS_OP_N: op( A_i ) = A_i, op( B_i ) = B_i
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP       Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     BP      Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
+  !>     @param[in] BP - Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      Device pointer to the first matrix C_1 on the GPU.
+  !>     @param[in] CP - Device pointer to the first matrix C_1 on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCherkxStridedBatched
@@ -27796,66 +26588,53 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C:  op( A ) = A^H, op( B ) = B^H
   !>             - HIPBLAS_OP_N:  op( A ) = A, op( B ) = B
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP       pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>             Matrix dimension is ( lda, k ) when trans = HIPBLAS_OP_N. Otherwise, (lda, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
-  !>     @param[in]
-  !>     BP      pointer storing matrix B on the GPU.
+  !>     @param[in] BP - pointer storing matrix B on the GPU.
   !>             Matrix dimension is ( ldb, k ) when trans = HIPBLAS_OP_N. Otherwise, (ldb, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasCher2k
 #ifdef USE_CUDA_NAMES
@@ -28003,67 +26782,55 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C: op(A) = A^H
   !>             - HIPBLAS_OP_N: op(A) = A
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
-  !>     @param[in]
-  !>     BP      device array of device pointers storing each matrix_i B of dimension (ldb, k)
+  !>     @param[in] BP - device array of device pointers storing each matrix_i B of dimension (ldb,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCher2kBatched
@@ -28193,82 +26960,65 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_C: op( A_i ) = A_i^H, op( B_i ) = B_i^H
   !>             - HIPBLAS_OP_N: op( A_i ) = A_i, op( B_i ) = B_i
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             if trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     BP      Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
+  !>     @param[in] BP - Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      Device pointer to the first matrix C_1 on the GPU.
+  !>     @param[in] CP - Device pointer to the first matrix C_1 on the GPU.
   !>             The imaginary components of the diagonal elements are not used but are set to zero,
   !>             except for quick return.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasCher2kStridedBatched
@@ -28419,64 +27169,51 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
   !>             - HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B and C. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B and C. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A and B are not referenced.
   !>
-  !>     @param[in]
-  !>     AP      pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>             A is m by m if side == HIPBLAS_SIDE_LEFT.
   !>             A is n by n if side == HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             Otherwise, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     BP      pointer storing matrix B on the GPU.
+  !>     @param[in] BP - pointer storing matrix B on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   interface hipblasSsymm
 #ifdef USE_CUDA_NAMES
@@ -28746,68 +27483,54 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
   !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B_i and C_i. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B_i and C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A_i and B_i are not referenced.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix A_i on the GPU.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i on the GPU.
   !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT.
   !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             Otherwise, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     BP      device array of device pointers storing each matrix B_i on the GPU.
+  !>     @param[in] BP - device array of device pointers storing each matrix B_i on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C_i does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsymmBatched
@@ -29037,77 +27760,60 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
   !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B_i and C_i. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B_i and C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A_i and B_i are not referenced.
   !>
-  !>     @param[in]
-  !>     AP       device pointer to first matrix A_1.
+  !>     @param[in] AP - device pointer to first matrix A_1.
   !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT.
   !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             Otherwise, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     BP       device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
+  !>     @param[in] BP - device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP        device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
+  !>     @param[in] CP - device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsymmStridedBatched
@@ -29395,58 +28101,47 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T: op(A) = A^T
   !>             - HIPBLAS_OP_N: op(A) = A
   !>             - HIPBLAS_OP_C: op(A) = A^T
   !>             - HIPBLAS_OP_C is not supported for complex types. See cherk
   !>             and zherk.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and A does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>             Matrix dimension is ( lda, k ) when transA = HIPBLAS_OP_N. Otherwise, (lda, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasSsyrk
 #ifdef USE_CUDA_NAMES
@@ -29702,60 +28397,49 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T: op(A) = A^T
   !>             - HIPBLAS_OP_N: op(A) = A
   !>             - HIPBLAS_OP_C: op(A) = A^T
   !>             - HIPBLAS_OP_C is not supported for complex types. See cherk
   !>             and zherk.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     k)
   !>             when transA is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If transA = HIPBLAS_OP_N, lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyrkBatched
@@ -29967,69 +28651,55 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T: op(A) = A^T
   !>             - HIPBLAS_OP_N: op(A) = A
   !>             - HIPBLAS_OP_C: op(A) = A^T
   !>             - HIPBLAS_OP_C is not supported for complex types. See cherk
   !>             and zherk.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
   !>             when transA is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If transA = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       Device pointer to the first matrix C_1 on the GPU.
+  !>     @param[in] CP - Device pointer to the first matrix C_1 on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyrkStridedBatched
@@ -30294,64 +28964,51 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T:      op( A ) = A^T, op( B ) = B^T
   !>             - HIPBLAS_OP_N:           op( A ) = A, op( B ) = B
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A) and op(B). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      Pointer storing matrix A on the GPU.
+  !>     @param[in] AP - Pointer storing matrix A on the GPU.
   !>             Matrix dimension is ( lda, k ) when trans = HIPBLAS_OP_N. Otherwise, (lda, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
-  !>     @param[in]
-  !>     BP      pointer storing matrix B on the GPU.
+  !>     @param[in] BP - pointer storing matrix B on the GPU.
   !>             Matrix dimension is ( ldb, k ) when trans = HIPBLAS_OP_N. Otherwise, (ldb, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasSsyr2k
 #ifdef USE_CUDA_NAMES
@@ -30625,64 +29282,52 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
   !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
-  !>     @param[in]
-  !>     BP      device array of device pointers storing each matrix_i B of dimension (ldb, k)
+  !>     @param[in] BP - device array of device pointers storing each matrix_i B of dimension (ldb,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyr2kBatched
@@ -30920,80 +29565,63 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
   !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     BP      Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
+  !>     @param[in] BP - Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       Device pointer to the first matrix C_1 on the GPU.
+  !>     @param[in] CP - Device pointer to the first matrix C_1 on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyr2kStridedBatched
@@ -31284,66 +29912,53 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T:      op( A ) = A^T, op( B ) = B^T
   !>             - HIPBLAS_OP_N:           op( A ) = A, op( B ) = B
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A) and op(B). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>             Matrix dimension is ( lda, k ) when trans = HIPBLAS_OP_N. Otherwise, (lda, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     BP      pointer storing matrix B on the GPU.
+  !>     @param[in] BP - pointer storing matrix B on the GPU.
   !>             Matrix dimension is ( ldb, k ) when trans = HIPBLAS_OP_N. Otherwise, (ldb, n).
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B.
   !>             if trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   interface hipblasSsyrkx
 #ifdef USE_CUDA_NAMES
@@ -31619,68 +30234,56 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
   !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and A does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix_i A of dimension (lda, k)
+  !>     @param[in] AP - device array of device pointers storing each matrix_i A of dimension (lda,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     BP      device array of device pointers storing each matrix_i B of dimension (ldb, k)
+  !>     @param[in] BP - device array of device pointers storing each matrix_i B of dimension (ldb,
+  !>     k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>             number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyrkxBatched
@@ -31920,80 +30523,63 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  C_i is an upper triangular matrix
   !>             - HIPBLAS_FILL_MODE_LOWER:  C_i is a  lower triangular matrix
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_T:      op( A_i ) = A_i^T, op( B_i ) = B_i^T
   !>             - HIPBLAS_OP_N:           op( A_i ) = A_i, op( B_i ) = B_i
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows and columns of C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of op(A). k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
+  !>     @param[in] AP - Device pointer to the first matrix A_1 on the GPU of dimension (lda, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (lda, n).
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If trans = HIPBLAS_OP_N,  lda >= max( 1, n ).
   !>             Otherwise, lda >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     BP       Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
+  !>     @param[in] BP - Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k)
   !>             when trans is HIPBLAS_OP_N. Otherwise, of dimension (ldb, n).
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If trans = HIPBLAS_OP_N,  ldb >= max( 1, n ).
   !>             Otherwise, ldb >= max( 1, k ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP       Device pointer to the first matrix C_1 on the GPU.
+  !>     @param[in] CP - Device pointer to the first matrix C_1 on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSsyrkxStridedBatched
@@ -32283,39 +30869,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] alpha - device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in]
-  !>     BP         device pointer storing matrix B.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] beta - device pointer or host pointer specifying the scalar beta.
+  !>     @param[in] BP - device pointer storing matrix B.
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of B.
-  !>     @param[in, out]
-  !>     CP         device pointer storing matrix C.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in, out] CP - device pointer storing matrix C.
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
   interface hipblasSgeam
 #ifdef USE_CUDA_NAMES
@@ -32586,50 +31159,36 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
-  !>     @param[in]
-  !>     AP        device array of device pointers storing each matrix A_i on the GPU.
+  !>     @param[in] alpha - device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i on the GPU.
   !>               Each A_i is of dimension ( lda, k ), where k is m
   !>               when  transA == HIPBLAS_OP_N and
   !>               is  n  when  transA == HIPBLAS_OP_T.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
-  !>     @param[in]
-  !>     BP         device array of device pointers storing each matrix B_i on the GPU.
+  !>     @param[in] beta - device pointer or host pointer specifying the scalar beta.
+  !>     @param[in] BP - device array of device pointers storing each matrix B_i on the GPU.
   !>               Each B_i is of dimension ( ldb, k ), where k is m
   !>               when  transB == HIPBLAS_OP_N and
   !>               is  n  when  transB == HIPBLAS_OP_T.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of B.
-  !>     @param[in, out]
-  !>     CP         device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in, out] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>               Each C_i is of dimension ( ldc, n ).
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances i in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgeamBatched
@@ -32865,74 +31424,57 @@ module hipfort_hipblas
   !>     - Supported precisions in cuBLAS  : No support.
   !>
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
   !>
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
   !>
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
   !>
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
   !>
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in] alpha - device pointer or host pointer specifying the scalar alpha.
   !>
-  !>     @param[in]
-  !>     AP        device pointer to the first matrix A_0 on the GPU.
+  !>     @param[in] AP - device pointer to the first matrix A_0 on the GPU.
   !>               Each A_i is of dimension ( lda, k ), where k is m
   !>               when  transA == HIPBLAS_OP_N and
   !>               is  n  when  transA == HIPBLAS_OP_T.
   !>
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>     @param[in] beta - device pointer or host pointer specifying the scalar beta.
   !>
-  !>     @param[in]
-  !>     BP        pointer to the first matrix B_0 on the GPU.
+  !>     @param[in] BP - pointer to the first matrix B_0 on the GPU.
   !>               Each B_i is of dimension ( ldb, k ), where k is m
   !>               when  transB == HIPBLAS_OP_N and
   !>               is  n  when  transB == HIPBLAS_OP_T.
   !>
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of B.
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in, out]
-  !>     CP         pointer to the first matrix C_0 on the GPU.
+  !>     @param[in, out] CP - pointer to the first matrix C_0 on the GPU.
   !>               Each C_i is of dimension ( ldc, n ).
   !>
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
   !>
-  !>     @param[in]
-  !>     strideC  [hipblasStride]
+  !>     @param[in] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances i in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgeamStridedBatched
@@ -33217,65 +31759,52 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : ``c`` and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
   !>             - HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows of B and C. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             n specifies the number of columns of B and C. k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A and B are not referenced.
   !>
-  !>     @param[in]
-  !>     AP      pointer storing matrix A on the GPU.
+  !>     @param[in] AP - pointer storing matrix A on the GPU.
   !>             - A is m by m if side == HIPBLAS_SIDE_LEFT.
   !>             - A is n by n if side == HIPBLAS_SIDE_RIGHT.
   !>             - Only the upper/lower triangular part is accessed.
   !>             - The imaginary component of the diagonal elements is not used.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             Otherwise, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     BP      pointer storing matrix B on the GPU.
+  !>     @param[in] BP - pointer storing matrix B on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      pointer storing matrix C on the GPU.
+  !>     @param[in] CP - pointer storing matrix C on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   interface hipblasChemm
 #ifdef USE_CUDA_NAMES
@@ -33419,69 +31948,55 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
   !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows of B_i and C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of B_i and C_i. k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A_i and B_i are not referenced.
   !>
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix A_i on the GPU.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i on the GPU.
   !>             - A_i is m by m if side == HIPBLAS_SIDE_LEFT.
   !>             - A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
   !>             - Only the upper/lower triangular part is accessed.
   !>             - The imaginary component of the diagonal elements is not used.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             Otherwise, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     BP      device array of device pointers storing each matrix B_i on the GPU.
+  !>     @param[in] BP - device array of device pointers storing each matrix B_i on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C_i need not be set before entry.
   !>
-  !>     @param[in]
-  !>     CP      device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>             Matrix dimension is m by n.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChemmBatched
@@ -33605,81 +32120,64 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``c`` and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side  [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
   !>             - HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of rows of B_i and C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     k       [int]
+  !>     @param[in] k - [int]
   !>             k specifies the number of columns of B_i and C_i. k >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A_i and B_i are not referenced.
   !>
-  !>     @param[in]
-  !>     AP      device pointer to first matrix A_1
+  !>     @param[in] AP - device pointer to first matrix A_1
   !>             - A_i is m by m if side == HIPBLAS_SIDE_LEFT.
   !>             - A_i is n by n if side == HIPBLAS_SIDE_RIGHT.
   !>             - Only the upper/lower triangular part is accessed.
   !>             - The imaginary component of the diagonal elements is not used.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A_i.
   !>             If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             Otherwise, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[in]
-  !>     BP       device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
+  !>     @param[in] BP - device pointer to first matrix B_1 of dimension (ldb, n) on the GPU.
   !>
-  !>     @param[in]
-  !>     ldb     [int]
+  !>     @param[in] ldb - [int]
   !>             ldb specifies the first dimension of B_i.
   !>             If side = HIPBLAS_OP_N,  ldb >= max( 1, m ).
   !>             Otherwise, ldb >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in]
-  !>     beta
+  !>     @param[in] beta
   !>             beta specifies the scalar beta. When beta is
   !>             zero, then C does not need to be set before entry.
   !>
-  !>     @param[in]
-  !>     CP        device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
+  !>     @param[in] CP - device pointer to first matrix C_1 of dimension (ldc, n) on the GPU.
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   !>
-  !>     @param[inout]
-  !>     strideC  [hipblasStride]
+  !>     @param[inout] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasChemmStridedBatched
@@ -33835,51 +32333,42 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             Specifies whether op(A) multiplies B from the left or right as follows:
   !>             - HIPBLAS_SIDE_LEFT:       C := alpha*op( A )*B.
   !>             - HIPBLAS_SIDE_RIGHT:      C := alpha*B*op( A ).
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             Specifies whether the matrix A is an upper or lower triangular matrix as follows:
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             Specifies the form of op(A) to be used in the matrix multiplication as follows:
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_OP_C: op(A) = A^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             Specifies whether or not A is unit triangular as follows:
   !>             - HIPBLAS_DIAG_UNIT:      A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B and C. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B and C. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A is not referenced and B does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     A       Device pointer to matrix A on the GPU.
+  !>     @param[in] A - Device pointer to matrix A on the GPU.
   !>             A has dimension ( lda, k ), where k is m
   !>             when  side == HIPBLAS_SIDE_LEFT  and
   !>             is  n  when  side == HIPBLAS_SIDE_RIGHT.
@@ -33894,25 +32383,20 @@ module hipfort_hipblas
   !>             Note that when  diag == HIPBLAS_DIAG_UNIT,  the diagonal elements of
   !>             A  are not referenced either,  but are assumed to be  unity.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             - If side == HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side == HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     B       Device pointer to the matrix B of dimension (ldb, n) on the GPU.
+  !>     @param[inout] B - Device pointer to the matrix B of dimension (ldb, n) on the GPU.
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     C      Device pointer to the matrix C of dimension (ldc, n) on the GPU.
+  !>     @param[in] C - Device pointer to the matrix C of dimension (ldc, n) on the GPU.
   !>            Users can pass in the same matrix B to parameter C to achieve
   !>            in-place functionality for trmm.
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
   interface hipblasStrmm
 #ifdef USE_CUDA_NAMES
@@ -34196,51 +32680,42 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
   !>             - HIPBLAS_SIDE_LEFT:       B_i := alpha*op( A_i )*B_i.
   !>             - HIPBLAS_SIDE_RIGHT:      B_i := alpha*B_i*op( A_i ).
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             Specifies whether the matrix A is an upper or lower triangular matrix as follows:
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             Specifies the form of op(A_i) to be used in the matrix multiplication as follows:
   !>             - HIPBLAS_OP_N:  op(A_i) = A_i.
   !>             - HIPBLAS_OP_T:  op(A_i) = A_i^T.
   !>             - HIPBLAS_OP_C:  op(A_i) = A_i^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             Specifies whether or not A_i is unit triangular as follows:
   !>             - HIPBLAS_DIAG_UNIT:      A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B_i and C_i. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B_i and C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A_i is not referenced and B_i does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     A       Device array of device pointers storing each matrix A_i on the GPU.
+  !>     @param[in] A - Device array of device pointers storing each matrix A_i on the GPU.
   !>             Each A_i is of dimension ( lda, k ), where k is m
   !>             when  side == HIPBLAS_SIDE_LEFT  and
   !>             is  n  when  side == HIPBLAS_SIDE_RIGHT.
@@ -34255,30 +32730,24 @@ module hipfort_hipblas
   !>             - Note that when  diag == HIPBLAS_DIAG_UNIT,  the diagonal elements of
   !>             A_i  are not referenced either,  but are assumed to be  unity.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             - If side == HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side == HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[inout]
-  !>     B       device array of device pointers storing each matrix B_i of
+  !>     @param[inout] B - device array of device pointers storing each matrix B_i of
   !>             dimension (ldb, n) on the GPU.
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     C      device array of device pointers storing each matrix C_i of
+  !>     @param[in] C - device array of device pointers storing each matrix C_i of
   !>            dimension (ldc, n) on the GPU. Users can pass in the same
   !>            matrices B to parameter C to achieve in-place functionality of trmmBatched.
   !>
-  !>     @param[in]
-  !>     ldc    ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
+  !>     @param[in] ldc - ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances i in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrmmBatched
@@ -34527,51 +32996,42 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
   !>             - HIPBLAS_SIDE_LEFT:       C_i := alpha*op( A_i )*B_i.
   !>             - HIPBLAS_SIDE_RIGHT:      C_i := alpha*B_i*op( A_i ).
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             Specifies whether the matrix A is an upper or lower triangular matrix as follows:
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             Specifies the form of op(A_i) to be used in the matrix multiplication as follows:
   !>             - HIPBLAS_OP_N:  op(A_i) = A_i.
   !>             - HIPBLAS_OP_T:  op(A_i) = A_i^T.
   !>             - HIPBLAS_OP_C:  op(A_i) = A_i^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             Specifies whether or not A_i is unit triangular as follows:
   !>             - HIPBLAS_DIAG_UNIT:      A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B_i and C_i. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B_i and C_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             alpha specifies the scalar alpha. When alpha is
   !>             zero, then A_i is not referenced and B_i does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     A       Device pointer to the first matrix A_0 on the GPU.
+  !>     @param[in] A - Device pointer to the first matrix A_0 on the GPU.
   !>             Each A_i is of dimension ( lda, k ), where k is m
   !>             when side == HIPBLAS_SIDE_LEFT and
   !>             is n when side == HIPBLAS_SIDE_RIGHT.
@@ -34586,42 +33046,33 @@ module hipfort_hipblas
   !>             - Note that when diag == HIPBLAS_DIAG_UNIT, the diagonal elements of
   !>             A_i are not referenced either, but are assumed to be unity.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             - if side == HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - if side == HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
   !>
-  !>     @param[inout]
-  !>     B      Device pointer to the first matrix B_0 on the GPU. Each B_i is of
+  !>     @param[inout] B - Device pointer to the first matrix B_0 on the GPU. Each B_i is of
   !>            dimension ( ldb, n ).
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               stride from the start of one matrix (B_i) to the next one (B_i+1).
   !>
-  !>     @param[in]
-  !>     C      Device pointer to the first matrix C_0 on the GPU. Each C_i is of
+  !>     @param[in] C - Device pointer to the first matrix C_0 on the GPU. Each C_i is of
   !>            dimension ( ldc, n ).
   !>
-  !>     @param[in]
-  !>     ldc    [int]
+  !>     @param[in] ldc - [int]
   !>            ldc specifies the first dimension of C_i. ldc >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     strideC [hipblasStride]
+  !>     @param[in] strideC - [hipblasStride]
   !>             stride from the start of one matrix (C_i) to the next one (C_i+1).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances i in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrmmStridedBatched
@@ -34925,63 +33376,51 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
   !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a  lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_OP_C: op(A) = A^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero, then A is not referenced and B does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     AP      device pointer storing matrix A.
+  !>     @param[in] AP - device pointer storing matrix A.
   !>             Of dimension ( lda, k ), where k is m
   !>             when  HIPBLAS_SIDE_LEFT  and
   !>             is  n  when  HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[in,out]
-  !>     BP       device pointer storing matrix B.
+  !>     @param[in,out] BP - device pointer storing matrix B.
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
   interface hipblasStrsm
 #ifdef USE_CUDA_NAMES
@@ -35252,54 +33691,41 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
   !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a lower triangular matrix.
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_OP_C: op(A) = A^H.
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     each A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  each A_i is not assumed to be unit triangular.
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of each B_i. m >= 0.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of each B_i. n >= 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero, then A is not referenced and B does not need to be set before
   !>             entry.
-  !>     @param[in]
-  !>     AP      device array of device pointers storing each matrix A_i on the GPU.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i on the GPU.
   !>             Matricies are of dimension ( lda, k ), where k is m
   !>             when  HIPBLAS_SIDE_LEFT  and is  n  when  HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of each A_i.
   !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
-  !>     @param[in,out]
-  !>     BP       device array of device pointers storing each matrix B_i on the GPU.
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in,out] BP - device array of device pointers storing each matrix B_i on the GPU.
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of each B_i. ldb >= max( 1, m ).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of trsm operatons in the batch.
   interface hipblasStrsmBatched
 #ifdef USE_CUDA_NAMES
@@ -35558,61 +33984,46 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
   !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a  lower triangular matrix.
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_OP_C: op(A) = A^H.
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     each A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  each A_i is not assumed to be unit triangular.
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of each B_i. m >= 0.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of each B_i. n >= 0.
-  !>     @param[in]
-  !>     alpha
+  !>     @param[in] alpha
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero, then A is not referenced and B does not need to be set before
   !>             entry.
-  !>     @param[in]
-  !>     AP      device pointer pointing to the first matrix A_1.
+  !>     @param[in] AP - device pointer pointing to the first matrix A_1.
   !>             Of dimension ( lda, k ), where k is m
   !>             when  HIPBLAS_SIDE_LEFT  and
   !>             is  n  when  HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of each A_i.
   !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
-  !>     @param[in]
-  !>     strideA [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>              stride from the start of one A_i matrix to the next A_(i + 1).
-  !>     @param[in,out]
-  !>     BP       device pointer pointing to the first matrix B_1.
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in,out] BP - device pointer pointing to the first matrix B_1.
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of each B_i. ldb >= max( 1, m ).
-  !>     @param[in]
-  !>     strideB [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>              stride from the start of one B_i matrix to the next B_(i + 1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of trsm operatons in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrsmStridedBatched
@@ -35878,31 +34289,23 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
   !>               - If HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced.
   !>               - If HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced.
-  !>     @param[in]
-  !>     diag      [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>               - 'HIPBLAS_DIAG_NON_UNIT', A is non-unit triangular.
   !>               - 'HIPBLAS_DIAG_UNIT', A is unit triangular.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               size of matrix A and invA.
-  !>     @param[in]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[out]
-  !>     invA      device pointer storing matrix invA.
-  !>     @param[in]
-  !>     ldinvA    [int]
+  !>     @param[out] invA - device pointer storing matrix invA.
+  !>     @param[in] ldinvA - [int]
   !>               specifies the leading dimension of invA.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrtri
@@ -36018,26 +34421,19 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
-  !>     @param[in]
-  !>     diag      [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>               - 'HIPBLAS_DIAG_NON_UNIT', A is non-unit triangular.
   !>               - 'HIPBLAS_DIAG_UNIT', A is unit triangular.
-  !>     @param[in]
-  !>     n         [int]
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] n - [int]
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[out]
-  !>     invA      device array of device pointers storing the inverse of each matrix A_i.
+  !>     @param[out] invA - device array of device pointers storing the inverse of each matrix A_i.
   !>               Partial inplace operation is supported, see below.
   !>               - If UPLO = 'U', the leading N-by-N upper triangular part of the invA will store
   !>               the inverse of the upper triangular matrix, and the strictly lower
@@ -36045,11 +34441,9 @@ module hipfort_hipblas
   !>               - If UPLO = 'L', the leading N-by-N lower triangular part of the invA will store
   !>               the inverse of the lower triangular matrix, and the strictly upper
   !>               triangular part of invA is cleared.
-  !>     @param[in]
-  !>     ldinvA    [int]
+  !>     @param[in] ldinvA - [int]
   !>               specifies the leading dimension of each invA_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               numbers of matrices in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrtriBatched
@@ -36146,29 +34540,21 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               specifies either upper (HIPBLAS_FILL_MODE_UPPER) or lower
   !>               (HIPBLAS_FILL_MODE_LOWER):
-  !>     @param[in]
-  !>     diag      [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>               - 'HIPBLAS_DIAG_NON_UNIT', A is non-unit triangular.
   !>               - 'HIPBLAS_DIAG_UNIT', A is unit triangular.
-  !>     @param[in]
-  !>     n         [int]
-  !>     @param[in]
-  !>     AP         device pointer pointing to address of first matrix A_1.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] n - [int]
+  !>     @param[in] AP - device pointer pointing to address of first matrix A_1.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A.
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>              "batch stride a": stride from the start of one A_i matrix to the next A_(i + 1).
-  !>     @param[out]
-  !>     invA      device pointer storing the inverses of each matrix A_i.
+  !>     @param[out] invA - device pointer storing the inverses of each matrix A_i.
   !>               Partial inplace operation is supported, see below.
   !>               - If UPLO = 'U', the leading N-by-N upper triangular part of the invA will store
   !>               the inverse of the upper triangular matrix, and the strictly lower
@@ -36176,15 +34562,12 @@ module hipfort_hipblas
   !>               - If UPLO = 'L', the leading N-by-N lower triangular part of the invA will store
   !>               the inverse of the lower triangular matrix, and the strictly upper
   !>               triangular part of invA is cleared.
-  !>     @param[in]
-  !>     ldinvA    [int]
+  !>     @param[in] ldinvA - [int]
   !>               specifies the leading dimension of each invA_i.
-  !>     @param[in]
-  !>     stride_invA  [hipblasStride]
+  !>     @param[in] stride_invA - [hipblasStride]
   !>                  "batch stride invA": stride from the start of one invA_i matrix to the next
   !>                  invA_(i + 1).
-  !>     @param[in]
-  !>     batchCount  [int]
+  !>     @param[in] batchCount - [int]
   !>                  numbers of matrices in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasStrtriStridedBatched
@@ -36327,32 +34710,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     side      [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>               specifies the side of diag(x).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     AP         device pointer storing matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] AP - device pointer storing matrix A.
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] incx - [int]
   !>               specifies the increment between values of x
-  !>     @param[in, out]
-  !>     CP         device pointer storing matrix C.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in, out] CP - device pointer storing matrix C.
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
   interface hipblasSdgmm
 #ifdef USE_CUDA_NAMES
@@ -36583,39 +34956,28 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     side      [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>               specifies the side of diag(x).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     AP         device array of device pointers storing each matrix A_i on the GPU.
+  !>     @param[in] AP - device array of device pointers storing each matrix A_i on the GPU.
   !>               Each A_i is of dimension ( lda, n ).
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i on the GPU.
+  !>     @param[in] x - device array of device pointers storing each vector x_i on the GPU.
   !>               Each x_i is of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension
   !>               m if side == HIPBLAS_SIDE_LEFT.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment between values of x_i.
-  !>     @param[in, out]
-  !>     CP         device array of device pointers storing each matrix C_i on the GPU.
+  !>     @param[in, out] CP - device array of device pointers storing each matrix C_i on the GPU.
   !>               Each C_i is of dimension ( ldc, n ).
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSdgmmBatched
@@ -36818,48 +35180,34 @@ module hipfort_hipblas
   !>     - Supported precisions in rocBLAS : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS  : No support.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     side      [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>               specifies the side of diag(x).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     AP         device pointer to the first matrix A_0 on the GPU.
+  !>     @param[in] AP - device pointer to the first matrix A_0 on the GPU.
   !>               Each A_i is of dimension ( lda, n ).
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               stride from the start of one matrix (A_i) to the next one (A_i+1).
-  !>     @param[in]
-  !>     x         pointer to the first vector x_0 on the GPU.
+  !>     @param[in] x - pointer to the first vector x_0 on the GPU.
   !>               Each x_i is of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension
   !>               m if side == HIPBLAS_SIDE_LEFT.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment between values of x.
-  !>     @param[in]
-  !>     stridex  [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector(x_i) to the next one (x_i+1).
-  !>     @param[in, out]
-  !>     CP         device pointer to the first matrix C_0 on the GPU.
+  !>     @param[in, out] CP - device pointer to the first matrix C_0 on the GPU.
   !>               Each C_i is of dimension ( ldc, n ).
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
-  !>     @param[in]
-  !>     strideC  [hipblasStride]
+  !>     @param[in] strideC - [hipblasStride]
   !>               stride from the start of one matrix (C_i) to the next one (C_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances i in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSdgmmStridedBatched
@@ -37130,29 +35478,23 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of columns and rows of the matrix A.
-  !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.
+  !>     @param[inout] A - pointer to type. Array on the GPU of dimension lda*n.
   !>               - On entry, the n-by-n matrix A to be factored.
   !>               - On exit, the factors L and U from the factorization.
   !>               - The unit diagonal elements of L are not stored.
-  !>     @param[in]
-  !>     lda       int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>               Specifies the leading dimension of A.
-  !>     @param[out]
-  !>     ipiv      pointer to int. Array on the GPU of dimension n.
+  !>     @param[out] ipiv - pointer to int. Array on the GPU of dimension n.
   !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
   !>               For 1 <= i <= n, row i of the
   !>               matrix was interchanged with row ipiv[i].
   !>               Matrix P of the factorization can be derived from ipiv.
   !>               This factorization can be done without pivoting if ipiv is passed
   !>               in as a nullptr.
-  !>     @param[out]
-  !>     info      pointer to a int on the GPU.
+  !>     @param[out] myInfo - pointer to a int on the GPU.
   !>               - If info = 0, successful exit.
   !>               - If info = j > 0, U is singular. U[j,j] is the first zero pivot.
 #ifndef USE_CUDA_NAMES
@@ -37277,21 +35619,17 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of columns and rows of all matrices A_i in the batch.
-  !>     @param[inout]
-  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>     @param[inout] A - array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension lda*n.
   !>               - On entry, the n-by-n matrices A_i to be factored.
   !>               - On exit, the factors L_i and U_i from the factorizations.
   !>               - The unit diagonal elements of L_i are not stored.
-  !>     @param[in]
-  !>     lda       int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[out]
-  !>     ipiv      pointer to int. Array on the GPU.
+  !>     @param[out] ipiv - pointer to int. Array on the GPU.
   !>               Contains the vectors of pivot indices ipiv_i (corresponding to A_i).
   !>               Dimension of ipiv_i is n.
   !>               Elements of ipiv_i are 1-based indices.
@@ -37300,12 +35638,10 @@ module hipfort_hipblas
   !>               Matrix P_i of the factorization can be derived from ipiv_i.
   !>               This factorization can be done without pivoting if ipiv is passed
   !>               in as a nullptr.
-  !>     @param[out]
-  !>     info      pointer to int. Array of batchCount integers on the GPU.
+  !>     @param[out] myInfo - pointer to int. Array of batchCount integers on the GPU.
   !>               - If info[i] = 0, successful exit for factorization of A_i.
   !>               - If info[i] = j > 0, U_i is singular. U_i[j,j] is the first zero pivot.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of matrices in the batch.
   interface hipblasSgetrfBatched
 #ifdef USE_CUDA_NAMES
@@ -37421,26 +35757,22 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of columns and rows of all matrices A_i in the batch.
-  !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>     @param[inout] A - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideA).
   !>               - On entry, the n-by-n matrices A_i to be factored.
   !>               - On exit, the factors L_i and U_i from the factorization.
   !>               - The unit diagonal elements of L_i are not stored.
-  !>     @param[in]
-  !>     lda       int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     strideA   hipblasStride.
+  !>     @param[in] strideA - hipblasStride.
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
   !>               There is no restriction for the value of strideA. Normal use case is strideA >=
   !>               lda*n.
-  !>     @param[out]
-  !>     ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).
+  !>     @param[out] ipiv - pointer to int. Array on the GPU (the size depends on the value of
+  !>     strideP).
   !>               Contains the vectors of pivots indices ipiv_i (corresponding to A_i).
   !>               Dimension of ipiv_i is n.
   !>               Elements of ipiv_i are 1-based indices.
@@ -37449,17 +35781,14 @@ module hipfort_hipblas
   !>               Matrix P_i of the factorization can be derived from ipiv_i.
   !>               The factorization here can be done without pivoting if ipiv is passed
   !>               in as a nullptr.
-  !>     @param[in]
-  !>     strideP   hipblasStride.
+  !>     @param[in] strideP - hipblasStride.
   !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
   !>               There is no restriction for the value of strideP. Normal use case is strideP >=
   !>               n.
-  !>     @param[out]
-  !>     info      pointer to int. Array of batchCount integers on the GPU.
+  !>     @param[out] myInfo - pointer to int. Array of batchCount integers on the GPU.
   !>               - If info[i] = 0, successful exit for factorization of A_i.
   !>               - If info[i] = j > 0, U_i is singular. U_i[j,j] is the first zero pivot.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of matrices in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgetrfStridedBatched
@@ -37595,37 +35924,27 @@ module hipfort_hipblas
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
   !>
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] trans - hipblasOperation_t.
   !>                 Specifies the form of the system of equations.
-  !>     @param[in]
-  !>     n           int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>                 The order of the system, that is, the number of columns and rows of A.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.
+  !>     @param[in] nrhs - int. nrhs >= 0.
   !>                 The number of right hand sides, that is, the number of columns
   !>                 of the matrix B.
-  !>     @param[in]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>     @param[in] A - pointer to type. Array on the GPU of dimension lda*n.
   !>                 The factors L and U of the factorization A = P*L*U returned by `hipblasSgetrf`
   !>                 "getrf".
-  !>     @param[in]
-  !>     lda         int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>                 The leading dimension of A.
-  !>     @param[in]
-  !>     ipiv        pointer to int. Array on the GPU of dimension n.
+  !>     @param[in] ipiv - pointer to int. Array on the GPU of dimension n.
   !>                 The pivot indices returned by `hipblasSgetrf` "getrf".
-  !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>     @param[in,out] B - pointer to type. Array on the GPU of dimension ldb*nrhs.
   !>                 - On entry, the right hand side matrix B.
   !>                 - On exit, the solution matrix X.
-  !>     @param[in]
-  !>     ldb         int. ldb >= n.
+  !>     @param[in] ldb - int. ldb >= n.
   !>                 The leading dimension of B.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.
+  !>     @param[out] myInfo - pointer to a int on the host.
   !>               - If info = 0, successful exit.
   !>               - If info = j < 0, the argument at position -j is invalid.
 #ifndef USE_CUDA_NAMES
@@ -37767,44 +36086,34 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] trans - hipblasOperation_t.
   !>                 Specifies the form of the system of equations of each instance in the batch.
-  !>     @param[in]
-  !>     n           int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>                 The order of the system, that is, the number of columns and rows of all A_i
   !>                 matrices.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.
+  !>     @param[in] nrhs - int. nrhs >= 0.
   !>                 The number of right hand sides, that is, the number of columns
   !>                 of all the matrices B_i.
-  !>     @param[in]
-  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>     @param[in] A - Array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension lda*n.
   !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
   !>                 `hipblasSgetrfBatched` "getrfBatched".
-  !>     @param[in]
-  !>     lda         int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>                 The leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     ipiv        pointer to int. Array on the GPU.
+  !>     @param[in] ipiv - pointer to int. Array on the GPU.
   !>                 Contains the vectors ipiv_i of pivot indices returned by `hipblasSgetrfBatched`
   !>                 "getrfBatched".
-  !>     @param[in,out]
-  !>     B Array of pointers to type. Each pointer points to an array on the GPU of dimension
-  !>     ldb*nrhs.
+  !>     @param[in,out] B - Array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension ldb*nrhs.
   !>                 - On entry, the right hand side matrices B_i.
   !>                 - On exit, the solution matrix X_i of each system in the batch.
-  !>     @param[in]
-  !>     ldb         int. ldb >= n.
+  !>     @param[in] ldb - int. ldb >= n.
   !>                 The leading dimension of matrices B_i.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.
+  !>     @param[out] myInfo - pointer to a int on the host.
   !>               - If info = 0, successful exit.
   !>               - If info = j < 0, the argument at position -j is invalid.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of instances (systems) in the batch.
   interface hipblasSgetrsBatched
 #ifdef USE_CUDA_NAMES
@@ -37933,58 +36242,47 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : No support.
   !>
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] trans - hipblasOperation_t.
   !>                 Specifies the form of the system of equations of each instance in the batch.
-  !>     @param[in]
-  !>     n           int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>                 The order of the system, that is, the number of columns and rows of all A_i
   !>                 matrices.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.
+  !>     @param[in] nrhs - int. nrhs >= 0.
   !>                 The number of right hand sides, that is, the number of columns
   !>                 of all the matrices B_i.
-  !>     @param[in]
-  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>     @param[in] A - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideA).
   !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
   !>                 `hipblasSgetrfStridedBatched` "getrfStridedBatched".
-  !>     @param[in]
-  !>     lda         int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>                 The leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     strideA     hipblasStride.
+  !>     @param[in] strideA - hipblasStride.
   !>                 Stride from the start of one matrix A_i to the next one A_(i+1).
   !>                 There is no restriction for the value of strideA. Normal use case is strideA >=
   !>                 lda*n.
-  !>     @param[in]
-  !>     ipiv        pointer to int. Array on the GPU (the size depends on the value of strideP).
+  !>     @param[in] ipiv - pointer to int. Array on the GPU (the size depends on the value of
+  !>     strideP).
   !>                 Contains the vectors ipiv_i of pivot indices returned by
   !>                 `hipblasSgetrfStridedBatched` "getrfStridedBatched".
-  !>     @param[in]
-  !>     strideP     hipblasStride.
+  !>     @param[in] strideP - hipblasStride.
   !>                 Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
   !>                 There is no restriction for the value of strideP. Normal use case is strideP >=
   !>                 n.
-  !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU (size depends on the value of strideB).
+  !>     @param[in,out] B - pointer to type. Array on the GPU (size depends on the value of
+  !>     strideB).
   !>                 - On entry, the right hand side matrices B_i.
   !>                 - On exit, the solution matrix X_i of each system in the batch.
-  !>     @param[in]
-  !>     ldb         int. ldb >= n.
+  !>     @param[in] ldb - int. ldb >= n.
   !>                 The leading dimension of matrices B_i.
-  !>     @param[in]
-  !>     strideB     hipblasStride.
+  !>     @param[in] strideB - hipblasStride.
   !>                 Stride from the start of one matrix B_i to the next one B_(i+1).
   !>                 There is no restriction for the value of strideB. Normal use case is strideB >=
   !>                 ldb*nrhs.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.
+  !>     @param[out] myInfo - pointer to a int on the host.
   !>               - If info = 0, successful exit.
   !>               - If info = j < 0, the argument at position -j is invalid.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of instances (systems) in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgetrsStridedBatched
@@ -38140,35 +36438,29 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of rows and columns of all matrices A_i in the batch.
-  !>     @param[in]
-  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>     @param[in] A - array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension lda*n.
   !>               The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
   !>               `hipblasSgetrfBatched` "getrfBatched".
-  !>     @param[in]
-  !>     lda       int. lda >= n.
+  !>     @param[in] lda - int. lda >= n.
   !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).
+  !>     @param[in] ipiv - pointer to int. Array on the GPU (the size depends on the value of
+  !>     strideP).
   !>               The pivot indices returned by `hipblasSgetrfBatched` "getrfBatched".
   !>               ipiv can be passed in as a nullptr. This will assume that getrfBatched was called
   !>               without partial pivoting.
-  !>     @param[out]
-  !>     C array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.
+  !>     @param[out] C - array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension ldc*n.
   !>               If info[i] = 0, the inverse of matrices A_i. Otherwise, undefined.
-  !>     @param[in]
-  !>     ldc       int. ldc >= n.
+  !>     @param[in] ldc - int. ldc >= n.
   !>               Specifies the leading dimension of C_i.
-  !>     @param[out]
-  !>     info      pointer to int. Array of batchCount integers on the GPU.
+  !>     @param[out] myInfo - pointer to int. Array of batchCount integers on the GPU.
   !>               - If info[i] = 0, successful exit for inversion of A_i.
   !>               - If info[i] = j > 0, U_i is singular. U_i[j,j] is the first zero pivot.
-  !>     @param[in]
-  !>     batchCount int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of matrices in the batch.
   interface hipblasSgetriBatched
 #ifdef USE_CUDA_NAMES
@@ -38300,44 +36592,33 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : No support.
   !>
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] trans - hipblasOperation_t.
   !>                 Specifies the form of the system of equations.
-  !>     @param[in]
-  !>     m           int. m >= 0.
+  !>     @param[in] m - int. m >= 0.
   !>                 The number of rows of matrix A.
-  !>     @param[in]
-  !>     n           int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>                 The number of columns of matrix A.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.
+  !>     @param[in] nrhs - int. nrhs >= 0.
   !>                 The number of columns of matrices B and X,
   !>                 that is, the columns on the right hand side.
-  !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>     @param[inout] A - pointer to type. Array on the GPU of dimension lda*n.
   !>                 - On entry, the matrix A.
   !>                 - On exit, the QR (or LQ) factorization of A as returned by "GEQRF" (or
   !>                 "GELQF").
-  !>     @param[in]
-  !>     lda         int. lda >= m.
+  !>     @param[in] lda - int. lda >= m.
   !>                 Specifies the leading dimension of matrix A.
-  !>     @param[inout]
-  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>     @param[inout] B - pointer to type. Array on the GPU of dimension ldb*nrhs.
   !>                 - On entry, the matrix B.
   !>                 - On exit, when info = 0, B is overwritten by the solution vectors (and the
   !>                 residuals in
   !>                 the overdetermined cases) stored as columns.
-  !>     @param[in]
-  !>     ldb         int. ldb >= max(m,n).
+  !>     @param[in] ldb - int. ldb >= max(m,n).
   !>                 Specifies the leading dimension of matrix B.
-  !>     @param[out]
-  !>     info        pointer to an int on the host.
+  !>     @param[out] myInfo - pointer to an int on the host.
   !>                 - If info = 0, successful exit.
   !>                 - If info = j < 0, the argument at position -j is invalid.
-  !>     @param[out]
-  !>     deviceInfo  pointer to int on the GPU.
+  !>     @param[out] deviceInfo - pointer to int on the GPU.
   !>                 - If info = 0, successful exit.
   !>                 - If info = i > 0, the solution could not be computed because input matrix A is
   !>                 rank deficient; the i-th diagonal element of its triangular factor is zero.
@@ -38471,52 +36752,41 @@ module hipfort_hipblas
   !>     Note that the cuBLAS backend supports only the non-transpose operation and only solves
   !>     over-determined systems (``m >= n``).
   !>
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] trans - hipblasOperation_t.
   !>                 Specifies the form of the system of equations.
-  !>     @param[in]
-  !>     m           int. m >= 0.
+  !>     @param[in] m - int. m >= 0.
   !>                 The number of rows of all matrices A_j in the batch.
-  !>     @param[in]
-  !>     n           int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>                 The number of columns of all matrices A_j in the batch.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.
+  !>     @param[in] nrhs - int. nrhs >= 0.
   !>                 The number of columns of all matrices B_j and X_j in the batch,
   !>                 that is, the columns on the right hand side.
-  !>     @param[inout]
-  !>     A array of pointer to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>     @param[inout] A - array of pointer to type. Each pointer points to an array on the GPU of
+  !>     dimension lda*n.
   !>                 - On entry, the matrices A_j.
   !>                 - On exit, the QR (or LQ) factorizations of A_j as returned by "GEQRF_BATCHED"
   !>                 (or "GELQF_BATCHED").
-  !>     @param[in]
-  !>     lda         int. lda >= m.
+  !>     @param[in] lda - int. lda >= m.
   !>                 Specifies the leading dimension of matrices A_j.
-  !>     @param[inout]
-  !>     B array of pointer to type. Each pointer points to an array on the GPU of dimension
-  !>     ldb*nrhs.
+  !>     @param[inout] B - array of pointer to type. Each pointer points to an array on the GPU of
+  !>     dimension ldb*nrhs.
   !>                 - On entry, the matrices B_j.
   !>                 - On exit, when info[j] = 0, B_j is overwritten by the solution vectors (and
   !>                 the residuals in
   !>                 the overdetermined cases) stored as columns.
-  !>     @param[in]
-  !>     ldb         int. ldb >= max(m,n).
+  !>     @param[in] ldb - int. ldb >= max(m,n).
   !>                 Specifies the leading dimension of matrices B_j.
-  !>     @param[out]
-  !>     info        pointer to an int on the host.
+  !>     @param[out] myInfo - pointer to an int on the host.
   !>                 If info = 0, successful exit.
   !>                 If info = j < 0, the argument at position -j is invalid.
-  !>     @param[out]
-  !>     deviceInfo  pointer to int. Array of batchCount integers on the GPU.
+  !>     @param[out] deviceInfo - pointer to int. Array of batchCount integers on the GPU.
   !>                 - If deviceInfo[j] = 0, successful exit for solution of A_j.
   !>                 - If deviceInfo[j] = i > 0, the solution of A_j could not be computed because
   !>                 input
   !>                 matrix A_j is rank deficient; the i-th diagonal element of its triangular
   !>                 factor is zero.
-  !>     @param[in]
-  !>     batchCount  int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of matrices in the batch.
   interface hipblasSgelsBatched
 #ifdef USE_CUDA_NAMES
@@ -38661,62 +36931,50 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : No support.
   !>
-  !>     @param[in]
-  !>     handle      hipblasHandle_t.
-  !>     @param[in]
-  !>     trans       hipblasOperation_t.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] trans - hipblasOperation_t.
   !>                 Specifies the form of the system of equations.
-  !>     @param[in]
-  !>     m           int. m >= 0.
+  !>     @param[in] m - int. m >= 0.
   !>                 The number of rows of all matrices A_j in the batch.
-  !>     @param[in]
-  !>     n           int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>                 The number of columns of all matrices A_j in the batch.
-  !>     @param[in]
-  !>     nrhs        int. nrhs >= 0.
+  !>     @param[in] nrhs - int. nrhs >= 0.
   !>                 The number of columns of all matrices B_j and X_j in the batch,
   !>                 that is, the columns on the right hand side.
-  !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>     @param[inout] A - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideA).
   !>                 - On entry, the matrices A_j.
   !>                 - On exit, the QR (or LQ) factorizations of A_j as returned by
   !>                 "GEQRF_STRIDED_BATCHED"
   !>                 (or "GELQF_STRIDED_BATCHED").
-  !>     @param[in]
-  !>     lda         int. lda >= m.
+  !>     @param[in] lda - int. lda >= m.
   !>                 Specifies the leading dimension of matrices A_j.
-  !>     @param[in]
-  !>     strideA     hipblasStride.
+  !>     @param[in] strideA - hipblasStride.
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
   !>                 There is no restriction for the value of strideA. Normal use case is strideA >=
   !>                 lda*n.
-  !>     @param[inout]
-  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>     @param[inout] B - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideB).
   !>                 - On entry, the matrices B_j.
   !>                 - On exit, when info[j] = 0, each B_j is overwritten by the solution vectors
   !>                 (and the residuals in
   !>                 the overdetermined cases) stored as columns.
-  !>     @param[in]
-  !>     ldb         int. ldb >= max(m,n).
+  !>     @param[in] ldb - int. ldb >= max(m,n).
   !>                 Specifies the leading dimension of matrices B_j.
-  !>     @param[in]
-  !>     strideB     hipblasStride.
+  !>     @param[in] strideB - hipblasStride.
   !>                 Stride from the start of one matrix B_j to the next one B_(j+1).
   !>                 There is no restriction for the value of strideB. Normal use case is strideB >=
   !>                 ldb*nrhs.
-  !>     @param[out]
-  !>     info        pointer to an int on the host.
+  !>     @param[out] myInfo - pointer to an int on the host.
   !>                 - If info = 0, successful exit.
   !>                 - If info = j < 0, the argument at position -j is invalid.
-  !>     @param[out]
-  !>     deviceInfo  pointer to int. Array of batchCount integers on the GPU.
+  !>     @param[out] deviceInfo - pointer to int. Array of batchCount integers on the GPU.
   !>                 - If deviceInfo[j] = 0, successful exit for solution of A_j.
   !>                 - If deviceInfo[j] = i > 0, the solution of A_j could not be computed because
   !>                 input
   !>                 matrix A_j is rank deficient; the i-th diagonal element of its triangular
   !>                 factor is zero.
-  !>     @param[in]
-  !>     batchCount  int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                 Number of matrices in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgelsStridedBatched
@@ -38859,28 +37117,21 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     m         int. m >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] m - int. m >= 0.
   !>               The number of rows of the matrix A.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of columns of the matrix A.
-  !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.
+  !>     @param[inout] A - pointer to type. Array on the GPU of dimension lda*n.
   !>               - On entry, the m-by-n matrix to be factored.
   !>               - On exit, the elements on and above the diagonal contain the
   !>               factor R. The elements below the diagonal are the last m - i elements
   !>               of Householder vector v_i.
-  !>     @param[in]
-  !>     lda       int. lda >= m.
+  !>     @param[in] lda - int. lda >= m.
   !>               Specifies the leading dimension of A.
-  !>     @param[out]
-  !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).
+  !>     @param[out] ipiv - pointer to type. Array on the GPU of dimension min(m,n).
   !>               The Householder scalars.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.
+  !>     @param[out] myInfo - pointer to a int on the host.
   !>               - If info = 0, successful exit.
   !>               - If info = j < 0, the argument at position -j is invalid.
 #ifndef USE_CUDA_NAMES
@@ -39018,33 +37269,26 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     m         int. m >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] m - int. m >= 0.
   !>               The number of rows of all the matrices A_i in the batch.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of columns of all the matrices A_i in the batch.
-  !>     @param[inout]
-  !>     A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>     @param[inout] A - Array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension lda*n.
   !>               - On entry, the m-by-n matrices A_i to be factored.
   !>               - On exit, the elements on and above the diagonal contain the
   !>               factor R_i. The elements below the diagonal are the last m - j elements
   !>               of Householder vector v_(i_j).
-  !>     @param[in]
-  !>     lda       int. lda >= m.
+  !>     @param[in] lda - int. lda >= m.
   !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[out]
-  !>     ipiv      array of pointers to type. Each pointer points to an array on the GPU
+  !>     @param[out] ipiv - array of pointers to type. Each pointer points to an array on the GPU
   !>               of dimension min(m, n).
   !>               Contains the vectors ipiv_i of corresponding Householder scalars.
-  !>     @param[out]
-  !>     info      pointer to a int on the host.
+  !>     @param[out] myInfo - pointer to a int on the host.
   !>               - If info = 0, successful exit.
   !>               - If info = j < 0, the argument at position -j is invalid.
-  !>     @param[in]
-  !>     batchCount  int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                  Number of matrices in the batch.
   interface hipblasSgeqrfBatched
 #ifdef USE_CUDA_NAMES
@@ -39173,42 +37417,34 @@ module hipfort_hipblas
   !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
   !>     - Supported precisions in cuBLAS    : No support.
   !>
-  !>     @param[in]
-  !>     handle    hipblasHandle_t.
-  !>     @param[in]
-  !>     m         int. m >= 0.
+  !>     @param[in] handle - hipblasHandle_t.
+  !>     @param[in] m - int. m >= 0.
   !>               The number of rows of all the matrices A_i in the batch.
-  !>     @param[in]
-  !>     n         int. n >= 0.
+  !>     @param[in] n - int. n >= 0.
   !>               The number of columns of all the matrices A_i in the batch.
-  !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>     @param[inout] A - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideA).
   !>               - On entry, the m-by-n matrices A_i to be factored.
   !>               - On exit, the elements on and above the diagonal contain the
   !>               factor R_i. The elements below the diagonal are the last m - j elements
   !>               of Householder vector v_(i_j).
-  !>     @param[in]
-  !>     lda       int. lda >= m.
+  !>     @param[in] lda - int. lda >= m.
   !>               Specifies the leading dimension of matrices A_i.
-  !>     @param[in]
-  !>     strideA   hipblasStride.
+  !>     @param[in] strideA - hipblasStride.
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
   !>               There is no restriction for the value of strideA. Normal use case is strideA >=
   !>               lda*n.
-  !>     @param[out]
-  !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).
+  !>     @param[out] ipiv - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideP).
   !>               Contains the vectors ipiv_i of corresponding Householder scalars.
-  !>     @param[in]
-  !>     strideP   hipblasStride.
+  !>     @param[in] strideP - hipblasStride.
   !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
   !>               There is no restriction for the value
   !>               of strideP. Normal use is strideP >= min(m,n).
-  !>     @param[out]
-  !>     info      pointer to a int on the host.
+  !>     @param[out] myInfo - pointer to a int on the host.
   !>               - If info = 0, successful exit.
   !>               - If info = j < 0, the argument at position -j is invalid.
-  !>     @param[in]
-  !>     batchCount  int. batchCount >= 0.
+  !>     @param[in] batchCount - int. batchCount >= 0.
   !>                  Number of matrices in the batch.
 #ifndef USE_CUDA_NAMES
   interface hipblasSgeqrfStridedBatched
@@ -39367,68 +37603,49 @@ module hipfort_hipblas
   !>     control gemm algorithms with the
   !>     rocBLAS backend. When using a cuBLAS backend, this parameter is ignored.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     [const void *]
+  !>     @param[in] alpha - [const void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     A         [void *]
+  !>     @param[in] A - [void *]
   !>               device pointer storing matrix A.
-  !>     @param[in]
-  !>     aType
+  !>     @param[in] aType
   !>     [hipDataType]
   !>               specifies the datatype of matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     B         [void *]
+  !>     @param[in] B - [void *]
   !>               device pointer storing matrix B.
-  !>     @param[in]
-  !>     bType
+  !>     @param[in] bType
   !>     [hipDataType]
   !>               specifies the datatype of matrix B.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of B.
-  !>     @param[in]
-  !>     beta      [const void *]
+  !>     @param[in] beta - [const void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     C         [void *]
+  !>     @param[in] C - [void *]
   !>               device pointer storing matrix C.
-  !>     @param[in]
-  !>     cType
+  !>     @param[in] cType
   !>     [hipDataType]
   !>               specifies the datatype of matrix C.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipblasComputeType_t]
   !>               specifies the datatype of computation.
-  !>     @param[in]
-  !>     algo      [hipblasGemmAlgo_t]
+  !>     @param[in] algo - [hipblasGemmAlgo_t]
   !>               enumerant specifying the algorithm type.
   interface hipblasGemmEx
 #ifdef USE_CUDA_NAMES
@@ -39601,72 +37818,52 @@ module hipfort_hipblas
   !>     control gemm algorithms with the
   !>     rocBLAS backend. When using a cuBLAS backend, this parameter is ignored.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     [const void *]
+  !>     @param[in] alpha - [const void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     A         [void *]
+  !>     @param[in] A - [void *]
   !>               device pointer storing array of pointers to each matrix A_i.
-  !>     @param[in]
-  !>     aType
+  !>     @param[in] aType
   !>     [hipDataType]
   !>               specifies the datatype of each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     B         [void *]
+  !>     @param[in] B - [void *]
   !>               device pointer storing array of pointers to each matrix B_i.
-  !>     @param[in]
-  !>     bType
+  !>     @param[in] bType
   !>     [hipDataType]
   !>               specifies the datatype of each matrix B_i.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of each B_i.
-  !>     @param[in]
-  !>     beta      [const void *]
+  !>     @param[in] beta - [const void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     C         [void *]
+  !>     @param[in] C - [void *]
   !>               device array of device pointers to each matrix C_i.
-  !>     @param[in]
-  !>     cType
+  !>     @param[in] cType
   !>     [hipDataType]
   !>               specifies the datatype of each matrix C_i.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of each C_i.
-  !>     @param[in]
-  !>     batchCount
+  !>     @param[in] batchCount
   !>               [int]
   !>               number of gemm operations in the batch.
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipblasComputeType_t]
   !>               specifies the datatype of computation.
-  !>     @param[in]
-  !>     algo      [hipblasGemmAlgo_t]
+  !>     @param[in] algo - [hipblasGemmAlgo_t]
   !>               enumerant specifying the algorithm type.
   interface hipblasGemmBatchedEx
 #ifdef USE_CUDA_NAMES
@@ -39845,81 +38042,58 @@ module hipfort_hipblas
   !>     control gemm algorithms with the
   !>     rocBLAS backend. When using a cuBLAS backend, this parameter is ignored.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     transB    [hipblasOperation_t]
+  !>     @param[in] transB - [hipblasOperation_t]
   !>               specifies the form of op( B ).
-  !>     @param[in]
-  !>     m         [int]
+  !>     @param[in] m - [int]
   !>               matrix dimension m.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     [const void *]
+  !>     @param[in] alpha - [const void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     A         [void *]
+  !>     @param[in] A - [void *]
   !>               device pointer pointing to first matrix A_1.
-  !>     @param[in]
-  !>     aType
+  !>     @param[in] aType
   !>     [hipDataType]
   !>               specifies the datatype of each matrix A_i.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of each A_i.
-  !>     @param[in]
-  !>     strideA  [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>               specifies stride from start of one A_i matrix to the next A_(i + 1).
-  !>     @param[in]
-  !>     B         [void *]
+  !>     @param[in] B - [void *]
   !>               device pointer pointing to first matrix B_1.
-  !>     @param[in]
-  !>     bType
+  !>     @param[in] bType
   !>     [hipDataType]
   !>               specifies the datatype of each matrix B_i.
-  !>     @param[in]
-  !>     ldb       [int]
+  !>     @param[in] ldb - [int]
   !>               specifies the leading dimension of each B_i.
-  !>     @param[in]
-  !>     strideB  [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>               specifies stride from start of one B_i matrix to the next B_(i + 1).
-  !>     @param[in]
-  !>     beta      [const void *]
+  !>     @param[in] beta - [const void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     C         [void *]
+  !>     @param[in] C - [void *]
   !>               device pointer pointing to first matrix C_1.
-  !>     @param[in]
-  !>     cType
+  !>     @param[in] cType
   !>     [hipDataType]
   !>               specifies the datatype of each matrix C_i.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of each C_i.
-  !>     @param[in]
-  !>     strideC  [hipblasStride]
+  !>     @param[in] strideC - [hipblasStride]
   !>               specifies stride from start of one C_i matrix to the next C_(i + 1).
-  !>     @param[in]
-  !>     batchCount
+  !>     @param[in] batchCount
   !>               [int]
   !>               number of gemm operations in the batch.
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipblasComputeType_t]
   !>               specifies the datatype of computation.
-  !>     @param[in]
-  !>     algo      [hipblasGemmAlgo_t]
+  !>     @param[in] algo - [hipblasGemmAlgo_t]
   !>               enumerant specifying the algorithm type.
   interface hipblasGemmStridedBatchedEx
 #ifdef USE_CUDA_NAMES
@@ -40097,53 +38271,39 @@ module hipfort_hipblas
   !>
   !>     - Supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               Specifies whether the matrix C is an upper or lower triangular matrix as follows:
   !>               - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>               - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     [const void *]
+  !>     @param[in] alpha - [const void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     A         [void *]
+  !>     @param[in] A - [void *]
   !>               device pointer storing matrix A.
-  !>     @param[in]
-  !>     aType
+  !>     @param[in] aType
   !>     [hipDataType]
   !>               specifies the datatype of matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     beta      [const void *]
+  !>     @param[in] beta - [const void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     C         [void *]
+  !>     @param[in] C - [void *]
   !>               device pointer storing matrix C.
-  !>     @param[in]
-  !>     cType
+  !>     @param[in] cType
   !>     [hipDataType]
   !>               specifies the datatype of matrix C.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipDataType]
   !>               specifies the datatype of the computation.
 #ifndef USE_CUDA_NAMES
@@ -40217,85 +38377,70 @@ module hipfort_hipblas
   !>       - ``ldinvA`` = 128
   !>       - ``batchCount`` = 1
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
   !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  A is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  A is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_ON_C: op(A) = A^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     A is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  A is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of B. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of B. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha   [void *]
+  !>     @param[in] alpha - [void *]
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero, then A is not referenced, and B does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     A       [void *]
+  !>     @param[in] A - [void *]
   !>             device pointer storing matrix A.
   !>             Of dimension ( lda, k ), where k is m
   !>             when HIPBLAS_SIDE_LEFT and
   !>             is n when HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[in, out]
-  !>     B       [void *]
+  !>     @param[in, out] B - [void *]
   !>             device pointer storing matrix B.
   !>             B is of dimension ( ldb, n ).
   !>             Before entry, the leading m by n part of the array B must
   !>             contain the right-hand side matrix B, and on exit is
   !>             overwritten by the solution matrix X.
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     invA    [void *]
+  !>     @param[in] invA - [void *]
   !>             device pointer storing the inverse diagonal blocks of A.
   !>             invA is of dimension ( ld_invA, k ), where k is m
   !>             when HIPBLAS_SIDE_LEFT and
   !>             is n when HIPBLAS_SIDE_RIGHT.
   !>             ld_invA must be equal to 128.
   !>
-  !>     @param[in]
-  !>     invAsize [int]
+  !>     @param[in] invAsize - [int]
   !>             invAsize specifies the number of elements of device memory in invA.
   !>
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipDataType]
   !>             specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -40344,53 +38489,39 @@ module hipfort_hipblas
   !>
   !>     - Supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     uplo      [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>               Specifies whether the matrix C is an upper or lower triangular matrix as follows:
   !>               - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
   !>               - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
-  !>     @param[in]
-  !>     transA    [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>               specifies the form of op( A ).
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               matrix dimension n.
-  !>     @param[in]
-  !>     k         [int]
+  !>     @param[in] k - [int]
   !>               matrix dimension k.
-  !>     @param[in]
-  !>     alpha     [const void *]
+  !>     @param[in] alpha - [const void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     A         [void *]
+  !>     @param[in] A - [void *]
   !>               device pointer storing matrix A.
-  !>     @param[in]
-  !>     aType
+  !>     @param[in] aType
   !>     [hipDataType]
   !>               specifies the datatype of matrix A.
-  !>     @param[in]
-  !>     lda       [int]
+  !>     @param[in] lda - [int]
   !>               specifies the leading dimension of A.
-  !>     @param[in]
-  !>     beta      [const void *]
+  !>     @param[in] beta - [const void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as
   !>               computeType.
-  !>     @param[in]
-  !>     C         [void *]
+  !>     @param[in] C - [void *]
   !>               device pointer storing matrix C.
-  !>     @param[in]
-  !>     cType
+  !>     @param[in] cType
   !>     [hipDataType]
   !>               specifies the datatype of matrix C.
-  !>     @param[in]
-  !>     ldc       [int]
+  !>     @param[in] ldc - [int]
   !>               specifies the leading dimension of C.
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipDataType]
   !>               specifies the datatype of the computation.
 #ifndef USE_CUDA_NAMES
@@ -40467,89 +38598,73 @@ module hipfort_hipblas
   !>       - ``ldinvA`` = 128
   !>       - ``batchCount`` = 1
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
   !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_OP_C: op(A) = A^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     each A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  each A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of each B_i. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of each B_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha   [void *]
+  !>     @param[in] alpha - [void *]
   !>             device pointer or host pointer alpha specifying the scalar alpha. When alpha is
   !>             &zero, then A is not referenced, and B does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     A       [void *]
+  !>     @param[in] A - [void *]
   !>             device array of device pointers storing each matrix A_i.
   !>             Each A_i is of dimension ( lda, k ), where k is m
   !>             when HIPBLAS_SIDE_LEFT and
   !>             is n when HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of each A_i.
   !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[in, out]
-  !>     B       [void *]
+  !>     @param[in, out] B - [void *]
   !>             device array of device pointers storing each matrix B_i.
   !>             Each B_i is of dimension ( ldb, n ).
   !>             Before entry, the leading m by n part of the array B_i must
   !>             contain the right-hand side matrix B_i, and on exit is
   !>             overwritten by the solution matrix X_i.
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of each B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>             specifies how many batches.
   !>
-  !>     @param[in]
-  !>     invA    [void *]
+  !>     @param[in] invA - [void *]
   !>             device array of device pointers storing the inverse diagonal blocks of each A_i.
   !>             Each invA_i is of dimension ( ld_invA, k ), where k is m
   !>             when HIPBLAS_SIDE_LEFT and
   !>             is n when HIPBLAS_SIDE_RIGHT.
   !>             ld_invA must be equal to 128.
   !>
-  !>     @param[in]
-  !>     invAsize [int]
+  !>     @param[in] invAsize - [int]
   !>             invAsize specifies the number of elements of device memory in each invA_i.
   !>
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipDataType]
   !>             specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -40629,85 +38744,69 @@ module hipfort_hipblas
   !>       - ``ldinvA`` = 128
   !>       - ``batchCount`` = 1
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
   !>
-  !>     @param[in]
-  !>     side    [hipblasSideMode_t]
+  !>     @param[in] side - [hipblasSideMode_t]
   !>             - HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
   !>             - HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !>
-  !>     @param[in]
-  !>     uplo    [hipblasFillMode_t]
+  !>     @param[in] uplo - [hipblasFillMode_t]
   !>             - HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
   !>             - HIPBLAS_FILL_MODE_LOWER:  each A_i is a lower triangular matrix.
   !>
-  !>     @param[in]
-  !>     transA  [hipblasOperation_t]
+  !>     @param[in] transA - [hipblasOperation_t]
   !>             - HIPBLAS_OP_N: op(A) = A.
   !>             - HIPBLAS_OP_T: op(A) = A^T.
   !>             - HIPBLAS_OP_C: op(A) = A^H.
   !>
-  !>     @param[in]
-  !>     diag    [hipblasDiagType_t]
+  !>     @param[in] diag - [hipblasDiagType_t]
   !>             - HIPBLAS_DIAG_UNIT:     each A_i is assumed to be unit triangular.
   !>             - HIPBLAS_DIAG_NON_UNIT:  each A_i is not assumed to be unit triangular.
   !>
-  !>     @param[in]
-  !>     m       [int]
+  !>     @param[in] m - [int]
   !>             m specifies the number of rows of each B_i. m >= 0.
   !>
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             n specifies the number of columns of each B_i. n >= 0.
   !>
-  !>     @param[in]
-  !>     alpha   [void *]
+  !>     @param[in] alpha - [void *]
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero, then A is not referenced, and B does not need to be set before
   !>             entry.
   !>
-  !>     @param[in]
-  !>     A       [void *]
+  !>     @param[in] A - [void *]
   !>             device pointer storing matrix A.
   !>             Of dimension ( lda, k ), where k is m
   !>             when HIPBLAS_SIDE_LEFT and
   !>             is n when HIPBLAS_SIDE_RIGHT.
   !>             Only the upper/lower triangular part is accessed.
   !>
-  !>     @param[in]
-  !>     lda     [int]
+  !>     @param[in] lda - [int]
   !>             lda specifies the first dimension of A.
   !>             - If side = HIPBLAS_SIDE_LEFT,  lda >= max( 1, m ).
   !>             - If side = HIPBLAS_SIDE_RIGHT, lda >= max( 1, n ).
   !>
-  !>     @param[in]
-  !>     strideA [hipblasStride]
+  !>     @param[in] strideA - [hipblasStride]
   !>             The stride between each A matrix.
   !>
-  !>     @param[in, out]
-  !>     B       [void *]
+  !>     @param[in, out] B - [void *]
   !>             device pointer pointing to first matrix B_i.
   !>             Each B_i is of dimension ( ldb, n ).
   !>             Before entry, the leading m by n part of each array B_i must
   !>             contain the right-hand side of matrix B_i, and on exit is
   !>             overwritten by the solution matrix X_i.
   !>
-  !>     @param[in]
-  !>     ldb    [int]
+  !>     @param[in] ldb - [int]
   !>            ldb specifies the first dimension of each B_i. ldb >= max( 1, m ).
   !>
-  !>     @param[in]
-  !>     strideB [hipblasStride]
+  !>     @param[in] strideB - [hipblasStride]
   !>             The stride between each B_i matrix.
   !>
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>             specifies how many batches.
   !>
-  !>     @param[in]
-  !>     invA    [void *]
+  !>     @param[in] invA - [void *]
   !>             device pointer storing the inverse diagonal blocks of each A_i.
   !>             invA points to the first invA_1.
   !>             Each invA_i is of dimension ( ld_invA, k ), where k is m
@@ -40715,16 +38814,13 @@ module hipfort_hipblas
   !>             is n when HIPBLAS_SIDE_RIGHT.
   !>             ld_invA must be equal to 128.
   !>
-  !>     @param[in]
-  !>     invAsize [int]
+  !>     @param[in] invAsize - [int]
   !>             invAsize specifies the number of elements of device memory in each invA_i.
   !>
-  !>     @param[in]
-  !>     strideInvA [hipblasStride]
+  !>     @param[in] strideInvA - [hipblasStride]
   !>             The stride between each invA matrix.
   !>
-  !>     @param[in]
-  !>     computeType
+  !>     @param[in] computeType
   !>     [hipDataType]
   !>             specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -40770,38 +38866,27 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to specify the scalar alpha.
-  !>     @param[in]
-  !>     alphaType
+  !>     @param[in] alpha - device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in] alphaType
   !>     [hipDataType]
   !>               specifies the datatype of alpha.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[inout]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     yType
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>               specifies the datatype of vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
   interface hipblasAxpyEx
@@ -40869,41 +38954,29 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to specify the scalar alpha.
-  !>     @param[in]
-  !>     alphaType
+  !>     @param[in] alpha - device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in] alphaType
   !>     [hipDataType]
   !>               specifies the datatype of alpha.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[inout]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     yType
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>               specifies the datatype of each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -40969,53 +39042,39 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer to specify the scalar alpha.
-  !>     @param[in]
-  !>     alphaType
+  !>     @param[in] alpha - device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in] alphaType
   !>     [hipDataType]
   !>               specifies the datatype of alpha.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex. However, the user should
   !>               ensure that stridex is of an appropriate size. For a typical
   !>               case, this means stridex >= n * incx.
-  !>     @param[inout]
-  !>     y         device pointer to the first vector y_1.
-  !>     @param[in]
-  !>     yType
+  !>     @param[inout] y - device pointer to the first vector y_1.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>               specifies the datatype of each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey   [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
   !>               There are no restrictions placed on stridey. However, the user should
   !>               ensure that stridey is of appropriate size. For a typical
   !>               case, this means stridey >= n * incy.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -41088,40 +39147,29 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x and y.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[in]
-  !>     y         device pointer storing vector y.
-  !>     @param[in]
-  !>     yType
+  !>     @param[in] y - device pointer storing vector y.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>               specifies the datatype of vector y.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the dot product.
   !>               Return value is 0.0 if n <= 0.
-  !>     @param[in]
-  !>     resultType
+  !>     @param[in] resultType
   !>     [hipDataType]
   !>               specifies the datatype of the result.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
   interface hipblasDotEx
@@ -41253,44 +39301,32 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     y         device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     yType
+  !>     @param[in] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>               specifies the datatype of each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device array or host array of batchCount size to store the dot products of each
   !>               batch.
   !>               Returns 0.0 for each element if n <= 0.
-  !>     @param[in]
-  !>     resultType
+  !>     @param[in] resultType
   !>     [hipDataType]
   !>               specifies the datatype of the result.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -41415,50 +39451,36 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See rocBLAS/cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in each x_i and y_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector (x_1) in the batch.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device pointer to the first vector (x_1) in the batch.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
-  !>     @param[in]
-  !>     y         device pointer to the first vector (y_1) in the batch.
-  !>     @param[in]
-  !>     yType
+  !>     @param[in] y - device pointer to the first vector (y_1) in the batch.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>               specifies the datatype of each vector y_i.
-  !>     @param[in]
-  !>     incy      [int]
+  !>     @param[in] incy - [int]
   !>               specifies the increment for the elements of each y_i.
-  !>     @param[in]
-  !>     stridey   [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device array or host array of batchCount size to store the dot products of each
   !>               batch.
   !>               Returns 0.0 for each element if n <= 0.
-  !>     @param[in]
-  !>     resultType
+  !>     @param[in] resultType
   !>     [hipDataType]
   !>               specifies the datatype of the result.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -41583,31 +39605,23 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device pointer storing vector x.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of the vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of y.
-  !>     @param[inout]
-  !>     result
+  !>     @param[inout] myResult
   !>               device pointer or host pointer to store the nrm2 product.
   !>               The return value is 0.0 if n, incx<=0.
-  !>     @param[in]
-  !>     resultType
+  !>     @param[in] resultType
   !>     [hipDataType]
   !>               specifies the datatype of the result.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
   interface hipblasNrm2Ex
@@ -41669,34 +39683,25 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each x_i.
-  !>     @param[in]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device pointer or host pointer to array of batchCount size for nrm2 results.
   !>               Returns 0.0 for each element if n <= 0, incx<=0.
-  !>     @param[in]
-  !>     resultType
+  !>     @param[in] resultType
   !>     [hipDataType]
   !>               specifies the datatype of the result.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -41756,41 +39761,31 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               number of elements in each x_i.
-  !>     @param[in]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     xType
+  !>     @param[in] x - device pointer to the first vector x_1.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>               specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i. incx must be > 0.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stridex. However, the user should
   !>               ensure that stridex is of an appropriate size. For a typical
   !>               case, this means stridex >= n * incx.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>               number of instances in the batch.
-  !>     @param[out]
-  !>     result
+  !>     @param[out] myResult
   !>               device pointer or host pointer to array for storing contiguous batchCount
   !>               results.
   !>               Returns 0.0 for each element if n <= 0, incx<=0.
-  !>     @param[in]
-  !>     resultType
+  !>     @param[in] resultType
   !>     [hipDataType]
   !>               specifies the datatype of the result.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>               specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -41861,40 +39856,30 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in the x and y vectors.
-  !>     @param[inout]
-  !>     x       device pointer storing vector x.
-  !>     @param[in]
-  !>     xType
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>             specifies the datatype of vector x.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of x.
-  !>     @param[inout]
-  !>     y       device pointer storing vector y.
-  !>     @param[in]
-  !>     yType
+  !>     @param[inout] y - device pointer storing vector y.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>             specifies the datatype of vector y.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of y.
-  !>     @param[in]
-  !>     c device pointer or host pointer storing scalar cosine component of the rotation matrix.
-  !>     @param[in]
-  !>     s device pointer or host pointer storing scalar sine component of the rotation matrix.
-  !>     @param[in]
-  !>     csType
+  !>     @param[in] c - device pointer or host pointer storing scalar cosine component of the
+  !>     rotation matrix.
+  !>     @param[in] s - device pointer or host pointer storing scalar sine component of the rotation
+  !>     matrix.
+  !>     @param[in] csType
   !>     [hipDataType]
   !>             specifies the datatype of c and s.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>             specifies the datatype of computation.
   interface hipblasRotEx
@@ -41974,43 +39959,32 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in each x_i and y_i vectors.
-  !>     @param[inout]
-  !>     x       device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     xType
+  !>     @param[inout] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>             specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of each x_i.
-  !>     @param[inout]
-  !>     y       device array of device pointers storing each vector y_i.
-  !>     @param[in]
-  !>     yType
+  !>     @param[inout] y - device array of device pointers storing each vector y_i.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>             specifies the datatype of each vector y_i.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of each y_i.
-  !>     @param[in]
-  !>     c       device pointer or host pointer to scalar cosine component of the rotation matrix.
-  !>     @param[in]
-  !>     s       device pointer or host pointer to scalar sine component of the rotation matrix.
-  !>     @param[in]
-  !>     csType
+  !>     @param[in] c - device pointer or host pointer to scalar cosine component of the rotation
+  !>     matrix.
+  !>     @param[in] s - device pointer or host pointer to scalar sine component of the rotation
+  !>     matrix.
+  !>     @param[in] csType
   !>     [hipDataType]
   !>             specifies the datatype of c and s.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>             the number of x and y arrays, that is, the number of batches.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>             specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -42088,49 +40062,36 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle  [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>             handle to the hipblas library context queue.
-  !>     @param[in]
-  !>     n       [int]
+  !>     @param[in] n - [int]
   !>             number of elements in each x_i and y_i vectors.
-  !>     @param[inout]
-  !>     x       device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     xType
+  !>     @param[inout] x - device pointer to the first vector x_1.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>             specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx    [int]
+  !>     @param[in] incx - [int]
   !>             specifies the increment between elements of each x_i.
-  !>     @param[in]
-  !>     stridex [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>             specifies the increment from the beginning of x_i to the beginning of x_(i+1).
-  !>     @param[inout]
-  !>     y       device pointer to the first vector y_1.
-  !>     @param[in]
-  !>     yType
+  !>     @param[inout] y - device pointer to the first vector y_1.
+  !>     @param[in] yType
   !>     [hipDataType]
   !>             specifies the datatype of each vector y_i.
-  !>     @param[in]
-  !>     incy    [int]
+  !>     @param[in] incy - [int]
   !>             specifies the increment between elements of each y_i.
-  !>     @param[in]
-  !>     stridey [hipblasStride]
+  !>     @param[in] stridey - [hipblasStride]
   !>             specifies the increment from the beginning of y_i to the beginning of y_(i+1).
-  !>     @param[in]
-  !>     c       device pointer or host pointer to scalar cosine component of the rotation matrix.
-  !>     @param[in]
-  !>     s       device pointer or host pointer to scalar sine component of the rotation matrix.
-  !>     @param[in]
-  !>     csType
+  !>     @param[in] c - device pointer or host pointer to scalar cosine component of the rotation
+  !>     matrix.
+  !>     @param[in] s - device pointer or host pointer to scalar sine component of the rotation
+  !>     matrix.
+  !>     @param[in] csType
   !>     [hipDataType]
   !>             specifies the datatype of c and s.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>             the number of x and y arrays, that is, the number of batches.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>             specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -42200,29 +40161,21 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer for the scalar alpha.
-  !>     @param[in]
-  !>     alphaType
+  !>     @param[in] alpha - device pointer or host pointer for the scalar alpha.
+  !>     @param[in] alphaType
   !>     [hipDataType]
   !>                specifies the datatype of alpha.
-  !>     @param[inout]
-  !>     x         device pointer storing vector x.
-  !>     @param[in]
-  !>     xType
+  !>     @param[inout] x - device pointer storing vector x.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>            specifies the datatype of vector x.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of x.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>                    specifies the datatype of computation.
   interface hipblasScalEx
@@ -42283,32 +40236,23 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer for the scalar alpha.
-  !>     @param[in]
-  !>     alphaType
+  !>     @param[in] alpha - device pointer or host pointer for the scalar alpha.
+  !>     @param[in] alphaType
   !>     [hipDataType]
   !>                specifies the datatype of alpha.
-  !>     @param[inout]
-  !>     x         device array of device pointers storing each vector x_i.
-  !>     @param[in]
-  !>     xType
+  !>     @param[inout] x - device array of device pointers storing each vector x_i.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>            specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>                    specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -42367,38 +40311,28 @@ module hipfort_hipblas
   !>
   !>     The supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
   !>
-  !>     @param[in]
-  !>     handle    [hipblasHandle_t]
+  !>     @param[in] handle - [hipblasHandle_t]
   !>               handle to the hipBLAS library context queue.
-  !>     @param[in]
-  !>     n         [int]
+  !>     @param[in] n - [int]
   !>               the number of elements in x.
-  !>     @param[in]
-  !>     alpha     device pointer or host pointer for the scalar alpha.
-  !>     @param[in]
-  !>     alphaType
+  !>     @param[in] alpha - device pointer or host pointer for the scalar alpha.
+  !>     @param[in] alphaType
   !>     [hipDataType]
   !>                specifies the datatype of alpha.
-  !>     @param[inout]
-  !>     x         device pointer to the first vector x_1.
-  !>     @param[in]
-  !>     xType
+  !>     @param[inout] x - device pointer to the first vector x_1.
+  !>     @param[in] xType
   !>     [hipDataType]
   !>            specifies the datatype of each vector x_i.
-  !>     @param[in]
-  !>     incx      [int]
+  !>     @param[in] incx - [int]
   !>               specifies the increment for the elements of each x_i.
-  !>     @param[in]
-  !>     stridex   [hipblasStride]
+  !>     @param[in] stridex - [hipblasStride]
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex. However, the user should
   !>               take care to ensure that stridex is of an appropriate size. For a typical
   !>               case, this means stridex >= n * incx.
-  !>     @param[in]
-  !>     batchCount [int]
+  !>     @param[in] batchCount - [int]
   !>                 number of instances in the batch.
-  !>     @param[in]
-  !>     executionType
+  !>     @param[in] executionType
   !>     [hipDataType]
   !>                    specifies the datatype of computation.
 #ifndef USE_CUDA_NAMES
@@ -42454,8 +40388,7 @@ module hipfort_hipblas
   !>     \details
   !>     Returns a string representing the ``hipblasStatus_t`` value.
   !>
-  !>     @param[in]
-  !>     status  [hipblasStatus_t]
+  !>     @param[in] status - [hipblasStatus_t]
   !>             hipBLAS status to convert to string.
 #ifndef USE_CUDA_NAMES
   interface hipblasStatusToString
