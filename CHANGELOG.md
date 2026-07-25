@@ -6,11 +6,12 @@
 
 * **hipFFTW support.** Added Fortran interfaces to the FFTW3-compatible hipFFTW
   library, in new `hipfort_hipfftw` modules, plus a `hipfort::hipfftw` CMake target.
-* **Regenerated all Fortran bindings** against the current ROCm API. This covers the
+* **Regenerated all Fortran bindings** against the ROCm 7.14.0 API. This covers the
   HIP runtime and every math library. It exposes the functions and enums added since
   the last release in hipBLAS, rocBLAS, hipSPARSE, rocSPARSE, hipSOLVER, rocSOLVER,
   and the HIP runtime. The Doxygen documentation from the C headers is now carried
-  onto the Fortran interfaces and onto derived-type fields.
+  onto the Fortran interfaces and onto derived-type fields. The interfaces are up to
+  date for use with ROCm 7.14.0.
 * Added the rocSOLVER generalized symmetric/Hermitian eigensolver interfaces
   `?sygvdx`/`?hegvdx`.
 * Added the rocSOLVER ILP64 (`*_64`) eigenvalue interfaces.
