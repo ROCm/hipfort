@@ -28,6 +28,9 @@
 * Added example CMake toolchain files in `cmake/toolchains/`, for amdflang, GNU,
   Intel `ifx`/`ifort`, Cray, and NVHPC. Select one with `-DCMAKE_TOOLCHAIN_FILE`
   to build hipfort with a different Fortran compiler or backend.
+* Documented how to build hipfort applications with CMake, in the *Using hipFORT*
+  how-to guide. It covers `find_package(hipfort)`, the exported `hipfort::*` targets,
+  and the multiple-Fortran-toolchain install layout.
 
 ### Changed
 

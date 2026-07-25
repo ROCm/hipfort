@@ -64,6 +64,44 @@ should build with them too. Please open an issue at https://github.com/ROCm/hipf
    If you plan to use the `f2008` interfaces, GFortran version 7.5.0 or newer is recommended.
    Problems can occur with older versions.
 
+Building your application with CMake
+-----------------------------------
+
+hipFORT installs CMake package files, so you can locate it with ``find_package``
+and link against its exported ``hipfort::*`` targets. Each target pulls in the
+right Fortran module (``.mod``) search path, the hipFORT library, and the
+underlying ROCm library it wraps.
+
+.. code-block:: cmake
+
+   find_package(hipfort REQUIRED COMPONENTS hip rocblas hipblas)
+
+   add_executable(my_app main.f08)
+   target_link_libraries(my_app PRIVATE hipfort::rocblas hipfort::hipblas hipfort::hip)
+
+List the libraries your code uses as ``COMPONENTS`` (for example ``hip``,
+``rocblas``, ``hipblas``, ``rocsparse``, ``hipsparse``, ``rocfft``, ``hipfft``,
+``rocrand``, ``hiprand``, ``rocsolver``, ``hipsolver``) and link the matching
+``hipfort::<component>`` targets. ``hipfort::hip`` is always required. If hipFORT
+is not in a default location, point CMake at it with ``-Dhipfort_ROOT=/path/to/hipfort``
+(or ``CMAKE_PREFIX_PATH``).
+
+Multiple Fortran toolchains
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fortran ``.mod`` files are compiler-specific, so a hipFORT build works only with
+the compiler that produced it. To let several toolchains coexist, hipFORT installs
+its modules and libraries into compiler-specific subdirectories
+(``include/fortran/<compiler>`` and ``lib/fortran/<compiler>``). This is enabled by
+the ``HIPFORT_MULTITOOLCHAIN_LAYOUT`` CMake option (``ON`` by default). The exported
+``hipfort::*`` targets resolve these paths automatically, so your application picks
+the right modules and library by using the hipFORT installation that was built with
+the same Fortran compiler.
+
+To build hipFORT itself with a specific compiler or backend, use one of the example
+toolchain files in ``cmake/toolchains/`` (amdflang, GNU, Intel ``ifx``/``ifort``,
+Cray, and NVHPC) via ``-DCMAKE_TOOLCHAIN_FILE=...``.
+
 Examples
 --------
 
