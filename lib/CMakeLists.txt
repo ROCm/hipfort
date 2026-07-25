@@ -74,9 +74,12 @@ set(HIPFORT_ARCH "nvptx")
     ADD_LIBRARY(${HIPFORT_LIB} STATIC 
          ${HIPFORT_SRC_HIP} 
          )
-    IF(HIPFORT_USE_FPOINTER_INTERFACES)
-    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
-    ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
+    # The CUDA/NVIDIA backend only exposes the interfaces that have a cu*
+    # equivalent (the bogus cu* name mappings were dropped in #394), so the
+    # Fortran 2008 array wrappers -- which call the raw hip* bindings that are
+    # not declared under USE_CUDA_NAMES -- cannot be built here. Build only the
+    # Fortran 2003 (type(c_ptr)) interfaces on nvptx, so do NOT define
+    # USE_FPOINTER_INTERFACES for this target.
     target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_CUDA_NAMES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-nvptx
