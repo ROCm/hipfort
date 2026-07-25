@@ -26,7 +26,6 @@
 
 module hipfort_rocblas
   use hipfort_rocblas_enums
-  use hipfort_rocblas_types
   implicit none
 
   !>  \brief Create handle.

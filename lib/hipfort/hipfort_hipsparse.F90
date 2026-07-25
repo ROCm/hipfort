@@ -26,7 +26,6 @@
 
 module hipfort_hipsparse
   use hipfort_hipsparse_enums
-  use hipfort_hipsparse_types
   implicit none
 
   !>  \ingroup aux_module

@@ -26,7 +26,6 @@
 
 module hipfort_rocrand
   use hipfort_rocrand_enums
-  use hipfort_rocrand_types
   implicit none
 
   !>  \brief Creates a new random number generator.
