@@ -193,12 +193,9 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
   !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
+#ifndef USE_CUDA_NAMES
   interface hiprandGenerateChar
-#ifdef USE_CUDA_NAMES
-    function hiprandGenerateChar_(generator,output_data,n) bind(c, name="curandGenerateChar")
-#else
     function hiprandGenerateChar_(generator,output_data,n) bind(c, name="hiprandGenerateChar")
-#endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
@@ -208,6 +205,7 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
   end interface
+#endif
 
   !>  \brief Generates uniformly distributed 16-bit unsigned integers.
   !>
@@ -225,12 +223,9 @@ module hipfort_hiprand
   !>  - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized
   !>  - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel
   !>  - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated
+#ifndef USE_CUDA_NAMES
   interface hiprandGenerateShort
-#ifdef USE_CUDA_NAMES
-    function hiprandGenerateShort_(generator,output_data,n) bind(c, name="curandGenerateShort")
-#else
     function hiprandGenerateShort_(generator,output_data,n) bind(c, name="hiprandGenerateShort")
-#endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
@@ -240,6 +235,7 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
   end interface
+#endif
 
   !>  \brief Generates uniformly distributed 64-bit unsigned integers.
   !>
