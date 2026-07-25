@@ -10,10 +10,20 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 ## Known issues
 
-* The regular `hipSOLVER` interfaces (`hipsolver*`) are available for AMD GPUs only:
-  they have no native cuSOLVER equivalent (cuSOLVER's API differs), so they are
-  excluded from the CUDA/NVIDIA build. The `hipSOLVER` compat interfaces
-  (`hipsolverDn*`) map to `cusolverDn*` and are available on NVIDIA GPUs as well.
+* The CUDA/NVIDIA backend (`-DUSE_CUDA_NAMES`) does **not** cover every interface.
+  Functions with no equivalent in the corresponding CUDA library are compiled for
+  AMD only (guarded by `#ifndef USE_CUDA_NAMES`) rather than bound to a symbol that
+  does not exist. This affects, among others:
+  * the regular `hipSOLVER` API (`hipsolver*`) — cuSOLVER only exposes the
+    `cusolverDn*` dense API, which the `hipsolverDn*` compat interfaces *do* map;
+  * the legacy `hipSPARSE` API (removed from cuSPARSE in CUDA 12);
+  * several batched/strided `hipBLAS` extensions and a few HIP runtime / `hipRAND`
+    calls with no CUDA counterpart.
+
+  Core functionality (BLAS/SPARSE compute, FFT, `hipsolverDn*`, the HIP runtime)
+  maps to CUDA and is available on NVIDIA GPUs. The CUDA name maps are validated
+  symbol-by-symbol against the CUDA libraries, but the backend has not yet been
+  link/run-tested on NVIDIA hardware.
 * We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
 
 ## Build and test hipfort from source
