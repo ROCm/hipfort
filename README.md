@@ -12,7 +12,7 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 * The `-DUSE_CUDA_NAMES` build targets NVIDIA machines with the CUDA toolkit but no
   HIP/ROCm libraries: interfaces bind directly to the CUDA libraries (cuBLAS,
-  cuSOLVER, …) instead of HIP. Coverage is not complete — interfaces with no CUDA
+  cuSOLVER, …) instead of HIP. Coverage is not complete, interfaces with no CUDA
   equivalent (e.g. the regular `hipSOLVER` API, legacy `hipSPARSE`, some `hipBLAS`
   extensions) are compiled for AMD only.
 * We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
