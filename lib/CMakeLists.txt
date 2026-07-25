@@ -71,9 +71,13 @@ set(HIPFORT_ARCH "nvptx")
     # nvptx
     set(HIPFORT_LIB     "hipfort-${HIPFORT_ARCH}")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
-    ADD_LIBRARY(${HIPFORT_LIB} STATIC 
-         ${HIPFORT_SRC_HIP} 
+    ADD_LIBRARY(${HIPFORT_LIB} STATIC
+         ${HIPFORT_SRC_HIP}
          )
+    target_include_directories(${HIPFORT_LIB}
+      PUBLIC
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/hipfort/nvptx>
+    )
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
     ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
@@ -82,6 +86,11 @@ set(HIPFORT_ARCH "nvptx")
     # Install Target hipfort-nvptx
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
+        EXPORT hipfort-nvptx-targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
@@ -101,6 +110,13 @@ rocm_install(
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
 )
 
+rocm_install(
+  EXPORT hipfort-nvptx-targets
+  FILE hipfort-nvptx-targets.cmake
+  NAMESPACE hipfort::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
+)
+
 macro(hipfort_add_component name imported_target)
   add_library(hipfort-${name} INTERFACE)
   add_library(hipfort::${name} ALIAS hipfort-${name})
@@ -108,7 +124,7 @@ macro(hipfort_add_component name imported_target)
     PROPERTIES
       EXPORT_NAME ${name}
   )
-  target_link_libraries(hipfort-${name} INTERFACE hipfort-amdgcn ${imported_target})
+  target_link_libraries(hipfort-${name} INTERFACE ${HIPFORT_BASE_LIB} ${imported_target})
   rocm_install(
     TARGETS
       hipfort-${name}
@@ -128,6 +144,10 @@ endmacro()
 
 find_package(hip PATHS ${ROCM_PATH} /opt/rocm)
 if(HIP_PLATFORM STREQUAL "amd")
+  # Components link the AMD (amdgcn) library and use the ROCm imported targets.
+  set(HIPFORT_BASE_LIB hipfort-amdgcn)
+  set(HIPFORT_ARCH_EXPORT amdgcn)
+
   if(hip_FOUND)
     hipfort_add_component(hip hip::host)
   else()
@@ -219,6 +239,63 @@ if(HIP_PLATFORM STREQUAL "amd")
     message(STATUS "Skipping hipfort::hipsparse target export")
   endif()
 
+elseif(HIP_PLATFORM STREQUAL "nvidia")
+  # NVIDIA/CUDA backend: components link the nvptx (USE_CUDA_NAMES) library.
+  # Only the HIP-based libraries exist on NVIDIA; the roc* libraries and roctx
+  # (ROCm-only) are not wired here.
+  set(HIPFORT_BASE_LIB hipfort-nvptx)
+  set(HIPFORT_ARCH_EXPORT nvptx)
+
+  if(hip_FOUND)
+    hipfort_add_component(hip hip::host)
+  else()
+    message(STATUS "Skipping hipfort::hip target export")
+  endif()
+
+  find_package(hipblas PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipblas_FOUND)
+    hipfort_add_component(hipblas roc::hipblas)
+  else()
+    message(STATUS "Skipping hipfort::hipblas target export")
+  endif()
+
+  find_package(hipfft PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipfft_FOUND)
+    hipfort_add_component(hipfft hip::hipfft)
+    if(TARGET hip::hipfftw)
+      hipfort_add_component(hipfftw hip::hipfftw)
+    else()
+      hipfort_add_component(hipfftw hip::hipfft)
+    endif()
+  else()
+    message(STATUS "Skipping hipfort::hipfft target export")
+  endif()
+
+  find_package(hiprand PATHS ${ROCM_PATH} /opt/rocm)
+  if(hiprand_FOUND)
+    hipfort_add_component(hiprand hip::hiprand)
+  else()
+    message(STATUS "Skipping hipfort::hiprand target export")
+  endif()
+
+  find_package(hipsolver PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipsolver_FOUND)
+    hipfort_add_component(hipsolver roc::hipsolver)
+  else()
+    message(STATUS "Skipping hipfort::hipsolver target export")
+  endif()
+
+  find_package(hipsparse PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipsparse_FOUND)
+    hipfort_add_component(hipsparse roc::hipsparse)
+  else()
+    message(STATUS "Skipping hipfort::hipsparse target export")
+  endif()
+endif()
+
+# Generate and install the package config for whichever platform was selected.
+# hipfort-config.cmake.in includes hipfort-@HIPFORT_ARCH_EXPORT@-targets.cmake.
+if(DEFINED HIPFORT_BASE_LIB)
   include(CMakePackageConfigHelpers)
 
   configure_package_config_file(

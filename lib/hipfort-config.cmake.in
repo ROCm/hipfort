@@ -32,7 +32,7 @@ set(_hipfort_supported_components hip roctx
 set(_hipfort_hipfftw_dependency hipfft)
 set(_hipfort_roctx_dependency rocprofiler-sdk-roctx)
 
-include("${CMAKE_CURRENT_LIST_DIR}/hipfort-amdgcn-targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/hipfort-@HIPFORT_ARCH_EXPORT@-targets.cmake")
 foreach(_comp ${hipfort_FIND_COMPONENTS})
   if (NOT _comp IN_LIST _hipfort_supported_components)
     set(hipfort_FOUND False)
