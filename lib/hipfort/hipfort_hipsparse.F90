@@ -23610,6 +23610,7 @@ module hipfort_hipsparse
 #ifdef USE_FPOINTER_INTERFACES
   contains
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23644,6 +23645,8 @@ module hipfort_hipsparse
         idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23678,6 +23681,8 @@ module hipfort_hipsparse
         idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23712,6 +23717,8 @@ module hipfort_hipsparse
         idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23746,6 +23753,8 @@ module hipfort_hipsparse
         idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCdotci_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23780,6 +23789,8 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZdotci_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23814,6 +23825,8 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23848,6 +23861,8 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23882,6 +23897,8 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23916,6 +23933,8 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23950,6 +23969,8 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSgthr_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -23980,6 +24001,8 @@ module hipfort_hipsparse
       hipsparseSgthr_rank_1 = hipsparseSgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDgthr_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24010,6 +24033,8 @@ module hipfort_hipsparse
       hipsparseDgthr_rank_1 = hipsparseDgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCgthr_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24040,6 +24065,8 @@ module hipfort_hipsparse
       hipsparseCgthr_rank_1 = hipsparseCgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZgthr_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24070,6 +24097,8 @@ module hipfort_hipsparse
       hipsparseZgthr_rank_1 = hipsparseZgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSgthrz_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24100,6 +24129,8 @@ module hipfort_hipsparse
       hipsparseSgthrz_rank_1 = hipsparseSgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDgthrz_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24130,6 +24161,8 @@ module hipfort_hipsparse
       hipsparseDgthrz_rank_1 = hipsparseDgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCgthrz_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24160,6 +24193,8 @@ module hipfort_hipsparse
       hipsparseCgthrz_rank_1 = hipsparseCgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZgthrz_rank_0(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24190,6 +24225,8 @@ module hipfort_hipsparse
       hipsparseZgthrz_rank_1 = hipsparseZgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSroti_rank_0(handle,nnz,xVal,xInd,y,c,s,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24226,6 +24263,8 @@ module hipfort_hipsparse
         idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDroti_rank_0(handle,nnz,xVal,xInd,y,c,s,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24262,6 +24301,8 @@ module hipfort_hipsparse
         idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSsctr_rank_0(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24292,6 +24333,8 @@ module hipfort_hipsparse
       hipsparseSsctr_rank_1 = hipsparseSsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDsctr_rank_0(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24322,6 +24365,8 @@ module hipfort_hipsparse
       hipsparseDsctr_rank_1 = hipsparseDsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCsctr_rank_0(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24352,6 +24397,8 @@ module hipfort_hipsparse
       hipsparseCsctr_rank_1 = hipsparseCsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZsctr_rank_0(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -24382,6 +24429,7 @@ module hipfort_hipsparse
       hipsparseZsctr_rank_1 = hipsparseZsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
 
+#endif
     function hipsparseSbsrmv_rank_0(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       use iso_c_binding
@@ -24790,6 +24838,7 @@ module hipfort_hipsparse
         myInfo,pBufferSizeInBytes)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -24838,6 +24887,8 @@ module hipfort_hipsparse
         blockDim,myInfo,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -24886,6 +24937,8 @@ module hipfort_hipsparse
         blockDim,myInfo,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -24934,6 +24987,8 @@ module hipfort_hipsparse
         blockDim,myInfo,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZbsrsv2_bufferSizeExt_rank_0(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -24982,6 +25037,7 @@ module hipfort_hipsparse
         blockDim,myInfo,pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseSbsrsv2_analysis_rank_0(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -25638,6 +25694,7 @@ module hipfort_hipsparse
         descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,c_loc(x),beta,c_loc(y))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -25686,6 +25743,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -25734,6 +25793,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -25782,6 +25843,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -25830,6 +25893,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsv2_bufferSize_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -25874,6 +25939,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsv2_bufferSize_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -25918,6 +25985,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsv2_bufferSize_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -25962,6 +26031,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsv2_bufferSize_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -26006,6 +26077,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -26050,6 +26123,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -26094,6 +26169,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -26138,6 +26215,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsv2_bufferSizeExt_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -26182,6 +26261,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsv2_analysis_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -26226,6 +26307,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsv2_analysis_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -26270,6 +26353,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsv2_analysis_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -26314,6 +26399,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsv2_analysis_rank_0(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -26358,6 +26445,8 @@ module hipfort_hipsparse
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -26410,6 +26499,8 @@ module hipfort_hipsparse
         c_loc(x),policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -26462,6 +26553,8 @@ module hipfort_hipsparse
         c_loc(x),policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -26514,6 +26607,8 @@ module hipfort_hipsparse
         c_loc(x),policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -26566,6 +26661,7 @@ module hipfort_hipsparse
         c_loc(x),policy,pBuffer)
     end function
 
+#endif
     function hipsparseSgemvi_rank_0(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26858,6 +26954,7 @@ module hipfort_hipsparse
         c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseShybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26894,6 +26991,8 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDhybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26930,6 +27029,8 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseChybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26966,6 +27067,8 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZhybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -27002,6 +27105,7 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+#endif
     function hipsparseSbsrmm_rank_0(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28182,6 +28286,7 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28266,6 +28371,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28350,6 +28457,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28434,6 +28543,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28518,6 +28629,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28605,6 +28718,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28692,6 +28807,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28779,6 +28896,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -28866,6 +28985,8 @@ module hipfort_hipsparse
         c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -28956,6 +29077,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -29046,6 +29169,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -29136,6 +29261,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsm2_bufferSizeExt_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -29226,6 +29353,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29313,6 +29442,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29400,6 +29531,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29487,6 +29620,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29574,6 +29709,8 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29661,6 +29798,8 @@ module hipfort_hipsparse
         c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29748,6 +29887,8 @@ module hipfort_hipsparse
         c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29835,6 +29976,8 @@ module hipfort_hipsparse
         c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29922,6 +30065,8 @@ module hipfort_hipsparse
         c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       use iso_c_binding
@@ -29997,6 +30142,8 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       use iso_c_binding
@@ -30072,6 +30219,8 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       use iso_c_binding
@@ -30147,6 +30296,8 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       use iso_c_binding
@@ -30222,6 +30373,8 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseXcsrgeamNnz_rank_0(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB, &
         csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
       use iso_c_binding
@@ -30274,6 +30427,8 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -30336,6 +30491,8 @@ module hipfort_hipsparse
         c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -30398,6 +30555,8 @@ module hipfort_hipsparse
         c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -30460,6 +30619,8 @@ module hipfort_hipsparse
         c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -30522,6 +30683,7 @@ module hipfort_hipsparse
         c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
     end function
 
+#endif
     function hipsparseScsrgeam2_bufferSizeExt_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
@@ -31130,6 +31292,7 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseXcsrgemmNnz_rank_0(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
       use iso_c_binding
@@ -31188,6 +31351,8 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrgemm_rank_0(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -31254,6 +31419,8 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrgemm_rank_0(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -31320,6 +31487,8 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrgemm_rank_0(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -31386,6 +31555,8 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrgemm_rank_0(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -31452,6 +31623,8 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -31520,6 +31693,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -31588,6 +31763,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -31656,6 +31833,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -31724,6 +31903,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseXcsrgemm2Nnz_rank_0(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA,descrB, &
         nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
         nnzTotalDevHostPtr,myInfo,pBuffer)
@@ -31794,6 +31975,8 @@ module hipfort_hipsparse
         nnzTotalDevHostPtr,myInfo,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -31876,6 +32059,8 @@ module hipfort_hipsparse
         c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -31958,6 +32143,8 @@ module hipfort_hipsparse
         c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -32040,6 +32227,8 @@ module hipfort_hipsparse
         c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -32122,6 +32311,7 @@ module hipfort_hipsparse
         c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+#endif
     function hipsparseSbsric02_bufferSize_rank_0(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -33410,6 +33600,7 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -33452,6 +33643,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -33494,6 +33687,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -33536,6 +33731,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsric02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -33578,6 +33775,7 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseScsric02_analysis_rank_0(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34082,6 +34280,7 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -34124,6 +34323,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -34166,6 +34367,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -34208,6 +34411,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsrilu02_bufferSizeExt_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -34250,6 +34455,7 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseScsrilu02_analysis_rank_0(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -36544,6 +36750,7 @@ module hipfort_hipsparse
         c_loc(p))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -36601,6 +36808,8 @@ module hipfort_hipsparse
         c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -36658,6 +36867,8 @@ module hipfort_hipsparse
         c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -36715,6 +36926,8 @@ module hipfort_hipsparse
         c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -36772,6 +36985,7 @@ module hipfort_hipsparse
         c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
+#endif
     function hipsparseXcscsort_bufferSizeExt_rank_0(handle,m,n,nnz,cscColPtr,cscRowInd, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -37122,6 +37336,7 @@ module hipfort_hipsparse
         c_loc(cooRowInd),idxBase)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
         cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -37170,6 +37385,8 @@ module hipfort_hipsparse
         c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
         cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -37218,6 +37435,8 @@ module hipfort_hipsparse
         c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
         cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -37266,6 +37485,8 @@ module hipfort_hipsparse
         c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
         cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -37314,6 +37535,7 @@ module hipfort_hipsparse
         c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
 
+#endif
     function hipsparseScsr2csr_compress_rank_0(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA, &
         nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
       use iso_c_binding
@@ -37682,6 +37904,7 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -37739,6 +37962,8 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -37796,6 +38021,8 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -37853,6 +38080,8 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -37910,6 +38139,7 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
+#endif
     function hipsparseScsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
         csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -38360,6 +38590,7 @@ module hipfort_hipsparse
         c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -38402,6 +38633,8 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -38444,6 +38677,8 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -38486,6 +38721,8 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -38528,6 +38765,7 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
 
+#endif
     function hipsparseXcsrsort_bufferSizeExt_rank_0(handle,m,n,nnz,csrRowPtr,csrColInd, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -38930,6 +39168,7 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -38993,6 +39232,8 @@ module hipfort_hipsparse
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -39056,6 +39297,8 @@ module hipfort_hipsparse
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -39119,6 +39362,8 @@ module hipfort_hipsparse
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -39182,6 +39427,8 @@ module hipfort_hipsparse
         c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseSdense2csr_rank_0(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -39243,6 +39490,8 @@ module hipfort_hipsparse
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDdense2csr_rank_0(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -39304,6 +39553,8 @@ module hipfort_hipsparse
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCdense2csr_rank_0(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -39365,6 +39616,8 @@ module hipfort_hipsparse
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZdense2csr_rank_0(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -39426,6 +39679,7 @@ module hipfort_hipsparse
         c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
     end function
 
+#endif
     function hipsparseSgebsr2csr_rank_0(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
         rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -40156,6 +40410,7 @@ module hipfort_hipsparse
         c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseShyb2csr_rank_0(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -40190,6 +40445,8 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDhyb2csr_rank_0(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -40224,6 +40481,8 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseChyb2csr_rank_0(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -40258,6 +40517,8 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZhyb2csr_rank_0(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -40292,6 +40553,7 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
     end function
 
+#endif
     function hipsparseSnnz_rank_0(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -40668,6 +40930,7 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_bufferSize_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -40720,6 +40983,8 @@ module hipfort_hipsparse
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneCsr2csr_bufferSize_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -40772,6 +41037,7 @@ module hipfort_hipsparse
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseSpruneCsr2csr_bufferSizeExt_rank_0(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -41080,6 +41346,7 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -41138,6 +41405,8 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -41196,6 +41465,7 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -41524,6 +41794,7 @@ module hipfort_hipsparse
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_bufferSize_rank_0(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -41593,6 +41864,8 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneDense2csr_bufferSize_rank_0(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -41662,6 +41935,7 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseSpruneDense2csr_bufferSizeExt_rank_0(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -42058,6 +42332,7 @@ module hipfort_hipsparse
         threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage, &
         descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -42130,6 +42405,8 @@ module hipfort_hipsparse
         c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage, &
         descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -42202,6 +42479,7 @@ module hipfort_hipsparse
         c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
     end function
 
+#endif
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda, &
         percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
