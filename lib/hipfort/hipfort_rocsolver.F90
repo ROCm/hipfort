@@ -63,7 +63,7 @@ module hipfort_rocsolver
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_get_version_string_size_
-      type(c_ptr),value :: len
+      integer(c_size_t) :: len
     end function
   end interface
 

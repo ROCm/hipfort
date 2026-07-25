@@ -697,7 +697,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_set_solution_fitness_query_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: fitness
+      real(c_double) :: fitness
     end function
   end interface
 
@@ -38303,7 +38303,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_version_string_size_
-      type(c_ptr),value :: len
+      integer(c_size_t) :: len
     end function
   end interface
 
@@ -38340,7 +38340,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_commit_hash_string_size_
-      type(c_ptr),value :: len
+      integer(c_size_t) :: len
     end function
   end interface
 

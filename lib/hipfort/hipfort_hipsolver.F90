@@ -212,7 +212,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: residual
+      real(c_double) :: residual
     end function
   end interface
 
@@ -230,7 +230,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: executed_sweeps
+      integer(c_int) :: executed_sweeps
     end function
   end interface
 
@@ -325,7 +325,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: residual
+      real(c_double) :: residual
     end function
   end interface
 
@@ -343,7 +343,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: executed_sweeps
+      integer(c_int) :: executed_sweeps
     end function
   end interface
 
@@ -1881,7 +1881,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -1907,7 +1907,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -1933,7 +1933,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -1959,7 +1959,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -2608,7 +2608,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -2629,7 +2629,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -2650,7 +2650,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -2671,7 +2671,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -5209,7 +5209,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7282,7 +7282,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: residual
+      real(c_double) :: residual
     end function
   end interface
 
@@ -7300,7 +7300,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: executed_sweeps
+      integer(c_int) :: executed_sweeps
     end function
   end interface
 
@@ -7397,7 +7397,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: residual
+      real(c_double) :: residual
     end function
   end interface
 
@@ -7415,7 +7415,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: executed_sweeps
+      integer(c_int) :: executed_sweeps
     end function
   end interface
 
@@ -7439,7 +7439,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7463,7 +7463,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7487,7 +7487,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7511,7 +7511,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7638,7 +7638,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7661,7 +7661,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7684,7 +7684,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7707,7 +7707,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7829,7 +7829,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7851,7 +7851,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7873,7 +7873,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -7895,7 +7895,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8018,7 +8018,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8045,7 +8045,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8072,7 +8072,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8099,7 +8099,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8242,7 +8242,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8269,7 +8269,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8296,7 +8296,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8323,7 +8323,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8458,7 +8458,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8477,7 +8477,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8496,7 +8496,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8515,7 +8515,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8650,7 +8650,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -8677,7 +8677,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -8704,7 +8704,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -8731,7 +8731,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -8868,7 +8868,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8889,7 +8889,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8910,7 +8910,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -8931,7 +8931,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -9054,7 +9054,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -9081,7 +9081,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -9108,7 +9108,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -9135,7 +9135,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
   end interface
 
@@ -9270,7 +9270,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -9289,7 +9289,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -9308,7 +9308,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -9327,7 +9327,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -9479,7 +9479,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -9508,7 +9508,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -9537,7 +9537,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -9566,7 +9566,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -9728,7 +9728,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -9759,7 +9759,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -9790,7 +9790,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -9821,7 +9821,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldu
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -9989,7 +9989,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
       integer(c_int64_t),value :: strideV
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -10024,7 +10024,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
       integer(c_int64_t),value :: strideV
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -10059,7 +10059,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
       integer(c_int64_t),value :: strideV
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -10094,7 +10094,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
       integer(c_int64_t),value :: strideV
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
   end interface
@@ -10268,7 +10268,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10289,7 +10289,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10310,7 +10310,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10331,7 +10331,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10544,7 +10544,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10565,7 +10565,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10586,7 +10586,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10607,7 +10607,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10808,7 +10808,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10829,7 +10829,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10850,7 +10850,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -10871,7 +10871,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11182,7 +11182,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11205,7 +11205,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11228,7 +11228,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11251,7 +11251,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11382,7 +11382,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11413,7 +11413,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11444,7 +11444,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11475,7 +11475,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -11630,7 +11630,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -11654,7 +11654,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -11678,7 +11678,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -11702,7 +11702,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -11832,7 +11832,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -11859,7 +11859,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -11886,7 +11886,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -11913,7 +11913,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
       integer(c_int),value :: batch_count
     end function
@@ -12057,7 +12057,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12083,7 +12083,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12109,7 +12109,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12135,7 +12135,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12281,7 +12281,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12315,7 +12315,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12349,7 +12349,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12383,7 +12383,7 @@ module hipfort_hipsolver
       integer(c_int),value :: iu
       type(c_ptr),value :: nev
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12553,7 +12553,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -12580,7 +12580,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -12607,7 +12607,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -12634,7 +12634,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: W
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       type(c_ptr),value :: params
     end function
   end interface
@@ -12775,7 +12775,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12799,7 +12799,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12823,7 +12823,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12847,7 +12847,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       type(c_ptr),value :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12971,7 +12971,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -12991,7 +12991,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -13011,7 +13011,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -13031,7 +13031,7 @@ module hipfort_hipsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
   end interface
 
@@ -14203,7 +14203,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchZeroPivot_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: position
+      integer(c_int) :: position
     end function
   end interface
 
