@@ -8652,7 +8652,8 @@ function hipMemcpy2DAsync_l_0_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_l_0_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_0_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8676,7 +8677,8 @@ function hipMemcpy2DAsync_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_l_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8700,7 +8702,8 @@ function hipMemcpy2DAsync_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_l_1_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_1_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8724,7 +8727,8 @@ function hipMemcpy2DAsync_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_l_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8748,7 +8752,8 @@ function hipMemcpy2DAsync_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_l_2_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_2_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8772,7 +8777,8 @@ function hipMemcpy2DAsync_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_l_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8796,7 +8802,8 @@ function hipMemcpy2DAsync_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8820,7 +8827,8 @@ function hipMemcpy2DAsync_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8844,7 +8852,8 @@ function hipMemcpy2DAsync_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8868,7 +8877,8 @@ function hipMemcpy2DAsync_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8892,7 +8902,8 @@ function hipMemcpy2DAsync_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8916,7 +8927,8 @@ function hipMemcpy2DAsync_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8940,7 +8952,8 @@ function hipMemcpy2DAsync_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8964,7 +8977,8 @@ function hipMemcpy2DAsync_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8988,7 +9002,8 @@ function hipMemcpy2DAsync_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9012,7 +9027,8 @@ function hipMemcpy2DAsync_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9036,7 +9052,8 @@ function hipMemcpy2DAsync_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9060,7 +9077,8 @@ function hipMemcpy2DAsync_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9084,7 +9102,8 @@ function hipMemcpy2DAsync_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9108,7 +9127,8 @@ function hipMemcpy2DAsync_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9132,7 +9152,8 @@ function hipMemcpy2DAsync_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9156,7 +9177,8 @@ function hipMemcpy2DAsync_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9180,7 +9202,8 @@ function hipMemcpy2DAsync_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9204,7 +9227,8 @@ function hipMemcpy2DAsync_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9228,7 +9252,8 @@ function hipMemcpy2DAsync_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9252,7 +9277,8 @@ function hipMemcpy2DAsync_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9276,7 +9302,8 @@ function hipMemcpy2DAsync_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9300,7 +9327,8 @@ function hipMemcpy2DAsync_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9324,7 +9352,8 @@ function hipMemcpy2DAsync_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9348,7 +9377,8 @@ function hipMemcpy2DAsync_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
     end function
 function hipMemcpy2DAsync_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9372,7 +9402,8 @@ function hipMemcpy2DAsync_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9396,7 +9427,8 @@ function hipMemcpy2DAsync_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9420,7 +9452,8 @@ function hipMemcpy2DAsync_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9444,7 +9477,8 @@ function hipMemcpy2DAsync_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9468,7 +9502,8 @@ function hipMemcpy2DAsync_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9492,7 +9527,8 @@ function hipMemcpy2DAsync_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9516,7 +9552,8 @@ function hipMemcpy2DAsync_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9540,7 +9577,8 @@ function hipMemcpy2DAsync_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9564,7 +9602,8 @@ function hipMemcpy2DAsync_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9588,7 +9627,8 @@ function hipMemcpy2DAsync_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9612,7 +9652,8 @@ function hipMemcpy2DAsync_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9636,7 +9677,8 @@ function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
     end function
 
 #endif

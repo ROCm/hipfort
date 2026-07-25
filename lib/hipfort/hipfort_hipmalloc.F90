@@ -868,7 +868,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_l_0_source = hipMalloc_(cptr,1_int64)
@@ -916,8 +917,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1037,8 +1040,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1158,8 +1163,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1279,8 +1286,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1402,8 +1411,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1525,8 +1536,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1538,7 +1551,8 @@ module hipfort_hipmalloc
         hipMalloc_l_6_source = hipMalloc_(cptr,size(dsource,kind=int64))
         hipMalloc_l_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64),hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_l_6_source = hipMalloc_(cptr,size(source,kind=int64))
         hipMalloc_l_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64),hipMemcpyHostToDevice)
@@ -1648,8 +1662,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1661,12 +1677,14 @@ module hipfort_hipmalloc
         hipMalloc_l_7_source = hipMalloc_(cptr,size(dsource,kind=int64))
         hipMalloc_l_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64),hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_l_7_source = hipMalloc_(cptr,size(source,kind=int64))
         hipMalloc_l_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64),hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_l_7_source = hipMalloc_(cptr,size(mold,kind=int64))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -1768,7 +1786,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_i4_0_source = hipMalloc_(cptr,byte_size(elem_int32))
@@ -1816,8 +1835,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1827,7 +1848,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_1_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -1937,8 +1959,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -1948,7 +1972,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_2_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -2058,8 +2083,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2069,7 +2096,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_3_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -2120,7 +2148,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_i4_3_c_int
 #endif
       !
-      hipMalloc_i4_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int32))
+      hipMalloc_i4_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -2144,7 +2173,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_i4_3_c_size_t
 #endif
       !
-      hipMalloc_i4_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int32))
+      hipMalloc_i4_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -2179,8 +2209,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2190,7 +2222,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_4_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -2302,8 +2335,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2313,7 +2348,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_5_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -2425,8 +2461,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2436,9 +2474,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_6_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_i4_6_source = hipMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int32))
         hipMalloc_i4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
@@ -2488,7 +2528,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_i4_6_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int32))
+                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                 kind=int64)*byte_size(elem_int32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -2513,7 +2554,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_i4_6_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int32))
+                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                    kind=int64)*byte_size(elem_int32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -2548,8 +2590,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2559,14 +2603,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i4_7_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32))
-        hipMalloc_i4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMalloc_i4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_i4_7_source = hipMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int32))
         hipMalloc_i4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_i4_7_source = hipMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_int32))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -2668,7 +2715,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_i8_0_source = hipMalloc_(cptr,8_8)
@@ -2716,8 +2764,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2727,7 +2777,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_1_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -2837,8 +2888,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2848,7 +2901,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_2_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -2958,8 +3012,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -2969,7 +3025,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_3_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -3020,7 +3077,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_i8_3_c_int
 #endif
       !
-      hipMalloc_i8_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int64))
+      hipMalloc_i8_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -3044,7 +3102,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_i8_3_c_size_t
 #endif
       !
-      hipMalloc_i8_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int64))
+      hipMalloc_i8_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -3079,8 +3138,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3090,7 +3151,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_4_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -3202,8 +3264,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3213,7 +3277,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_5_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -3325,8 +3390,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3336,9 +3403,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_6_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_i8_6_source = hipMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int64))
         hipMalloc_i8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
@@ -3388,7 +3457,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_i8_6_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int64))
+                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                 kind=int64)*byte_size(elem_int64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -3413,7 +3483,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_i8_6_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int64))
+                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                    kind=int64)*byte_size(elem_int64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -3448,8 +3519,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3459,14 +3532,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_i8_7_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64))
-        hipMalloc_i8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMalloc_i8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_i8_7_source = hipMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int64))
         hipMalloc_i8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_i8_7_source = hipMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_int64))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -3568,7 +3644,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_r4_0_source = hipMalloc_(cptr,4_8)
@@ -3616,8 +3693,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3627,7 +3706,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_1_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -3737,8 +3817,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3748,7 +3830,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_2_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -3858,8 +3941,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3869,7 +3954,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_3_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -3920,7 +4006,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_r4_3_c_int
 #endif
       !
-      hipMalloc_r4_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real32))
+      hipMalloc_r4_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -3944,7 +4031,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_r4_3_c_size_t
 #endif
       !
-      hipMalloc_r4_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real32))
+      hipMalloc_r4_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -3979,8 +4067,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -3990,7 +4080,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_4_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -4102,8 +4193,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -4113,7 +4206,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_5_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -4225,8 +4319,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -4236,9 +4332,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_6_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_r4_6_source = hipMalloc_(cptr,size(source,kind=int64)*byte_size(elem_real32))
         hipMalloc_r4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
@@ -4288,7 +4386,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_r4_6_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32))
+                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                 kind=int64)*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -4313,7 +4412,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_r4_6_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32))
+                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                    kind=int64)*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -4348,8 +4448,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -4359,14 +4461,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_r4_7_source = hipMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32))
-        hipMalloc_r4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_r4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_r4_7_source = hipMalloc_(cptr,size(source,kind=int64)*byte_size(elem_real32))
         hipMalloc_r4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_r4_7_source = hipMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_real32))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -4468,7 +4573,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_r8_0_source = hipMalloc_(cptr,byte_size(elem_real64))
@@ -4516,8 +4622,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -4637,8 +4745,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -4758,8 +4868,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -4820,7 +4932,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_r8_3_c_int
 #endif
       !
-      hipMalloc_r8_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real64))
+      hipMalloc_r8_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -4844,7 +4957,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_r8_3_c_size_t
 #endif
       !
-      hipMalloc_r8_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real64))
+      hipMalloc_r8_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -4879,8 +4993,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5002,8 +5118,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5125,8 +5243,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5138,7 +5258,8 @@ module hipfort_hipmalloc
         hipMalloc_r8_6_source = hipMalloc_(cptr,size(dsource)*byte_size(elem_real64))
         hipMalloc_r8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_r8_6_source = hipMalloc_(cptr,size(source)*byte_size(elem_real64))
         hipMalloc_r8_6_source = hipMemcpy(cptr,c_loc(source),size(source)*byte_size(elem_real64),hipMemcpyHostToDevice)
@@ -5188,7 +5309,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_r8_6_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64))
+                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                 kind=int64)*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -5213,7 +5335,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_r8_6_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64))
+                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                    kind=int64)*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -5248,8 +5371,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5261,12 +5386,14 @@ module hipfort_hipmalloc
         hipMalloc_r8_7_source = hipMalloc_(cptr,size(dsource)*byte_size(elem_real64))
         hipMalloc_r8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_r8_7_source = hipMalloc_(cptr,size(source)*byte_size(elem_real64))
         hipMalloc_r8_7_source = hipMemcpy(cptr,c_loc(source),size(source)*byte_size(elem_real64),hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_r8_7_source = hipMalloc_(cptr,size(mold)*byte_size(elem_real64))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -5368,7 +5495,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_c4_0_source = hipMalloc_(cptr,2_int64*byte_size(elem_real32))
@@ -5416,8 +5544,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5427,12 +5557,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_1_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_1_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -5537,8 +5669,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5548,12 +5682,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_2_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_2_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -5658,8 +5794,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5669,12 +5807,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_3_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_3_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -5720,7 +5860,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_c4_3_c_int
 #endif
       !
-      hipMalloc_c4_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real32))
+      hipMalloc_c4_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -5744,7 +5885,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_c4_3_c_size_t
 #endif
       !
-      hipMalloc_c4_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real32))
+      hipMalloc_c4_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -5779,8 +5921,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5790,12 +5934,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_4_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_4_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -5902,8 +6048,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -5913,12 +6061,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_5_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_5_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -6025,8 +6175,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6036,12 +6188,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_6_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_6_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -6088,7 +6243,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_c4_6_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real32))
+                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                 kind=int64)*2_int64*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -6113,7 +6269,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_c4_6_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real32))
+                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                    kind=int64)*2_int64*byte_size(elem_real32))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -6148,8 +6305,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6159,14 +6318,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c4_7_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMalloc_c4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_c4_7_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32))
-        hipMalloc_c4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMalloc_c4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_c4_7_source = hipMalloc_(cptr,size(mold,kind=int64)*2_int64*byte_size(elem_real32))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -6268,7 +6431,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must " // &
+          "be specified."
     
       if ( present(dsource) ) then
         hipMalloc_c8_0_source = hipMalloc_(cptr,2_int64*byte_size(elem_real64))
@@ -6316,8 +6480,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6327,12 +6493,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_1_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_1_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -6437,8 +6605,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6448,12 +6618,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_2_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_2_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -6558,8 +6730,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6569,12 +6743,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_3_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_3_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -6620,7 +6796,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_c8_3_c_int
 #endif
       !
-      hipMalloc_c8_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real64))
+      hipMalloc_c8_3_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -6644,7 +6821,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMalloc_c8_3_c_size_t
 #endif
       !
-      hipMalloc_c8_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real64))
+      hipMalloc_c8_3_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -6679,8 +6857,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6690,12 +6870,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_4_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_4_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -6802,8 +6984,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6813,12 +6997,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_5_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_5_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -6925,8 +7111,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -6936,12 +7124,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_6_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_6_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -6988,7 +7179,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_c8_6_c_int = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real64))
+                                             int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                 kind=int64)*2_int64*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -7013,7 +7205,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMalloc_c8_6_c_size_t = hipMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real64))
+                                                int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                    kind=int64)*2_int64*byte_size(elem_real64))
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -7048,8 +7241,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7059,14 +7254,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMalloc_c8_7_source = hipMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMalloc_c8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMalloc_c8_7_source = hipMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64))
-        hipMalloc_c8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMalloc_c8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMalloc_c8_7_source = hipMalloc_(cptr,size(mold,kind=int64)*2_int64*byte_size(elem_real64))
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -7168,7 +7367,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_l_0_source = hipMallocManaged_(cptr,1_8,flags)
@@ -7216,8 +7416,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7337,8 +7539,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7458,8 +7662,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7579,8 +7785,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7700,8 +7908,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7821,8 +8031,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7834,7 +8046,8 @@ module hipfort_hipmalloc
         hipMallocManaged_l_6_source = hipMallocManaged_(cptr,size(dsource)*1_8,flags)
         hipMallocManaged_l_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource)*1_8,hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_l_6_source = hipMallocManaged_(cptr,size(source)*1_8,flags)
         hipMallocManaged_l_6_source = hipMemcpy(cptr,c_loc(source),size(source)*1_8,hipMemcpyHostToDevice)
@@ -7942,8 +8155,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -7955,12 +8170,14 @@ module hipfort_hipmalloc
         hipMallocManaged_l_7_source = hipMallocManaged_(cptr,size(dsource)*1_8,flags)
         hipMallocManaged_l_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource)*1_8,hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_l_7_source = hipMallocManaged_(cptr,size(source)*1_8,flags)
         hipMallocManaged_l_7_source = hipMemcpy(cptr,c_loc(source),size(source)*1_8,hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_l_7_source = hipMallocManaged_(cptr,size(mold)*1_8,flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -8058,7 +8275,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_i4_0_source = hipMallocManaged_(cptr,byte_size(elem_int32),flags)
@@ -8106,8 +8324,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8117,12 +8337,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_1_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_1_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -8227,8 +8449,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8238,12 +8462,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_2_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_2_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -8289,7 +8515,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_2_c_int
 #endif
       !
-      hipMallocManaged_i4_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_int32),flags)
+      hipMallocManaged_i4_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_int32), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -8313,7 +8540,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_2_c_size_t
 #endif
       !
-      hipMallocManaged_i4_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_int32),flags)
+      hipMallocManaged_i4_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -8348,8 +8576,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8359,12 +8589,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_3_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_3_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -8410,7 +8642,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_3_c_int
 #endif
       !
-      hipMallocManaged_i4_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int32),flags)
+      hipMallocManaged_i4_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -8434,7 +8667,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_3_c_size_t
 #endif
       !
-      hipMallocManaged_i4_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int32),flags)
+      hipMallocManaged_i4_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -8469,8 +8703,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8480,12 +8716,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_4_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_4_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -8556,7 +8794,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_4_c_size_t
 #endif
       !
-      hipMallocManaged_i4_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
+      hipMallocManaged_i4_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
                                                               int(length4,kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
@@ -8592,8 +8831,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8603,12 +8844,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_5_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_5_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -8655,7 +8898,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_i4_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_int32),flags)
+                                                           int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_int32), &
+                                                               flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -8679,8 +8923,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_5_c_size_t
 #endif
       !
-      hipMallocManaged_i4_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_int32),flags)
+      hipMallocManaged_i4_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5, &
+                                                                  kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -8715,8 +8961,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8726,12 +8974,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_6_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_6_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -8778,7 +9029,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_i4_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int32),flags)
+                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                               kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -8802,8 +9054,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_6_c_size_t
 #endif
       !
-      hipMallocManaged_i4_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int32),flags)
+      hipMallocManaged_i4_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -8838,8 +9092,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -8849,14 +9105,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i4_7_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i4_7_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
-        hipMallocManaged_i4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToDevice)
+        hipMallocManaged_i4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_i4_7_source = hipMallocManaged_(cptr,size(mold,kind=int64)*byte_size(elem_int32),flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -8926,8 +9186,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i4_7_c_size_t
 #endif
       !
-      hipMallocManaged_i4_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*&
+      hipMallocManaged_i4_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*&
                                                               int(length7,kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
@@ -8958,7 +9220,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_i8_0_source = hipMallocManaged_(cptr,byte_size(elem_int64),flags)
@@ -9006,8 +9269,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9017,12 +9282,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_1_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_1_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -9127,8 +9394,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9138,12 +9407,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_2_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_2_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -9189,7 +9460,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_2_c_int
 #endif
       !
-      hipMallocManaged_i8_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_int64),flags)
+      hipMallocManaged_i8_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_int64), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -9213,7 +9485,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_2_c_size_t
 #endif
       !
-      hipMallocManaged_i8_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_int64),flags)
+      hipMallocManaged_i8_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -9248,8 +9521,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9259,12 +9534,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_3_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_3_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -9310,7 +9587,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_3_c_int
 #endif
       !
-      hipMallocManaged_i8_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int64),flags)
+      hipMallocManaged_i8_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -9334,7 +9612,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_3_c_size_t
 #endif
       !
-      hipMallocManaged_i8_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int64),flags)
+      hipMallocManaged_i8_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -9369,8 +9648,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9380,12 +9661,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_4_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_4_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -9456,7 +9739,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_4_c_size_t
 #endif
       !
-      hipMallocManaged_i8_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
+      hipMallocManaged_i8_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
                                                               int(length4,kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
@@ -9492,8 +9776,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9503,12 +9789,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_5_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_5_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -9555,7 +9843,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_i8_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_int64),flags)
+                                                           int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_int64), &
+                                                               flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -9579,8 +9868,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_5_c_size_t
 #endif
       !
-      hipMallocManaged_i8_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_int64),flags)
+      hipMallocManaged_i8_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5, &
+                                                                  kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -9615,8 +9906,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9626,12 +9919,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_6_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_6_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -9678,7 +9974,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_i8_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int64),flags)
+                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                               kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -9702,8 +9999,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_6_c_size_t
 #endif
       !
-      hipMallocManaged_i8_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int64),flags)
+      hipMallocManaged_i8_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -9738,8 +10037,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9749,14 +10050,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_i8_7_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_i8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_i8_7_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
-        hipMallocManaged_i8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToDevice)
+        hipMallocManaged_i8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_i8_7_source = hipMallocManaged_(cptr,size(mold,kind=int64)*byte_size(elem_int64),flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -9826,8 +10131,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_i8_7_c_size_t
 #endif
       !
-      hipMallocManaged_i8_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*&
+      hipMallocManaged_i8_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*&
                                                               int(length7,kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
@@ -9858,7 +10165,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_r4_0_source = hipMallocManaged_(cptr,byte_size(elem_real32),flags)
@@ -9906,8 +10214,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -9917,12 +10227,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_1_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_1_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -10027,8 +10339,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10038,12 +10352,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_2_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_2_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -10089,7 +10405,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_2_c_int
 #endif
       !
-      hipMallocManaged_r4_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real32), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -10113,7 +10430,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_2_c_size_t
 #endif
       !
-      hipMallocManaged_r4_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -10148,8 +10466,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10159,12 +10479,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_3_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_3_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -10210,7 +10532,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_3_c_int
 #endif
       !
-      hipMallocManaged_r4_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -10234,7 +10557,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_3_c_size_t
 #endif
       !
-      hipMallocManaged_r4_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -10269,8 +10593,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10280,12 +10606,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_4_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_4_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -10331,7 +10659,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_4_c_int
 #endif
       !
-      hipMallocManaged_r4_4_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_4_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
 
@@ -10355,7 +10684,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_4_c_size_t
 #endif
       !
-      hipMallocManaged_r4_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
 
@@ -10390,8 +10720,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10401,12 +10733,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_5_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_5_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -10452,7 +10786,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_5_c_int
 #endif
       !
-      hipMallocManaged_r4_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -10476,7 +10811,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_5_c_size_t
 #endif
       !
-      hipMallocManaged_r4_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -10511,8 +10847,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10522,12 +10860,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_6_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_6_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -10573,7 +10914,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_6_c_int
 #endif
       !
-      hipMallocManaged_r4_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -10597,7 +10939,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_6_c_size_t
 #endif
       !
-      hipMallocManaged_r4_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -10632,8 +10975,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10643,14 +10988,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r4_7_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r4_7_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
-        hipMallocManaged_r4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_r4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_r4_7_source = hipMallocManaged_(cptr,size(mold,kind=int64)*byte_size(elem_real32),flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -10694,7 +11043,9 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_7_c_int
 #endif
       !
-      hipMallocManaged_r4_7_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_7_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
@@ -10718,7 +11069,9 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r4_7_c_size_t
 #endif
       !
-      hipMallocManaged_r4_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7,kind=int64)*byte_size(elem_real32),flags)
+      hipMallocManaged_r4_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
@@ -10748,7 +11101,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_r8_0_source = hipMallocManaged_(cptr,byte_size(elem_real64),flags)
@@ -10796,8 +11150,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10807,12 +11163,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_1_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_1_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -10917,8 +11275,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -10928,12 +11288,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_2_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_2_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -10979,7 +11341,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_2_c_int
 #endif
       !
-      hipMallocManaged_r8_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real64), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -11003,7 +11366,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_2_c_size_t
 #endif
       !
-      hipMallocManaged_r8_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -11038,8 +11402,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11049,12 +11415,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_3_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_3_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -11100,7 +11468,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_3_c_int
 #endif
       !
-      hipMallocManaged_r8_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -11124,7 +11493,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_3_c_size_t
 #endif
       !
-      hipMallocManaged_r8_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -11159,8 +11529,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11170,12 +11542,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_4_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_4_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -11221,7 +11595,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_4_c_int
 #endif
       !
-      hipMallocManaged_r8_4_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_4_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
 
@@ -11245,7 +11620,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_4_c_size_t
 #endif
       !
-      hipMallocManaged_r8_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
 
@@ -11280,8 +11656,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11291,12 +11669,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_5_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_5_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -11342,7 +11722,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_5_c_int
 #endif
       !
-      hipMallocManaged_r8_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -11366,7 +11747,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_5_c_size_t
 #endif
       !
-      hipMallocManaged_r8_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -11401,8 +11783,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11412,12 +11796,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_6_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_6_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -11463,7 +11850,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_6_c_int
 #endif
       !
-      hipMallocManaged_r8_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -11487,7 +11875,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_6_c_size_t
 #endif
       !
-      hipMallocManaged_r8_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -11522,8 +11911,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11533,14 +11924,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_r8_7_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_r8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_r8_7_source = hipMallocManaged_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
-        hipMallocManaged_r8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_r8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_r8_7_source = hipMallocManaged_(cptr,size(mold,kind=int64)*byte_size(elem_real64),flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -11584,7 +11979,9 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_7_c_int
 #endif
       !
-      hipMallocManaged_r8_7_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_7_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
@@ -11608,7 +12005,9 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_r8_7_c_size_t
 #endif
       !
-      hipMallocManaged_r8_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7,kind=int64)*byte_size(elem_real64),flags)
+      hipMallocManaged_r8_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*int(length7, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
@@ -11638,7 +12037,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_c4_0_source = hipMallocManaged_(cptr,2_int64*byte_size(elem_real32),flags)
@@ -11686,8 +12086,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11697,12 +12099,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_1_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_1_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -11807,8 +12211,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11818,12 +12224,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_2_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_2_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -11869,7 +12277,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_2_c_int
 #endif
       !
-      hipMallocManaged_c4_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipMallocManaged_c4_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -11893,7 +12302,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_2_c_size_t
 #endif
       !
-      hipMallocManaged_c4_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipMallocManaged_c4_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -11928,8 +12338,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -11939,12 +12351,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_3_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_3_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -11990,7 +12404,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_3_c_int
 #endif
       !
-      hipMallocManaged_c4_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipMallocManaged_c4_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -12014,7 +12429,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_3_c_size_t
 #endif
       !
-      hipMallocManaged_c4_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipMallocManaged_c4_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -12049,8 +12465,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12060,12 +12478,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_4_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_4_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -12136,7 +12556,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_4_c_size_t
 #endif
       !
-      hipMallocManaged_c4_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
+      hipMallocManaged_c4_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
                                                               int(length4,kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
@@ -12172,8 +12593,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12183,12 +12606,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_5_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_5_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -12235,7 +12660,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_c4_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real32),flags)
+                                                           int(length4,kind=int64)*int(length5, &
+                                                               kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -12259,8 +12685,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_5_c_size_t
 #endif
       !
-      hipMallocManaged_c4_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipMallocManaged_c4_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5, &
+                                                                  kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -12295,8 +12723,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12306,12 +12736,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_6_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_6_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -12358,7 +12791,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_c4_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real32),flags)
+                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                               kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -12382,8 +12816,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_6_c_size_t
 #endif
       !
-      hipMallocManaged_c4_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipMallocManaged_c4_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -12418,8 +12854,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12429,14 +12867,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c4_7_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c4_7_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipMallocManaged_c4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToDevice)
+        hipMallocManaged_c4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_c4_7_source = hipMallocManaged_(cptr,size(mold,kind=int64)*2_int64*byte_size(elem_real32),flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -12506,8 +12948,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c4_7_c_size_t
 #endif
       !
-      hipMallocManaged_c4_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*&
+      hipMallocManaged_c4_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*&
                                                               int(length7,kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
@@ -12538,7 +12982,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMallocManaged (scalar version): Only one optional argument ('dsource','source'" // &
+          ") must be specified."
     
       if ( present(dsource) ) then
         hipMallocManaged_c8_0_source = hipMallocManaged_(cptr,2_int64*byte_size(elem_real64),flags)
@@ -12586,8 +13031,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12597,12 +13044,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_1_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_1_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -12707,8 +13156,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12718,12 +13169,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_2_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_2_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -12769,7 +13222,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_2_c_int
 #endif
       !
-      hipMallocManaged_c8_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipMallocManaged_c8_2_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -12793,7 +13247,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_2_c_size_t
 #endif
       !
-      hipMallocManaged_c8_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipMallocManaged_c8_2_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -12828,8 +13283,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12839,12 +13296,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_3_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_3_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -12890,7 +13349,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_3_c_int
 #endif
       !
-      hipMallocManaged_c8_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipMallocManaged_c8_3_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -12914,7 +13374,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_3_c_size_t
 #endif
       !
-      hipMallocManaged_c8_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipMallocManaged_c8_3_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -12949,8 +13410,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -12960,12 +13423,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_4_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_4_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -13036,7 +13501,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_4_c_size_t
 #endif
       !
-      hipMallocManaged_c8_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
+      hipMallocManaged_c8_4_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
                                                               int(length4,kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4])
     end function
@@ -13072,8 +13538,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13083,12 +13551,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_5_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_5_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -13135,7 +13605,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_c8_5_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real64),flags)
+                                                           int(length4,kind=int64)*int(length5, &
+                                                               kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -13159,8 +13630,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_5_c_size_t
 #endif
       !
-      hipMallocManaged_c8_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipMallocManaged_c8_5_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5, &
+                                                                  kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -13195,8 +13668,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13206,12 +13681,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_6_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_6_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -13258,7 +13736,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipMallocManaged_c8_6_c_int = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real64),flags)
+                                                           int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                               kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -13282,8 +13761,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_6_c_size_t
 #endif
       !
-      hipMallocManaged_c8_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipMallocManaged_c8_6_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -13318,8 +13799,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mo" // &
+          "ld') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') " // &
+          "must be specified."
 
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13329,14 +13812,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipMallocManaged_c8_7_source = hipMallocManaged_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToDevice)
+        hipMallocManaged_c8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipMallocManaged_c8_7_source = hipMallocManaged_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipMallocManaged_c8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToDevice)
+        hipMallocManaged_c8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToDevice)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipMallocManaged_c8_7_source = hipMallocManaged_(cptr,size(mold,kind=int64)*2_int64*byte_size(elem_real64),flags)
         call c_f_pointer(cptr,tmp,shape=shape(mold))
@@ -13406,8 +13893,10 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipMallocManaged_c8_7_c_size_t
 #endif
       !
-      hipMallocManaged_c8_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*&
+      hipMallocManaged_c8_7_c_size_t = hipMallocManaged_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*&
+                                                              int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                                  kind=int64)*&
                                                               int(length7,kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6,length7])
     end function
@@ -13439,7 +13928,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_l_0_source = hipHostMalloc_(cptr,1_int64,flags)
@@ -13487,8 +13977,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13606,8 +14098,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13725,8 +14219,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13809,7 +14305,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_l_3_c_size_t
 #endif
       !
-      hipHostMalloc_l_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64),flags)
+      hipHostMalloc_l_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -13844,8 +14341,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -13965,8 +14464,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14086,8 +14587,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14099,7 +14602,8 @@ module hipfort_hipmalloc
         hipHostMalloc_l_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64),flags)
         hipHostMalloc_l_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64),hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_l_6_source = hipHostMalloc_(cptr,size(source,kind=int64),flags)
         hipHostMalloc_l_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64),hipMemcpyHostToHost)
@@ -14172,7 +14676,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_l_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                       int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64),flags)
+                                                       int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64), &
+                                                           flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -14207,8 +14712,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14220,12 +14727,14 @@ module hipfort_hipmalloc
         hipHostMalloc_l_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64),flags)
         hipHostMalloc_l_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64),hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_l_7_source = hipHostMalloc_(cptr,size(source,kind=int64),flags)
         hipHostMalloc_l_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64),hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_l_7_source = hipHostMalloc_(cptr,size(mold,kind=int64),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
@@ -14325,7 +14834,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_0_source = hipHostMalloc_(cptr,byte_size(elem_int32),flags)
@@ -14373,8 +14883,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14384,7 +14896,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_1_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -14492,8 +15005,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14503,7 +15018,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_2_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -14611,8 +15127,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14622,7 +15140,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_3_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -14672,7 +15191,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_i4_3_c_int
 #endif
       !
-      hipHostMalloc_i4_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int32),flags)
+      hipHostMalloc_i4_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -14695,7 +15215,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_i4_3_c_size_t
 #endif
       !
-      hipHostMalloc_i4_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int32),flags)
+      hipHostMalloc_i4_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -14730,8 +15251,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14741,7 +15264,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_4_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -14851,8 +15375,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14862,7 +15388,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_5_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -14972,8 +15499,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -14983,9 +15512,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_i4_6_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
         hipHostMalloc_i4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToHost)
@@ -15034,7 +15565,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_i4_6_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int32),flags)
+                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                         kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -15058,7 +15590,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_i4_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int32),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                            kind=int64)*byte_size(elem_int32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -15093,8 +15626,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15104,14 +15639,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int32),flags)
-        hipHostMalloc_i4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32),hipMemcpyDeviceToHost)
+        hipHostMalloc_i4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_i4_7_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int32),flags)
         hipHostMalloc_i4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int32),hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_i4_7_source = hipHostMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_int32),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
@@ -15211,7 +15749,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_0_source = hipHostMalloc_(cptr,byte_size(elem_int64),flags)
@@ -15259,8 +15798,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15270,7 +15811,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_1_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -15378,8 +15920,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15389,7 +15933,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_2_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -15497,8 +16042,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15508,7 +16055,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_3_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -15558,7 +16106,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_i8_3_c_int
 #endif
       !
-      hipHostMalloc_i8_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int64),flags)
+      hipHostMalloc_i8_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -15581,7 +16130,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_i8_3_c_size_t
 #endif
       !
-      hipHostMalloc_i8_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_int64),flags)
+      hipHostMalloc_i8_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -15616,8 +16166,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15627,7 +16179,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_4_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -15737,8 +16290,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15748,7 +16303,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_5_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -15858,8 +16414,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15869,9 +16427,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_i8_6_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
         hipHostMalloc_i8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToHost)
@@ -15920,7 +16480,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_i8_6_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int64),flags)
+                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                         kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -15944,7 +16505,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_i8_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_int64),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                            kind=int64)*byte_size(elem_int64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -15979,8 +16541,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -15990,14 +16554,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_int64),flags)
-        hipHostMalloc_i8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64),hipMemcpyDeviceToHost)
+        hipHostMalloc_i8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_int64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_i8_7_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_int64),flags)
         hipHostMalloc_i8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_int64),hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_i8_7_source = hipHostMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_int64),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
@@ -16097,7 +16664,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_0_source = hipHostMalloc_(cptr,byte_size(elem_real32),flags)
@@ -16145,8 +16713,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16156,7 +16726,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_1_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -16264,8 +16835,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16275,7 +16848,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_2_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -16348,7 +16922,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_r4_2_c_size_t
 #endif
       !
-      hipHostMalloc_r4_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real32),flags)
+      hipHostMalloc_r4_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real32), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -16383,8 +16958,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16394,7 +16971,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_3_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -16444,7 +17022,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_r4_3_c_int
 #endif
       !
-      hipHostMalloc_r4_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real32),flags)
+      hipHostMalloc_r4_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -16467,7 +17046,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_r4_3_c_size_t
 #endif
       !
-      hipHostMalloc_r4_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real32),flags)
+      hipHostMalloc_r4_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -16502,8 +17082,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16513,7 +17095,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_4_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -16623,8 +17206,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16634,7 +17219,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_5_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -16709,7 +17295,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_r4_5_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real32),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real32), &
+                                                            flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -16744,8 +17331,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16755,9 +17344,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_r4_6_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
         hipHostMalloc_r4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToHost)
@@ -16806,7 +17397,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_r4_6_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32),flags)
+                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                         kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -16830,7 +17422,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_r4_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real32),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                            kind=int64)*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -16865,8 +17458,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -16876,14 +17471,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real32),flags)
-        hipHostMalloc_r4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_r4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_r4_7_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_real32),flags)
         hipHostMalloc_r4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real32),hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_r4_7_source = hipHostMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_real32),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
@@ -16983,7 +17581,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_0_source = hipHostMalloc_(cptr,byte_size(elem_real64),flags)
@@ -17031,8 +17630,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17042,7 +17643,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_1_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
@@ -17150,8 +17752,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17161,7 +17765,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_2_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
@@ -17234,7 +17839,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_r8_2_c_size_t
 #endif
       !
-      hipHostMalloc_r8_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real64),flags)
+      hipHostMalloc_r8_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*byte_size(elem_real64), &
+          flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -17269,8 +17875,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17280,7 +17888,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_3_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
@@ -17330,7 +17939,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_r8_3_c_int
 #endif
       !
-      hipHostMalloc_r8_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real64),flags)
+      hipHostMalloc_r8_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -17353,7 +17963,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_r8_3_c_size_t
 #endif
       !
-      hipHostMalloc_r8_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*byte_size(elem_real64),flags)
+      hipHostMalloc_r8_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -17388,8 +17999,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17399,7 +18012,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_4_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
@@ -17509,8 +18123,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17520,7 +18136,8 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_5_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
@@ -17595,7 +18212,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_r8_5_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real64),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*byte_size(elem_real64), &
+                                                            flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -17630,8 +18248,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17641,9 +18261,11 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_r8_6_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
         hipHostMalloc_r8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToHost)
@@ -17692,7 +18314,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_r8_6_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64),flags)
+                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                         kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -17716,7 +18339,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_r8_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*byte_size(elem_real64),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                            kind=int64)*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -17751,8 +18375,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17762,14 +18388,17 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*byte_size(elem_real64),flags)
-        hipHostMalloc_r8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_r8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_r8_7_source = hipHostMalloc_(cptr,size(source,kind=int64)*byte_size(elem_real64),flags)
         hipHostMalloc_r8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*byte_size(elem_real64),hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_r8_7_source = hipHostMalloc_(cptr,size(mold,kind=int64)*byte_size(elem_real64),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
@@ -17869,7 +18498,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_0_source = hipHostMalloc_(cptr,2_int64*byte_size(elem_real32),flags)
@@ -17917,8 +18547,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -17928,12 +18560,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_1_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_1_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -18036,8 +18670,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18047,12 +18683,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_2_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_2_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -18097,7 +18735,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c4_2_c_int
 #endif
       !
-      hipHostMalloc_c4_2_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipHostMalloc_c4_2_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -18120,7 +18759,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c4_2_c_size_t
 #endif
       !
-      hipHostMalloc_c4_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipHostMalloc_c4_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -18155,8 +18795,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18166,12 +18808,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_3_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_3_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -18216,7 +18860,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c4_3_c_int
 #endif
       !
-      hipHostMalloc_c4_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipHostMalloc_c4_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -18239,7 +18884,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c4_3_c_size_t
 #endif
       !
-      hipHostMalloc_c4_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real32),flags)
+      hipHostMalloc_c4_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -18274,8 +18920,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18285,12 +18933,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_4_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_4_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -18395,8 +19045,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18406,12 +19058,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_5_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_5_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -18457,7 +19111,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c4_5_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real32),flags)
+                                                     int(length4,kind=int64)*int(length5, &
+                                                         kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -18481,7 +19136,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c4_5_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real32),flags)
+                                                        int(length4,kind=int64)*int(length5, &
+                                                            kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -18516,8 +19172,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18527,12 +19185,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_6_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -18578,7 +19239,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c4_6_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real32),flags)
+                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                         kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -18602,7 +19264,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c4_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real32),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                            kind=int64)*2_int64*byte_size(elem_real32),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -18637,8 +19300,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18648,14 +19313,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyDeviceToHost)
+        hipHostMalloc_c4_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c4_7_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real32),flags)
-        hipHostMalloc_c4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32),hipMemcpyHostToHost)
+        hipHostMalloc_c4_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real32), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_c4_7_source = hipHostMalloc_(cptr,size(mold,kind=int64)*2_int64*byte_size(elem_real32),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
@@ -18755,7 +19424,8 @@ module hipfort_hipmalloc
       nOptArgs = 0
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') m" // &
+          "ust be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_0_source = hipHostMalloc_(cptr,2_int64*byte_size(elem_real64),flags)
@@ -18803,8 +19473,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18814,12 +19486,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_1_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_1_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_1_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_1_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):) => tmp
       else if ( present(mold) ) then
@@ -18922,8 +19596,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -18933,12 +19609,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_2_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_2_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_2_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_2_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
       else if ( present(mold) ) then
@@ -18983,7 +19661,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c8_2_c_int
 #endif
       !
-      hipHostMalloc_c8_2_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipHostMalloc_c8_2_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -19006,7 +19685,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c8_2_c_size_t
 #endif
       !
-      hipHostMalloc_c8_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipHostMalloc_c8_2_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2])
     end function
 
@@ -19041,8 +19721,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -19052,12 +19734,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_3_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_3_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_3_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_3_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
       else if ( present(mold) ) then
@@ -19102,7 +19786,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c8_3_c_int
 #endif
       !
-      hipHostMalloc_c8_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipHostMalloc_c8_3_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -19125,7 +19810,8 @@ module hipfort_hipmalloc
       integer(kind(hipSuccess)) :: hipHostMalloc_c8_3_c_size_t
 #endif
       !
-      hipHostMalloc_c8_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*2_int64*byte_size(elem_real64),flags)
+      hipHostMalloc_c8_3_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3, &
+          kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3])
     end function
 
@@ -19160,8 +19846,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -19171,12 +19859,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_4_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_4_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_4_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_4_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
       else if ( present(mold) ) then
@@ -19281,8 +19971,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -19292,12 +19984,14 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_5_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_5_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
         ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_5_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_5_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
       else if ( present(mold) ) then
@@ -19343,7 +20037,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c8_5_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real64),flags)
+                                                     int(length4,kind=int64)*int(length5, &
+                                                         kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -19367,7 +20062,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c8_5_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*2_int64*byte_size(elem_real64),flags)
+                                                        int(length4,kind=int64)*int(length5, &
+                                                            kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5])
     end function
 
@@ -19402,8 +20098,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -19413,12 +20111,15 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_6_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_6_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource, &
+            6):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_6_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_6_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
         ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
       else if ( present(mold) ) then
@@ -19464,7 +20165,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c8_6_c_int = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real64),flags)
+                                                     int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                         kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -19488,7 +20190,8 @@ module hipfort_hipmalloc
 #endif
       !
       hipHostMalloc_c8_6_c_size_t = hipHostMalloc_(cptr,int(length1,kind=int64)*int(length2,kind=int64)*int(length3,kind=int64)*&
-                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6,kind=int64)*2_int64*byte_size(elem_real64),flags)
+                                                        int(length4,kind=int64)*int(length5,kind=int64)*int(length6, &
+                                                            kind=int64)*2_int64*byte_size(elem_real64),flags)
       call c_f_pointer(cptr,ptr,shape=[length1,length2,length3,length4,length5,length6])
     end function
 
@@ -19523,8 +20226,10 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) ERROR STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source'" // &
+          ",'mold') must be specified."
+      if ( nOptArgs > 1 ) ERROR STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mol" // &
+          "d') must be specified."
       
       if ( present(lbounds8) .and. .not. present(dims8) ) then
         ERROR STOP "ERROR: hipMalloc: 'lbounds8' may only be specified in combination with 'dims8'."
@@ -19534,14 +20239,18 @@ module hipfort_hipmalloc
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_7_source = hipHostMalloc_(cptr,size(dsource,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyDeviceToHost)
+        hipHostMalloc_c8_7_source = hipMemcpy(cptr,c_loc(dsource),size(dsource,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyDeviceToHost)
         call c_f_pointer(cptr,tmp,shape=shape(dsource))
-        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):,LBOUND(dsource,7):) => tmp
+        ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):,LBOUND(dsource,6):, &
+            LBOUND(dsource,7):) => tmp
       else if ( present(source) ) then
         hipHostMalloc_c8_7_source = hipHostMalloc_(cptr,size(source,kind=int64)*2_int64*byte_size(elem_real64),flags)
-        hipHostMalloc_c8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64),hipMemcpyHostToHost)
+        hipHostMalloc_c8_7_source = hipMemcpy(cptr,c_loc(source),size(source,kind=int64)*2_int64*byte_size(elem_real64), &
+            hipMemcpyHostToHost)
         call c_f_pointer(cptr,tmp,shape=shape(source))
-        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):,LBOUND(source,7):) => tmp
+        ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):, &
+            LBOUND(source,7):) => tmp
       else if ( present(mold) ) then
         hipHostMalloc_c8_7_source = hipHostMalloc_(cptr,size(mold,kind=int64)*2_int64*byte_size(elem_real64),flags)
         call c_f_pointer(cptr,ptr,shape=shape(mold))
