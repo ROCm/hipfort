@@ -5,52 +5,78 @@
 ### Added
 
 * **hipFFTW support.** Added Fortran interfaces to the FFTW3-compatible hipFFTW
-  library (new `hipfort_hipfftw` modules) and a `hipfort::hipfftw` CMake target.
-* Regenerated the library bindings against the current ROCm API, adding the new
-  symbols and enums exposed by hipBLAS, rocBLAS, hipSPARSE, rocSPARSE, hipSOLVER,
-  and rocSOLVER. Derived types now live in dedicated `hipfort_<lib>_types` modules.
+  library, in new `hipfort_hipfftw` modules, plus a `hipfort::hipfftw` CMake target.
+* **Regenerated all Fortran bindings** against the current ROCm API. This covers the
+  HIP runtime and every math library. It exposes the functions and enums added since
+  the last release in hipBLAS, rocBLAS, hipSPARSE, rocSPARSE, hipSOLVER, rocSOLVER,
+  and the HIP runtime. The Doxygen documentation from the C headers is now carried
+  onto the Fortran interfaces and onto derived-type fields.
 * Added the rocSOLVER generalized symmetric/Hermitian eigensolver interfaces
   `?sygvdx`/`?hegvdx`.
 * Added the rocSOLVER ILP64 (`*_64`) eigenvalue interfaces.
-* Added the `[C, ldC]` output arguments to the non-strided hipBLAS TRMM interfaces
+* Added the `[C, ldC]` output arguments to the non-strided hipBLAS TRMM interfaces,
   to match the current hipBLAS API.
 * Added Fortran interfaces for the interleaved batch pentadiagonal solver:
   `rocsparse_Xgpsv_interleaved_batch` and
   `rocsparse_Xgpsv_interleaved_batch_buffer_size` (rocSPARSE), and
   `hipsparseXgpsvInterleavedBatch` and
   `hipsparseXgpsvInterleavedBatch_bufferSizeExt` (hipSPARSE), for the `s`, `d`,
-  `c`, and `z` precisions, along with the `rocsparse_gpsv_interleaved_alg` enum.
+  `c`, and `z` precisions, plus the `rocsparse_gpsv_interleaved_alg` enum.
 * Added the `hiprandCheck` error-check helper for hipRAND status codes
   (`use hipfort_check`).
-* Added example CMake toolchain files in `cmake/toolchains/` (amdflang, GNU,
-  Intel `ifx`/`ifort`, Cray, and NVHPC), selectable with
-  `-DCMAKE_TOOLCHAIN_FILE`, to build hipfort with different Fortran compilers
-  and backends.
+* Added example CMake toolchain files in `cmake/toolchains/`, for amdflang, GNU,
+  Intel `ifx`/`ifort`, Cray, and NVHPC. Select one with `-DCMAKE_TOOLCHAIN_FILE`
+  to build hipfort with a different Fortran compiler or backend.
 
 ### Changed
 
-* hipfort now installs its libraries and Fortran module files into
-  toolchain-specific subdirectories (`lib/fortran/<compiler>` and
-  `include/fortran/<compiler>`) so several Fortran toolchains can coexist. This is
-  controlled by the new `HIPFORT_MULTITOOLCHAIN_LAYOUT` CMake option (`ON` by
-  default); the exported `hipfort::*` targets resolve the paths automatically.
+* **Scalar output arguments are now passed by reference.** Interfaces that return a
+  single value through a pointer now take a plain `integer`/`real` scalar, instead
+  of a `type(c_ptr), value`. This covers `hipDeviceGetAttribute`, `hipDeviceTotalMem`,
+  the `*_bufferSize`/`*_bufferSizeExt` queries, and the version and descriptor
+  getters. Call them directly, for example
+  `istat = hipDeviceGetAttribute(value, attr, dev)`, with no `C_LOC(value)`. Existing
+  code that passes `C_LOC(x)` to these routines must now pass `x`.
+* Derived types are emitted in per-library `hipfort_<lib>_types` modules. A module is
+  generated only when a binding references one of its types. Unreferenced complex,
+  half, and bfloat16 struct mirrors are no longer emitted.
+* **CUDA/NVIDIA backend (`-DUSE_CUDA_NAMES`).** This build targets NVIDIA machines
+  that have the CUDA toolkit but no HIP/ROCm libraries, so the interfaces bind
+  directly to the CUDA libraries. Every `cu*` binding is now validated against the
+  real CUDA libraries. Interfaces with no CUDA equivalent are compiled for AMD only,
+  instead of binding a symbol that does not exist. This includes the regular
+  `hipSOLVER` API, the legacy `hipSPARSE` API (removed in CUDA 12), some batched
+  `hipBLAS` extensions, and a few HIP runtime and hipRAND calls.
+* hipfort now installs its libraries and Fortran module files into toolchain-specific
+  subdirectories, `lib/fortran/<compiler>` and `include/fortran/<compiler>`, so
+  several Fortran toolchains can coexist. This is controlled by the new
+  `HIPFORT_MULTITOOLCHAIN_LAYOUT` CMake option (`ON` by default). The exported
+  `hipfort::*` targets resolve the paths automatically.
 * Updated the `rocblas_?trmm` interfaces to match the current rocBLAS API.
 * Updated the rocFFT `set_scale_factor` interface.
 * Refined generic (overload) resolution in the generated bindings.
-* On the NVIDIA/CUDA backend (`USE_CUDA_NAMES`), `hipCheck` now compares the
-  returned `cudaError_t` directly against `cudaSuccess` instead of translating
-  it through `hipCUDAErrorTohipError`; failures report the native status code.
+* On the NVIDIA/CUDA backend (`USE_CUDA_NAMES`), `hipCheck` now compares the returned
+  `cudaError_t` directly against `cudaSuccess`, instead of translating it through
+  `hipCUDAErrorTohipError`. Failures report the native status code.
+
+### Fixed
+
+* `hipGetDeviceProperties` now binds the `hipGetDevicePropertiesR0600` symbol, which
+  matches the ROCm 6.0+ `hipDeviceProp_t` layout. It previously bound the legacy
+  symbol, whose older layout produced wrong device-property field values.
+* `fftw_iodim64` members now use `c_ptrdiff_t` instead of `c_long`, matching FFTW's
+  `ptrdiff_t` fields. This gives the correct struct layout on LLP64 platforms such
+  as Windows.
 
 ### Removed
 
-* Removed the deprecated `hipfc` compiler wrapper, the `Makefile.hipfort`
-  include file, and the `mygpu`/`mymcpu`/`myarchgpu` GPU autodetection
-  utilities. Build hipfort-based applications by invoking the Fortran and HIP
-  compilers directly and linking against the exported `hipfort::*` CMake
-  targets.
+* Removed the deprecated `hipfc` compiler wrapper, the `Makefile.hipfort` include
+  file, and the `mygpu`/`mymcpu`/`myarchgpu` GPU autodetection utilities. Build
+  hipfort-based applications by invoking the Fortran and HIP compilers directly, and
+  link against the exported `hipfort::*` CMake targets.
 * Removed the `rocblas_hgemm_kernel_name`, `rocblas_sgemm_kernel_name`, and
-  `rocblas_dgemm_kernel_name` interfaces. The corresponding rocBLAS API
-  functions were removed in ROCm 7.1.0.
+  `rocblas_dgemm_kernel_name` interfaces. The corresponding rocBLAS API functions
+  were removed in ROCm 7.1.0.
 * Removed the unused legacy `lib/modules-amdgcn` modules (`hip_blas`,
   `rocblas_module`, `rocfft`, `rocsparse_module`, and related enum modules).
 
