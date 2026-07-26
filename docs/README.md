@@ -41,10 +41,19 @@ Open `docs/_build/html/index.html` in a browser.
    Sphinx site.
 
 > **Note**
-> rocm-docs-core fetches theme and version data from GitHub at build time. Without network
-> access the Sphinx step stops at that fetch, but the Doxygen output under
-> `docs/doxygen/html/` is still produced, which is enough to check the C-to-Fortran
-> reference pages and their links.
+> rocm-docs-core fetches theme and version data from GitHub (`raw.githubusercontent.com`)
+> at build time. If the build stops with an SSL error
+> (`CERTIFICATE_VERIFY_FAILED`), Python is using a CA bundle (usually `certifi`'s) that
+> does not include your network's certificate. Point it at the system CA bundle before
+> building:
+>
+> ```shell
+> export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+> export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+> ```
+>
+> The paths above are for Debian/Ubuntu; on Fedora/RHEL use
+> `/etc/pki/tls/certs/ca-bundle.crt`.
 
 ## Supported-API tables
 
