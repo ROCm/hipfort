@@ -113,18 +113,18 @@ Supported HIP and ROCm APIs
 
 The current set of hipFORT interfaces is derived from ROCm 7.14.0. The following tables list the supported APIs:
 
-* :doc:`HIP API <../doxygen/html/md_input_supported_api_hip>`
-* :doc:`hipBLAS API <../doxygen/html/md_input_supported_api_hipblas>` 
-* :doc:`hipFFT API <../doxygen/html/md_input_supported_api_hipfft>`
-* :doc:`hipFFTW API <../doxygen/html/md_input_supported_api_hipfftw>`
-* :doc:`hipRAND API <../doxygen/html/md_input_supported_api_hiprand>`
-* :doc:`hipSOLVER API <../doxygen/html/md_input_supported_api_hipsolver>`
-* :doc:`hipSPARSE API <../doxygen/html/md_input_supported_api_hipsparse>`
-* :doc:`rocBLAS API <../doxygen/html/md_input_supported_api_rocblas>`
-* :doc:`rocFFT API <../doxygen/html/md_input_supported_api_rocfft>`
-* :doc:`rocRAND API <../doxygen/html/md_input_supported_api_rocrand>`
-* :doc:`rocSOLVER API <../doxygen/html/md_input_supported_api_rocsolver>`
-* :doc:`rocSPARSE API <../doxygen/html/md_input_supported_api_rocsparse>`
+* :doc:`HIP API <../doxygen/html/md_input_2supported__api__hip>`
+* :doc:`hipBLAS API <../doxygen/html/md_input_2supported__api__hipblas>` 
+* :doc:`hipFFT API <../doxygen/html/md_input_2supported__api__hipfft>`
+* :doc:`hipFFTW API <../doxygen/html/md_input_2supported__api__hipfftw>`
+* :doc:`hipRAND API <../doxygen/html/md_input_2supported__api__hiprand>`
+* :doc:`hipSOLVER API <../doxygen/html/md_input_2supported__api__hipsolver>`
+* :doc:`hipSPARSE API <../doxygen/html/md_input_2supported__api__hipsparse>`
+* :doc:`rocBLAS API <../doxygen/html/md_input_2supported__api__rocblas>`
+* :doc:`rocFFT API <../doxygen/html/md_input_2supported__api__rocfft>`
+* :doc:`rocRAND API <../doxygen/html/md_input_2supported__api__rocrand>`
+* :doc:`rocSOLVER API <../doxygen/html/md_input_2supported__api__rocsolver>`
+* :doc:`rocSPARSE API <../doxygen/html/md_input_2supported__api__rocsparse>`
 
 .. note:: 
 
