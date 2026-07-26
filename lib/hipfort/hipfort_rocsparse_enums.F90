@@ -489,6 +489,35 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_spilu0_output_singularity_position = 1
   end enum
 
+  ! rocsparse_spildlt0_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_spildlt0_alg_default = 0
+  end enum
+
+  ! rocsparse_spildlt0_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_spildlt0_stage_analysis = 0
+    enumerator :: rocsparse_spildlt0_stage_compute = 1
+  end enum
+
+  ! rocsparse_spildlt0_input_
+  enum, bind(c)
+    enumerator :: rocsparse_spildlt0_input_alg = 0
+    enumerator :: rocsparse_spildlt0_input_analysis_policy = 1
+    enumerator :: rocsparse_spildlt0_input_compute_datatype = 2
+    enumerator :: rocsparse_spildlt0_input_boost_enable = 3
+    enumerator :: rocsparse_spildlt0_input_boost_tolerance = 4
+    enumerator :: rocsparse_spildlt0_input_boost_value = 5
+    enumerator :: rocsparse_spildlt0_input_singularity_tolerance = 6
+    enumerator :: rocsparse_spildlt0_input_diag = 7
+  end enum
+
+  ! rocsparse_spildlt0_output_
+  enum, bind(c)
+    enumerator :: rocsparse_spildlt0_output_singularity = 0
+    enumerator :: rocsparse_spildlt0_output_singularity_position = 1
+  end enum
+
   ! rocsparse_spgeam_stage_
   enum, bind(c)
     enumerator :: rocsparse_spgeam_stage_analysis = 1

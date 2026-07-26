@@ -129,6 +129,7 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_FORMAT_COO_AOS = 4
     enumerator :: HIPSPARSE_FORMAT_BLOCKED_ELL = 5
     enumerator :: HIPSPARSE_FORMAT_SLICED_ELL = 6
+    enumerator :: HIPSPARSE_FORMAT_BSR = 7
   end enum
 
   ! hipsparseOrder_t
@@ -158,6 +159,7 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPMV_COO_ALG2 = 4
     enumerator :: HIPSPARSE_SPMV_SELL_ALG1 = 5
     enumerator :: HIPSPARSE_SPMV_CSR_ALG3 = 7
+    enumerator :: HIPSPARSE_SPMV_BSR_ALG1 = 6
   end enum
 
   ! hipsparseSpMMAlg_t
