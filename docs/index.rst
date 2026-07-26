@@ -33,7 +33,7 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipFORT>`_
   .. grid-item-card:: API reference
 
      * :doc:`Supported APIs <./reference/index>`
-     * :doc:`Modules <./doxygen/html/modules>`
+     * :doc:`Modules <./doxygen/html/namespaces_modules>`
      * :doc:`Namespaces <./doxygen/html/namespaces>`
      * :doc:`Data types list <./doxygen/html/annotated>`
      * :doc:`Files <./doxygen/html/files>`
