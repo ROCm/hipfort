@@ -144,7 +144,6 @@ module hipfort_rocsparse_enums
 
   ! rocsparse_indextype_
   enum, bind(c)
-    enumerator :: rocsparse_indextype_u16 = 1
     enumerator :: rocsparse_indextype_i32 = 2
     enumerator :: rocsparse_indextype_i64 = 3
   end enum

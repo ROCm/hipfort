@@ -943,7 +943,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -962,7 +962,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1157,7 +1157,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1178,7 +1178,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1221,7 +1221,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: coo_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1273,8 +1273,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
       type(c_ptr),value :: bsr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1297,8 +1297,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
       type(c_ptr),value :: bsr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1344,8 +1344,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1366,8 +1366,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1414,8 +1414,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_val
-      integer(kind(rocsparse_indextype_u16)),value :: col_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: row_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1436,8 +1436,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_val
-      integer(kind(rocsparse_indextype_u16)),value :: col_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: row_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1481,7 +1481,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
       integer(c_int64_t),value :: ell_width
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1533,7 +1533,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: ell_cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1555,7 +1555,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: ell_cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1612,8 +1612,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: sell_slice_offsets
       type(c_ptr),value :: sell_col_ind
       type(c_ptr),value :: sell_val
-      integer(kind(rocsparse_indextype_u16)),value :: sell_slice_offsets_type
-      integer(kind(rocsparse_indextype_u16)),value :: sell_col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_slice_offsets_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1637,8 +1637,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: sell_slice_offsets
       type(c_ptr),value :: sell_col_ind
       type(c_ptr),value :: sell_val
-      integer(kind(rocsparse_indextype_u16)),value :: sell_slice_offsets_type
-      integer(kind(rocsparse_indextype_u16)),value :: sell_col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_slice_offsets_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -9319,7 +9319,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       type(c_ptr),value :: p
-      integer(kind(rocsparse_indextype_u16)),value :: indextype
+      integer(kind(rocsparse_indextype_i32)),value :: indextype
     end function
   end interface
 
