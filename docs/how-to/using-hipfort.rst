@@ -66,7 +66,7 @@ should build with them too. Please open an issue at https://github.com/ROCm/hipf
    Problems can occur with older versions.
 
 Building your application with CMake
------------------------------------
+------------------------------------
 
 hipFORT installs CMake package files, so you can locate it with ``find_package``
 and link against its exported ``hipfort::*`` targets. Each target pulls in the
@@ -113,18 +113,18 @@ Supported HIP and ROCm APIs
 
 The current set of hipFORT interfaces is derived from ROCm 7.14.0. The following tables list the supported APIs:
 
-* :doc:`HIP API <../doxygen/html/md_input_supported_api_hip>`
-* :doc:`hipBLAS API <../doxygen/html/md_input_supported_api_hipblas>` 
-* :doc:`hipFFT API <../doxygen/html/md_input_supported_api_hipfft>`
-* :doc:`hipFFTW API <../doxygen/html/md_input_supported_api_hipfftw>`
-* :doc:`hipRAND API <../doxygen/html/md_input_supported_api_hiprand>`
-* :doc:`hipSOLVER API <../doxygen/html/md_input_supported_api_hipsolver>`
-* :doc:`hipSPARSE API <../doxygen/html/md_input_supported_api_hipsparse>`
-* :doc:`rocBLAS API <../doxygen/html/md_input_supported_api_rocblas>`
-* :doc:`rocFFT API <../doxygen/html/md_input_supported_api_rocfft>`
-* :doc:`rocRAND API <../doxygen/html/md_input_supported_api_rocrand>`
-* :doc:`rocSOLVER API <../doxygen/html/md_input_supported_api_rocsolver>`
-* :doc:`rocSPARSE API <../doxygen/html/md_input_supported_api_rocsparse>`
+* :doc:`HIP API <../reference/supported_api/supported_api_hip>`
+* :doc:`hipBLAS API <../reference/supported_api/supported_api_hipblas>` 
+* :doc:`hipFFT API <../reference/supported_api/supported_api_hipfft>`
+* :doc:`hipFFTW API <../reference/supported_api/supported_api_hipfftw>`
+* :doc:`hipRAND API <../reference/supported_api/supported_api_hiprand>`
+* :doc:`hipSOLVER API <../reference/supported_api/supported_api_hipsolver>`
+* :doc:`hipSPARSE API <../reference/supported_api/supported_api_hipsparse>`
+* :doc:`rocBLAS API <../reference/supported_api/supported_api_rocblas>`
+* :doc:`rocFFT API <../reference/supported_api/supported_api_rocfft>`
+* :doc:`rocRAND API <../reference/supported_api/supported_api_rocrand>`
+* :doc:`rocSOLVER API <../reference/supported_api/supported_api_rocsolver>`
+* :doc:`rocSPARSE API <../reference/supported_api/supported_api_rocsparse>`
 
 .. note:: 
 
