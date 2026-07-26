@@ -10,7 +10,9 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 ## Build and test hipfort from source
 
-Install `gfortran` (version 7.5.0 or newer), `git`, `cmake`, and HIP, if not yet installed.
+Install `git`, `cmake`, HIP, and a Fortran compiler, if not yet installed. `amdflang`
+(ROCm's LLVM Flang, bundled with ROCm) is the recommended default; `gfortran` (version
+7.5.0 or newer) is also supported.
 Then build, install, and test hipfort from source with the commands below:
 
 ```shell
