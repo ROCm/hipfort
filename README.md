@@ -8,18 +8,9 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 > [!NOTE]
 > The published hipfort documentation is available at [hipfort](https://rocm.docs.amd.com/projects/hipfort/en/latest/index.html) in an organized, easy-to-read format, with search and a table of contents. The documentation source files reside in the hipfort/docs folder of this repository. As with all ROCm projects, the documentation is open source. For more information, see [Contribute to ROCm documentation](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
 
-## Known issues
-
-* The `-DUSE_CUDA_NAMES` build targets NVIDIA machines with the CUDA toolkit but no
-  HIP/ROCm libraries: interfaces bind directly to the CUDA libraries (cuBLAS,
-  cuSOLVER, …) instead of HIP. Coverage is not complete, interfaces with no CUDA
-  equivalent (e.g. the regular `hipSOLVER` API, legacy `hipSPARSE`, some `hipBLAS`
-  extensions) are compiled for AMD only.
-* We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
-
 ## Build and test hipfort from source
 
-Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
+Install `gfortran` (version 7.5.0 or newer), `git`, `cmake`, and HIP, if not yet installed.
 Then build, install, and test hipfort from source with the commands below:
 
 ```shell
@@ -148,6 +139,15 @@ The following tables list the supported API:
 
 You may further find it convenient to directly use the search function on
 [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface
+
+## Limitations
+
+* **NVIDIA/CUDA backend (`-DUSE_CUDA_NAMES`).** This build targets NVIDIA machines that
+  have the CUDA toolkit but no HIP/ROCm libraries, so the interfaces bind directly to the
+  CUDA libraries (cuBLAS, cuSOLVER, ...) instead of HIP. Coverage is not complete:
+  interfaces with no CUDA equivalent (the regular hipSOLVER API, the legacy hipSPARSE API,
+  some hipBLAS extensions, and a few HIP runtime and hipRAND calls) are compiled for AMD
+  only.
 
 ## Linking against hipfort
 
