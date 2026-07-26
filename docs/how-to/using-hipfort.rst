@@ -54,7 +54,8 @@ which hipFORT enables automatically once it detects Fortran 2008 support in your
 application and test sources that rely on them use the ``.f08`` file extension (see the ``test/f2008``
 examples), while Fortran 2003 sources use ``.f03``.
 
-GFortran is the primary tested compiler, and AMD's ``amdflang`` (LLVM Flang) is also supported.
+AMD's ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default, and
+``gfortran`` (version 7.5.0 or newer) is also supported.
 Other standard-conforming Fortran compilers such as NVIDIA ``nvfortran``, Intel ``ifx``/``ifort``,
 and the Cray Fortran compiler (for example on LUMI) are not officially supported, but hipFORT
 should build with them too. Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
