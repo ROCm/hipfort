@@ -21798,6 +21798,62 @@ module hipfort_hipsparse
     end function
   end interface
 
+#ifndef USE_CUDA_NAMES
+  interface hipsparseCreateBsr
+    function hipsparseCreateBsr_(spMatDescr,mb,nb,nnzb,rowBlockDim,colBlockDim,bsrRowPtr, &
+        bsrColInd,bsrValues,bsrRowPtrType,bsrColIndType,idxBase,valueType,order) &
+        bind(c, name="hipsparseCreateBsr")
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsr_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: mb
+      integer(c_int64_t),value :: nb
+      integer(c_int64_t),value :: nnzb
+      integer(c_int64_t),value :: rowBlockDim
+      integer(c_int64_t),value :: colBlockDim
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      type(c_ptr),value :: bsrValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrRowPtrType
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrColIndType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsparseCreateConstBsr
+    function hipsparseCreateConstBsr_(spMatDescr,mb,nb,nnzb,rowBlockDim,colBlockDim,bsrRowPtr, &
+        bsrColInd,bsrValues,bsrRowPtrType,bsrColIndType,idxBase,valueType,order) &
+        bind(c, name="hipsparseCreateConstBsr")
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstBsr_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: mb
+      integer(c_int64_t),value :: nb
+      integer(c_int64_t),value :: nnzb
+      integer(c_int64_t),value :: rowBlockDim
+      integer(c_int64_t),value :: colBlockDim
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      type(c_ptr),value :: bsrValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrRowPtrType
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrColIndType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+    end function
+  end interface
+#endif
+
   interface hipsparseDestroySpMat
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroySpMat_(spMatDescr) bind(c, name="cusparseDestroySpMat")
