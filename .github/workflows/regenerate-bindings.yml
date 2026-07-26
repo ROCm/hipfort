@@ -1,0 +1,95 @@
+# Regenerate the Fortran bindings and supported-API doc tables against the current
+# ROCm API, and open a PR if anything changed. This keeps hipfort in sync with new
+# ROCm symbols (and keeps the doc links correct across Doxygen versions) with no
+# manual work: review and merge the bot's PR.
+#
+# It runs the generator's one-command pipeline (rocm-fortran/regenerate.sh), which
+# regenerates the bindings, the supported-API tables, and the Doxygen denylist.
+#
+# NOTE: this is a starting point. Adjust the ROCm install, the rocm-libraries ref,
+# and the generator ref to match how your CI provisions ROCm. It has not been run in
+# CI yet.
+name: Regenerate bindings and docs
+
+on:
+  workflow_dispatch: {}          # run on demand from the Actions tab
+  schedule:
+    - cron: "17 4 * * 1"         # weekly, Monday 04:17 UTC (off-peak minute)
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regenerate:
+    # ubuntu-24.04 ships Doxygen 1.9.8, matching the docs build, so the generated
+    # doc-table links use the same page-name mangling as the published docs.
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout hipfort
+        uses: actions/checkout@v4
+
+      - name: Checkout the generator (rocm-fortran)
+        uses: actions/checkout@v4
+        with:
+          repository: ROCm/rocm-fortran
+          path: rocm-fortran
+          ref: main
+
+      # The math-library API headers. A sparse checkout of the include trees keeps
+      # this from pulling the whole monorepo.
+      - name: Checkout ROCm library headers (rocm-libraries)
+        uses: actions/checkout@v4
+        with:
+          repository: ROCm/rocm-libraries
+          path: rocm-libraries
+          ref: develop
+          sparse-checkout: |
+            projects/*/library/include
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y doxygen gfortran
+
+      # The HIP runtime headers and the build-time export/version headers come from a
+      # real ROCm install (the generator uses /opt/rocm as the fallback include dir).
+      # Replace this with however your CI provisions ROCm.
+      - name: Install ROCm headers
+        run: |
+          sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+          wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
+          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/latest noble main" | sudo tee /etc/apt/sources.list.d/rocm.list
+          sudo apt-get update
+          sudo apt-get install -y rocm-dev
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v2
+
+      - name: Instantiate the generator project
+        run: julia --project=rocm-fortran/src -e 'using Pkg; Pkg.instantiate()'
+
+      - name: Regenerate bindings, tables, and denylist
+        env:
+          ROCM_INCLUDE: /opt/rocm/include
+          ROCM_MONOREPO: ${{ github.workspace }}/rocm-libraries/projects
+        run: bash rocm-fortran/regenerate.sh "${{ github.workspace }}"
+
+      # The denylist lives in the generator repo; drop it so it does not land in the
+      # hipfort PR (it is committed separately to rocm-fortran when needed).
+      - name: Restore the generator checkout
+        run: git -C rocm-fortran checkout -- . || true
+
+      - name: Open a PR with any changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: auto/regenerate-bindings
+          title: "Regenerate bindings and docs against the current ROCm API"
+          commit-message: "Regenerate bindings and supported-API docs against the current ROCm API"
+          body: |
+            Automated regeneration via `rocm-fortran/regenerate.sh` (bindings + supported-API
+            tables + Doxygen denylist). Review the diff for new/removed symbols and merge.
+
+            Triggered by the scheduled `Regenerate bindings and docs` workflow.
+          add-paths: |
+            lib/hipfort
+            docs/doxygen/input
+          delete-branch: true
