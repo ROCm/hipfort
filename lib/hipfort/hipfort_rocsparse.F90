@@ -2578,10 +2578,10 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup aux_module
-  !>   \brief Set the requested \ref rocsparse_spildlt0_input data in the SpILDLT0 descriptor.
+  !>   \brief Set the requested `rocsparse_spildlt0_input` data in the SpILDLT0 descriptor.
   !>
   !>   \note
-  !>   - `rocsparse_spildlt0_input_alg` is \ref rocsparse_spildlt0_alg. It can only be set before
+  !>   - `rocsparse_spildlt0_input_alg` is `rocsparse_spildlt0_alg`. It can only be set before
   !>   applying any phase.
   !>   - `rocsparse_spildlt0_input_compute_datatype` is `rocsparse_datatype`. It can only be set
   !>   before applying any phase. For now, it must be of value type of A.
@@ -2606,7 +2606,7 @@ module hipfort_rocsparse
   !>
   !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
   !>   @param[inout] spildlt0_descr - the pointer to the SpILDLT0 descriptor.
-  !>   @param[in] spildlt0_input - value of \ref rocsparse_spildlt0_input.
+  !>   @param[in] spildlt0_input - value of `rocsparse_spildlt0_input`.
   !>   @param[in] input - input data.
   !>   @param[in] input_size_in_bytes - input data size in bytes.
   !>   @param[out] p_error - error descriptor created if the returned status is not
@@ -2636,13 +2636,13 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup aux_module
-  !>   \brief Get the requested \ref rocsparse_spildlt0_output data from the SpILDLT0 descriptor.
+  !>   \brief Get the requested `rocsparse_spildlt0_output` data from the SpILDLT0 descriptor.
   !>   \note
   !>   -     `rocsparse_spildlt0_output_singularity` is `rocsparse_singularity`.
   !>   -     `rocsparse_spildlt0_output_singularity_position` is \p int64_t.
   !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
   !>   @param[inout] spildlt0_descr - the pointer to the SpILDLT0 descriptor.
-  !>   @param[in] spildlt0_output - value of \ref rocsparse_spildlt0_output.
+  !>   @param[in] spildlt0_output - value of `rocsparse_spildlt0_output`.
   !>   @param[out] output - output data.
   !>   @param[in] output_size_in_bytes - output data size in bytes.
   !>   @param[out] p_error - error descriptor created if the returned status is not
