@@ -66,7 +66,7 @@ should build with them too. Please open an issue at https://github.com/ROCm/hipf
    Problems can occur with older versions.
 
 Building your application with CMake
------------------------------------
+------------------------------------
 
 hipFORT installs CMake package files, so you can locate it with ``find_package``
 and link against its exported ``hipfort::*`` targets. Each target pulls in the
