@@ -3,7 +3,7 @@
 The hipFORT documentation is built with [Sphinx](https://www.sphinx-doc.org) and
 [Doxygen](https://www.doxygen.nl), wired together by
 [rocm-docs-core](https://github.com/ROCm/rocm-docs-core). The published version lives at
-<https://rocm.docs.amd.com/projects/hipfort/en/latest/>.
+<https://rocm.docs.amd.com/projects/hipfort/en/develop>.
 
 ## Prerequisites
 
