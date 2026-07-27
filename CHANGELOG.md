@@ -1,6 +1,6 @@
 # Change Log for hipfort
 
-## (Unreleased)
+## hipfort 0.8.0 for ROCm 7.14.0 (Unreleased)
 
 ### Added
 
