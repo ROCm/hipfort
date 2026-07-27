@@ -37,7 +37,7 @@ for filename in glob.glob("../lib/hipfort/*.[fF]90"):
             "-E",
             "-cpp",
             "-P",
-            "-DUSE_FPOINTER_INTERFACES=1",
+            "-DUSE_FPOINTER_INTERFACES",
             "-UUSE_CUDA_NAMES",
             str(path),
             "-o",
@@ -80,3 +80,4 @@ if not "exclude_patterns" in globals():
 
 html_theme_options["show_navbar_depth"] = 2
 exclude_patterns.append("doxygen/input")
+exclude_patterns.append("README.md")
