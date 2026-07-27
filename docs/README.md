@@ -10,7 +10,7 @@ The hipFORT documentation is built with [Sphinx](https://www.sphinx-doc.org) and
 * Python 3.10 or newer
 * `doxygen`
 * `gfortran` (the Fortran sources are preprocessed with it before Doxygen parses them)
-* `graphviz` (optional, for the call/dependency graphs)
+* `graphviz` (optional, for the type collaboration diagrams)
 
 On Ubuntu:
 
@@ -33,6 +33,6 @@ sphinx-build -b html docs docs/_build/html
 Open `docs/_build/html/index.html` in a browser.
 
 `docs/conf.py` preprocesses every `lib/hipfort/*.F90` file with
-`gfortran -E -cpp -P -DUSE_FPOINTER_INTERFACES=1 -UUSE_CUDA_NAMES` into
+`gfortran -E -cpp -P -DUSE_FPOINTER_INTERFACES -UUSE_CUDA_NAMES` into
 `docs/doxygen/input/`, then `rocm-docs-core` runs Doxygen and integrates the result.
 

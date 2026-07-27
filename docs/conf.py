@@ -37,7 +37,7 @@ for filename in glob.glob("../lib/hipfort/*.[fF]90"):
             "-E",
             "-cpp",
             "-P",
-            "-DUSE_FPOINTER_INTERFACES=1",
+            "-DUSE_FPOINTER_INTERFACES",
             "-UUSE_CUDA_NAMES",
             str(path),
             "-o",
