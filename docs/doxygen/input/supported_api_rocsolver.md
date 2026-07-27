@@ -2,996 +2,996 @@
 
 \# | API Name | Variants
 ----|---------------|---------
-1 | [rocsolver_get_version_string](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | C binding
-2 | [rocsolver_get_version_string_size](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__get__version__string__size.html "Interface documentation") | C binding
-3 | [rocsolver_log_begin](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__begin.html "Interface documentation") | C binding
-4 | [rocsolver_log_end](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__end.html "Interface documentation") | C binding
-5 | [rocsolver_log_set_layer_mode](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__set__layer__mode.html "Interface documentation") | C binding
-6 | [rocsolver_log_set_max_levels](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__set__max__levels.html "Interface documentation") | C binding
-7 | [rocsolver_log_restore_defaults](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__restore__defaults.html "Interface documentation") | C binding
-8 | [rocsolver_log_write_profile](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__write__profile.html "Interface documentation") | C binding
-9 | [rocsolver_log_flush_profile](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__log__flush__profile.html "Interface documentation") | C binding
-10 | [rocsolver_set_alg_mode](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__set__alg__mode.html "Interface documentation") | C binding
-11 | [rocsolver_get_alg_mode](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__get__alg__mode.html "Interface documentation") | C binding
-12 | [rocsolver_clacgv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clacgv.html "Interface documentation") | C binding, rank_0, rank_1
-13 | [rocsolver_zlacgv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlacgv.html "Interface documentation") | C binding, rank_0, rank_1
-14 | [rocsolver_clacgv_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clacgv__64.html "Interface documentation") | C binding
-15 | [rocsolver_zlacgv_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlacgv__64.html "Interface documentation") | C binding
-16 | [rocsolver_slange](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slange.html "Interface documentation") | C binding
-17 | [rocsolver_dlange](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlange.html "Interface documentation") | C binding
-18 | [rocsolver_clange](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clange.html "Interface documentation") | C binding
-19 | [rocsolver_zlange](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlange.html "Interface documentation") | C binding
-20 | [rocsolver_slange_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slange__64.html "Interface documentation") | C binding
-21 | [rocsolver_dlange_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlange__64.html "Interface documentation") | C binding
-22 | [rocsolver_clange_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clange__64.html "Interface documentation") | C binding
-23 | [rocsolver_zlange_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlange__64.html "Interface documentation") | C binding
-24 | [rocsolver_sgecon](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgecon.html "Interface documentation") | C binding
-25 | [rocsolver_dgecon](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgecon.html "Interface documentation") | C binding
-26 | [rocsolver_cgecon](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgecon.html "Interface documentation") | C binding
-27 | [rocsolver_zgecon](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgecon.html "Interface documentation") | C binding
-28 | [rocsolver_sgecon_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgecon__64.html "Interface documentation") | C binding
-29 | [rocsolver_dgecon_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgecon__64.html "Interface documentation") | C binding
-30 | [rocsolver_cgecon_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgecon__64.html "Interface documentation") | C binding
-31 | [rocsolver_zgecon_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgecon__64.html "Interface documentation") | C binding
-32 | [rocsolver_slaswp](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-33 | [rocsolver_dlaswp](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-34 | [rocsolver_claswp](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-35 | [rocsolver_zlaswp](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-36 | [rocsolver_slarfg](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | C binding, rank_0, rank_1
-37 | [rocsolver_dlarfg](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | C binding, rank_0, rank_1
-38 | [rocsolver_clarfg](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | C binding, rank_0, rank_1
-39 | [rocsolver_zlarfg](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | C binding, rank_0, rank_1
-40 | [rocsolver_slarfg_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slarfg__64.html "Interface documentation") | C binding
-41 | [rocsolver_dlarfg_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlarfg__64.html "Interface documentation") | C binding
-42 | [rocsolver_clarfg_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clarfg__64.html "Interface documentation") | C binding
-43 | [rocsolver_zlarfg_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlarfg__64.html "Interface documentation") | C binding
-44 | [rocsolver_slarft](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-45 | [rocsolver_dlarft](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-46 | [rocsolver_clarft](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-47 | [rocsolver_zlarft](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-48 | [rocsolver_slarf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-49 | [rocsolver_dlarf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-50 | [rocsolver_clarf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-51 | [rocsolver_zlarf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-52 | [rocsolver_slarf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slarf__64.html "Interface documentation") | C binding
-53 | [rocsolver_dlarf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlarf__64.html "Interface documentation") | C binding
-54 | [rocsolver_clarf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clarf__64.html "Interface documentation") | C binding
-55 | [rocsolver_zlarf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlarf__64.html "Interface documentation") | C binding
-56 | [rocsolver_slarfb](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-57 | [rocsolver_dlarfb](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-58 | [rocsolver_clarfb](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-59 | [rocsolver_zlarfb](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-60 | [rocsolver_slasr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slasr.html "Interface documentation") | C binding
-61 | [rocsolver_dlasr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlasr.html "Interface documentation") | C binding
-62 | [rocsolver_clasr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clasr.html "Interface documentation") | C binding
-63 | [rocsolver_zlasr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlasr.html "Interface documentation") | C binding
-64 | [rocsolver_slabrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-65 | [rocsolver_dlabrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-66 | [rocsolver_clabrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-67 | [rocsolver_zlabrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-68 | [rocsolver_slatrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-69 | [rocsolver_dlatrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-70 | [rocsolver_clatrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-71 | [rocsolver_zlatrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-72 | [rocsolver_slasyf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-73 | [rocsolver_dlasyf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-74 | [rocsolver_clasyf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-75 | [rocsolver_zlasyf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-76 | [rocsolver_slauum](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__slauum.html "Interface documentation") | C binding
-77 | [rocsolver_dlauum](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dlauum.html "Interface documentation") | C binding
-78 | [rocsolver_clauum](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__clauum.html "Interface documentation") | C binding
-79 | [rocsolver_zlauum](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zlauum.html "Interface documentation") | C binding
-80 | [rocsolver_sorg2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorg2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-81 | [rocsolver_dorg2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorg2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-82 | [rocsolver_cung2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cung2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-83 | [rocsolver_zung2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zung2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-84 | [rocsolver_sorgqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-85 | [rocsolver_dorgqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorgqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-86 | [rocsolver_cungqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cungqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-87 | [rocsolver_zungqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zungqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-88 | [rocsolver_sorgl2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorgl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-89 | [rocsolver_dorgl2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorgl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-90 | [rocsolver_cungl2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cungl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-91 | [rocsolver_zungl2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zungl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-92 | [rocsolver_sorglq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-93 | [rocsolver_dorglq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-94 | [rocsolver_cunglq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-95 | [rocsolver_zunglq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-96 | [rocsolver_sorg2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorg2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-97 | [rocsolver_dorg2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorg2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-98 | [rocsolver_cung2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cung2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-99 | [rocsolver_zung2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zung2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-100 | [rocsolver_sorgql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorgql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-101 | [rocsolver_dorgql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorgql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-102 | [rocsolver_cungql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cungql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-103 | [rocsolver_zungql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zungql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-104 | [rocsolver_sorgbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorgbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-105 | [rocsolver_dorgbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorgbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-106 | [rocsolver_cungbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cungbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-107 | [rocsolver_zungbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zungbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-108 | [rocsolver_sorgtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-109 | [rocsolver_dorgtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorgtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-110 | [rocsolver_cungtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cungtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-111 | [rocsolver_zungtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zungtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-112 | [rocsolver_sorm2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-113 | [rocsolver_dorm2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-114 | [rocsolver_cunm2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-115 | [rocsolver_zunm2r](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-116 | [rocsolver_sormqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sormqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-117 | [rocsolver_dormqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dormqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-118 | [rocsolver_cunmqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunmqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-119 | [rocsolver_zunmqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunmqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-120 | [rocsolver_sorml2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-121 | [rocsolver_dorml2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-122 | [rocsolver_cunml2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-123 | [rocsolver_zunml2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-124 | [rocsolver_sormlq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sormlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-125 | [rocsolver_dormlq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dormlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-126 | [rocsolver_cunmlq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunmlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-127 | [rocsolver_zunmlq](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunmlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-128 | [rocsolver_sorm2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sorm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-129 | [rocsolver_dorm2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dorm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-130 | [rocsolver_cunm2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-131 | [rocsolver_zunm2l](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-132 | [rocsolver_sormql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sormql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-133 | [rocsolver_dormql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dormql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-134 | [rocsolver_cunmql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunmql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-135 | [rocsolver_zunmql](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunmql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-136 | [rocsolver_sormbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sormbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-137 | [rocsolver_dormbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dormbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-138 | [rocsolver_cunmbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunmbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-139 | [rocsolver_zunmbr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunmbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-140 | [rocsolver_sormtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sormtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-141 | [rocsolver_dormtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dormtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-142 | [rocsolver_cunmtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cunmtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-143 | [rocsolver_zunmtr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zunmtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-144 | [rocsolver_sbdsqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-145 | [rocsolver_dbdsqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-146 | [rocsolver_cbdsqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-147 | [rocsolver_zbdsqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-148 | [rocsolver_ssterf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssterf.html "Interface documentation") | C binding, rank_0, rank_1
-149 | [rocsolver_dsterf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsterf.html "Interface documentation") | C binding, rank_0, rank_1
-150 | [rocsolver_ssteqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-151 | [rocsolver_dsteqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-152 | [rocsolver_csteqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-153 | [rocsolver_zsteqr](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-154 | [rocsolver_sstedc](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-155 | [rocsolver_dstedc](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-156 | [rocsolver_cstedc](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-157 | [rocsolver_zstedc](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-158 | [rocsolver_sstebz](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sstebz.html "Interface documentation") | C binding
-159 | [rocsolver_dstebz](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dstebz.html "Interface documentation") | C binding
-160 | [rocsolver_sstein](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sstein.html "Interface documentation") | C binding
-161 | [rocsolver_dstein](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dstein.html "Interface documentation") | C binding
-162 | [rocsolver_cstein](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cstein.html "Interface documentation") | C binding
-163 | [rocsolver_zstein](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zstein.html "Interface documentation") | C binding
-164 | [rocsolver_sbdsvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sbdsvdx.html "Interface documentation") | C binding
-165 | [rocsolver_dbdsvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dbdsvdx.html "Interface documentation") | C binding
-166 | [rocsolver_sgetf2_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-167 | [rocsolver_dgetf2_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-168 | [rocsolver_cgetf2_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-169 | [rocsolver_zgetf2_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-170 | [rocsolver_sgetf2_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__64.html "Interface documentation") | C binding
-171 | [rocsolver_dgetf2_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__64.html "Interface documentation") | C binding
-172 | [rocsolver_cgetf2_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__64.html "Interface documentation") | C binding
-173 | [rocsolver_zgetf2_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__64.html "Interface documentation") | C binding
-174 | [rocsolver_sgetf2_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched.html "Interface documentation") | C binding
-175 | [rocsolver_dgetf2_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched.html "Interface documentation") | C binding
-176 | [rocsolver_cgetf2_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched.html "Interface documentation") | C binding
-177 | [rocsolver_zgetf2_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched.html "Interface documentation") | C binding
-178 | [rocsolver_sgetf2_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched__64.html "Interface documentation") | C binding
-179 | [rocsolver_dgetf2_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched__64.html "Interface documentation") | C binding
-180 | [rocsolver_cgetf2_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched__64.html "Interface documentation") | C binding
-181 | [rocsolver_zgetf2_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched__64.html "Interface documentation") | C binding
-182 | [rocsolver_sgetf2_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-183 | [rocsolver_dgetf2_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-184 | [rocsolver_cgetf2_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-185 | [rocsolver_zgetf2_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-186 | [rocsolver_sgetf2_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
-187 | [rocsolver_dgetf2_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
-188 | [rocsolver_cgetf2_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
-189 | [rocsolver_zgetf2_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
-190 | [rocsolver_sgetrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-191 | [rocsolver_dgetrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-192 | [rocsolver_cgetrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-193 | [rocsolver_zgetrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-194 | [rocsolver_sgetrf_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__64.html "Interface documentation") | C binding
-195 | [rocsolver_dgetrf_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__64.html "Interface documentation") | C binding
-196 | [rocsolver_cgetrf_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__64.html "Interface documentation") | C binding
-197 | [rocsolver_zgetrf_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__64.html "Interface documentation") | C binding
-198 | [rocsolver_sgetrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html "Interface documentation") | C binding
-199 | [rocsolver_dgetrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched.html "Interface documentation") | C binding
-200 | [rocsolver_cgetrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched.html "Interface documentation") | C binding
-201 | [rocsolver_zgetrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched.html "Interface documentation") | C binding
-202 | [rocsolver_sgetrf_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched__64.html "Interface documentation") | C binding
-203 | [rocsolver_dgetrf_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched__64.html "Interface documentation") | C binding
-204 | [rocsolver_cgetrf_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched__64.html "Interface documentation") | C binding
-205 | [rocsolver_zgetrf_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched__64.html "Interface documentation") | C binding
-206 | [rocsolver_sgetrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-207 | [rocsolver_dgetrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-208 | [rocsolver_cgetrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-209 | [rocsolver_zgetrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-210 | [rocsolver_sgetrf_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
-211 | [rocsolver_dgetrf_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
-212 | [rocsolver_cgetrf_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
-213 | [rocsolver_zgetrf_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
-214 | [rocsolver_sgetf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-215 | [rocsolver_dgetf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-216 | [rocsolver_cgetf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-217 | [rocsolver_zgetf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-218 | [rocsolver_sgetf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__64.html "Interface documentation") | C binding
-219 | [rocsolver_dgetf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__64.html "Interface documentation") | C binding
-220 | [rocsolver_cgetf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__64.html "Interface documentation") | C binding
-221 | [rocsolver_zgetf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__64.html "Interface documentation") | C binding
-222 | [rocsolver_sgetf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-223 | [rocsolver_dgetf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-224 | [rocsolver_cgetf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-225 | [rocsolver_zgetf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-226 | [rocsolver_sgetf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched__64.html "Interface documentation") | C binding
-227 | [rocsolver_dgetf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched__64.html "Interface documentation") | C binding
-228 | [rocsolver_cgetf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched__64.html "Interface documentation") | C binding
-229 | [rocsolver_zgetf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched__64.html "Interface documentation") | C binding
-230 | [rocsolver_sgetf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-231 | [rocsolver_dgetf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-232 | [rocsolver_cgetf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-233 | [rocsolver_zgetf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-234 | [rocsolver_sgetf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched__64.html "Interface documentation") | C binding
-235 | [rocsolver_dgetf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched__64.html "Interface documentation") | C binding
-236 | [rocsolver_cgetf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched__64.html "Interface documentation") | C binding
-237 | [rocsolver_zgetf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched__64.html "Interface documentation") | C binding
-238 | [rocsolver_sgetrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-239 | [rocsolver_dgetrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-240 | [rocsolver_cgetrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-241 | [rocsolver_zgetrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-242 | [rocsolver_sgetrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__64.html "Interface documentation") | C binding
-243 | [rocsolver_dgetrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__64.html "Interface documentation") | C binding
-244 | [rocsolver_cgetrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__64.html "Interface documentation") | C binding
-245 | [rocsolver_zgetrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__64.html "Interface documentation") | C binding
-246 | [rocsolver_sgetrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-247 | [rocsolver_dgetrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-248 | [rocsolver_cgetrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-249 | [rocsolver_zgetrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-250 | [rocsolver_sgetrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched__64.html "Interface documentation") | C binding
-251 | [rocsolver_dgetrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched__64.html "Interface documentation") | C binding
-252 | [rocsolver_cgetrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched__64.html "Interface documentation") | C binding
-253 | [rocsolver_zgetrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched__64.html "Interface documentation") | C binding
-254 | [rocsolver_sgetrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-255 | [rocsolver_dgetrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-256 | [rocsolver_cgetrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-257 | [rocsolver_zgetrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-258 | [rocsolver_sgetrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched__64.html "Interface documentation") | C binding
-259 | [rocsolver_dgetrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched__64.html "Interface documentation") | C binding
-260 | [rocsolver_cgetrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched__64.html "Interface documentation") | C binding
-261 | [rocsolver_zgetrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched__64.html "Interface documentation") | C binding
-262 | [rocsolver_sgeqr2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-263 | [rocsolver_dgeqr2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-264 | [rocsolver_cgeqr2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-265 | [rocsolver_zgeqr2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-266 | [rocsolver_sgeqr2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__64.html "Interface documentation") | C binding
-267 | [rocsolver_dgeqr2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__64.html "Interface documentation") | C binding
-268 | [rocsolver_cgeqr2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__64.html "Interface documentation") | C binding
-269 | [rocsolver_zgeqr2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__64.html "Interface documentation") | C binding
-270 | [rocsolver_sgeqr2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-271 | [rocsolver_dgeqr2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-272 | [rocsolver_cgeqr2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-273 | [rocsolver_zgeqr2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-274 | [rocsolver_sgeqr2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched__64.html "Interface documentation") | C binding
-275 | [rocsolver_dgeqr2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched__64.html "Interface documentation") | C binding
-276 | [rocsolver_cgeqr2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched__64.html "Interface documentation") | C binding
-277 | [rocsolver_zgeqr2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched__64.html "Interface documentation") | C binding
-278 | [rocsolver_sgeqr2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-279 | [rocsolver_dgeqr2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-280 | [rocsolver_cgeqr2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-281 | [rocsolver_zgeqr2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-282 | [rocsolver_sgeqr2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched__64.html "Interface documentation") | C binding
-283 | [rocsolver_dgeqr2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched__64.html "Interface documentation") | C binding
-284 | [rocsolver_cgeqr2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched__64.html "Interface documentation") | C binding
-285 | [rocsolver_zgeqr2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched__64.html "Interface documentation") | C binding
-286 | [rocsolver_sgerq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-287 | [rocsolver_dgerq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-288 | [rocsolver_cgerq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-289 | [rocsolver_zgerq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-290 | [rocsolver_sgerq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-291 | [rocsolver_dgerq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-292 | [rocsolver_cgerq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-293 | [rocsolver_zgerq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-294 | [rocsolver_sgerq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-295 | [rocsolver_dgerq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-296 | [rocsolver_cgerq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-297 | [rocsolver_zgerq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-298 | [rocsolver_sgeql2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-299 | [rocsolver_dgeql2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-300 | [rocsolver_cgeql2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-301 | [rocsolver_zgeql2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-302 | [rocsolver_sgeql2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-303 | [rocsolver_dgeql2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-304 | [rocsolver_cgeql2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-305 | [rocsolver_zgeql2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-306 | [rocsolver_sgeql2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-307 | [rocsolver_dgeql2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-308 | [rocsolver_cgeql2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-309 | [rocsolver_zgeql2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-310 | [rocsolver_sgelq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-311 | [rocsolver_dgelq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-312 | [rocsolver_cgelq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-313 | [rocsolver_zgelq2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-314 | [rocsolver_sgelq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-315 | [rocsolver_dgelq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-316 | [rocsolver_cgelq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-317 | [rocsolver_zgelq2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-318 | [rocsolver_sgelq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-319 | [rocsolver_dgelq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-320 | [rocsolver_cgelq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-321 | [rocsolver_zgelq2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-322 | [rocsolver_sgeqrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-323 | [rocsolver_dgeqrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-324 | [rocsolver_cgeqrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-325 | [rocsolver_zgeqrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-326 | [rocsolver_sgeqrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__64.html "Interface documentation") | C binding
-327 | [rocsolver_dgeqrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__64.html "Interface documentation") | C binding
-328 | [rocsolver_cgeqrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__64.html "Interface documentation") | C binding
-329 | [rocsolver_zgeqrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__64.html "Interface documentation") | C binding
-330 | [rocsolver_sgeqrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-331 | [rocsolver_dgeqrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-332 | [rocsolver_cgeqrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-333 | [rocsolver_zgeqrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-334 | [rocsolver_sgeqrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched__64.html "Interface documentation") | C binding
-335 | [rocsolver_dgeqrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched__64.html "Interface documentation") | C binding
-336 | [rocsolver_cgeqrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched__64.html "Interface documentation") | C binding
-337 | [rocsolver_zgeqrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched__64.html "Interface documentation") | C binding
-338 | [rocsolver_sgeqrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-339 | [rocsolver_dgeqrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-340 | [rocsolver_cgeqrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-341 | [rocsolver_zgeqrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-342 | [rocsolver_sgeqrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched__64.html "Interface documentation") | C binding
-343 | [rocsolver_dgeqrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched__64.html "Interface documentation") | C binding
-344 | [rocsolver_cgeqrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched__64.html "Interface documentation") | C binding
-345 | [rocsolver_zgeqrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched__64.html "Interface documentation") | C binding
-346 | [rocsolver_sgerqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-347 | [rocsolver_dgerqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-348 | [rocsolver_cgerqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-349 | [rocsolver_zgerqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-350 | [rocsolver_sgerqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-351 | [rocsolver_dgerqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-352 | [rocsolver_cgerqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-353 | [rocsolver_zgerqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-354 | [rocsolver_sgerqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-355 | [rocsolver_dgerqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-356 | [rocsolver_cgerqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-357 | [rocsolver_zgerqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-358 | [rocsolver_sgeqlf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-359 | [rocsolver_dgeqlf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-360 | [rocsolver_cgeqlf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-361 | [rocsolver_zgeqlf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-362 | [rocsolver_sgeqlf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-363 | [rocsolver_dgeqlf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-364 | [rocsolver_cgeqlf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-365 | [rocsolver_zgeqlf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-366 | [rocsolver_sgeqlf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-367 | [rocsolver_dgeqlf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-368 | [rocsolver_cgeqlf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-369 | [rocsolver_zgeqlf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-370 | [rocsolver_sgelqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-371 | [rocsolver_dgelqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-372 | [rocsolver_cgelqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-373 | [rocsolver_zgelqf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-374 | [rocsolver_sgelqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-375 | [rocsolver_dgelqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-376 | [rocsolver_cgelqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-377 | [rocsolver_zgelqf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-378 | [rocsolver_sgelqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-379 | [rocsolver_dgelqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-380 | [rocsolver_cgelqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-381 | [rocsolver_zgelqf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-382 | [rocsolver_sgebd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-383 | [rocsolver_dgebd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-384 | [rocsolver_cgebd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-385 | [rocsolver_zgebd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-386 | [rocsolver_sgebd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-387 | [rocsolver_dgebd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-388 | [rocsolver_cgebd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-389 | [rocsolver_zgebd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-390 | [rocsolver_sgebd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-391 | [rocsolver_dgebd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-392 | [rocsolver_cgebd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-393 | [rocsolver_zgebd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-394 | [rocsolver_sgebrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-395 | [rocsolver_dgebrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-396 | [rocsolver_cgebrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-397 | [rocsolver_zgebrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-398 | [rocsolver_sgebrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-399 | [rocsolver_dgebrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-400 | [rocsolver_cgebrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-401 | [rocsolver_zgebrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-402 | [rocsolver_sgebrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-403 | [rocsolver_dgebrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-404 | [rocsolver_cgebrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-405 | [rocsolver_zgebrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-406 | [rocsolver_sgetrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-407 | [rocsolver_dgetrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-408 | [rocsolver_cgetrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-409 | [rocsolver_zgetrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-410 | [rocsolver_sgetrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__64.html "Interface documentation") | C binding
-411 | [rocsolver_dgetrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__64.html "Interface documentation") | C binding
-412 | [rocsolver_cgetrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__64.html "Interface documentation") | C binding
-413 | [rocsolver_zgetrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__64.html "Interface documentation") | C binding
-414 | [rocsolver_sgetrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
-415 | [rocsolver_dgetrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
-416 | [rocsolver_cgetrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
-417 | [rocsolver_zgetrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
-418 | [rocsolver_sgetrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched__64.html "Interface documentation") | C binding
-419 | [rocsolver_dgetrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched__64.html "Interface documentation") | C binding
-420 | [rocsolver_cgetrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched__64.html "Interface documentation") | C binding
-421 | [rocsolver_zgetrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched__64.html "Interface documentation") | C binding
-422 | [rocsolver_sgetrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-423 | [rocsolver_dgetrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-424 | [rocsolver_cgetrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-425 | [rocsolver_zgetrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-426 | [rocsolver_sgetrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched__64.html "Interface documentation") | C binding
-427 | [rocsolver_dgetrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched__64.html "Interface documentation") | C binding
-428 | [rocsolver_cgetrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched__64.html "Interface documentation") | C binding
-429 | [rocsolver_zgetrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched__64.html "Interface documentation") | C binding
-430 | [rocsolver_ssytrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrs.html "Interface documentation") | C binding
-431 | [rocsolver_dsytrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrs.html "Interface documentation") | C binding
-432 | [rocsolver_csytrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrs.html "Interface documentation") | C binding
-433 | [rocsolver_zsytrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrs.html "Interface documentation") | C binding
-434 | [rocsolver_ssytrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrs__64.html "Interface documentation") | C binding
-435 | [rocsolver_dsytrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrs__64.html "Interface documentation") | C binding
-436 | [rocsolver_csytrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrs__64.html "Interface documentation") | C binding
-437 | [rocsolver_zsytrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrs__64.html "Interface documentation") | C binding
-438 | [rocsolver_ssytrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrs__batched.html "Interface documentation") | C binding
-439 | [rocsolver_dsytrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrs__batched.html "Interface documentation") | C binding
-440 | [rocsolver_csytrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrs__batched.html "Interface documentation") | C binding
-441 | [rocsolver_zsytrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrs__batched.html "Interface documentation") | C binding
-442 | [rocsolver_ssytrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrs__batched__64.html "Interface documentation") | C binding
-443 | [rocsolver_dsytrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrs__batched__64.html "Interface documentation") | C binding
-444 | [rocsolver_csytrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrs__batched__64.html "Interface documentation") | C binding
-445 | [rocsolver_zsytrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrs__batched__64.html "Interface documentation") | C binding
-446 | [rocsolver_ssytrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrs__strided__batched.html "Interface documentation") | C binding
-447 | [rocsolver_dsytrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrs__strided__batched.html "Interface documentation") | C binding
-448 | [rocsolver_csytrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrs__strided__batched.html "Interface documentation") | C binding
-449 | [rocsolver_zsytrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrs__strided__batched.html "Interface documentation") | C binding
-450 | [rocsolver_ssytrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrs__strided__batched__64.html "Interface documentation") | C binding
-451 | [rocsolver_dsytrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrs__strided__batched__64.html "Interface documentation") | C binding
-452 | [rocsolver_csytrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrs__strided__batched__64.html "Interface documentation") | C binding
-453 | [rocsolver_zsytrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrs__strided__batched__64.html "Interface documentation") | C binding
-454 | [rocsolver_sgesv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-455 | [rocsolver_dgesv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-456 | [rocsolver_cgesv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-457 | [rocsolver_zgesv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-458 | [rocsolver_sgesv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-459 | [rocsolver_dgesv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-460 | [rocsolver_cgesv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-461 | [rocsolver_zgesv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-462 | [rocsolver_sgesv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-463 | [rocsolver_dgesv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-464 | [rocsolver_cgesv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-465 | [rocsolver_zgesv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-466 | [rocsolver_sgetrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt.html "Interface documentation") | C binding
-467 | [rocsolver_dgetrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt.html "Interface documentation") | C binding
-468 | [rocsolver_cgetrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt.html "Interface documentation") | C binding
-469 | [rocsolver_zgetrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt.html "Interface documentation") | C binding
-470 | [rocsolver_sgetrs_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__64.html "Interface documentation") | C binding
-471 | [rocsolver_dgetrs_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__64.html "Interface documentation") | C binding
-472 | [rocsolver_cgetrs_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__64.html "Interface documentation") | C binding
-473 | [rocsolver_zgetrs_npvt_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__64.html "Interface documentation") | C binding
-474 | [rocsolver_sgetrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__batched.html "Interface documentation") | C binding
-475 | [rocsolver_dgetrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__batched.html "Interface documentation") | C binding
-476 | [rocsolver_cgetrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__batched.html "Interface documentation") | C binding
-477 | [rocsolver_zgetrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__batched.html "Interface documentation") | C binding
-478 | [rocsolver_sgetrs_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__batched__64.html "Interface documentation") | C binding
-479 | [rocsolver_dgetrs_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__batched__64.html "Interface documentation") | C binding
-480 | [rocsolver_cgetrs_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__batched__64.html "Interface documentation") | C binding
-481 | [rocsolver_zgetrs_npvt_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__batched__64.html "Interface documentation") | C binding
-482 | [rocsolver_sgetrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__strided__batched.html "Interface documentation") | C binding
-483 | [rocsolver_dgetrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__strided__batched.html "Interface documentation") | C binding
-484 | [rocsolver_cgetrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__strided__batched.html "Interface documentation") | C binding
-485 | [rocsolver_zgetrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__strided__batched.html "Interface documentation") | C binding
-486 | [rocsolver_sgetrs_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
-487 | [rocsolver_dgetrs_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
-488 | [rocsolver_cgetrs_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
-489 | [rocsolver_zgetrs_npvt_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
-490 | [rocsolver_sgetri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-491 | [rocsolver_dgetri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-492 | [rocsolver_cgetri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-493 | [rocsolver_zgetri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-494 | [rocsolver_sgetri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
-495 | [rocsolver_dgetri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
-496 | [rocsolver_cgetri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
-497 | [rocsolver_zgetri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
-498 | [rocsolver_sgetri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-499 | [rocsolver_dgetri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-500 | [rocsolver_cgetri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-501 | [rocsolver_zgetri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-502 | [rocsolver_sgetri_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-503 | [rocsolver_dgetri_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-504 | [rocsolver_cgetri_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-505 | [rocsolver_zgetri_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-506 | [rocsolver_sgetri_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__batched.html "Interface documentation") | C binding
-507 | [rocsolver_dgetri_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__batched.html "Interface documentation") | C binding
-508 | [rocsolver_cgetri_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__batched.html "Interface documentation") | C binding
-509 | [rocsolver_zgetri_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__batched.html "Interface documentation") | C binding
-510 | [rocsolver_sgetri_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-511 | [rocsolver_dgetri_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-512 | [rocsolver_cgetri_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-513 | [rocsolver_zgetri_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-514 | [rocsolver_sgels](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-515 | [rocsolver_dgels](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-516 | [rocsolver_cgels](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-517 | [rocsolver_zgels](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-518 | [rocsolver_sgels_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html "Interface documentation") | C binding
-519 | [rocsolver_dgels_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgels__batched.html "Interface documentation") | C binding
-520 | [rocsolver_cgels_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgels__batched.html "Interface documentation") | C binding
-521 | [rocsolver_zgels_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgels__batched.html "Interface documentation") | C binding
-522 | [rocsolver_sgels_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-523 | [rocsolver_dgels_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-524 | [rocsolver_cgels_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-525 | [rocsolver_zgels_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-526 | [rocsolver_spotf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-527 | [rocsolver_dpotf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-528 | [rocsolver_cpotf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-529 | [rocsolver_zpotf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-530 | [rocsolver_spotf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotf2__64.html "Interface documentation") | C binding
-531 | [rocsolver_dpotf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__64.html "Interface documentation") | C binding
-532 | [rocsolver_cpotf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__64.html "Interface documentation") | C binding
-533 | [rocsolver_zpotf2_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__64.html "Interface documentation") | C binding
-534 | [rocsolver_spotf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched.html "Interface documentation") | C binding
-535 | [rocsolver_dpotf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched.html "Interface documentation") | C binding
-536 | [rocsolver_cpotf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched.html "Interface documentation") | C binding
-537 | [rocsolver_zpotf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched.html "Interface documentation") | C binding
-538 | [rocsolver_spotf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched__64.html "Interface documentation") | C binding
-539 | [rocsolver_dpotf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched__64.html "Interface documentation") | C binding
-540 | [rocsolver_cpotf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched__64.html "Interface documentation") | C binding
-541 | [rocsolver_zpotf2_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched__64.html "Interface documentation") | C binding
-542 | [rocsolver_spotf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-543 | [rocsolver_dpotf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-544 | [rocsolver_cpotf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-545 | [rocsolver_zpotf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-546 | [rocsolver_spotf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched__64.html "Interface documentation") | C binding
-547 | [rocsolver_dpotf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched__64.html "Interface documentation") | C binding
-548 | [rocsolver_cpotf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched__64.html "Interface documentation") | C binding
-549 | [rocsolver_zpotf2_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched__64.html "Interface documentation") | C binding
-550 | [rocsolver_spotrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-551 | [rocsolver_dpotrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-552 | [rocsolver_cpotrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-553 | [rocsolver_zpotrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-554 | [rocsolver_spotrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrf__64.html "Interface documentation") | C binding
-555 | [rocsolver_dpotrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__64.html "Interface documentation") | C binding
-556 | [rocsolver_cpotrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__64.html "Interface documentation") | C binding
-557 | [rocsolver_zpotrf_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__64.html "Interface documentation") | C binding
-558 | [rocsolver_spotrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html "Interface documentation") | C binding
-559 | [rocsolver_dpotrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched.html "Interface documentation") | C binding
-560 | [rocsolver_cpotrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched.html "Interface documentation") | C binding
-561 | [rocsolver_zpotrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched.html "Interface documentation") | C binding
-562 | [rocsolver_spotrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched__64.html "Interface documentation") | C binding
-563 | [rocsolver_dpotrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched__64.html "Interface documentation") | C binding
-564 | [rocsolver_cpotrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched__64.html "Interface documentation") | C binding
-565 | [rocsolver_zpotrf_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched__64.html "Interface documentation") | C binding
-566 | [rocsolver_spotrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-567 | [rocsolver_dpotrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-568 | [rocsolver_cpotrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-569 | [rocsolver_zpotrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-570 | [rocsolver_spotrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched__64.html "Interface documentation") | C binding
-571 | [rocsolver_dpotrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched__64.html "Interface documentation") | C binding
-572 | [rocsolver_cpotrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched__64.html "Interface documentation") | C binding
-573 | [rocsolver_zpotrf_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched__64.html "Interface documentation") | C binding
-574 | [rocsolver_spotrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-575 | [rocsolver_dpotrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-576 | [rocsolver_cpotrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-577 | [rocsolver_zpotrs](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-578 | [rocsolver_spotrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrs__64.html "Interface documentation") | C binding
-579 | [rocsolver_dpotrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrs__64.html "Interface documentation") | C binding
-580 | [rocsolver_cpotrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrs__64.html "Interface documentation") | C binding
-581 | [rocsolver_zpotrs_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrs__64.html "Interface documentation") | C binding
-582 | [rocsolver_spotrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrs__batched.html "Interface documentation") | C binding
-583 | [rocsolver_dpotrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrs__batched.html "Interface documentation") | C binding
-584 | [rocsolver_cpotrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrs__batched.html "Interface documentation") | C binding
-585 | [rocsolver_zpotrs_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrs__batched.html "Interface documentation") | C binding
-586 | [rocsolver_spotrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrs__batched__64.html "Interface documentation") | C binding
-587 | [rocsolver_dpotrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrs__batched__64.html "Interface documentation") | C binding
-588 | [rocsolver_cpotrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrs__batched__64.html "Interface documentation") | C binding
-589 | [rocsolver_zpotrs_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrs__batched__64.html "Interface documentation") | C binding
-590 | [rocsolver_spotrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-591 | [rocsolver_dpotrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-592 | [rocsolver_cpotrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-593 | [rocsolver_zpotrs_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-594 | [rocsolver_spotrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotrs__strided__batched__64.html "Interface documentation") | C binding
-595 | [rocsolver_dpotrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotrs__strided__batched__64.html "Interface documentation") | C binding
-596 | [rocsolver_cpotrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotrs__strided__batched__64.html "Interface documentation") | C binding
-597 | [rocsolver_zpotrs_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotrs__strided__batched__64.html "Interface documentation") | C binding
-598 | [rocsolver_sposv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-599 | [rocsolver_dposv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-600 | [rocsolver_cposv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-601 | [rocsolver_zposv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-602 | [rocsolver_sposv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sposv__batched.html "Interface documentation") | C binding
-603 | [rocsolver_dposv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dposv__batched.html "Interface documentation") | C binding
-604 | [rocsolver_cposv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cposv__batched.html "Interface documentation") | C binding
-605 | [rocsolver_zposv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zposv__batched.html "Interface documentation") | C binding
-606 | [rocsolver_sposv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-607 | [rocsolver_dposv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-608 | [rocsolver_cposv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-609 | [rocsolver_zposv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-610 | [rocsolver_spotri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-611 | [rocsolver_dpotri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-612 | [rocsolver_cpotri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-613 | [rocsolver_zpotri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-614 | [rocsolver_spotri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotri__batched.html "Interface documentation") | C binding
-615 | [rocsolver_dpotri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotri__batched.html "Interface documentation") | C binding
-616 | [rocsolver_cpotri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotri__batched.html "Interface documentation") | C binding
-617 | [rocsolver_zpotri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotri__batched.html "Interface documentation") | C binding
-618 | [rocsolver_spotri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__spotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-619 | [rocsolver_dpotri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dpotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-620 | [rocsolver_cpotri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cpotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-621 | [rocsolver_zpotri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zpotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-622 | [rocsolver_sgesvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-623 | [rocsolver_dgesvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-624 | [rocsolver_cgesvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-625 | [rocsolver_zgesvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-626 | [rocsolver_sgesvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-627 | [rocsolver_dgesvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-628 | [rocsolver_cgesvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-629 | [rocsolver_zgesvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-630 | [rocsolver_sgesvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-631 | [rocsolver_dgesvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-632 | [rocsolver_cgesvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-633 | [rocsolver_zgesvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-634 | [rocsolver_sgesdd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesdd.html "Interface documentation") | C binding
-635 | [rocsolver_dgesdd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesdd.html "Interface documentation") | C binding
-636 | [rocsolver_cgesdd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesdd.html "Interface documentation") | C binding
-637 | [rocsolver_zgesdd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesdd.html "Interface documentation") | C binding
-638 | [rocsolver_sgesdd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesdd__batched.html "Interface documentation") | C binding
-639 | [rocsolver_dgesdd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesdd__batched.html "Interface documentation") | C binding
-640 | [rocsolver_cgesdd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesdd__batched.html "Interface documentation") | C binding
-641 | [rocsolver_zgesdd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesdd__batched.html "Interface documentation") | C binding
-642 | [rocsolver_sgesdd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesdd__strided__batched.html "Interface documentation") | C binding
-643 | [rocsolver_dgesdd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesdd__strided__batched.html "Interface documentation") | C binding
-644 | [rocsolver_cgesdd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesdd__strided__batched.html "Interface documentation") | C binding
-645 | [rocsolver_zgesdd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesdd__strided__batched.html "Interface documentation") | C binding
-646 | [rocsolver_sgesvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvdj.html "Interface documentation") | C binding
-647 | [rocsolver_dgesvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvdj.html "Interface documentation") | C binding
-648 | [rocsolver_cgesvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvdj.html "Interface documentation") | C binding
-649 | [rocsolver_zgesvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvdj.html "Interface documentation") | C binding
-650 | [rocsolver_sgesvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvdj__batched.html "Interface documentation") | C binding
-651 | [rocsolver_dgesvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvdj__batched.html "Interface documentation") | C binding
-652 | [rocsolver_cgesvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvdj__batched.html "Interface documentation") | C binding
-653 | [rocsolver_zgesvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvdj__batched.html "Interface documentation") | C binding
-654 | [rocsolver_sgesvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvdj__strided__batched.html "Interface documentation") | C binding
-655 | [rocsolver_dgesvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvdj__strided__batched.html "Interface documentation") | C binding
-656 | [rocsolver_cgesvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvdj__strided__batched.html "Interface documentation") | C binding
-657 | [rocsolver_zgesvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvdj__strided__batched.html "Interface documentation") | C binding
-658 | [rocsolver_sgesvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvdx.html "Interface documentation") | C binding
-659 | [rocsolver_dgesvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvdx.html "Interface documentation") | C binding
-660 | [rocsolver_cgesvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvdx.html "Interface documentation") | C binding
-661 | [rocsolver_zgesvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvdx.html "Interface documentation") | C binding
-662 | [rocsolver_sgesvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvdx__batched.html "Interface documentation") | C binding
-663 | [rocsolver_dgesvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvdx__batched.html "Interface documentation") | C binding
-664 | [rocsolver_cgesvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvdx__batched.html "Interface documentation") | C binding
-665 | [rocsolver_zgesvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvdx__batched.html "Interface documentation") | C binding
-666 | [rocsolver_sgesvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgesvdx__strided__batched.html "Interface documentation") | C binding
-667 | [rocsolver_dgesvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgesvdx__strided__batched.html "Interface documentation") | C binding
-668 | [rocsolver_cgesvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgesvdx__strided__batched.html "Interface documentation") | C binding
-669 | [rocsolver_zgesvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgesvdx__strided__batched.html "Interface documentation") | C binding
-670 | [rocsolver_ssytd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-671 | [rocsolver_dsytd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-672 | [rocsolver_chetd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chetd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-673 | [rocsolver_zhetd2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhetd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-674 | [rocsolver_ssytd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-675 | [rocsolver_dsytd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-676 | [rocsolver_chetd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chetd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-677 | [rocsolver_zhetd2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-678 | [rocsolver_ssytd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-679 | [rocsolver_dsytd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-680 | [rocsolver_chetd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chetd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-681 | [rocsolver_zhetd2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-682 | [rocsolver_ssytrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-683 | [rocsolver_dsytrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-684 | [rocsolver_chetrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-685 | [rocsolver_zhetrd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-686 | [rocsolver_ssytrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-687 | [rocsolver_dsytrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-688 | [rocsolver_chetrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chetrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-689 | [rocsolver_zhetrd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-690 | [rocsolver_ssytrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-691 | [rocsolver_dsytrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-692 | [rocsolver_chetrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chetrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-693 | [rocsolver_zhetrd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-694 | [rocsolver_ssygs2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-695 | [rocsolver_dsygs2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-696 | [rocsolver_chegs2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-697 | [rocsolver_zhegs2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-698 | [rocsolver_ssygs2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__batched.html "Interface documentation") | C binding
-699 | [rocsolver_dsygs2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__batched.html "Interface documentation") | C binding
-700 | [rocsolver_chegs2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html "Interface documentation") | C binding
-701 | [rocsolver_zhegs2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__batched.html "Interface documentation") | C binding
-702 | [rocsolver_ssygs2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-703 | [rocsolver_dsygs2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-704 | [rocsolver_chegs2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-705 | [rocsolver_zhegs2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-706 | [rocsolver_ssygst](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-707 | [rocsolver_dsygst](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-708 | [rocsolver_chegst](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-709 | [rocsolver_zhegst](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-710 | [rocsolver_ssygst_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygst__batched.html "Interface documentation") | C binding
-711 | [rocsolver_dsygst_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygst__batched.html "Interface documentation") | C binding
-712 | [rocsolver_chegst_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegst__batched.html "Interface documentation") | C binding
-713 | [rocsolver_zhegst_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegst__batched.html "Interface documentation") | C binding
-714 | [rocsolver_ssygst_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-715 | [rocsolver_dsygst_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-716 | [rocsolver_chegst_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-717 | [rocsolver_zhegst_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-718 | [rocsolver_ssyev](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-719 | [rocsolver_dsyev](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-720 | [rocsolver_ssyev_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyev__64.html "Interface documentation") | C binding
-721 | [rocsolver_dsyev_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyev__64.html "Interface documentation") | C binding
-722 | [rocsolver_cheev](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-723 | [rocsolver_zheev](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-724 | [rocsolver_cheev_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheev__64.html "Interface documentation") | C binding
-725 | [rocsolver_zheev_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheev__64.html "Interface documentation") | C binding
-726 | [rocsolver_ssyev_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched.html "Interface documentation") | C binding, rank_0, rank_1
-727 | [rocsolver_dsyev_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched.html "Interface documentation") | C binding, rank_0, rank_1
-728 | [rocsolver_ssyev_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched__64.html "Interface documentation") | C binding
-729 | [rocsolver_dsyev_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched__64.html "Interface documentation") | C binding
-730 | [rocsolver_cheev_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html "Interface documentation") | C binding, rank_0, rank_1
-731 | [rocsolver_zheev_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheev__batched.html "Interface documentation") | C binding, rank_0, rank_1
-732 | [rocsolver_cheev_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheev__batched__64.html "Interface documentation") | C binding
-733 | [rocsolver_zheev_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheev__batched__64.html "Interface documentation") | C binding
-734 | [rocsolver_ssyev_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-735 | [rocsolver_dsyev_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-736 | [rocsolver_ssyev_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched__64.html "Interface documentation") | C binding
-737 | [rocsolver_dsyev_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched__64.html "Interface documentation") | C binding
-738 | [rocsolver_cheev_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-739 | [rocsolver_zheev_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-740 | [rocsolver_cheev_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched__64.html "Interface documentation") | C binding
-741 | [rocsolver_zheev_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched__64.html "Interface documentation") | C binding
-742 | [rocsolver_ssyevd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-743 | [rocsolver_dsyevd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-744 | [rocsolver_ssyevd_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__64.html "Interface documentation") | C binding
-745 | [rocsolver_dsyevd_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__64.html "Interface documentation") | C binding
-746 | [rocsolver_cheevd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-747 | [rocsolver_zheevd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-748 | [rocsolver_cheevd_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevd__64.html "Interface documentation") | C binding
-749 | [rocsolver_zheevd_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevd__64.html "Interface documentation") | C binding
-750 | [rocsolver_ssyevd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-751 | [rocsolver_dsyevd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-752 | [rocsolver_ssyevd_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched__64.html "Interface documentation") | C binding
-753 | [rocsolver_dsyevd_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched__64.html "Interface documentation") | C binding
-754 | [rocsolver_cheevd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-755 | [rocsolver_zheevd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-756 | [rocsolver_cheevd_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched__64.html "Interface documentation") | C binding
-757 | [rocsolver_zheevd_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched__64.html "Interface documentation") | C binding
-758 | [rocsolver_ssyevd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-759 | [rocsolver_dsyevd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-760 | [rocsolver_ssyevd_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched__64.html "Interface documentation") | C binding
-761 | [rocsolver_dsyevd_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched__64.html "Interface documentation") | C binding
-762 | [rocsolver_cheevd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-763 | [rocsolver_zheevd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-764 | [rocsolver_cheevd_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched__64.html "Interface documentation") | C binding
-765 | [rocsolver_zheevd_strided_batched_64](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched__64.html "Interface documentation") | C binding
-766 | [rocsolver_ssyevdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevdj.html "Interface documentation") | C binding
-767 | [rocsolver_dsyevdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevdj.html "Interface documentation") | C binding
-768 | [rocsolver_cheevdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevdj.html "Interface documentation") | C binding
-769 | [rocsolver_zheevdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevdj.html "Interface documentation") | C binding
-770 | [rocsolver_ssyevdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevdj__batched.html "Interface documentation") | C binding
-771 | [rocsolver_dsyevdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevdj__batched.html "Interface documentation") | C binding
-772 | [rocsolver_cheevdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevdj__batched.html "Interface documentation") | C binding
-773 | [rocsolver_zheevdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevdj__batched.html "Interface documentation") | C binding
-774 | [rocsolver_ssyevdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevdj__strided__batched.html "Interface documentation") | C binding
-775 | [rocsolver_dsyevdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevdj__strided__batched.html "Interface documentation") | C binding
-776 | [rocsolver_cheevdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevdj__strided__batched.html "Interface documentation") | C binding
-777 | [rocsolver_zheevdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevdj__strided__batched.html "Interface documentation") | C binding
-778 | [rocsolver_ssygvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvdj.html "Interface documentation") | C binding
-779 | [rocsolver_dsygvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvdj.html "Interface documentation") | C binding
-780 | [rocsolver_chegvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvdj.html "Interface documentation") | C binding
-781 | [rocsolver_zhegvdj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvdj.html "Interface documentation") | C binding
-782 | [rocsolver_ssygvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvdj__batched.html "Interface documentation") | C binding
-783 | [rocsolver_dsygvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvdj__batched.html "Interface documentation") | C binding
-784 | [rocsolver_chegvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvdj__batched.html "Interface documentation") | C binding
-785 | [rocsolver_zhegvdj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvdj__batched.html "Interface documentation") | C binding
-786 | [rocsolver_ssygvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvdj__strided__batched.html "Interface documentation") | C binding
-787 | [rocsolver_dsygvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvdj__strided__batched.html "Interface documentation") | C binding
-788 | [rocsolver_chegvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvdj__strided__batched.html "Interface documentation") | C binding
-789 | [rocsolver_zhegvdj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvdj__strided__batched.html "Interface documentation") | C binding
-790 | [rocsolver_ssyevj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevj.html "Interface documentation") | C binding
-791 | [rocsolver_dsyevj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevj.html "Interface documentation") | C binding
-792 | [rocsolver_cheevj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevj.html "Interface documentation") | C binding
-793 | [rocsolver_zheevj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevj.html "Interface documentation") | C binding
-794 | [rocsolver_ssyevj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevj__batched.html "Interface documentation") | C binding
-795 | [rocsolver_dsyevj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevj__batched.html "Interface documentation") | C binding
-796 | [rocsolver_cheevj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevj__batched.html "Interface documentation") | C binding
-797 | [rocsolver_zheevj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevj__batched.html "Interface documentation") | C binding
-798 | [rocsolver_ssyevj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevj__strided__batched.html "Interface documentation") | C binding
-799 | [rocsolver_dsyevj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevj__strided__batched.html "Interface documentation") | C binding
-800 | [rocsolver_cheevj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevj__strided__batched.html "Interface documentation") | C binding
-801 | [rocsolver_zheevj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevj__strided__batched.html "Interface documentation") | C binding
-802 | [rocsolver_ssyevx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevx.html "Interface documentation") | C binding
-803 | [rocsolver_dsyevx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevx.html "Interface documentation") | C binding
-804 | [rocsolver_cheevx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevx.html "Interface documentation") | C binding
-805 | [rocsolver_zheevx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevx.html "Interface documentation") | C binding
-806 | [rocsolver_ssyevx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevx__batched.html "Interface documentation") | C binding
-807 | [rocsolver_dsyevx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevx__batched.html "Interface documentation") | C binding
-808 | [rocsolver_cheevx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevx__batched.html "Interface documentation") | C binding
-809 | [rocsolver_zheevx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevx__batched.html "Interface documentation") | C binding
-810 | [rocsolver_ssyevx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevx__strided__batched.html "Interface documentation") | C binding
-811 | [rocsolver_dsyevx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevx__strided__batched.html "Interface documentation") | C binding
-812 | [rocsolver_cheevx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevx__strided__batched.html "Interface documentation") | C binding
-813 | [rocsolver_zheevx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevx__strided__batched.html "Interface documentation") | C binding
-814 | [rocsolver_ssygv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-815 | [rocsolver_dsygv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-816 | [rocsolver_chegv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-817 | [rocsolver_zhegv](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-818 | [rocsolver_ssygv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-819 | [rocsolver_dsygv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-820 | [rocsolver_chegv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-821 | [rocsolver_zhegv_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegv__batched.html "Interface documentation") | C binding, rank_0, rank_1
-822 | [rocsolver_ssygv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-823 | [rocsolver_dsygv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-824 | [rocsolver_chegv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-825 | [rocsolver_zhegv_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-826 | [rocsolver_ssygvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-827 | [rocsolver_dsygvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-828 | [rocsolver_chegvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-829 | [rocsolver_zhegvd](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-830 | [rocsolver_ssygvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-831 | [rocsolver_dsygvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-832 | [rocsolver_chegvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-833 | [rocsolver_zhegvd_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
-834 | [rocsolver_ssygvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-835 | [rocsolver_dsygvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-836 | [rocsolver_chegvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-837 | [rocsolver_zhegvd_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-838 | [rocsolver_ssygvj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvj.html "Interface documentation") | C binding
-839 | [rocsolver_dsygvj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvj.html "Interface documentation") | C binding
-840 | [rocsolver_chegvj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvj.html "Interface documentation") | C binding
-841 | [rocsolver_zhegvj](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvj.html "Interface documentation") | C binding
-842 | [rocsolver_ssygvj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvj__batched.html "Interface documentation") | C binding
-843 | [rocsolver_dsygvj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvj__batched.html "Interface documentation") | C binding
-844 | [rocsolver_chegvj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvj__batched.html "Interface documentation") | C binding
-845 | [rocsolver_zhegvj_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvj__batched.html "Interface documentation") | C binding
-846 | [rocsolver_ssygvj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvj__strided__batched.html "Interface documentation") | C binding
-847 | [rocsolver_dsygvj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvj__strided__batched.html "Interface documentation") | C binding
-848 | [rocsolver_chegvj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvj__strided__batched.html "Interface documentation") | C binding
-849 | [rocsolver_zhegvj_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvj__strided__batched.html "Interface documentation") | C binding
-850 | [rocsolver_ssygvx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvx.html "Interface documentation") | C binding
-851 | [rocsolver_dsygvx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvx.html "Interface documentation") | C binding
-852 | [rocsolver_chegvx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvx.html "Interface documentation") | C binding
-853 | [rocsolver_zhegvx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvx.html "Interface documentation") | C binding
-854 | [rocsolver_ssygvx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvx__batched.html "Interface documentation") | C binding
-855 | [rocsolver_dsygvx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvx__batched.html "Interface documentation") | C binding
-856 | [rocsolver_chegvx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvx__batched.html "Interface documentation") | C binding
-857 | [rocsolver_zhegvx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvx__batched.html "Interface documentation") | C binding
-858 | [rocsolver_ssygvx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvx__strided__batched.html "Interface documentation") | C binding
-859 | [rocsolver_dsygvx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvx__strided__batched.html "Interface documentation") | C binding
-860 | [rocsolver_chegvx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvx__strided__batched.html "Interface documentation") | C binding
-861 | [rocsolver_zhegvx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvx__strided__batched.html "Interface documentation") | C binding
-862 | [rocsolver_sgetri_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-863 | [rocsolver_dgetri_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-864 | [rocsolver_cgetri_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-865 | [rocsolver_zgetri_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-866 | [rocsolver_sgetri_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
-867 | [rocsolver_dgetri_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
-868 | [rocsolver_cgetri_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
-869 | [rocsolver_zgetri_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
-870 | [rocsolver_sgetri_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-871 | [rocsolver_dgetri_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-872 | [rocsolver_cgetri_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-873 | [rocsolver_zgetri_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-874 | [rocsolver_sgetri_npvt_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-875 | [rocsolver_dgetri_npvt_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-876 | [rocsolver_cgetri_npvt_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-877 | [rocsolver_zgetri_npvt_outofplace](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-878 | [rocsolver_sgetri_npvt_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
-879 | [rocsolver_dgetri_npvt_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
-880 | [rocsolver_cgetri_npvt_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
-881 | [rocsolver_zgetri_npvt_outofplace_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
-882 | [rocsolver_sgetri_npvt_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-883 | [rocsolver_dgetri_npvt_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-884 | [rocsolver_cgetri_npvt_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-885 | [rocsolver_zgetri_npvt_outofplace_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-886 | [rocsolver_strtri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__strtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-887 | [rocsolver_dtrtri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dtrtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-888 | [rocsolver_ctrtri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ctrtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-889 | [rocsolver_ztrtri](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ztrtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-890 | [rocsolver_strtri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html "Interface documentation") | C binding
-891 | [rocsolver_dtrtri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__batched.html "Interface documentation") | C binding
-892 | [rocsolver_ctrtri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__batched.html "Interface documentation") | C binding
-893 | [rocsolver_ztrtri_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__batched.html "Interface documentation") | C binding
-894 | [rocsolver_strtri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__strtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-895 | [rocsolver_dtrtri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-896 | [rocsolver_ctrtri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-897 | [rocsolver_ztrtri_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-898 | [rocsolver_ssytf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-899 | [rocsolver_dsytf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-900 | [rocsolver_csytf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-901 | [rocsolver_zsytf2](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-902 | [rocsolver_ssytf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-903 | [rocsolver_dsytf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-904 | [rocsolver_csytf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-905 | [rocsolver_zsytf2_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
-906 | [rocsolver_ssytf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-907 | [rocsolver_dsytf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-908 | [rocsolver_csytf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-909 | [rocsolver_zsytf2_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-910 | [rocsolver_ssytrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-911 | [rocsolver_dsytrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-912 | [rocsolver_csytrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-913 | [rocsolver_zsytrf](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-914 | [rocsolver_ssytrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-915 | [rocsolver_dsytrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-916 | [rocsolver_csytrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-917 | [rocsolver_zsytrf_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
-918 | [rocsolver_ssytrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-919 | [rocsolver_dsytrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-920 | [rocsolver_csytrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__csytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-921 | [rocsolver_zsytrf_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zsytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-922 | [rocsolver_sgeblttrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt.html "Interface documentation") | C binding
-923 | [rocsolver_dgeblttrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt.html "Interface documentation") | C binding
-924 | [rocsolver_cgeblttrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt.html "Interface documentation") | C binding
-925 | [rocsolver_zgeblttrf_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt.html "Interface documentation") | C binding
-926 | [rocsolver_sgeblttrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt__batched.html "Interface documentation") | C binding
-927 | [rocsolver_dgeblttrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt__batched.html "Interface documentation") | C binding
-928 | [rocsolver_cgeblttrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt__batched.html "Interface documentation") | C binding
-929 | [rocsolver_zgeblttrf_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt__batched.html "Interface documentation") | C binding
-930 | [rocsolver_sgeblttrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
-931 | [rocsolver_dgeblttrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
-932 | [rocsolver_cgeblttrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
-933 | [rocsolver_zgeblttrf_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
-934 | [rocsolver_sgeblttrf_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
-935 | [rocsolver_dgeblttrf_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
-936 | [rocsolver_cgeblttrf_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
-937 | [rocsolver_zgeblttrf_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
-938 | [rocsolver_sgeblttrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt.html "Interface documentation") | C binding
-939 | [rocsolver_dgeblttrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt.html "Interface documentation") | C binding
-940 | [rocsolver_cgeblttrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt.html "Interface documentation") | C binding
-941 | [rocsolver_zgeblttrs_npvt](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt.html "Interface documentation") | C binding
-942 | [rocsolver_sgeblttrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt__batched.html "Interface documentation") | C binding
-943 | [rocsolver_dgeblttrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt__batched.html "Interface documentation") | C binding
-944 | [rocsolver_cgeblttrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt__batched.html "Interface documentation") | C binding
-945 | [rocsolver_zgeblttrs_npvt_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt__batched.html "Interface documentation") | C binding
-946 | [rocsolver_sgeblttrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
-947 | [rocsolver_dgeblttrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
-948 | [rocsolver_cgeblttrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
-949 | [rocsolver_zgeblttrs_npvt_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
-950 | [rocsolver_sgeblttrs_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
-951 | [rocsolver_dgeblttrs_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
-952 | [rocsolver_cgeblttrs_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
-953 | [rocsolver_zgeblttrs_npvt_interleaved_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
-954 | [rocsolver_create_rfinfo](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__create__rfinfo.html "Interface documentation") | C binding
-955 | [rocsolver_destroy_rfinfo](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__destroy__rfinfo.html "Interface documentation") | C binding
-956 | [rocsolver_set_rfinfo_mode](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__set__rfinfo__mode.html "Interface documentation") | C binding
-957 | [rocsolver_get_rfinfo_mode](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__get__rfinfo__mode.html "Interface documentation") | C binding
-958 | [rocsolver_scsrrf_sumlu](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__scsrrf__sumlu.html "Interface documentation") | C binding
-959 | [rocsolver_dcsrrf_sumlu](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__sumlu.html "Interface documentation") | C binding
-960 | [rocsolver_scsrrf_splitlu](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__scsrrf__splitlu.html "Interface documentation") | C binding
-961 | [rocsolver_dcsrrf_splitlu](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__splitlu.html "Interface documentation") | C binding
-962 | [rocsolver_scsrrf_analysis](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__scsrrf__analysis.html "Interface documentation") | C binding
-963 | [rocsolver_dcsrrf_analysis](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__analysis.html "Interface documentation") | C binding
-964 | [rocsolver_scsrrf_refactlu](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__scsrrf__refactlu.html "Interface documentation") | C binding
-965 | [rocsolver_dcsrrf_refactlu](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__refactlu.html "Interface documentation") | C binding
-966 | [rocsolver_scsrrf_refactchol](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__scsrrf__refactchol.html "Interface documentation") | C binding
-967 | [rocsolver_dcsrrf_refactchol](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__refactchol.html "Interface documentation") | C binding
-968 | [rocsolver_scsrrf_solve](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__scsrrf__solve.html "Interface documentation") | C binding
-969 | [rocsolver_dcsrrf_solve](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__solve.html "Interface documentation") | C binding
-970 | [rocsolver_ssyevdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevdx.html "Interface documentation") | C binding
-971 | [rocsolver_dsyevdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevdx.html "Interface documentation") | C binding
-972 | [rocsolver_cheevdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevdx.html "Interface documentation") | C binding
-973 | [rocsolver_zheevdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevdx.html "Interface documentation") | C binding
-974 | [rocsolver_ssyevdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevdx__batched.html "Interface documentation") | C binding
-975 | [rocsolver_dsyevdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevdx__batched.html "Interface documentation") | C binding
-976 | [rocsolver_cheevdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevdx__batched.html "Interface documentation") | C binding
-977 | [rocsolver_zheevdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevdx__batched.html "Interface documentation") | C binding
-978 | [rocsolver_ssyevdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssyevdx__strided__batched.html "Interface documentation") | C binding
-979 | [rocsolver_dsyevdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsyevdx__strided__batched.html "Interface documentation") | C binding
-980 | [rocsolver_cheevdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__cheevdx__strided__batched.html "Interface documentation") | C binding
-981 | [rocsolver_zheevdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zheevdx__strided__batched.html "Interface documentation") | C binding
-982 | [rocsolver_ssygvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvdx.html "Interface documentation") | C binding
-983 | [rocsolver_dsygvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvdx.html "Interface documentation") | C binding
-984 | [rocsolver_chegvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-985 | [rocsolver_zhegvdx](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-986 | [rocsolver_ssygvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvdx__batched.html "Interface documentation") | C binding
-987 | [rocsolver_dsygvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvdx__batched.html "Interface documentation") | C binding
-988 | [rocsolver_chegvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvdx__batched.html "Interface documentation") | C binding
-989 | [rocsolver_zhegvdx_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvdx__batched.html "Interface documentation") | C binding
-990 | [rocsolver_ssygvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__ssygvdx__strided__batched.html "Interface documentation") | C binding
-991 | [rocsolver_dsygvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__dsygvdx__strided__batched.html "Interface documentation") | C binding
-992 | [rocsolver_chegvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__chegvdx__strided__batched.html "Interface documentation") | C binding
-993 | [rocsolver_zhegvdx_strided_batched](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__rocsolver_1_1rocsolver__zhegvdx__strided__batched.html "Interface documentation") | C binding
+1 | [rocsolver_get_version_string](interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | C binding
+2 | [rocsolver_get_version_string_size](interfacehipfort__rocsolver_1_1rocsolver__get__version__string__size.html "Interface documentation") | C binding
+3 | [rocsolver_log_begin](interfacehipfort__rocsolver_1_1rocsolver__log__begin.html "Interface documentation") | C binding
+4 | [rocsolver_log_end](interfacehipfort__rocsolver_1_1rocsolver__log__end.html "Interface documentation") | C binding
+5 | [rocsolver_log_set_layer_mode](interfacehipfort__rocsolver_1_1rocsolver__log__set__layer__mode.html "Interface documentation") | C binding
+6 | [rocsolver_log_set_max_levels](interfacehipfort__rocsolver_1_1rocsolver__log__set__max__levels.html "Interface documentation") | C binding
+7 | [rocsolver_log_restore_defaults](interfacehipfort__rocsolver_1_1rocsolver__log__restore__defaults.html "Interface documentation") | C binding
+8 | [rocsolver_log_write_profile](interfacehipfort__rocsolver_1_1rocsolver__log__write__profile.html "Interface documentation") | C binding
+9 | [rocsolver_log_flush_profile](interfacehipfort__rocsolver_1_1rocsolver__log__flush__profile.html "Interface documentation") | C binding
+10 | [rocsolver_set_alg_mode](interfacehipfort__rocsolver_1_1rocsolver__set__alg__mode.html "Interface documentation") | C binding
+11 | [rocsolver_get_alg_mode](interfacehipfort__rocsolver_1_1rocsolver__get__alg__mode.html "Interface documentation") | C binding
+12 | [rocsolver_clacgv](interfacehipfort__rocsolver_1_1rocsolver__clacgv.html "Interface documentation") | C binding, rank_0, rank_1
+13 | [rocsolver_zlacgv](interfacehipfort__rocsolver_1_1rocsolver__zlacgv.html "Interface documentation") | C binding, rank_0, rank_1
+14 | [rocsolver_clacgv_64](interfacehipfort__rocsolver_1_1rocsolver__clacgv__64.html "Interface documentation") | C binding
+15 | [rocsolver_zlacgv_64](interfacehipfort__rocsolver_1_1rocsolver__zlacgv__64.html "Interface documentation") | C binding
+16 | [rocsolver_slange](interfacehipfort__rocsolver_1_1rocsolver__slange.html "Interface documentation") | C binding
+17 | [rocsolver_dlange](interfacehipfort__rocsolver_1_1rocsolver__dlange.html "Interface documentation") | C binding
+18 | [rocsolver_clange](interfacehipfort__rocsolver_1_1rocsolver__clange.html "Interface documentation") | C binding
+19 | [rocsolver_zlange](interfacehipfort__rocsolver_1_1rocsolver__zlange.html "Interface documentation") | C binding
+20 | [rocsolver_slange_64](interfacehipfort__rocsolver_1_1rocsolver__slange__64.html "Interface documentation") | C binding
+21 | [rocsolver_dlange_64](interfacehipfort__rocsolver_1_1rocsolver__dlange__64.html "Interface documentation") | C binding
+22 | [rocsolver_clange_64](interfacehipfort__rocsolver_1_1rocsolver__clange__64.html "Interface documentation") | C binding
+23 | [rocsolver_zlange_64](interfacehipfort__rocsolver_1_1rocsolver__zlange__64.html "Interface documentation") | C binding
+24 | [rocsolver_sgecon](interfacehipfort__rocsolver_1_1rocsolver__sgecon.html "Interface documentation") | C binding
+25 | [rocsolver_dgecon](interfacehipfort__rocsolver_1_1rocsolver__dgecon.html "Interface documentation") | C binding
+26 | [rocsolver_cgecon](interfacehipfort__rocsolver_1_1rocsolver__cgecon.html "Interface documentation") | C binding
+27 | [rocsolver_zgecon](interfacehipfort__rocsolver_1_1rocsolver__zgecon.html "Interface documentation") | C binding
+28 | [rocsolver_sgecon_64](interfacehipfort__rocsolver_1_1rocsolver__sgecon__64.html "Interface documentation") | C binding
+29 | [rocsolver_dgecon_64](interfacehipfort__rocsolver_1_1rocsolver__dgecon__64.html "Interface documentation") | C binding
+30 | [rocsolver_cgecon_64](interfacehipfort__rocsolver_1_1rocsolver__cgecon__64.html "Interface documentation") | C binding
+31 | [rocsolver_zgecon_64](interfacehipfort__rocsolver_1_1rocsolver__zgecon__64.html "Interface documentation") | C binding
+32 | [rocsolver_slaswp](interfacehipfort__rocsolver_1_1rocsolver__slaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+33 | [rocsolver_dlaswp](interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+34 | [rocsolver_claswp](interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+35 | [rocsolver_zlaswp](interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+36 | [rocsolver_slarfg](interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | C binding, rank_0, rank_1
+37 | [rocsolver_dlarfg](interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | C binding, rank_0, rank_1
+38 | [rocsolver_clarfg](interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | C binding, rank_0, rank_1
+39 | [rocsolver_zlarfg](interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | C binding, rank_0, rank_1
+40 | [rocsolver_slarfg_64](interfacehipfort__rocsolver_1_1rocsolver__slarfg__64.html "Interface documentation") | C binding
+41 | [rocsolver_dlarfg_64](interfacehipfort__rocsolver_1_1rocsolver__dlarfg__64.html "Interface documentation") | C binding
+42 | [rocsolver_clarfg_64](interfacehipfort__rocsolver_1_1rocsolver__clarfg__64.html "Interface documentation") | C binding
+43 | [rocsolver_zlarfg_64](interfacehipfort__rocsolver_1_1rocsolver__zlarfg__64.html "Interface documentation") | C binding
+44 | [rocsolver_slarft](interfacehipfort__rocsolver_1_1rocsolver__slarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+45 | [rocsolver_dlarft](interfacehipfort__rocsolver_1_1rocsolver__dlarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+46 | [rocsolver_clarft](interfacehipfort__rocsolver_1_1rocsolver__clarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+47 | [rocsolver_zlarft](interfacehipfort__rocsolver_1_1rocsolver__zlarft.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+48 | [rocsolver_slarf](interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+49 | [rocsolver_dlarf](interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+50 | [rocsolver_clarf](interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+51 | [rocsolver_zlarf](interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+52 | [rocsolver_slarf_64](interfacehipfort__rocsolver_1_1rocsolver__slarf__64.html "Interface documentation") | C binding
+53 | [rocsolver_dlarf_64](interfacehipfort__rocsolver_1_1rocsolver__dlarf__64.html "Interface documentation") | C binding
+54 | [rocsolver_clarf_64](interfacehipfort__rocsolver_1_1rocsolver__clarf__64.html "Interface documentation") | C binding
+55 | [rocsolver_zlarf_64](interfacehipfort__rocsolver_1_1rocsolver__zlarf__64.html "Interface documentation") | C binding
+56 | [rocsolver_slarfb](interfacehipfort__rocsolver_1_1rocsolver__slarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+57 | [rocsolver_dlarfb](interfacehipfort__rocsolver_1_1rocsolver__dlarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+58 | [rocsolver_clarfb](interfacehipfort__rocsolver_1_1rocsolver__clarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+59 | [rocsolver_zlarfb](interfacehipfort__rocsolver_1_1rocsolver__zlarfb.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+60 | [rocsolver_slasr](interfacehipfort__rocsolver_1_1rocsolver__slasr.html "Interface documentation") | C binding
+61 | [rocsolver_dlasr](interfacehipfort__rocsolver_1_1rocsolver__dlasr.html "Interface documentation") | C binding
+62 | [rocsolver_clasr](interfacehipfort__rocsolver_1_1rocsolver__clasr.html "Interface documentation") | C binding
+63 | [rocsolver_zlasr](interfacehipfort__rocsolver_1_1rocsolver__zlasr.html "Interface documentation") | C binding
+64 | [rocsolver_slabrd](interfacehipfort__rocsolver_1_1rocsolver__slabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+65 | [rocsolver_dlabrd](interfacehipfort__rocsolver_1_1rocsolver__dlabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+66 | [rocsolver_clabrd](interfacehipfort__rocsolver_1_1rocsolver__clabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+67 | [rocsolver_zlabrd](interfacehipfort__rocsolver_1_1rocsolver__zlabrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+68 | [rocsolver_slatrd](interfacehipfort__rocsolver_1_1rocsolver__slatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+69 | [rocsolver_dlatrd](interfacehipfort__rocsolver_1_1rocsolver__dlatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+70 | [rocsolver_clatrd](interfacehipfort__rocsolver_1_1rocsolver__clatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+71 | [rocsolver_zlatrd](interfacehipfort__rocsolver_1_1rocsolver__zlatrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+72 | [rocsolver_slasyf](interfacehipfort__rocsolver_1_1rocsolver__slasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+73 | [rocsolver_dlasyf](interfacehipfort__rocsolver_1_1rocsolver__dlasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+74 | [rocsolver_clasyf](interfacehipfort__rocsolver_1_1rocsolver__clasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+75 | [rocsolver_zlasyf](interfacehipfort__rocsolver_1_1rocsolver__zlasyf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+76 | [rocsolver_slauum](interfacehipfort__rocsolver_1_1rocsolver__slauum.html "Interface documentation") | C binding
+77 | [rocsolver_dlauum](interfacehipfort__rocsolver_1_1rocsolver__dlauum.html "Interface documentation") | C binding
+78 | [rocsolver_clauum](interfacehipfort__rocsolver_1_1rocsolver__clauum.html "Interface documentation") | C binding
+79 | [rocsolver_zlauum](interfacehipfort__rocsolver_1_1rocsolver__zlauum.html "Interface documentation") | C binding
+80 | [rocsolver_sorg2r](interfacehipfort__rocsolver_1_1rocsolver__sorg2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+81 | [rocsolver_dorg2r](interfacehipfort__rocsolver_1_1rocsolver__dorg2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+82 | [rocsolver_cung2r](interfacehipfort__rocsolver_1_1rocsolver__cung2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+83 | [rocsolver_zung2r](interfacehipfort__rocsolver_1_1rocsolver__zung2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+84 | [rocsolver_sorgqr](interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+85 | [rocsolver_dorgqr](interfacehipfort__rocsolver_1_1rocsolver__dorgqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+86 | [rocsolver_cungqr](interfacehipfort__rocsolver_1_1rocsolver__cungqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+87 | [rocsolver_zungqr](interfacehipfort__rocsolver_1_1rocsolver__zungqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+88 | [rocsolver_sorgl2](interfacehipfort__rocsolver_1_1rocsolver__sorgl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+89 | [rocsolver_dorgl2](interfacehipfort__rocsolver_1_1rocsolver__dorgl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+90 | [rocsolver_cungl2](interfacehipfort__rocsolver_1_1rocsolver__cungl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+91 | [rocsolver_zungl2](interfacehipfort__rocsolver_1_1rocsolver__zungl2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+92 | [rocsolver_sorglq](interfacehipfort__rocsolver_1_1rocsolver__sorglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+93 | [rocsolver_dorglq](interfacehipfort__rocsolver_1_1rocsolver__dorglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+94 | [rocsolver_cunglq](interfacehipfort__rocsolver_1_1rocsolver__cunglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+95 | [rocsolver_zunglq](interfacehipfort__rocsolver_1_1rocsolver__zunglq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+96 | [rocsolver_sorg2l](interfacehipfort__rocsolver_1_1rocsolver__sorg2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+97 | [rocsolver_dorg2l](interfacehipfort__rocsolver_1_1rocsolver__dorg2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+98 | [rocsolver_cung2l](interfacehipfort__rocsolver_1_1rocsolver__cung2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+99 | [rocsolver_zung2l](interfacehipfort__rocsolver_1_1rocsolver__zung2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+100 | [rocsolver_sorgql](interfacehipfort__rocsolver_1_1rocsolver__sorgql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+101 | [rocsolver_dorgql](interfacehipfort__rocsolver_1_1rocsolver__dorgql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+102 | [rocsolver_cungql](interfacehipfort__rocsolver_1_1rocsolver__cungql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+103 | [rocsolver_zungql](interfacehipfort__rocsolver_1_1rocsolver__zungql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+104 | [rocsolver_sorgbr](interfacehipfort__rocsolver_1_1rocsolver__sorgbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+105 | [rocsolver_dorgbr](interfacehipfort__rocsolver_1_1rocsolver__dorgbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+106 | [rocsolver_cungbr](interfacehipfort__rocsolver_1_1rocsolver__cungbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+107 | [rocsolver_zungbr](interfacehipfort__rocsolver_1_1rocsolver__zungbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+108 | [rocsolver_sorgtr](interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+109 | [rocsolver_dorgtr](interfacehipfort__rocsolver_1_1rocsolver__dorgtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+110 | [rocsolver_cungtr](interfacehipfort__rocsolver_1_1rocsolver__cungtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+111 | [rocsolver_zungtr](interfacehipfort__rocsolver_1_1rocsolver__zungtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+112 | [rocsolver_sorm2r](interfacehipfort__rocsolver_1_1rocsolver__sorm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+113 | [rocsolver_dorm2r](interfacehipfort__rocsolver_1_1rocsolver__dorm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+114 | [rocsolver_cunm2r](interfacehipfort__rocsolver_1_1rocsolver__cunm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+115 | [rocsolver_zunm2r](interfacehipfort__rocsolver_1_1rocsolver__zunm2r.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+116 | [rocsolver_sormqr](interfacehipfort__rocsolver_1_1rocsolver__sormqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+117 | [rocsolver_dormqr](interfacehipfort__rocsolver_1_1rocsolver__dormqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+118 | [rocsolver_cunmqr](interfacehipfort__rocsolver_1_1rocsolver__cunmqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+119 | [rocsolver_zunmqr](interfacehipfort__rocsolver_1_1rocsolver__zunmqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+120 | [rocsolver_sorml2](interfacehipfort__rocsolver_1_1rocsolver__sorml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+121 | [rocsolver_dorml2](interfacehipfort__rocsolver_1_1rocsolver__dorml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+122 | [rocsolver_cunml2](interfacehipfort__rocsolver_1_1rocsolver__cunml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+123 | [rocsolver_zunml2](interfacehipfort__rocsolver_1_1rocsolver__zunml2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+124 | [rocsolver_sormlq](interfacehipfort__rocsolver_1_1rocsolver__sormlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+125 | [rocsolver_dormlq](interfacehipfort__rocsolver_1_1rocsolver__dormlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+126 | [rocsolver_cunmlq](interfacehipfort__rocsolver_1_1rocsolver__cunmlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+127 | [rocsolver_zunmlq](interfacehipfort__rocsolver_1_1rocsolver__zunmlq.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+128 | [rocsolver_sorm2l](interfacehipfort__rocsolver_1_1rocsolver__sorm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+129 | [rocsolver_dorm2l](interfacehipfort__rocsolver_1_1rocsolver__dorm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+130 | [rocsolver_cunm2l](interfacehipfort__rocsolver_1_1rocsolver__cunm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+131 | [rocsolver_zunm2l](interfacehipfort__rocsolver_1_1rocsolver__zunm2l.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+132 | [rocsolver_sormql](interfacehipfort__rocsolver_1_1rocsolver__sormql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+133 | [rocsolver_dormql](interfacehipfort__rocsolver_1_1rocsolver__dormql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+134 | [rocsolver_cunmql](interfacehipfort__rocsolver_1_1rocsolver__cunmql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+135 | [rocsolver_zunmql](interfacehipfort__rocsolver_1_1rocsolver__zunmql.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+136 | [rocsolver_sormbr](interfacehipfort__rocsolver_1_1rocsolver__sormbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+137 | [rocsolver_dormbr](interfacehipfort__rocsolver_1_1rocsolver__dormbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+138 | [rocsolver_cunmbr](interfacehipfort__rocsolver_1_1rocsolver__cunmbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+139 | [rocsolver_zunmbr](interfacehipfort__rocsolver_1_1rocsolver__zunmbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+140 | [rocsolver_sormtr](interfacehipfort__rocsolver_1_1rocsolver__sormtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+141 | [rocsolver_dormtr](interfacehipfort__rocsolver_1_1rocsolver__dormtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+142 | [rocsolver_cunmtr](interfacehipfort__rocsolver_1_1rocsolver__cunmtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+143 | [rocsolver_zunmtr](interfacehipfort__rocsolver_1_1rocsolver__zunmtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+144 | [rocsolver_sbdsqr](interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+145 | [rocsolver_dbdsqr](interfacehipfort__rocsolver_1_1rocsolver__dbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+146 | [rocsolver_cbdsqr](interfacehipfort__rocsolver_1_1rocsolver__cbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+147 | [rocsolver_zbdsqr](interfacehipfort__rocsolver_1_1rocsolver__zbdsqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+148 | [rocsolver_ssterf](interfacehipfort__rocsolver_1_1rocsolver__ssterf.html "Interface documentation") | C binding, rank_0, rank_1
+149 | [rocsolver_dsterf](interfacehipfort__rocsolver_1_1rocsolver__dsterf.html "Interface documentation") | C binding, rank_0, rank_1
+150 | [rocsolver_ssteqr](interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+151 | [rocsolver_dsteqr](interfacehipfort__rocsolver_1_1rocsolver__dsteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+152 | [rocsolver_csteqr](interfacehipfort__rocsolver_1_1rocsolver__csteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+153 | [rocsolver_zsteqr](interfacehipfort__rocsolver_1_1rocsolver__zsteqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+154 | [rocsolver_sstedc](interfacehipfort__rocsolver_1_1rocsolver__sstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+155 | [rocsolver_dstedc](interfacehipfort__rocsolver_1_1rocsolver__dstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+156 | [rocsolver_cstedc](interfacehipfort__rocsolver_1_1rocsolver__cstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+157 | [rocsolver_zstedc](interfacehipfort__rocsolver_1_1rocsolver__zstedc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+158 | [rocsolver_sstebz](interfacehipfort__rocsolver_1_1rocsolver__sstebz.html "Interface documentation") | C binding
+159 | [rocsolver_dstebz](interfacehipfort__rocsolver_1_1rocsolver__dstebz.html "Interface documentation") | C binding
+160 | [rocsolver_sstein](interfacehipfort__rocsolver_1_1rocsolver__sstein.html "Interface documentation") | C binding
+161 | [rocsolver_dstein](interfacehipfort__rocsolver_1_1rocsolver__dstein.html "Interface documentation") | C binding
+162 | [rocsolver_cstein](interfacehipfort__rocsolver_1_1rocsolver__cstein.html "Interface documentation") | C binding
+163 | [rocsolver_zstein](interfacehipfort__rocsolver_1_1rocsolver__zstein.html "Interface documentation") | C binding
+164 | [rocsolver_sbdsvdx](interfacehipfort__rocsolver_1_1rocsolver__sbdsvdx.html "Interface documentation") | C binding
+165 | [rocsolver_dbdsvdx](interfacehipfort__rocsolver_1_1rocsolver__dbdsvdx.html "Interface documentation") | C binding
+166 | [rocsolver_sgetf2_npvt](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+167 | [rocsolver_dgetf2_npvt](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+168 | [rocsolver_cgetf2_npvt](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+169 | [rocsolver_zgetf2_npvt](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+170 | [rocsolver_sgetf2_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__64.html "Interface documentation") | C binding
+171 | [rocsolver_dgetf2_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__64.html "Interface documentation") | C binding
+172 | [rocsolver_cgetf2_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__64.html "Interface documentation") | C binding
+173 | [rocsolver_zgetf2_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__64.html "Interface documentation") | C binding
+174 | [rocsolver_sgetf2_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched.html "Interface documentation") | C binding
+175 | [rocsolver_dgetf2_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched.html "Interface documentation") | C binding
+176 | [rocsolver_cgetf2_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched.html "Interface documentation") | C binding
+177 | [rocsolver_zgetf2_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched.html "Interface documentation") | C binding
+178 | [rocsolver_sgetf2_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched__64.html "Interface documentation") | C binding
+179 | [rocsolver_dgetf2_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched__64.html "Interface documentation") | C binding
+180 | [rocsolver_cgetf2_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched__64.html "Interface documentation") | C binding
+181 | [rocsolver_zgetf2_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched__64.html "Interface documentation") | C binding
+182 | [rocsolver_sgetf2_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+183 | [rocsolver_dgetf2_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+184 | [rocsolver_cgetf2_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+185 | [rocsolver_zgetf2_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+186 | [rocsolver_sgetf2_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
+187 | [rocsolver_dgetf2_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
+188 | [rocsolver_cgetf2_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
+189 | [rocsolver_zgetf2_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched__64.html "Interface documentation") | C binding
+190 | [rocsolver_sgetrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+191 | [rocsolver_dgetrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+192 | [rocsolver_cgetrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+193 | [rocsolver_zgetrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+194 | [rocsolver_sgetrf_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__64.html "Interface documentation") | C binding
+195 | [rocsolver_dgetrf_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__64.html "Interface documentation") | C binding
+196 | [rocsolver_cgetrf_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__64.html "Interface documentation") | C binding
+197 | [rocsolver_zgetrf_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__64.html "Interface documentation") | C binding
+198 | [rocsolver_sgetrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html "Interface documentation") | C binding
+199 | [rocsolver_dgetrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched.html "Interface documentation") | C binding
+200 | [rocsolver_cgetrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched.html "Interface documentation") | C binding
+201 | [rocsolver_zgetrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched.html "Interface documentation") | C binding
+202 | [rocsolver_sgetrf_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched__64.html "Interface documentation") | C binding
+203 | [rocsolver_dgetrf_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched__64.html "Interface documentation") | C binding
+204 | [rocsolver_cgetrf_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched__64.html "Interface documentation") | C binding
+205 | [rocsolver_zgetrf_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched__64.html "Interface documentation") | C binding
+206 | [rocsolver_sgetrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+207 | [rocsolver_dgetrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+208 | [rocsolver_cgetrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+209 | [rocsolver_zgetrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+210 | [rocsolver_sgetrf_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
+211 | [rocsolver_dgetrf_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
+212 | [rocsolver_cgetrf_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
+213 | [rocsolver_zgetrf_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched__64.html "Interface documentation") | C binding
+214 | [rocsolver_sgetf2](interfacehipfort__rocsolver_1_1rocsolver__sgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+215 | [rocsolver_dgetf2](interfacehipfort__rocsolver_1_1rocsolver__dgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+216 | [rocsolver_cgetf2](interfacehipfort__rocsolver_1_1rocsolver__cgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+217 | [rocsolver_zgetf2](interfacehipfort__rocsolver_1_1rocsolver__zgetf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+218 | [rocsolver_sgetf2_64](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__64.html "Interface documentation") | C binding
+219 | [rocsolver_dgetf2_64](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__64.html "Interface documentation") | C binding
+220 | [rocsolver_cgetf2_64](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__64.html "Interface documentation") | C binding
+221 | [rocsolver_zgetf2_64](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__64.html "Interface documentation") | C binding
+222 | [rocsolver_sgetf2_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+223 | [rocsolver_dgetf2_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+224 | [rocsolver_cgetf2_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+225 | [rocsolver_zgetf2_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+226 | [rocsolver_sgetf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched__64.html "Interface documentation") | C binding
+227 | [rocsolver_dgetf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched__64.html "Interface documentation") | C binding
+228 | [rocsolver_cgetf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched__64.html "Interface documentation") | C binding
+229 | [rocsolver_zgetf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched__64.html "Interface documentation") | C binding
+230 | [rocsolver_sgetf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+231 | [rocsolver_dgetf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+232 | [rocsolver_cgetf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+233 | [rocsolver_zgetf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+234 | [rocsolver_sgetf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched__64.html "Interface documentation") | C binding
+235 | [rocsolver_dgetf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched__64.html "Interface documentation") | C binding
+236 | [rocsolver_cgetf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched__64.html "Interface documentation") | C binding
+237 | [rocsolver_zgetf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched__64.html "Interface documentation") | C binding
+238 | [rocsolver_sgetrf](interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+239 | [rocsolver_dgetrf](interfacehipfort__rocsolver_1_1rocsolver__dgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+240 | [rocsolver_cgetrf](interfacehipfort__rocsolver_1_1rocsolver__cgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+241 | [rocsolver_zgetrf](interfacehipfort__rocsolver_1_1rocsolver__zgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+242 | [rocsolver_sgetrf_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__64.html "Interface documentation") | C binding
+243 | [rocsolver_dgetrf_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__64.html "Interface documentation") | C binding
+244 | [rocsolver_cgetrf_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__64.html "Interface documentation") | C binding
+245 | [rocsolver_zgetrf_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__64.html "Interface documentation") | C binding
+246 | [rocsolver_sgetrf_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+247 | [rocsolver_dgetrf_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+248 | [rocsolver_cgetrf_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+249 | [rocsolver_zgetrf_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+250 | [rocsolver_sgetrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched__64.html "Interface documentation") | C binding
+251 | [rocsolver_dgetrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched__64.html "Interface documentation") | C binding
+252 | [rocsolver_cgetrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched__64.html "Interface documentation") | C binding
+253 | [rocsolver_zgetrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched__64.html "Interface documentation") | C binding
+254 | [rocsolver_sgetrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+255 | [rocsolver_dgetrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+256 | [rocsolver_cgetrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+257 | [rocsolver_zgetrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+258 | [rocsolver_sgetrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched__64.html "Interface documentation") | C binding
+259 | [rocsolver_dgetrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched__64.html "Interface documentation") | C binding
+260 | [rocsolver_cgetrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched__64.html "Interface documentation") | C binding
+261 | [rocsolver_zgetrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched__64.html "Interface documentation") | C binding
+262 | [rocsolver_sgeqr2](interfacehipfort__rocsolver_1_1rocsolver__sgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+263 | [rocsolver_dgeqr2](interfacehipfort__rocsolver_1_1rocsolver__dgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+264 | [rocsolver_cgeqr2](interfacehipfort__rocsolver_1_1rocsolver__cgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+265 | [rocsolver_zgeqr2](interfacehipfort__rocsolver_1_1rocsolver__zgeqr2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+266 | [rocsolver_sgeqr2_64](interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__64.html "Interface documentation") | C binding
+267 | [rocsolver_dgeqr2_64](interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__64.html "Interface documentation") | C binding
+268 | [rocsolver_cgeqr2_64](interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__64.html "Interface documentation") | C binding
+269 | [rocsolver_zgeqr2_64](interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__64.html "Interface documentation") | C binding
+270 | [rocsolver_sgeqr2_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+271 | [rocsolver_dgeqr2_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+272 | [rocsolver_cgeqr2_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+273 | [rocsolver_zgeqr2_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+274 | [rocsolver_sgeqr2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched__64.html "Interface documentation") | C binding
+275 | [rocsolver_dgeqr2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched__64.html "Interface documentation") | C binding
+276 | [rocsolver_cgeqr2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched__64.html "Interface documentation") | C binding
+277 | [rocsolver_zgeqr2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched__64.html "Interface documentation") | C binding
+278 | [rocsolver_sgeqr2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+279 | [rocsolver_dgeqr2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+280 | [rocsolver_cgeqr2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+281 | [rocsolver_zgeqr2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+282 | [rocsolver_sgeqr2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched__64.html "Interface documentation") | C binding
+283 | [rocsolver_dgeqr2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched__64.html "Interface documentation") | C binding
+284 | [rocsolver_cgeqr2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched__64.html "Interface documentation") | C binding
+285 | [rocsolver_zgeqr2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched__64.html "Interface documentation") | C binding
+286 | [rocsolver_sgerq2](interfacehipfort__rocsolver_1_1rocsolver__sgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+287 | [rocsolver_dgerq2](interfacehipfort__rocsolver_1_1rocsolver__dgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+288 | [rocsolver_cgerq2](interfacehipfort__rocsolver_1_1rocsolver__cgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+289 | [rocsolver_zgerq2](interfacehipfort__rocsolver_1_1rocsolver__zgerq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+290 | [rocsolver_sgerq2_batched](interfacehipfort__rocsolver_1_1rocsolver__sgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+291 | [rocsolver_dgerq2_batched](interfacehipfort__rocsolver_1_1rocsolver__dgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+292 | [rocsolver_cgerq2_batched](interfacehipfort__rocsolver_1_1rocsolver__cgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+293 | [rocsolver_zgerq2_batched](interfacehipfort__rocsolver_1_1rocsolver__zgerq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+294 | [rocsolver_sgerq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+295 | [rocsolver_dgerq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+296 | [rocsolver_cgerq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+297 | [rocsolver_zgerq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgerq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+298 | [rocsolver_sgeql2](interfacehipfort__rocsolver_1_1rocsolver__sgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+299 | [rocsolver_dgeql2](interfacehipfort__rocsolver_1_1rocsolver__dgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+300 | [rocsolver_cgeql2](interfacehipfort__rocsolver_1_1rocsolver__cgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+301 | [rocsolver_zgeql2](interfacehipfort__rocsolver_1_1rocsolver__zgeql2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+302 | [rocsolver_sgeql2_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+303 | [rocsolver_dgeql2_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+304 | [rocsolver_cgeql2_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+305 | [rocsolver_zgeql2_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeql2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+306 | [rocsolver_sgeql2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+307 | [rocsolver_dgeql2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+308 | [rocsolver_cgeql2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+309 | [rocsolver_zgeql2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeql2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+310 | [rocsolver_sgelq2](interfacehipfort__rocsolver_1_1rocsolver__sgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+311 | [rocsolver_dgelq2](interfacehipfort__rocsolver_1_1rocsolver__dgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+312 | [rocsolver_cgelq2](interfacehipfort__rocsolver_1_1rocsolver__cgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+313 | [rocsolver_zgelq2](interfacehipfort__rocsolver_1_1rocsolver__zgelq2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+314 | [rocsolver_sgelq2_batched](interfacehipfort__rocsolver_1_1rocsolver__sgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+315 | [rocsolver_dgelq2_batched](interfacehipfort__rocsolver_1_1rocsolver__dgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+316 | [rocsolver_cgelq2_batched](interfacehipfort__rocsolver_1_1rocsolver__cgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+317 | [rocsolver_zgelq2_batched](interfacehipfort__rocsolver_1_1rocsolver__zgelq2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+318 | [rocsolver_sgelq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+319 | [rocsolver_dgelq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+320 | [rocsolver_cgelq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+321 | [rocsolver_zgelq2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgelq2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+322 | [rocsolver_sgeqrf](interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+323 | [rocsolver_dgeqrf](interfacehipfort__rocsolver_1_1rocsolver__dgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+324 | [rocsolver_cgeqrf](interfacehipfort__rocsolver_1_1rocsolver__cgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+325 | [rocsolver_zgeqrf](interfacehipfort__rocsolver_1_1rocsolver__zgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+326 | [rocsolver_sgeqrf_64](interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__64.html "Interface documentation") | C binding
+327 | [rocsolver_dgeqrf_64](interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__64.html "Interface documentation") | C binding
+328 | [rocsolver_cgeqrf_64](interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__64.html "Interface documentation") | C binding
+329 | [rocsolver_zgeqrf_64](interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__64.html "Interface documentation") | C binding
+330 | [rocsolver_sgeqrf_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+331 | [rocsolver_dgeqrf_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+332 | [rocsolver_cgeqrf_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+333 | [rocsolver_zgeqrf_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+334 | [rocsolver_sgeqrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched__64.html "Interface documentation") | C binding
+335 | [rocsolver_dgeqrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched__64.html "Interface documentation") | C binding
+336 | [rocsolver_cgeqrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched__64.html "Interface documentation") | C binding
+337 | [rocsolver_zgeqrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched__64.html "Interface documentation") | C binding
+338 | [rocsolver_sgeqrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+339 | [rocsolver_dgeqrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+340 | [rocsolver_cgeqrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+341 | [rocsolver_zgeqrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+342 | [rocsolver_sgeqrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched__64.html "Interface documentation") | C binding
+343 | [rocsolver_dgeqrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched__64.html "Interface documentation") | C binding
+344 | [rocsolver_cgeqrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched__64.html "Interface documentation") | C binding
+345 | [rocsolver_zgeqrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched__64.html "Interface documentation") | C binding
+346 | [rocsolver_sgerqf](interfacehipfort__rocsolver_1_1rocsolver__sgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+347 | [rocsolver_dgerqf](interfacehipfort__rocsolver_1_1rocsolver__dgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+348 | [rocsolver_cgerqf](interfacehipfort__rocsolver_1_1rocsolver__cgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+349 | [rocsolver_zgerqf](interfacehipfort__rocsolver_1_1rocsolver__zgerqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+350 | [rocsolver_sgerqf_batched](interfacehipfort__rocsolver_1_1rocsolver__sgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+351 | [rocsolver_dgerqf_batched](interfacehipfort__rocsolver_1_1rocsolver__dgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+352 | [rocsolver_cgerqf_batched](interfacehipfort__rocsolver_1_1rocsolver__cgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+353 | [rocsolver_zgerqf_batched](interfacehipfort__rocsolver_1_1rocsolver__zgerqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+354 | [rocsolver_sgerqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+355 | [rocsolver_dgerqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+356 | [rocsolver_cgerqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+357 | [rocsolver_zgerqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgerqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+358 | [rocsolver_sgeqlf](interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+359 | [rocsolver_dgeqlf](interfacehipfort__rocsolver_1_1rocsolver__dgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+360 | [rocsolver_cgeqlf](interfacehipfort__rocsolver_1_1rocsolver__cgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+361 | [rocsolver_zgeqlf](interfacehipfort__rocsolver_1_1rocsolver__zgeqlf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+362 | [rocsolver_sgeqlf_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+363 | [rocsolver_dgeqlf_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+364 | [rocsolver_cgeqlf_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+365 | [rocsolver_zgeqlf_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+366 | [rocsolver_sgeqlf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+367 | [rocsolver_dgeqlf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+368 | [rocsolver_cgeqlf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+369 | [rocsolver_zgeqlf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+370 | [rocsolver_sgelqf](interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+371 | [rocsolver_dgelqf](interfacehipfort__rocsolver_1_1rocsolver__dgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+372 | [rocsolver_cgelqf](interfacehipfort__rocsolver_1_1rocsolver__cgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+373 | [rocsolver_zgelqf](interfacehipfort__rocsolver_1_1rocsolver__zgelqf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+374 | [rocsolver_sgelqf_batched](interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+375 | [rocsolver_dgelqf_batched](interfacehipfort__rocsolver_1_1rocsolver__dgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+376 | [rocsolver_cgelqf_batched](interfacehipfort__rocsolver_1_1rocsolver__cgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+377 | [rocsolver_zgelqf_batched](interfacehipfort__rocsolver_1_1rocsolver__zgelqf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+378 | [rocsolver_sgelqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+379 | [rocsolver_dgelqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+380 | [rocsolver_cgelqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+381 | [rocsolver_zgelqf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgelqf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+382 | [rocsolver_sgebd2](interfacehipfort__rocsolver_1_1rocsolver__sgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+383 | [rocsolver_dgebd2](interfacehipfort__rocsolver_1_1rocsolver__dgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+384 | [rocsolver_cgebd2](interfacehipfort__rocsolver_1_1rocsolver__cgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+385 | [rocsolver_zgebd2](interfacehipfort__rocsolver_1_1rocsolver__zgebd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+386 | [rocsolver_sgebd2_batched](interfacehipfort__rocsolver_1_1rocsolver__sgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+387 | [rocsolver_dgebd2_batched](interfacehipfort__rocsolver_1_1rocsolver__dgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+388 | [rocsolver_cgebd2_batched](interfacehipfort__rocsolver_1_1rocsolver__cgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+389 | [rocsolver_zgebd2_batched](interfacehipfort__rocsolver_1_1rocsolver__zgebd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+390 | [rocsolver_sgebd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+391 | [rocsolver_dgebd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+392 | [rocsolver_cgebd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+393 | [rocsolver_zgebd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgebd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+394 | [rocsolver_sgebrd](interfacehipfort__rocsolver_1_1rocsolver__sgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+395 | [rocsolver_dgebrd](interfacehipfort__rocsolver_1_1rocsolver__dgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+396 | [rocsolver_cgebrd](interfacehipfort__rocsolver_1_1rocsolver__cgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+397 | [rocsolver_zgebrd](interfacehipfort__rocsolver_1_1rocsolver__zgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+398 | [rocsolver_sgebrd_batched](interfacehipfort__rocsolver_1_1rocsolver__sgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+399 | [rocsolver_dgebrd_batched](interfacehipfort__rocsolver_1_1rocsolver__dgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+400 | [rocsolver_cgebrd_batched](interfacehipfort__rocsolver_1_1rocsolver__cgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+401 | [rocsolver_zgebrd_batched](interfacehipfort__rocsolver_1_1rocsolver__zgebrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+402 | [rocsolver_sgebrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+403 | [rocsolver_dgebrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+404 | [rocsolver_cgebrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+405 | [rocsolver_zgebrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgebrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+406 | [rocsolver_sgetrs](interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+407 | [rocsolver_dgetrs](interfacehipfort__rocsolver_1_1rocsolver__dgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+408 | [rocsolver_cgetrs](interfacehipfort__rocsolver_1_1rocsolver__cgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+409 | [rocsolver_zgetrs](interfacehipfort__rocsolver_1_1rocsolver__zgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+410 | [rocsolver_sgetrs_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__64.html "Interface documentation") | C binding
+411 | [rocsolver_dgetrs_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__64.html "Interface documentation") | C binding
+412 | [rocsolver_cgetrs_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__64.html "Interface documentation") | C binding
+413 | [rocsolver_zgetrs_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__64.html "Interface documentation") | C binding
+414 | [rocsolver_sgetrs_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
+415 | [rocsolver_dgetrs_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
+416 | [rocsolver_cgetrs_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
+417 | [rocsolver_zgetrs_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched.html "Interface documentation") | C binding, rank_0, rank_1
+418 | [rocsolver_sgetrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched__64.html "Interface documentation") | C binding
+419 | [rocsolver_dgetrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched__64.html "Interface documentation") | C binding
+420 | [rocsolver_cgetrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched__64.html "Interface documentation") | C binding
+421 | [rocsolver_zgetrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched__64.html "Interface documentation") | C binding
+422 | [rocsolver_sgetrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+423 | [rocsolver_dgetrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+424 | [rocsolver_cgetrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+425 | [rocsolver_zgetrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+426 | [rocsolver_sgetrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched__64.html "Interface documentation") | C binding
+427 | [rocsolver_dgetrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched__64.html "Interface documentation") | C binding
+428 | [rocsolver_cgetrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched__64.html "Interface documentation") | C binding
+429 | [rocsolver_zgetrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched__64.html "Interface documentation") | C binding
+430 | [rocsolver_ssytrs](interfacehipfort__rocsolver_1_1rocsolver__ssytrs.html "Interface documentation") | C binding
+431 | [rocsolver_dsytrs](interfacehipfort__rocsolver_1_1rocsolver__dsytrs.html "Interface documentation") | C binding
+432 | [rocsolver_csytrs](interfacehipfort__rocsolver_1_1rocsolver__csytrs.html "Interface documentation") | C binding
+433 | [rocsolver_zsytrs](interfacehipfort__rocsolver_1_1rocsolver__zsytrs.html "Interface documentation") | C binding
+434 | [rocsolver_ssytrs_64](interfacehipfort__rocsolver_1_1rocsolver__ssytrs__64.html "Interface documentation") | C binding
+435 | [rocsolver_dsytrs_64](interfacehipfort__rocsolver_1_1rocsolver__dsytrs__64.html "Interface documentation") | C binding
+436 | [rocsolver_csytrs_64](interfacehipfort__rocsolver_1_1rocsolver__csytrs__64.html "Interface documentation") | C binding
+437 | [rocsolver_zsytrs_64](interfacehipfort__rocsolver_1_1rocsolver__zsytrs__64.html "Interface documentation") | C binding
+438 | [rocsolver_ssytrs_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytrs__batched.html "Interface documentation") | C binding
+439 | [rocsolver_dsytrs_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytrs__batched.html "Interface documentation") | C binding
+440 | [rocsolver_csytrs_batched](interfacehipfort__rocsolver_1_1rocsolver__csytrs__batched.html "Interface documentation") | C binding
+441 | [rocsolver_zsytrs_batched](interfacehipfort__rocsolver_1_1rocsolver__zsytrs__batched.html "Interface documentation") | C binding
+442 | [rocsolver_ssytrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__ssytrs__batched__64.html "Interface documentation") | C binding
+443 | [rocsolver_dsytrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dsytrs__batched__64.html "Interface documentation") | C binding
+444 | [rocsolver_csytrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__csytrs__batched__64.html "Interface documentation") | C binding
+445 | [rocsolver_zsytrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zsytrs__batched__64.html "Interface documentation") | C binding
+446 | [rocsolver_ssytrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytrs__strided__batched.html "Interface documentation") | C binding
+447 | [rocsolver_dsytrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytrs__strided__batched.html "Interface documentation") | C binding
+448 | [rocsolver_csytrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__csytrs__strided__batched.html "Interface documentation") | C binding
+449 | [rocsolver_zsytrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zsytrs__strided__batched.html "Interface documentation") | C binding
+450 | [rocsolver_ssytrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__ssytrs__strided__batched__64.html "Interface documentation") | C binding
+451 | [rocsolver_dsytrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dsytrs__strided__batched__64.html "Interface documentation") | C binding
+452 | [rocsolver_csytrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__csytrs__strided__batched__64.html "Interface documentation") | C binding
+453 | [rocsolver_zsytrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zsytrs__strided__batched__64.html "Interface documentation") | C binding
+454 | [rocsolver_sgesv](interfacehipfort__rocsolver_1_1rocsolver__sgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+455 | [rocsolver_dgesv](interfacehipfort__rocsolver_1_1rocsolver__dgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+456 | [rocsolver_cgesv](interfacehipfort__rocsolver_1_1rocsolver__cgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+457 | [rocsolver_zgesv](interfacehipfort__rocsolver_1_1rocsolver__zgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+458 | [rocsolver_sgesv_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+459 | [rocsolver_dgesv_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+460 | [rocsolver_cgesv_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+461 | [rocsolver_zgesv_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+462 | [rocsolver_sgesv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+463 | [rocsolver_dgesv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+464 | [rocsolver_cgesv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+465 | [rocsolver_zgesv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+466 | [rocsolver_sgetrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt.html "Interface documentation") | C binding
+467 | [rocsolver_dgetrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt.html "Interface documentation") | C binding
+468 | [rocsolver_cgetrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt.html "Interface documentation") | C binding
+469 | [rocsolver_zgetrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt.html "Interface documentation") | C binding
+470 | [rocsolver_sgetrs_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__64.html "Interface documentation") | C binding
+471 | [rocsolver_dgetrs_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__64.html "Interface documentation") | C binding
+472 | [rocsolver_cgetrs_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__64.html "Interface documentation") | C binding
+473 | [rocsolver_zgetrs_npvt_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__64.html "Interface documentation") | C binding
+474 | [rocsolver_sgetrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__batched.html "Interface documentation") | C binding
+475 | [rocsolver_dgetrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__batched.html "Interface documentation") | C binding
+476 | [rocsolver_cgetrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__batched.html "Interface documentation") | C binding
+477 | [rocsolver_zgetrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__batched.html "Interface documentation") | C binding
+478 | [rocsolver_sgetrs_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__batched__64.html "Interface documentation") | C binding
+479 | [rocsolver_dgetrs_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__batched__64.html "Interface documentation") | C binding
+480 | [rocsolver_cgetrs_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__batched__64.html "Interface documentation") | C binding
+481 | [rocsolver_zgetrs_npvt_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__batched__64.html "Interface documentation") | C binding
+482 | [rocsolver_sgetrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__strided__batched.html "Interface documentation") | C binding
+483 | [rocsolver_dgetrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__strided__batched.html "Interface documentation") | C binding
+484 | [rocsolver_cgetrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__strided__batched.html "Interface documentation") | C binding
+485 | [rocsolver_zgetrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__strided__batched.html "Interface documentation") | C binding
+486 | [rocsolver_sgetrs_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__sgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
+487 | [rocsolver_dgetrs_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
+488 | [rocsolver_cgetrs_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
+489 | [rocsolver_zgetrs_npvt_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zgetrs__npvt__strided__batched__64.html "Interface documentation") | C binding
+490 | [rocsolver_sgetri](interfacehipfort__rocsolver_1_1rocsolver__sgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+491 | [rocsolver_dgetri](interfacehipfort__rocsolver_1_1rocsolver__dgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+492 | [rocsolver_cgetri](interfacehipfort__rocsolver_1_1rocsolver__cgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+493 | [rocsolver_zgetri](interfacehipfort__rocsolver_1_1rocsolver__zgetri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+494 | [rocsolver_sgetri_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
+495 | [rocsolver_dgetri_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
+496 | [rocsolver_cgetri_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
+497 | [rocsolver_zgetri_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__batched.html "Interface documentation") | C binding, rank_0, rank_1
+498 | [rocsolver_sgetri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+499 | [rocsolver_dgetri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+500 | [rocsolver_cgetri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+501 | [rocsolver_zgetri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+502 | [rocsolver_sgetri_npvt](interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+503 | [rocsolver_dgetri_npvt](interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+504 | [rocsolver_cgetri_npvt](interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+505 | [rocsolver_zgetri_npvt](interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+506 | [rocsolver_sgetri_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__batched.html "Interface documentation") | C binding
+507 | [rocsolver_dgetri_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__batched.html "Interface documentation") | C binding
+508 | [rocsolver_cgetri_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__batched.html "Interface documentation") | C binding
+509 | [rocsolver_zgetri_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__batched.html "Interface documentation") | C binding
+510 | [rocsolver_sgetri_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+511 | [rocsolver_dgetri_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+512 | [rocsolver_cgetri_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+513 | [rocsolver_zgetri_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+514 | [rocsolver_sgels](interfacehipfort__rocsolver_1_1rocsolver__sgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+515 | [rocsolver_dgels](interfacehipfort__rocsolver_1_1rocsolver__dgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+516 | [rocsolver_cgels](interfacehipfort__rocsolver_1_1rocsolver__cgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+517 | [rocsolver_zgels](interfacehipfort__rocsolver_1_1rocsolver__zgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+518 | [rocsolver_sgels_batched](interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html "Interface documentation") | C binding
+519 | [rocsolver_dgels_batched](interfacehipfort__rocsolver_1_1rocsolver__dgels__batched.html "Interface documentation") | C binding
+520 | [rocsolver_cgels_batched](interfacehipfort__rocsolver_1_1rocsolver__cgels__batched.html "Interface documentation") | C binding
+521 | [rocsolver_zgels_batched](interfacehipfort__rocsolver_1_1rocsolver__zgels__batched.html "Interface documentation") | C binding
+522 | [rocsolver_sgels_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+523 | [rocsolver_dgels_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+524 | [rocsolver_cgels_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+525 | [rocsolver_zgels_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgels__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+526 | [rocsolver_spotf2](interfacehipfort__rocsolver_1_1rocsolver__spotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+527 | [rocsolver_dpotf2](interfacehipfort__rocsolver_1_1rocsolver__dpotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+528 | [rocsolver_cpotf2](interfacehipfort__rocsolver_1_1rocsolver__cpotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+529 | [rocsolver_zpotf2](interfacehipfort__rocsolver_1_1rocsolver__zpotf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+530 | [rocsolver_spotf2_64](interfacehipfort__rocsolver_1_1rocsolver__spotf2__64.html "Interface documentation") | C binding
+531 | [rocsolver_dpotf2_64](interfacehipfort__rocsolver_1_1rocsolver__dpotf2__64.html "Interface documentation") | C binding
+532 | [rocsolver_cpotf2_64](interfacehipfort__rocsolver_1_1rocsolver__cpotf2__64.html "Interface documentation") | C binding
+533 | [rocsolver_zpotf2_64](interfacehipfort__rocsolver_1_1rocsolver__zpotf2__64.html "Interface documentation") | C binding
+534 | [rocsolver_spotf2_batched](interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched.html "Interface documentation") | C binding
+535 | [rocsolver_dpotf2_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched.html "Interface documentation") | C binding
+536 | [rocsolver_cpotf2_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched.html "Interface documentation") | C binding
+537 | [rocsolver_zpotf2_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched.html "Interface documentation") | C binding
+538 | [rocsolver_spotf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched__64.html "Interface documentation") | C binding
+539 | [rocsolver_dpotf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched__64.html "Interface documentation") | C binding
+540 | [rocsolver_cpotf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched__64.html "Interface documentation") | C binding
+541 | [rocsolver_zpotf2_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched__64.html "Interface documentation") | C binding
+542 | [rocsolver_spotf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+543 | [rocsolver_dpotf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+544 | [rocsolver_cpotf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+545 | [rocsolver_zpotf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+546 | [rocsolver_spotf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched__64.html "Interface documentation") | C binding
+547 | [rocsolver_dpotf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched__64.html "Interface documentation") | C binding
+548 | [rocsolver_cpotf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched__64.html "Interface documentation") | C binding
+549 | [rocsolver_zpotf2_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched__64.html "Interface documentation") | C binding
+550 | [rocsolver_spotrf](interfacehipfort__rocsolver_1_1rocsolver__spotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+551 | [rocsolver_dpotrf](interfacehipfort__rocsolver_1_1rocsolver__dpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+552 | [rocsolver_cpotrf](interfacehipfort__rocsolver_1_1rocsolver__cpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+553 | [rocsolver_zpotrf](interfacehipfort__rocsolver_1_1rocsolver__zpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+554 | [rocsolver_spotrf_64](interfacehipfort__rocsolver_1_1rocsolver__spotrf__64.html "Interface documentation") | C binding
+555 | [rocsolver_dpotrf_64](interfacehipfort__rocsolver_1_1rocsolver__dpotrf__64.html "Interface documentation") | C binding
+556 | [rocsolver_cpotrf_64](interfacehipfort__rocsolver_1_1rocsolver__cpotrf__64.html "Interface documentation") | C binding
+557 | [rocsolver_zpotrf_64](interfacehipfort__rocsolver_1_1rocsolver__zpotrf__64.html "Interface documentation") | C binding
+558 | [rocsolver_spotrf_batched](interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html "Interface documentation") | C binding
+559 | [rocsolver_dpotrf_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched.html "Interface documentation") | C binding
+560 | [rocsolver_cpotrf_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched.html "Interface documentation") | C binding
+561 | [rocsolver_zpotrf_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched.html "Interface documentation") | C binding
+562 | [rocsolver_spotrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched__64.html "Interface documentation") | C binding
+563 | [rocsolver_dpotrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched__64.html "Interface documentation") | C binding
+564 | [rocsolver_cpotrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched__64.html "Interface documentation") | C binding
+565 | [rocsolver_zpotrf_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched__64.html "Interface documentation") | C binding
+566 | [rocsolver_spotrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+567 | [rocsolver_dpotrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+568 | [rocsolver_cpotrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+569 | [rocsolver_zpotrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+570 | [rocsolver_spotrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched__64.html "Interface documentation") | C binding
+571 | [rocsolver_dpotrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched__64.html "Interface documentation") | C binding
+572 | [rocsolver_cpotrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched__64.html "Interface documentation") | C binding
+573 | [rocsolver_zpotrf_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched__64.html "Interface documentation") | C binding
+574 | [rocsolver_spotrs](interfacehipfort__rocsolver_1_1rocsolver__spotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+575 | [rocsolver_dpotrs](interfacehipfort__rocsolver_1_1rocsolver__dpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+576 | [rocsolver_cpotrs](interfacehipfort__rocsolver_1_1rocsolver__cpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+577 | [rocsolver_zpotrs](interfacehipfort__rocsolver_1_1rocsolver__zpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+578 | [rocsolver_spotrs_64](interfacehipfort__rocsolver_1_1rocsolver__spotrs__64.html "Interface documentation") | C binding
+579 | [rocsolver_dpotrs_64](interfacehipfort__rocsolver_1_1rocsolver__dpotrs__64.html "Interface documentation") | C binding
+580 | [rocsolver_cpotrs_64](interfacehipfort__rocsolver_1_1rocsolver__cpotrs__64.html "Interface documentation") | C binding
+581 | [rocsolver_zpotrs_64](interfacehipfort__rocsolver_1_1rocsolver__zpotrs__64.html "Interface documentation") | C binding
+582 | [rocsolver_spotrs_batched](interfacehipfort__rocsolver_1_1rocsolver__spotrs__batched.html "Interface documentation") | C binding
+583 | [rocsolver_dpotrs_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotrs__batched.html "Interface documentation") | C binding
+584 | [rocsolver_cpotrs_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotrs__batched.html "Interface documentation") | C binding
+585 | [rocsolver_zpotrs_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotrs__batched.html "Interface documentation") | C binding
+586 | [rocsolver_spotrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__spotrs__batched__64.html "Interface documentation") | C binding
+587 | [rocsolver_dpotrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dpotrs__batched__64.html "Interface documentation") | C binding
+588 | [rocsolver_cpotrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cpotrs__batched__64.html "Interface documentation") | C binding
+589 | [rocsolver_zpotrs_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zpotrs__batched__64.html "Interface documentation") | C binding
+590 | [rocsolver_spotrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__spotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+591 | [rocsolver_dpotrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+592 | [rocsolver_cpotrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+593 | [rocsolver_zpotrs_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotrs__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+594 | [rocsolver_spotrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__spotrs__strided__batched__64.html "Interface documentation") | C binding
+595 | [rocsolver_dpotrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dpotrs__strided__batched__64.html "Interface documentation") | C binding
+596 | [rocsolver_cpotrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cpotrs__strided__batched__64.html "Interface documentation") | C binding
+597 | [rocsolver_zpotrs_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zpotrs__strided__batched__64.html "Interface documentation") | C binding
+598 | [rocsolver_sposv](interfacehipfort__rocsolver_1_1rocsolver__sposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+599 | [rocsolver_dposv](interfacehipfort__rocsolver_1_1rocsolver__dposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+600 | [rocsolver_cposv](interfacehipfort__rocsolver_1_1rocsolver__cposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+601 | [rocsolver_zposv](interfacehipfort__rocsolver_1_1rocsolver__zposv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+602 | [rocsolver_sposv_batched](interfacehipfort__rocsolver_1_1rocsolver__sposv__batched.html "Interface documentation") | C binding
+603 | [rocsolver_dposv_batched](interfacehipfort__rocsolver_1_1rocsolver__dposv__batched.html "Interface documentation") | C binding
+604 | [rocsolver_cposv_batched](interfacehipfort__rocsolver_1_1rocsolver__cposv__batched.html "Interface documentation") | C binding
+605 | [rocsolver_zposv_batched](interfacehipfort__rocsolver_1_1rocsolver__zposv__batched.html "Interface documentation") | C binding
+606 | [rocsolver_sposv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+607 | [rocsolver_dposv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+608 | [rocsolver_cposv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+609 | [rocsolver_zposv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zposv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+610 | [rocsolver_spotri](interfacehipfort__rocsolver_1_1rocsolver__spotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+611 | [rocsolver_dpotri](interfacehipfort__rocsolver_1_1rocsolver__dpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+612 | [rocsolver_cpotri](interfacehipfort__rocsolver_1_1rocsolver__cpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+613 | [rocsolver_zpotri](interfacehipfort__rocsolver_1_1rocsolver__zpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+614 | [rocsolver_spotri_batched](interfacehipfort__rocsolver_1_1rocsolver__spotri__batched.html "Interface documentation") | C binding
+615 | [rocsolver_dpotri_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotri__batched.html "Interface documentation") | C binding
+616 | [rocsolver_cpotri_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotri__batched.html "Interface documentation") | C binding
+617 | [rocsolver_zpotri_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotri__batched.html "Interface documentation") | C binding
+618 | [rocsolver_spotri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__spotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+619 | [rocsolver_dpotri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dpotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+620 | [rocsolver_cpotri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cpotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+621 | [rocsolver_zpotri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zpotri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+622 | [rocsolver_sgesvd](interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+623 | [rocsolver_dgesvd](interfacehipfort__rocsolver_1_1rocsolver__dgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+624 | [rocsolver_cgesvd](interfacehipfort__rocsolver_1_1rocsolver__cgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+625 | [rocsolver_zgesvd](interfacehipfort__rocsolver_1_1rocsolver__zgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+626 | [rocsolver_sgesvd_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+627 | [rocsolver_dgesvd_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+628 | [rocsolver_cgesvd_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+629 | [rocsolver_zgesvd_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesvd__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+630 | [rocsolver_sgesvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+631 | [rocsolver_dgesvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+632 | [rocsolver_cgesvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+633 | [rocsolver_zgesvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+634 | [rocsolver_sgesdd](interfacehipfort__rocsolver_1_1rocsolver__sgesdd.html "Interface documentation") | C binding
+635 | [rocsolver_dgesdd](interfacehipfort__rocsolver_1_1rocsolver__dgesdd.html "Interface documentation") | C binding
+636 | [rocsolver_cgesdd](interfacehipfort__rocsolver_1_1rocsolver__cgesdd.html "Interface documentation") | C binding
+637 | [rocsolver_zgesdd](interfacehipfort__rocsolver_1_1rocsolver__zgesdd.html "Interface documentation") | C binding
+638 | [rocsolver_sgesdd_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesdd__batched.html "Interface documentation") | C binding
+639 | [rocsolver_dgesdd_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesdd__batched.html "Interface documentation") | C binding
+640 | [rocsolver_cgesdd_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesdd__batched.html "Interface documentation") | C binding
+641 | [rocsolver_zgesdd_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesdd__batched.html "Interface documentation") | C binding
+642 | [rocsolver_sgesdd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesdd__strided__batched.html "Interface documentation") | C binding
+643 | [rocsolver_dgesdd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesdd__strided__batched.html "Interface documentation") | C binding
+644 | [rocsolver_cgesdd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesdd__strided__batched.html "Interface documentation") | C binding
+645 | [rocsolver_zgesdd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesdd__strided__batched.html "Interface documentation") | C binding
+646 | [rocsolver_sgesvdj](interfacehipfort__rocsolver_1_1rocsolver__sgesvdj.html "Interface documentation") | C binding
+647 | [rocsolver_dgesvdj](interfacehipfort__rocsolver_1_1rocsolver__dgesvdj.html "Interface documentation") | C binding
+648 | [rocsolver_cgesvdj](interfacehipfort__rocsolver_1_1rocsolver__cgesvdj.html "Interface documentation") | C binding
+649 | [rocsolver_zgesvdj](interfacehipfort__rocsolver_1_1rocsolver__zgesvdj.html "Interface documentation") | C binding
+650 | [rocsolver_sgesvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesvdj__batched.html "Interface documentation") | C binding
+651 | [rocsolver_dgesvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesvdj__batched.html "Interface documentation") | C binding
+652 | [rocsolver_cgesvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesvdj__batched.html "Interface documentation") | C binding
+653 | [rocsolver_zgesvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesvdj__batched.html "Interface documentation") | C binding
+654 | [rocsolver_sgesvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesvdj__strided__batched.html "Interface documentation") | C binding
+655 | [rocsolver_dgesvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesvdj__strided__batched.html "Interface documentation") | C binding
+656 | [rocsolver_cgesvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesvdj__strided__batched.html "Interface documentation") | C binding
+657 | [rocsolver_zgesvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesvdj__strided__batched.html "Interface documentation") | C binding
+658 | [rocsolver_sgesvdx](interfacehipfort__rocsolver_1_1rocsolver__sgesvdx.html "Interface documentation") | C binding
+659 | [rocsolver_dgesvdx](interfacehipfort__rocsolver_1_1rocsolver__dgesvdx.html "Interface documentation") | C binding
+660 | [rocsolver_cgesvdx](interfacehipfort__rocsolver_1_1rocsolver__cgesvdx.html "Interface documentation") | C binding
+661 | [rocsolver_zgesvdx](interfacehipfort__rocsolver_1_1rocsolver__zgesvdx.html "Interface documentation") | C binding
+662 | [rocsolver_sgesvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesvdx__batched.html "Interface documentation") | C binding
+663 | [rocsolver_dgesvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesvdx__batched.html "Interface documentation") | C binding
+664 | [rocsolver_cgesvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesvdx__batched.html "Interface documentation") | C binding
+665 | [rocsolver_zgesvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesvdx__batched.html "Interface documentation") | C binding
+666 | [rocsolver_sgesvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgesvdx__strided__batched.html "Interface documentation") | C binding
+667 | [rocsolver_dgesvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgesvdx__strided__batched.html "Interface documentation") | C binding
+668 | [rocsolver_cgesvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgesvdx__strided__batched.html "Interface documentation") | C binding
+669 | [rocsolver_zgesvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgesvdx__strided__batched.html "Interface documentation") | C binding
+670 | [rocsolver_ssytd2](interfacehipfort__rocsolver_1_1rocsolver__ssytd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+671 | [rocsolver_dsytd2](interfacehipfort__rocsolver_1_1rocsolver__dsytd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+672 | [rocsolver_chetd2](interfacehipfort__rocsolver_1_1rocsolver__chetd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+673 | [rocsolver_zhetd2](interfacehipfort__rocsolver_1_1rocsolver__zhetd2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+674 | [rocsolver_ssytd2_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+675 | [rocsolver_dsytd2_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+676 | [rocsolver_chetd2_batched](interfacehipfort__rocsolver_1_1rocsolver__chetd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+677 | [rocsolver_zhetd2_batched](interfacehipfort__rocsolver_1_1rocsolver__zhetd2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+678 | [rocsolver_ssytd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+679 | [rocsolver_dsytd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+680 | [rocsolver_chetd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chetd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+681 | [rocsolver_zhetd2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhetd2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+682 | [rocsolver_ssytrd](interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+683 | [rocsolver_dsytrd](interfacehipfort__rocsolver_1_1rocsolver__dsytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+684 | [rocsolver_chetrd](interfacehipfort__rocsolver_1_1rocsolver__chetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+685 | [rocsolver_zhetrd](interfacehipfort__rocsolver_1_1rocsolver__zhetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+686 | [rocsolver_ssytrd_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+687 | [rocsolver_dsytrd_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+688 | [rocsolver_chetrd_batched](interfacehipfort__rocsolver_1_1rocsolver__chetrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+689 | [rocsolver_zhetrd_batched](interfacehipfort__rocsolver_1_1rocsolver__zhetrd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+690 | [rocsolver_ssytrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+691 | [rocsolver_dsytrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+692 | [rocsolver_chetrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chetrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+693 | [rocsolver_zhetrd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhetrd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+694 | [rocsolver_ssygs2](interfacehipfort__rocsolver_1_1rocsolver__ssygs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+695 | [rocsolver_dsygs2](interfacehipfort__rocsolver_1_1rocsolver__dsygs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+696 | [rocsolver_chegs2](interfacehipfort__rocsolver_1_1rocsolver__chegs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+697 | [rocsolver_zhegs2](interfacehipfort__rocsolver_1_1rocsolver__zhegs2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+698 | [rocsolver_ssygs2_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygs2__batched.html "Interface documentation") | C binding
+699 | [rocsolver_dsygs2_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygs2__batched.html "Interface documentation") | C binding
+700 | [rocsolver_chegs2_batched](interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html "Interface documentation") | C binding
+701 | [rocsolver_zhegs2_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegs2__batched.html "Interface documentation") | C binding
+702 | [rocsolver_ssygs2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+703 | [rocsolver_dsygs2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+704 | [rocsolver_chegs2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+705 | [rocsolver_zhegs2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegs2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+706 | [rocsolver_ssygst](interfacehipfort__rocsolver_1_1rocsolver__ssygst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+707 | [rocsolver_dsygst](interfacehipfort__rocsolver_1_1rocsolver__dsygst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+708 | [rocsolver_chegst](interfacehipfort__rocsolver_1_1rocsolver__chegst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+709 | [rocsolver_zhegst](interfacehipfort__rocsolver_1_1rocsolver__zhegst.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+710 | [rocsolver_ssygst_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygst__batched.html "Interface documentation") | C binding
+711 | [rocsolver_dsygst_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygst__batched.html "Interface documentation") | C binding
+712 | [rocsolver_chegst_batched](interfacehipfort__rocsolver_1_1rocsolver__chegst__batched.html "Interface documentation") | C binding
+713 | [rocsolver_zhegst_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegst__batched.html "Interface documentation") | C binding
+714 | [rocsolver_ssygst_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+715 | [rocsolver_dsygst_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+716 | [rocsolver_chegst_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+717 | [rocsolver_zhegst_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegst__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+718 | [rocsolver_ssyev](interfacehipfort__rocsolver_1_1rocsolver__ssyev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+719 | [rocsolver_dsyev](interfacehipfort__rocsolver_1_1rocsolver__dsyev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+720 | [rocsolver_ssyev_64](interfacehipfort__rocsolver_1_1rocsolver__ssyev__64.html "Interface documentation") | C binding
+721 | [rocsolver_dsyev_64](interfacehipfort__rocsolver_1_1rocsolver__dsyev__64.html "Interface documentation") | C binding
+722 | [rocsolver_cheev](interfacehipfort__rocsolver_1_1rocsolver__cheev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+723 | [rocsolver_zheev](interfacehipfort__rocsolver_1_1rocsolver__zheev.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+724 | [rocsolver_cheev_64](interfacehipfort__rocsolver_1_1rocsolver__cheev__64.html "Interface documentation") | C binding
+725 | [rocsolver_zheev_64](interfacehipfort__rocsolver_1_1rocsolver__zheev__64.html "Interface documentation") | C binding
+726 | [rocsolver_ssyev_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched.html "Interface documentation") | C binding, rank_0, rank_1
+727 | [rocsolver_dsyev_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched.html "Interface documentation") | C binding, rank_0, rank_1
+728 | [rocsolver_ssyev_batched_64](interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched__64.html "Interface documentation") | C binding
+729 | [rocsolver_dsyev_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched__64.html "Interface documentation") | C binding
+730 | [rocsolver_cheev_batched](interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html "Interface documentation") | C binding, rank_0, rank_1
+731 | [rocsolver_zheev_batched](interfacehipfort__rocsolver_1_1rocsolver__zheev__batched.html "Interface documentation") | C binding, rank_0, rank_1
+732 | [rocsolver_cheev_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cheev__batched__64.html "Interface documentation") | C binding
+733 | [rocsolver_zheev_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zheev__batched__64.html "Interface documentation") | C binding
+734 | [rocsolver_ssyev_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+735 | [rocsolver_dsyev_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+736 | [rocsolver_ssyev_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched__64.html "Interface documentation") | C binding
+737 | [rocsolver_dsyev_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched__64.html "Interface documentation") | C binding
+738 | [rocsolver_cheev_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+739 | [rocsolver_zheev_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+740 | [rocsolver_cheev_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched__64.html "Interface documentation") | C binding
+741 | [rocsolver_zheev_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched__64.html "Interface documentation") | C binding
+742 | [rocsolver_ssyevd](interfacehipfort__rocsolver_1_1rocsolver__ssyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+743 | [rocsolver_dsyevd](interfacehipfort__rocsolver_1_1rocsolver__dsyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+744 | [rocsolver_ssyevd_64](interfacehipfort__rocsolver_1_1rocsolver__ssyevd__64.html "Interface documentation") | C binding
+745 | [rocsolver_dsyevd_64](interfacehipfort__rocsolver_1_1rocsolver__dsyevd__64.html "Interface documentation") | C binding
+746 | [rocsolver_cheevd](interfacehipfort__rocsolver_1_1rocsolver__cheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+747 | [rocsolver_zheevd](interfacehipfort__rocsolver_1_1rocsolver__zheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+748 | [rocsolver_cheevd_64](interfacehipfort__rocsolver_1_1rocsolver__cheevd__64.html "Interface documentation") | C binding
+749 | [rocsolver_zheevd_64](interfacehipfort__rocsolver_1_1rocsolver__zheevd__64.html "Interface documentation") | C binding
+750 | [rocsolver_ssyevd_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+751 | [rocsolver_dsyevd_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+752 | [rocsolver_ssyevd_batched_64](interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched__64.html "Interface documentation") | C binding
+753 | [rocsolver_dsyevd_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched__64.html "Interface documentation") | C binding
+754 | [rocsolver_cheevd_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+755 | [rocsolver_zheevd_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+756 | [rocsolver_cheevd_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched__64.html "Interface documentation") | C binding
+757 | [rocsolver_zheevd_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched__64.html "Interface documentation") | C binding
+758 | [rocsolver_ssyevd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+759 | [rocsolver_dsyevd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+760 | [rocsolver_ssyevd_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched__64.html "Interface documentation") | C binding
+761 | [rocsolver_dsyevd_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched__64.html "Interface documentation") | C binding
+762 | [rocsolver_cheevd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+763 | [rocsolver_zheevd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+764 | [rocsolver_cheevd_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched__64.html "Interface documentation") | C binding
+765 | [rocsolver_zheevd_strided_batched_64](interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched__64.html "Interface documentation") | C binding
+766 | [rocsolver_ssyevdj](interfacehipfort__rocsolver_1_1rocsolver__ssyevdj.html "Interface documentation") | C binding
+767 | [rocsolver_dsyevdj](interfacehipfort__rocsolver_1_1rocsolver__dsyevdj.html "Interface documentation") | C binding
+768 | [rocsolver_cheevdj](interfacehipfort__rocsolver_1_1rocsolver__cheevdj.html "Interface documentation") | C binding
+769 | [rocsolver_zheevdj](interfacehipfort__rocsolver_1_1rocsolver__zheevdj.html "Interface documentation") | C binding
+770 | [rocsolver_ssyevdj_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevdj__batched.html "Interface documentation") | C binding
+771 | [rocsolver_dsyevdj_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevdj__batched.html "Interface documentation") | C binding
+772 | [rocsolver_cheevdj_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevdj__batched.html "Interface documentation") | C binding
+773 | [rocsolver_zheevdj_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevdj__batched.html "Interface documentation") | C binding
+774 | [rocsolver_ssyevdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevdj__strided__batched.html "Interface documentation") | C binding
+775 | [rocsolver_dsyevdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevdj__strided__batched.html "Interface documentation") | C binding
+776 | [rocsolver_cheevdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevdj__strided__batched.html "Interface documentation") | C binding
+777 | [rocsolver_zheevdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevdj__strided__batched.html "Interface documentation") | C binding
+778 | [rocsolver_ssygvdj](interfacehipfort__rocsolver_1_1rocsolver__ssygvdj.html "Interface documentation") | C binding
+779 | [rocsolver_dsygvdj](interfacehipfort__rocsolver_1_1rocsolver__dsygvdj.html "Interface documentation") | C binding
+780 | [rocsolver_chegvdj](interfacehipfort__rocsolver_1_1rocsolver__chegvdj.html "Interface documentation") | C binding
+781 | [rocsolver_zhegvdj](interfacehipfort__rocsolver_1_1rocsolver__zhegvdj.html "Interface documentation") | C binding
+782 | [rocsolver_ssygvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvdj__batched.html "Interface documentation") | C binding
+783 | [rocsolver_dsygvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvdj__batched.html "Interface documentation") | C binding
+784 | [rocsolver_chegvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvdj__batched.html "Interface documentation") | C binding
+785 | [rocsolver_zhegvdj_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvdj__batched.html "Interface documentation") | C binding
+786 | [rocsolver_ssygvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvdj__strided__batched.html "Interface documentation") | C binding
+787 | [rocsolver_dsygvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvdj__strided__batched.html "Interface documentation") | C binding
+788 | [rocsolver_chegvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvdj__strided__batched.html "Interface documentation") | C binding
+789 | [rocsolver_zhegvdj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvdj__strided__batched.html "Interface documentation") | C binding
+790 | [rocsolver_ssyevj](interfacehipfort__rocsolver_1_1rocsolver__ssyevj.html "Interface documentation") | C binding
+791 | [rocsolver_dsyevj](interfacehipfort__rocsolver_1_1rocsolver__dsyevj.html "Interface documentation") | C binding
+792 | [rocsolver_cheevj](interfacehipfort__rocsolver_1_1rocsolver__cheevj.html "Interface documentation") | C binding
+793 | [rocsolver_zheevj](interfacehipfort__rocsolver_1_1rocsolver__zheevj.html "Interface documentation") | C binding
+794 | [rocsolver_ssyevj_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevj__batched.html "Interface documentation") | C binding
+795 | [rocsolver_dsyevj_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevj__batched.html "Interface documentation") | C binding
+796 | [rocsolver_cheevj_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevj__batched.html "Interface documentation") | C binding
+797 | [rocsolver_zheevj_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevj__batched.html "Interface documentation") | C binding
+798 | [rocsolver_ssyevj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevj__strided__batched.html "Interface documentation") | C binding
+799 | [rocsolver_dsyevj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevj__strided__batched.html "Interface documentation") | C binding
+800 | [rocsolver_cheevj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevj__strided__batched.html "Interface documentation") | C binding
+801 | [rocsolver_zheevj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevj__strided__batched.html "Interface documentation") | C binding
+802 | [rocsolver_ssyevx](interfacehipfort__rocsolver_1_1rocsolver__ssyevx.html "Interface documentation") | C binding
+803 | [rocsolver_dsyevx](interfacehipfort__rocsolver_1_1rocsolver__dsyevx.html "Interface documentation") | C binding
+804 | [rocsolver_cheevx](interfacehipfort__rocsolver_1_1rocsolver__cheevx.html "Interface documentation") | C binding
+805 | [rocsolver_zheevx](interfacehipfort__rocsolver_1_1rocsolver__zheevx.html "Interface documentation") | C binding
+806 | [rocsolver_ssyevx_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevx__batched.html "Interface documentation") | C binding
+807 | [rocsolver_dsyevx_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevx__batched.html "Interface documentation") | C binding
+808 | [rocsolver_cheevx_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevx__batched.html "Interface documentation") | C binding
+809 | [rocsolver_zheevx_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevx__batched.html "Interface documentation") | C binding
+810 | [rocsolver_ssyevx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevx__strided__batched.html "Interface documentation") | C binding
+811 | [rocsolver_dsyevx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevx__strided__batched.html "Interface documentation") | C binding
+812 | [rocsolver_cheevx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevx__strided__batched.html "Interface documentation") | C binding
+813 | [rocsolver_zheevx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevx__strided__batched.html "Interface documentation") | C binding
+814 | [rocsolver_ssygv](interfacehipfort__rocsolver_1_1rocsolver__ssygv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+815 | [rocsolver_dsygv](interfacehipfort__rocsolver_1_1rocsolver__dsygv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+816 | [rocsolver_chegv](interfacehipfort__rocsolver_1_1rocsolver__chegv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+817 | [rocsolver_zhegv](interfacehipfort__rocsolver_1_1rocsolver__zhegv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+818 | [rocsolver_ssygv_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+819 | [rocsolver_dsygv_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+820 | [rocsolver_chegv_batched](interfacehipfort__rocsolver_1_1rocsolver__chegv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+821 | [rocsolver_zhegv_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegv__batched.html "Interface documentation") | C binding, rank_0, rank_1
+822 | [rocsolver_ssygv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+823 | [rocsolver_dsygv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+824 | [rocsolver_chegv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+825 | [rocsolver_zhegv_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegv__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+826 | [rocsolver_ssygvd](interfacehipfort__rocsolver_1_1rocsolver__ssygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+827 | [rocsolver_dsygvd](interfacehipfort__rocsolver_1_1rocsolver__dsygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+828 | [rocsolver_chegvd](interfacehipfort__rocsolver_1_1rocsolver__chegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+829 | [rocsolver_zhegvd](interfacehipfort__rocsolver_1_1rocsolver__zhegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+830 | [rocsolver_ssygvd_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+831 | [rocsolver_dsygvd_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+832 | [rocsolver_chegvd_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+833 | [rocsolver_zhegvd_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvd__batched.html "Interface documentation") | C binding, rank_0, rank_1
+834 | [rocsolver_ssygvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+835 | [rocsolver_dsygvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+836 | [rocsolver_chegvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+837 | [rocsolver_zhegvd_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvd__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+838 | [rocsolver_ssygvj](interfacehipfort__rocsolver_1_1rocsolver__ssygvj.html "Interface documentation") | C binding
+839 | [rocsolver_dsygvj](interfacehipfort__rocsolver_1_1rocsolver__dsygvj.html "Interface documentation") | C binding
+840 | [rocsolver_chegvj](interfacehipfort__rocsolver_1_1rocsolver__chegvj.html "Interface documentation") | C binding
+841 | [rocsolver_zhegvj](interfacehipfort__rocsolver_1_1rocsolver__zhegvj.html "Interface documentation") | C binding
+842 | [rocsolver_ssygvj_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvj__batched.html "Interface documentation") | C binding
+843 | [rocsolver_dsygvj_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvj__batched.html "Interface documentation") | C binding
+844 | [rocsolver_chegvj_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvj__batched.html "Interface documentation") | C binding
+845 | [rocsolver_zhegvj_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvj__batched.html "Interface documentation") | C binding
+846 | [rocsolver_ssygvj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvj__strided__batched.html "Interface documentation") | C binding
+847 | [rocsolver_dsygvj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvj__strided__batched.html "Interface documentation") | C binding
+848 | [rocsolver_chegvj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvj__strided__batched.html "Interface documentation") | C binding
+849 | [rocsolver_zhegvj_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvj__strided__batched.html "Interface documentation") | C binding
+850 | [rocsolver_ssygvx](interfacehipfort__rocsolver_1_1rocsolver__ssygvx.html "Interface documentation") | C binding
+851 | [rocsolver_dsygvx](interfacehipfort__rocsolver_1_1rocsolver__dsygvx.html "Interface documentation") | C binding
+852 | [rocsolver_chegvx](interfacehipfort__rocsolver_1_1rocsolver__chegvx.html "Interface documentation") | C binding
+853 | [rocsolver_zhegvx](interfacehipfort__rocsolver_1_1rocsolver__zhegvx.html "Interface documentation") | C binding
+854 | [rocsolver_ssygvx_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvx__batched.html "Interface documentation") | C binding
+855 | [rocsolver_dsygvx_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvx__batched.html "Interface documentation") | C binding
+856 | [rocsolver_chegvx_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvx__batched.html "Interface documentation") | C binding
+857 | [rocsolver_zhegvx_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvx__batched.html "Interface documentation") | C binding
+858 | [rocsolver_ssygvx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvx__strided__batched.html "Interface documentation") | C binding
+859 | [rocsolver_dsygvx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvx__strided__batched.html "Interface documentation") | C binding
+860 | [rocsolver_chegvx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvx__strided__batched.html "Interface documentation") | C binding
+861 | [rocsolver_zhegvx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvx__strided__batched.html "Interface documentation") | C binding
+862 | [rocsolver_sgetri_outofplace](interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+863 | [rocsolver_dgetri_outofplace](interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+864 | [rocsolver_cgetri_outofplace](interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+865 | [rocsolver_zgetri_outofplace](interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+866 | [rocsolver_sgetri_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
+867 | [rocsolver_dgetri_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
+868 | [rocsolver_cgetri_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
+869 | [rocsolver_zgetri_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__batched.html "Interface documentation") | C binding, rank_0, rank_1
+870 | [rocsolver_sgetri_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+871 | [rocsolver_dgetri_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+872 | [rocsolver_cgetri_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+873 | [rocsolver_zgetri_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+874 | [rocsolver_sgetri_npvt_outofplace](interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+875 | [rocsolver_dgetri_npvt_outofplace](interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+876 | [rocsolver_cgetri_npvt_outofplace](interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+877 | [rocsolver_zgetri_npvt_outofplace](interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__outofplace.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+878 | [rocsolver_sgetri_npvt_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
+879 | [rocsolver_dgetri_npvt_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
+880 | [rocsolver_cgetri_npvt_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
+881 | [rocsolver_zgetri_npvt_outofplace_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__outofplace__batched.html "Interface documentation") | C binding
+882 | [rocsolver_sgetri_npvt_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+883 | [rocsolver_dgetri_npvt_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+884 | [rocsolver_cgetri_npvt_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+885 | [rocsolver_zgetri_npvt_outofplace_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgetri__npvt__outofplace__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+886 | [rocsolver_strtri](interfacehipfort__rocsolver_1_1rocsolver__strtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+887 | [rocsolver_dtrtri](interfacehipfort__rocsolver_1_1rocsolver__dtrtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+888 | [rocsolver_ctrtri](interfacehipfort__rocsolver_1_1rocsolver__ctrtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+889 | [rocsolver_ztrtri](interfacehipfort__rocsolver_1_1rocsolver__ztrtri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+890 | [rocsolver_strtri_batched](interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html "Interface documentation") | C binding
+891 | [rocsolver_dtrtri_batched](interfacehipfort__rocsolver_1_1rocsolver__dtrtri__batched.html "Interface documentation") | C binding
+892 | [rocsolver_ctrtri_batched](interfacehipfort__rocsolver_1_1rocsolver__ctrtri__batched.html "Interface documentation") | C binding
+893 | [rocsolver_ztrtri_batched](interfacehipfort__rocsolver_1_1rocsolver__ztrtri__batched.html "Interface documentation") | C binding
+894 | [rocsolver_strtri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__strtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+895 | [rocsolver_dtrtri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dtrtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+896 | [rocsolver_ctrtri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ctrtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+897 | [rocsolver_ztrtri_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ztrtri__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+898 | [rocsolver_ssytf2](interfacehipfort__rocsolver_1_1rocsolver__ssytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+899 | [rocsolver_dsytf2](interfacehipfort__rocsolver_1_1rocsolver__dsytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+900 | [rocsolver_csytf2](interfacehipfort__rocsolver_1_1rocsolver__csytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+901 | [rocsolver_zsytf2](interfacehipfort__rocsolver_1_1rocsolver__zsytf2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+902 | [rocsolver_ssytf2_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+903 | [rocsolver_dsytf2_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+904 | [rocsolver_csytf2_batched](interfacehipfort__rocsolver_1_1rocsolver__csytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+905 | [rocsolver_zsytf2_batched](interfacehipfort__rocsolver_1_1rocsolver__zsytf2__batched.html "Interface documentation") | C binding, rank_0, rank_1
+906 | [rocsolver_ssytf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+907 | [rocsolver_dsytf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+908 | [rocsolver_csytf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__csytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+909 | [rocsolver_zsytf2_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zsytf2__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+910 | [rocsolver_ssytrf](interfacehipfort__rocsolver_1_1rocsolver__ssytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+911 | [rocsolver_dsytrf](interfacehipfort__rocsolver_1_1rocsolver__dsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+912 | [rocsolver_csytrf](interfacehipfort__rocsolver_1_1rocsolver__csytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+913 | [rocsolver_zsytrf](interfacehipfort__rocsolver_1_1rocsolver__zsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+914 | [rocsolver_ssytrf_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+915 | [rocsolver_dsytrf_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+916 | [rocsolver_csytrf_batched](interfacehipfort__rocsolver_1_1rocsolver__csytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+917 | [rocsolver_zsytrf_batched](interfacehipfort__rocsolver_1_1rocsolver__zsytrf__batched.html "Interface documentation") | C binding, rank_0, rank_1
+918 | [rocsolver_ssytrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+919 | [rocsolver_dsytrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+920 | [rocsolver_csytrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__csytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+921 | [rocsolver_zsytrf_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zsytrf__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+922 | [rocsolver_sgeblttrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt.html "Interface documentation") | C binding
+923 | [rocsolver_dgeblttrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt.html "Interface documentation") | C binding
+924 | [rocsolver_cgeblttrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt.html "Interface documentation") | C binding
+925 | [rocsolver_zgeblttrf_npvt](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt.html "Interface documentation") | C binding
+926 | [rocsolver_sgeblttrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt__batched.html "Interface documentation") | C binding
+927 | [rocsolver_dgeblttrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt__batched.html "Interface documentation") | C binding
+928 | [rocsolver_cgeblttrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt__batched.html "Interface documentation") | C binding
+929 | [rocsolver_zgeblttrf_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt__batched.html "Interface documentation") | C binding
+930 | [rocsolver_sgeblttrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
+931 | [rocsolver_dgeblttrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
+932 | [rocsolver_cgeblttrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
+933 | [rocsolver_zgeblttrf_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt__strided__batched.html "Interface documentation") | C binding
+934 | [rocsolver_sgeblttrf_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
+935 | [rocsolver_dgeblttrf_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
+936 | [rocsolver_cgeblttrf_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
+937 | [rocsolver_zgeblttrf_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrf__npvt__interleaved__batched.html "Interface documentation") | C binding
+938 | [rocsolver_sgeblttrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt.html "Interface documentation") | C binding
+939 | [rocsolver_dgeblttrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt.html "Interface documentation") | C binding
+940 | [rocsolver_cgeblttrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt.html "Interface documentation") | C binding
+941 | [rocsolver_zgeblttrs_npvt](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt.html "Interface documentation") | C binding
+942 | [rocsolver_sgeblttrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt__batched.html "Interface documentation") | C binding
+943 | [rocsolver_dgeblttrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt__batched.html "Interface documentation") | C binding
+944 | [rocsolver_cgeblttrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt__batched.html "Interface documentation") | C binding
+945 | [rocsolver_zgeblttrs_npvt_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt__batched.html "Interface documentation") | C binding
+946 | [rocsolver_sgeblttrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
+947 | [rocsolver_dgeblttrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
+948 | [rocsolver_cgeblttrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
+949 | [rocsolver_zgeblttrs_npvt_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt__strided__batched.html "Interface documentation") | C binding
+950 | [rocsolver_sgeblttrs_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__sgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
+951 | [rocsolver_dgeblttrs_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__dgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
+952 | [rocsolver_cgeblttrs_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__cgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
+953 | [rocsolver_zgeblttrs_npvt_interleaved_batched](interfacehipfort__rocsolver_1_1rocsolver__zgeblttrs__npvt__interleaved__batched.html "Interface documentation") | C binding
+954 | [rocsolver_create_rfinfo](interfacehipfort__rocsolver_1_1rocsolver__create__rfinfo.html "Interface documentation") | C binding
+955 | [rocsolver_destroy_rfinfo](interfacehipfort__rocsolver_1_1rocsolver__destroy__rfinfo.html "Interface documentation") | C binding
+956 | [rocsolver_set_rfinfo_mode](interfacehipfort__rocsolver_1_1rocsolver__set__rfinfo__mode.html "Interface documentation") | C binding
+957 | [rocsolver_get_rfinfo_mode](interfacehipfort__rocsolver_1_1rocsolver__get__rfinfo__mode.html "Interface documentation") | C binding
+958 | [rocsolver_scsrrf_sumlu](interfacehipfort__rocsolver_1_1rocsolver__scsrrf__sumlu.html "Interface documentation") | C binding
+959 | [rocsolver_dcsrrf_sumlu](interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__sumlu.html "Interface documentation") | C binding
+960 | [rocsolver_scsrrf_splitlu](interfacehipfort__rocsolver_1_1rocsolver__scsrrf__splitlu.html "Interface documentation") | C binding
+961 | [rocsolver_dcsrrf_splitlu](interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__splitlu.html "Interface documentation") | C binding
+962 | [rocsolver_scsrrf_analysis](interfacehipfort__rocsolver_1_1rocsolver__scsrrf__analysis.html "Interface documentation") | C binding
+963 | [rocsolver_dcsrrf_analysis](interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__analysis.html "Interface documentation") | C binding
+964 | [rocsolver_scsrrf_refactlu](interfacehipfort__rocsolver_1_1rocsolver__scsrrf__refactlu.html "Interface documentation") | C binding
+965 | [rocsolver_dcsrrf_refactlu](interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__refactlu.html "Interface documentation") | C binding
+966 | [rocsolver_scsrrf_refactchol](interfacehipfort__rocsolver_1_1rocsolver__scsrrf__refactchol.html "Interface documentation") | C binding
+967 | [rocsolver_dcsrrf_refactchol](interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__refactchol.html "Interface documentation") | C binding
+968 | [rocsolver_scsrrf_solve](interfacehipfort__rocsolver_1_1rocsolver__scsrrf__solve.html "Interface documentation") | C binding
+969 | [rocsolver_dcsrrf_solve](interfacehipfort__rocsolver_1_1rocsolver__dcsrrf__solve.html "Interface documentation") | C binding
+970 | [rocsolver_ssyevdx](interfacehipfort__rocsolver_1_1rocsolver__ssyevdx.html "Interface documentation") | C binding
+971 | [rocsolver_dsyevdx](interfacehipfort__rocsolver_1_1rocsolver__dsyevdx.html "Interface documentation") | C binding
+972 | [rocsolver_cheevdx](interfacehipfort__rocsolver_1_1rocsolver__cheevdx.html "Interface documentation") | C binding
+973 | [rocsolver_zheevdx](interfacehipfort__rocsolver_1_1rocsolver__zheevdx.html "Interface documentation") | C binding
+974 | [rocsolver_ssyevdx_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevdx__batched.html "Interface documentation") | C binding
+975 | [rocsolver_dsyevdx_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevdx__batched.html "Interface documentation") | C binding
+976 | [rocsolver_cheevdx_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevdx__batched.html "Interface documentation") | C binding
+977 | [rocsolver_zheevdx_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevdx__batched.html "Interface documentation") | C binding
+978 | [rocsolver_ssyevdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssyevdx__strided__batched.html "Interface documentation") | C binding
+979 | [rocsolver_dsyevdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsyevdx__strided__batched.html "Interface documentation") | C binding
+980 | [rocsolver_cheevdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__cheevdx__strided__batched.html "Interface documentation") | C binding
+981 | [rocsolver_zheevdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zheevdx__strided__batched.html "Interface documentation") | C binding
+982 | [rocsolver_ssygvdx](interfacehipfort__rocsolver_1_1rocsolver__ssygvdx.html "Interface documentation") | C binding
+983 | [rocsolver_dsygvdx](interfacehipfort__rocsolver_1_1rocsolver__dsygvdx.html "Interface documentation") | C binding
+984 | [rocsolver_chegvdx](interfacehipfort__rocsolver_1_1rocsolver__chegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+985 | [rocsolver_zhegvdx](interfacehipfort__rocsolver_1_1rocsolver__zhegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+986 | [rocsolver_ssygvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvdx__batched.html "Interface documentation") | C binding
+987 | [rocsolver_dsygvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvdx__batched.html "Interface documentation") | C binding
+988 | [rocsolver_chegvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvdx__batched.html "Interface documentation") | C binding
+989 | [rocsolver_zhegvdx_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvdx__batched.html "Interface documentation") | C binding
+990 | [rocsolver_ssygvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__ssygvdx__strided__batched.html "Interface documentation") | C binding
+991 | [rocsolver_dsygvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__dsygvdx__strided__batched.html "Interface documentation") | C binding
+992 | [rocsolver_chegvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__chegvdx__strided__batched.html "Interface documentation") | C binding
+993 | [rocsolver_zhegvdx_strided_batched](interfacehipfort__rocsolver_1_1rocsolver__zhegvdx__strided__batched.html "Interface documentation") | C binding
