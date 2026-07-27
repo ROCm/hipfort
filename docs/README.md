@@ -35,4 +35,3 @@ Open `docs/_build/html/index.html` in a browser.
 `docs/conf.py` preprocesses every `lib/hipfort/*.F90` file with
 `gfortran -E -cpp -P -DUSE_FPOINTER_INTERFACES -UUSE_CUDA_NAMES` into
 `docs/doxygen/input/`, then `rocm-docs-core` runs Doxygen and integrates the result.
-
