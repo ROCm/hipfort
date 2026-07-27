@@ -80,6 +80,4 @@ if not "exclude_patterns" in globals():
 
 html_theme_options["show_navbar_depth"] = 2
 exclude_patterns.append("doxygen/input")
-# README.md documents how to build the docs; it is for contributors, not a
-# published page, so keep it out of the Sphinx toctree.
 exclude_patterns.append("README.md")
