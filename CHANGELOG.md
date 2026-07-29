@@ -31,6 +31,20 @@
 * Documented how to build hipfort applications with CMake, in the *Using hipFORT*
   how-to guide. It covers `find_package(hipfort)`, the exported `hipfort::*` targets,
   and the multiple-Fortran-toolchain install layout.
+* Added a *rocFFT examples* documentation page that walks through complete Fortran
+  programs for complex-to-complex, real, multi-dimensional, batched, and out-of-place
+  transforms, scale factors, work buffers, HIP streams, plan introspection, the
+  compiled-kernel cache, and the version query. The page includes the test sources
+  directly, so the documented code is the code that is built and run by CTest.
+* Added rocFFT tests for in-place real transforms (padded layout with explicit
+  `rocfft_array_type_real`/`rocfft_array_type_hermitian_interleaved`), out-of-place
+  transforms, plan scale factors, explicit work buffers
+  (`rocfft_plan_get_work_buffer_size`, `rocfft_execution_info_set_work_buffer`),
+  transforms on user-supplied HIP streams (`rocfft_execution_info_set_stream`),
+  plan introspection (`rocfft_plan_get_print`), the compiled-kernel cache
+  (`rocfft_cache_serialize`, `rocfft_cache_deserialize`,
+  `rocfft_cache_buffer_free`), and `rocfft_get_version_string`, in both the
+  `f2003` and `f2008` dialects.
 
 ### Changed
 

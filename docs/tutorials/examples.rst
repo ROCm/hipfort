@@ -52,3 +52,11 @@ Use the following examples to express Fortran 2003 (`f2003`) interfaces:
         ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and perform a blocking copy to device
 
 In addition to ``source``, there is also ``dsource``, which is used if the source is a device array.
+
+Library examples
+================
+
+Complete, runnable programs for the ROCm math libraries are available for
+rocFFT:
+
+* :doc:`rocFFT examples <./rocfft-examples>`
