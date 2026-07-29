@@ -36861,16 +36861,16 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_float),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sgebsr2gebsc_rank_0 = rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_sgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -36889,16 +36889,16 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_float),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sgebsr2gebsc_rank_1 = rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_dgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -36917,16 +36917,16 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_double),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dgebsr2gebsc_rank_0 = rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_dgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -36945,16 +36945,16 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_double),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dgebsr2gebsc_rank_1 = rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_cgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -36973,16 +36973,16 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_float_complex),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cgebsr2gebsc_rank_0 = rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_cgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -37001,16 +37001,16 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_float_complex),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cgebsr2gebsc_rank_1 = rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_zgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -37029,16 +37029,16 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_double_complex),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgebsr2gebsc_rank_0 = rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_zgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind, &
@@ -37057,16 +37057,16 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_double_complex),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgebsr2gebsc_rank_1 = rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val), &
-        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind, &
-        bsc_col_ptr,copy_values,idx_base,temp_buffer)
+        c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val), &
+        c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_hyb2csr_buffer_size_rank_0(handle,descr,hyb,csr_row_ptr,buffer_size)
@@ -41869,9 +41869,9 @@ module hipfort_rocsparse
       real(c_float) :: alpha
       type(c_ptr) :: descr
       real(c_float),target :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: block_dim
       real(c_float),target :: x
@@ -41879,8 +41879,8 @@ module hipfort_rocsparse
       real(c_float),target :: y
       !
       rocsparse_sbsrxmv_rank_0 = rocsparse_sbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_sbsrxmv_rank_1(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -41899,9 +41899,9 @@ module hipfort_rocsparse
       real(c_float) :: alpha
       type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target,dimension(:) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target,dimension(:) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: block_dim
       real(c_float),target,dimension(:) :: x
@@ -41909,8 +41909,8 @@ module hipfort_rocsparse
       real(c_float),target,dimension(:) :: y
       !
       rocsparse_sbsrxmv_rank_1 = rocsparse_sbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_dbsrxmv_rank_0(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -41929,9 +41929,9 @@ module hipfort_rocsparse
       real(c_double) :: alpha
       type(c_ptr) :: descr
       real(c_double),target :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: block_dim
       real(c_double),target :: x
@@ -41939,8 +41939,8 @@ module hipfort_rocsparse
       real(c_double),target :: y
       !
       rocsparse_dbsrxmv_rank_0 = rocsparse_dbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_dbsrxmv_rank_1(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -41959,9 +41959,9 @@ module hipfort_rocsparse
       real(c_double) :: alpha
       type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target,dimension(:) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target,dimension(:) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: block_dim
       real(c_double),target,dimension(:) :: x
@@ -41969,8 +41969,8 @@ module hipfort_rocsparse
       real(c_double),target,dimension(:) :: y
       !
       rocsparse_dbsrxmv_rank_1 = rocsparse_dbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_cbsrxmv_rank_0(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -41989,9 +41989,9 @@ module hipfort_rocsparse
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: block_dim
       complex(c_float_complex),target :: x
@@ -41999,8 +41999,8 @@ module hipfort_rocsparse
       complex(c_float_complex),target :: y
       !
       rocsparse_cbsrxmv_rank_0 = rocsparse_cbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_cbsrxmv_rank_1(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -42019,9 +42019,9 @@ module hipfort_rocsparse
       complex(c_float_complex) :: alpha
       type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target,dimension(:) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target,dimension(:) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: block_dim
       complex(c_float_complex),target,dimension(:) :: x
@@ -42029,8 +42029,8 @@ module hipfort_rocsparse
       complex(c_float_complex),target,dimension(:) :: y
       !
       rocsparse_cbsrxmv_rank_1 = rocsparse_cbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_zbsrxmv_rank_0(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -42049,9 +42049,9 @@ module hipfort_rocsparse
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: block_dim
       complex(c_double_complex),target :: x
@@ -42059,8 +42059,8 @@ module hipfort_rocsparse
       complex(c_double_complex),target :: y
       !
       rocsparse_zbsrxmv_rank_0 = rocsparse_zbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_zbsrxmv_rank_1(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
@@ -42079,9 +42079,9 @@ module hipfort_rocsparse
       complex(c_double_complex) :: alpha
       type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
-      type(c_ptr) :: bsr_mask_ptr
+      integer(c_int),target,dimension(:) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr) :: bsr_end_ptr
+      integer(c_int),target,dimension(:) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: block_dim
       complex(c_double_complex),target,dimension(:) :: x
@@ -42089,8 +42089,8 @@ module hipfort_rocsparse
       complex(c_double_complex),target,dimension(:) :: y
       !
       rocsparse_zbsrxmv_rank_1 = rocsparse_zbsrxmv_(handle,dir,trans,size_of_mask,mb,nb,nnzb, &
-        alpha,descr,c_loc(bsr_val),bsr_mask_ptr,c_loc(bsr_row_ptr),bsr_end_ptr,c_loc(bsr_col_ind), &
-        block_dim,c_loc(x),beta,c_loc(y))
+        alpha,descr,c_loc(bsr_val),c_loc(bsr_mask_ptr),c_loc(bsr_row_ptr),c_loc(bsr_end_ptr), &
+        c_loc(bsr_col_ind),block_dim,c_loc(x),beta,c_loc(y))
     end function
 
     function rocsparse_scoomv_rank_0(handle,trans,m,n,nnz,alpha,descr,coo_val,coo_row_ind, &
@@ -44891,14 +44891,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      real(c_float),target :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_solve_rank_0 = rocsparse_sbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_sbsrsm_solve_rank_1(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -44923,14 +44923,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      real(c_float),target,dimension(:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_solve_rank_1 = rocsparse_sbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_sbsrsm_solve_full_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -44955,14 +44955,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      real(c_float),target,dimension(:,:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_solve_full_rank = rocsparse_sbsrsm_solve_(handle,dir,trans_A,trans_X,mb, &
         nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim, &
-        myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_dbsrsm_solve_rank_0(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -44987,14 +44987,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      real(c_double),target :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_solve_rank_0 = rocsparse_dbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_dbsrsm_solve_rank_1(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45019,14 +45019,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      real(c_double),target,dimension(:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_solve_rank_1 = rocsparse_dbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_dbsrsm_solve_full_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45051,14 +45051,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      real(c_double),target,dimension(:,:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_solve_full_rank = rocsparse_dbsrsm_solve_(handle,dir,trans_A,trans_X,mb, &
         nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim, &
-        myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_cbsrsm_solve_rank_0(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45083,14 +45083,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      complex(c_float_complex),target :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_solve_rank_0 = rocsparse_cbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_cbsrsm_solve_rank_1(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45115,14 +45115,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      complex(c_float_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_solve_rank_1 = rocsparse_cbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_cbsrsm_solve_full_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45147,14 +45147,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      complex(c_float_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_solve_full_rank = rocsparse_cbsrsm_solve_(handle,dir,trans_A,trans_X,mb, &
         nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim, &
-        myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_zbsrsm_solve_rank_0(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45179,14 +45179,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      complex(c_double_complex),target :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_solve_rank_0 = rocsparse_zbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_zbsrsm_solve_rank_1(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45211,14 +45211,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      complex(c_double_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_solve_rank_1 = rocsparse_zbsrsm_solve_(handle,dir,trans_A,trans_X,mb,nrhs, &
         nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo, &
-        c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_zbsrsm_solve_full_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr, &
@@ -45243,14 +45243,14 @@ module hipfort_rocsparse
       type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: X
+      complex(c_double_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
       integer(kind(rocsparse_solve_policy_auto)) :: policy
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_solve_full_rank = rocsparse_zbsrsm_solve_(handle,dir,trans_A,trans_X,mb, &
         nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim, &
-        myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
+        myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,temp_buffer)
     end function
 
     function rocsparse_scsrmm_rank_0(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,csr_val, &
@@ -49466,19 +49466,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_float),target :: ds
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
+      real(c_float),target :: dw
       real(c_float),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgpsv_interleaved_batch_buffer_size_rank_0 = &
-        rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49490,19 +49490,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_float),target,dimension(:) :: ds
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
+      real(c_float),target,dimension(:) :: dw
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1 = &
-        rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49514,19 +49514,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_double),target :: ds
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
+      real(c_double),target :: dw
       real(c_double),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0 = &
-        rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49538,19 +49538,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_double),target,dimension(:) :: ds
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
+      real(c_double),target,dimension(:) :: dw
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1 = &
-        rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49562,19 +49562,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_float_complex),target :: ds
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
+      complex(c_float_complex),target :: dw
       complex(c_float_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0 = &
-        rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49586,19 +49586,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:) :: ds
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
+      complex(c_float_complex),target,dimension(:) :: dw
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1 = &
-        rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49610,19 +49610,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_double_complex),target :: ds
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
+      complex(c_double_complex),target :: dw
       complex(c_double_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0 = &
-        rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x, &
@@ -49634,19 +49634,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:) :: ds
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
+      complex(c_double_complex),target,dimension(:) :: dw
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1 = &
-        rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x), &
-        batch_count,batch_stride,buffer_size)
+        rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_sgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49658,18 +49658,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_float),target :: ds
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
+      real(c_float),target :: dw
       real(c_float),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sgpsv_interleaved_batch_rank_0 = rocsparse_sgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_sgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49681,18 +49682,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_float),target,dimension(:) :: ds
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
+      real(c_float),target,dimension(:) :: dw
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sgpsv_interleaved_batch_rank_1 = rocsparse_sgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_dgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49704,18 +49706,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_double),target :: ds
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
+      real(c_double),target :: dw
       real(c_double),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dgpsv_interleaved_batch_rank_0 = rocsparse_dgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_dgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49727,18 +49730,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      real(c_double),target,dimension(:) :: ds
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
+      real(c_double),target,dimension(:) :: dw
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dgpsv_interleaved_batch_rank_1 = rocsparse_dgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_cgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49750,18 +49754,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_float_complex),target :: ds
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
+      complex(c_float_complex),target :: dw
       complex(c_float_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cgpsv_interleaved_batch_rank_0 = rocsparse_cgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_cgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49773,18 +49778,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:) :: ds
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
+      complex(c_float_complex),target,dimension(:) :: dw
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cgpsv_interleaved_batch_rank_1 = rocsparse_cgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_zgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49796,18 +49802,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_double_complex),target :: ds
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
+      complex(c_double_complex),target :: dw
       complex(c_double_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgpsv_interleaved_batch_rank_0 = rocsparse_zgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_zgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count, &
@@ -49819,18 +49826,19 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
       integer(c_int) :: m
-      type(c_ptr) :: ds
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:) :: ds
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
+      complex(c_double_complex),target,dimension(:) :: dw
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgpsv_interleaved_batch_rank_1 = rocsparse_zgpsv_interleaved_batch_(handle,alg,m, &
-        ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batch_count,batch_stride, &
+        temp_buffer)
     end function
 
     function rocsparse_sgtsv_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49841,15 +49849,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_sgtsv_buffer_size_rank_0 = rocsparse_sgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_sgtsv_buffer_size_rank_0 = rocsparse_sgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_sgtsv_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49860,15 +49868,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_sgtsv_buffer_size_rank_1 = rocsparse_sgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_sgtsv_buffer_size_rank_1 = rocsparse_sgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_sgtsv_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49879,15 +49887,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_sgtsv_buffer_size_full_rank = rocsparse_sgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_sgtsv_buffer_size_full_rank = rocsparse_sgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_dgtsv_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49898,15 +49906,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_dgtsv_buffer_size_rank_0 = rocsparse_dgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_dgtsv_buffer_size_rank_0 = rocsparse_dgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_dgtsv_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49917,15 +49925,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_dgtsv_buffer_size_rank_1 = rocsparse_dgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_dgtsv_buffer_size_rank_1 = rocsparse_dgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_dgtsv_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49936,15 +49944,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_dgtsv_buffer_size_full_rank = rocsparse_dgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_dgtsv_buffer_size_full_rank = rocsparse_dgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_cgtsv_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49955,15 +49963,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_cgtsv_buffer_size_rank_0 = rocsparse_cgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_cgtsv_buffer_size_rank_0 = rocsparse_cgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_cgtsv_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49974,15 +49982,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_cgtsv_buffer_size_rank_1 = rocsparse_cgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_cgtsv_buffer_size_rank_1 = rocsparse_cgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_cgtsv_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -49993,15 +50001,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_cgtsv_buffer_size_full_rank = rocsparse_cgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_cgtsv_buffer_size_full_rank = rocsparse_cgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_zgtsv_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50012,15 +50020,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_zgtsv_buffer_size_rank_0 = rocsparse_zgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_zgtsv_buffer_size_rank_0 = rocsparse_zgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_zgtsv_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50031,15 +50039,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_zgtsv_buffer_size_rank_1 = rocsparse_zgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_zgtsv_buffer_size_rank_1 = rocsparse_zgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_zgtsv_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50050,15 +50058,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
-      rocsparse_zgtsv_buffer_size_full_rank = rocsparse_zgtsv_buffer_size_(handle,m,n,dl,d,du, &
-        c_loc(B),ldb,buffer_size)
+      rocsparse_zgtsv_buffer_size_full_rank = rocsparse_zgtsv_buffer_size_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_sgtsv_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50069,14 +50077,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgtsv_rank_0 = rocsparse_sgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_sgtsv_rank_0 = rocsparse_sgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_sgtsv_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50087,14 +50096,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgtsv_rank_1 = rocsparse_sgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_sgtsv_rank_1 = rocsparse_sgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_sgtsv_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50105,14 +50115,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgtsv_full_rank = rocsparse_sgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_sgtsv_full_rank = rocsparse_sgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_dgtsv_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50123,14 +50134,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgtsv_rank_0 = rocsparse_dgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_dgtsv_rank_0 = rocsparse_dgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_dgtsv_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50141,14 +50153,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgtsv_rank_1 = rocsparse_dgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_dgtsv_rank_1 = rocsparse_dgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_dgtsv_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50159,14 +50172,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgtsv_full_rank = rocsparse_dgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_dgtsv_full_rank = rocsparse_dgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_cgtsv_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50177,14 +50191,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgtsv_rank_0 = rocsparse_cgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_cgtsv_rank_0 = rocsparse_cgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_cgtsv_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50195,14 +50210,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgtsv_rank_1 = rocsparse_cgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_cgtsv_rank_1 = rocsparse_cgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_cgtsv_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50213,14 +50229,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgtsv_full_rank = rocsparse_cgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_cgtsv_full_rank = rocsparse_cgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_zgtsv_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50231,14 +50248,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgtsv_rank_0 = rocsparse_zgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_zgtsv_rank_0 = rocsparse_zgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_zgtsv_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50249,14 +50267,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgtsv_rank_1 = rocsparse_zgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_zgtsv_rank_1 = rocsparse_zgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,temp_buffer)
     end function
 
     function rocsparse_zgtsv_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50267,14 +50286,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgtsv_full_rank = rocsparse_zgtsv_(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
+      rocsparse_zgtsv_full_rank = rocsparse_zgtsv_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_sgtsv_no_pivot_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50285,15 +50305,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_buffer_size_rank_0 = rocsparse_sgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_sgtsv_no_pivot_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50304,15 +50324,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_buffer_size_rank_1 = rocsparse_sgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_sgtsv_no_pivot_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50323,15 +50343,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_buffer_size_full_rank = rocsparse_sgtsv_no_pivot_buffer_size_( &
-        handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_dgtsv_no_pivot_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50342,15 +50362,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_buffer_size_rank_0 = rocsparse_dgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_dgtsv_no_pivot_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50361,15 +50381,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_buffer_size_rank_1 = rocsparse_dgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_dgtsv_no_pivot_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50380,15 +50400,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_buffer_size_full_rank = rocsparse_dgtsv_no_pivot_buffer_size_( &
-        handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_cgtsv_no_pivot_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50399,15 +50419,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_buffer_size_rank_0 = rocsparse_cgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_cgtsv_no_pivot_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50418,15 +50438,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_buffer_size_rank_1 = rocsparse_cgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_cgtsv_no_pivot_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50437,15 +50457,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_buffer_size_full_rank = rocsparse_cgtsv_no_pivot_buffer_size_( &
-        handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_zgtsv_no_pivot_buffer_size_rank_0(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50456,15 +50476,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_buffer_size_rank_0 = rocsparse_zgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_zgtsv_no_pivot_buffer_size_rank_1(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50475,15 +50495,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_buffer_size_rank_1 = rocsparse_zgtsv_no_pivot_buffer_size_(handle, &
-        m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_zgtsv_no_pivot_buffer_size_full_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
@@ -50494,15 +50514,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_buffer_size_full_rank = rocsparse_zgtsv_no_pivot_buffer_size_( &
-        handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,buffer_size)
     end function
 
     function rocsparse_sgtsv_no_pivot_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50513,15 +50533,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
       real(c_float),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgtsv_no_pivot_rank_0 = rocsparse_sgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_sgtsv_no_pivot_rank_0 = rocsparse_sgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_sgtsv_no_pivot_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50532,15 +50552,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgtsv_no_pivot_rank_1 = rocsparse_sgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_sgtsv_no_pivot_rank_1 = rocsparse_sgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_sgtsv_no_pivot_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50551,15 +50571,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgtsv_no_pivot_full_rank = rocsparse_sgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B), &
-        ldb,temp_buffer)
+      rocsparse_sgtsv_no_pivot_full_rank = rocsparse_sgtsv_no_pivot_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_dgtsv_no_pivot_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50570,15 +50590,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
       real(c_double),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgtsv_no_pivot_rank_0 = rocsparse_dgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_dgtsv_no_pivot_rank_0 = rocsparse_dgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_dgtsv_no_pivot_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50589,15 +50609,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgtsv_no_pivot_rank_1 = rocsparse_dgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_dgtsv_no_pivot_rank_1 = rocsparse_dgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_dgtsv_no_pivot_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50608,15 +50628,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgtsv_no_pivot_full_rank = rocsparse_dgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B), &
-        ldb,temp_buffer)
+      rocsparse_dgtsv_no_pivot_full_rank = rocsparse_dgtsv_no_pivot_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_cgtsv_no_pivot_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50627,15 +50647,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgtsv_no_pivot_rank_0 = rocsparse_cgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_cgtsv_no_pivot_rank_0 = rocsparse_cgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_cgtsv_no_pivot_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50646,15 +50666,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgtsv_no_pivot_rank_1 = rocsparse_cgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_cgtsv_no_pivot_rank_1 = rocsparse_cgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_cgtsv_no_pivot_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50665,15 +50685,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgtsv_no_pivot_full_rank = rocsparse_cgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B), &
-        ldb,temp_buffer)
+      rocsparse_cgtsv_no_pivot_full_rank = rocsparse_cgtsv_no_pivot_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_zgtsv_no_pivot_rank_0(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50684,15 +50704,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgtsv_no_pivot_rank_0 = rocsparse_zgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_zgtsv_no_pivot_rank_0 = rocsparse_zgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_zgtsv_no_pivot_rank_1(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50703,15 +50723,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgtsv_no_pivot_rank_1 = rocsparse_zgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B),ldb, &
-        temp_buffer)
+      rocsparse_zgtsv_no_pivot_rank_1 = rocsparse_zgtsv_no_pivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_zgtsv_no_pivot_full_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
@@ -50722,15 +50742,15 @@ module hipfort_rocsparse
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgtsv_no_pivot_full_rank = rocsparse_zgtsv_no_pivot_(handle,m,n,dl,d,du,c_loc(B), &
-        ldb,temp_buffer)
+      rocsparse_zgtsv_no_pivot_full_rank = rocsparse_zgtsv_no_pivot_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,temp_buffer)
     end function
 
     function rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_0(handle,m,dl,d,du,x, &
@@ -50741,17 +50761,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
       real(c_float),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_0 = &
-        rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_1(handle,m,dl,d,du,x, &
@@ -50762,17 +50782,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_1 = &
-        rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_0(handle,m,dl,d,du,x, &
@@ -50783,17 +50803,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
       real(c_double),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_0 = &
-        rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_1(handle,m,dl,d,du,x, &
@@ -50804,17 +50824,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_1 = &
-        rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_0(handle,m,dl,d,du,x, &
@@ -50825,17 +50845,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
       complex(c_float_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_0 = &
-        rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_1(handle,m,dl,d,du,x, &
@@ -50846,17 +50866,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_1 = &
-        rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_0(handle,m,dl,d,du,x, &
@@ -50867,17 +50887,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
       complex(c_double_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_0 = &
-        rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_1(handle,m,dl,d,du,x, &
@@ -50888,17 +50908,17 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_1 = &
-        rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_(handle,m,dl,d,du,c_loc(x),batch_count, &
-        batch_stride,buffer_size)
+        rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_(handle,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batch_count,batch_stride,buffer_size)
     end function
 
     function rocsparse_sgtsv_no_pivot_strided_batch_rank_0(handle,m,dl,d,du,x,batch_count, &
@@ -50909,16 +50929,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
       real(c_float),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_strided_batch_rank_0 = rocsparse_sgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_sgtsv_no_pivot_strided_batch_rank_1(handle,m,dl,d,du,x,batch_count, &
@@ -50929,16 +50949,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_strided_batch_rank_1 = rocsparse_sgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_dgtsv_no_pivot_strided_batch_rank_0(handle,m,dl,d,du,x,batch_count, &
@@ -50949,16 +50969,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
       real(c_double),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_strided_batch_rank_0 = rocsparse_dgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_dgtsv_no_pivot_strided_batch_rank_1(handle,m,dl,d,du,x,batch_count, &
@@ -50969,16 +50989,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_strided_batch_rank_1 = rocsparse_dgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_cgtsv_no_pivot_strided_batch_rank_0(handle,m,dl,d,du,x,batch_count, &
@@ -50989,16 +51009,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
       complex(c_float_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_strided_batch_rank_0 = rocsparse_cgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_cgtsv_no_pivot_strided_batch_rank_1(handle,m,dl,d,du,x,batch_count, &
@@ -51009,16 +51029,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_strided_batch_rank_1 = rocsparse_cgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_zgtsv_no_pivot_strided_batch_rank_0(handle,m,dl,d,du,x,batch_count, &
@@ -51029,16 +51049,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
       complex(c_double_complex),target :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_strided_batch_rank_0 = rocsparse_zgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_zgtsv_no_pivot_strided_batch_rank_1(handle,m,dl,d,du,x,batch_count, &
@@ -51049,16 +51069,16 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: batch_count
       integer(c_int) :: batch_stride
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_strided_batch_rank_1 = rocsparse_zgtsv_no_pivot_strided_batch_( &
-        handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+        handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_scsrcolor_rank_0(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &

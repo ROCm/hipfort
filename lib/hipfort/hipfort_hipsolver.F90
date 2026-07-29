@@ -21553,12 +21553,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverSsytrf_rank_0 = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverSsytrf_rank_0 = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverSsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21571,12 +21572,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverSsytrf_rank_1 = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverSsytrf_rank_1 = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverSsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21589,13 +21591,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverSsytrf_full_rank = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork, &
-        devInfo)
+      hipsolverSsytrf_full_rank = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work, &
+        lwork,devInfo)
     end function
 
 #endif
@@ -21610,12 +21612,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverDsytrf_rank_0 = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverDsytrf_rank_0 = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverDsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21628,12 +21631,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverDsytrf_rank_1 = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverDsytrf_rank_1 = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverDsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21646,13 +21650,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverDsytrf_full_rank = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork, &
-        devInfo)
+      hipsolverDsytrf_full_rank = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work, &
+        lwork,devInfo)
     end function
 
 #endif
@@ -21667,12 +21671,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverCsytrf_rank_0 = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverCsytrf_rank_0 = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverCsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21685,12 +21690,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverCsytrf_rank_1 = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverCsytrf_rank_1 = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverCsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21703,13 +21709,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverCsytrf_full_rank = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork, &
-        devInfo)
+      hipsolverCsytrf_full_rank = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work, &
+        lwork,devInfo)
     end function
 
 #endif
@@ -21724,12 +21730,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverZsytrf_rank_0 = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverZsytrf_rank_0 = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverZsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21742,12 +21749,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverZsytrf_rank_1 = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork,devInfo)
+      hipsolverZsytrf_rank_1 = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
     end function
 
     function hipsolverZsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
@@ -21760,13 +21768,13 @@ module hipfort_hipsolver
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int) :: devInfo
       !
-      hipsolverZsytrf_full_rank = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,ipiv,work,lwork, &
-        devInfo)
+      hipsolverZsytrf_full_rank = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work, &
+        lwork,devInfo)
     end function
 
 #endif
