@@ -107,6 +107,8 @@ Examples
 --------
 
 To see some examples for the `f2003` and `f2008` interfaces, see the :doc:`hipFORT samples <../tutorials/examples>`.
+For complete, runnable programs that use a ROCm math library, see the
+:doc:`rocFFT examples <../tutorials/rocfft-examples>`.
 
 Supported HIP and ROCm APIs
 ---------------------------

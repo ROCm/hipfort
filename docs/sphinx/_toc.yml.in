@@ -19,6 +19,8 @@ subtrees:
     entries:
       - file: tutorials/examples.rst
         title: Examples
+      - file: tutorials/rocfft-examples.rst
+        title: rocFFT examples
 
   - caption: API reference
     entries:
