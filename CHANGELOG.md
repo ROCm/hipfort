@@ -20,9 +20,12 @@
   eigenvalue interfaces, and the interleaved batch pentadiagonal solver
   (`rocsparse_Xgpsv_interleaved_batch`/`hipsparseXgpsvInterleavedBatch`, `s/d/c/z`,
   with the `rocsparse_gpsv_interleaved_alg` enum).
-* Expanded the test suite from 32 to 252 tests. Added rocRAND and hipFFTW tests, and
-  widened rocSOLVER coverage from 3 to 62 tests (including the `info` device-pointer
-  routines).
+* Expanded the test suite from 32 to 266 tests. Added rocRAND, hipFFT and hipFFTW
+  tests, and widened rocSOLVER coverage from 3 to 62 tests (including the `info`
+  device-pointer routines). The 14 new hipFFT tests mirror the rocFFT round-trip
+  tests: C2C 1D in single and double precision, R2C/C2R 1D in single and double
+  precision, C2C 2D and 3D, and batched C2C 1D via `hipfftPlanMany`, each written
+  in both the Fortran 2003 and Fortran 2008 interface styles.
 * Added the `hiprandCheck` error-check helper for hipRAND status codes
   (`use hipfort_check`).
 * Added example CMake toolchain files in `cmake/toolchains/`, for amdflang, GNU,
