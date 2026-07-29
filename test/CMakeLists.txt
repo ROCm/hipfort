@@ -423,6 +423,8 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsolver rocsolver_dgesv f2008)
     hipfort_add_test(rocsolver rocsolver_dgetri f2003)
     hipfort_add_test(rocsolver rocsolver_dgetri f2008)
+    hipfort_add_test(rocsolver rocsolver_dlatrd f2003)
+    hipfort_add_test(rocsolver rocsolver_dlatrd f2008)
   endif()
 
   if(TARGET hipfort::rocsparse)

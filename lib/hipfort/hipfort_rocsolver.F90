@@ -2042,7 +2042,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: E
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: W
       integer(c_int),value :: ldw
     end function
@@ -2069,7 +2069,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: E
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: W
       integer(c_int),value :: ldw
     end function
@@ -2096,7 +2096,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: E
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: W
       integer(c_int),value :: ldw
     end function
@@ -2123,7 +2123,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: E
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: W
       integer(c_int),value :: ldw
     end function
@@ -44040,11 +44040,12 @@ module hipfort_rocsolver
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: E
-      real(c_float) :: tau
-      type(c_ptr) :: W
+      real(c_float),target :: tau
+      real(c_float),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_slatrd_rank_0 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_slatrd_rank_0 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_slatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44060,11 +44061,12 @@ module hipfort_rocsolver
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
-      type(c_ptr) :: W
+      real(c_float),target,dimension(:) :: tau
+      real(c_float),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_slatrd_rank_1 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_slatrd_rank_1 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_slatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44080,12 +44082,12 @@ module hipfort_rocsolver
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
-      type(c_ptr) :: W
+      real(c_float),target,dimension(:) :: tau
+      real(c_float),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_slatrd_full_rank = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W, &
-        ldw)
+      rocsolver_slatrd_full_rank = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_dlatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44101,11 +44103,12 @@ module hipfort_rocsolver
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: E
-      real(c_double) :: tau
-      type(c_ptr) :: W
+      real(c_double),target :: tau
+      real(c_double),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_dlatrd_rank_0 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_dlatrd_rank_0 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_dlatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44121,11 +44124,12 @@ module hipfort_rocsolver
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
-      type(c_ptr) :: W
+      real(c_double),target,dimension(:) :: tau
+      real(c_double),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_dlatrd_rank_1 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_dlatrd_rank_1 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_dlatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44141,12 +44145,12 @@ module hipfort_rocsolver
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
-      type(c_ptr) :: W
+      real(c_double),target,dimension(:) :: tau
+      real(c_double),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_dlatrd_full_rank = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W, &
-        ldw)
+      rocsolver_dlatrd_full_rank = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_clatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44162,11 +44166,12 @@ module hipfort_rocsolver
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       real(c_float),target :: E
-      complex(c_float_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_float_complex),target :: tau
+      complex(c_float_complex),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_clatrd_rank_0 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_clatrd_rank_0 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_clatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44182,11 +44187,12 @@ module hipfort_rocsolver
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_float_complex),target,dimension(:) :: tau
+      complex(c_float_complex),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_clatrd_rank_1 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_clatrd_rank_1 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_clatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44202,12 +44208,12 @@ module hipfort_rocsolver
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_float_complex),target,dimension(:) :: tau
+      complex(c_float_complex),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_clatrd_full_rank = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W, &
-        ldw)
+      rocsolver_clatrd_full_rank = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_zlatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44223,11 +44229,12 @@ module hipfort_rocsolver
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       real(c_double),target :: E
-      complex(c_double_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_double_complex),target :: tau
+      complex(c_double_complex),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_zlatrd_rank_0 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_zlatrd_rank_0 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_zlatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44243,11 +44250,12 @@ module hipfort_rocsolver
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_double_complex),target,dimension(:) :: tau
+      complex(c_double_complex),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_zlatrd_rank_1 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_zlatrd_rank_1 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_zlatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44263,12 +44271,12 @@ module hipfort_rocsolver
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_double_complex),target,dimension(:) :: tau
+      complex(c_double_complex),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_zlatrd_full_rank = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W, &
-        ldw)
+      rocsolver_zlatrd_full_rank = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E), &
+        c_loc(tau),c_loc(W),ldw)
     end function
 
     function rocsolver_slasyf_rank_0(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
