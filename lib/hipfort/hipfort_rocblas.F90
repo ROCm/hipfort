@@ -41798,14 +41798,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_chpmv_rank_0 = rocblas_chpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chpmv_rank_0 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -41817,14 +41818,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_chpmv_rank_1 = rocblas_chpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_chpmv_rank_1 = rocblas_chpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhpmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -41836,14 +41838,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      rocblas_zhpmv_rank_0 = rocblas_zhpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhpmv_rank_0 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_zhpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -41855,14 +41858,15 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      rocblas_zhpmv_rank_1 = rocblas_zhpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      rocblas_zhpmv_rank_1 = rocblas_zhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function rocblas_chpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
@@ -41875,7 +41879,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -41887,7 +41891,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_chpmv_strided_batched_rank_0 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha, &
-        AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
@@ -41900,7 +41904,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -41912,7 +41916,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_chpmv_strided_batched_rank_1 = rocblas_chpmv_strided_batched_(handle,uplo,n,alpha, &
-        AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_zhpmv_strided_batched_rank_0(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
@@ -41925,7 +41929,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -41937,7 +41941,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_zhpmv_strided_batched_rank_0 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha, &
-        AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_zhpmv_strided_batched_rank_1(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x, &
@@ -41950,7 +41954,7 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -41962,7 +41966,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_zhpmv_strided_batched_rank_1 = rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha, &
-        AP,stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
+        c_loc(AP),stride_A,c_loc(x),incx,stride_x,beta,c_loc(y),incy,stride_y,batch_count)
     end function
 
     function rocblas_chpr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -41976,9 +41980,9 @@ module hipfort_rocblas
       real(c_float) :: alpha
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      rocblas_chpr_rank_0 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_chpr_rank_0 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_chpr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -41992,9 +41996,9 @@ module hipfort_rocblas
       real(c_float) :: alpha
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      rocblas_chpr_rank_1 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_chpr_rank_1 = rocblas_chpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_zhpr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -42008,9 +42012,9 @@ module hipfort_rocblas
       real(c_double) :: alpha
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      rocblas_zhpr_rank_0 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_zhpr_rank_0 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_zhpr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -42024,9 +42028,9 @@ module hipfort_rocblas
       real(c_double) :: alpha
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      rocblas_zhpr_rank_1 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_zhpr_rank_1 = rocblas_zhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_chpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -42042,12 +42046,12 @@ module hipfort_rocblas
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_chpr_strided_batched_rank_0 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -42063,12 +42067,12 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_chpr_strided_batched_rank_1 = rocblas_chpr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -42084,12 +42088,12 @@ module hipfort_rocblas
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_zhpr_strided_batched_rank_0 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -42105,12 +42109,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_zhpr_strided_batched_rank_1 = rocblas_zhpr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -42126,9 +42130,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      rocblas_chpr2_rank_0 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_chpr2_rank_0 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_chpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -42144,9 +42149,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      rocblas_chpr2_rank_1 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_chpr2_rank_1 = rocblas_chpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_zhpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -42162,9 +42168,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      rocblas_zhpr2_rank_0 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_zhpr2_rank_0 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_zhpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -42180,9 +42187,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      rocblas_zhpr2_rank_1 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_zhpr2_rank_1 = rocblas_zhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_chpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -42201,12 +42209,12 @@ module hipfort_rocblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_chpr2_strided_batched_rank_0 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_chpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -42225,12 +42233,12 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_chpr2_strided_batched_rank_1 = rocblas_chpr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -42249,12 +42257,12 @@ module hipfort_rocblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_zhpr2_strided_batched_rank_0 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zhpr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -42273,12 +42281,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_zhpr2_strided_batched_rank_1 = rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_strmv_rank_0(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -44627,11 +44635,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       real(c_float),target :: x
       integer(c_int) :: incx
       !
-      rocblas_stpsv_rank_0 = rocblas_stpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_stpsv_rank_0 = rocblas_stpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_stpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44644,11 +44652,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_stpsv_rank_1 = rocblas_stpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_stpsv_rank_1 = rocblas_stpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_dtpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44661,11 +44669,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       real(c_double),target :: x
       integer(c_int) :: incx
       !
-      rocblas_dtpsv_rank_0 = rocblas_dtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_dtpsv_rank_0 = rocblas_dtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_dtpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44678,11 +44686,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_dtpsv_rank_1 = rocblas_dtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_dtpsv_rank_1 = rocblas_dtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_ctpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44695,11 +44703,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ctpsv_rank_0 = rocblas_ctpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_ctpsv_rank_0 = rocblas_ctpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_ctpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44712,11 +44720,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ctpsv_rank_1 = rocblas_ctpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_ctpsv_rank_1 = rocblas_ctpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_ztpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44729,11 +44737,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       !
-      rocblas_ztpsv_rank_0 = rocblas_ztpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_ztpsv_rank_0 = rocblas_ztpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_ztpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -44746,11 +44754,11 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      rocblas_ztpsv_rank_1 = rocblas_ztpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      rocblas_ztpsv_rank_1 = rocblas_ztpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function rocblas_stpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44764,7 +44772,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: stride_A
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -44772,7 +44780,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_stpsv_strided_batched_rank_0 = rocblas_stpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_stpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44786,7 +44794,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -44794,7 +44802,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_stpsv_strided_batched_rank_1 = rocblas_stpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_dtpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44808,7 +44816,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: stride_A
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -44816,7 +44824,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_dtpsv_strided_batched_rank_0 = rocblas_dtpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_dtpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44830,7 +44838,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -44838,7 +44846,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_dtpsv_strided_batched_rank_1 = rocblas_dtpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ctpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44852,7 +44860,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -44860,7 +44868,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_ctpsv_strided_batched_rank_0 = rocblas_ctpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ctpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44874,7 +44882,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -44882,7 +44890,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_ctpsv_strided_batched_rank_1 = rocblas_ctpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ztpsv_strided_batched_rank_0(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44896,7 +44904,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -44904,7 +44912,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_ztpsv_strided_batched_rank_0 = rocblas_ztpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ztpsv_strided_batched_rank_1(handle,uplo,transA,diag,n,AP,stride_A,x,incx, &
@@ -44918,7 +44926,7 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -44926,7 +44934,7 @@ module hipfort_rocblas
       integer(c_int) :: batch_count
       !
       rocblas_ztpsv_strided_batched_rank_1 = rocblas_ztpsv_strided_batched_(handle,uplo,transA, &
-        diag,n,AP,stride_A,c_loc(x),incx,stride_x,batch_count)
+        diag,n,c_loc(AP),stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
     function rocblas_ssymv_rank_0(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -46784,9 +46792,9 @@ module hipfort_rocblas
       real(c_float) :: alpha
       real(c_float),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       !
-      rocblas_sspr_rank_0 = rocblas_sspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_sspr_rank_0 = rocblas_sspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_sspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -46800,9 +46808,9 @@ module hipfort_rocblas
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       !
-      rocblas_sspr_rank_1 = rocblas_sspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_sspr_rank_1 = rocblas_sspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_dspr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -46816,9 +46824,9 @@ module hipfort_rocblas
       real(c_double) :: alpha
       real(c_double),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       !
-      rocblas_dspr_rank_0 = rocblas_dspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_dspr_rank_0 = rocblas_dspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_dspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -46832,9 +46840,9 @@ module hipfort_rocblas
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       !
-      rocblas_dspr_rank_1 = rocblas_dspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_dspr_rank_1 = rocblas_dspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_cspr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -46848,9 +46856,9 @@ module hipfort_rocblas
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      rocblas_cspr_rank_0 = rocblas_cspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_cspr_rank_0 = rocblas_cspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_cspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -46864,9 +46872,9 @@ module hipfort_rocblas
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      rocblas_cspr_rank_1 = rocblas_cspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_cspr_rank_1 = rocblas_cspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_zspr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -46880,9 +46888,9 @@ module hipfort_rocblas
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      rocblas_zspr_rank_0 = rocblas_zspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_zspr_rank_0 = rocblas_zspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_zspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -46896,9 +46904,9 @@ module hipfort_rocblas
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      rocblas_zspr_rank_1 = rocblas_zspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      rocblas_zspr_rank_1 = rocblas_zspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function rocblas_sspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -46914,12 +46922,12 @@ module hipfort_rocblas
       real(c_float),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_sspr_strided_batched_rank_0 = rocblas_sspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_sspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -46935,12 +46943,12 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_sspr_strided_batched_rank_1 = rocblas_sspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_dspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -46956,12 +46964,12 @@ module hipfort_rocblas
       real(c_double),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_dspr_strided_batched_rank_0 = rocblas_dspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_dspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -46977,12 +46985,12 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_dspr_strided_batched_rank_1 = rocblas_dspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_cspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -46998,12 +47006,12 @@ module hipfort_rocblas
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_cspr_strided_batched_rank_0 = rocblas_cspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_cspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -47019,12 +47027,12 @@ module hipfort_rocblas
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_cspr_strided_batched_rank_1 = rocblas_cspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zspr_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -47040,12 +47048,12 @@ module hipfort_rocblas
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_zspr_strided_batched_rank_0 = rocblas_zspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_zspr_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A, &
@@ -47061,12 +47069,12 @@ module hipfort_rocblas
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_zspr_strided_batched_rank_1 = rocblas_zspr_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_sspr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47082,9 +47090,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_float),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       !
-      rocblas_sspr2_rank_0 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_sspr2_rank_0 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_sspr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47100,9 +47109,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       !
-      rocblas_sspr2_rank_1 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_sspr2_rank_1 = rocblas_sspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_dspr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47118,9 +47128,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_double),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       !
-      rocblas_dspr2_rank_0 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_dspr2_rank_0 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_dspr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47136,9 +47147,10 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       !
-      rocblas_dspr2_rank_1 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      rocblas_dspr2_rank_1 = rocblas_dspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(AP))
     end function
 
     function rocblas_sspr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -47157,12 +47169,12 @@ module hipfort_rocblas
       real(c_float),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_sspr2_strided_batched_rank_0 = rocblas_sspr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_sspr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -47181,12 +47193,12 @@ module hipfort_rocblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_sspr2_strided_batched_rank_1 = rocblas_sspr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_dspr2_strided_batched_rank_0(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -47205,12 +47217,12 @@ module hipfort_rocblas
       real(c_double),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_dspr2_strided_batched_rank_0 = rocblas_dspr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_dspr2_strided_batched_rank_1(handle,uplo,n,alpha,x,incx,stride_x,y,incy, &
@@ -47229,12 +47241,12 @@ module hipfort_rocblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
       rocblas_dspr2_strided_batched_rank_1 = rocblas_dspr2_strided_batched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,AP,stride_A,batch_count)
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(AP),stride_A,batch_count)
     end function
 
     function rocblas_ssyr_rank_0(handle,uplo,n,alpha,x,incx,A,lda)
