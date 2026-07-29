@@ -1,27 +1,13 @@
-!!!!!!!!!!!!!/
-! scsr2csc example (single-precision CSR -> CSC conversion / sparse transpose)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
+!!!!!!!!!!!!!!
+! sgtsv example (single-precision tridiagonal solve, rocSPARSE)
+! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/precond.html
 !
-! Converting A from CSR to CSC is equivalent to producing the CSR of A**T.
-! We check the resulting csc_col_ptr / csc_row_ind / csc_val against the known
-! transpose. csr2csc needs a workspace buffer sized by csr2csc_buffer_size.
-!!!!!!!!!!!!!!/
+! Solves A x = b for a tridiagonal system. Here A is the identity tridiagonal
+! (dl = du = 0, d = 1), so the exact solution of A x = b is x = b. dl/d/du/B are
+! passed as Fortran arrays, exercising the generic array form of the diagonal
+! arguments (they used to be declared type(c_ptr), SWDEV-485451).
+!!!!!!!!!!!!!!
 !
-program scsr2csc
-  use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
-
-  implicit none
-  integer :: i
-
-  ! 3x3 sparse matrix in CSR (0-based):
-  !   row 0: (0,0)=1, (0,2)=2
-  !   row 1: (1,1)=3
-  !   row 2: (2,0)=4, (2,2)=5
-  integer(c_int), parameter :: M = 3, N = 3, nnz = 5
-
 program rocsparse_sgtsv_test
 
   use iso_c_binding
