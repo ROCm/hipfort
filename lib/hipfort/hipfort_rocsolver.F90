@@ -1053,7 +1053,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -1081,7 +1081,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -1109,7 +1109,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -1137,7 +1137,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -24161,7 +24161,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24186,7 +24186,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24269,7 +24269,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24294,7 +24294,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24403,7 +24403,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24433,7 +24433,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24543,7 +24543,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24573,7 +24573,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24688,7 +24688,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24720,7 +24720,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24836,7 +24836,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24868,7 +24868,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -24952,7 +24952,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24977,7 +24977,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -25060,7 +25060,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -25085,7 +25085,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -25194,7 +25194,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25224,7 +25224,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25334,7 +25334,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25364,7 +25364,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25479,7 +25479,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_float) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25511,7 +25511,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      real(c_double) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25627,7 +25627,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_float_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -25659,7 +25659,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      complex(c_double_complex) :: tau
+      type(c_ptr),value :: tau
       integer(c_int64_t),value :: strideP
       integer(c_int),value :: batch_count
     end function
@@ -42960,12 +42960,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       real(c_float),target :: V
       integer(c_int) :: ldv
-      real(c_float) :: tau
+      real(c_float),target :: tau
       real(c_float),target :: T
       integer(c_int) :: ldt
       !
-      rocsolver_slarft_rank_0 = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_slarft_rank_0 = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_slarft_rank_1(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -42981,12 +42981,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       real(c_float),target,dimension(:) :: V
       integer(c_int) :: ldv
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_slarft_rank_1 = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_slarft_rank_1 = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_slarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43002,12 +43002,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       real(c_float),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_slarft_full_rank = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_slarft_full_rank = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_dlarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43023,12 +43023,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       real(c_double),target :: V
       integer(c_int) :: ldv
-      real(c_double) :: tau
+      real(c_double),target :: tau
       real(c_double),target :: T
       integer(c_int) :: ldt
       !
-      rocsolver_dlarft_rank_0 = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_dlarft_rank_0 = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_dlarft_rank_1(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43044,12 +43044,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       real(c_double),target,dimension(:) :: V
       integer(c_int) :: ldv
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_dlarft_rank_1 = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_dlarft_rank_1 = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_dlarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43065,12 +43065,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       real(c_double),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_dlarft_full_rank = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_dlarft_full_rank = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_clarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43086,12 +43086,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       complex(c_float_complex),target :: V
       integer(c_int) :: ldv
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       complex(c_float_complex),target :: T
       integer(c_int) :: ldt
       !
-      rocsolver_clarft_rank_0 = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_clarft_rank_0 = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_clarft_rank_1(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43107,12 +43107,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:) :: V
       integer(c_int) :: ldv
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_clarft_rank_1 = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_clarft_rank_1 = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_clarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43128,12 +43128,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_clarft_full_rank = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_clarft_full_rank = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_zlarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43149,12 +43149,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       complex(c_double_complex),target :: V
       integer(c_int) :: ldv
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       complex(c_double_complex),target :: T
       integer(c_int) :: ldt
       !
-      rocsolver_zlarft_rank_0 = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_zlarft_rank_0 = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_zlarft_rank_1(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43170,12 +43170,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:) :: V
       integer(c_int) :: ldv
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_zlarft_rank_1 = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_zlarft_rank_1 = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_zlarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43191,12 +43191,12 @@ module hipfort_rocsolver
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_zlarft_full_rank = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau, &
-        c_loc(T),ldt)
+      rocsolver_zlarft_full_rank = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
+        c_loc(tau),c_loc(T),ldt)
     end function
 
     function rocsolver_slarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
@@ -63980,9 +63980,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      real(c_float) :: tau
+      real(c_float),target :: tau
       !
-      rocsolver_ssytd2_rank_0 = rocsolver_ssytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_ssytd2_rank_0 = rocsolver_ssytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_ssytd2_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -63998,9 +63999,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       !
-      rocsolver_ssytd2_rank_1 = rocsolver_ssytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_ssytd2_rank_1 = rocsolver_ssytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_ssytd2_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64016,10 +64018,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       !
       rocsolver_ssytd2_full_rank = rocsolver_ssytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_dsytd2_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64035,9 +64037,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      real(c_double) :: tau
+      real(c_double),target :: tau
       !
-      rocsolver_dsytd2_rank_0 = rocsolver_dsytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_dsytd2_rank_0 = rocsolver_dsytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_dsytd2_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64053,9 +64056,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       !
-      rocsolver_dsytd2_rank_1 = rocsolver_dsytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_dsytd2_rank_1 = rocsolver_dsytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_dsytd2_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64071,10 +64075,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       !
       rocsolver_dsytd2_full_rank = rocsolver_dsytd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_chetd2_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64090,9 +64094,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       !
-      rocsolver_chetd2_rank_0 = rocsolver_chetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_chetd2_rank_0 = rocsolver_chetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_chetd2_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64108,9 +64113,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       !
-      rocsolver_chetd2_rank_1 = rocsolver_chetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_chetd2_rank_1 = rocsolver_chetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_chetd2_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64126,10 +64132,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       !
       rocsolver_chetd2_full_rank = rocsolver_chetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_zhetd2_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64145,9 +64151,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       !
-      rocsolver_zhetd2_rank_0 = rocsolver_zhetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_zhetd2_rank_0 = rocsolver_zhetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_zhetd2_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64163,9 +64170,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       !
-      rocsolver_zhetd2_rank_1 = rocsolver_zhetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_zhetd2_rank_1 = rocsolver_zhetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_zhetd2_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64181,10 +64189,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       !
       rocsolver_zhetd2_full_rank = rocsolver_zhetd2_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_ssytd2_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64203,12 +64211,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytd2_batched_rank_0 = rocsolver_ssytd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytd2_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64227,12 +64235,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytd2_batched_rank_1 = rocsolver_ssytd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytd2_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64251,12 +64259,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytd2_batched_rank_0 = rocsolver_dsytd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytd2_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64275,12 +64283,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytd2_batched_rank_1 = rocsolver_dsytd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetd2_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64299,12 +64307,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetd2_batched_rank_0 = rocsolver_chetd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetd2_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64323,12 +64331,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetd2_batched_rank_1 = rocsolver_chetd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetd2_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64347,12 +64355,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetd2_batched_rank_0 = rocsolver_zhetd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetd2_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64371,12 +64379,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetd2_batched_rank_1 = rocsolver_zhetd2_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytd2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64396,12 +64404,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytd2_strided_batched_rank_0 = rocsolver_ssytd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytd2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64421,12 +64429,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytd2_strided_batched_rank_1 = rocsolver_ssytd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytd2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64446,12 +64454,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytd2_strided_batched_full_rank = rocsolver_ssytd2_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytd2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64471,12 +64479,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytd2_strided_batched_rank_0 = rocsolver_dsytd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytd2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64496,12 +64504,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytd2_strided_batched_rank_1 = rocsolver_dsytd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytd2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64521,12 +64529,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytd2_strided_batched_full_rank = rocsolver_dsytd2_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetd2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64546,12 +64554,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetd2_strided_batched_rank_0 = rocsolver_chetd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetd2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64571,12 +64579,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetd2_strided_batched_rank_1 = rocsolver_chetd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetd2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64596,12 +64604,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetd2_strided_batched_full_rank = rocsolver_chetd2_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetd2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64621,12 +64629,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetd2_strided_batched_rank_0 = rocsolver_zhetd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetd2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64646,12 +64654,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetd2_strided_batched_rank_1 = rocsolver_zhetd2_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetd2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -64671,12 +64679,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetd2_strided_batched_full_rank = rocsolver_zhetd2_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytrd_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64692,9 +64700,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      real(c_float) :: tau
+      real(c_float),target :: tau
       !
-      rocsolver_ssytrd_rank_0 = rocsolver_ssytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_ssytrd_rank_0 = rocsolver_ssytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_ssytrd_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64710,9 +64719,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       !
-      rocsolver_ssytrd_rank_1 = rocsolver_ssytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_ssytrd_rank_1 = rocsolver_ssytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_ssytrd_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64728,10 +64738,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       !
       rocsolver_ssytrd_full_rank = rocsolver_ssytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_dsytrd_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64747,9 +64757,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      real(c_double) :: tau
+      real(c_double),target :: tau
       !
-      rocsolver_dsytrd_rank_0 = rocsolver_dsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_dsytrd_rank_0 = rocsolver_dsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_dsytrd_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64765,9 +64776,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       !
-      rocsolver_dsytrd_rank_1 = rocsolver_dsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_dsytrd_rank_1 = rocsolver_dsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_dsytrd_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64783,10 +64795,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       !
       rocsolver_dsytrd_full_rank = rocsolver_dsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_chetrd_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64802,9 +64814,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       !
-      rocsolver_chetrd_rank_0 = rocsolver_chetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_chetrd_rank_0 = rocsolver_chetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_chetrd_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64820,9 +64833,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       !
-      rocsolver_chetrd_rank_1 = rocsolver_chetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_chetrd_rank_1 = rocsolver_chetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_chetrd_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64838,10 +64852,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       !
       rocsolver_chetrd_full_rank = rocsolver_chetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_zhetrd_rank_0(handle,uplo,n,A,lda,D,E,tau)
@@ -64857,9 +64871,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       !
-      rocsolver_zhetrd_rank_0 = rocsolver_zhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_zhetrd_rank_0 = rocsolver_zhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_zhetrd_rank_1(handle,uplo,n,A,lda,D,E,tau)
@@ -64875,9 +64890,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       !
-      rocsolver_zhetrd_rank_1 = rocsolver_zhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau)
+      rocsolver_zhetrd_rank_1 = rocsolver_zhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tau))
     end function
 
     function rocsolver_zhetrd_full_rank(handle,uplo,n,A,lda,D,E,tau)
@@ -64893,10 +64909,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       !
       rocsolver_zhetrd_full_rank = rocsolver_zhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E), &
-        tau)
+        c_loc(tau))
     end function
 
     function rocsolver_ssytrd_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64915,12 +64931,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytrd_batched_rank_0 = rocsolver_ssytrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytrd_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64939,12 +64955,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytrd_batched_rank_1 = rocsolver_ssytrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytrd_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64963,12 +64979,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytrd_batched_rank_0 = rocsolver_dsytrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytrd_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -64987,12 +65003,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytrd_batched_rank_1 = rocsolver_dsytrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetrd_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -65011,12 +65027,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetrd_batched_rank_0 = rocsolver_chetrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetrd_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -65035,12 +65051,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetrd_batched_rank_1 = rocsolver_chetrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetrd_batched_rank_0(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -65059,12 +65075,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetrd_batched_rank_0 = rocsolver_zhetrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetrd_batched_rank_1(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP, &
@@ -65083,12 +65099,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetrd_batched_rank_1 = rocsolver_zhetrd_batched_(handle,uplo,n,A,lda,c_loc(D), &
-        strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytrd_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65108,12 +65124,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytrd_strided_batched_rank_0 = rocsolver_ssytrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytrd_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65133,12 +65149,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytrd_strided_batched_rank_1 = rocsolver_ssytrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssytrd_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65158,12 +65174,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_float) :: tau
+      real(c_float),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_ssytrd_strided_batched_full_rank = rocsolver_ssytrd_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytrd_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65183,12 +65199,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytrd_strided_batched_rank_0 = rocsolver_dsytrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytrd_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65208,12 +65224,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytrd_strided_batched_rank_1 = rocsolver_dsytrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_dsytrd_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65233,12 +65249,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      real(c_double) :: tau
+      real(c_double),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_dsytrd_strided_batched_full_rank = rocsolver_dsytrd_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetrd_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65258,12 +65274,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetrd_strided_batched_rank_0 = rocsolver_chetrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetrd_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65283,12 +65299,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetrd_strided_batched_rank_1 = rocsolver_chetrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_chetrd_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65308,12 +65324,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_chetrd_strided_batched_full_rank = rocsolver_chetrd_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetrd_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65333,12 +65349,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetrd_strided_batched_rank_0 = rocsolver_zhetrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetrd_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65358,12 +65374,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetrd_strided_batched_rank_1 = rocsolver_zhetrd_strided_batched_(handle,uplo,n, &
-        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_zhetrd_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,D,strideD,E, &
@@ -65383,12 +65399,12 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:) :: tau
       integer(c_int64_t) :: strideP
       integer(c_int) :: batch_count
       !
       rocsolver_zhetrd_strided_batched_full_rank = rocsolver_zhetrd_strided_batched_(handle,uplo, &
-        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,tau,strideP,batch_count)
+        n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,c_loc(tau),strideP,batch_count)
     end function
 
     function rocsolver_ssygs2_rank_0(handle,itype,uplo,n,A,lda,B,ldb)
