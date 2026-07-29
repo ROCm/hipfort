@@ -46917,14 +46917,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       !
-      hipblasChpmv_rank_0 = hipblasChpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasChpmv_rank_0 = hipblasChpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function hipblasChpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -46936,14 +46937,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      hipblasChpmv_rank_1 = hipblasChpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasChpmv_rank_1 = hipblasChpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function hipblasZhpmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -46955,14 +46957,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       !
-      hipblasZhpmv_rank_0 = hipblasZhpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasZhpmv_rank_0 = hipblasZhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function hipblasZhpmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -46974,14 +46977,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      hipblasZhpmv_rank_1 = hipblasZhpmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasZhpmv_rank_1 = hipblasZhpmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -46995,7 +46999,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -47006,8 +47010,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasChpmvStridedBatched_rank_0 = hipblasChpmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasChpmvStridedBatched_rank_0 = hipblasChpmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
     function hipblasChpmvStridedBatched_rank_1(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
@@ -47020,7 +47024,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -47031,8 +47035,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasChpmvStridedBatched_rank_1 = hipblasChpmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasChpmvStridedBatched_rank_1 = hipblasChpmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
 #endif
@@ -47047,7 +47051,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -47058,8 +47062,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasZhpmvStridedBatched_rank_0 = hipblasZhpmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasZhpmvStridedBatched_rank_0 = hipblasZhpmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
     function hipblasZhpmvStridedBatched_rank_1(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
@@ -47072,7 +47076,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -47083,8 +47087,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasZhpmvStridedBatched_rank_1 = hipblasZhpmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasZhpmvStridedBatched_rank_1 = hipblasZhpmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
 #endif
@@ -47099,9 +47103,9 @@ module hipfort_hipblas
       real(c_float) :: alpha
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      hipblasChpr_rank_0 = hipblasChpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasChpr_rank_0 = hipblasChpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasChpr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -47115,9 +47119,9 @@ module hipfort_hipblas
       real(c_float) :: alpha
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      hipblasChpr_rank_1 = hipblasChpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasChpr_rank_1 = hipblasChpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasZhpr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -47131,9 +47135,9 @@ module hipfort_hipblas
       real(c_double) :: alpha
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      hipblasZhpr_rank_0 = hipblasZhpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasZhpr_rank_0 = hipblasZhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasZhpr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -47147,9 +47151,9 @@ module hipfort_hipblas
       real(c_double) :: alpha
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      hipblasZhpr_rank_1 = hipblasZhpr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasZhpr_rank_1 = hipblasZhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -47166,12 +47170,12 @@ module hipfort_hipblas
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasChprStridedBatched_rank_0 = hipblasChprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasChprStridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
@@ -47187,12 +47191,12 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasChprStridedBatched_rank_1 = hipblasChprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -47210,12 +47214,12 @@ module hipfort_hipblas
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasZhprStridedBatched_rank_0 = hipblasZhprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasZhprStridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
@@ -47231,12 +47235,12 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasZhprStridedBatched_rank_1 = hipblasZhprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -47253,9 +47257,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      hipblasChpr2_rank_0 = hipblasChpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasChpr2_rank_0 = hipblasChpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function hipblasChpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47271,9 +47275,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      hipblasChpr2_rank_1 = hipblasChpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasChpr2_rank_1 = hipblasChpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function hipblasZhpr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47289,9 +47293,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      hipblasZhpr2_rank_0 = hipblasZhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasZhpr2_rank_0 = hipblasZhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function hipblasZhpr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -47307,9 +47311,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      hipblasZhpr2_rank_1 = hipblasZhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasZhpr2_rank_1 = hipblasZhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -47329,12 +47333,12 @@ module hipfort_hipblas
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasChpr2StridedBatched_rank_0 = hipblasChpr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasChpr2StridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
@@ -47353,12 +47357,12 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasChpr2StridedBatched_rank_1 = hipblasChpr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -47379,12 +47383,12 @@ module hipfort_hipblas
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasZhpr2StridedBatched_rank_0 = hipblasZhpr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasZhpr2StridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
@@ -47403,12 +47407,12 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasZhpr2StridedBatched_rank_1 = hipblasZhpr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -47719,14 +47723,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       real(c_float),target :: x
       integer(c_int) :: incx
       real(c_float) :: beta
       real(c_float),target :: y
       integer(c_int) :: incy
       !
-      hipblasSspmv_rank_0 = hipblasSspmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasSspmv_rank_0 = hipblasSspmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function hipblasSspmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -47738,14 +47743,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      hipblasSspmv_rank_1 = hipblasSspmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasSspmv_rank_1 = hipblasSspmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function hipblasDspmv_rank_0(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -47757,14 +47763,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       real(c_double),target :: x
       integer(c_int) :: incx
       real(c_double) :: beta
       real(c_double),target :: y
       integer(c_int) :: incy
       !
-      hipblasDspmv_rank_0 = hipblasDspmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasDspmv_rank_0 = hipblasDspmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
     function hipblasDspmv_rank_1(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
@@ -47776,14 +47783,15 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       !
-      hipblasDspmv_rank_1 = hipblasDspmv_(handle,uplo,n,alpha,AP,c_loc(x),incx,beta,c_loc(y),incy)
+      hipblasDspmv_rank_1 = hipblasDspmv_(handle,uplo,n,alpha,c_loc(AP),c_loc(x),incx,beta, &
+        c_loc(y),incy)
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -47797,7 +47805,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: strideA
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -47808,8 +47816,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasSspmvStridedBatched_rank_0 = hipblasSspmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasSspmvStridedBatched_rank_0 = hipblasSspmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
     function hipblasSspmvStridedBatched_rank_1(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
@@ -47822,7 +47830,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -47833,8 +47841,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasSspmvStridedBatched_rank_1 = hipblasSspmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasSspmvStridedBatched_rank_1 = hipblasSspmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
 #endif
@@ -47849,7 +47857,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: strideA
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -47860,8 +47868,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasDspmvStridedBatched_rank_0 = hipblasDspmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasDspmvStridedBatched_rank_0 = hipblasDspmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
     function hipblasDspmvStridedBatched_rank_1(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
@@ -47874,7 +47882,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -47885,8 +47893,8 @@ module hipfort_hipblas
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
       !
-      hipblasDspmvStridedBatched_rank_1 = hipblasDspmvStridedBatched_(handle,uplo,n,alpha,AP, &
-        strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
+      hipblasDspmvStridedBatched_rank_1 = hipblasDspmvStridedBatched_(handle,uplo,n,alpha, &
+        c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
 
 #endif
@@ -47901,9 +47909,9 @@ module hipfort_hipblas
       real(c_float) :: alpha
       real(c_float),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       !
-      hipblasSspr_rank_0 = hipblasSspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasSspr_rank_0 = hipblasSspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasSspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -47917,9 +47925,9 @@ module hipfort_hipblas
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       !
-      hipblasSspr_rank_1 = hipblasSspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasSspr_rank_1 = hipblasSspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasDspr_rank_0(handle,uplo,n,alpha,x,incx,AP)
@@ -47933,9 +47941,9 @@ module hipfort_hipblas
       real(c_double) :: alpha
       real(c_double),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       !
-      hipblasDspr_rank_0 = hipblasDspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasDspr_rank_0 = hipblasDspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasDspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -47949,9 +47957,9 @@ module hipfort_hipblas
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       !
-      hipblasDspr_rank_1 = hipblasDspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasDspr_rank_1 = hipblasDspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -47966,9 +47974,9 @@ module hipfort_hipblas
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       !
-      hipblasCspr_rank_0 = hipblasCspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasCspr_rank_0 = hipblasCspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasCspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -47982,9 +47990,9 @@ module hipfort_hipblas
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       !
-      hipblasCspr_rank_1 = hipblasCspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasCspr_rank_1 = hipblasCspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
 #endif
@@ -48000,9 +48008,9 @@ module hipfort_hipblas
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       !
-      hipblasZspr_rank_0 = hipblasZspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasZspr_rank_0 = hipblasZspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
     function hipblasZspr_rank_1(handle,uplo,n,alpha,x,incx,AP)
@@ -48016,9 +48024,9 @@ module hipfort_hipblas
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       !
-      hipblasZspr_rank_1 = hipblasZspr_(handle,uplo,n,alpha,c_loc(x),incx,AP)
+      hipblasZspr_rank_1 = hipblasZspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
 #endif
@@ -48036,12 +48044,12 @@ module hipfort_hipblas
       real(c_float),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasSsprStridedBatched_rank_0 = hipblasSsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasSsprStridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
@@ -48057,12 +48065,12 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasSsprStridedBatched_rank_1 = hipblasSsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -48080,12 +48088,12 @@ module hipfort_hipblas
       real(c_double),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasDsprStridedBatched_rank_0 = hipblasDsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasDsprStridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
@@ -48101,12 +48109,12 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasDsprStridedBatched_rank_1 = hipblasDsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -48124,12 +48132,12 @@ module hipfort_hipblas
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasCsprStridedBatched_rank_0 = hipblasCsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasCsprStridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
@@ -48145,12 +48153,12 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasCsprStridedBatched_rank_1 = hipblasCsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -48168,12 +48176,12 @@ module hipfort_hipblas
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasZsprStridedBatched_rank_0 = hipblasZsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasZsprStridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
@@ -48189,12 +48197,12 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasZsprStridedBatched_rank_1 = hipblasZsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
-        incx,stridex,AP,strideA,batchCount)
+        incx,stridex,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -48211,9 +48219,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       !
-      hipblasSspr2_rank_0 = hipblasSspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasSspr2_rank_0 = hipblasSspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function hipblasSspr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48229,9 +48237,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       !
-      hipblasSspr2_rank_1 = hipblasSspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasSspr2_rank_1 = hipblasSspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function hipblasDspr2_rank_0(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48247,9 +48255,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       !
-      hipblasDspr2_rank_0 = hipblasDspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasDspr2_rank_0 = hipblasDspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
     function hipblasDspr2_rank_1(handle,uplo,n,alpha,x,incx,y,incy,AP)
@@ -48265,9 +48273,9 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       !
-      hipblasDspr2_rank_1 = hipblasDspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,AP)
+      hipblasDspr2_rank_1 = hipblasDspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -48287,12 +48295,12 @@ module hipfort_hipblas
       real(c_float),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasSspr2StridedBatched_rank_0 = hipblasSspr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasSspr2StridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
@@ -48311,12 +48319,12 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasSspr2StridedBatched_rank_1 = hipblasSspr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -48337,12 +48345,12 @@ module hipfort_hipblas
       real(c_double),target :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasDspr2StridedBatched_rank_0 = hipblasDspr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
     function hipblasDspr2StridedBatched_rank_1(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
@@ -48361,12 +48369,12 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
       hipblasDspr2StridedBatched_rank_1 = hipblasDspr2StridedBatched_(handle,uplo,n,alpha, &
-        c_loc(x),incx,stridex,c_loc(y),incy,stridey,AP,strideA,batchCount)
+        c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
 
 #endif
@@ -51032,11 +51040,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       real(c_float),target :: x
       integer(c_int) :: incx
       !
-      hipblasStpmv_rank_0 = hipblasStpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasStpmv_rank_0 = hipblasStpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasStpmv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51049,11 +51057,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasStpmv_rank_1 = hipblasStpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasStpmv_rank_1 = hipblasStpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasDtpmv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51066,11 +51074,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       real(c_double),target :: x
       integer(c_int) :: incx
       !
-      hipblasDtpmv_rank_0 = hipblasDtpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasDtpmv_rank_0 = hipblasDtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasDtpmv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51083,11 +51091,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasDtpmv_rank_1 = hipblasDtpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasDtpmv_rank_1 = hipblasDtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasCtpmv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51100,11 +51108,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       !
-      hipblasCtpmv_rank_0 = hipblasCtpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasCtpmv_rank_0 = hipblasCtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasCtpmv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51117,11 +51125,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasCtpmv_rank_1 = hipblasCtpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasCtpmv_rank_1 = hipblasCtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasZtpmv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51134,11 +51142,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       !
-      hipblasZtpmv_rank_0 = hipblasZtpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasZtpmv_rank_0 = hipblasZtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasZtpmv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51151,11 +51159,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasZtpmv_rank_1 = hipblasZtpmv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasZtpmv_rank_1 = hipblasZtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -51170,7 +51178,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: strideA
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -51178,7 +51186,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasStpmvStridedBatched_rank_0 = hipblasStpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasStpmvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51192,7 +51200,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51200,7 +51208,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasStpmvStridedBatched_rank_1 = hipblasStpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51216,7 +51224,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: strideA
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -51224,7 +51232,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDtpmvStridedBatched_rank_0 = hipblasDtpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasDtpmvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51238,7 +51246,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51246,7 +51254,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDtpmvStridedBatched_rank_1 = hipblasDtpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51262,7 +51270,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -51270,7 +51278,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCtpmvStridedBatched_rank_0 = hipblasCtpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasCtpmvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51284,7 +51292,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51292,7 +51300,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCtpmvStridedBatched_rank_1 = hipblasCtpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51308,7 +51316,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -51316,7 +51324,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZtpmvStridedBatched_rank_0 = hipblasZtpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasZtpmvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51330,7 +51338,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51338,7 +51346,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZtpmvStridedBatched_rank_1 = hipblasZtpmvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51352,11 +51360,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       real(c_float),target :: x
       integer(c_int) :: incx
       !
-      hipblasStpsv_rank_0 = hipblasStpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasStpsv_rank_0 = hipblasStpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasStpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51369,11 +51377,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasStpsv_rank_1 = hipblasStpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasStpsv_rank_1 = hipblasStpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasDtpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51386,11 +51394,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       real(c_double),target :: x
       integer(c_int) :: incx
       !
-      hipblasDtpsv_rank_0 = hipblasDtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasDtpsv_rank_0 = hipblasDtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasDtpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51403,11 +51411,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasDtpsv_rank_1 = hipblasDtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasDtpsv_rank_1 = hipblasDtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasCtpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51420,11 +51428,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
       !
-      hipblasCtpsv_rank_0 = hipblasCtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasCtpsv_rank_0 = hipblasCtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasCtpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51437,11 +51445,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasCtpsv_rank_1 = hipblasCtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasCtpsv_rank_1 = hipblasCtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasZtpsv_rank_0(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51454,11 +51462,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
       !
-      hipblasZtpsv_rank_0 = hipblasZtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasZtpsv_rank_0 = hipblasZtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
     function hipblasZtpsv_rank_1(handle,uplo,transA,diag,n,AP,x,incx)
@@ -51471,11 +51479,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
       !
-      hipblasZtpsv_rank_1 = hipblasZtpsv_(handle,uplo,transA,diag,n,AP,c_loc(x),incx)
+      hipblasZtpsv_rank_1 = hipblasZtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -51490,7 +51498,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target :: AP
       integer(c_int64_t) :: strideA
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -51498,7 +51506,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasStpsvStridedBatched_rank_0 = hipblasStpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasStpsvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51512,7 +51520,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_float),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51520,7 +51528,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasStpsvStridedBatched_rank_1 = hipblasStpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51536,7 +51544,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target :: AP
       integer(c_int64_t) :: strideA
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -51544,7 +51552,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDtpsvStridedBatched_rank_0 = hipblasDtpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasDtpsvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51558,7 +51566,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      real(c_double),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51566,7 +51574,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDtpsvStridedBatched_rank_1 = hipblasDtpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51582,7 +51590,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target :: AP
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -51590,7 +51598,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCtpsvStridedBatched_rank_0 = hipblasCtpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasCtpsvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51604,7 +51612,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_float_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51612,7 +51620,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCtpsvStridedBatched_rank_1 = hipblasCtpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -51628,7 +51636,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target :: AP
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -51636,7 +51644,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZtpsvStridedBatched_rank_0 = hipblasZtpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
     function hipblasZtpsvStridedBatched_rank_1(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
@@ -51650,7 +51658,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      type(c_ptr) :: AP
+      complex(c_double_complex),target,dimension(:) :: AP
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -51658,7 +51666,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZtpsvStridedBatched_rank_1 = hipblasZtpsvStridedBatched_(handle,uplo,transA,diag,n, &
-        AP,strideA,c_loc(x),incx,stridex,batchCount)
+        c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
 #endif
@@ -59810,10 +59818,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasSgetrf_rank_0 = hipblasSgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgetrf_rank_0 = hipblasSgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasSgetrf_rank_1(handle,n,A,lda,ipiv,myInfo)
@@ -59825,10 +59833,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasSgetrf_rank_1 = hipblasSgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgetrf_rank_1 = hipblasSgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasSgetrf_full_rank(handle,n,A,lda,ipiv,myInfo)
@@ -59840,10 +59848,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasSgetrf_full_rank = hipblasSgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgetrf_full_rank = hipblasSgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -59857,10 +59865,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasDgetrf_rank_0 = hipblasDgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgetrf_rank_0 = hipblasDgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasDgetrf_rank_1(handle,n,A,lda,ipiv,myInfo)
@@ -59872,10 +59880,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasDgetrf_rank_1 = hipblasDgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgetrf_rank_1 = hipblasDgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasDgetrf_full_rank(handle,n,A,lda,ipiv,myInfo)
@@ -59887,10 +59895,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasDgetrf_full_rank = hipblasDgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgetrf_full_rank = hipblasDgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -59904,10 +59912,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasCgetrf_rank_0 = hipblasCgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgetrf_rank_0 = hipblasCgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasCgetrf_rank_1(handle,n,A,lda,ipiv,myInfo)
@@ -59919,10 +59927,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasCgetrf_rank_1 = hipblasCgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgetrf_rank_1 = hipblasCgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasCgetrf_full_rank(handle,n,A,lda,ipiv,myInfo)
@@ -59934,10 +59942,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasCgetrf_full_rank = hipblasCgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgetrf_full_rank = hipblasCgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -59951,10 +59959,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasZgetrf_rank_0 = hipblasZgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgetrf_rank_0 = hipblasZgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasZgetrf_rank_1(handle,n,A,lda,ipiv,myInfo)
@@ -59966,10 +59974,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasZgetrf_rank_1 = hipblasZgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgetrf_rank_1 = hipblasZgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasZgetrf_full_rank(handle,n,A,lda,ipiv,myInfo)
@@ -59981,10 +59989,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasZgetrf_full_rank = hipblasZgetrf_(handle,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgetrf_full_rank = hipblasZgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -60000,13 +60008,13 @@ module hipfort_hipblas
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrfStridedBatched_rank_0 = hipblasSgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasSgetrfStridedBatched_rank_1(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60020,13 +60028,13 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrfStridedBatched_rank_1 = hipblasSgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasSgetrfStridedBatched_full_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60040,13 +60048,13 @@ module hipfort_hipblas
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrfStridedBatched_full_rank = hipblasSgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -60062,13 +60070,13 @@ module hipfort_hipblas
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrfStridedBatched_rank_0 = hipblasDgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasDgetrfStridedBatched_rank_1(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60082,13 +60090,13 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrfStridedBatched_rank_1 = hipblasDgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasDgetrfStridedBatched_full_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60102,13 +60110,13 @@ module hipfort_hipblas
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrfStridedBatched_full_rank = hipblasDgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -60124,13 +60132,13 @@ module hipfort_hipblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrfStridedBatched_rank_0 = hipblasCgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasCgetrfStridedBatched_rank_1(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60144,13 +60152,13 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrfStridedBatched_rank_1 = hipblasCgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasCgetrfStridedBatched_full_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60164,13 +60172,13 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrfStridedBatched_full_rank = hipblasCgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -60186,13 +60194,13 @@ module hipfort_hipblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrfStridedBatched_rank_0 = hipblasZgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasZgetrfStridedBatched_rank_1(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60206,13 +60214,13 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrfStridedBatched_rank_1 = hipblasZgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasZgetrfStridedBatched_full_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -60226,13 +60234,13 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrfStridedBatched_full_rank = hipblasZgetrfStridedBatched_(handle,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -60248,13 +60256,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       real(c_float),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasSgetrs_rank_0 = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasSgetrs_rank_0 = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasSgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60268,13 +60276,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasSgetrs_rank_1 = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasSgetrs_rank_1 = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasSgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60288,13 +60296,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasSgetrs_full_rank = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasSgetrs_full_rank = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -60310,13 +60318,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       real(c_double),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasDgetrs_rank_0 = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasDgetrs_rank_0 = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasDgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60330,13 +60338,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasDgetrs_rank_1 = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasDgetrs_rank_1 = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasDgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60350,13 +60358,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasDgetrs_full_rank = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasDgetrs_full_rank = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -60372,13 +60380,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasCgetrs_rank_0 = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasCgetrs_rank_0 = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasCgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60392,13 +60400,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasCgetrs_rank_1 = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasCgetrs_rank_1 = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasCgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60412,13 +60420,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasCgetrs_full_rank = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasCgetrs_full_rank = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -60434,13 +60442,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasZgetrs_rank_0 = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasZgetrs_rank_0 = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasZgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60454,13 +60462,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasZgetrs_rank_1 = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasZgetrs_rank_1 = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
+        ldb,myInfo)
     end function
 
     function hipblasZgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -60474,13 +60482,13 @@ module hipfort_hipblas
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       type(c_ptr) :: myInfo
       !
-      hipblasZgetrs_full_rank = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,ipiv,c_loc(B),ldb, &
-        myInfo)
+      hipblasZgetrs_full_rank = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -60498,7 +60506,7 @@ module hipfort_hipblas
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       real(c_float),target :: B
       integer(c_int) :: ldb
@@ -60507,7 +60515,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_rank_0 = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasSgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -60523,7 +60531,7 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
@@ -60532,7 +60540,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_rank_1 = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasSgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -60548,7 +60556,7 @@ module hipfort_hipblas
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -60557,7 +60565,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_full_rank = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -60575,7 +60583,7 @@ module hipfort_hipblas
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       real(c_double),target :: B
       integer(c_int) :: ldb
@@ -60584,7 +60592,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_rank_0 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasDgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -60600,7 +60608,7 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
@@ -60609,7 +60617,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_rank_1 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasDgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -60625,7 +60633,7 @@ module hipfort_hipblas
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -60634,7 +60642,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_full_rank = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -60652,7 +60660,7 @@ module hipfort_hipblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
@@ -60661,7 +60669,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_rank_0 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasCgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -60677,7 +60685,7 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
@@ -60686,7 +60694,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_rank_1 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasCgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -60702,7 +60710,7 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -60711,7 +60719,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_full_rank = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -60729,7 +60737,7 @@ module hipfort_hipblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
@@ -60738,7 +60746,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_rank_0 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasZgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -60754,7 +60762,7 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
@@ -60763,7 +60771,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_rank_1 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasZgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -60779,7 +60787,7 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
@@ -60788,7 +60796,7 @@ module hipfort_hipblas
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_full_rank = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,ipiv,strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -60803,10 +60811,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      real(c_float),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasSgeqrf_rank_0 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgeqrf_rank_0 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasSgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -60819,10 +60827,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      real(c_float),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasSgeqrf_rank_1 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgeqrf_rank_1 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasSgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -60835,10 +60843,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      real(c_float),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasSgeqrf_full_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasSgeqrf_full_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -60853,10 +60861,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      real(c_double),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasDgeqrf_rank_0 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgeqrf_rank_0 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasDgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -60869,10 +60877,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      real(c_double),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasDgeqrf_rank_1 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgeqrf_rank_1 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasDgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -60885,10 +60893,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      real(c_double),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasDgeqrf_full_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasDgeqrf_full_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -60903,10 +60911,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasCgeqrf_rank_0 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgeqrf_rank_0 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasCgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -60919,10 +60927,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasCgeqrf_rank_1 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgeqrf_rank_1 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasCgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -60935,10 +60943,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasCgeqrf_full_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasCgeqrf_full_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -60953,10 +60961,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasZgeqrf_rank_0 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgeqrf_rank_0 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasZgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -60969,10 +60977,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasZgeqrf_rank_1 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgeqrf_rank_1 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasZgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -60985,10 +60993,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target,dimension(:) :: ipiv
       type(c_ptr) :: myInfo
       !
-      hipblasZgeqrf_full_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,ipiv,myInfo)
+      hipblasZgeqrf_full_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -61005,13 +61013,13 @@ module hipfort_hipblas
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_float),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_rank_0 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasSgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61026,13 +61034,13 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_float),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_rank_1 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasSgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61047,13 +61055,13 @@ module hipfort_hipblas
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_float),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_full_rank = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,ipiv,strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -61070,13 +61078,13 @@ module hipfort_hipblas
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_double),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_rank_0 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasDgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61091,13 +61099,13 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_double),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_rank_1 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasDgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61112,13 +61120,13 @@ module hipfort_hipblas
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      real(c_double),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_full_rank = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,ipiv,strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -61135,13 +61143,13 @@ module hipfort_hipblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_rank_0 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasCgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61156,13 +61164,13 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_rank_1 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasCgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61177,13 +61185,13 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_float_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_full_rank = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,ipiv,strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -61200,13 +61208,13 @@ module hipfort_hipblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_rank_0 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasZgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61221,13 +61229,13 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_rank_1 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,ipiv,strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasZgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -61242,13 +61250,13 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: ipiv
+      complex(c_double_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_full_rank = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,ipiv,strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
