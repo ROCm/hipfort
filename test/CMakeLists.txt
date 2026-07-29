@@ -193,6 +193,10 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolverdgetrf f2008)
   endif()
 
+  if(TARGET hipfort::hipsparse)
+    hipfort_add_test(hipsparse hipsparse_sgtsv f2008)
+  endif()
+
   if(TARGET hipfort::rocblas)
     hipfort_add_test(rocblas saxpy f2003)
     hipfort_add_test(rocblas daxpy f2003)
