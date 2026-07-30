@@ -1,6 +1,6 @@
 # hipfort: Fortran Interface For GPU Kernel Libraries
 
-This repository contains the source and testing for hipfort.  
+This repository contains the source and testing for hipfort.
 This is a FORTRAN interface library for accessing GPU Kernels.
 
 ## Documentation
@@ -34,22 +34,11 @@ hand. Pass one with `-DCMAKE_TOOLCHAIN_FILE`:
 cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 ```
 
-| Toolchain file | Compiler | Backend |
-| -------------- | ---------- | ------- |
-| `amdflang.cmake` | `amdflang` (ROCm LLVM Flang) | AMD ROCm (**recommended default**) |
-| `gnu.cmake`    | `gfortran` | AMD ROCm |
-| `intel.cmake`  | `ifx` (Intel LLVM) | AMD ROCm |
-| `intel-classic.cmake` | `ifort` (EOL) | AMD ROCm |
-| `cray.cmake`   | Cray `ftn` | AMD ROCm |
-| `nvhpc.cmake`  | `nvfortran` | NVIDIA/CUDA |
-
-Copy any of these as a starting point for your own site-specific toolchain.
-
 ## Fortran interfaces
 
 `hipfort` provides interfaces to the following HIP and ROCm libraries:
 
-* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipFFTW, hipRAND, hipSOLVER
+* **HIP:** HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipFFTW, hipRAND, hipSOLVER
 * **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
 
 While the HIP interfaces and libraries allow to write portable code, the ROCm ones 
@@ -60,12 +49,8 @@ As the interfaces make use of the `iso_c_binding` module, the minimum requiremen
 that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
 management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
-`gfortran` is the primary tested compiler, and AMD's `amdflang` (LLVM Flang) is also supported.
-Other standard-conforming Fortran compilers such as NVIDIA `nvfortran`, Intel `ifx`/`ifort`, and the
-Cray Fortran compiler (for example on LUMI) are not officially supported, but `hipfort` should
-build with them too. Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
 
-If your compiler understands the Fortran 2008 (`f2008`) code constructs that occur in `hipfort`'s source and test files, 
+If your compiler understands the Fortran 2008 (`f2008`) code constructs,
 additional interfaces are compiled into the `hipfort` modules and libraries. 
 These directly take Fortran (array) variables and the number of
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
@@ -75,9 +60,6 @@ These additional interfaces are guarded by the `USE_FPOINTER_INTERFACES` preproc
 definition, which `hipfort` enables automatically once it detects Fortran 2008 support
 in your compiler. By convention, application and test sources that rely on them use the
 `.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
-
-> **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
-as we have observed problems with older versions.
 
 ### Example
 
@@ -104,7 +86,7 @@ integer     :: ierr        ! error code
 real        :: a_h(5,6)    ! host array
 real,pointer :: a_d(:,:)   ! device array pointer
 !
-ierr = hipMalloc(a_d,shape(a_h))      ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
+ierr = hipMalloc(a_d,shape(a_h))  ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
 ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
 ```
 
@@ -141,15 +123,7 @@ The following tables list the supported API:
 
 You may further find it convenient to directly use the search function on
 [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/develop/) to get information on the arguments of an interface.
-
-## Limitations
-
-* **NVIDIA/CUDA backend (`-DUSE_CUDA_NAMES`).** This build targets NVIDIA machines that
-  have the CUDA toolkit but no HIP/ROCm libraries, so the interfaces bind directly to the
-  CUDA libraries (cuBLAS, cuSOLVER, ...) instead of HIP. Coverage is not complete:
-  interfaces with no CUDA equivalent (the regular hipSOLVER API, the legacy hipSPARSE API,
-  some hipBLAS extensions, and a few HIP runtime and hipRAND calls) are compiled for AMD
-  only.
+Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
 
 ## Linking against hipfort
 

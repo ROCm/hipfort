@@ -11,10 +11,6 @@
   documentation from the C headers onto the Fortran interfaces and derived-type fields.
 * **hipFFTW support.** Added Fortran interfaces to the FFTW3-compatible hipFFTW
   library, in new `hipfort_hipfftw` modules, plus a `hipfort::hipfftw` CMake target.
-* hipfort now builds with the Intel Fortran compilers (`ifx`/`ifort`). On Intel, the
-  Fortran 2003 (`type(c_ptr)`) interfaces are used; the Fortran 2008 array interfaces
-  stay disabled there because their generic interfaces are rejected as ambiguous by
-  the Intel front end.
 * Notable new interfaces surfaced by the regeneration: the rocSOLVER generalized
   symmetric/Hermitian eigensolvers `?sygvdx`/`?hegvdx`, the rocSOLVER ILP64 (`*_64`)
   eigenvalue interfaces, and the interleaved batch pentadiagonal solver
@@ -28,9 +24,9 @@
   in both the Fortran 2003 and Fortran 2008 interface styles.
 * Added the `hiprandCheck` error-check helper for hipRAND status codes
   (`use hipfort_check`).
-* Added example CMake toolchain files in `cmake/toolchains/`, for amdflang, GNU,
-  Intel `ifx`/`ifort`, Cray, and NVHPC. Select one with `-DCMAKE_TOOLCHAIN_FILE` to
-  build hipfort with a different Fortran compiler or backend.
+* Added example CMake toolchain files in `cmake/toolchains/`, for amdflang and GNU.
+  Select one with `-DCMAKE_TOOLCHAIN_FILE` to build hipfort with a different Fortran
+  compiler or backend.
 * Documented how to build hipfort applications with CMake, in the *Using hipFORT*
   how-to guide. It covers `find_package(hipfort)`, the exported `hipfort::*` targets,
   and the multiple-Fortran-toolchain install layout.

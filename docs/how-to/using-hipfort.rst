@@ -43,8 +43,8 @@ The interfaces use the ``iso_c_binding`` module, so the minimum requirement is a
 the Fortran 2003 standard (`f2003`). These interfaces typically require passing ``type(c_ptr)`` variables
 and the number of bytes to memory management. Some examples include ``hipMalloc`` and math library routines like ``hipblasDGEMM``.
 
-If your compiler can understand the Fortran 2008 (`f2008`) code constructs in the hipFORT source and test files,
-additional interfaces are compiled into the hipFORT modules and libraries. 
+If your compiler can understand the Fortran 2008 (`f2008`) code constructs,
+additional interfaces are compiled into the hipFORT modules and libraries.
 These interfaces take Fortran (array) variables, the number of elements instead of ``type(c_ptr)`` variables,
 and the number of bytes, respectively. Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read.
@@ -56,14 +56,7 @@ examples), while Fortran 2003 sources use ``.f03``.
 
 AMD's ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default, and
 ``gfortran`` (version 7.5.0 or newer) is also supported.
-Other standard-conforming Fortran compilers such as NVIDIA ``nvfortran``, Intel ``ifx``/``ifort``,
-and the Cray Fortran compiler (for example on LUMI) are not officially supported, but hipFORT
-should build with them too. Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
-
-.. note::
-
-   If you plan to use the `f2008` interfaces, GFortran version 7.5.0 or newer is recommended.
-   Problems can occur with older versions.
+Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
 
 Building your application with CMake
 ------------------------------------
@@ -100,8 +93,7 @@ the right modules and library by using the hipFORT installation that was built w
 the same Fortran compiler.
 
 To build hipFORT itself with a specific compiler or backend, use one of the example
-toolchain files in ``cmake/toolchains/`` (amdflang, GNU, Intel ``ifx``/``ifort``,
-Cray, and NVHPC) via ``-DCMAKE_TOOLCHAIN_FILE=...``.
+toolchain files in ``cmake/toolchains`` via ``-DCMAKE_TOOLCHAIN_FILE=...``.
 
 Examples
 --------
@@ -131,4 +123,3 @@ The current set of hipFORT interfaces is derived from ROCm 7.14.0. The following
 .. note:: 
 
    Use the **Search** function from the hipFORT table of contents to get more information on the arguments for an interface.
-
