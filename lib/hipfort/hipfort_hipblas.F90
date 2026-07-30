@@ -34459,7 +34459,7 @@ module hipfort_hipblas
       integer(c_int),value :: n
       type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batchCount
     end function
@@ -34480,7 +34480,7 @@ module hipfort_hipblas
       integer(c_int),value :: n
       type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batchCount
     end function
@@ -34501,7 +34501,7 @@ module hipfort_hipblas
       integer(c_int),value :: n
       type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batchCount
     end function
@@ -34522,7 +34522,7 @@ module hipfort_hipblas
       integer(c_int),value :: n
       type(c_ptr),value :: AP
       integer(c_int),value :: lda
-      type(c_ptr) :: invA
+      type(c_ptr),value :: invA
       integer(c_int),value :: ldinvA
       integer(c_int),value :: batchCount
     end function
@@ -37887,14 +37887,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(kind(HIP_R_32F)),value :: aType
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(kind(HIP_R_32F)),value :: bType
       integer(c_int),value :: ldb
       type(c_ptr),value :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(kind(HIP_R_32F)),value :: cType
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -37920,14 +37920,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(kind(HIP_R_32F)),value :: aType
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(kind(HIP_R_32F)),value :: bType
       integer(c_int),value :: ldb
       type(c_ptr),value :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(kind(HIP_R_32F)),value :: cType
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -37960,14 +37960,14 @@ module hipfort_hipblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(kind(HIP_R_32F)),value :: aType
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(kind(HIP_R_32F)),value :: bType
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(kind(HIP_R_32F)),value :: cType
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batchCount
@@ -37993,14 +37993,14 @@ module hipfort_hipblas
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
       type(c_ptr),value :: alpha
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(kind(HIP_R_32F)),value :: aType
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(kind(HIP_R_32F)),value :: bType
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: beta
-      type(c_ptr) :: C
+      type(c_ptr),value :: C
       integer(kind(HIP_R_32F)),value :: cType
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batchCount
