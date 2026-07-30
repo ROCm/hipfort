@@ -32,6 +32,7 @@ module hipfort
   use hipfort_types
   use hipfort_hipmalloc
   use hipfort_hipmemcpy
+  use hipfort_hiphostregister
   use hipfort_auxiliary
   implicit none
 
