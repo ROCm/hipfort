@@ -8,8 +8,8 @@ hipFORT documentation
 ********************************************************************
 
 hipFORT is a Fortran interface library for accessing GPU kernels.
-It exposes the HIP API and ROCm and NVIDIA accelerated libraries in Fortran with
-an open and portable set of standard Fortran module interfaces. 
+It exposes the HIP API and ROCm accelerated libraries in Fortran with
+an open and portable set of standard Fortran module interfaces.
 
 The hipFORT public repository is located at `<https://github.com/ROCm/hipFORT>`_.
 

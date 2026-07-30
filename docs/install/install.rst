@@ -15,11 +15,9 @@ Prerequisites
 hipFORT requires a Fortran compiler that supports at least the Fortran 2003 standard.
 AMD ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default;
 ``gfortran`` version 7.5.0 or newer (see the `GFortran website
-<https://fortran-lang.org/learn/os_setup/install_gfortran/>`_) is also supported. Other
-standard-conforming compilers such as NVIDIA ``nvfortran``, Intel ``ifx``/``ifort``,
-and the Cray Fortran compiler (for example on LUMI) are not officially supported, but hipFORT should
-build with them too. Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
-Ready-made CMake toolchain files for each of these compilers are provided; see :ref:`hipfort-toolchain-files`.
+<https://fortran-lang.org/learn/os_setup/install_gfortran/>`_) is also supported.
+Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
+Ready-made CMake toolchain files are provided; see :ref:`hipfort-toolchain-files`.
 
 .. _build-test-hipfort-from-source:
 
@@ -72,33 +70,6 @@ ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCH
 
 Each file only sets the Fortran, C, and C++ compilers (plus optional ``ROCM_PATH`` and
 ``HIP_PLATFORM`` hints), so they compose with the other build options above.
-
-.. list-table::
-   :header-rows: 1
-
-   * - Toolchain file
-     - Compiler
-     - Backend
-   * - ``amdflang.cmake``
-     - ``amdflang`` (ROCm LLVM Flang)
-     - AMD ROCm (recommended default)
-   * - ``gnu.cmake``
-     - ``gfortran``
-     - AMD ROCm
-   * - ``intel.cmake``
-     - ``ifx`` (Intel LLVM)
-     - AMD ROCm
-   * - ``intel-classic.cmake``
-     - ``ifort`` (EOL)
-     - AMD ROCm
-   * - ``cray.cmake``
-     - Cray ``ftn``
-     - AMD ROCm
-   * - ``nvhpc.cmake``
-     - ``nvfortran``
-     - NVIDIA/CUDA
-
-Copy any of these as a starting point for your own site-specific toolchain.
 
 Linking against hipFORT
 ========================
