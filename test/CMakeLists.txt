@@ -525,6 +525,8 @@ if(BUILD_TESTING)
     hipfort_add_test(hip host_register f2003)
     hipfort_add_test(hip graph f2003)
     hipfort_add_test(hip graph_nodes f2003)
+    hipfort_add_test(hip graph_memset_node f2003)
+    hipfort_add_test(hip peer_access f2003)
   endif()
 
   # vecadd mixes a Fortran driver with a HIP C++ kernel, so it needs the HIP
