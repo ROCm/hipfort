@@ -1,15 +1,11 @@
-!!!!!!!!!!!!!/
-! hipsolver zgetrf example (double-precision complex LU factorization, Fortran 2003 interfaces)
+!!!!!!!!!!!!!!
+! hipsolver zgetrf example (double-precision complex LU factorization, Fortran 2008 interfaces)
 ! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
-! f2003 style: device buffers are type(c_ptr) allocated by byte count; host
-! data is moved with hipMemcpy + c_loc.
-!
-! NOTE: hipSOLVER getrf needs an explicit workspace (hipsolverZgetrf_bufferSize
-! -> hipMalloc(dWork)). Its devInfo output is written to DEVICE memory: the
-! binding types devInfo as an integer(c_int), so it is backed by a device
-! allocation (dInfo), viewed via c_f_pointer, and passed as dInfo_p(1).
-!!!!!!!!!!!!!!/
+! f2008 style: device buffers are native Fortran array pointers allocated with
+! hipMalloc(source=/mold=); A and the pivots are passed as typed arrays. The
+! workspace stays a bare type(c_ptr); devInfo is a device-backed scalar pointer.
+!!!!!!!!!!!!!!
 !
 program hipsolver_zgetrf
   use iso_c_binding
@@ -23,7 +19,7 @@ program hipsolver_zgetrf
   integer(c_int), parameter :: M = 3, N = 3, lda = 3
 
   ! Input (column-major); expected packed LU from hipSOLVER (== rocSOLVER zgetrf)
-  complex(c_double_complex), target :: hA(3,3) = reshape((/ &
+  complex(c_double_complex) :: hA(3,3) = reshape((/ &
     (12.,1.),(6.,-2.),(-4.,3.), (-51.,2.),(167.,-1.),(24.,4.), (4.,-3.),(-68.,2.),(-41.,1.) /), (/3, 3/))
   complex(c_double_complex) :: hResult(3,3) = reshape((/ &
     ( 0.120000000000000000E+02,  0.100000000000000000E+01), &
@@ -37,11 +33,12 @@ program hipsolver_zgetrf
     (-0.374500340913573240E+02,  0.575052076191835670E+01) /), (/3, 3/))
   integer(c_int) :: hIpiv_ref(3) = (/1, 2, 3/)
 
-  integer(c_int), target :: hIpiv(3), hInfo
-  integer(c_size_t) :: size_A = 9
+  integer(c_int) :: hIpiv(3), hInfo
 
-  type(c_ptr) :: dA, dIpiv, dWork, dInfo
-  integer(c_int), pointer :: dInfo_p(:)
+  complex(c_double_complex), pointer :: dA(:,:)   ! GPU buffer for A (holds packed LU on output)
+  integer(c_int),            pointer :: dIpiv(:)  ! GPU buffer for pivots
+  integer(c_int),            pointer :: dInfo     ! GPU scalar for devInfo (written on device)
+  type(c_ptr) :: dWork                            ! opaque workspace
   type(c_ptr) :: handle = c_null_ptr
   integer(c_int) :: lwork
 
@@ -52,30 +49,30 @@ program hipsolver_zgetrf
 
   call hipsolverCheck(hipsolverCreate(handle))
 
-  ! Allocate device memory and copy A (complex(8) = 16 bytes/elem)
-  call hipCheck(hipMalloc(dA, size_A * 16))
-  call hipCheck(hipMalloc(dIpiv, int(N,c_size_t) * 4))
-  call hipCheck(hipMalloc(dInfo, 4_c_size_t))
-  call c_f_pointer(dInfo, dInfo_p, shape=[1])   ! typed device view for the by-ref devInfo arg
-  call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 16, hipMemcpyHostToDevice))
+  ! Allocate device memory as native arrays and copy A to device
+  call hipCheck(hipMalloc(dA,    source=hA))
+  call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
+  call hipCheck(hipMalloc(dInfo))
 
-  ! Workspace (lwork elements * 16 bytes)
+  ! Query and allocate the workspace
   call hipsolverCheck(hipsolverZgetrf_bufferSize(handle, M, N, dA, lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 16, 1_c_size_t)))
 
-  ! LU factorization
-  call hipsolverCheck(hipsolverZgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo_p(1)))
+  ! Compute the LU factorization (A/pivots as native arrays, devInfo by reference)
+  call hipsolverCheck(hipsolverZgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo))
 
-  ! Copy back
-  call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 16, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hIpiv(1)), dIpiv, int(N,c_size_t) * 4, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  ! Copy results back to host
+  call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
 
+  ! Check info
   if(hInfo /= 0) then
     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
     call exit
   end if
 
+  ! Check factor values
   do j = 1,size(hA,2)
     do i = 1,size(hA,1)
         error = abs(hA(i,j) - hResult(i,j)) / max(abs(hResult(i,j)), 1.0_c_double)
@@ -86,6 +83,7 @@ program hipsolver_zgetrf
     end do
   end do
 
+  ! Check pivots
   do i = 1,3
     if(hIpiv(i) .ne. hIpiv_ref(i)) then
         write(*,*) "FAILED! Pivot mismatch at ", i, " got ", hIpiv(i), " expected ", hIpiv_ref(i)
@@ -93,6 +91,7 @@ program hipsolver_zgetrf
     end if
   end do
 
+  ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
