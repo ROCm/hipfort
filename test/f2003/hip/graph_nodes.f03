@@ -23,6 +23,7 @@ program graph_nodes
   type(c_ptr) :: stream = c_null_ptr, dptr = c_null_ptr
   type(c_ptr) :: nodeH2D = c_null_ptr, nodeD2H = c_null_ptr
   integer(c_size_t), target :: numnodes
+  type(c_ptr) :: nodes_out(8)   ! capacity buffer for hipGraphGetNodes
   integer(c_size_t) :: nbytes
   integer :: i
 
@@ -48,9 +49,11 @@ program graph_nodes
   ! Make the device->host copy depend on the host->device copy.
   call hipCheck(hipGraphAddDependencies(graph, nodeH2D, nodeD2H, 1_c_size_t))
 
-  ! Query the node count (nodes = NULL -> numNodes returns the count).
-  numnodes = 0
-  call hipCheck(hipGraphGetNodes(graph, c_null_ptr, c_loc(numnodes)))
+  ! Query the node count: pass an array and its capacity in numnodes; on return
+  ! numnodes holds the actual count. (nodes is a by-reference c_ptr in the
+  ! binding, so a real capacity buffer is used rather than a null query.)
+  numnodes = size(nodes_out, kind=c_size_t)
+  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), c_loc(numnodes)))
   if (numnodes /= 2) then
      write(*,*) "FAILED! graph node count = ", numnodes, " (expected 2)"
      call exit(1)
