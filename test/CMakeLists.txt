@@ -508,6 +508,16 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_zsptrsm f2003)
   endif()
 
+  # HIP runtime API tests (pure Fortran, no custom kernel): device management,
+  # streams, events, memset and asynchronous copies.
+  if(TARGET hipfort::hip)
+    hipfort_add_test(hip device_management f2003)
+    hipfort_add_test(hip stream f2003)
+    hipfort_add_test(hip event f2003)
+    hipfort_add_test(hip memset f2003)
+    hipfort_add_test(hip memcpy_async f2003)
+  endif()
+
   # vecadd mixes a Fortran driver with a HIP C++ kernel, so it needs the HIP
   # language enabled rather than the plain hipfort_add_test() helper.
   include(CheckLanguage)
