@@ -2402,8 +2402,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvd_bufferSize_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int) :: lwork
@@ -2423,8 +2423,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvd_bufferSize_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int) :: lwork
@@ -2444,8 +2444,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvd_bufferSize_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int) :: lwork
@@ -2465,8 +2465,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvd_bufferSize_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int) :: lwork
@@ -2486,8 +2486,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -2517,8 +2517,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -2548,8 +2548,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -2579,8 +2579,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8697,8 +8697,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8728,8 +8728,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8759,8 +8759,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8790,8 +8790,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvd_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: jobu
-      type(c_ptr),value :: jobv
+      character(c_char),value :: jobu
+      character(c_char),value :: jobv
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
