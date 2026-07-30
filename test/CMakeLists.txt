@@ -216,6 +216,8 @@ if(BUILD_TESTING)
 
   if(TARGET hipfort::hipsparse)
     hipfort_add_test(hipsparse hipsparse_sgtsv f2008)
+    hipfort_add_test(hipsparse hipsparse_scsr2csc f2008)
+    hipfort_add_test(hipsparse hipsparse_xcsr2coo f2008)
   endif()
 
   if(TARGET hipfort::rocblas)

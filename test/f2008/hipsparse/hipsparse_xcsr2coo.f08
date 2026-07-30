@@ -1,0 +1,37 @@
+!!!!!!!!!!!!!!
+! hipsparse Xcsr2coo example (CSR row pointers -> COO row indices)
+! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+!
+! Expands the CSR row-pointer array into one row index per nonzero and checks
+! it against the expected COO row indices.
+!!!!!!!!!!!!!!
+!
+program hipsparse_xcsr2coo
+  use iso_c_binding
+  use hipfort
+  use hipfort_check
+  use hipfort_hipsparse
+  implicit none
+  integer :: i
+  integer(c_int), parameter :: M = 3, nnz = 5
+  integer(c_int) :: h_csr_row_ptr(4) = (/0, 2, 3, 5/)
+  integer(c_int) :: h_exp_coo_row(5) = (/0, 0, 1, 2, 2/)
+  integer(c_int) :: h_coo_row(5)
+  integer(c_int), pointer :: d_csr_row_ptr(:), d_coo_row(:)
+  type(c_ptr) :: handle = c_null_ptr
+  write(*,"(a)",advance="no") "-- Running test 'hipsparse_xcsr2coo' (Fortran 2008 interfaces) - "
+  call hipCheck(hipMalloc(d_csr_row_ptr, source=h_csr_row_ptr))
+  call hipCheck(hipMalloc(d_coo_row,     mold=h_coo_row))
+  call hipsparseCheck(hipsparseCreate(handle))
+  call hipsparseCheck(hipsparseXcsr2coo(handle, d_csr_row_ptr, nnz, M, d_coo_row, HIPSPARSE_INDEX_BASE_ZERO))
+  call hipCheck(hipDeviceSynchronize())
+  call hipCheck(hipMemcpy(h_coo_row, d_coo_row, hipMemcpyDeviceToHost))
+  do i = 1, nnz
+     if (h_coo_row(i) /= h_exp_coo_row(i)) then
+        write(*,*) "FAILED! coo_row(", i, ") = ", h_coo_row(i), " expected ", h_exp_coo_row(i); call exit(1)
+     end if
+  end do
+  call hipsparseCheck(hipsparseDestroy(handle))
+  call hipCheck(hipFree(d_csr_row_ptr)); call hipCheck(hipFree(d_coo_row))
+  write(*,*) "PASSED!"
+end program hipsparse_xcsr2coo
