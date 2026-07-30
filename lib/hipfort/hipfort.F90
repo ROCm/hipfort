@@ -4482,7 +4482,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMemsetD8_
       type(c_ptr),value :: dest
-      type(c_ptr),value :: myValue
+      character(c_char),value :: myValue
       integer(c_size_t),value :: count
     end function
   end interface
@@ -4511,7 +4511,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMemsetD8Async_
       type(c_ptr),value :: dest
-      type(c_ptr),value :: myValue
+      character(c_char),value :: myValue
       integer(c_size_t),value :: count
       type(c_ptr),value :: stream
     end function
@@ -4781,7 +4781,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemsetD2D8_
       type(c_ptr),value :: dst
       integer(c_size_t),value :: dstPitch
-      type(c_ptr),value :: myValue
+      character(c_char),value :: myValue
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
     end function
@@ -4813,7 +4813,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemsetD2D8Async_
       type(c_ptr),value :: dst
       integer(c_size_t),value :: dstPitch
-      type(c_ptr),value :: myValue
+      character(c_char),value :: myValue
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
       type(c_ptr),value :: stream

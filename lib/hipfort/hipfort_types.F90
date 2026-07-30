@@ -526,11 +526,11 @@ module hipfort_types
     type(hipMemLocation) :: location !< Location where allocations should reside
     type(c_ptr) :: win32SecurityAttributes !< Windows-specific LPSECURITYATTRIBUTES required when @p hipMemHandleTypeWin32 is...
     integer(c_size_t) :: maxSize !< Maximum pool size. When set to 0, defaults to a system dependent value
-    type(c_ptr) :: reserved(56) !< Reserved for future use, must be 0
+    character(c_char) :: reserved(56) !< Reserved for future use, must be 0
   end type hipMemPoolProps
 
   type, bind(c) :: hipMemPoolPtrExportData
-    type(c_ptr) :: reserved(64)
+    character(c_char) :: reserved(64)
   end type hipMemPoolPtrExportData
 
   type, bind(c) :: dim3
@@ -632,8 +632,8 @@ module hipfort_types
   end type hipAccessPolicyWindow
 
   type, bind(c) :: hipLaunchMemSyncDomainMap
-    type(c_ptr) :: default_ !< The default domain ID to use for designated kernels
-    type(c_ptr) :: remote !< The remote domain ID to use for designated kernels
+    character(c_char) :: default_ !< The default domain ID to use for designated kernels
+    character(c_char) :: remote !< The remote domain ID to use for designated kernels
   end type hipLaunchMemSyncDomainMap
 
   type, bind(c) :: hipGraphInstantiateParams
@@ -692,10 +692,10 @@ module hipfort_types
   end type hipGraphNodeParams
 
   type, bind(c) :: hipGraphEdgeData
-    type(c_ptr) :: from_port !< This indicates when the dependency is triggered from the upstream node on the edge. The meani...
-    type(c_ptr) :: reserved(5) !< These bytes are unused and must be zeroed
-    type(c_ptr) :: to_port !< Currently no node types define non-zero ports. This field must be set to zero.
-    type(c_ptr) :: type !< This should be populated with a value from hipGraphDependencyType
+    character(c_char) :: from_port !< This indicates when the dependency is triggered from the upstream node on the edge. The...
+    character(c_char) :: reserved(5) !< These bytes are unused and must be zeroed
+    character(c_char) :: to_port !< Currently no node types define non-zero ports. This field must be set to zero.
+    character(c_char) :: type !< This should be populated with a value from hipGraphDependencyType
   end type hipGraphEdgeData
 
   type, bind(c) :: hipLaunchAttribute

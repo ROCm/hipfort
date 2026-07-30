@@ -3708,7 +3708,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -3727,7 +3727,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -3746,7 +3746,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -3765,7 +3765,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -3784,7 +3784,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -3805,7 +3805,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -3826,7 +3826,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -3847,7 +3847,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -4309,9 +4309,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -4331,9 +4331,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -4353,9 +4353,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -4375,9 +4375,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int) :: lwork
       integer(c_int),value :: batch_count
@@ -4398,9 +4398,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -4423,9 +4423,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -4448,9 +4448,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -4473,9 +4473,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -10071,7 +10071,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10093,7 +10093,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10115,7 +10115,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10137,7 +10137,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10432,9 +10432,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10457,9 +10457,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10482,9 +10482,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
@@ -10507,9 +10507,9 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: B
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
