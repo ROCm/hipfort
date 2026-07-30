@@ -215,6 +215,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolver_dpotrf f2008)
     hipfort_add_test(hipsolver hipsolver_dsyevd f2008)
     hipfort_add_test(hipsolver hipsolver_dgetrs f2008)
+    hipfort_add_test(hipsolver hipsolver_dgesvd f2008)
   endif()
 
   if(TARGET hipfort::hipsparse)
