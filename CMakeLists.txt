@@ -31,7 +31,7 @@ if(DEFINED HIPFORT_INSTALL_DIR)
 endif()
 
 # hip-config.cmake requires CXX enabled
-PROJECT(hipfort VERSION 0.7.1 LANGUAGES Fortran C CXX)
+PROJECT(hipfort VERSION 0.8.0 LANGUAGES Fortran C CXX)
 
 # get compiler name
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)

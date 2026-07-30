@@ -1,6 +1,6 @@
-# Change Log for hipfort
+# Changelog for hipfort
 
-## hipfort 0.8.0 for ROCm 7.14.0 (Unreleased)
+## hipfort 0.8.0 for ROCm 7.14.0
 
 ### Added
 
@@ -9,22 +9,10 @@
   the last release in rocBLAS, hipBLAS, rocSPARSE, hipSPARSE, rocSOLVER, hipSOLVER,
   rocFFT, hipFFT, rocRAND, hipRAND, and the HIP runtime, and carries the Doxygen
   documentation from the C headers onto the Fortran interfaces and derived-type fields.
-* **hipFFTW support.** Added Fortran interfaces to the FFTW3-compatible hipFFTW
-  library, in new `hipfort_hipfftw` modules, plus a `hipfort::hipfftw` CMake target.
-* Notable new interfaces surfaced by the regeneration: the rocSOLVER generalized
-  symmetric/Hermitian eigensolvers `?sygvdx`/`?hegvdx`, the rocSOLVER ILP64 (`*_64`)
-  eigenvalue interfaces, and the interleaved batch pentadiagonal solver
-  (`rocsparse_Xgpsv_interleaved_batch`/`hipsparseXgpsvInterleavedBatch`, `s/d/c/z`,
-  with the `rocsparse_gpsv_interleaved_alg` enum).
-* Expanded the test suite from 32 to 266 tests. Added rocRAND, hipFFT and hipFFTW
-  tests, and widened rocSOLVER coverage from 3 to 62 tests (including the `info`
-  device-pointer routines). The 14 new hipFFT tests mirror the rocFFT round-trip
-  tests: C2C 1D in single and double precision, R2C/C2R 1D in single and double
-  precision, C2C 2D and 3D, and batched C2C 1D via `hipfftPlanMany`, each written
-  in both the Fortran 2003 and Fortran 2008 interface styles.
-* Added the `hiprandCheck` error-check helper for hipRAND status codes
-  (`use hipfort_check`).
-* Added example CMake toolchain files in `cmake/toolchains/`, for amdflang and GNU.
+* Added Fortran interfaces to the FFTW3-compatible hipFFTW library,
+  in new `hipfort_hipfftw` modules, plus a `hipfort::hipfftw` CMake target.
+* Added the `hiprandCheck` error-check helper for hipRAND status codes (`use hipfort_check`).
+* Added example CMake toolchain files in `cmake/toolchains`.
   Select one with `-DCMAKE_TOOLCHAIN_FILE` to build hipfort with a different Fortran
   compiler or backend.
 * Documented how to build hipfort applications with CMake, in the *Using hipFORT*
@@ -33,17 +21,7 @@
 * Added a *rocFFT examples* documentation page that walks through complete Fortran
   programs for complex-to-complex, real, multi-dimensional, batched, and out-of-place
   transforms, scale factors, work buffers, HIP streams, plan introspection, the
-  compiled-kernel cache, and the version query. The page includes the test sources
-  directly, so the documented code is the code that is built and run by CTest.
-* Added rocFFT tests for in-place real transforms (padded layout with explicit
-  `rocfft_array_type_real`/`rocfft_array_type_hermitian_interleaved`), out-of-place
-  transforms, plan scale factors, explicit work buffers
-  (`rocfft_plan_get_work_buffer_size`, `rocfft_execution_info_set_work_buffer`),
-  transforms on user-supplied HIP streams (`rocfft_execution_info_set_stream`),
-  plan introspection (`rocfft_plan_get_print`), the compiled-kernel cache
-  (`rocfft_cache_serialize`, `rocfft_cache_deserialize`,
-  `rocfft_cache_buffer_free`), and `rocfft_get_version_string`, in both the
-  `f2003` and `f2008` dialects.
+  compiled-kernel cache, and the version query.
 
 ### Changed
 
@@ -56,23 +34,6 @@
   with no `C_LOC(value)`; existing code that passes `C_LOC(x)` must now pass `x`.
   Outputs that live on the device, such as rocSOLVER `info`, remain `type(c_ptr)`
   device pointers.
-* **Breaking: rocSOLVER `info` is now a device pointer.** The `info` output is written
-  on the GPU, so these routines now take a `type(c_ptr)` that points to device memory,
-  instead of a host `integer`. Allocate it with `hipMalloc` and pass the device
-  pointer. Code that passed a host integer no longer compiles. This affects `getrf`,
-  `getri`, `potrf`, `sytrf`, `gesv`, `posv`, `syev`, `heev`, `trtri`, and the related
-  factorization and eigenvalue routines.
-* The TRMM interfaces (rocBLAS and hipBLAS) now include the out-of-place `[C, ldc]`
-  output arguments, matching the current API.
-* **CUDA/NVIDIA backend (`-DUSE_CUDA_NAMES`).** This build targets NVIDIA machines
-  that have the CUDA toolkit but no HIP/ROCm libraries, so the interfaces bind directly
-  to the CUDA libraries. Every `cu*` binding is now validated against the real CUDA
-  libraries, and interfaces with no CUDA equivalent are compiled for AMD only instead
-  of binding a symbol that does not exist (the regular hipSOLVER API, the legacy
-  hipSPARSE API removed in CUDA 12, some batched hipBLAS extensions, and a few HIP
-  runtime and hipRAND calls). `hipCheck` now compares the returned `cudaError_t`
-  directly against `cudaSuccess` instead of translating it through
-  `hipCUDAErrorTohipError`; failures report the native status code.
 * hipfort now installs its libraries and Fortran module files into toolchain-specific
   subdirectories, `lib/fortran/<compiler>` and `include/fortran/<compiler>`, so several
   Fortran toolchains can coexist. This is controlled by the new
@@ -99,6 +60,9 @@
 * Batched rocBLAS, hipBLAS, and rocSOLVER routines now pass their array of device
   pointers by value. The array holds device pointers and lives on the device, so it is
   passed directly, not by reference.
+* `use hipfort` now re-exports the host-register helpers (`hipHostRegister`,
+  `hipHostGetDevicePointer`, `hipHostUnregister`); they previously required an
+  explicit `use hipfort_hiphostregister`.
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 
