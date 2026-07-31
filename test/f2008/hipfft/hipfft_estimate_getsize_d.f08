@@ -37,10 +37,11 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate1d(N1, HIPFFT_D2Z, 1, estSz))
 
   call hipfftCheck(hipfftCreate(plan))
-  ! GetSize1d configures the plan handle for the given parameters and returns
-  ! the accurate work area size.
+  ! hipfftGetSize needs a plan that has actually been made; hipfftCreate alone
+  ! leaves the handle uninitialised. hipfftGetSize1d does not configure it
+  ! either, it builds its own internal plan and reports that size.
+  call hipfftCheck(hipfftMakePlan1d(plan, N1, HIPFFT_D2Z, 1, mkSz))
   call hipfftCheck(hipfftGetSize1d(plan, N1, HIPFFT_D2Z, 1, gsSz))
-  ! GetSize queries the now-configured plan's work area.
   call hipfftCheck(hipfftGetSize(plan, mkSz))
   call hipfftCheck(hipfftDestroy(plan))
 
@@ -56,6 +57,7 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate2d(Nx2, Ny2, HIPFFT_Z2Z, estSz))
 
   call hipfftCheck(hipfftCreate(plan))
+  call hipfftCheck(hipfftMakePlan2d(plan, Nx2, Ny2, HIPFFT_Z2Z, mkSz))
   call hipfftCheck(hipfftGetSize2d(plan, Nx2, Ny2, HIPFFT_Z2Z, gsSz))
   call hipfftCheck(hipfftGetSize(plan, mkSz))
   call hipfftCheck(hipfftDestroy(plan))
@@ -71,6 +73,7 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate3d(Nx3, Ny3, Nz3, HIPFFT_Z2Z, estSz))
 
   call hipfftCheck(hipfftCreate(plan))
+  call hipfftCheck(hipfftMakePlan3d(plan, Nx3, Ny3, Nz3, HIPFFT_Z2Z, mkSz))
   call hipfftCheck(hipfftGetSize3d(plan, Nx3, Ny3, Nz3, HIPFFT_Z2Z, gsSz))
   call hipfftCheck(hipfftGetSize(plan, mkSz))
   call hipfftCheck(hipfftDestroy(plan))
