@@ -37,9 +37,7 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate1d(N1, HIPFFT_D2Z, 1, estSz))
 
   call hipfftCheck(hipfftCreate(plan))
-  ! hipfftGetSize needs a plan that has actually been made; hipfftCreate alone
-  ! leaves the handle uninitialised. hipfftGetSize1d does not configure it
-  ! either, it builds its own internal plan and reports that size.
+  ! hipfftGetSize needs a made plan; hipfftGetSize1d does not configure the handle.
   call hipfftCheck(hipfftMakePlan1d(plan, N1, HIPFFT_D2Z, 1, mkSz))
   call hipfftCheck(hipfftGetSize1d(plan, N1, HIPFFT_D2Z, 1, gsSz))
   call hipfftCheck(hipfftGetSize(plan, mkSz))
