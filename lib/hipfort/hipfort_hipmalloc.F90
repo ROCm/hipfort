@@ -26,13 +26,6 @@
 
 module hipfort_hipmalloc
 
-! ifx/ifort cannot compile the higher-rank allocate-from-source overloads of
-! hipMalloc/hipMallocManaged/hipHostMalloc (a generic-resolution/capacity limit:
-! the SHAPE intrinsic is dropped in some of them above rank 2), so the rank 3-7
-! *_source routines are excluded below when __INTEL_COMPILER is defined (both ifx
-! and ifort predefine it). The rank 0-2 *_source routines and every other overload
-! are unaffected.
-
   use, intrinsic :: iso_fortran_env , only : int32, int64, real32, real64
 
   integer(int32) :: elem_int32
