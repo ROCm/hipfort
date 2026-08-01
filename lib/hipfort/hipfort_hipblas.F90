@@ -42282,6 +42282,7 @@ module hipfort_hipblas
       hipblasIzamax_assumed_rank = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasIsamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42298,7 +42299,9 @@ module hipfort_hipblas
       hipblasIsamaxStridedBatched_assumed_rank = hipblasIsamaxStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasIdamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42315,7 +42318,9 @@ module hipfort_hipblas
       hipblasIdamaxStridedBatched_assumed_rank = hipblasIdamaxStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasIcamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42332,7 +42337,9 @@ module hipfort_hipblas
       hipblasIcamaxStridedBatched_assumed_rank = hipblasIcamaxStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasIzamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42349,6 +42356,7 @@ module hipfort_hipblas
       hipblasIzamaxStridedBatched_assumed_rank = hipblasIzamaxStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
     function hipblasIsamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
@@ -42406,6 +42414,7 @@ module hipfort_hipblas
       hipblasIzamin_assumed_rank = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasIsaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42422,7 +42431,9 @@ module hipfort_hipblas
       hipblasIsaminStridedBatched_assumed_rank = hipblasIsaminStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasIdaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42439,7 +42450,9 @@ module hipfort_hipblas
       hipblasIdaminStridedBatched_assumed_rank = hipblasIdaminStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasIcaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42456,7 +42469,9 @@ module hipfort_hipblas
       hipblasIcaminStridedBatched_assumed_rank = hipblasIcaminStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasIzaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42473,6 +42488,7 @@ module hipfort_hipblas
       hipblasIzaminStridedBatched_assumed_rank = hipblasIzaminStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
     function hipblasSasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
@@ -42530,6 +42546,7 @@ module hipfort_hipblas
       hipblasDzasum_assumed_rank = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42546,7 +42563,9 @@ module hipfort_hipblas
       hipblasSasumStridedBatched_assumed_rank = hipblasSasumStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42563,7 +42582,9 @@ module hipfort_hipblas
       hipblasDasumStridedBatched_assumed_rank = hipblasDasumStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasScasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42580,7 +42601,9 @@ module hipfort_hipblas
       hipblasScasumStridedBatched_assumed_rank = hipblasScasumStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDzasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42597,6 +42620,7 @@ module hipfort_hipblas
       hipblasDzasumStridedBatched_assumed_rank = hipblasDzasumStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
     function hipblasSaxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
@@ -42662,6 +42686,7 @@ module hipfort_hipblas
       hipblasZaxpy_assumed_rank = hipblasZaxpy_(handle,n,alpha,c_loc(x),incx,c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -42682,7 +42707,9 @@ module hipfort_hipblas
       hipblasSaxpyStridedBatched_assumed_rank = hipblasSaxpyStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -42703,7 +42730,9 @@ module hipfort_hipblas
       hipblasDaxpyStridedBatched_assumed_rank = hipblasDaxpyStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -42724,7 +42753,9 @@ module hipfort_hipblas
       hipblasCaxpyStridedBatched_assumed_rank = hipblasCaxpyStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -42745,6 +42776,7 @@ module hipfort_hipblas
       hipblasZaxpyStridedBatched_assumed_rank = hipblasZaxpyStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasScopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
@@ -42806,6 +42838,7 @@ module hipfort_hipblas
       hipblasZcopy_assumed_rank = hipblasZcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasScopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42824,7 +42857,9 @@ module hipfort_hipblas
       hipblasScopyStridedBatched_assumed_rank = hipblasScopyStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDcopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42843,7 +42878,9 @@ module hipfort_hipblas
       hipblasDcopyStridedBatched_assumed_rank = hipblasDcopyStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCcopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42862,7 +42899,9 @@ module hipfort_hipblas
       hipblasCcopyStridedBatched_assumed_rank = hipblasCcopyStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZcopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42881,6 +42920,7 @@ module hipfort_hipblas
       hipblasZcopyStridedBatched_assumed_rank = hipblasZcopyStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasSdot_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
@@ -42978,6 +43018,7 @@ module hipfort_hipblas
       hipblasZdotu_assumed_rank = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSdotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount, &
         myResult)
       use iso_c_binding
@@ -42998,7 +43039,9 @@ module hipfort_hipblas
       hipblasSdotStridedBatched_assumed_rank = hipblasSdotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDdotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount, &
         myResult)
       use iso_c_binding
@@ -43019,7 +43062,9 @@ module hipfort_hipblas
       hipblasDdotStridedBatched_assumed_rank = hipblasDdotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCdotcStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount, &
         myResult)
       use iso_c_binding
@@ -43040,7 +43085,9 @@ module hipfort_hipblas
       hipblasCdotcStridedBatched_assumed_rank = hipblasCdotcStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCdotuStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount, &
         myResult)
       use iso_c_binding
@@ -43061,7 +43108,9 @@ module hipfort_hipblas
       hipblasCdotuStridedBatched_assumed_rank = hipblasCdotuStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZdotcStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount, &
         myResult)
       use iso_c_binding
@@ -43082,7 +43131,9 @@ module hipfort_hipblas
       hipblasZdotcStridedBatched_assumed_rank = hipblasZdotcStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZdotuStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount, &
         myResult)
       use iso_c_binding
@@ -43103,6 +43154,7 @@ module hipfort_hipblas
       hipblasZdotuStridedBatched_assumed_rank = hipblasZdotuStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount,myResult)
     end function
+#endif
 
     function hipblasSnrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
@@ -43160,6 +43212,7 @@ module hipfort_hipblas
       hipblasDznrm2_assumed_rank = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSnrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43176,7 +43229,9 @@ module hipfort_hipblas
       hipblasSnrm2StridedBatched_assumed_rank = hipblasSnrm2StridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDnrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43193,7 +43248,9 @@ module hipfort_hipblas
       hipblasDnrm2StridedBatched_assumed_rank = hipblasDnrm2StridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasScnrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43210,7 +43267,9 @@ module hipfort_hipblas
       hipblasScnrm2StridedBatched_assumed_rank = hipblasScnrm2StridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDznrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43227,6 +43286,7 @@ module hipfort_hipblas
       hipblasDznrm2StridedBatched_assumed_rank = hipblasDznrm2StridedBatched_(handle,n,c_loc(x),incx, &
         stridex,batchCount,myResult)
     end function
+#endif
 
     function hipblasSrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -43330,6 +43390,7 @@ module hipfort_hipblas
       hipblasZdrot_assumed_rank = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43350,7 +43411,9 @@ module hipfort_hipblas
       hipblasSrotStridedBatched_assumed_rank = hipblasSrotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,c,s,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43371,7 +43434,9 @@ module hipfort_hipblas
       hipblasDrotStridedBatched_assumed_rank = hipblasDrotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,c,s,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43392,7 +43457,9 @@ module hipfort_hipblas
       hipblasCrotStridedBatched_assumed_rank = hipblasCrotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,c,s,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -43414,7 +43481,9 @@ module hipfort_hipblas
       hipblasCsrotStridedBatched_assumed_rank = hipblasCsrotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,c,s,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43435,7 +43504,9 @@ module hipfort_hipblas
       hipblasZrotStridedBatched_assumed_rank = hipblasZrotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,c,s,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZdrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -43457,6 +43528,7 @@ module hipfort_hipblas
       hipblasZdrotStridedBatched_assumed_rank = hipblasZdrotStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,c,s,batchCount)
     end function
+#endif
 
     function hipblasSrotm_assumed_rank(handle,n,x,incx,y,incy,param)
       use iso_c_binding
@@ -43490,6 +43562,7 @@ module hipfort_hipblas
       hipblasDrotm_assumed_rank = hipblasDrotm_(handle,n,c_loc(x),incx,c_loc(y),incy,param)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSrotmStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,param, &
         strideParam,batchCount)
       use iso_c_binding
@@ -43511,7 +43584,9 @@ module hipfort_hipblas
       hipblasSrotmStridedBatched_assumed_rank = hipblasSrotmStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,param,strideParam,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDrotmStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,param, &
         strideParam,batchCount)
       use iso_c_binding
@@ -43533,6 +43608,7 @@ module hipfort_hipblas
       hipblasDrotmStridedBatched_assumed_rank = hipblasDrotmStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,param,strideParam,batchCount)
     end function
+#endif
 
     function hipblasSscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
@@ -43618,6 +43694,7 @@ module hipfort_hipblas
       hipblasZdscal_assumed_rank = hipblasZdscal_(handle,n,alpha,c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43634,7 +43711,9 @@ module hipfort_hipblas
       hipblasSscalStridedBatched_assumed_rank = hipblasSscalStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43651,7 +43730,9 @@ module hipfort_hipblas
       hipblasDscalStridedBatched_assumed_rank = hipblasDscalStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43668,7 +43749,9 @@ module hipfort_hipblas
       hipblasCscalStridedBatched_assumed_rank = hipblasCscalStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43685,7 +43768,9 @@ module hipfort_hipblas
       hipblasZscalStridedBatched_assumed_rank = hipblasZscalStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43702,7 +43787,9 @@ module hipfort_hipblas
       hipblasCsscalStridedBatched_assumed_rank = hipblasCsscalStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZdscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43719,6 +43806,7 @@ module hipfort_hipblas
       hipblasZdscalStridedBatched_assumed_rank = hipblasZdscalStridedBatched_(handle,n,alpha,c_loc(x), &
         incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasSswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
@@ -43780,6 +43868,7 @@ module hipfort_hipblas
       hipblasZswap_assumed_rank = hipblasZswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43798,7 +43887,9 @@ module hipfort_hipblas
       hipblasSswapStridedBatched_assumed_rank = hipblasSswapStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43817,7 +43908,9 @@ module hipfort_hipblas
       hipblasDswapStridedBatched_assumed_rank = hipblasDswapStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43836,7 +43929,9 @@ module hipfort_hipblas
       hipblasCswapStridedBatched_assumed_rank = hipblasCswapStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43855,6 +43950,7 @@ module hipfort_hipblas
       hipblasZswapStridedBatched_assumed_rank = hipblasZswapStridedBatched_(handle,n,c_loc(x),incx, &
         stridex,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasSgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
@@ -43952,6 +44048,7 @@ module hipfort_hipblas
         incx,beta,c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -43980,7 +44077,9 @@ module hipfort_hipblas
       hipblasSgbmvStridedBatched_assumed_rank = hipblasSgbmvStridedBatched_(handle,trans,m,n,kl,ku, &
         alpha,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44009,7 +44108,9 @@ module hipfort_hipblas
       hipblasDgbmvStridedBatched_assumed_rank = hipblasDgbmvStridedBatched_(handle,trans,m,n,kl,ku, &
         alpha,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44038,7 +44139,9 @@ module hipfort_hipblas
       hipblasCgbmvStridedBatched_assumed_rank = hipblasCgbmvStridedBatched_(handle,trans,m,n,kl,ku, &
         alpha,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44067,6 +44170,7 @@ module hipfort_hipblas
       hipblasZgbmvStridedBatched_assumed_rank = hipblasZgbmvStridedBatched_(handle,trans,m,n,kl,ku, &
         alpha,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasSgemv_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
@@ -44382,6 +44486,7 @@ module hipfort_hipblas
         lda)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgerStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP, &
         lda,strideA,batchCount)
       use iso_c_binding
@@ -44406,7 +44511,9 @@ module hipfort_hipblas
       hipblasSgerStridedBatched_assumed_rank = hipblasSgerStridedBatched_(handle,m,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgerStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP, &
         lda,strideA,batchCount)
       use iso_c_binding
@@ -44431,7 +44538,9 @@ module hipfort_hipblas
       hipblasDgerStridedBatched_assumed_rank = hipblasDgerStridedBatched_(handle,m,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgeruStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP, &
         lda,strideA,batchCount)
       use iso_c_binding
@@ -44456,7 +44565,9 @@ module hipfort_hipblas
       hipblasCgeruStridedBatched_assumed_rank = hipblasCgeruStridedBatched_(handle,m,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgercStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP, &
         lda,strideA,batchCount)
       use iso_c_binding
@@ -44481,7 +44592,9 @@ module hipfort_hipblas
       hipblasCgercStridedBatched_assumed_rank = hipblasCgercStridedBatched_(handle,m,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgeruStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP, &
         lda,strideA,batchCount)
       use iso_c_binding
@@ -44506,7 +44619,9 @@ module hipfort_hipblas
       hipblasZgeruStridedBatched_assumed_rank = hipblasZgeruStridedBatched_(handle,m,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgercStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP, &
         lda,strideA,batchCount)
       use iso_c_binding
@@ -44531,6 +44646,7 @@ module hipfort_hipblas
       hipblasZgercStridedBatched_assumed_rank = hipblasZgercStridedBatched_(handle,m,n,alpha,c_loc(x), &
         incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
     function hipblasChbmv_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
@@ -44576,6 +44692,7 @@ module hipfort_hipblas
         c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasChbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44602,7 +44719,9 @@ module hipfort_hipblas
       hipblasChbmvStridedBatched_assumed_rank = hipblasChbmvStridedBatched_(handle,uplo,n,k,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZhbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44629,6 +44748,7 @@ module hipfort_hipblas
       hipblasZhbmvStridedBatched_assumed_rank = hipblasZhbmvStridedBatched_(handle,uplo,n,k,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasChemv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
@@ -44672,6 +44792,7 @@ module hipfort_hipblas
         c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasChemvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex, &
         beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44697,7 +44818,9 @@ module hipfort_hipblas
       hipblasChemvStridedBatched_assumed_rank = hipblasChemvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZhemvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex, &
         beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44723,6 +44846,7 @@ module hipfort_hipblas
       hipblasZhemvStridedBatched_assumed_rank = hipblasZhemvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasCher_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
@@ -44758,6 +44882,7 @@ module hipfort_hipblas
       hipblasZher_assumed_rank = hipblasZher_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP),lda)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasCherStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA, &
         batchCount)
       use iso_c_binding
@@ -44779,7 +44904,9 @@ module hipfort_hipblas
       hipblasCherStridedBatched_assumed_rank = hipblasCherStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZherStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA, &
         batchCount)
       use iso_c_binding
@@ -44801,6 +44928,7 @@ module hipfort_hipblas
       hipblasZherStridedBatched_assumed_rank = hipblasZherStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
     function hipblasCher2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
@@ -44842,6 +44970,7 @@ module hipfort_hipblas
         c_loc(AP),lda)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasCher2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -44866,7 +44995,9 @@ module hipfort_hipblas
       hipblasCher2StridedBatched_assumed_rank = hipblasCher2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZher2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -44891,6 +45022,7 @@ module hipfort_hipblas
       hipblasZher2StridedBatched_assumed_rank = hipblasZher2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
     function hipblasChpmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
@@ -44932,6 +45064,7 @@ module hipfort_hipblas
         c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasChpmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
         y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44956,7 +45089,9 @@ module hipfort_hipblas
       hipblasChpmvStridedBatched_assumed_rank = hipblasChpmvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZhpmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
         y,incy,stridey,batchCount)
       use iso_c_binding
@@ -44981,6 +45116,7 @@ module hipfort_hipblas
       hipblasZhpmvStridedBatched_assumed_rank = hipblasZhpmvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasChpr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
@@ -45014,6 +45150,7 @@ module hipfort_hipblas
       hipblasZhpr_assumed_rank = hipblasZhpr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasChprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -45034,7 +45171,9 @@ module hipfort_hipblas
       hipblasChprStridedBatched_assumed_rank = hipblasChprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZhprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -45055,6 +45194,7 @@ module hipfort_hipblas
       hipblasZhprStridedBatched_assumed_rank = hipblasZhprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
     function hipblasChpr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
@@ -45092,6 +45232,7 @@ module hipfort_hipblas
       hipblasZhpr2_assumed_rank = hipblasZhpr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasChpr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,strideA,batchCount)
       use iso_c_binding
@@ -45115,7 +45256,9 @@ module hipfort_hipblas
       hipblasChpr2StridedBatched_assumed_rank = hipblasChpr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZhpr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,strideA,batchCount)
       use iso_c_binding
@@ -45139,6 +45282,7 @@ module hipfort_hipblas
       hipblasZhpr2StridedBatched_assumed_rank = hipblasZhpr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
     function hipblasSsbmv_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
@@ -45184,6 +45328,7 @@ module hipfort_hipblas
         c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45210,7 +45355,9 @@ module hipfort_hipblas
       hipblasSsbmvStridedBatched_assumed_rank = hipblasSsbmvStridedBatched_(handle,uplo,n,k,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45237,6 +45384,7 @@ module hipfort_hipblas
       hipblasDsbmvStridedBatched_assumed_rank = hipblasDsbmvStridedBatched_(handle,uplo,n,k,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasSspmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
@@ -45278,6 +45426,7 @@ module hipfort_hipblas
         c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSspmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
         y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45302,7 +45451,9 @@ module hipfort_hipblas
       hipblasSspmvStridedBatched_assumed_rank = hipblasSspmvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDspmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta, &
         y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45327,6 +45478,7 @@ module hipfort_hipblas
       hipblasDspmvStridedBatched_assumed_rank = hipblasDspmvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasSspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
@@ -45360,6 +45512,7 @@ module hipfort_hipblas
       hipblasDspr_assumed_rank = hipblasDspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasCspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45375,7 +45528,9 @@ module hipfort_hipblas
       !
       hipblasCspr_assumed_rank = hipblasCspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45391,7 +45546,9 @@ module hipfort_hipblas
       !
       hipblasZspr_assumed_rank = hipblasZspr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP))
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -45412,7 +45569,9 @@ module hipfort_hipblas
       hipblasSsprStridedBatched_assumed_rank = hipblasSsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -45433,7 +45592,9 @@ module hipfort_hipblas
       hipblasDsprStridedBatched_assumed_rank = hipblasDsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -45454,7 +45615,9 @@ module hipfort_hipblas
       hipblasCsprStridedBatched_assumed_rank = hipblasCsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -45475,6 +45638,7 @@ module hipfort_hipblas
       hipblasZsprStridedBatched_assumed_rank = hipblasZsprStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
     function hipblasSspr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
@@ -45512,6 +45676,7 @@ module hipfort_hipblas
       hipblasDspr2_assumed_rank = hipblasDspr2_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(y),incy,c_loc(AP))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSspr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,strideA,batchCount)
       use iso_c_binding
@@ -45535,7 +45700,9 @@ module hipfort_hipblas
       hipblasSspr2StridedBatched_assumed_rank = hipblasSspr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDspr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,strideA,batchCount)
       use iso_c_binding
@@ -45559,6 +45726,7 @@ module hipfort_hipblas
       hipblasDspr2StridedBatched_assumed_rank = hipblasDspr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),strideA,batchCount)
     end function
+#endif
 
     function hipblasSsymv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
@@ -45644,6 +45812,7 @@ module hipfort_hipblas
         c_loc(y),incy)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex, &
         beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45669,7 +45838,9 @@ module hipfort_hipblas
       hipblasSsymvStridedBatched_assumed_rank = hipblasSsymvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex, &
         beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45695,7 +45866,9 @@ module hipfort_hipblas
       hipblasDsymvStridedBatched_assumed_rank = hipblasDsymvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex, &
         beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45721,7 +45894,9 @@ module hipfort_hipblas
       hipblasCsymvStridedBatched_assumed_rank = hipblasCsymvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex, &
         beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -45747,6 +45922,7 @@ module hipfort_hipblas
       hipblasZsymvStridedBatched_assumed_rank = hipblasZsymvStridedBatched_(handle,uplo,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,beta,c_loc(y),incy,stridey,batchCount)
     end function
+#endif
 
     function hipblasSsyr_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
@@ -45816,6 +45992,7 @@ module hipfort_hipblas
       hipblasZsyr_assumed_rank = hipblasZsyr_(handle,uplo,n,alpha,c_loc(x),incx,c_loc(AP),lda)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA, &
         batchCount)
       use iso_c_binding
@@ -45837,7 +46014,9 @@ module hipfort_hipblas
       hipblasSsyrStridedBatched_assumed_rank = hipblasSsyrStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA, &
         batchCount)
       use iso_c_binding
@@ -45859,7 +46038,9 @@ module hipfort_hipblas
       hipblasDsyrStridedBatched_assumed_rank = hipblasDsyrStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA, &
         batchCount)
       use iso_c_binding
@@ -45881,7 +46062,9 @@ module hipfort_hipblas
       hipblasCsyrStridedBatched_assumed_rank = hipblasCsyrStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA, &
         batchCount)
       use iso_c_binding
@@ -45903,6 +46086,7 @@ module hipfort_hipblas
       hipblasZsyrStridedBatched_assumed_rank = hipblasZsyrStridedBatched_(handle,uplo,n,alpha,c_loc(x), &
         incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
     function hipblasSsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
@@ -45984,6 +46168,7 @@ module hipfort_hipblas
         c_loc(AP),lda)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -46008,7 +46193,9 @@ module hipfort_hipblas
       hipblasSsyr2StridedBatched_assumed_rank = hipblasSsyr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -46033,7 +46220,9 @@ module hipfort_hipblas
       hipblasDsyr2StridedBatched_assumed_rank = hipblasDsyr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -46058,7 +46247,9 @@ module hipfort_hipblas
       hipblasCsyr2StridedBatched_assumed_rank = hipblasCsyr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey, &
         AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -46083,6 +46274,7 @@ module hipfort_hipblas
       hipblasZsyr2StridedBatched_assumed_rank = hipblasZsyr2StridedBatched_(handle,uplo,n,alpha, &
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
+#endif
 
     function hipblasStbmv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
@@ -46160,6 +46352,7 @@ module hipfort_hipblas
       hipblasZtbmv_assumed_rank = hipblasZtbmv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda,c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46183,7 +46376,9 @@ module hipfort_hipblas
       hipblasStbmvStridedBatched_assumed_rank = hipblasStbmvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46207,7 +46402,9 @@ module hipfort_hipblas
       hipblasDtbmvStridedBatched_assumed_rank = hipblasDtbmvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46231,7 +46428,9 @@ module hipfort_hipblas
       hipblasCtbmvStridedBatched_assumed_rank = hipblasCtbmvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46255,6 +46454,7 @@ module hipfort_hipblas
       hipblasZtbmvStridedBatched_assumed_rank = hipblasZtbmvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasStbsv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
@@ -46332,6 +46532,7 @@ module hipfort_hipblas
       hipblasZtbsv_assumed_rank = hipblasZtbsv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda,c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46355,7 +46556,9 @@ module hipfort_hipblas
       hipblasStbsvStridedBatched_assumed_rank = hipblasStbsvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46379,7 +46582,9 @@ module hipfort_hipblas
       hipblasDtbsvStridedBatched_assumed_rank = hipblasDtbsvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46403,7 +46608,9 @@ module hipfort_hipblas
       hipblasCtbsvStridedBatched_assumed_rank = hipblasCtbsvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46427,6 +46634,7 @@ module hipfort_hipblas
       hipblasZtbsvStridedBatched_assumed_rank = hipblasZtbsvStridedBatched_(handle,uplo,transA,diag,n,k, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasStpmv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
@@ -46496,6 +46704,7 @@ module hipfort_hipblas
       hipblasZtpmv_assumed_rank = hipblasZtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46517,7 +46726,9 @@ module hipfort_hipblas
       hipblasStpmvStridedBatched_assumed_rank = hipblasStpmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46539,7 +46750,9 @@ module hipfort_hipblas
       hipblasDtpmvStridedBatched_assumed_rank = hipblasDtpmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46561,7 +46774,9 @@ module hipfort_hipblas
       hipblasCtpmvStridedBatched_assumed_rank = hipblasCtpmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46583,6 +46798,7 @@ module hipfort_hipblas
       hipblasZtpmvStridedBatched_assumed_rank = hipblasZtpmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasStpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
@@ -46652,6 +46868,7 @@ module hipfort_hipblas
       hipblasZtpsv_assumed_rank = hipblasZtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46673,7 +46890,9 @@ module hipfort_hipblas
       hipblasStpsvStridedBatched_assumed_rank = hipblasStpsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46695,7 +46914,9 @@ module hipfort_hipblas
       hipblasDtpsvStridedBatched_assumed_rank = hipblasDtpsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46717,7 +46938,9 @@ module hipfort_hipblas
       hipblasCtpsvStridedBatched_assumed_rank = hipblasCtpsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46739,6 +46962,7 @@ module hipfort_hipblas
       hipblasZtpsvStridedBatched_assumed_rank = hipblasZtpsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasStrmv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
@@ -46812,6 +47036,7 @@ module hipfort_hipblas
       hipblasZtrmv_assumed_rank = hipblasZtrmv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46834,7 +47059,9 @@ module hipfort_hipblas
       hipblasStrmvStridedBatched_assumed_rank = hipblasStrmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46857,7 +47084,9 @@ module hipfort_hipblas
       hipblasDtrmvStridedBatched_assumed_rank = hipblasDtrmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46880,7 +47109,9 @@ module hipfort_hipblas
       hipblasCtrmvStridedBatched_assumed_rank = hipblasCtrmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46903,6 +47134,7 @@ module hipfort_hipblas
       hipblasZtrmvStridedBatched_assumed_rank = hipblasZtrmvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasStrsv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
@@ -46976,6 +47208,7 @@ module hipfort_hipblas
       hipblasZtrsv_assumed_rank = hipblasZtrsv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x),incx)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -46998,7 +47231,9 @@ module hipfort_hipblas
       hipblasStrsvStridedBatched_assumed_rank = hipblasStrsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -47021,7 +47256,9 @@ module hipfort_hipblas
       hipblasDtrsvStridedBatched_assumed_rank = hipblasDtrsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -47044,7 +47281,9 @@ module hipfort_hipblas
       hipblasCtrsvStridedBatched_assumed_rank = hipblasCtrsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -47067,6 +47306,7 @@ module hipfort_hipblas
       hipblasZtrsvStridedBatched_assumed_rank = hipblasZtrsvStridedBatched_(handle,uplo,transA,diag,n, &
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
+#endif
 
     function hipblasSgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -47322,6 +47562,7 @@ module hipfort_hipblas
         c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasCherkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta, &
         CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47346,7 +47587,9 @@ module hipfort_hipblas
       hipblasCherkStridedBatched_assumed_rank = hipblasCherkStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZherkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta, &
         CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47371,6 +47614,7 @@ module hipfort_hipblas
       hipblasZherkStridedBatched_assumed_rank = hipblasZherkStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasCherkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -47418,6 +47662,7 @@ module hipfort_hipblas
         ldb,beta,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasCherkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47445,7 +47690,9 @@ module hipfort_hipblas
       hipblasCherkxStridedBatched_assumed_rank = hipblasCherkxStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZherkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47473,6 +47720,7 @@ module hipfort_hipblas
       hipblasZherkxStridedBatched_assumed_rank = hipblasZherkxStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasCher2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -47520,6 +47768,7 @@ module hipfort_hipblas
         ldb,beta,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasCher2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47547,7 +47796,9 @@ module hipfort_hipblas
       hipblasCher2kStridedBatched_assumed_rank = hipblasCher2kStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZher2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47575,6 +47826,7 @@ module hipfort_hipblas
       hipblasZher2kStridedBatched_assumed_rank = hipblasZher2kStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasSsymm_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -47668,6 +47920,7 @@ module hipfort_hipblas
         beta,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb, &
         strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47695,7 +47948,9 @@ module hipfort_hipblas
       hipblasSsymmStridedBatched_assumed_rank = hipblasSsymmStridedBatched_(handle,side,uplo,m,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb, &
         strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47723,7 +47978,9 @@ module hipfort_hipblas
       hipblasDsymmStridedBatched_assumed_rank = hipblasDsymmStridedBatched_(handle,side,uplo,m,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb, &
         strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47751,7 +48008,9 @@ module hipfort_hipblas
       hipblasCsymmStridedBatched_assumed_rank = hipblasCsymmStridedBatched_(handle,side,uplo,m,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb, &
         strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47779,6 +48038,7 @@ module hipfort_hipblas
       hipblasZsymmStridedBatched_assumed_rank = hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha, &
         c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasSsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
@@ -47864,6 +48124,7 @@ module hipfort_hipblas
         c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta, &
         CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47888,7 +48149,9 @@ module hipfort_hipblas
       hipblasSsyrkStridedBatched_assumed_rank = hipblasSsyrkStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta, &
         CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47913,7 +48176,9 @@ module hipfort_hipblas
       hipblasDsyrkStridedBatched_assumed_rank = hipblasDsyrkStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta, &
         CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47938,7 +48203,9 @@ module hipfort_hipblas
       hipblasCsyrkStridedBatched_assumed_rank = hipblasCsyrkStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta, &
         CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -47963,6 +48230,7 @@ module hipfort_hipblas
       hipblasZsyrkStridedBatched_assumed_rank = hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasSsyr2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -48056,6 +48324,7 @@ module hipfort_hipblas
         ldb,beta,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48083,7 +48352,9 @@ module hipfort_hipblas
       hipblasSsyr2kStridedBatched_assumed_rank = hipblasSsyr2kStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48111,7 +48382,9 @@ module hipfort_hipblas
       hipblasDsyr2kStridedBatched_assumed_rank = hipblasDsyr2kStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48139,7 +48412,9 @@ module hipfort_hipblas
       hipblasCsyr2kStridedBatched_assumed_rank = hipblasCsyr2kStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48167,6 +48442,7 @@ module hipfort_hipblas
       hipblasZsyr2kStridedBatched_assumed_rank = hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasSsyrkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -48260,6 +48536,7 @@ module hipfort_hipblas
         ldb,beta,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48287,7 +48564,9 @@ module hipfort_hipblas
       hipblasSsyrkxStridedBatched_assumed_rank = hipblasSsyrkxStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48315,7 +48594,9 @@ module hipfort_hipblas
       hipblasDsyrkxStridedBatched_assumed_rank = hipblasDsyrkxStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48343,7 +48624,9 @@ module hipfort_hipblas
       hipblasCsyrkxStridedBatched_assumed_rank = hipblasCsyrkxStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48371,6 +48654,7 @@ module hipfort_hipblas
       hipblasZsyrkxStridedBatched_assumed_rank = hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k, &
         alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasSgeam_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
@@ -48464,6 +48748,7 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta, &
         BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48491,7 +48776,9 @@ module hipfort_hipblas
       hipblasSgeamStridedBatched_assumed_rank = hipblasSgeamStridedBatched_(handle,transA,transB,m,n, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta, &
         BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48519,7 +48806,9 @@ module hipfort_hipblas
       hipblasDgeamStridedBatched_assumed_rank = hipblasDgeamStridedBatched_(handle,transA,transB,m,n, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta, &
         BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48547,7 +48836,9 @@ module hipfort_hipblas
       hipblasCgeamStridedBatched_assumed_rank = hipblasCgeamStridedBatched_(handle,transA,transB,m,n, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta, &
         BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48575,6 +48866,7 @@ module hipfort_hipblas
       hipblasZgeamStridedBatched_assumed_rank = hipblasZgeamStridedBatched_(handle,transA,transB,m,n, &
         alpha,c_loc(AP),lda,strideA,beta,c_loc(BP),ldb,strideB,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasChemm_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
@@ -48622,6 +48914,7 @@ module hipfort_hipblas
         beta,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasChemmStridedBatched_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb, &
         strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48649,7 +48942,9 @@ module hipfort_hipblas
       hipblasChemmStridedBatched_assumed_rank = hipblasChemmStridedBatched_(handle,side,uplo,n,k,alpha, &
         c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZhemmStridedBatched_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb, &
         strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48677,6 +48972,7 @@ module hipfort_hipblas
       hipblasZhemmStridedBatched_assumed_rank = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha, &
         c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,beta,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasStrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
@@ -48774,6 +49070,7 @@ module hipfort_hipblas
         c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48802,7 +49099,9 @@ module hipfort_hipblas
       hipblasStrmmStridedBatched_assumed_rank = hipblasStrmmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48831,7 +49130,9 @@ module hipfort_hipblas
       hipblasDtrmmStridedBatched_assumed_rank = hipblasDtrmmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48860,7 +49161,9 @@ module hipfort_hipblas
       hipblasCtrmmStridedBatched_assumed_rank = hipblasCtrmmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -48889,6 +49192,7 @@ module hipfort_hipblas
       hipblasZtrmmStridedBatched_assumed_rank = hipblasZtrmmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc,strideC,batchCount)
     end function
+#endif
 
     function hipblasStrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
@@ -48978,6 +49282,7 @@ module hipfort_hipblas
         c_loc(BP),ldb)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasStrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda, &
         strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -49003,7 +49308,9 @@ module hipfort_hipblas
       hipblasStrsmStridedBatched_assumed_rank = hipblasStrsmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda, &
         strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -49029,7 +49336,9 @@ module hipfort_hipblas
       hipblasDtrsmStridedBatched_assumed_rank = hipblasDtrsmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda, &
         strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -49055,7 +49364,9 @@ module hipfort_hipblas
       hipblasCtrsmStridedBatched_assumed_rank = hipblasCtrsmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda, &
         strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -49081,7 +49392,9 @@ module hipfort_hipblas
       hipblasZtrsmStridedBatched_assumed_rank = hipblasZtrsmStridedBatched_(handle,side,uplo,transA, &
         diag,m,n,alpha,c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasStrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49098,7 +49411,9 @@ module hipfort_hipblas
       !
       hipblasStrtri_assumed_rank = hipblasStrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA),ldinvA)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49115,7 +49430,9 @@ module hipfort_hipblas
       !
       hipblasDtrtri_assumed_rank = hipblasDtrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA),ldinvA)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49132,7 +49449,9 @@ module hipfort_hipblas
       !
       hipblasCtrtri_assumed_rank = hipblasCtrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA),ldinvA)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49149,7 +49468,9 @@ module hipfort_hipblas
       !
       hipblasZtrtri_assumed_rank = hipblasZtrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA),ldinvA)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasStrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA,ldinvA, &
         stride_invA,batchCount)
       use iso_c_binding
@@ -49171,7 +49492,9 @@ module hipfort_hipblas
       hipblasStrtriStridedBatched_assumed_rank = hipblasStrtriStridedBatched_(handle,uplo,diag,n, &
         c_loc(AP),lda,strideA,c_loc(invA),ldinvA,stride_invA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDtrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA,ldinvA, &
         stride_invA,batchCount)
       use iso_c_binding
@@ -49193,7 +49516,9 @@ module hipfort_hipblas
       hipblasDtrtriStridedBatched_assumed_rank = hipblasDtrtriStridedBatched_(handle,uplo,diag,n, &
         c_loc(AP),lda,strideA,c_loc(invA),ldinvA,stride_invA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCtrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA,ldinvA, &
         stride_invA,batchCount)
       use iso_c_binding
@@ -49215,7 +49540,9 @@ module hipfort_hipblas
       hipblasCtrtriStridedBatched_assumed_rank = hipblasCtrtriStridedBatched_(handle,uplo,diag,n, &
         c_loc(AP),lda,strideA,c_loc(invA),ldinvA,stride_invA,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZtrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA,ldinvA, &
         stride_invA,batchCount)
       use iso_c_binding
@@ -49237,6 +49564,7 @@ module hipfort_hipblas
       hipblasZtrtriStridedBatched_assumed_rank = hipblasZtrtriStridedBatched_(handle,uplo,diag,n, &
         c_loc(AP),lda,strideA,c_loc(invA),ldinvA,stride_invA,batchCount)
     end function
+#endif
 
     function hipblasSdgmm_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
@@ -49314,6 +49642,7 @@ module hipfort_hipblas
       hipblasZdgmm_assumed_rank = hipblasZdgmm_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx,c_loc(CP),ldc)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipblasSdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP, &
         ldc,strideC,batchCount)
       use iso_c_binding
@@ -49338,7 +49667,9 @@ module hipfort_hipblas
       hipblasSdgmmStridedBatched_assumed_rank = hipblasSdgmmStridedBatched_(handle,side,m,n,c_loc(AP), &
         lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP, &
         ldc,strideC,batchCount)
       use iso_c_binding
@@ -49363,7 +49694,9 @@ module hipfort_hipblas
       hipblasDdgmmStridedBatched_assumed_rank = hipblasDdgmmStridedBatched_(handle,side,m,n,c_loc(AP), &
         lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP, &
         ldc,strideC,batchCount)
       use iso_c_binding
@@ -49388,7 +49721,9 @@ module hipfort_hipblas
       hipblasCdgmmStridedBatched_assumed_rank = hipblasCdgmmStridedBatched_(handle,side,m,n,c_loc(AP), &
         lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP, &
         ldc,strideC,batchCount)
       use iso_c_binding
@@ -49413,7 +49748,9 @@ module hipfort_hipblas
       hipblasZdgmmStridedBatched_assumed_rank = hipblasZdgmmStridedBatched_(handle,side,m,n,c_loc(AP), &
         lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49428,7 +49765,9 @@ module hipfort_hipblas
       !
       hipblasSgetrf_assumed_rank = hipblasSgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49443,7 +49782,9 @@ module hipfort_hipblas
       !
       hipblasDgetrf_assumed_rank = hipblasDgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49458,7 +49799,9 @@ module hipfort_hipblas
       !
       hipblasCgetrf_assumed_rank = hipblasCgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49473,7 +49816,9 @@ module hipfort_hipblas
       !
       hipblasZgetrf_assumed_rank = hipblasZgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49493,7 +49838,9 @@ module hipfort_hipblas
       hipblasSgetrfStridedBatched_assumed_rank = hipblasSgetrfStridedBatched_(handle,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49513,7 +49860,9 @@ module hipfort_hipblas
       hipblasDgetrfStridedBatched_assumed_rank = hipblasDgetrfStridedBatched_(handle,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49533,7 +49882,9 @@ module hipfort_hipblas
       hipblasCgetrfStridedBatched_assumed_rank = hipblasCgetrfStridedBatched_(handle,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49553,7 +49904,9 @@ module hipfort_hipblas
       hipblasZgetrfStridedBatched_assumed_rank = hipblasZgetrfStridedBatched_(handle,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49573,7 +49926,9 @@ module hipfort_hipblas
       hipblasSgetrs_assumed_rank = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
         ldb,myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49593,7 +49948,9 @@ module hipfort_hipblas
       hipblasDgetrs_assumed_rank = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
         ldb,myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49613,7 +49970,9 @@ module hipfort_hipblas
       hipblasCgetrs_assumed_rank = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
         ldb,myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49633,7 +49992,9 @@ module hipfort_hipblas
       hipblasZgetrs_assumed_rank = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
         ldb,myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
         ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -49658,7 +50019,9 @@ module hipfort_hipblas
       hipblasSgetrsStridedBatched_assumed_rank = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
         c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
         ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -49683,7 +50046,9 @@ module hipfort_hipblas
       hipblasDgetrsStridedBatched_assumed_rank = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
         c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
         ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -49708,7 +50073,9 @@ module hipfort_hipblas
       hipblasCgetrsStridedBatched_assumed_rank = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
         c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
         ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -49733,7 +50100,9 @@ module hipfort_hipblas
       hipblasZgetrsStridedBatched_assumed_rank = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
         c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49749,7 +50118,9 @@ module hipfort_hipblas
       !
       hipblasSgeqrf_assumed_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49765,7 +50136,9 @@ module hipfort_hipblas
       !
       hipblasDgeqrf_assumed_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49781,7 +50154,9 @@ module hipfort_hipblas
       !
       hipblasCgeqrf_assumed_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49797,7 +50172,9 @@ module hipfort_hipblas
       !
       hipblasZgeqrf_assumed_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasSgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49818,7 +50195,9 @@ module hipfort_hipblas
       hipblasSgeqrfStridedBatched_assumed_rank = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasDgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49839,7 +50218,9 @@ module hipfort_hipblas
       hipblasDgeqrfStridedBatched_assumed_rank = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasCgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49860,7 +50241,9 @@ module hipfort_hipblas
       hipblasCgeqrfStridedBatched_assumed_rank = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipblasZgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -49881,6 +50264,7 @@ module hipfort_hipblas
       hipblasZgeqrfStridedBatched_assumed_rank = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
         strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
+#endif
 
 #else
 

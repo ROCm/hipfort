@@ -14450,6 +14450,7 @@ module hipfort_hipsolver
 #ifdef USE_FPOINTER_INTERFACES
   contains
 #ifdef USE_ASSUMED_RANK_INTERFACES
+#ifndef USE_CUDA_NAMES
     function hipsolverSorgbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14468,7 +14469,9 @@ module hipfort_hipsolver
       hipsolverSorgbr_bufferSize_assumed_rank = hipsolverSorgbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
         lda,tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDorgbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14487,7 +14490,9 @@ module hipfort_hipsolver
       hipsolverDorgbr_bufferSize_assumed_rank = hipsolverDorgbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
         lda,tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCungbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14506,7 +14511,9 @@ module hipfort_hipsolver
       hipsolverCungbr_bufferSize_assumed_rank = hipsolverCungbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
         lda,tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZungbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14525,7 +14532,9 @@ module hipfort_hipsolver
       hipsolverZungbr_bufferSize_assumed_rank = hipsolverZungbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
         lda,tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSorgbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14546,7 +14555,9 @@ module hipfort_hipsolver
       hipsolverSorgbr_assumed_rank = hipsolverSorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDorgbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14567,7 +14578,9 @@ module hipfort_hipsolver
       hipsolverDorgbr_assumed_rank = hipsolverDorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCungbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14588,7 +14601,9 @@ module hipfort_hipsolver
       hipsolverCungbr_assumed_rank = hipsolverCungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZungbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14609,7 +14624,9 @@ module hipfort_hipsolver
       hipsolverZungbr_assumed_rank = hipsolverZungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSorgqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14627,7 +14644,9 @@ module hipfort_hipsolver
       hipsolverSorgqr_bufferSize_assumed_rank = hipsolverSorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDorgqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14645,7 +14664,9 @@ module hipfort_hipsolver
       hipsolverDorgqr_bufferSize_assumed_rank = hipsolverDorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCungqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14663,7 +14684,9 @@ module hipfort_hipsolver
       hipsolverCungqr_bufferSize_assumed_rank = hipsolverCungqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZungqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14681,7 +14704,9 @@ module hipfort_hipsolver
       hipsolverZungqr_bufferSize_assumed_rank = hipsolverZungqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSorgqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14700,7 +14725,9 @@ module hipfort_hipsolver
       !
       hipsolverSorgqr_assumed_rank = hipsolverSorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDorgqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14719,7 +14746,9 @@ module hipfort_hipsolver
       !
       hipsolverDorgqr_assumed_rank = hipsolverDorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCungqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14738,7 +14767,9 @@ module hipfort_hipsolver
       !
       hipsolverCungqr_assumed_rank = hipsolverCungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZungqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14757,7 +14788,9 @@ module hipfort_hipsolver
       !
       hipsolverZungqr_assumed_rank = hipsolverZungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSorgtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14774,7 +14807,9 @@ module hipfort_hipsolver
       hipsolverSorgtr_bufferSize_assumed_rank = hipsolverSorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDorgtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14791,7 +14826,9 @@ module hipfort_hipsolver
       hipsolverDorgtr_bufferSize_assumed_rank = hipsolverDorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCungtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14808,7 +14845,9 @@ module hipfort_hipsolver
       hipsolverCungtr_bufferSize_assumed_rank = hipsolverCungtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZungtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14825,7 +14864,9 @@ module hipfort_hipsolver
       hipsolverZungtr_bufferSize_assumed_rank = hipsolverZungtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSorgtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14843,7 +14884,9 @@ module hipfort_hipsolver
       !
       hipsolverSorgtr_assumed_rank = hipsolverSorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDorgtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14861,7 +14904,9 @@ module hipfort_hipsolver
       !
       hipsolverDorgtr_assumed_rank = hipsolverDorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCungtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14879,7 +14924,9 @@ module hipfort_hipsolver
       !
       hipsolverCungtr_assumed_rank = hipsolverCungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZungtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14897,7 +14944,9 @@ module hipfort_hipsolver
       !
       hipsolverZungtr_assumed_rank = hipsolverZungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSormqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14919,7 +14968,9 @@ module hipfort_hipsolver
       hipsolverSormqr_bufferSize_assumed_rank = hipsolverSormqr_bufferSize_(handle,side,trans,m,n,k, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDormqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14941,7 +14992,9 @@ module hipfort_hipsolver
       hipsolverDormqr_bufferSize_assumed_rank = hipsolverDormqr_bufferSize_(handle,side,trans,m,n,k, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCunmqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14963,7 +15016,9 @@ module hipfort_hipsolver
       hipsolverCunmqr_bufferSize_assumed_rank = hipsolverCunmqr_bufferSize_(handle,side,trans,m,n,k, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZunmqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -14985,7 +15040,9 @@ module hipfort_hipsolver
       hipsolverZunmqr_bufferSize_assumed_rank = hipsolverZunmqr_bufferSize_(handle,side,trans,m,n,k, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSormqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15009,7 +15066,9 @@ module hipfort_hipsolver
       hipsolverSormqr_assumed_rank = hipsolverSormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
         ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDormqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15033,7 +15092,9 @@ module hipfort_hipsolver
       hipsolverDormqr_assumed_rank = hipsolverDormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
         ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCunmqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15057,7 +15118,9 @@ module hipfort_hipsolver
       hipsolverCunmqr_assumed_rank = hipsolverCunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
         ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZunmqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15081,7 +15144,9 @@ module hipfort_hipsolver
       hipsolverZunmqr_assumed_rank = hipsolverZunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
         ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSormtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15103,7 +15168,9 @@ module hipfort_hipsolver
       hipsolverSormtr_bufferSize_assumed_rank = hipsolverSormtr_bufferSize_(handle,side,uplo,trans,m,n, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDormtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15125,7 +15192,9 @@ module hipfort_hipsolver
       hipsolverDormtr_bufferSize_assumed_rank = hipsolverDormtr_bufferSize_(handle,side,uplo,trans,m,n, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCunmtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15147,7 +15216,9 @@ module hipfort_hipsolver
       hipsolverCunmtr_bufferSize_assumed_rank = hipsolverCunmtr_bufferSize_(handle,side,uplo,trans,m,n, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZunmtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15169,7 +15240,9 @@ module hipfort_hipsolver
       hipsolverZunmtr_bufferSize_assumed_rank = hipsolverZunmtr_bufferSize_(handle,side,uplo,trans,m,n, &
         c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSormtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15193,7 +15266,9 @@ module hipfort_hipsolver
       hipsolverSormtr_assumed_rank = hipsolverSormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
         c_loc(C),ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDormtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15217,7 +15292,9 @@ module hipfort_hipsolver
       hipsolverDormtr_assumed_rank = hipsolverDormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
         c_loc(C),ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCunmtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15241,7 +15318,9 @@ module hipfort_hipsolver
       hipsolverCunmtr_assumed_rank = hipsolverCunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
         c_loc(C),ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZunmtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15265,7 +15344,9 @@ module hipfort_hipsolver
       hipsolverZunmtr_assumed_rank = hipsolverZunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
         c_loc(C),ldc,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15287,7 +15368,9 @@ module hipfort_hipsolver
       hipsolverSgebrd_assumed_rank = hipsolverSgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
         c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15309,7 +15392,9 @@ module hipfort_hipsolver
       hipsolverDgebrd_assumed_rank = hipsolverDgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
         c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15331,7 +15416,9 @@ module hipfort_hipsolver
       hipsolverCgebrd_assumed_rank = hipsolverCgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
         c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15353,7 +15440,9 @@ module hipfort_hipsolver
       hipsolverZgebrd_assumed_rank = hipsolverZgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
         c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15368,7 +15457,9 @@ module hipfort_hipsolver
       !
       hipsolverSgeqrf_bufferSize_assumed_rank = hipsolverSgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15383,7 +15474,9 @@ module hipfort_hipsolver
       !
       hipsolverDgeqrf_bufferSize_assumed_rank = hipsolverDgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15398,7 +15491,9 @@ module hipfort_hipsolver
       !
       hipsolverCgeqrf_bufferSize_assumed_rank = hipsolverCgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15413,7 +15508,9 @@ module hipfort_hipsolver
       !
       hipsolverZgeqrf_bufferSize_assumed_rank = hipsolverZgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15431,7 +15528,9 @@ module hipfort_hipsolver
       !
       hipsolverSgeqrf_assumed_rank = hipsolverSgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15449,7 +15548,9 @@ module hipfort_hipsolver
       !
       hipsolverDgeqrf_assumed_rank = hipsolverDgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15467,7 +15568,9 @@ module hipfort_hipsolver
       !
       hipsolverCgeqrf_assumed_rank = hipsolverCgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15485,7 +15588,9 @@ module hipfort_hipsolver
       !
       hipsolverZgeqrf_assumed_rank = hipsolverZgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSSgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15506,7 +15611,9 @@ module hipfort_hipsolver
       hipsolverSSgesv_bufferSize_assumed_rank = hipsolverSSgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
         c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDDgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15527,7 +15634,9 @@ module hipfort_hipsolver
       hipsolverDDgesv_bufferSize_assumed_rank = hipsolverDDgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
         c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCCgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15548,7 +15657,9 @@ module hipfort_hipsolver
       hipsolverCCgesv_bufferSize_assumed_rank = hipsolverCCgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
         c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZZgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15569,7 +15680,9 @@ module hipfort_hipsolver
       hipsolverZZgesv_bufferSize_assumed_rank = hipsolverZZgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
         c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSSgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
       use iso_c_binding
@@ -15594,7 +15707,9 @@ module hipfort_hipsolver
       hipsolverSSgesv_assumed_rank = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDDgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
       use iso_c_binding
@@ -15619,7 +15734,9 @@ module hipfort_hipsolver
       hipsolverDDgesv_assumed_rank = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCCgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
       use iso_c_binding
@@ -15644,7 +15761,9 @@ module hipfort_hipsolver
       hipsolverCCgesv_assumed_rank = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZZgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
       use iso_c_binding
@@ -15669,7 +15788,9 @@ module hipfort_hipsolver
       hipsolverZZgesv_assumed_rank = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15684,7 +15805,9 @@ module hipfort_hipsolver
       !
       hipsolverSgetrf_bufferSize_assumed_rank = hipsolverSgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15699,7 +15822,9 @@ module hipfort_hipsolver
       !
       hipsolverDgetrf_bufferSize_assumed_rank = hipsolverDgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15714,7 +15839,9 @@ module hipfort_hipsolver
       !
       hipsolverCgetrf_bufferSize_assumed_rank = hipsolverCgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15729,7 +15856,9 @@ module hipfort_hipsolver
       !
       hipsolverZgetrf_bufferSize_assumed_rank = hipsolverZgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15748,7 +15877,9 @@ module hipfort_hipsolver
       hipsolverSgetrf_assumed_rank = hipsolverSgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15767,7 +15898,9 @@ module hipfort_hipsolver
       hipsolverDgetrf_assumed_rank = hipsolverDgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15786,7 +15919,9 @@ module hipfort_hipsolver
       hipsolverCgetrf_assumed_rank = hipsolverCgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15805,7 +15940,9 @@ module hipfort_hipsolver
       hipsolverZgetrf_assumed_rank = hipsolverZgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15825,7 +15962,9 @@ module hipfort_hipsolver
       hipsolverSgetrs_bufferSize_assumed_rank = hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs, &
         c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15845,7 +15984,9 @@ module hipfort_hipsolver
       hipsolverDgetrs_bufferSize_assumed_rank = hipsolverDgetrs_bufferSize_(handle,trans,n,nrhs, &
         c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15865,7 +16006,9 @@ module hipfort_hipsolver
       hipsolverCgetrs_bufferSize_assumed_rank = hipsolverCgetrs_bufferSize_(handle,trans,n,nrhs, &
         c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15885,7 +16028,9 @@ module hipfort_hipsolver
       hipsolverZgetrs_bufferSize_assumed_rank = hipsolverZgetrs_bufferSize_(handle,trans,n,nrhs, &
         c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15907,7 +16052,9 @@ module hipfort_hipsolver
       hipsolverSgetrs_assumed_rank = hipsolverSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15929,7 +16076,9 @@ module hipfort_hipsolver
       hipsolverDgetrs_assumed_rank = hipsolverDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15951,7 +16100,9 @@ module hipfort_hipsolver
       hipsolverCgetrs_assumed_rank = hipsolverCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15973,7 +16124,9 @@ module hipfort_hipsolver
       hipsolverZgetrs_assumed_rank = hipsolverZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
         c_loc(B),ldb,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -15989,7 +16142,9 @@ module hipfort_hipsolver
       hipsolverSpotrf_bufferSize_assumed_rank = hipsolverSpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16005,7 +16160,9 @@ module hipfort_hipsolver
       hipsolverDpotrf_bufferSize_assumed_rank = hipsolverDpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16021,7 +16178,9 @@ module hipfort_hipsolver
       hipsolverCpotrf_bufferSize_assumed_rank = hipsolverCpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16037,7 +16196,9 @@ module hipfort_hipsolver
       hipsolverZpotrf_bufferSize_assumed_rank = hipsolverZpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16054,7 +16215,9 @@ module hipfort_hipsolver
       !
       hipsolverSpotrf_assumed_rank = hipsolverSpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16071,7 +16234,9 @@ module hipfort_hipsolver
       !
       hipsolverDpotrf_assumed_rank = hipsolverDpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16088,7 +16253,9 @@ module hipfort_hipsolver
       !
       hipsolverCpotrf_assumed_rank = hipsolverCpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16105,7 +16272,9 @@ module hipfort_hipsolver
       !
       hipsolverZpotrf_assumed_rank = hipsolverZpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16121,7 +16290,9 @@ module hipfort_hipsolver
       hipsolverSpotri_bufferSize_assumed_rank = hipsolverSpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16137,7 +16308,9 @@ module hipfort_hipsolver
       hipsolverDpotri_bufferSize_assumed_rank = hipsolverDpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16153,7 +16326,9 @@ module hipfort_hipsolver
       hipsolverCpotri_bufferSize_assumed_rank = hipsolverCpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16169,7 +16344,9 @@ module hipfort_hipsolver
       hipsolverZpotri_bufferSize_assumed_rank = hipsolverZpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16186,7 +16363,9 @@ module hipfort_hipsolver
       !
       hipsolverSpotri_assumed_rank = hipsolverSpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16203,7 +16382,9 @@ module hipfort_hipsolver
       !
       hipsolverDpotri_assumed_rank = hipsolverDpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16220,7 +16401,9 @@ module hipfort_hipsolver
       !
       hipsolverCpotri_assumed_rank = hipsolverCpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16237,7 +16420,9 @@ module hipfort_hipsolver
       !
       hipsolverZpotri_assumed_rank = hipsolverZpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16256,7 +16441,9 @@ module hipfort_hipsolver
       hipsolverSpotrs_bufferSize_assumed_rank = hipsolverSpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
         lda,c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16275,7 +16462,9 @@ module hipfort_hipsolver
       hipsolverDpotrs_bufferSize_assumed_rank = hipsolverDpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
         lda,c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16294,7 +16483,9 @@ module hipfort_hipsolver
       hipsolverCpotrs_bufferSize_assumed_rank = hipsolverCpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
         lda,c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16313,7 +16504,9 @@ module hipfort_hipsolver
       hipsolverZpotrs_bufferSize_assumed_rank = hipsolverZpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
         lda,c_loc(B),ldb,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16334,7 +16527,9 @@ module hipfort_hipsolver
       hipsolverSpotrs_assumed_rank = hipsolverSpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16355,7 +16550,9 @@ module hipfort_hipsolver
       hipsolverDpotrs_assumed_rank = hipsolverDpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16376,7 +16573,9 @@ module hipfort_hipsolver
       hipsolverCpotrs_assumed_rank = hipsolverCpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16397,7 +16596,9 @@ module hipfort_hipsolver
       hipsolverZpotrs_assumed_rank = hipsolverZpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsyevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16415,7 +16616,9 @@ module hipfort_hipsolver
       hipsolverSsyevd_bufferSize_assumed_rank = hipsolverSsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
         lda,c_loc(D),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsyevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16433,7 +16636,9 @@ module hipfort_hipsolver
       hipsolverDsyevd_bufferSize_assumed_rank = hipsolverDsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
         lda,c_loc(D),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCheevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16451,7 +16656,9 @@ module hipfort_hipsolver
       hipsolverCheevd_bufferSize_assumed_rank = hipsolverCheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
         lda,c_loc(D),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZheevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16469,7 +16676,9 @@ module hipfort_hipsolver
       hipsolverZheevd_bufferSize_assumed_rank = hipsolverZheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
         lda,c_loc(D),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsyevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16489,7 +16698,9 @@ module hipfort_hipsolver
       hipsolverSsyevd_assumed_rank = hipsolverSsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsyevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16509,7 +16720,9 @@ module hipfort_hipsolver
       hipsolverDsyevd_assumed_rank = hipsolverDsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCheevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16529,7 +16742,9 @@ module hipfort_hipsolver
       hipsolverCheevd_assumed_rank = hipsolverCheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZheevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16549,7 +16764,9 @@ module hipfort_hipsolver
       hipsolverZheevd_assumed_rank = hipsolverZheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
         lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsygvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16570,7 +16787,9 @@ module hipfort_hipsolver
       hipsolverSsygvd_bufferSize_assumed_rank = hipsolverSsygvd_bufferSize_(handle,itype,jobz,uplo,n, &
         c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsygvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16591,7 +16810,9 @@ module hipfort_hipsolver
       hipsolverDsygvd_bufferSize_assumed_rank = hipsolverDsygvd_bufferSize_(handle,itype,jobz,uplo,n, &
         c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverChegvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16612,7 +16833,9 @@ module hipfort_hipsolver
       hipsolverChegvd_bufferSize_assumed_rank = hipsolverChegvd_bufferSize_(handle,itype,jobz,uplo,n, &
         c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZhegvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16633,7 +16856,9 @@ module hipfort_hipsolver
       hipsolverZhegvd_bufferSize_assumed_rank = hipsolverZhegvd_bufferSize_(handle,itype,jobz,uplo,n, &
         c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsygvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16656,7 +16881,9 @@ module hipfort_hipsolver
       hipsolverSsygvd_assumed_rank = hipsolverSsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
         ldb,c_loc(W),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsygvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16679,7 +16906,9 @@ module hipfort_hipsolver
       hipsolverDsygvd_assumed_rank = hipsolverDsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
         ldb,c_loc(W),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverChegvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16702,7 +16931,9 @@ module hipfort_hipsolver
       hipsolverChegvd_assumed_rank = hipsolverChegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
         ldb,c_loc(W),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZhegvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16725,7 +16956,9 @@ module hipfort_hipsolver
       hipsolverZhegvd_assumed_rank = hipsolverZhegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
         ldb,c_loc(W),work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsytrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16744,7 +16977,9 @@ module hipfort_hipsolver
       hipsolverSsytrd_bufferSize_assumed_rank = hipsolverSsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         c_loc(D),c_loc(E),tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsytrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16763,7 +16998,9 @@ module hipfort_hipsolver
       hipsolverDsytrd_bufferSize_assumed_rank = hipsolverDsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         c_loc(D),c_loc(E),tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverChetrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16782,7 +17019,9 @@ module hipfort_hipsolver
       hipsolverChetrd_bufferSize_assumed_rank = hipsolverChetrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         c_loc(D),c_loc(E),tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZhetrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16801,7 +17040,9 @@ module hipfort_hipsolver
       hipsolverZhetrd_bufferSize_assumed_rank = hipsolverZhetrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
         c_loc(D),c_loc(E),tau,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsytrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16822,7 +17063,9 @@ module hipfort_hipsolver
       hipsolverSsytrd_assumed_rank = hipsolverSsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
         work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsytrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16843,7 +17086,9 @@ module hipfort_hipsolver
       hipsolverDsytrd_assumed_rank = hipsolverDsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
         work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverChetrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16864,7 +17109,9 @@ module hipfort_hipsolver
       hipsolverChetrd_assumed_rank = hipsolverChetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
         work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZhetrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16885,7 +17132,9 @@ module hipfort_hipsolver
       hipsolverZhetrd_assumed_rank = hipsolverZhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
         work,lwork,devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16899,7 +17148,9 @@ module hipfort_hipsolver
       !
       hipsolverSsytrf_bufferSize_assumed_rank = hipsolverSsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16913,7 +17164,9 @@ module hipfort_hipsolver
       !
       hipsolverDsytrf_bufferSize_assumed_rank = hipsolverDsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16927,7 +17180,9 @@ module hipfort_hipsolver
       !
       hipsolverCsytrf_bufferSize_assumed_rank = hipsolverCsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16941,7 +17196,9 @@ module hipfort_hipsolver
       !
       hipsolverZsytrf_bufferSize_assumed_rank = hipsolverZsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16960,7 +17217,9 @@ module hipfort_hipsolver
       hipsolverSsytrf_assumed_rank = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverDsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16979,7 +17238,9 @@ module hipfort_hipsolver
       hipsolverDsytrf_assumed_rank = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverCsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -16998,7 +17259,9 @@ module hipfort_hipsolver
       hipsolverCsytrf_assumed_rank = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
         devInfo)
     end function
+#endif
 
+#ifndef USE_CUDA_NAMES
     function hipsolverZsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -17017,6 +17280,7 @@ module hipfort_hipsolver
       hipsolverZsytrf_assumed_rank = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
         devInfo)
     end function
+#endif
 
 #else
 
