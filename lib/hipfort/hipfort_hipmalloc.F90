@@ -80,160 +80,230 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMalloc_l_0_source,&
-      hipMalloc_l_1_source,&
-      hipMalloc_l_1_c_int,&
-      hipMalloc_l_1_c_size_t,&
-      hipMalloc_l_2_source,&
-      hipMalloc_l_2_c_int,&
-      hipMalloc_l_2_c_size_t,&
-      hipMalloc_l_3_source,&
-      hipMalloc_l_3_c_int,&
-      hipMalloc_l_3_c_size_t,&
-      hipMalloc_l_4_source,&
-      hipMalloc_l_4_c_int,&
-      hipMalloc_l_4_c_size_t,&
-      hipMalloc_l_5_source,&
-      hipMalloc_l_5_c_int,&
-      hipMalloc_l_5_c_size_t,&
-      hipMalloc_l_6_source,&
-      hipMalloc_l_6_c_int,&
-      hipMalloc_l_6_c_size_t,&
-      hipMalloc_l_7_source,&
-      hipMalloc_l_7_c_int,&
-      hipMalloc_l_7_c_size_t,&
-      hipMalloc_i4_0_source,&
-      hipMalloc_i4_1_source,&
-      hipMalloc_i4_1_c_int,&
-      hipMalloc_i4_1_c_size_t,&
-      hipMalloc_i4_2_source,&
-      hipMalloc_i4_2_c_int,&
-      hipMalloc_i4_2_c_size_t,&
-      hipMalloc_i4_3_source,&
-      hipMalloc_i4_3_c_int,&
-      hipMalloc_i4_3_c_size_t,&
-      hipMalloc_i4_4_source,&
-      hipMalloc_i4_4_c_int,&
-      hipMalloc_i4_4_c_size_t,&
-      hipMalloc_i4_5_source,&
-      hipMalloc_i4_5_c_int,&
-      hipMalloc_i4_5_c_size_t,&
-      hipMalloc_i4_6_source,&
-      hipMalloc_i4_6_c_int,&
-      hipMalloc_i4_6_c_size_t,&
-      hipMalloc_i4_7_source,&
-      hipMalloc_i4_7_c_int,&
-      hipMalloc_i4_7_c_size_t,&
-      hipMalloc_i8_0_source,&
-      hipMalloc_i8_1_source,&
-      hipMalloc_i8_1_c_int,&
-      hipMalloc_i8_1_c_size_t,&
-      hipMalloc_i8_2_source,&
-      hipMalloc_i8_2_c_int,&
-      hipMalloc_i8_2_c_size_t,&
-      hipMalloc_i8_3_source,&
-      hipMalloc_i8_3_c_int,&
-      hipMalloc_i8_3_c_size_t,&
-      hipMalloc_i8_4_source,&
-      hipMalloc_i8_4_c_int,&
-      hipMalloc_i8_4_c_size_t,&
-      hipMalloc_i8_5_source,&
-      hipMalloc_i8_5_c_int,&
-      hipMalloc_i8_5_c_size_t,&
-      hipMalloc_i8_6_source,&
-      hipMalloc_i8_6_c_int,&
-      hipMalloc_i8_6_c_size_t,&
-      hipMalloc_i8_7_source,&
-      hipMalloc_i8_7_c_int,&
-      hipMalloc_i8_7_c_size_t,&
-      hipMalloc_r4_0_source,&
-      hipMalloc_r4_1_source,&
-      hipMalloc_r4_1_c_int,&
-      hipMalloc_r4_1_c_size_t,&
-      hipMalloc_r4_2_source,&
-      hipMalloc_r4_2_c_int,&
-      hipMalloc_r4_2_c_size_t,&
-      hipMalloc_r4_3_source,&
-      hipMalloc_r4_3_c_int,&
-      hipMalloc_r4_3_c_size_t,&
-      hipMalloc_r4_4_source,&
-      hipMalloc_r4_4_c_int,&
-      hipMalloc_r4_4_c_size_t,&
-      hipMalloc_r4_5_source,&
-      hipMalloc_r4_5_c_int,&
-      hipMalloc_r4_5_c_size_t,&
-      hipMalloc_r4_6_source,&
-      hipMalloc_r4_6_c_int,&
-      hipMalloc_r4_6_c_size_t,&
-      hipMalloc_r4_7_source,&
-      hipMalloc_r4_7_c_int,&
-      hipMalloc_r4_7_c_size_t,&
-      hipMalloc_r8_0_source,&
-      hipMalloc_r8_1_source,&
-      hipMalloc_r8_1_c_int,&
-      hipMalloc_r8_1_c_size_t,&
-      hipMalloc_r8_2_source,&
-      hipMalloc_r8_2_c_int,&
-      hipMalloc_r8_2_c_size_t,&
-      hipMalloc_r8_3_source,&
-      hipMalloc_r8_3_c_int,&
-      hipMalloc_r8_3_c_size_t,&
-      hipMalloc_r8_4_source,&
-      hipMalloc_r8_4_c_int,&
-      hipMalloc_r8_4_c_size_t,&
-      hipMalloc_r8_5_source,&
-      hipMalloc_r8_5_c_int,&
-      hipMalloc_r8_5_c_size_t,&
-      hipMalloc_r8_6_source,&
-      hipMalloc_r8_6_c_int,&
-      hipMalloc_r8_6_c_size_t,&
-      hipMalloc_r8_7_source,&
-      hipMalloc_r8_7_c_int,&
-      hipMalloc_r8_7_c_size_t,&
-      hipMalloc_c4_0_source,&
-      hipMalloc_c4_1_source,&
-      hipMalloc_c4_1_c_int,&
-      hipMalloc_c4_1_c_size_t,&
-      hipMalloc_c4_2_source,&
-      hipMalloc_c4_2_c_int,&
-      hipMalloc_c4_2_c_size_t,&
-      hipMalloc_c4_3_source,&
-      hipMalloc_c4_3_c_int,&
-      hipMalloc_c4_3_c_size_t,&
-      hipMalloc_c4_4_source,&
-      hipMalloc_c4_4_c_int,&
-      hipMalloc_c4_4_c_size_t,&
-      hipMalloc_c4_5_source,&
-      hipMalloc_c4_5_c_int,&
-      hipMalloc_c4_5_c_size_t,&
-      hipMalloc_c4_6_source,&
-      hipMalloc_c4_6_c_int,&
-      hipMalloc_c4_6_c_size_t,&
-      hipMalloc_c4_7_source,&
-      hipMalloc_c4_7_c_int,&
-      hipMalloc_c4_7_c_size_t,&
-      hipMalloc_c8_0_source,&
-      hipMalloc_c8_1_source,&
-      hipMalloc_c8_1_c_int,&
-      hipMalloc_c8_1_c_size_t,&
-      hipMalloc_c8_2_source,&
-      hipMalloc_c8_2_c_int,&
-      hipMalloc_c8_2_c_size_t,&
-      hipMalloc_c8_3_source,&
-      hipMalloc_c8_3_c_int,&
-      hipMalloc_c8_3_c_size_t,&
-      hipMalloc_c8_4_source,&
-      hipMalloc_c8_4_c_int,&
-      hipMalloc_c8_4_c_size_t,&
-      hipMalloc_c8_5_source,&
-      hipMalloc_c8_5_c_int,&
-      hipMalloc_c8_5_c_size_t,&
-      hipMalloc_c8_6_source,&
-      hipMalloc_c8_6_c_int,&
-      hipMalloc_c8_6_c_size_t,&
-      hipMalloc_c8_7_source,&
-      hipMalloc_c8_7_c_int,&
-      hipMalloc_c8_7_c_size_t 
+    module procedure hipMalloc_l_0_source
+    module procedure hipMalloc_l_1_source
+    module procedure hipMalloc_l_1_c_int
+    module procedure hipMalloc_l_1_c_size_t
+    module procedure hipMalloc_l_2_source
+    module procedure hipMalloc_l_2_c_int
+    module procedure hipMalloc_l_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_l_3_source
+#endif
+    module procedure hipMalloc_l_3_c_int
+    module procedure hipMalloc_l_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_l_4_source
+#endif
+    module procedure hipMalloc_l_4_c_int
+    module procedure hipMalloc_l_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_l_5_source
+#endif
+    module procedure hipMalloc_l_5_c_int
+    module procedure hipMalloc_l_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_l_6_source
+#endif
+    module procedure hipMalloc_l_6_c_int
+    module procedure hipMalloc_l_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_l_7_source
+#endif
+    module procedure hipMalloc_l_7_c_int
+    module procedure hipMalloc_l_7_c_size_t
+    module procedure hipMalloc_i4_0_source
+    module procedure hipMalloc_i4_1_source
+    module procedure hipMalloc_i4_1_c_int
+    module procedure hipMalloc_i4_1_c_size_t
+    module procedure hipMalloc_i4_2_source
+    module procedure hipMalloc_i4_2_c_int
+    module procedure hipMalloc_i4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i4_3_source
+#endif
+    module procedure hipMalloc_i4_3_c_int
+    module procedure hipMalloc_i4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i4_4_source
+#endif
+    module procedure hipMalloc_i4_4_c_int
+    module procedure hipMalloc_i4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i4_5_source
+#endif
+    module procedure hipMalloc_i4_5_c_int
+    module procedure hipMalloc_i4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i4_6_source
+#endif
+    module procedure hipMalloc_i4_6_c_int
+    module procedure hipMalloc_i4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i4_7_source
+#endif
+    module procedure hipMalloc_i4_7_c_int
+    module procedure hipMalloc_i4_7_c_size_t
+    module procedure hipMalloc_i8_0_source
+    module procedure hipMalloc_i8_1_source
+    module procedure hipMalloc_i8_1_c_int
+    module procedure hipMalloc_i8_1_c_size_t
+    module procedure hipMalloc_i8_2_source
+    module procedure hipMalloc_i8_2_c_int
+    module procedure hipMalloc_i8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i8_3_source
+#endif
+    module procedure hipMalloc_i8_3_c_int
+    module procedure hipMalloc_i8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i8_4_source
+#endif
+    module procedure hipMalloc_i8_4_c_int
+    module procedure hipMalloc_i8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i8_5_source
+#endif
+    module procedure hipMalloc_i8_5_c_int
+    module procedure hipMalloc_i8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i8_6_source
+#endif
+    module procedure hipMalloc_i8_6_c_int
+    module procedure hipMalloc_i8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_i8_7_source
+#endif
+    module procedure hipMalloc_i8_7_c_int
+    module procedure hipMalloc_i8_7_c_size_t
+    module procedure hipMalloc_r4_0_source
+    module procedure hipMalloc_r4_1_source
+    module procedure hipMalloc_r4_1_c_int
+    module procedure hipMalloc_r4_1_c_size_t
+    module procedure hipMalloc_r4_2_source
+    module procedure hipMalloc_r4_2_c_int
+    module procedure hipMalloc_r4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r4_3_source
+#endif
+    module procedure hipMalloc_r4_3_c_int
+    module procedure hipMalloc_r4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r4_4_source
+#endif
+    module procedure hipMalloc_r4_4_c_int
+    module procedure hipMalloc_r4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r4_5_source
+#endif
+    module procedure hipMalloc_r4_5_c_int
+    module procedure hipMalloc_r4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r4_6_source
+#endif
+    module procedure hipMalloc_r4_6_c_int
+    module procedure hipMalloc_r4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r4_7_source
+#endif
+    module procedure hipMalloc_r4_7_c_int
+    module procedure hipMalloc_r4_7_c_size_t
+    module procedure hipMalloc_r8_0_source
+    module procedure hipMalloc_r8_1_source
+    module procedure hipMalloc_r8_1_c_int
+    module procedure hipMalloc_r8_1_c_size_t
+    module procedure hipMalloc_r8_2_source
+    module procedure hipMalloc_r8_2_c_int
+    module procedure hipMalloc_r8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r8_3_source
+#endif
+    module procedure hipMalloc_r8_3_c_int
+    module procedure hipMalloc_r8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r8_4_source
+#endif
+    module procedure hipMalloc_r8_4_c_int
+    module procedure hipMalloc_r8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r8_5_source
+#endif
+    module procedure hipMalloc_r8_5_c_int
+    module procedure hipMalloc_r8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r8_6_source
+#endif
+    module procedure hipMalloc_r8_6_c_int
+    module procedure hipMalloc_r8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_r8_7_source
+#endif
+    module procedure hipMalloc_r8_7_c_int
+    module procedure hipMalloc_r8_7_c_size_t
+    module procedure hipMalloc_c4_0_source
+    module procedure hipMalloc_c4_1_source
+    module procedure hipMalloc_c4_1_c_int
+    module procedure hipMalloc_c4_1_c_size_t
+    module procedure hipMalloc_c4_2_source
+    module procedure hipMalloc_c4_2_c_int
+    module procedure hipMalloc_c4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c4_3_source
+#endif
+    module procedure hipMalloc_c4_3_c_int
+    module procedure hipMalloc_c4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c4_4_source
+#endif
+    module procedure hipMalloc_c4_4_c_int
+    module procedure hipMalloc_c4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c4_5_source
+#endif
+    module procedure hipMalloc_c4_5_c_int
+    module procedure hipMalloc_c4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c4_6_source
+#endif
+    module procedure hipMalloc_c4_6_c_int
+    module procedure hipMalloc_c4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c4_7_source
+#endif
+    module procedure hipMalloc_c4_7_c_int
+    module procedure hipMalloc_c4_7_c_size_t
+    module procedure hipMalloc_c8_0_source
+    module procedure hipMalloc_c8_1_source
+    module procedure hipMalloc_c8_1_c_int
+    module procedure hipMalloc_c8_1_c_size_t
+    module procedure hipMalloc_c8_2_source
+    module procedure hipMalloc_c8_2_c_int
+    module procedure hipMalloc_c8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c8_3_source
+#endif
+    module procedure hipMalloc_c8_3_c_int
+    module procedure hipMalloc_c8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c8_4_source
+#endif
+    module procedure hipMalloc_c8_4_c_int
+    module procedure hipMalloc_c8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c8_5_source
+#endif
+    module procedure hipMalloc_c8_5_c_int
+    module procedure hipMalloc_c8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c8_6_source
+#endif
+    module procedure hipMalloc_c8_6_c_int
+    module procedure hipMalloc_c8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMalloc_c8_7_source
+#endif
+    module procedure hipMalloc_c8_7_c_int
+    module procedure hipMalloc_c8_7_c_size_t
 #endif
   end interface
 
@@ -271,160 +341,230 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMallocManaged_l_0_source,&
-      hipMallocManaged_l_1_source,&
-      hipMallocManaged_l_1_c_int,&
-      hipMallocManaged_l_1_c_size_t,&
-      hipMallocManaged_l_2_source,&
-      hipMallocManaged_l_2_c_int,&
-      hipMallocManaged_l_2_c_size_t,&
-      hipMallocManaged_l_3_source,&
-      hipMallocManaged_l_3_c_int,&
-      hipMallocManaged_l_3_c_size_t,&
-      hipMallocManaged_l_4_source,&
-      hipMallocManaged_l_4_c_int,&
-      hipMallocManaged_l_4_c_size_t,&
-      hipMallocManaged_l_5_source,&
-      hipMallocManaged_l_5_c_int,&
-      hipMallocManaged_l_5_c_size_t,&
-      hipMallocManaged_l_6_source,&
-      hipMallocManaged_l_6_c_int,&
-      hipMallocManaged_l_6_c_size_t,&
-      hipMallocManaged_l_7_source,&
-      hipMallocManaged_l_7_c_int,&
-      hipMallocManaged_l_7_c_size_t,&
-      hipMallocManaged_i4_0_source,&
-      hipMallocManaged_i4_1_source,&
-      hipMallocManaged_i4_1_c_int,&
-      hipMallocManaged_i4_1_c_size_t,&
-      hipMallocManaged_i4_2_source,&
-      hipMallocManaged_i4_2_c_int,&
-      hipMallocManaged_i4_2_c_size_t,&
-      hipMallocManaged_i4_3_source,&
-      hipMallocManaged_i4_3_c_int,&
-      hipMallocManaged_i4_3_c_size_t,&
-      hipMallocManaged_i4_4_source,&
-      hipMallocManaged_i4_4_c_int,&
-      hipMallocManaged_i4_4_c_size_t,&
-      hipMallocManaged_i4_5_source,&
-      hipMallocManaged_i4_5_c_int,&
-      hipMallocManaged_i4_5_c_size_t,&
-      hipMallocManaged_i4_6_source,&
-      hipMallocManaged_i4_6_c_int,&
-      hipMallocManaged_i4_6_c_size_t,&
-      hipMallocManaged_i4_7_source,&
-      hipMallocManaged_i4_7_c_int,&
-      hipMallocManaged_i4_7_c_size_t,&
-      hipMallocManaged_i8_0_source,&
-      hipMallocManaged_i8_1_source,&
-      hipMallocManaged_i8_1_c_int,&
-      hipMallocManaged_i8_1_c_size_t,&
-      hipMallocManaged_i8_2_source,&
-      hipMallocManaged_i8_2_c_int,&
-      hipMallocManaged_i8_2_c_size_t,&
-      hipMallocManaged_i8_3_source,&
-      hipMallocManaged_i8_3_c_int,&
-      hipMallocManaged_i8_3_c_size_t,&
-      hipMallocManaged_i8_4_source,&
-      hipMallocManaged_i8_4_c_int,&
-      hipMallocManaged_i8_4_c_size_t,&
-      hipMallocManaged_i8_5_source,&
-      hipMallocManaged_i8_5_c_int,&
-      hipMallocManaged_i8_5_c_size_t,&
-      hipMallocManaged_i8_6_source,&
-      hipMallocManaged_i8_6_c_int,&
-      hipMallocManaged_i8_6_c_size_t,&
-      hipMallocManaged_i8_7_source,&
-      hipMallocManaged_i8_7_c_int,&
-      hipMallocManaged_i8_7_c_size_t,&
-      hipMallocManaged_r4_0_source,&
-      hipMallocManaged_r4_1_source,&
-      hipMallocManaged_r4_1_c_int,&
-      hipMallocManaged_r4_1_c_size_t,&
-      hipMallocManaged_r4_2_source,&
-      hipMallocManaged_r4_2_c_int,&
-      hipMallocManaged_r4_2_c_size_t,&
-      hipMallocManaged_r4_3_source,&
-      hipMallocManaged_r4_3_c_int,&
-      hipMallocManaged_r4_3_c_size_t,&
-      hipMallocManaged_r4_4_source,&
-      hipMallocManaged_r4_4_c_int,&
-      hipMallocManaged_r4_4_c_size_t,&
-      hipMallocManaged_r4_5_source,&
-      hipMallocManaged_r4_5_c_int,&
-      hipMallocManaged_r4_5_c_size_t,&
-      hipMallocManaged_r4_6_source,&
-      hipMallocManaged_r4_6_c_int,&
-      hipMallocManaged_r4_6_c_size_t,&
-      hipMallocManaged_r4_7_source,&
-      hipMallocManaged_r4_7_c_int,&
-      hipMallocManaged_r4_7_c_size_t,&
-      hipMallocManaged_r8_0_source,&
-      hipMallocManaged_r8_1_source,&
-      hipMallocManaged_r8_1_c_int,&
-      hipMallocManaged_r8_1_c_size_t,&
-      hipMallocManaged_r8_2_source,&
-      hipMallocManaged_r8_2_c_int,&
-      hipMallocManaged_r8_2_c_size_t,&
-      hipMallocManaged_r8_3_source,&
-      hipMallocManaged_r8_3_c_int,&
-      hipMallocManaged_r8_3_c_size_t,&
-      hipMallocManaged_r8_4_source,&
-      hipMallocManaged_r8_4_c_int,&
-      hipMallocManaged_r8_4_c_size_t,&
-      hipMallocManaged_r8_5_source,&
-      hipMallocManaged_r8_5_c_int,&
-      hipMallocManaged_r8_5_c_size_t,&
-      hipMallocManaged_r8_6_source,&
-      hipMallocManaged_r8_6_c_int,&
-      hipMallocManaged_r8_6_c_size_t,&
-      hipMallocManaged_r8_7_source,&
-      hipMallocManaged_r8_7_c_int,&
-      hipMallocManaged_r8_7_c_size_t,&
-      hipMallocManaged_c4_0_source,&
-      hipMallocManaged_c4_1_source,&
-      hipMallocManaged_c4_1_c_int,&
-      hipMallocManaged_c4_1_c_size_t,&
-      hipMallocManaged_c4_2_source,&
-      hipMallocManaged_c4_2_c_int,&
-      hipMallocManaged_c4_2_c_size_t,&
-      hipMallocManaged_c4_3_source,&
-      hipMallocManaged_c4_3_c_int,&
-      hipMallocManaged_c4_3_c_size_t,&
-      hipMallocManaged_c4_4_source,&
-      hipMallocManaged_c4_4_c_int,&
-      hipMallocManaged_c4_4_c_size_t,&
-      hipMallocManaged_c4_5_source,&
-      hipMallocManaged_c4_5_c_int,&
-      hipMallocManaged_c4_5_c_size_t,&
-      hipMallocManaged_c4_6_source,&
-      hipMallocManaged_c4_6_c_int,&
-      hipMallocManaged_c4_6_c_size_t,&
-      hipMallocManaged_c4_7_source,&
-      hipMallocManaged_c4_7_c_int,&
-      hipMallocManaged_c4_7_c_size_t,&
-      hipMallocManaged_c8_0_source,&
-      hipMallocManaged_c8_1_source,&
-      hipMallocManaged_c8_1_c_int,&
-      hipMallocManaged_c8_1_c_size_t,&
-      hipMallocManaged_c8_2_source,&
-      hipMallocManaged_c8_2_c_int,&
-      hipMallocManaged_c8_2_c_size_t,&
-      hipMallocManaged_c8_3_source,&
-      hipMallocManaged_c8_3_c_int,&
-      hipMallocManaged_c8_3_c_size_t,&
-      hipMallocManaged_c8_4_source,&
-      hipMallocManaged_c8_4_c_int,&
-      hipMallocManaged_c8_4_c_size_t,&
-      hipMallocManaged_c8_5_source,&
-      hipMallocManaged_c8_5_c_int,&
-      hipMallocManaged_c8_5_c_size_t,&
-      hipMallocManaged_c8_6_source,&
-      hipMallocManaged_c8_6_c_int,&
-      hipMallocManaged_c8_6_c_size_t,&
-      hipMallocManaged_c8_7_source,&
-      hipMallocManaged_c8_7_c_int,&
-      hipMallocManaged_c8_7_c_size_t 
+    module procedure hipMallocManaged_l_0_source
+    module procedure hipMallocManaged_l_1_source
+    module procedure hipMallocManaged_l_1_c_int
+    module procedure hipMallocManaged_l_1_c_size_t
+    module procedure hipMallocManaged_l_2_source
+    module procedure hipMallocManaged_l_2_c_int
+    module procedure hipMallocManaged_l_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_l_3_source
+#endif
+    module procedure hipMallocManaged_l_3_c_int
+    module procedure hipMallocManaged_l_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_l_4_source
+#endif
+    module procedure hipMallocManaged_l_4_c_int
+    module procedure hipMallocManaged_l_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_l_5_source
+#endif
+    module procedure hipMallocManaged_l_5_c_int
+    module procedure hipMallocManaged_l_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_l_6_source
+#endif
+    module procedure hipMallocManaged_l_6_c_int
+    module procedure hipMallocManaged_l_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_l_7_source
+#endif
+    module procedure hipMallocManaged_l_7_c_int
+    module procedure hipMallocManaged_l_7_c_size_t
+    module procedure hipMallocManaged_i4_0_source
+    module procedure hipMallocManaged_i4_1_source
+    module procedure hipMallocManaged_i4_1_c_int
+    module procedure hipMallocManaged_i4_1_c_size_t
+    module procedure hipMallocManaged_i4_2_source
+    module procedure hipMallocManaged_i4_2_c_int
+    module procedure hipMallocManaged_i4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i4_3_source
+#endif
+    module procedure hipMallocManaged_i4_3_c_int
+    module procedure hipMallocManaged_i4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i4_4_source
+#endif
+    module procedure hipMallocManaged_i4_4_c_int
+    module procedure hipMallocManaged_i4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i4_5_source
+#endif
+    module procedure hipMallocManaged_i4_5_c_int
+    module procedure hipMallocManaged_i4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i4_6_source
+#endif
+    module procedure hipMallocManaged_i4_6_c_int
+    module procedure hipMallocManaged_i4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i4_7_source
+#endif
+    module procedure hipMallocManaged_i4_7_c_int
+    module procedure hipMallocManaged_i4_7_c_size_t
+    module procedure hipMallocManaged_i8_0_source
+    module procedure hipMallocManaged_i8_1_source
+    module procedure hipMallocManaged_i8_1_c_int
+    module procedure hipMallocManaged_i8_1_c_size_t
+    module procedure hipMallocManaged_i8_2_source
+    module procedure hipMallocManaged_i8_2_c_int
+    module procedure hipMallocManaged_i8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i8_3_source
+#endif
+    module procedure hipMallocManaged_i8_3_c_int
+    module procedure hipMallocManaged_i8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i8_4_source
+#endif
+    module procedure hipMallocManaged_i8_4_c_int
+    module procedure hipMallocManaged_i8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i8_5_source
+#endif
+    module procedure hipMallocManaged_i8_5_c_int
+    module procedure hipMallocManaged_i8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i8_6_source
+#endif
+    module procedure hipMallocManaged_i8_6_c_int
+    module procedure hipMallocManaged_i8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_i8_7_source
+#endif
+    module procedure hipMallocManaged_i8_7_c_int
+    module procedure hipMallocManaged_i8_7_c_size_t
+    module procedure hipMallocManaged_r4_0_source
+    module procedure hipMallocManaged_r4_1_source
+    module procedure hipMallocManaged_r4_1_c_int
+    module procedure hipMallocManaged_r4_1_c_size_t
+    module procedure hipMallocManaged_r4_2_source
+    module procedure hipMallocManaged_r4_2_c_int
+    module procedure hipMallocManaged_r4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r4_3_source
+#endif
+    module procedure hipMallocManaged_r4_3_c_int
+    module procedure hipMallocManaged_r4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r4_4_source
+#endif
+    module procedure hipMallocManaged_r4_4_c_int
+    module procedure hipMallocManaged_r4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r4_5_source
+#endif
+    module procedure hipMallocManaged_r4_5_c_int
+    module procedure hipMallocManaged_r4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r4_6_source
+#endif
+    module procedure hipMallocManaged_r4_6_c_int
+    module procedure hipMallocManaged_r4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r4_7_source
+#endif
+    module procedure hipMallocManaged_r4_7_c_int
+    module procedure hipMallocManaged_r4_7_c_size_t
+    module procedure hipMallocManaged_r8_0_source
+    module procedure hipMallocManaged_r8_1_source
+    module procedure hipMallocManaged_r8_1_c_int
+    module procedure hipMallocManaged_r8_1_c_size_t
+    module procedure hipMallocManaged_r8_2_source
+    module procedure hipMallocManaged_r8_2_c_int
+    module procedure hipMallocManaged_r8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r8_3_source
+#endif
+    module procedure hipMallocManaged_r8_3_c_int
+    module procedure hipMallocManaged_r8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r8_4_source
+#endif
+    module procedure hipMallocManaged_r8_4_c_int
+    module procedure hipMallocManaged_r8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r8_5_source
+#endif
+    module procedure hipMallocManaged_r8_5_c_int
+    module procedure hipMallocManaged_r8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r8_6_source
+#endif
+    module procedure hipMallocManaged_r8_6_c_int
+    module procedure hipMallocManaged_r8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_r8_7_source
+#endif
+    module procedure hipMallocManaged_r8_7_c_int
+    module procedure hipMallocManaged_r8_7_c_size_t
+    module procedure hipMallocManaged_c4_0_source
+    module procedure hipMallocManaged_c4_1_source
+    module procedure hipMallocManaged_c4_1_c_int
+    module procedure hipMallocManaged_c4_1_c_size_t
+    module procedure hipMallocManaged_c4_2_source
+    module procedure hipMallocManaged_c4_2_c_int
+    module procedure hipMallocManaged_c4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c4_3_source
+#endif
+    module procedure hipMallocManaged_c4_3_c_int
+    module procedure hipMallocManaged_c4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c4_4_source
+#endif
+    module procedure hipMallocManaged_c4_4_c_int
+    module procedure hipMallocManaged_c4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c4_5_source
+#endif
+    module procedure hipMallocManaged_c4_5_c_int
+    module procedure hipMallocManaged_c4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c4_6_source
+#endif
+    module procedure hipMallocManaged_c4_6_c_int
+    module procedure hipMallocManaged_c4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c4_7_source
+#endif
+    module procedure hipMallocManaged_c4_7_c_int
+    module procedure hipMallocManaged_c4_7_c_size_t
+    module procedure hipMallocManaged_c8_0_source
+    module procedure hipMallocManaged_c8_1_source
+    module procedure hipMallocManaged_c8_1_c_int
+    module procedure hipMallocManaged_c8_1_c_size_t
+    module procedure hipMallocManaged_c8_2_source
+    module procedure hipMallocManaged_c8_2_c_int
+    module procedure hipMallocManaged_c8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c8_3_source
+#endif
+    module procedure hipMallocManaged_c8_3_c_int
+    module procedure hipMallocManaged_c8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c8_4_source
+#endif
+    module procedure hipMallocManaged_c8_4_c_int
+    module procedure hipMallocManaged_c8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c8_5_source
+#endif
+    module procedure hipMallocManaged_c8_5_c_int
+    module procedure hipMallocManaged_c8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c8_6_source
+#endif
+    module procedure hipMallocManaged_c8_6_c_int
+    module procedure hipMallocManaged_c8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipMallocManaged_c8_7_source
+#endif
+    module procedure hipMallocManaged_c8_7_c_int
+    module procedure hipMallocManaged_c8_7_c_size_t
 #endif
 
   end interface
@@ -466,160 +606,230 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipHostMalloc_l_0_source,&
-      hipHostMalloc_l_1_source,&
-      hipHostMalloc_l_1_c_int,&
-      hipHostMalloc_l_1_c_size_t,&
-      hipHostMalloc_l_2_source,&
-      hipHostMalloc_l_2_c_int,&
-      hipHostMalloc_l_2_c_size_t,&
-      hipHostMalloc_l_3_source,&
-      hipHostMalloc_l_3_c_int,&
-      hipHostMalloc_l_3_c_size_t,&
-      hipHostMalloc_l_4_source,&
-      hipHostMalloc_l_4_c_int,&
-      hipHostMalloc_l_4_c_size_t,&
-      hipHostMalloc_l_5_source,&
-      hipHostMalloc_l_5_c_int,&
-      hipHostMalloc_l_5_c_size_t,&
-      hipHostMalloc_l_6_source,&
-      hipHostMalloc_l_6_c_int,&
-      hipHostMalloc_l_6_c_size_t,&
-      hipHostMalloc_l_7_source,&
-      hipHostMalloc_l_7_c_int,&
-      hipHostMalloc_l_7_c_size_t,&
-      hipHostMalloc_i4_0_source,&
-      hipHostMalloc_i4_1_source,&
-      hipHostMalloc_i4_1_c_int,&
-      hipHostMalloc_i4_1_c_size_t,&
-      hipHostMalloc_i4_2_source,&
-      hipHostMalloc_i4_2_c_int,&
-      hipHostMalloc_i4_2_c_size_t,&
-      hipHostMalloc_i4_3_source,&
-      hipHostMalloc_i4_3_c_int,&
-      hipHostMalloc_i4_3_c_size_t,&
-      hipHostMalloc_i4_4_source,&
-      hipHostMalloc_i4_4_c_int,&
-      hipHostMalloc_i4_4_c_size_t,&
-      hipHostMalloc_i4_5_source,&
-      hipHostMalloc_i4_5_c_int,&
-      hipHostMalloc_i4_5_c_size_t,&
-      hipHostMalloc_i4_6_source,&
-      hipHostMalloc_i4_6_c_int,&
-      hipHostMalloc_i4_6_c_size_t,&
-      hipHostMalloc_i4_7_source,&
-      hipHostMalloc_i4_7_c_int,&
-      hipHostMalloc_i4_7_c_size_t,&
-      hipHostMalloc_i8_0_source,&
-      hipHostMalloc_i8_1_source,&
-      hipHostMalloc_i8_1_c_int,&
-      hipHostMalloc_i8_1_c_size_t,&
-      hipHostMalloc_i8_2_source,&
-      hipHostMalloc_i8_2_c_int,&
-      hipHostMalloc_i8_2_c_size_t,&
-      hipHostMalloc_i8_3_source,&
-      hipHostMalloc_i8_3_c_int,&
-      hipHostMalloc_i8_3_c_size_t,&
-      hipHostMalloc_i8_4_source,&
-      hipHostMalloc_i8_4_c_int,&
-      hipHostMalloc_i8_4_c_size_t,&
-      hipHostMalloc_i8_5_source,&
-      hipHostMalloc_i8_5_c_int,&
-      hipHostMalloc_i8_5_c_size_t,&
-      hipHostMalloc_i8_6_source,&
-      hipHostMalloc_i8_6_c_int,&
-      hipHostMalloc_i8_6_c_size_t,&
-      hipHostMalloc_i8_7_source,&
-      hipHostMalloc_i8_7_c_int,&
-      hipHostMalloc_i8_7_c_size_t,&
-      hipHostMalloc_r4_0_source,&
-      hipHostMalloc_r4_1_source,&
-      hipHostMalloc_r4_1_c_int,&
-      hipHostMalloc_r4_1_c_size_t,&
-      hipHostMalloc_r4_2_source,&
-      hipHostMalloc_r4_2_c_int,&
-      hipHostMalloc_r4_2_c_size_t,&
-      hipHostMalloc_r4_3_source,&
-      hipHostMalloc_r4_3_c_int,&
-      hipHostMalloc_r4_3_c_size_t,&
-      hipHostMalloc_r4_4_source,&
-      hipHostMalloc_r4_4_c_int,&
-      hipHostMalloc_r4_4_c_size_t,&
-      hipHostMalloc_r4_5_source,&
-      hipHostMalloc_r4_5_c_int,&
-      hipHostMalloc_r4_5_c_size_t,&
-      hipHostMalloc_r4_6_source,&
-      hipHostMalloc_r4_6_c_int,&
-      hipHostMalloc_r4_6_c_size_t,&
-      hipHostMalloc_r4_7_source,&
-      hipHostMalloc_r4_7_c_int,&
-      hipHostMalloc_r4_7_c_size_t,&
-      hipHostMalloc_r8_0_source,&
-      hipHostMalloc_r8_1_source,&
-      hipHostMalloc_r8_1_c_int,&
-      hipHostMalloc_r8_1_c_size_t,&
-      hipHostMalloc_r8_2_source,&
-      hipHostMalloc_r8_2_c_int,&
-      hipHostMalloc_r8_2_c_size_t,&
-      hipHostMalloc_r8_3_source,&
-      hipHostMalloc_r8_3_c_int,&
-      hipHostMalloc_r8_3_c_size_t,&
-      hipHostMalloc_r8_4_source,&
-      hipHostMalloc_r8_4_c_int,&
-      hipHostMalloc_r8_4_c_size_t,&
-      hipHostMalloc_r8_5_source,&
-      hipHostMalloc_r8_5_c_int,&
-      hipHostMalloc_r8_5_c_size_t,&
-      hipHostMalloc_r8_6_source,&
-      hipHostMalloc_r8_6_c_int,&
-      hipHostMalloc_r8_6_c_size_t,&
-      hipHostMalloc_r8_7_source,&
-      hipHostMalloc_r8_7_c_int,&
-      hipHostMalloc_r8_7_c_size_t,&
-      hipHostMalloc_c4_0_source,&
-      hipHostMalloc_c4_1_source,&
-      hipHostMalloc_c4_1_c_int,&
-      hipHostMalloc_c4_1_c_size_t,&
-      hipHostMalloc_c4_2_source,&
-      hipHostMalloc_c4_2_c_int,&
-      hipHostMalloc_c4_2_c_size_t,&
-      hipHostMalloc_c4_3_source,&
-      hipHostMalloc_c4_3_c_int,&
-      hipHostMalloc_c4_3_c_size_t,&
-      hipHostMalloc_c4_4_source,&
-      hipHostMalloc_c4_4_c_int,&
-      hipHostMalloc_c4_4_c_size_t,&
-      hipHostMalloc_c4_5_source,&
-      hipHostMalloc_c4_5_c_int,&
-      hipHostMalloc_c4_5_c_size_t,&
-      hipHostMalloc_c4_6_source,&
-      hipHostMalloc_c4_6_c_int,&
-      hipHostMalloc_c4_6_c_size_t,&
-      hipHostMalloc_c4_7_source,&
-      hipHostMalloc_c4_7_c_int,&
-      hipHostMalloc_c4_7_c_size_t,&
-      hipHostMalloc_c8_0_source,&
-      hipHostMalloc_c8_1_source,&
-      hipHostMalloc_c8_1_c_int,&
-      hipHostMalloc_c8_1_c_size_t,&
-      hipHostMalloc_c8_2_source,&
-      hipHostMalloc_c8_2_c_int,&
-      hipHostMalloc_c8_2_c_size_t,&
-      hipHostMalloc_c8_3_source,&
-      hipHostMalloc_c8_3_c_int,&
-      hipHostMalloc_c8_3_c_size_t,&
-      hipHostMalloc_c8_4_source,&
-      hipHostMalloc_c8_4_c_int,&
-      hipHostMalloc_c8_4_c_size_t,&
-      hipHostMalloc_c8_5_source,&
-      hipHostMalloc_c8_5_c_int,&
-      hipHostMalloc_c8_5_c_size_t,&
-      hipHostMalloc_c8_6_source,&
-      hipHostMalloc_c8_6_c_int,&
-      hipHostMalloc_c8_6_c_size_t,&
-      hipHostMalloc_c8_7_source,&
-      hipHostMalloc_c8_7_c_int,&
-      hipHostMalloc_c8_7_c_size_t 
+    module procedure hipHostMalloc_l_0_source
+    module procedure hipHostMalloc_l_1_source
+    module procedure hipHostMalloc_l_1_c_int
+    module procedure hipHostMalloc_l_1_c_size_t
+    module procedure hipHostMalloc_l_2_source
+    module procedure hipHostMalloc_l_2_c_int
+    module procedure hipHostMalloc_l_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_l_3_source
+#endif
+    module procedure hipHostMalloc_l_3_c_int
+    module procedure hipHostMalloc_l_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_l_4_source
+#endif
+    module procedure hipHostMalloc_l_4_c_int
+    module procedure hipHostMalloc_l_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_l_5_source
+#endif
+    module procedure hipHostMalloc_l_5_c_int
+    module procedure hipHostMalloc_l_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_l_6_source
+#endif
+    module procedure hipHostMalloc_l_6_c_int
+    module procedure hipHostMalloc_l_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_l_7_source
+#endif
+    module procedure hipHostMalloc_l_7_c_int
+    module procedure hipHostMalloc_l_7_c_size_t
+    module procedure hipHostMalloc_i4_0_source
+    module procedure hipHostMalloc_i4_1_source
+    module procedure hipHostMalloc_i4_1_c_int
+    module procedure hipHostMalloc_i4_1_c_size_t
+    module procedure hipHostMalloc_i4_2_source
+    module procedure hipHostMalloc_i4_2_c_int
+    module procedure hipHostMalloc_i4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i4_3_source
+#endif
+    module procedure hipHostMalloc_i4_3_c_int
+    module procedure hipHostMalloc_i4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i4_4_source
+#endif
+    module procedure hipHostMalloc_i4_4_c_int
+    module procedure hipHostMalloc_i4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i4_5_source
+#endif
+    module procedure hipHostMalloc_i4_5_c_int
+    module procedure hipHostMalloc_i4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i4_6_source
+#endif
+    module procedure hipHostMalloc_i4_6_c_int
+    module procedure hipHostMalloc_i4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i4_7_source
+#endif
+    module procedure hipHostMalloc_i4_7_c_int
+    module procedure hipHostMalloc_i4_7_c_size_t
+    module procedure hipHostMalloc_i8_0_source
+    module procedure hipHostMalloc_i8_1_source
+    module procedure hipHostMalloc_i8_1_c_int
+    module procedure hipHostMalloc_i8_1_c_size_t
+    module procedure hipHostMalloc_i8_2_source
+    module procedure hipHostMalloc_i8_2_c_int
+    module procedure hipHostMalloc_i8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i8_3_source
+#endif
+    module procedure hipHostMalloc_i8_3_c_int
+    module procedure hipHostMalloc_i8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i8_4_source
+#endif
+    module procedure hipHostMalloc_i8_4_c_int
+    module procedure hipHostMalloc_i8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i8_5_source
+#endif
+    module procedure hipHostMalloc_i8_5_c_int
+    module procedure hipHostMalloc_i8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i8_6_source
+#endif
+    module procedure hipHostMalloc_i8_6_c_int
+    module procedure hipHostMalloc_i8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_i8_7_source
+#endif
+    module procedure hipHostMalloc_i8_7_c_int
+    module procedure hipHostMalloc_i8_7_c_size_t
+    module procedure hipHostMalloc_r4_0_source
+    module procedure hipHostMalloc_r4_1_source
+    module procedure hipHostMalloc_r4_1_c_int
+    module procedure hipHostMalloc_r4_1_c_size_t
+    module procedure hipHostMalloc_r4_2_source
+    module procedure hipHostMalloc_r4_2_c_int
+    module procedure hipHostMalloc_r4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r4_3_source
+#endif
+    module procedure hipHostMalloc_r4_3_c_int
+    module procedure hipHostMalloc_r4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r4_4_source
+#endif
+    module procedure hipHostMalloc_r4_4_c_int
+    module procedure hipHostMalloc_r4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r4_5_source
+#endif
+    module procedure hipHostMalloc_r4_5_c_int
+    module procedure hipHostMalloc_r4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r4_6_source
+#endif
+    module procedure hipHostMalloc_r4_6_c_int
+    module procedure hipHostMalloc_r4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r4_7_source
+#endif
+    module procedure hipHostMalloc_r4_7_c_int
+    module procedure hipHostMalloc_r4_7_c_size_t
+    module procedure hipHostMalloc_r8_0_source
+    module procedure hipHostMalloc_r8_1_source
+    module procedure hipHostMalloc_r8_1_c_int
+    module procedure hipHostMalloc_r8_1_c_size_t
+    module procedure hipHostMalloc_r8_2_source
+    module procedure hipHostMalloc_r8_2_c_int
+    module procedure hipHostMalloc_r8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r8_3_source
+#endif
+    module procedure hipHostMalloc_r8_3_c_int
+    module procedure hipHostMalloc_r8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r8_4_source
+#endif
+    module procedure hipHostMalloc_r8_4_c_int
+    module procedure hipHostMalloc_r8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r8_5_source
+#endif
+    module procedure hipHostMalloc_r8_5_c_int
+    module procedure hipHostMalloc_r8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r8_6_source
+#endif
+    module procedure hipHostMalloc_r8_6_c_int
+    module procedure hipHostMalloc_r8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_r8_7_source
+#endif
+    module procedure hipHostMalloc_r8_7_c_int
+    module procedure hipHostMalloc_r8_7_c_size_t
+    module procedure hipHostMalloc_c4_0_source
+    module procedure hipHostMalloc_c4_1_source
+    module procedure hipHostMalloc_c4_1_c_int
+    module procedure hipHostMalloc_c4_1_c_size_t
+    module procedure hipHostMalloc_c4_2_source
+    module procedure hipHostMalloc_c4_2_c_int
+    module procedure hipHostMalloc_c4_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c4_3_source
+#endif
+    module procedure hipHostMalloc_c4_3_c_int
+    module procedure hipHostMalloc_c4_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c4_4_source
+#endif
+    module procedure hipHostMalloc_c4_4_c_int
+    module procedure hipHostMalloc_c4_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c4_5_source
+#endif
+    module procedure hipHostMalloc_c4_5_c_int
+    module procedure hipHostMalloc_c4_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c4_6_source
+#endif
+    module procedure hipHostMalloc_c4_6_c_int
+    module procedure hipHostMalloc_c4_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c4_7_source
+#endif
+    module procedure hipHostMalloc_c4_7_c_int
+    module procedure hipHostMalloc_c4_7_c_size_t
+    module procedure hipHostMalloc_c8_0_source
+    module procedure hipHostMalloc_c8_1_source
+    module procedure hipHostMalloc_c8_1_c_int
+    module procedure hipHostMalloc_c8_1_c_size_t
+    module procedure hipHostMalloc_c8_2_source
+    module procedure hipHostMalloc_c8_2_c_int
+    module procedure hipHostMalloc_c8_2_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c8_3_source
+#endif
+    module procedure hipHostMalloc_c8_3_c_int
+    module procedure hipHostMalloc_c8_3_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c8_4_source
+#endif
+    module procedure hipHostMalloc_c8_4_c_int
+    module procedure hipHostMalloc_c8_4_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c8_5_source
+#endif
+    module procedure hipHostMalloc_c8_5_c_int
+    module procedure hipHostMalloc_c8_5_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c8_6_source
+#endif
+    module procedure hipHostMalloc_c8_6_c_int
+    module procedure hipHostMalloc_c8_6_c_size_t
+#ifndef __INTEL_COMPILER
+    module procedure hipHostMalloc_c8_7_source
+#endif
+    module procedure hipHostMalloc_c8_7_c_int
+    module procedure hipHostMalloc_c8_7_c_size_t
 #endif
   end interface
   
@@ -1133,6 +1343,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_l_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1206,6 +1417,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_l_3_c_int(ptr,length1,length2,length3)
@@ -1256,6 +1468,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_l_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1329,6 +1542,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_l_4_c_int(ptr,length1,length2,length3,length4)
@@ -1381,6 +1595,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_l_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1454,6 +1669,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_l_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -1506,6 +1722,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_l_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1580,6 +1797,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_l_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -1632,6 +1850,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_l_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1707,6 +1926,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_l_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -2053,6 +2273,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2127,6 +2348,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i4_3_c_int(ptr,length1,length2,length3)
@@ -2179,6 +2401,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2253,6 +2476,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i4_4_c_int(ptr,length1,length2,length3,length4)
@@ -2305,6 +2529,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2379,6 +2604,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i4_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -2431,6 +2657,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2506,6 +2733,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i4_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -2560,6 +2788,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2636,6 +2865,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -2982,6 +3212,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3056,6 +3287,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i8_3_c_int(ptr,length1,length2,length3)
@@ -3108,6 +3340,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3182,6 +3415,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i8_4_c_int(ptr,length1,length2,length3,length4)
@@ -3234,6 +3468,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3308,6 +3543,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i8_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -3360,6 +3596,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3435,6 +3672,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i8_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -3489,6 +3727,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_i8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3565,6 +3804,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_i8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -3911,6 +4151,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3985,6 +4226,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r4_3_c_int(ptr,length1,length2,length3)
@@ -4037,6 +4279,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4111,6 +4354,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r4_4_c_int(ptr,length1,length2,length3,length4)
@@ -4163,6 +4407,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4237,6 +4482,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r4_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -4289,6 +4535,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4364,6 +4611,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r4_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -4418,6 +4666,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4494,6 +4743,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -4838,6 +5088,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4911,6 +5162,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r8_3_c_int(ptr,length1,length2,length3)
@@ -4963,6 +5215,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5036,6 +5289,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r8_4_c_int(ptr,length1,length2,length3,length4)
@@ -5088,6 +5342,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5161,6 +5416,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r8_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -5213,6 +5469,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5287,6 +5544,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r8_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -5341,6 +5599,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_r8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5416,6 +5675,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_r8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -5764,6 +6024,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5839,6 +6100,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c4_3_c_int(ptr,length1,length2,length3)
@@ -5891,6 +6153,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5966,6 +6229,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c4_4_c_int(ptr,length1,length2,length3,length4)
@@ -6018,6 +6282,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6093,6 +6358,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c4_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -6145,6 +6411,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6221,6 +6488,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c4_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -6275,6 +6543,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6352,6 +6621,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -6700,6 +6970,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6775,6 +7046,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c8_3_c_int(ptr,length1,length2,length3)
@@ -6827,6 +7099,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6902,6 +7175,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c8_4_c_int(ptr,length1,length2,length3,length4)
@@ -6954,6 +7228,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -7029,6 +7304,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c8_5_c_int(ptr,length1,length2,length3,length4,length5)
@@ -7081,6 +7357,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -7157,6 +7434,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c8_6_c_int(ptr,length1,length2,length3,length4,length5,length6)
@@ -7211,6 +7489,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMalloc_c8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -7288,6 +7567,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMalloc_c8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7)
@@ -7632,6 +7912,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_l_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -7705,6 +7986,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_l_3_c_int(ptr,length1,length2,length3,flags)
@@ -7755,6 +8037,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_l_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -7828,6 +8111,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_l_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -7878,6 +8162,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_l_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -7951,6 +8236,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_l_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -8001,6 +8287,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_l_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -8075,6 +8362,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_l_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -8125,6 +8413,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_l_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -8200,6 +8489,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_l_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -8546,6 +8836,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -8621,6 +8912,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i4_3_c_int(ptr,length1,length2,length3,flags)
@@ -8673,6 +8965,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -8748,6 +9041,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i4_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -8801,6 +9095,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -8876,6 +9171,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i4_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -8931,6 +9227,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -9007,6 +9304,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i4_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -9062,6 +9360,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -9139,6 +9438,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -9491,6 +9791,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -9566,6 +9867,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i8_3_c_int(ptr,length1,length2,length3,flags)
@@ -9618,6 +9920,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -9693,6 +9996,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i8_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -9746,6 +10050,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -9821,6 +10126,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i8_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -9876,6 +10182,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -9952,6 +10259,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i8_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -10007,6 +10315,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_i8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -10084,6 +10393,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_i8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -10436,6 +10746,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -10511,6 +10822,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r4_3_c_int(ptr,length1,length2,length3,flags)
@@ -10563,6 +10875,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -10638,6 +10951,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r4_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -10690,6 +11004,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -10765,6 +11080,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r4_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -10817,6 +11133,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -10893,6 +11210,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r4_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -10945,6 +11263,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -11022,6 +11341,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -11372,6 +11692,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -11447,6 +11768,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r8_3_c_int(ptr,length1,length2,length3,flags)
@@ -11499,6 +11821,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -11574,6 +11897,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r8_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -11626,6 +11950,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -11701,6 +12026,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r8_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -11753,6 +12079,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -11829,6 +12156,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r8_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -11881,6 +12209,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_r8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -11958,6 +12287,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_r8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -12308,6 +12638,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12383,6 +12714,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c4_3_c_int(ptr,length1,length2,length3,flags)
@@ -12435,6 +12767,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12510,6 +12843,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c4_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -12563,6 +12897,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12638,6 +12973,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c4_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -12693,6 +13029,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12769,6 +13106,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c4_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -12824,6 +13162,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12901,6 +13240,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -13253,6 +13593,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13328,6 +13669,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c8_3_c_int(ptr,length1,length2,length3,flags)
@@ -13380,6 +13722,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13455,6 +13798,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c8_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -13508,6 +13852,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13583,6 +13928,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c8_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -13638,6 +13984,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13714,6 +14061,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c8_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -13769,6 +14117,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipMallocManaged_c8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13846,6 +14195,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
 
                                                               
     function hipMallocManaged_c8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -14189,6 +14539,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_l_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14262,6 +14613,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_l_3_c_int(ptr,length1,length2,length3,flags)
@@ -14311,6 +14663,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_l_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14384,6 +14737,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_l_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -14434,6 +14788,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_l_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14507,6 +14862,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_l_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -14557,6 +14913,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_l_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14631,6 +14988,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_l_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -14682,6 +15040,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_l_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14757,6 +15116,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_l_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -15097,6 +15457,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -15171,6 +15532,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i4_3_c_int(ptr,length1,length2,length3,flags)
@@ -15221,6 +15583,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -15295,6 +15658,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i4_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -15345,6 +15709,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -15419,6 +15784,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i4_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -15469,6 +15835,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -15544,6 +15911,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i4_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -15596,6 +15964,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -15672,6 +16041,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -16012,6 +16382,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -16086,6 +16457,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i8_3_c_int(ptr,length1,length2,length3,flags)
@@ -16136,6 +16508,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -16210,6 +16583,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i8_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -16260,6 +16634,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -16334,6 +16709,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i8_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -16384,6 +16760,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -16459,6 +16836,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i8_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -16511,6 +16889,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_i8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -16587,6 +16966,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_i8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -16928,6 +17308,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -17002,6 +17383,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r4_3_c_int(ptr,length1,length2,length3,flags)
@@ -17052,6 +17434,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -17126,6 +17509,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r4_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -17176,6 +17560,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -17250,6 +17635,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r4_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -17301,6 +17687,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -17376,6 +17763,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r4_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -17428,6 +17816,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -17504,6 +17893,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -17845,6 +18235,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -17919,6 +18310,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r8_3_c_int(ptr,length1,length2,length3,flags)
@@ -17969,6 +18361,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -18043,6 +18436,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r8_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -18093,6 +18487,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -18167,6 +18562,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r8_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -18218,6 +18614,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -18293,6 +18690,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r8_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -18345,6 +18743,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_r8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -18421,6 +18820,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_r8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -18765,6 +19165,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c4_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -18840,6 +19241,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c4_3_c_int(ptr,length1,length2,length3,flags)
@@ -18890,6 +19292,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c4_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -18965,6 +19368,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c4_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -19015,6 +19419,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c4_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -19090,6 +19495,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c4_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -19142,6 +19548,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c4_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -19218,6 +19625,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c4_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -19270,6 +19678,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c4_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -19347,6 +19756,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c4_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)
@@ -19691,6 +20101,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c8_3_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -19766,6 +20177,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c8_3_c_int(ptr,length1,length2,length3,flags)
@@ -19816,6 +20228,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c8_4_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -19891,6 +20304,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c8_4_c_int(ptr,length1,length2,length3,length4,flags)
@@ -19941,6 +20355,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c8_5_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -20016,6 +20431,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c8_5_c_int(ptr,length1,length2,length3,length4,length5,flags)
@@ -20068,6 +20484,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c8_6_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -20144,6 +20561,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c8_6_c_int(ptr,length1,length2,length3,length4,length5,length6,flags)
@@ -20196,6 +20614,7 @@ module hipfort_hipmalloc
     end function
 
                                                               
+#ifndef __INTEL_COMPILER
     function hipHostMalloc_c8_7_source(ptr,dims,dims8,lbounds,lbounds8,dsource,source,mold,flags)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -20273,6 +20692,7 @@ module hipfort_hipmalloc
         end if
       end if
     end function
+#endif
     
                                                               
     function hipHostMalloc_c8_7_c_int(ptr,length1,length2,length3,length4,length5,length6,length7,flags)

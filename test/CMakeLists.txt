@@ -23,12 +23,6 @@ if(BUILD_TESTING)
   endif()
 
   function(hipfort_add_test lib func dir)
-    # The Fortran 2008 array interfaces are disabled on the Intel compilers
-    # (see USE_FPOINTER_INTERFACES in lib/CMakeLists.txt), so the f2008 tests
-    # cannot be built there; skip them.
-    if(dir STREQUAL "f2008" AND CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
-      return()
-    endif()
     # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
     if(dir STREQUAL "f2008")
       set(ext "f08")
@@ -519,6 +513,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_dsptrsm f2008)
     hipfort_add_test(rocsparse rocsparse_csptrsm f2008)
     hipfort_add_test(rocsparse rocsparse_zsptrsm f2008)
+    hipfort_add_test(rocsparse zgpsv_interleaved_batch f2008)
     hipfort_add_test(rocsparse rocsparse_csr2coo f2003)
     hipfort_add_test(rocsparse rocsparse_scsr2csc f2003)
     hipfort_add_test(rocsparse rocsparse_dcsr2csc f2003)

@@ -109,8 +109,8 @@ program rocsparse_zgpsv_interleaved_batch_test
     call rocsparseCheck(rocsparse_zgpsv_interleaved_batch_buffer_size(handle, &
                                                                       rocsparse_gpsv_interleaved_alg_qr, &
                                                                       M, &
-                                                                      c_loc(d_ds(1)), c_loc(d_dl(1)), c_loc(d_d(1)), &
-                                                                      c_loc(d_du(1)), c_loc(d_dw(1)), &
+                                                                      d_ds, d_dl, d_d, &
+                                                                      d_du, d_dw, &
                                                                       d_x, &
                                                                       batch_count, &
                                                                       batch_stride, &
@@ -122,8 +122,8 @@ program rocsparse_zgpsv_interleaved_batch_test
     call rocsparseCheck(rocsparse_zgpsv_interleaved_batch(handle, &
                                                           rocsparse_gpsv_interleaved_alg_qr, &
                                                           M, &
-                                                          c_loc(d_ds(1)), c_loc(d_dl(1)), c_loc(d_d(1)), &
-                                                          c_loc(d_du(1)), c_loc(d_dw(1)), &
+                                                          d_ds, d_dl, d_d, &
+                                                          d_du, d_dw, &
                                                           d_x, &
                                                           batch_count, &
                                                           batch_stride, &
