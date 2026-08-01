@@ -1,5 +1,14 @@
 # Changelog for hipfort
 
+## (Unreleased)
+
+### Added
+
+* Experimental Fortran 2018 assumed-rank array interfaces, enabled with the `-DHIPFORT_ASSUMED_RANK=ON` CMake option (guarded by `USE_ASSUMED_RANK_INTERFACES`).
+When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
+The overloads are mutually exclusive with the classic per-rank interfaces.
+Only contiguous arrays may be passed.
+
 ## hipfort 0.8.0 for ROCm 7.14.0
 
 ### Added

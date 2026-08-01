@@ -61,6 +61,14 @@ definition, which `hipfort` enables automatically once it detects Fortran 2008 s
 in your compiler. By convention, application and test sources that rely on them use the
 `.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
 
+**Experimental (`-DHIPFORT_ASSUMED_RANK=ON`).** By default each array generic is resolved by a set of rank-specific overloads (`rank_0`, `rank_1`, ...).
+With this option `hipfort` builds a single Fortran 2018 assumed-rank (`dimension(..)`) overload per routine instead.
+It requires a compiler with F2018 assumed-rank plus `c_loc` support.
+Off by default.
+
+The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous (the dummy is declared `contiguous`).
+A non-contiguous section (e.g. `a(:,::2)`) would force the compiler to pass a temporary copy, so pass whole arrays or contiguous slices only.
+
 ### Example
 
 While you could write the following using the `f2003` interfaces:
