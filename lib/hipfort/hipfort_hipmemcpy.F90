@@ -80,6 +80,30 @@ module hipfort_hipmemcpy
     end function
         
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipMemcpy_l_assumed_rank,&
+      hipMemcpy_l_assumed_rank_c_int,&
+      hipMemcpy_l_assumed_rank_c_size_t,&
+      hipMemcpy_i4_assumed_rank,&
+      hipMemcpy_i4_assumed_rank_c_int,&
+      hipMemcpy_i4_assumed_rank_c_size_t,&
+      hipMemcpy_i8_assumed_rank,&
+      hipMemcpy_i8_assumed_rank_c_int,&
+      hipMemcpy_i8_assumed_rank_c_size_t,&
+      hipMemcpy_r4_assumed_rank,&
+      hipMemcpy_r4_assumed_rank_c_int,&
+      hipMemcpy_r4_assumed_rank_c_size_t,&
+      hipMemcpy_r8_assumed_rank,&
+      hipMemcpy_r8_assumed_rank_c_int,&
+      hipMemcpy_r8_assumed_rank_c_size_t,&
+      hipMemcpy_c4_assumed_rank,&
+      hipMemcpy_c4_assumed_rank_c_int,&
+      hipMemcpy_c4_assumed_rank_c_size_t,&
+      hipMemcpy_c8_assumed_rank,&
+      hipMemcpy_c8_assumed_rank_c_int,&
+      hipMemcpy_c8_assumed_rank_c_size_t
+#else
     module procedure hipMemcpy_l_0,&
       hipMemcpy_l_0_c_int,&
       hipMemcpy_l_0_c_size_t,&
@@ -249,6 +273,7 @@ module hipfort_hipmemcpy
       hipMemcpy_c8_7_c_int,&
       hipMemcpy_c8_7_c_size_t 
 #endif
+#endif
   end interface
   
   interface hipMemcpyAsync
@@ -306,6 +331,30 @@ module hipfort_hipmemcpy
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipMemcpyAsync_l_assumed_rank,&
+      hipMemcpyAsync_l_assumed_rank_c_int,&
+      hipMemcpyAsync_l_assumed_rank_c_size_t,&
+      hipMemcpyAsync_i4_assumed_rank,&
+      hipMemcpyAsync_i4_assumed_rank_c_int,&
+      hipMemcpyAsync_i4_assumed_rank_c_size_t,&
+      hipMemcpyAsync_i8_assumed_rank,&
+      hipMemcpyAsync_i8_assumed_rank_c_int,&
+      hipMemcpyAsync_i8_assumed_rank_c_size_t,&
+      hipMemcpyAsync_r4_assumed_rank,&
+      hipMemcpyAsync_r4_assumed_rank_c_int,&
+      hipMemcpyAsync_r4_assumed_rank_c_size_t,&
+      hipMemcpyAsync_r8_assumed_rank,&
+      hipMemcpyAsync_r8_assumed_rank_c_int,&
+      hipMemcpyAsync_r8_assumed_rank_c_size_t,&
+      hipMemcpyAsync_c4_assumed_rank,&
+      hipMemcpyAsync_c4_assumed_rank_c_int,&
+      hipMemcpyAsync_c4_assumed_rank_c_size_t,&
+      hipMemcpyAsync_c8_assumed_rank,&
+      hipMemcpyAsync_c8_assumed_rank_c_int,&
+      hipMemcpyAsync_c8_assumed_rank_c_size_t
+#else
     module procedure hipMemcpyAsync_l_0,&
       hipMemcpyAsync_l_0_c_int,&
       hipMemcpyAsync_l_0_c_size_t,&
@@ -475,6 +524,7 @@ module hipfort_hipmemcpy
       hipMemcpyAsync_c8_7_c_int,&
       hipMemcpyAsync_c8_7_c_size_t 
 #endif
+#endif
   end interface
   
   interface hipMemcpy2D
@@ -521,6 +571,23 @@ module hipfort_hipmemcpy
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipMemcpy2D_l_assumed_rank_c_int,&
+      hipMemcpy2D_l_assumed_rank_c_size_t,&
+      hipMemcpy2D_i4_assumed_rank_c_int,&
+      hipMemcpy2D_i4_assumed_rank_c_size_t,&
+      hipMemcpy2D_i8_assumed_rank_c_int,&
+      hipMemcpy2D_i8_assumed_rank_c_size_t,&
+      hipMemcpy2D_r4_assumed_rank_c_int,&
+      hipMemcpy2D_r4_assumed_rank_c_size_t,&
+      hipMemcpy2D_r8_assumed_rank_c_int,&
+      hipMemcpy2D_r8_assumed_rank_c_size_t,&
+      hipMemcpy2D_c4_assumed_rank_c_int,&
+      hipMemcpy2D_c4_assumed_rank_c_size_t,&
+      hipMemcpy2D_c8_assumed_rank_c_int,&
+      hipMemcpy2D_c8_assumed_rank_c_size_t
+#else
     module procedure hipMemcpy2D_l_0_c_int,&
       hipMemcpy2D_l_0_c_size_t,&
       hipMemcpy2D_l_1_c_int,&
@@ -563,6 +630,7 @@ module hipfort_hipmemcpy
       hipMemcpy2D_c8_1_c_size_t,&
       hipMemcpy2D_c8_2_c_int,&
       hipMemcpy2D_c8_2_c_size_t 
+#endif
 #endif
   end interface
   
@@ -612,6 +680,23 @@ module hipfort_hipmemcpy
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipMemcpy2DAsync_l_assumed_rank_c_int,&
+      hipMemcpy2DAsync_l_assumed_rank_c_size_t,&
+      hipMemcpy2DAsync_i4_assumed_rank_c_int,&
+      hipMemcpy2DAsync_i4_assumed_rank_c_size_t,&
+      hipMemcpy2DAsync_i8_assumed_rank_c_int,&
+      hipMemcpy2DAsync_i8_assumed_rank_c_size_t,&
+      hipMemcpy2DAsync_r4_assumed_rank_c_int,&
+      hipMemcpy2DAsync_r4_assumed_rank_c_size_t,&
+      hipMemcpy2DAsync_r8_assumed_rank_c_int,&
+      hipMemcpy2DAsync_r8_assumed_rank_c_size_t,&
+      hipMemcpy2DAsync_c4_assumed_rank_c_int,&
+      hipMemcpy2DAsync_c4_assumed_rank_c_size_t,&
+      hipMemcpy2DAsync_c8_assumed_rank_c_int,&
+      hipMemcpy2DAsync_c8_assumed_rank_c_size_t
+#else
     module procedure hipMemcpy2DAsync_l_0_c_int,&
       hipMemcpy2DAsync_l_0_c_size_t,&
       hipMemcpy2DAsync_l_1_c_int,&
@@ -655,10 +740,1620 @@ module hipfort_hipmemcpy
       hipMemcpy2DAsync_c8_2_c_int,&
       hipMemcpy2DAsync_c8_2_c_size_t 
 #endif
+#endif
   end interface
 
 #ifdef USE_FPOINTER_INTERFACES
   contains
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipMemcpy_l_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_l_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_l_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_l_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
+    end function
+
+    function hipMemcpy_l_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_l_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_l_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_l_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
+    end function
+
+function hipMemcpy_l_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_l_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_l_assumed_rank
+#endif
+      !
+      hipMemcpy_l_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+    end function
+
+    function hipMemcpy_i4_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_i4_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_i4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_i4_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
+    end function
+
+    function hipMemcpy_i4_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_i4_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_i4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_i4_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
+    end function
+
+function hipMemcpy_i4_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_i4_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_i4_assumed_rank
+#endif
+      !
+      hipMemcpy_i4_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+    end function
+
+    function hipMemcpy_i8_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_i8_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_i8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_i8_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
+    end function
+
+    function hipMemcpy_i8_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_i8_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_i8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_i8_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
+    end function
+
+function hipMemcpy_i8_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_i8_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_i8_assumed_rank
+#endif
+      !
+      hipMemcpy_i8_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+    end function
+
+    function hipMemcpy_r4_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_r4_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_r4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_r4_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
+    end function
+
+    function hipMemcpy_r4_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_r4_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_r4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_r4_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
+    end function
+
+function hipMemcpy_r4_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_r4_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_r4_assumed_rank
+#endif
+      !
+      hipMemcpy_r4_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+    end function
+
+    function hipMemcpy_r8_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_r8_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_r8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_r8_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
+    end function
+
+    function hipMemcpy_r8_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_r8_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_r8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_r8_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
+    end function
+
+function hipMemcpy_r8_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_r8_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_r8_assumed_rank
+#endif
+      !
+      hipMemcpy_r8_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+    end function
+
+    function hipMemcpy_c4_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_c4_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_c4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_c4_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+    end function
+
+    function hipMemcpy_c4_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_c4_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_c4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_c4_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+    end function
+
+function hipMemcpy_c4_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_c4_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_c4_assumed_rank
+#endif
+      !
+      hipMemcpy_c4_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+    end function
+
+    function hipMemcpy_c8_assumed_rank_c_int(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_c8_assumed_rank_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_c8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy_c8_assumed_rank_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+    end function
+
+    function hipMemcpy_c8_assumed_rank_c_size_t(dest,src,length,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_c8_assumed_rank_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_c8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy_c8_assumed_rank_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+    end function
+
+function hipMemcpy_c8_assumed_rank(dest,src,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy_c8_assumed_rank 
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy_c8_assumed_rank
+#endif
+      !
+      hipMemcpy_c8_assumed_rank = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+    end function
+
+function hipMemcpyAsync_l_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_l_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_l_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_l_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_l_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_l_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_l_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_l_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_l_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_l_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_l_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_l_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_i4_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_i4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_i4_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_i4_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_i4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_i4_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_i4_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_i4_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_i4_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_i8_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_i8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_i8_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_i8_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_i8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_i8_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_i8_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_i8_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_i8_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_r4_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_r4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_r4_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_r4_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_r4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_r4_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_r4_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_r4_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_r4_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_r8_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_r8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_r8_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_r8_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_r8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_r8_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_r8_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_r8_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_r8_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_c4_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_c4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_c4_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_c4_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_c4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_c4_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_c4_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_c4_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_c4_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_c8_assumed_rank_c_int(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_c8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpyAsync_c8_assumed_rank_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_c8_assumed_rank_c_size_t(dest,src,length,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t),intent(in) :: length
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_c8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpyAsync_c8_assumed_rank_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+    end function
+
+function hipMemcpyAsync_c8_assumed_rank(dest,src,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(kind(hipMemcpyHostToHost)) :: myKind
+      type(c_ptr) :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_c8_assumed_rank
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_assumed_rank
+#endif
+      !
+      hipMemcpyAsync_c8_assumed_rank = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+    end function
+
+function hipMemcpy2D_l_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_l_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_l_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_l_assumed_rank_c_int = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_l_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_l_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_l_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_l_assumed_rank_c_size_t = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_i4_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_i4_assumed_rank_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_i4_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_i4_assumed_rank_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_i8_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_i8_assumed_rank_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_i8_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_i8_assumed_rank_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_r4_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_r4_assumed_rank_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_r4_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_r4_assumed_rank_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_r8_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_r8_assumed_rank_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_r8_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_r8_assumed_rank_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_c4_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_c4_assumed_rank_c_int = &
+          hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_c4_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_c4_assumed_rank_c_size_t = &
+          hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_c8_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2D_c8_assumed_rank_c_int = &
+          hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2D_c8_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2D_c8_assumed_rank_c_size_t = &
+          hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+    end function
+
+function hipMemcpy2DAsync_l_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_l_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_l_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_l_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical(c_bool),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      logical(c_bool),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_l_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_l_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_i4_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_i4_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_i4_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(c_int),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_i4_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_i8_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_i8_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_i8_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_long),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(c_long),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_i8_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_r4_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_r4_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_r4_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_float),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(c_float),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_r4_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_r8_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_r8_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_r8_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(c_double),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(c_double),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_r8_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind, &
+          stream)
+    end function
+
+function hipMemcpy2DAsync_c4_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_c4_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
+    end function
+
+function hipMemcpy2DAsync_c4_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_float_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(c_float_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_c4_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8, &
+          myKind,stream)
+    end function
+
+function hipMemcpy2DAsync_c8_assumed_rank_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_assumed_rank_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_assumed_rank_c_int
+#endif
+      !
+      hipMemcpy2DAsync_c8_assumed_rank_c_int = &
+          hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
+    end function
+
+function hipMemcpy2DAsync_c8_assumed_rank_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(c_double_complex),target,contiguous,dimension(..),intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(c_double_complex),target,contiguous,dimension(..),intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_assumed_rank_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_assumed_rank_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_c8_assumed_rank_c_size_t = &
+          hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8, &
+          myKind,stream)
+    end function
+
+#else
     
                                                               
     function hipMemcpy_l_0_c_int(dest,src,length,myKind)
@@ -9681,5 +11376,6 @@ function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
           myKind,stream)
     end function
 
+#endif
 #endif
 end module

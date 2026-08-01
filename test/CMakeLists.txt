@@ -23,9 +23,16 @@ if(BUILD_TESTING)
   endif()
 
   function(hipfort_add_test lib func dir)
-    # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
+    # f2018 tests exercise the experimental assumed-rank interfaces (dimension(..)),
+    # which are only compiled into the library when HIPFORT_ASSUMED_RANK is ON.
+    if(dir STREQUAL "f2018" AND NOT HIPFORT_ASSUMED_RANK)
+      return()
+    endif()
+    # f2003 tests use .f03, f2008 use .f08, f2018 use .f18 (matching the standard).
     if(dir STREQUAL "f2008")
       set(ext "f08")
+    elseif(dir STREQUAL "f2018")
+      set(ext "f18")
     else()
       set(ext "f03")
     endif()
@@ -238,6 +245,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas dtrmm f2003)
     hipfort_add_test(rocblas saxpy f2008)
     hipfort_add_test(rocblas daxpy f2008)
+    hipfort_add_test(rocblas saxpy f2018)
     hipfort_add_test(rocblas caxpy f2008)
     hipfort_add_test(rocblas zaxpy f2008)
     hipfort_add_test(rocblas dtrmm f2008)
