@@ -29,6 +29,13 @@ if(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   set(HIPFORT_USE_FPOINTER_INTERFACES ON)
 endif()
 
+# Experimental: replace the per-rank array interfaces (rank_0..rank_N + full_rank)
+# with a single Fortran 2018 assumed-rank (dimension(..)) specific per routine.
+# One overload then accepts an actual argument of any rank. Opt-in and nested in
+# USE_FPOINTER_INTERFACES (the two are mutually exclusive in each generic).
+# Requires a Fortran 2018 compiler.
+option(HIPFORT_ASSUMED_RANK "Use the F2018 assumed-rank array interfaces" OFF)
+
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn
     set(HIPFORT_LIB      "hipfort-${HIPFORT_ARCH}")
@@ -42,6 +49,9 @@ set(HIPFORT_ARCH "amdgcn")
     )
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
+    	IF(HIPFORT_ASSUMED_RANK)
+    		target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_RANK_INTERFACES)
+    	ENDIF(HIPFORT_ASSUMED_RANK)
     ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-amdgcn
@@ -70,6 +80,9 @@ set(HIPFORT_ARCH "nvptx")
          )
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
+    	IF(HIPFORT_ASSUMED_RANK)
+    		target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_RANK_INTERFACES)
+    	ENDIF(HIPFORT_ASSUMED_RANK)
     ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_CUDA_NAMES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')

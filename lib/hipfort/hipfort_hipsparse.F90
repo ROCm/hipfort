@@ -1041,9 +1041,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSaxpyi_assumed_rank
+#else
     module procedure &
       hipsparseSaxpyi_rank_0,&
       hipsparseSaxpyi_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1065,9 +1070,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDaxpyi_assumed_rank
+#else
     module procedure &
       hipsparseDaxpyi_rank_0,&
       hipsparseDaxpyi_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1089,9 +1099,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCaxpyi_assumed_rank
+#else
     module procedure &
       hipsparseCaxpyi_rank_0,&
       hipsparseCaxpyi_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1113,9 +1128,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZaxpyi_assumed_rank
+#else
     module procedure &
       hipsparseZaxpyi_rank_0,&
       hipsparseZaxpyi_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1187,9 +1207,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCdotci_assumed_rank
+#else
     module procedure &
       hipsparseCdotci_rank_0,&
       hipsparseCdotci_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1212,9 +1237,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZdotci_assumed_rank
+#else
     module procedure &
       hipsparseZdotci_rank_0,&
       hipsparseZdotci_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1284,9 +1314,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSdoti_assumed_rank
+#else
     module procedure &
       hipsparseSdoti_rank_0,&
       hipsparseSdoti_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1308,9 +1343,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDdoti_assumed_rank
+#else
     module procedure &
       hipsparseDdoti_rank_0,&
       hipsparseDdoti_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1332,9 +1372,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCdoti_assumed_rank
+#else
     module procedure &
       hipsparseCdoti_rank_0,&
       hipsparseCdoti_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1356,9 +1401,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZdoti_assumed_rank
+#else
     module procedure &
       hipsparseZdoti_rank_0,&
       hipsparseZdoti_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1419,9 +1469,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgthr_assumed_rank
+#else
     module procedure &
       hipsparseSgthr_rank_0,&
       hipsparseSgthr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1442,9 +1497,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgthr_assumed_rank
+#else
     module procedure &
       hipsparseDgthr_rank_0,&
       hipsparseDgthr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1465,9 +1525,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgthr_assumed_rank
+#else
     module procedure &
       hipsparseCgthr_rank_0,&
       hipsparseCgthr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1488,9 +1553,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgthr_assumed_rank
+#else
     module procedure &
       hipsparseZgthr_rank_0,&
       hipsparseZgthr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1555,9 +1625,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgthrz_assumed_rank
+#else
     module procedure &
       hipsparseSgthrz_rank_0,&
       hipsparseSgthrz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1578,9 +1653,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgthrz_assumed_rank
+#else
     module procedure &
       hipsparseDgthrz_rank_0,&
       hipsparseDgthrz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1601,9 +1681,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgthrz_assumed_rank
+#else
     module procedure &
       hipsparseCgthrz_rank_0,&
       hipsparseCgthrz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1624,9 +1709,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgthrz_assumed_rank
+#else
     module procedure &
       hipsparseZgthrz_rank_0,&
       hipsparseZgthrz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1699,9 +1789,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSroti_assumed_rank
+#else
     module procedure &
       hipsparseSroti_rank_0,&
       hipsparseSroti_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1724,9 +1819,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDroti_assumed_rank
+#else
     module procedure &
       hipsparseDroti_rank_0,&
       hipsparseDroti_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1789,9 +1889,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSsctr_assumed_rank
+#else
     module procedure &
       hipsparseSsctr_rank_0,&
       hipsparseSsctr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1812,9 +1917,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDsctr_assumed_rank
+#else
     module procedure &
       hipsparseDsctr_rank_0,&
       hipsparseDsctr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1835,9 +1945,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCsctr_assumed_rank
+#else
     module procedure &
       hipsparseCsctr_rank_0,&
       hipsparseCsctr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1858,9 +1973,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZsctr_assumed_rank
+#else
     module procedure &
       hipsparseZsctr_rank_0,&
       hipsparseZsctr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -1956,9 +2076,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrmv_assumed_rank
+#else
     module procedure &
       hipsparseSbsrmv_rank_0,&
       hipsparseSbsrmv_rank_1
+#endif
 #endif
   end interface
 
@@ -1994,9 +2119,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrmv_assumed_rank
+#else
     module procedure &
       hipsparseDbsrmv_rank_0,&
       hipsparseDbsrmv_rank_1
+#endif
 #endif
   end interface
 
@@ -2032,9 +2162,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrmv_assumed_rank
+#else
     module procedure &
       hipsparseCbsrmv_rank_0,&
       hipsparseCbsrmv_rank_1
+#endif
 #endif
   end interface
 
@@ -2070,9 +2205,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrmv_assumed_rank
+#else
     module procedure &
       hipsparseZbsrmv_rank_0,&
       hipsparseZbsrmv_rank_1
+#endif
 #endif
   end interface
 
@@ -2184,9 +2324,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsv2_bufferSize_rank_0,&
       hipsparseSbsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -2219,9 +2364,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsv2_bufferSize_rank_0,&
       hipsparseDbsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -2254,9 +2404,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsv2_bufferSize_rank_0,&
       hipsparseCbsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -2289,9 +2444,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsv2_bufferSize_rank_0,&
       hipsparseZbsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -2353,9 +2513,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsv2_bufferSizeExt_rank_0,&
       hipsparseSbsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -2384,9 +2549,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsv2_bufferSizeExt_rank_0,&
       hipsparseDbsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -2415,9 +2585,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsv2_bufferSizeExt_rank_0,&
       hipsparseCbsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -2446,9 +2621,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsv2_bufferSizeExt_rank_0,&
       hipsparseZbsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -2524,9 +2704,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsv2_analysis_rank_0,&
       hipsparseSbsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -2560,9 +2745,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsv2_analysis_rank_0,&
       hipsparseDbsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -2596,9 +2786,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsv2_analysis_rank_0,&
       hipsparseCbsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -2632,9 +2827,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsv2_analysis_rank_0,&
       hipsparseZbsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -2775,9 +2975,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsv2_solve_rank_0,&
       hipsparseSbsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 
@@ -2814,9 +3019,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsv2_solve_rank_0,&
       hipsparseDbsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 
@@ -2853,9 +3063,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsv2_solve_rank_0,&
       hipsparseCbsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 
@@ -2892,9 +3107,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsv2_solve_rank_0,&
       hipsparseZbsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 
@@ -3013,9 +3233,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrxmv_assumed_rank
+#else
     module procedure &
       hipsparseSbsrxmv_rank_0,&
       hipsparseSbsrxmv_rank_1
+#endif
 #endif
   end interface
 
@@ -3054,9 +3279,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrxmv_assumed_rank
+#else
     module procedure &
       hipsparseDbsrxmv_rank_0,&
       hipsparseDbsrxmv_rank_1
+#endif
 #endif
   end interface
 
@@ -3095,9 +3325,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrxmv_assumed_rank
+#else
     module procedure &
       hipsparseCbsrxmv_rank_0,&
       hipsparseCbsrxmv_rank_1
+#endif
 #endif
   end interface
 
@@ -3136,9 +3371,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrxmv_assumed_rank
+#else
     module procedure &
       hipsparseZbsrxmv_rank_0,&
       hipsparseZbsrxmv_rank_1
+#endif
 #endif
   end interface
 
@@ -3240,9 +3480,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrmv_assumed_rank
+#else
     module procedure &
       hipsparseScsrmv_rank_0,&
       hipsparseScsrmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3272,9 +3517,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrmv_assumed_rank
+#else
     module procedure &
       hipsparseDcsrmv_rank_0,&
       hipsparseDcsrmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3304,9 +3554,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrmv_assumed_rank
+#else
     module procedure &
       hipsparseCcsrmv_rank_0,&
       hipsparseCcsrmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3336,9 +3591,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrmv_assumed_rank
+#else
     module procedure &
       hipsparseZcsrmv_rank_0,&
       hipsparseZcsrmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3440,9 +3700,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseScsrsv2_bufferSize_rank_0,&
       hipsparseScsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3469,9 +3734,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsv2_bufferSize_rank_0,&
       hipsparseDcsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3498,9 +3768,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsv2_bufferSize_rank_0,&
       hipsparseCcsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3527,9 +3802,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsv2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsv2_bufferSize_rank_0,&
       hipsparseZcsrsv2_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3588,9 +3868,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsrsv2_bufferSizeExt_rank_0,&
       hipsparseScsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3617,9 +3902,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsv2_bufferSizeExt_rank_0,&
       hipsparseDcsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3646,9 +3936,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsv2_bufferSizeExt_rank_0,&
       hipsparseCcsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3675,9 +3970,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsv2_bufferSizeExt_rank_0,&
       hipsparseZcsrsv2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3742,9 +4042,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseScsrsv2_analysis_rank_0,&
       hipsparseScsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3772,9 +4077,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsv2_analysis_rank_0,&
       hipsparseDcsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3802,9 +4112,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsv2_analysis_rank_0,&
       hipsparseCcsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3832,9 +4147,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsv2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsv2_analysis_rank_0,&
       hipsparseZcsrsv2_analysis_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -3968,9 +4288,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseScsrsv2_solve_rank_0,&
       hipsparseScsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4001,9 +4326,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsv2_solve_rank_0,&
       hipsparseDcsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4034,9 +4364,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsv2_solve_rank_0,&
       hipsparseCcsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4067,9 +4402,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsv2_solve_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsv2_solve_rank_0,&
       hipsparseZcsrsv2_solve_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4261,10 +4601,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgemvi_assumed_rank
+#else
     module procedure &
       hipsparseSgemvi_rank_0,&
       hipsparseSgemvi_rank_1,&
       hipsparseSgemvi_full_rank
+#endif
 #endif
   end interface
 
@@ -4297,10 +4642,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgemvi_assumed_rank
+#else
     module procedure &
       hipsparseDgemvi_rank_0,&
       hipsparseDgemvi_rank_1,&
       hipsparseDgemvi_full_rank
+#endif
 #endif
   end interface
 
@@ -4333,10 +4683,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgemvi_assumed_rank
+#else
     module procedure &
       hipsparseCgemvi_rank_0,&
       hipsparseCgemvi_rank_1,&
       hipsparseCgemvi_full_rank
+#endif
 #endif
   end interface
 
@@ -4369,10 +4724,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgemvi_assumed_rank
+#else
     module procedure &
       hipsparseZgemvi_rank_0,&
       hipsparseZgemvi_rank_1,&
       hipsparseZgemvi_full_rank
+#endif
 #endif
   end interface
 
@@ -4448,9 +4808,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseShybmv_assumed_rank
+#else
     module procedure &
       hipsparseShybmv_rank_0,&
       hipsparseShybmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4474,9 +4839,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDhybmv_assumed_rank
+#else
     module procedure &
       hipsparseDhybmv_rank_0,&
       hipsparseDhybmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4500,9 +4870,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseChybmv_assumed_rank
+#else
     module procedure &
       hipsparseChybmv_rank_0,&
       hipsparseChybmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4526,9 +4901,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZhybmv_assumed_rank
+#else
     module procedure &
       hipsparseZhybmv_rank_0,&
       hipsparseZhybmv_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -4656,10 +5036,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrmm_assumed_rank
+#else
     module procedure &
       hipsparseSbsrmm_rank_0,&
       hipsparseSbsrmm_rank_1,&
       hipsparseSbsrmm_full_rank
+#endif
 #endif
   end interface
 
@@ -4699,10 +5084,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrmm_assumed_rank
+#else
     module procedure &
       hipsparseDbsrmm_rank_0,&
       hipsparseDbsrmm_rank_1,&
       hipsparseDbsrmm_full_rank
+#endif
 #endif
   end interface
 
@@ -4742,10 +5132,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrmm_assumed_rank
+#else
     module procedure &
       hipsparseCbsrmm_rank_0,&
       hipsparseCbsrmm_rank_1,&
       hipsparseCbsrmm_full_rank
+#endif
 #endif
   end interface
 
@@ -4785,10 +5180,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrmm_assumed_rank
+#else
     module procedure &
       hipsparseZbsrmm_rank_0,&
       hipsparseZbsrmm_rank_1,&
       hipsparseZbsrmm_full_rank
+#endif
 #endif
   end interface
 
@@ -4908,9 +5308,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsm2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsm2_bufferSize_rank_0,&
       hipsparseSbsrsm2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -4945,9 +5350,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsm2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsm2_bufferSize_rank_0,&
       hipsparseDbsrsm2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -4982,9 +5392,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsm2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsm2_bufferSize_rank_0,&
       hipsparseCbsrsm2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -5019,9 +5434,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsm2_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsm2_bufferSize_rank_0,&
       hipsparseZbsrsm2_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -5102,9 +5522,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsm2_analysis_rank_0,&
       hipsparseSbsrsm2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -5140,9 +5565,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsm2_analysis_rank_0,&
       hipsparseDbsrsm2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -5178,9 +5608,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsm2_analysis_rank_0,&
       hipsparseCbsrsm2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -5216,9 +5651,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsm2_analysis_rank_0,&
       hipsparseZbsrsm2_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -5512,10 +5952,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseSbsrsm2_solve_rank_0,&
       hipsparseSbsrsm2_solve_rank_1,&
       hipsparseSbsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 
@@ -5558,10 +6003,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseDbsrsm2_solve_rank_0,&
       hipsparseDbsrsm2_solve_rank_1,&
       hipsparseDbsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 
@@ -5604,10 +6054,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseCbsrsm2_solve_rank_0,&
       hipsparseCbsrsm2_solve_rank_1,&
       hipsparseCbsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 
@@ -5650,10 +6105,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseZbsrsm2_solve_rank_0,&
       hipsparseZbsrsm2_solve_rank_1,&
       hipsparseZbsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 
@@ -5766,10 +6226,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrmm_assumed_rank
+#else
     module procedure &
       hipsparseScsrmm_rank_0,&
       hipsparseScsrmm_rank_1,&
       hipsparseScsrmm_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5802,10 +6267,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrmm_assumed_rank
+#else
     module procedure &
       hipsparseDcsrmm_rank_0,&
       hipsparseDcsrmm_rank_1,&
       hipsparseDcsrmm_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5838,10 +6308,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrmm_assumed_rank
+#else
     module procedure &
       hipsparseCcsrmm_rank_0,&
       hipsparseCcsrmm_rank_1,&
       hipsparseCcsrmm_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5874,10 +6349,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrmm_assumed_rank
+#else
     module procedure &
       hipsparseZcsrmm_rank_0,&
       hipsparseZcsrmm_rank_1,&
       hipsparseZcsrmm_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5996,10 +6476,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrmm2_assumed_rank
+#else
     module procedure &
       hipsparseScsrmm2_rank_0,&
       hipsparseScsrmm2_rank_1,&
       hipsparseScsrmm2_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6033,10 +6518,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrmm2_assumed_rank
+#else
     module procedure &
       hipsparseDcsrmm2_rank_0,&
       hipsparseDcsrmm2_rank_1,&
       hipsparseDcsrmm2_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6070,10 +6560,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrmm2_assumed_rank
+#else
     module procedure &
       hipsparseCcsrmm2_rank_0,&
       hipsparseCcsrmm2_rank_1,&
       hipsparseCcsrmm2_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6107,10 +6602,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrmm2_assumed_rank
+#else
     module procedure &
       hipsparseZcsrmm2_rank_0,&
       hipsparseZcsrmm2_rank_1,&
       hipsparseZcsrmm2_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6228,10 +6728,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsrsm2_bufferSizeExt_rank_0,&
       hipsparseScsrsm2_bufferSizeExt_rank_1,&
       hipsparseScsrsm2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6265,10 +6770,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsm2_bufferSizeExt_rank_0,&
       hipsparseDcsrsm2_bufferSizeExt_rank_1,&
       hipsparseDcsrsm2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6302,10 +6812,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsm2_bufferSizeExt_rank_0,&
       hipsparseCcsrsm2_bufferSizeExt_rank_1,&
       hipsparseCcsrsm2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6339,10 +6854,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsm2_bufferSizeExt_rank_0,&
       hipsparseZcsrsm2_bufferSizeExt_rank_1,&
       hipsparseZcsrsm2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6421,10 +6941,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseScsrsm2_analysis_rank_0,&
       hipsparseScsrsm2_analysis_rank_1,&
       hipsparseScsrsm2_analysis_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6458,10 +6983,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsm2_analysis_rank_0,&
       hipsparseDcsrsm2_analysis_rank_1,&
       hipsparseDcsrsm2_analysis_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6495,10 +7025,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsm2_analysis_rank_0,&
       hipsparseCcsrsm2_analysis_rank_1,&
       hipsparseCcsrsm2_analysis_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6532,10 +7067,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsm2_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsm2_analysis_rank_0,&
       hipsparseZcsrsm2_analysis_rank_1,&
       hipsparseZcsrsm2_analysis_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6762,10 +7302,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseScsrsm2_solve_rank_0,&
       hipsparseScsrsm2_solve_rank_1,&
       hipsparseScsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6799,10 +7344,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseDcsrsm2_solve_rank_0,&
       hipsparseDcsrsm2_solve_rank_1,&
       hipsparseDcsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6836,10 +7386,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseCcsrsm2_solve_rank_0,&
       hipsparseCcsrsm2_solve_rank_1,&
       hipsparseCcsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6873,10 +7428,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrsm2_solve_assumed_rank
+#else
     module procedure &
       hipsparseZcsrsm2_solve_rank_0,&
       hipsparseZcsrsm2_solve_rank_1,&
       hipsparseZcsrsm2_solve_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6958,10 +7518,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgemmi_assumed_rank
+#else
     module procedure &
       hipsparseSgemmi_rank_0,&
       hipsparseSgemmi_rank_1,&
       hipsparseSgemmi_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6992,10 +7557,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgemmi_assumed_rank
+#else
     module procedure &
       hipsparseDgemmi_rank_0,&
       hipsparseDgemmi_rank_1,&
       hipsparseDgemmi_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -7026,10 +7596,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgemmi_assumed_rank
+#else
     module procedure &
       hipsparseCgemmi_rank_0,&
       hipsparseCgemmi_rank_1,&
       hipsparseCgemmi_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -7060,10 +7635,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgemmi_assumed_rank
+#else
     module procedure &
       hipsparseZgemmi_rank_0,&
       hipsparseZgemmi_rank_1,&
       hipsparseZgemmi_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -7156,9 +7736,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsrgeamNnz_assumed_rank
+#else
     module procedure &
       hipsparseXcsrgeamNnz_rank_0,&
       hipsparseXcsrgeamNnz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -7261,9 +7846,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrgeam_assumed_rank
+#else
     module procedure &
       hipsparseScsrgeam_rank_0,&
       hipsparseScsrgeam_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -7299,9 +7889,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrgeam_assumed_rank
+#else
     module procedure &
       hipsparseDcsrgeam_rank_0,&
       hipsparseDcsrgeam_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -7337,9 +7932,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrgeam_assumed_rank
+#else
     module procedure &
       hipsparseCcsrgeam_rank_0,&
       hipsparseCcsrgeam_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -7375,9 +7975,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrgeam_assumed_rank
+#else
     module procedure &
       hipsparseZcsrgeam_rank_0,&
       hipsparseZcsrgeam_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -7474,9 +8079,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrgeam2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsrgeam2_bufferSizeExt_rank_0,&
       hipsparseScsrgeam2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -7521,9 +8131,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrgeam2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsrgeam2_bufferSizeExt_rank_0,&
       hipsparseDcsrgeam2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -7568,9 +8183,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrgeam2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsrgeam2_bufferSizeExt_rank_0,&
       hipsparseCcsrgeam2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -7615,9 +8235,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrgeam2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsrgeam2_bufferSizeExt_rank_0,&
       hipsparseZcsrgeam2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -7710,9 +8335,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsrgeam2Nnz_assumed_rank
+#else
     module procedure &
       hipsparseXcsrgeam2Nnz_rank_0,&
       hipsparseXcsrgeam2Nnz_rank_1
+#endif
 #endif
   end interface
 
@@ -7830,9 +8460,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrgeam2_assumed_rank
+#else
     module procedure &
       hipsparseScsrgeam2_rank_0,&
       hipsparseScsrgeam2_rank_1
+#endif
 #endif
   end interface
 
@@ -7875,9 +8510,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrgeam2_assumed_rank
+#else
     module procedure &
       hipsparseDcsrgeam2_rank_0,&
       hipsparseDcsrgeam2_rank_1
+#endif
 #endif
   end interface
 
@@ -7920,9 +8560,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrgeam2_assumed_rank
+#else
     module procedure &
       hipsparseCcsrgeam2_rank_0,&
       hipsparseCcsrgeam2_rank_1
+#endif
 #endif
   end interface
 
@@ -7965,9 +8610,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrgeam2_assumed_rank
+#else
     module procedure &
       hipsparseZcsrgeam2_rank_0,&
       hipsparseZcsrgeam2_rank_1
+#endif
 #endif
   end interface
 
@@ -8075,9 +8725,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsrgemmNnz_assumed_rank
+#else
     module procedure &
       hipsparseXcsrgemmNnz_rank_0,&
       hipsparseXcsrgemmNnz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8208,9 +8863,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrgemm_assumed_rank
+#else
     module procedure &
       hipsparseScsrgemm_rank_0,&
       hipsparseScsrgemm_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8247,9 +8907,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrgemm_assumed_rank
+#else
     module procedure &
       hipsparseDcsrgemm_rank_0,&
       hipsparseDcsrgemm_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8286,9 +8951,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrgemm_assumed_rank
+#else
     module procedure &
       hipsparseCcsrgemm_rank_0,&
       hipsparseCcsrgemm_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8325,9 +8995,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrgemm_assumed_rank
+#else
     module procedure &
       hipsparseZcsrgemm_rank_0,&
       hipsparseZcsrgemm_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8427,9 +9102,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrgemm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsrgemm2_bufferSizeExt_rank_0,&
       hipsparseScsrgemm2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8467,9 +9147,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrgemm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsrgemm2_bufferSizeExt_rank_0,&
       hipsparseDcsrgemm2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8507,9 +9192,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrgemm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsrgemm2_bufferSizeExt_rank_0,&
       hipsparseCcsrgemm2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8547,9 +9237,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrgemm2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsrgemm2_bufferSizeExt_rank_0,&
       hipsparseZcsrgemm2_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8665,9 +9360,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsrgemm2Nnz_assumed_rank
+#else
     module procedure &
       hipsparseXcsrgemm2Nnz_rank_0,&
       hipsparseXcsrgemm2Nnz_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8803,9 +9503,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrgemm2_assumed_rank
+#else
     module procedure &
       hipsparseScsrgemm2_rank_0,&
       hipsparseScsrgemm2_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8850,9 +9555,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrgemm2_assumed_rank
+#else
     module procedure &
       hipsparseDcsrgemm2_rank_0,&
       hipsparseDcsrgemm2_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8897,9 +9607,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrgemm2_assumed_rank
+#else
     module procedure &
       hipsparseCcsrgemm2_rank_0,&
       hipsparseCcsrgemm2_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -8944,9 +9659,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrgemm2_assumed_rank
+#else
     module procedure &
       hipsparseZcsrgemm2_rank_0,&
       hipsparseZcsrgemm2_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -9070,9 +9790,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSbsric02_bufferSize_rank_0,&
       hipsparseSbsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9104,9 +9829,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDbsric02_bufferSize_rank_0,&
       hipsparseDbsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9138,9 +9868,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCbsric02_bufferSize_rank_0,&
       hipsparseCbsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9172,9 +9907,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZbsric02_bufferSize_rank_0,&
       hipsparseZbsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9247,9 +9987,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseSbsric02_analysis_rank_0,&
       hipsparseSbsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -9282,9 +10027,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDbsric02_analysis_rank_0,&
       hipsparseDbsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -9317,9 +10067,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCbsric02_analysis_rank_0,&
       hipsparseCbsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -9352,9 +10107,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZbsric02_analysis_rank_0,&
       hipsparseZbsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -9456,9 +10216,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsric02_assumed_rank
+#else
     module procedure &
       hipsparseSbsric02_rank_0,&
       hipsparseSbsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -9491,9 +10256,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsric02_assumed_rank
+#else
     module procedure &
       hipsparseDbsric02_rank_0,&
       hipsparseDbsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -9526,9 +10296,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsric02_assumed_rank
+#else
     module procedure &
       hipsparseCbsric02_rank_0,&
       hipsparseCbsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -9561,9 +10336,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsric02_assumed_rank
+#else
     module procedure &
       hipsparseZbsric02_rank_0,&
       hipsparseZbsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -9790,9 +10570,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSbsrilu02_bufferSize_rank_0,&
       hipsparseSbsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9824,9 +10609,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDbsrilu02_bufferSize_rank_0,&
       hipsparseDbsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9858,9 +10648,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCbsrilu02_bufferSize_rank_0,&
       hipsparseCbsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9892,9 +10687,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZbsrilu02_bufferSize_rank_0,&
       hipsparseZbsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -9967,9 +10767,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseSbsrilu02_analysis_rank_0,&
       hipsparseSbsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10002,9 +10807,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDbsrilu02_analysis_rank_0,&
       hipsparseDbsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10037,9 +10847,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCbsrilu02_analysis_rank_0,&
       hipsparseCbsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10072,9 +10887,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZbsrilu02_analysis_rank_0,&
       hipsparseZbsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10166,9 +10986,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseSbsrilu02_rank_0,&
       hipsparseSbsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -10201,9 +11026,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseDbsrilu02_rank_0,&
       hipsparseDbsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -10236,9 +11066,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseCbsrilu02_rank_0,&
       hipsparseCbsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -10271,9 +11106,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseZbsrilu02_rank_0,&
       hipsparseZbsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -10380,9 +11220,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseScsric02_bufferSize_rank_0,&
       hipsparseScsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -10412,9 +11257,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDcsric02_bufferSize_rank_0,&
       hipsparseDcsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -10444,9 +11294,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCcsric02_bufferSize_rank_0,&
       hipsparseCcsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -10476,9 +11331,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsric02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZcsric02_bufferSize_rank_0,&
       hipsparseZcsric02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -10534,9 +11394,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsric02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsric02_bufferSizeExt_rank_0,&
       hipsparseScsric02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -10562,9 +11427,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsric02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsric02_bufferSizeExt_rank_0,&
       hipsparseDcsric02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -10590,9 +11460,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsric02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsric02_bufferSizeExt_rank_0,&
       hipsparseCcsric02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -10618,9 +11493,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsric02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsric02_bufferSizeExt_rank_0,&
       hipsparseZcsric02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -10687,9 +11567,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseScsric02_analysis_rank_0,&
       hipsparseScsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10720,9 +11605,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDcsric02_analysis_rank_0,&
       hipsparseDcsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10753,9 +11643,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCcsric02_analysis_rank_0,&
       hipsparseCcsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10786,9 +11681,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsric02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZcsric02_analysis_rank_0,&
       hipsparseZcsric02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -10978,9 +11878,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsric02_assumed_rank
+#else
     module procedure &
       hipsparseScsric02_rank_0,&
       hipsparseScsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -11011,9 +11916,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsric02_assumed_rank
+#else
     module procedure &
       hipsparseDcsric02_rank_0,&
       hipsparseDcsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -11044,9 +11954,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsric02_assumed_rank
+#else
     module procedure &
       hipsparseCcsric02_rank_0,&
       hipsparseCcsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -11077,9 +11992,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsric02_assumed_rank
+#else
     module procedure &
       hipsparseZcsric02_rank_0,&
       hipsparseZcsric02_rank_1
+#endif
 #endif
   end interface
 
@@ -11292,9 +12212,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseScsrilu02_bufferSize_rank_0,&
       hipsparseScsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -11324,9 +12249,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDcsrilu02_bufferSize_rank_0,&
       hipsparseDcsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -11356,9 +12286,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCcsrilu02_bufferSize_rank_0,&
       hipsparseCcsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -11388,9 +12323,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrilu02_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZcsrilu02_bufferSize_rank_0,&
       hipsparseZcsrilu02_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -11444,9 +12384,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrilu02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsrilu02_bufferSizeExt_rank_0,&
       hipsparseScsrilu02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -11472,9 +12417,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrilu02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsrilu02_bufferSizeExt_rank_0,&
       hipsparseDcsrilu02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -11500,9 +12450,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrilu02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsrilu02_bufferSizeExt_rank_0,&
       hipsparseCcsrilu02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -11528,9 +12483,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrilu02_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsrilu02_bufferSizeExt_rank_0,&
       hipsparseZcsrilu02_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -11596,9 +12556,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseScsrilu02_analysis_rank_0,&
       hipsparseScsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -11629,9 +12594,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseDcsrilu02_analysis_rank_0,&
       hipsparseDcsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -11662,9 +12632,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseCcsrilu02_analysis_rank_0,&
       hipsparseCcsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -11695,9 +12670,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrilu02_analysis_assumed_rank
+#else
     module procedure &
       hipsparseZcsrilu02_analysis_rank_0,&
       hipsparseZcsrilu02_analysis_rank_1
+#endif
 #endif
   end interface
 
@@ -11870,9 +12850,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseScsrilu02_rank_0,&
       hipsparseScsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -11903,9 +12888,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseDcsrilu02_rank_0,&
       hipsparseDcsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -11936,9 +12926,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseCcsrilu02_rank_0,&
       hipsparseCcsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -11969,9 +12964,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrilu02_assumed_rank
+#else
     module procedure &
       hipsparseZcsrilu02_rank_0,&
       hipsparseZcsrilu02_rank_1
+#endif
 #endif
   end interface
 
@@ -12029,9 +13029,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -12063,9 +13068,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -12097,9 +13107,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -12131,9 +13146,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -12262,9 +13282,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgpsvInterleavedBatch_assumed_rank
+#else
     module procedure &
       hipsparseSgpsvInterleavedBatch_rank_0,&
       hipsparseSgpsvInterleavedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -12294,9 +13319,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgpsvInterleavedBatch_assumed_rank
+#else
     module procedure &
       hipsparseDgpsvInterleavedBatch_rank_0,&
       hipsparseDgpsvInterleavedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -12326,9 +13356,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgpsvInterleavedBatch_assumed_rank
+#else
     module procedure &
       hipsparseCgpsvInterleavedBatch_rank_0,&
       hipsparseCgpsvInterleavedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -12358,9 +13393,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgpsvInterleavedBatch_assumed_rank
+#else
     module procedure &
       hipsparseZgpsvInterleavedBatch_rank_0,&
       hipsparseZgpsvInterleavedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -12418,10 +13458,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgtsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSgtsv2_bufferSizeExt_rank_0,&
       hipsparseSgtsv2_bufferSizeExt_rank_1,&
       hipsparseSgtsv2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -12449,10 +13494,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgtsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDgtsv2_bufferSizeExt_rank_0,&
       hipsparseDgtsv2_bufferSizeExt_rank_1,&
       hipsparseDgtsv2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -12480,10 +13530,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgtsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCgtsv2_bufferSizeExt_rank_0,&
       hipsparseCgtsv2_bufferSizeExt_rank_1,&
       hipsparseCgtsv2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -12511,10 +13566,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgtsv2_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZgtsv2_bufferSizeExt_rank_0,&
       hipsparseZgtsv2_bufferSizeExt_rank_1,&
       hipsparseZgtsv2_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -12586,10 +13646,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgtsv2_assumed_rank
+#else
     module procedure &
       hipsparseSgtsv2_rank_0,&
       hipsparseSgtsv2_rank_1,&
       hipsparseSgtsv2_full_rank
+#endif
 #endif
   end interface
 
@@ -12615,10 +13680,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgtsv2_assumed_rank
+#else
     module procedure &
       hipsparseDgtsv2_rank_0,&
       hipsparseDgtsv2_rank_1,&
       hipsparseDgtsv2_full_rank
+#endif
 #endif
   end interface
 
@@ -12644,10 +13714,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgtsv2_assumed_rank
+#else
     module procedure &
       hipsparseCgtsv2_rank_0,&
       hipsparseCgtsv2_rank_1,&
       hipsparseCgtsv2_full_rank
+#endif
 #endif
   end interface
 
@@ -12673,10 +13748,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgtsv2_assumed_rank
+#else
     module procedure &
       hipsparseZgtsv2_rank_0,&
       hipsparseZgtsv2_rank_1,&
       hipsparseZgtsv2_full_rank
+#endif
 #endif
   end interface
 
@@ -13051,10 +14131,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseSgtsv2_nopivot_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -13082,10 +14167,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseDgtsv2_nopivot_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -13113,10 +14203,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseCgtsv2_nopivot_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -13144,10 +14239,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseZgtsv2_nopivot_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -13221,10 +14321,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgtsv2_nopivot_assumed_rank
+#else
     module procedure &
       hipsparseSgtsv2_nopivot_rank_0,&
       hipsparseSgtsv2_nopivot_rank_1,&
       hipsparseSgtsv2_nopivot_full_rank
+#endif
 #endif
   end interface
 
@@ -13252,10 +14357,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgtsv2_nopivot_assumed_rank
+#else
     module procedure &
       hipsparseDgtsv2_nopivot_rank_0,&
       hipsparseDgtsv2_nopivot_rank_1,&
       hipsparseDgtsv2_nopivot_full_rank
+#endif
 #endif
   end interface
 
@@ -13283,10 +14393,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgtsv2_nopivot_assumed_rank
+#else
     module procedure &
       hipsparseCgtsv2_nopivot_rank_0,&
       hipsparseCgtsv2_nopivot_rank_1,&
       hipsparseCgtsv2_nopivot_full_rank
+#endif
 #endif
   end interface
 
@@ -13314,10 +14429,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgtsv2_nopivot_assumed_rank
+#else
     module procedure &
       hipsparseZgtsv2_nopivot_rank_0,&
       hipsparseZgtsv2_nopivot_rank_1,&
       hipsparseZgtsv2_nopivot_full_rank
+#endif
 #endif
   end interface
 
@@ -13377,9 +14497,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -13409,9 +14534,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -13441,9 +14571,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -13473,9 +14608,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -13588,9 +14728,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgtsv2StridedBatch_assumed_rank
+#else
     module procedure &
       hipsparseSgtsv2StridedBatch_rank_0,&
       hipsparseSgtsv2StridedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -13618,9 +14763,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgtsv2StridedBatch_assumed_rank
+#else
     module procedure &
       hipsparseDgtsv2StridedBatch_rank_0,&
       hipsparseDgtsv2StridedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -13648,9 +14798,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgtsv2StridedBatch_assumed_rank
+#else
     module procedure &
       hipsparseCgtsv2StridedBatch_rank_0,&
       hipsparseCgtsv2StridedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -13678,9 +14833,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgtsv2StridedBatch_assumed_rank
+#else
     module procedure &
       hipsparseZgtsv2StridedBatch_rank_0,&
       hipsparseZgtsv2StridedBatch_rank_1
+#endif
 #endif
   end interface
 
@@ -13794,9 +14954,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSbsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseSbsr2csr_rank_0,&
       hipsparseSbsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -13830,9 +14995,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDbsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseDbsr2csr_rank_0,&
       hipsparseDbsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -13866,9 +15036,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCbsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseCbsr2csr_rank_0,&
       hipsparseCbsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -13902,9 +15077,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZbsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseZbsr2csr_rank_0,&
       hipsparseZbsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -13976,9 +15156,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcoo2csr_assumed_rank
+#else
     module procedure &
       hipsparseXcoo2csr_rank_0,&
       hipsparseXcoo2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -14027,9 +15212,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcoosort_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseXcoosort_bufferSizeExt_rank_0,&
       hipsparseXcoosort_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -14094,9 +15284,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcoosortByRow_assumed_rank
+#else
     module procedure &
       hipsparseXcoosortByRow_rank_0,&
       hipsparseXcoosortByRow_rank_1
+#endif
 #endif
   end interface
 
@@ -14161,9 +15356,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcoosortByColumn_assumed_rank
+#else
     module procedure &
       hipsparseXcoosortByColumn_rank_0,&
       hipsparseXcoosortByColumn_rank_1
+#endif
 #endif
   end interface
 
@@ -14209,9 +15409,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCreateIdentityPermutation_assumed_rank
+#else
     module procedure &
       hipsparseCreateIdentityPermutation_rank_0,&
       hipsparseCreateIdentityPermutation_rank_1
+#endif
 #endif
   end interface
 
@@ -14301,10 +15506,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsc2dense_assumed_rank
+#else
     module procedure &
       hipsparseScsc2dense_rank_0,&
       hipsparseScsc2dense_rank_1,&
       hipsparseScsc2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -14329,10 +15539,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsc2dense_assumed_rank
+#else
     module procedure &
       hipsparseDcsc2dense_rank_0,&
       hipsparseDcsc2dense_rank_1,&
       hipsparseDcsc2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -14357,10 +15572,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsc2dense_assumed_rank
+#else
     module procedure &
       hipsparseCcsc2dense_rank_0,&
       hipsparseCcsc2dense_rank_1,&
       hipsparseCcsc2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -14385,10 +15605,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsc2dense_assumed_rank
+#else
     module procedure &
       hipsparseZcsc2dense_rank_0,&
       hipsparseZcsc2dense_rank_1,&
       hipsparseZcsc2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -14440,9 +15665,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcscsort_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseXcscsort_bufferSizeExt_rank_0,&
       hipsparseXcscsort_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -14512,9 +15742,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcscsort_assumed_rank
+#else
     module procedure &
       hipsparseXcscsort_rank_0,&
       hipsparseXcscsort_rank_1
+#endif
 #endif
   end interface
 
@@ -14680,9 +15915,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsr2bsrNnz_assumed_rank
+#else
     module procedure &
       hipsparseXcsr2bsrNnz_rank_0,&
       hipsparseXcsr2bsrNnz_rank_1
+#endif
 #endif
   end interface
 
@@ -14831,9 +16071,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2bsr_assumed_rank
+#else
     module procedure &
       hipsparseScsr2bsr_rank_0,&
       hipsparseScsr2bsr_rank_1
+#endif
 #endif
   end interface
 
@@ -14867,9 +16112,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2bsr_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2bsr_rank_0,&
       hipsparseDcsr2bsr_rank_1
+#endif
 #endif
   end interface
 
@@ -14903,9 +16153,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2bsr_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2bsr_rank_0,&
       hipsparseCcsr2bsr_rank_1
+#endif
 #endif
   end interface
 
@@ -14939,9 +16194,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2bsr_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2bsr_rank_0,&
       hipsparseZcsr2bsr_rank_1
+#endif
 #endif
   end interface
 
@@ -15013,9 +16273,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsr2coo_assumed_rank
+#else
     module procedure &
       hipsparseXcsr2coo_rank_0,&
       hipsparseXcsr2coo_rank_1
+#endif
 #endif
   end interface
 
@@ -15129,9 +16394,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2csc_assumed_rank
+#else
     module procedure &
       hipsparseScsr2csc_rank_0,&
       hipsparseScsr2csc_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -15160,9 +16430,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2csc_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2csc_rank_0,&
       hipsparseDcsr2csc_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -15191,9 +16466,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2csc_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2csc_rank_0,&
       hipsparseCcsr2csc_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -15222,9 +16502,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2csc_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2csc_rank_0,&
       hipsparseZcsr2csc_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -15477,9 +16762,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2csr_compress_assumed_rank
+#else
     module procedure &
       hipsparseScsr2csr_compress_rank_0,&
       hipsparseScsr2csr_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -15513,9 +16803,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2csr_compress_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2csr_compress_rank_0,&
       hipsparseDcsr2csr_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -15549,9 +16844,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2csr_compress_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2csr_compress_rank_0,&
       hipsparseCcsr2csr_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -15585,9 +16885,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2csr_compress_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2csr_compress_rank_0,&
       hipsparseZcsr2csr_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -15620,9 +16925,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2csru_assumed_rank
+#else
     module procedure &
       hipsparseScsr2csru_rank_0,&
       hipsparseScsr2csru_rank_1
+#endif
 #endif
   end interface
 
@@ -15651,9 +16961,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2csru_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2csru_rank_0,&
       hipsparseDcsr2csru_rank_1
+#endif
 #endif
   end interface
 
@@ -15682,9 +16997,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2csru_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2csru_rank_0,&
       hipsparseCcsr2csru_rank_1
+#endif
 #endif
   end interface
 
@@ -15713,9 +17033,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2csru_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2csru_rank_0,&
       hipsparseZcsr2csru_rank_1
+#endif
 #endif
   end interface
 
@@ -15805,10 +17130,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2dense_assumed_rank
+#else
     module procedure &
       hipsparseScsr2dense_rank_0,&
       hipsparseScsr2dense_rank_1,&
       hipsparseScsr2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -15833,10 +17163,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2dense_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2dense_rank_0,&
       hipsparseDcsr2dense_rank_1,&
       hipsparseDcsr2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -15861,10 +17196,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2dense_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2dense_rank_0,&
       hipsparseCcsr2dense_rank_1,&
       hipsparseCcsr2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -15889,10 +17229,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2dense_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2dense_rank_0,&
       hipsparseZcsr2dense_rank_1,&
       hipsparseZcsr2dense_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -15964,9 +17309,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseScsr2gebsr_bufferSize_rank_0,&
       hipsparseScsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -15998,9 +17348,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2gebsr_bufferSize_rank_0,&
       hipsparseDcsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -16032,9 +17387,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2gebsr_bufferSize_rank_0,&
       hipsparseCcsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -16066,9 +17426,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2gebsr_bufferSize_rank_0,&
       hipsparseZcsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -16230,9 +17595,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsr2gebsrNnz_assumed_rank
+#else
     module procedure &
       hipsparseXcsr2gebsrNnz_rank_0,&
       hipsparseXcsr2gebsrNnz_rank_1
+#endif
 #endif
   end interface
 
@@ -16435,9 +17805,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseScsr2gebsr_rank_0,&
       hipsparseScsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -16473,9 +17848,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2gebsr_rank_0,&
       hipsparseDcsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -16511,9 +17891,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2gebsr_rank_0,&
       hipsparseCcsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -16549,9 +17934,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2gebsr_rank_0,&
       hipsparseZcsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -16622,9 +18012,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsr2hyb_assumed_rank
+#else
     module procedure &
       hipsparseScsr2hyb_rank_0,&
       hipsparseScsr2hyb_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -16651,9 +18046,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsr2hyb_assumed_rank
+#else
     module procedure &
       hipsparseDcsr2hyb_rank_0,&
       hipsparseDcsr2hyb_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -16680,9 +18080,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsr2hyb_assumed_rank
+#else
     module procedure &
       hipsparseCcsr2hyb_rank_0,&
       hipsparseCcsr2hyb_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -16709,9 +18114,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsr2hyb_assumed_rank
+#else
     module procedure &
       hipsparseZcsr2hyb_rank_0,&
       hipsparseZcsr2hyb_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -16763,9 +18173,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsrsort_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseXcsrsort_bufferSizeExt_rank_0,&
       hipsparseXcsrsort_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -16836,9 +18251,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXcsrsort_assumed_rank
+#else
     module procedure &
       hipsparseXcsrsort_rank_0,&
       hipsparseXcsrsort_rank_1
+#endif
 #endif
   end interface
 
@@ -16872,9 +18292,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsru2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseScsru2csr_bufferSizeExt_rank_0,&
       hipsparseScsru2csr_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -16904,9 +18329,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsru2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDcsru2csr_bufferSizeExt_rank_0,&
       hipsparseDcsru2csr_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -16936,9 +18366,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsru2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseCcsru2csr_bufferSizeExt_rank_0,&
       hipsparseCcsru2csr_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -16968,9 +18403,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsru2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseZcsru2csr_bufferSizeExt_rank_0,&
       hipsparseZcsru2csr_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -17003,9 +18443,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsru2csr_assumed_rank
+#else
     module procedure &
       hipsparseScsru2csr_rank_0,&
       hipsparseScsru2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17034,9 +18479,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsru2csr_assumed_rank
+#else
     module procedure &
       hipsparseDcsru2csr_rank_0,&
       hipsparseDcsru2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17065,9 +18515,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsru2csr_assumed_rank
+#else
     module procedure &
       hipsparseCcsru2csr_rank_0,&
       hipsparseCcsru2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17096,9 +18551,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsru2csr_assumed_rank
+#else
     module procedure &
       hipsparseZcsru2csr_rank_0,&
       hipsparseZcsru2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17196,10 +18656,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSdense2csc_assumed_rank
+#else
     module procedure &
       hipsparseSdense2csc_rank_0,&
       hipsparseSdense2csc_rank_1,&
       hipsparseSdense2csc_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17225,10 +18690,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDdense2csc_assumed_rank
+#else
     module procedure &
       hipsparseDdense2csc_rank_0,&
       hipsparseDdense2csc_rank_1,&
       hipsparseDdense2csc_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17254,10 +18724,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCdense2csc_assumed_rank
+#else
     module procedure &
       hipsparseCdense2csc_rank_0,&
       hipsparseCdense2csc_rank_1,&
       hipsparseCdense2csc_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17283,10 +18758,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZdense2csc_assumed_rank
+#else
     module procedure &
       hipsparseZdense2csc_rank_0,&
       hipsparseZdense2csc_rank_1,&
       hipsparseZdense2csc_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17373,10 +18853,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSdense2csr_assumed_rank
+#else
     module procedure &
       hipsparseSdense2csr_rank_0,&
       hipsparseSdense2csr_rank_1,&
       hipsparseSdense2csr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17402,10 +18887,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDdense2csr_assumed_rank
+#else
     module procedure &
       hipsparseDdense2csr_rank_0,&
       hipsparseDdense2csr_rank_1,&
       hipsparseDdense2csr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17431,10 +18921,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCdense2csr_assumed_rank
+#else
     module procedure &
       hipsparseCdense2csr_rank_0,&
       hipsparseCdense2csr_rank_1,&
       hipsparseCdense2csr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17460,10 +18955,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZdense2csr_assumed_rank
+#else
     module procedure &
       hipsparseZdense2csr_rank_0,&
       hipsparseZdense2csr_rank_1,&
       hipsparseZdense2csr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -17593,9 +19093,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgebsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseSgebsr2csr_rank_0,&
       hipsparseSgebsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17630,9 +19135,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgebsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseDgebsr2csr_rank_0,&
       hipsparseDgebsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17667,9 +19177,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgebsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseCgebsr2csr_rank_0,&
       hipsparseCgebsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -17704,9 +19219,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgebsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseZgebsr2csr_rank_0,&
       hipsparseZgebsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -18164,9 +19684,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgebsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSgebsr2gebsr_bufferSize_rank_0,&
       hipsparseSgebsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -18201,9 +19726,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgebsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDgebsr2gebsr_bufferSize_rank_0,&
       hipsparseDgebsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -18238,9 +19768,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgebsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseCgebsr2gebsr_bufferSize_rank_0,&
       hipsparseCgebsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -18275,9 +19810,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgebsr2gebsr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseZgebsr2gebsr_bufferSize_rank_0,&
       hipsparseZgebsr2gebsr_bufferSize_rank_1
+#endif
 #endif
   end interface
 
@@ -18364,9 +19904,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseXgebsr2gebsrNnz_assumed_rank
+#else
     module procedure &
       hipsparseXgebsr2gebsrNnz_rank_0,&
       hipsparseXgebsr2gebsrNnz_rank_1
+#endif
 #endif
   end interface
 
@@ -18547,9 +20092,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSgebsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseSgebsr2gebsr_rank_0,&
       hipsparseSgebsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -18590,9 +20140,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDgebsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseDgebsr2gebsr_rank_0,&
       hipsparseDgebsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -18633,9 +20188,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCgebsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseCgebsr2gebsr_rank_0,&
       hipsparseCgebsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -18676,9 +20236,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZgebsr2gebsr_assumed_rank
+#else
     module procedure &
       hipsparseZgebsr2gebsr_rank_0,&
       hipsparseZgebsr2gebsr_rank_1
+#endif
 #endif
   end interface
 
@@ -18731,9 +20296,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseShyb2csr_assumed_rank
+#else
     module procedure &
       hipsparseShyb2csr_rank_0,&
       hipsparseShyb2csr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -18756,9 +20326,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDhyb2csr_assumed_rank
+#else
     module procedure &
       hipsparseDhyb2csr_rank_0,&
       hipsparseDhyb2csr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -18781,9 +20356,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseChyb2csr_assumed_rank
+#else
     module procedure &
       hipsparseChyb2csr_rank_0,&
       hipsparseChyb2csr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -18806,9 +20386,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZhyb2csr_assumed_rank
+#else
     module procedure &
       hipsparseZhyb2csr_rank_0,&
       hipsparseZhyb2csr_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -18901,10 +20486,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSnnz_assumed_rank
+#else
     module procedure &
       hipsparseSnnz_rank_0,&
       hipsparseSnnz_rank_1,&
       hipsparseSnnz_full_rank
+#endif
 #endif
   end interface
 
@@ -18932,10 +20522,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDnnz_assumed_rank
+#else
     module procedure &
       hipsparseDnnz_rank_0,&
       hipsparseDnnz_rank_1,&
       hipsparseDnnz_full_rank
+#endif
 #endif
   end interface
 
@@ -18963,10 +20558,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCnnz_assumed_rank
+#else
     module procedure &
       hipsparseCnnz_rank_0,&
       hipsparseCnnz_rank_1,&
       hipsparseCnnz_full_rank
+#endif
 #endif
   end interface
 
@@ -18994,10 +20594,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZnnz_assumed_rank
+#else
     module procedure &
       hipsparseZnnz_rank_0,&
       hipsparseZnnz_rank_1,&
       hipsparseZnnz_full_rank
+#endif
 #endif
   end interface
 
@@ -19074,9 +20679,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSnnz_compress_assumed_rank
+#else
     module procedure &
       hipsparseSnnz_compress_rank_0,&
       hipsparseSnnz_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -19103,9 +20713,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDnnz_compress_assumed_rank
+#else
     module procedure &
       hipsparseDnnz_compress_rank_0,&
       hipsparseDnnz_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -19132,9 +20747,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCnnz_compress_assumed_rank
+#else
     module procedure &
       hipsparseCnnz_compress_rank_0,&
       hipsparseCnnz_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -19161,9 +20781,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZnnz_compress_assumed_rank
+#else
     module procedure &
       hipsparseZnnz_compress_rank_0,&
       hipsparseZnnz_compress_rank_1
+#endif
 #endif
   end interface
 
@@ -19231,9 +20856,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csr_bufferSize_rank_0,&
       hipsparseSpruneCsr2csr_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -19264,9 +20894,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csr_bufferSize_rank_0,&
       hipsparseDpruneCsr2csr_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -19341,9 +20976,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_0,&
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -19378,9 +21018,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_0,&
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -19453,9 +21098,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csrNnz_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csrNnz_rank_0,&
       hipsparseSpruneCsr2csrNnz_rank_1
+#endif
 #endif
   end interface
 
@@ -19489,9 +21139,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csrNnz_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csrNnz_rank_0,&
       hipsparseDpruneCsr2csrNnz_rank_1
+#endif
 #endif
   end interface
 
@@ -19580,9 +21235,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csr_rank_0,&
       hipsparseSpruneCsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -19617,9 +21277,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csr_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csr_rank_0,&
       hipsparseDpruneCsr2csr_rank_1
+#endif
 #endif
   end interface
 
@@ -19692,9 +21357,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0,&
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -19727,9 +21397,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0,&
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1
+#endif
 #endif
   end interface
 #endif
@@ -19809,9 +21484,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -19849,9 +21529,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1
+#endif
 #endif
   end interface
 
@@ -19926,9 +21611,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csrNnzByPercentage_rank_0,&
       hipsparseSpruneCsr2csrNnzByPercentage_rank_1
+#endif
 #endif
   end interface
 
@@ -19963,9 +21653,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csrNnzByPercentage_rank_0,&
       hipsparseDpruneCsr2csrNnzByPercentage_rank_1
+#endif
 #endif
   end interface
 
@@ -20057,9 +21752,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneCsr2csrByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseSpruneCsr2csrByPercentage_rank_0,&
       hipsparseSpruneCsr2csrByPercentage_rank_1
+#endif
 #endif
   end interface
 
@@ -20095,9 +21795,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneCsr2csrByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseDpruneCsr2csrByPercentage_rank_0,&
       hipsparseDpruneCsr2csrByPercentage_rank_1
+#endif
 #endif
   end interface
 
@@ -20180,10 +21885,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csr_bufferSize_rank_0,&
       hipsparseSpruneDense2csr_bufferSize_rank_1,&
       hipsparseSpruneDense2csr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -20211,10 +21921,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csr_bufferSize_rank_0,&
       hipsparseDpruneDense2csr_bufferSize_rank_1,&
       hipsparseDpruneDense2csr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -20247,10 +21962,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csr_bufferSizeExt_rank_0,&
       hipsparseSpruneDense2csr_bufferSizeExt_rank_1,&
       hipsparseSpruneDense2csr_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -20282,10 +22002,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csr_bufferSizeExt_rank_0,&
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1,&
       hipsparseDpruneDense2csr_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -20402,10 +22127,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csrNnz_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csrNnz_rank_0,&
       hipsparseSpruneDense2csrNnz_rank_1,&
       hipsparseSpruneDense2csrNnz_full_rank
+#endif
 #endif
   end interface
 
@@ -20436,10 +22166,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csrNnz_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csrNnz_rank_0,&
       hipsparseDpruneDense2csrNnz_rank_1,&
       hipsparseDpruneDense2csrNnz_full_rank
+#endif
 #endif
   end interface
 
@@ -20560,10 +22295,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csr_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csr_rank_0,&
       hipsparseSpruneDense2csr_rank_1,&
       hipsparseSpruneDense2csr_full_rank
+#endif
 #endif
   end interface
 
@@ -20595,10 +22335,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csr_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csr_rank_0,&
       hipsparseDpruneDense2csr_rank_1,&
       hipsparseDpruneDense2csr_full_rank
+#endif
 #endif
   end interface
 
@@ -20687,10 +22432,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0,&
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1,&
       hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -20719,10 +22469,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0,&
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1,&
       hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -20814,10 +22569,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1,&
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -20850,10 +22610,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1,&
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank
+#endif
 #endif
   end interface
 
@@ -20942,10 +22707,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csrNnzByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csrNnzByPercentage_rank_0,&
       hipsparseSpruneDense2csrNnzByPercentage_rank_1,&
       hipsparseSpruneDense2csrNnzByPercentage_full_rank
+#endif
 #endif
   end interface
 
@@ -20977,10 +22747,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csrNnzByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csrNnzByPercentage_rank_0,&
       hipsparseDpruneDense2csrNnzByPercentage_rank_1,&
       hipsparseDpruneDense2csrNnzByPercentage_full_rank
+#endif
 #endif
   end interface
 
@@ -21075,10 +22850,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseSpruneDense2csrByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseSpruneDense2csrByPercentage_rank_0,&
       hipsparseSpruneDense2csrByPercentage_rank_1,&
       hipsparseSpruneDense2csrByPercentage_full_rank
+#endif
 #endif
   end interface
 
@@ -21111,10 +22891,15 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDpruneDense2csrByPercentage_assumed_rank
+#else
     module procedure &
       hipsparseDpruneDense2csrByPercentage_rank_0,&
       hipsparseDpruneDense2csrByPercentage_rank_1,&
       hipsparseDpruneDense2csrByPercentage_full_rank
+#endif
 #endif
   end interface
 
@@ -21194,9 +22979,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseScsrcolor_assumed_rank
+#else
     module procedure &
       hipsparseScsrcolor_rank_0,&
       hipsparseScsrcolor_rank_1
+#endif
 #endif
   end interface
 
@@ -21229,9 +23019,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseDcsrcolor_assumed_rank
+#else
     module procedure &
       hipsparseDcsrcolor_rank_0,&
       hipsparseDcsrcolor_rank_1
+#endif
 #endif
   end interface
 
@@ -21264,9 +23059,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseCcsrcolor_assumed_rank
+#else
     module procedure &
       hipsparseCcsrcolor_rank_0,&
       hipsparseCcsrcolor_rank_1
+#endif
 #endif
   end interface
 
@@ -21299,9 +23099,14 @@ module hipfort_hipsparse
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsparseZcsrcolor_assumed_rank
+#else
     module procedure &
       hipsparseZcsrcolor_rank_0,&
       hipsparseZcsrcolor_rank_1
+#endif
 #endif
   end interface
 
@@ -23665,6 +25470,8563 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
   contains
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipsparseSaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      real(c_float),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSaxpyi_assumed_rank = hipsparseSaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        idxBase)
+    end function
+
+    function hipsparseDaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      real(c_double),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDaxpyi_assumed_rank = hipsparseDaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        idxBase)
+    end function
+
+    function hipsparseCaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCaxpyi_assumed_rank = hipsparseCaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        idxBase)
+    end function
+
+    function hipsparseZaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZaxpyi_assumed_rank = hipsparseZaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        idxBase)
+    end function
+
+    function hipsparseCdotci_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,contiguous,dimension(..) :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdotci_assumed_rank = hipsparseCdotci_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseZdotci_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,contiguous,dimension(..) :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdotci_assumed_rank = hipsparseZdotci_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseSdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,contiguous,dimension(..) :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSdoti_assumed_rank = hipsparseSdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseDdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,contiguous,dimension(..) :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDdoti_assumed_rank = hipsparseDdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseCdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,contiguous,dimension(..) :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdoti_assumed_rank = hipsparseCdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseZdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,contiguous,dimension(..) :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdoti_assumed_rank = hipsparseZdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseSgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSgthr_assumed_rank = hipsparseSgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseDgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDgthr_assumed_rank = hipsparseDgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseCgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCgthr_assumed_rank = hipsparseCgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseZgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZgthr_assumed_rank = hipsparseZgthr_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseSgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthrz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSgthrz_assumed_rank = hipsparseSgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseDgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthrz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDgthrz_assumed_rank = hipsparseDgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseCgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthrz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCgthrz_assumed_rank = hipsparseCgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseZgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthrz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZgthrz_assumed_rank = hipsparseZgthrz_(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
+    end function
+
+    function hipsparseSroti_assumed_rank(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float) :: c
+      real(c_float) :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSroti_assumed_rank = hipsparseSroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c,s, &
+        idxBase)
+    end function
+
+    function hipsparseDroti_assumed_rank(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double) :: c
+      real(c_double) :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDroti_assumed_rank = hipsparseDroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c,s, &
+        idxBase)
+    end function
+
+    function hipsparseSsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSsctr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSsctr_assumed_rank = hipsparseSsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
+    end function
+
+    function hipsparseDsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDsctr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDsctr_assumed_rank = hipsparseDsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
+    end function
+
+    function hipsparseCsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsctr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCsctr_assumed_rank = hipsparseCsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
+    end function
+
+    function hipsparseZsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZsctr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: xVal
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZsctr_assumed_rank = hipsparseZsctr_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
+    end function
+
+    function hipsparseSbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: y
+      !
+      hipsparseSbsrmv_assumed_rank = hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
+    function hipsparseDbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: y
+      !
+      hipsparseDbsrmv_assumed_rank = hipsparseDbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
+    function hipsparseCbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseCbsrmv_assumed_rank = hipsparseCbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
+    function hipsparseZbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseZbsrmv_assumed_rank = hipsparseZbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
+    function hipsparseSbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseSbsrsv2_bufferSize_assumed_rank = hipsparseSbsrsv2_bufferSize_(handle,dirA,transA,mb, &
+        nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDbsrsv2_bufferSize_assumed_rank = hipsparseDbsrsv2_bufferSize_(handle,dirA,transA,mb, &
+        nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCbsrsv2_bufferSize_assumed_rank = hipsparseCbsrsv2_bufferSize_(handle,dirA,transA,mb, &
+        nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZbsrsv2_bufferSize_assumed_rank = hipsparseZbsrsv2_bufferSize_(handle,dirA,transA,mb, &
+        nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSbsrsv2_bufferSizeExt_assumed_rank = hipsparseSbsrsv2_bufferSizeExt_(handle,dirA,transA, &
+        mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDbsrsv2_bufferSizeExt_assumed_rank = hipsparseDbsrsv2_bufferSizeExt_(handle,dirA,transA, &
+        mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCbsrsv2_bufferSizeExt_assumed_rank = hipsparseCbsrsv2_bufferSizeExt_(handle,dirA,transA, &
+        mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZbsrsv2_bufferSizeExt_assumed_rank = hipsparseZbsrsv2_bufferSizeExt_(handle,dirA,transA, &
+        mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsrsv2_analysis_assumed_rank = hipsparseSbsrsv2_analysis_(handle,dirA,transA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsrsv2_analysis_assumed_rank = hipsparseDbsrsv2_analysis_(handle,dirA,transA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsrsv2_analysis_assumed_rank = hipsparseCbsrsv2_analysis_(handle,dirA,transA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsrsv2_analysis_assumed_rank = hipsparseZbsrsv2_analysis_(handle,dirA,transA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseSbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      real(c_float),target,contiguous,dimension(..) :: f
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsrsv2_solve_assumed_rank = hipsparseSbsrsv2_solve_(handle,dirA,transA,mb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      real(c_double),target,contiguous,dimension(..) :: f
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsrsv2_solve_assumed_rank = hipsparseDbsrsv2_solve_(handle,dirA,transA,mb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      complex(c_float_complex),target,contiguous,dimension(..) :: f
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsrsv2_solve_assumed_rank = hipsparseCbsrsv2_solve_(handle,dirA,transA,mb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      complex(c_double_complex),target,contiguous,dimension(..) :: f
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsrsv2_solve_assumed_rank = hipsparseZbsrsv2_solve_(handle,dirA,transA,mb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseSbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
+        bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrEndPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: y
+      !
+      hipsparseSbsrxmv_assumed_rank = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
+        blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseDbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
+        bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrEndPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: y
+      !
+      hipsparseDbsrxmv_assumed_rank = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
+        blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseCbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
+        bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrEndPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseCbsrxmv_assumed_rank = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
+        blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseZbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
+        bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrEndPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseZbsrxmv_assumed_rank = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr),c_loc(bsrColInd), &
+        blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseScsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: y
+      !
+      hipsparseScsrmv_assumed_rank = hipsparseScsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseDcsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: y
+      !
+      hipsparseDcsrmv_assumed_rank = hipsparseDcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseCcsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseCcsrmv_assumed_rank = hipsparseCcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseZcsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseZcsrmv_assumed_rank = hipsparseZcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
+    function hipsparseScsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseScsrsv2_bufferSize_assumed_rank = hipsparseScsrsv2_bufferSize_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsv2_bufferSize_assumed_rank = hipsparseDcsrsv2_bufferSize_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsv2_bufferSize_assumed_rank = hipsparseCcsrsv2_bufferSize_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsv2_bufferSize_assumed_rank = hipsparseZcsrsv2_bufferSize_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsrsv2_bufferSizeExt_assumed_rank = hipsparseScsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsv2_bufferSizeExt_assumed_rank = hipsparseDcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsv2_bufferSizeExt_assumed_rank = hipsparseCcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsv2_bufferSizeExt_assumed_rank = hipsparseZcsrsv2_bufferSizeExt_(handle,transA,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrsv2_analysis_assumed_rank = hipsparseScsrsv2_analysis_(handle,transA,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrsv2_analysis_assumed_rank = hipsparseDcsrsv2_analysis_(handle,transA,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrsv2_analysis_assumed_rank = hipsparseCcsrsv2_analysis_(handle,transA,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrsv2_analysis_assumed_rank = hipsparseZcsrsv2_analysis_(handle,transA,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      real(c_float),target,contiguous,dimension(..) :: f
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrsv2_solve_assumed_rank = hipsparseScsrsv2_solve_(handle,transA,m,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f), &
+        c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      real(c_double),target,contiguous,dimension(..) :: f
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrsv2_solve_assumed_rank = hipsparseDcsrsv2_solve_(handle,transA,m,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f), &
+        c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      complex(c_float_complex),target,contiguous,dimension(..) :: f
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrsv2_solve_assumed_rank = hipsparseCcsrsv2_solve_(handle,transA,m,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f), &
+        c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      complex(c_double_complex),target,contiguous,dimension(..) :: f
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrsv2_solve_assumed_rank = hipsparseZcsrsv2_solve_(handle,transA,m,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f), &
+        c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseSgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgemvi_assumed_rank = hipsparseSgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x), &
+        c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseDgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgemvi_assumed_rank = hipsparseDgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x), &
+        c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseCgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgemvi_assumed_rank = hipsparseCgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x), &
+        c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseZgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),target,contiguous,dimension(..) :: xInd
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgemvi_assumed_rank = hipsparseZgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x), &
+        c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseShybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: y
+      !
+      hipsparseShybmv_assumed_rank = hipsparseShybmv_(handle,transA,alpha,descrA,hybA,c_loc(x),beta, &
+        c_loc(y))
+    end function
+
+    function hipsparseDhybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: y
+      !
+      hipsparseDhybmv_assumed_rank = hipsparseDhybmv_(handle,transA,alpha,descrA,hybA,c_loc(x),beta, &
+        c_loc(y))
+    end function
+
+    function hipsparseChybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseChybmv_assumed_rank = hipsparseChybmv_(handle,transA,alpha,descrA,hybA,c_loc(x),beta, &
+        c_loc(y))
+    end function
+
+    function hipsparseZhybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      !
+      hipsparseZhybmv_assumed_rank = hipsparseZhybmv_(handle,transA,alpha,descrA,hybA,c_loc(x),beta, &
+        c_loc(y))
+    end function
+
+    function hipsparseSbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSbsrmm_assumed_rank = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseDbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDbsrmm_assumed_rank = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseCbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCbsrmm_assumed_rank = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseZbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZbsrmm_assumed_rank = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseSbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseSbsrsm2_bufferSize_assumed_rank = hipsparseSbsrsm2_bufferSize_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDbsrsm2_bufferSize_assumed_rank = hipsparseDbsrsm2_bufferSize_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCbsrsm2_bufferSize_assumed_rank = hipsparseCbsrsm2_bufferSize_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZbsrsm2_bufferSize_assumed_rank = hipsparseZbsrsm2_bufferSize_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsrsm2_analysis_assumed_rank = hipsparseSbsrsm2_analysis_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsrsm2_analysis_assumed_rank = hipsparseDbsrsm2_analysis_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsrsm2_analysis_assumed_rank = hipsparseCbsrsm2_analysis_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsrsm2_analysis_assumed_rank = hipsparseZbsrsm2_analysis_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseSbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsrsm2_solve_assumed_rank = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsrsm2_solve_assumed_rank = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsrsm2_solve_assumed_rank = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsrsm2_solve_assumed_rank = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseScsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm_assumed_rank = hipsparseScsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseDcsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm_assumed_rank = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseCcsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm_assumed_rank = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseZcsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm_assumed_rank = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseScsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm2_assumed_rank = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseDcsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm2_assumed_rank = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseCcsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm2_assumed_rank = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseZcsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm2_assumed_rank = hipsparseZcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
+    function hipsparseScsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsrsm2_bufferSizeExt_assumed_rank = hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsm2_bufferSizeExt_assumed_rank = hipsparseDcsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsm2_bufferSizeExt_assumed_rank = hipsparseCcsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsm2_bufferSizeExt_assumed_rank = hipsparseZcsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrsm2_analysis_assumed_rank = hipsparseScsrsm2_analysis_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrsm2_analysis_assumed_rank = hipsparseDcsrsm2_analysis_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrsm2_analysis_assumed_rank = hipsparseCcsrsm2_analysis_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrsm2_analysis_assumed_rank = hipsparseZcsrsm2_analysis_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrsm2_solve_assumed_rank = hipsparseScsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrsm2_solve_assumed_rank = hipsparseDcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrsm2_solve_assumed_rank = hipsparseCcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrsm2_solve_assumed_rank = hipsparseZcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseSgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
+        beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      real(c_float) :: alpha
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: cscValB
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtrB
+      integer(c_int),target,contiguous,dimension(..) :: cscRowIndB
+      real(c_float) :: beta
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSgemmi_assumed_rank = hipsparseSgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
+    function hipsparseDgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
+        beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      real(c_double) :: alpha
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: cscValB
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtrB
+      integer(c_int),target,contiguous,dimension(..) :: cscRowIndB
+      real(c_double) :: beta
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDgemmi_assumed_rank = hipsparseDgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
+    function hipsparseCgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
+        beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: cscValB
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtrB
+      integer(c_int),target,contiguous,dimension(..) :: cscRowIndB
+      complex(c_float_complex) :: beta
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCgemmi_assumed_rank = hipsparseCgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
+    function hipsparseZgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
+        beta,C,ldc)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: cscValB
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtrB
+      integer(c_int),target,contiguous,dimension(..) :: cscRowIndB
+      complex(c_double_complex) :: beta
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZgemmi_assumed_rank = hipsparseZgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
+    function hipsparseXcsrgeamNnz_assumed_rank(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB, &
+        csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgeamNnz_assumed_rank = hipsparseXcsrgeamNnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
+    end function
+
+    function hipsparseScsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
+        beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseScsrgeam_assumed_rank = hipsparseScsrgeam_(handle,m,n,alpha,descrA,nnzA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseDcsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
+        beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseDcsrgeam_assumed_rank = hipsparseDcsrgeam_(handle,m,n,alpha,descrA,nnzA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseCcsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
+        beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseCcsrgeam_assumed_rank = hipsparseCcsrgeam_(handle,m,n,alpha,descrA,nnzA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseZcsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
+        beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseZcsrgeam_assumed_rank = hipsparseZcsrgeam_(handle,m,n,alpha,descrA,nnzA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseScsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsrgeam2_bufferSizeExt_assumed_rank = hipsparseScsrgeam2_bufferSizeExt_(handle,m,n, &
+        alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgeam2_bufferSizeExt_assumed_rank = hipsparseDcsrgeam2_bufferSizeExt_(handle,m,n, &
+        alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgeam2_bufferSizeExt_assumed_rank = hipsparseCcsrgeam2_bufferSizeExt_(handle,m,n, &
+        alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgeam2_bufferSizeExt_assumed_rank = hipsparseZcsrgeam2_bufferSizeExt_(handle,m,n, &
+        alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseXcsrgeam2Nnz_assumed_rank(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
+        csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC, &
+        nnzTotalDevHostPtr,workspace)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: workspace
+      !
+      hipsparseXcsrgeam2Nnz_assumed_rank = hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),nnzTotalDevHostPtr,workspace)
+    end function
+
+    function hipsparseScsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_float) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrgeam2_assumed_rank = hipsparseScsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseDcsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      real(c_double) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrgeam2_assumed_rank = hipsparseDcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseCcsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrgeam2_assumed_rank = hipsparseCcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseZcsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndB
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndC
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrgeam2_assumed_rank = hipsparseZcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseXcsrgemmNnz_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgemmNnz_assumed_rank = hipsparseXcsrgemmNnz_(handle,transA,transB,m,n,k,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
+    end function
+
+    function hipsparseScsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseScsrgemm_assumed_rank = hipsparseScsrgemm_(handle,transA,transB,m,n,k,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseDcsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseDcsrgemm_assumed_rank = hipsparseDcsrgemm_(handle,transA,transB,m,n,k,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseCcsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseCcsrgemm_assumed_rank = hipsparseCcsrgemm_(handle,transA,transB,m,n,k,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseZcsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseZcsrgemm_assumed_rank = hipsparseZcsrgemm_(handle,transA,transB,m,n,k,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseScsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      real(c_float) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsrgemm2_bufferSizeExt_assumed_rank = hipsparseScsrgemm2_bufferSizeExt_(handle,m,n,k, &
+        alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      real(c_double) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgemm2_bufferSizeExt_assumed_rank = hipsparseDcsrgemm2_bufferSizeExt_(handle,m,n,k, &
+        alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgemm2_bufferSizeExt_assumed_rank = hipsparseCcsrgemm2_bufferSizeExt_(handle,m,n,k, &
+        alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgemm2_bufferSizeExt_assumed_rank = hipsparseZcsrgemm2_bufferSizeExt_(handle,m,n,k, &
+        alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseXcsrgemm2Nnz_assumed_rank(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA,descrB, &
+        nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseXcsrgemm2Nnz_assumed_rank = hipsparseXcsrgemm2Nnz_(handle,m,n,k,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
+    end function
+
+    function hipsparseScsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      real(c_float) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      real(c_float),target,contiguous,dimension(..) :: csrValD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrgemm2_assumed_rank = hipsparseScsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseDcsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      real(c_double) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      real(c_double),target,contiguous,dimension(..) :: csrValD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrgemm2_assumed_rank = hipsparseDcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseCcsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrgemm2_assumed_rank = hipsparseCcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseZcsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValB
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrB
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndB
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValD
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrD
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndD
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrgemm2_assumed_rank = hipsparseZcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseSbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseSbsric02_bufferSize_assumed_rank = hipsparseSbsric02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDbsric02_bufferSize_assumed_rank = hipsparseDbsric02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCbsric02_bufferSize_assumed_rank = hipsparseCbsric02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZbsric02_bufferSize_assumed_rank = hipsparseZbsric02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseSbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsric02_analysis_assumed_rank = hipsparseSbsric02_analysis_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsric02_analysis_assumed_rank = hipsparseDbsric02_analysis_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsric02_analysis_assumed_rank = hipsparseCbsric02_analysis_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsric02_analysis_assumed_rank = hipsparseZbsric02_analysis_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseSbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsric02_assumed_rank = hipsparseSbsric02_(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsric02_assumed_rank = hipsparseDbsric02_(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsric02_assumed_rank = hipsparseCbsric02_(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsric02_assumed_rank = hipsparseZbsric02_(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseSbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseSbsrilu02_bufferSize_assumed_rank = hipsparseSbsrilu02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDbsrilu02_bufferSize_assumed_rank = hipsparseDbsrilu02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCbsrilu02_bufferSize_assumed_rank = hipsparseCbsrilu02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZbsrilu02_bufferSize_assumed_rank = hipsparseZbsrilu02_bufferSize_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsrilu02_analysis_assumed_rank = hipsparseSbsrilu02_analysis_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsrilu02_analysis_assumed_rank = hipsparseDbsrilu02_analysis_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsrilu02_analysis_assumed_rank = hipsparseCbsrilu02_analysis_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsrilu02_analysis_assumed_rank = hipsparseZbsrilu02_analysis_(handle,dirA,mb,nnzb, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseSbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSbsrilu02_assumed_rank = hipsparseSbsrilu02_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo, &
+        policy,pBuffer)
+    end function
+
+    function hipsparseDbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDbsrilu02_assumed_rank = hipsparseDbsrilu02_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo, &
+        policy,pBuffer)
+    end function
+
+    function hipsparseCbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCbsrilu02_assumed_rank = hipsparseCbsrilu02_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo, &
+        policy,pBuffer)
+    end function
+
+    function hipsparseZbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
+        bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZbsrilu02_assumed_rank = hipsparseZbsrilu02_(handle,dirA,mb,nnzb,descrA, &
+        c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo, &
+        policy,pBuffer)
+    end function
+
+    function hipsparseScsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseScsric02_bufferSize_assumed_rank = hipsparseScsric02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDcsric02_bufferSize_assumed_rank = hipsparseDcsric02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCcsric02_bufferSize_assumed_rank = hipsparseCcsric02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZcsric02_bufferSize_assumed_rank = hipsparseZcsric02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsric02_bufferSizeExt_assumed_rank = hipsparseScsric02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsric02_bufferSizeExt_assumed_rank = hipsparseDcsric02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsric02_bufferSizeExt_assumed_rank = hipsparseCcsric02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsric02_bufferSizeExt_assumed_rank = hipsparseZcsric02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsric02_analysis_assumed_rank = hipsparseScsric02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsric02_analysis_assumed_rank = hipsparseDcsric02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsric02_analysis_assumed_rank = hipsparseCcsric02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsric02_analysis_assumed_rank = hipsparseZcsric02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsric02_assumed_rank = hipsparseScsric02_(handle,m,nnz,descrA,c_loc(csrSortedValA_valM), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsric02_assumed_rank = hipsparseDcsric02_(handle,m,nnz,descrA,c_loc(csrSortedValA_valM), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsric02_assumed_rank = hipsparseCcsric02_(handle,m,nnz,descrA,c_loc(csrSortedValA_valM), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsric02_assumed_rank = hipsparseZcsric02_(handle,m,nnz,descrA,c_loc(csrSortedValA_valM), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseScsrilu02_bufferSize_assumed_rank = hipsparseScsrilu02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrilu02_bufferSize_assumed_rank = hipsparseDcsrilu02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrilu02_bufferSize_assumed_rank = hipsparseCcsrilu02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrilu02_bufferSize_assumed_rank = hipsparseZcsrilu02_bufferSize_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsrilu02_bufferSizeExt_assumed_rank = hipsparseScsrilu02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsrilu02_bufferSizeExt_assumed_rank = hipsparseDcsrilu02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsrilu02_bufferSizeExt_assumed_rank = hipsparseCcsrilu02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsrilu02_bufferSizeExt_assumed_rank = hipsparseZcsrilu02_bufferSizeExt_(handle,m,nnz, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrilu02_analysis_assumed_rank = hipsparseScsrilu02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrilu02_analysis_assumed_rank = hipsparseDcsrilu02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrilu02_analysis_assumed_rank = hipsparseCcsrilu02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_analysis_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrilu02_analysis_assumed_rank = hipsparseZcsrilu02_analysis_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsrilu02_assumed_rank = hipsparseScsrilu02_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy, &
+        pBuffer)
+    end function
+
+    function hipsparseDcsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsrilu02_assumed_rank = hipsparseDcsrilu02_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy, &
+        pBuffer)
+    end function
+
+    function hipsparseCcsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsrilu02_assumed_rank = hipsparseCcsrilu02_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy, &
+        pBuffer)
+    end function
+
+    function hipsparseZcsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA, &
+        csrSortedColIndA,myInfo,policy,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA_valM
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsrilu02_assumed_rank = hipsparseZcsrilu02_(handle,m,nnz,descrA, &
+        c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy, &
+        pBuffer)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target,contiguous,dimension(..) :: ds
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: dw
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target,contiguous,dimension(..) :: ds
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: dw
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target,contiguous,dimension(..) :: ds
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: dw
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x, &
+        batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target,contiguous,dimension(..) :: ds
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: dw
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(ds),c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(dw),c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target,contiguous,dimension(..) :: ds
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: dw
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgpsvInterleavedBatch_assumed_rank = hipsparseSgpsvInterleavedBatch_(handle,algo,m, &
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target,contiguous,dimension(..) :: ds
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: dw
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgpsvInterleavedBatch_assumed_rank = hipsparseDgpsvInterleavedBatch_(handle,algo,m, &
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target,contiguous,dimension(..) :: ds
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: dw
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgpsvInterleavedBatch_assumed_rank = hipsparseCgpsvInterleavedBatch_(handle,algo,m, &
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target,contiguous,dimension(..) :: ds
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: dw
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgpsvInterleavedBatch_assumed_rank = hipsparseZgpsvInterleavedBatch_(handle,algo,m, &
+        c_loc(ds),c_loc(dl),c_loc(d),c_loc(du),c_loc(dw),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseSgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgtsv2_bufferSizeExt_assumed_rank = hipsparseSgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgtsv2_bufferSizeExt_assumed_rank = hipsparseDgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgtsv2_bufferSizeExt_assumed_rank = hipsparseCgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgtsv2_bufferSizeExt_assumed_rank = hipsparseZgtsv2_bufferSizeExt_(handle,m,n,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgtsv2_assumed_rank = hipsparseSgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,pBuffer)
+    end function
+
+    function hipsparseDgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgtsv2_assumed_rank = hipsparseDgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,pBuffer)
+    end function
+
+    function hipsparseCgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgtsv2_assumed_rank = hipsparseCgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,pBuffer)
+    end function
+
+    function hipsparseZgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgtsv2_assumed_rank = hipsparseZgtsv2_(handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B), &
+        ldb,pBuffer)
+    end function
+
+    function hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank = hipsparseSgtsv2_nopivot_bufferSizeExt_( &
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank = hipsparseDgtsv2_nopivot_bufferSizeExt_( &
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank = hipsparseCgtsv2_nopivot_bufferSizeExt_( &
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank = hipsparseZgtsv2_nopivot_bufferSizeExt_( &
+        handle,m,n,c_loc(dl),c_loc(d),c_loc(du),c_loc(B),ldb,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgtsv2_nopivot_assumed_rank = hipsparseSgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,pBuffer)
+    end function
+
+    function hipsparseDgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgtsv2_nopivot_assumed_rank = hipsparseDgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,pBuffer)
+    end function
+
+    function hipsparseCgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgtsv2_nopivot_assumed_rank = hipsparseCgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,pBuffer)
+    end function
+
+    function hipsparseZgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgtsv2_nopivot_assumed_rank = hipsparseZgtsv2_nopivot_(handle,m,n,c_loc(dl),c_loc(d), &
+        c_loc(du),c_loc(B),ldb,pBuffer)
+    end function
+
+    function hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
+        batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
+        batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
+        batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
+        batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
+        batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
+        batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
+        batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,c_loc(dl),c_loc(d),c_loc(du),c_loc(x), &
+        batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      real(c_float),target,contiguous,dimension(..) :: dl
+      real(c_float),target,contiguous,dimension(..) :: d
+      real(c_float),target,contiguous,dimension(..) :: du
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgtsv2StridedBatch_assumed_rank = hipsparseSgtsv2StridedBatch_(handle,m,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseDgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      real(c_double),target,contiguous,dimension(..) :: dl
+      real(c_double),target,contiguous,dimension(..) :: d
+      real(c_double),target,contiguous,dimension(..) :: du
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgtsv2StridedBatch_assumed_rank = hipsparseDgtsv2StridedBatch_(handle,m,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseCgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      complex(c_float_complex),target,contiguous,dimension(..) :: dl
+      complex(c_float_complex),target,contiguous,dimension(..) :: d
+      complex(c_float_complex),target,contiguous,dimension(..) :: du
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgtsv2StridedBatch_assumed_rank = hipsparseCgtsv2StridedBatch_(handle,m,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseZgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      complex(c_double_complex),target,contiguous,dimension(..) :: dl
+      complex(c_double_complex),target,contiguous,dimension(..) :: d
+      complex(c_double_complex),target,contiguous,dimension(..) :: du
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgtsv2StridedBatch_assumed_rank = hipsparseZgtsv2StridedBatch_(handle,m,c_loc(dl), &
+        c_loc(d),c_loc(du),c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseSbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseSbsr2csr_assumed_rank = hipsparseSbsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseDbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseDbsr2csr_assumed_rank = hipsparseDbsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseCbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseCbsr2csr_assumed_rank = hipsparseCbsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseZbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseZbsr2csr_assumed_rank = hipsparseZbsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseXcoo2csr_assumed_rank(handle,cooRowInd,nnz,m,csrRowPtr,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoo2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int),target,contiguous,dimension(..) :: cooRowInd
+      integer(c_int) :: nnz
+      integer(c_int) :: m
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseXcoo2csr_assumed_rank = hipsparseXcoo2csr_(handle,c_loc(cooRowInd),nnz,m, &
+        c_loc(csrRowPtr),idxBase)
+    end function
+
+    function hipsparseXcoosort_bufferSizeExt_assumed_rank(handle,m,n,nnz,cooRows,cooCols, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosort_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      integer(c_int),target,contiguous,dimension(..) :: cooRows
+      integer(c_int),target,contiguous,dimension(..) :: cooCols
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseXcoosort_bufferSizeExt_assumed_rank = hipsparseXcoosort_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(cooRows),c_loc(cooCols),pBufferSizeInBytes)
+    end function
+
+    function hipsparseXcoosortByRow_assumed_rank(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByRow_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      integer(c_int),target,contiguous,dimension(..) :: cooRows
+      integer(c_int),target,contiguous,dimension(..) :: cooCols
+      integer(c_int),target,contiguous,dimension(..) :: P
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseXcoosortByRow_assumed_rank = hipsparseXcoosortByRow_(handle,m,n,nnz,c_loc(cooRows), &
+        c_loc(cooCols),c_loc(P),pBuffer)
+    end function
+
+    function hipsparseXcoosortByColumn_assumed_rank(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByColumn_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      integer(c_int),target,contiguous,dimension(..) :: cooRows
+      integer(c_int),target,contiguous,dimension(..) :: cooCols
+      integer(c_int),target,contiguous,dimension(..) :: P
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseXcoosortByColumn_assumed_rank = hipsparseXcoosortByColumn_(handle,m,n,nnz,c_loc(cooRows), &
+        c_loc(cooCols),c_loc(P),pBuffer)
+    end function
+
+    function hipsparseCreateIdentityPermutation_assumed_rank(handle,n,p)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateIdentityPermutation_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int),target,contiguous,dimension(..) :: p
+      !
+      hipsparseCreateIdentityPermutation_assumed_rank = hipsparseCreateIdentityPermutation_(handle,n, &
+        c_loc(p))
+    end function
+
+    function hipsparseScsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseScsc2dense_assumed_rank = hipsparseScsc2dense_(handle,m,n,descr,c_loc(cscVal), &
+        c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
+    end function
+
+    function hipsparseDcsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseDcsc2dense_assumed_rank = hipsparseDcsc2dense_(handle,m,n,descr,c_loc(cscVal), &
+        c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
+    end function
+
+    function hipsparseCcsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseCcsc2dense_assumed_rank = hipsparseCcsc2dense_(handle,m,n,descr,c_loc(cscVal), &
+        c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
+    end function
+
+    function hipsparseZcsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseZcsc2dense_assumed_rank = hipsparseZcsc2dense_(handle,m,n,descr,c_loc(cscVal), &
+        c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
+    end function
+
+    function hipsparseXcscsort_bufferSizeExt_assumed_rank(handle,m,n,nnz,cscColPtr,cscRowInd, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseXcscsort_bufferSizeExt_assumed_rank = hipsparseXcscsort_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(cscColPtr),c_loc(cscRowInd),pBufferSizeInBytes)
+    end function
+
+    function hipsparseXcscsort_assumed_rank(handle,m,n,nnz,descrA,cscColPtr,cscRowInd,P,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: P
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseXcscsort_assumed_rank = hipsparseXcscsort_(handle,m,n,nnz,descrA,c_loc(cscColPtr), &
+        c_loc(cscRowInd),c_loc(P),pBuffer)
+    end function
+
+    function hipsparseXcsr2bsrNnz_assumed_rank(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim, &
+        descrC,bsrRowPtrC,bsrNnzb)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrNnzb
+      !
+      hipsparseXcsr2bsrNnz_assumed_rank = hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),c_loc(bsrNnzb))
+    end function
+
+    function hipsparseScsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2bsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      !
+      hipsparseScsr2bsr_assumed_rank = hipsparseScsr2bsr_(handle,dirA,m,n,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
+    end function
+
+    function hipsparseDcsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2bsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      !
+      hipsparseDcsr2bsr_assumed_rank = hipsparseDcsr2bsr_(handle,dirA,m,n,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
+    end function
+
+    function hipsparseCcsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2bsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      !
+      hipsparseCcsr2bsr_assumed_rank = hipsparseCcsr2bsr_(handle,dirA,m,n,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
+    end function
+
+    function hipsparseZcsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2bsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      !
+      hipsparseZcsr2bsr_assumed_rank = hipsparseZcsr2bsr_(handle,dirA,m,n,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
+    end function
+
+    function hipsparseXcsr2coo_assumed_rank(handle,csrRowPtr,nnz,m,cooRowInd,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int) :: nnz
+      integer(c_int) :: m
+      integer(c_int),target,contiguous,dimension(..) :: cooRowInd
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseXcsr2coo_assumed_rank = hipsparseXcsr2coo_(handle,c_loc(csrRowPtr),nnz,m, &
+        c_loc(cooRowInd),idxBase)
+    end function
+
+    function hipsparseScsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
+        cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: csrSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColInd
+      real(c_float),target,contiguous,dimension(..) :: cscSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseScsr2csc_assumed_rank = hipsparseScsr2csc_(handle,m,n,nnz,c_loc(csrSortedVal), &
+        c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr),copyValues,idxBase)
+    end function
+
+    function hipsparseDcsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
+        cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: csrSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColInd
+      real(c_double),target,contiguous,dimension(..) :: cscSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDcsr2csc_assumed_rank = hipsparseDcsr2csc_(handle,m,n,nnz,c_loc(csrSortedVal), &
+        c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr),copyValues,idxBase)
+    end function
+
+    function hipsparseCcsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
+        cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColInd
+      complex(c_float_complex),target,contiguous,dimension(..) :: cscSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCcsr2csc_assumed_rank = hipsparseCcsr2csc_(handle,m,n,nnz,c_loc(csrSortedVal), &
+        c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr),copyValues,idxBase)
+    end function
+
+    function hipsparseZcsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd, &
+        cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColInd
+      complex(c_double_complex),target,contiguous,dimension(..) :: cscSortedVal
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscSortedColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZcsr2csc_assumed_rank = hipsparseZcsr2csc_(handle,m,n,nnz,c_loc(csrSortedVal), &
+        c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr),copyValues,idxBase)
+    end function
+
+    function hipsparseScsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA, &
+        nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csr_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      real(c_float) :: tol
+      !
+      hipsparseScsr2csr_compress_assumed_rank = hipsparseScsr2csr_compress_(handle,m,n,descrA, &
+        c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC), &
+        c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
+    end function
+
+    function hipsparseDcsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA, &
+        nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csr_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      real(c_double) :: tol
+      !
+      hipsparseDcsr2csr_compress_assumed_rank = hipsparseDcsr2csr_compress_(handle,m,n,descrA, &
+        c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC), &
+        c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
+    end function
+
+    function hipsparseCcsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA, &
+        nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csr_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      complex(c_float_complex) :: tol
+      !
+      hipsparseCcsr2csr_compress_assumed_rank = hipsparseCcsr2csr_compress_(handle,m,n,descrA, &
+        c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC), &
+        c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
+    end function
+
+    function hipsparseZcsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA, &
+        nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csr_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      complex(c_double_complex) :: tol
+      !
+      hipsparseZcsr2csr_compress_assumed_rank = hipsparseZcsr2csr_compress_(handle,m,n,descrA, &
+        c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC), &
+        c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
+    end function
+
+    function hipsparseScsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csru_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsr2csru_assumed_rank = hipsparseScsr2csru_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseDcsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csru_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsr2csru_assumed_rank = hipsparseDcsr2csru_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseCcsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csru_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsr2csru_assumed_rank = hipsparseCcsr2csru_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseZcsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csru_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsr2csru_assumed_rank = hipsparseZcsr2csru_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseScsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseScsr2dense_assumed_rank = hipsparseScsr2dense_(handle,m,n,descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
+    end function
+
+    function hipsparseDcsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseDcsr2dense_assumed_rank = hipsparseDcsr2dense_(handle,m,n,descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
+    end function
+
+    function hipsparseCcsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseCcsr2dense_assumed_rank = hipsparseCcsr2dense_(handle,m,n,descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
+    end function
+
+    function hipsparseZcsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      !
+      hipsparseZcsr2dense_assumed_rank = hipsparseZcsr2dense_(handle,m,n,descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
+    end function
+
+    function hipsparseScsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
+        csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsr2gebsr_bufferSize_assumed_rank = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n, &
+        csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
+        csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsr2gebsr_bufferSize_assumed_rank = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n, &
+        csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
+        csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsr2gebsr_bufferSize_assumed_rank = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n, &
+        csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
+        csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsr2gebsr_bufferSize_assumed_rank = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n, &
+        csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim, &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseXcsr2gebsrNnz_assumed_rank(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr, &
+        bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: bsr_descr
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_int),target,contiguous,dimension(..) :: bsrNnzDevhost
+      type(c_ptr) :: pbuffer
+      !
+      hipsparseXcsr2gebsrNnz_assumed_rank = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr, &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim,colBlockDim, &
+        c_loc(bsrNnzDevhost),pbuffer)
+    end function
+
+    function hipsparseScsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
+        bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: bsr_descr
+      real(c_float),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: pbuffer
+      !
+      hipsparseScsr2gebsr_assumed_rank = hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrVal),c_loc(bsrRowPtr), &
+        c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
+    end function
+
+    function hipsparseDcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
+        bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: bsr_descr
+      real(c_double),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: pbuffer
+      !
+      hipsparseDcsr2gebsr_assumed_rank = hipsparseDcsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrVal),c_loc(bsrRowPtr), &
+        c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
+    end function
+
+    function hipsparseCcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
+        bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: bsr_descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: pbuffer
+      !
+      hipsparseCcsr2gebsr_assumed_rank = hipsparseCcsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrVal),c_loc(bsrRowPtr), &
+        c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
+    end function
+
+    function hipsparseZcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
+        bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: bsr_descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrVal
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: pbuffer
+      !
+      hipsparseZcsr2gebsr_assumed_rank = hipsparseZcsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrVal),c_loc(bsrRowPtr), &
+        c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
+    end function
+
+    function hipsparseScsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,hybA,userEllWidth,partitionType)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
+      !
+      hipsparseScsr2hyb_assumed_rank = hipsparseScsr2hyb_(handle,m,n,descrA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
+    end function
+
+    function hipsparseDcsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,hybA,userEllWidth,partitionType)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
+      !
+      hipsparseDcsr2hyb_assumed_rank = hipsparseDcsr2hyb_(handle,m,n,descrA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
+    end function
+
+    function hipsparseCcsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,hybA,userEllWidth,partitionType)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
+      !
+      hipsparseCcsr2hyb_assumed_rank = hipsparseCcsr2hyb_(handle,m,n,descrA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
+    end function
+
+    function hipsparseZcsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA,hybA,userEllWidth,partitionType)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
+      !
+      hipsparseZcsr2hyb_assumed_rank = hipsparseZcsr2hyb_(handle,m,n,descrA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
+    end function
+
+    function hipsparseXcsrsort_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrRowPtr,csrColInd, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseXcsrsort_bufferSizeExt_assumed_rank = hipsparseXcsrsort_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(csrRowPtr),c_loc(csrColInd),pBufferSizeInBytes)
+    end function
+
+    function hipsparseXcsrsort_assumed_rank(handle,m,n,nnz,descrA,csrRowPtr,csrColInd,P,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_int),target,contiguous,dimension(..) :: P
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseXcsrsort_assumed_rank = hipsparseXcsrsort_(handle,m,n,nnz,descrA,c_loc(csrRowPtr), &
+        c_loc(csrColInd),c_loc(P),pBuffer)
+    end function
+
+    function hipsparseScsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseScsru2csr_bufferSizeExt_assumed_rank = hipsparseScsru2csr_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDcsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDcsru2csr_bufferSizeExt_assumed_rank = hipsparseDcsru2csr_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCcsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCcsru2csr_bufferSizeExt_assumed_rank = hipsparseCcsru2csr_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZcsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd, &
+        myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZcsru2csr_bufferSizeExt_assumed_rank = hipsparseZcsru2csr_bufferSizeExt_(handle,m,n,nnz, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseScsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseScsru2csr_assumed_rank = hipsparseScsru2csr_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseDcsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDcsru2csr_assumed_rank = hipsparseDcsru2csr_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseCcsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCcsru2csr_assumed_rank = hipsparseCcsru2csr_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseZcsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo, &
+        pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZcsru2csr_assumed_rank = hipsparseZcsru2csr_(handle,m,n,nnz,descrA,c_loc(csrVal), &
+        c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
+    end function
+
+    function hipsparseSdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
+        cscColPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerColumn
+      real(c_float),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      !
+      hipsparseSdense2csc_assumed_rank = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
+    end function
+
+    function hipsparseDdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
+        cscColPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerColumn
+      real(c_double),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      !
+      hipsparseDdense2csc_assumed_rank = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
+    end function
+
+    function hipsparseCdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
+        cscColPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerColumn
+      complex(c_float_complex),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      !
+      hipsparseCdense2csc_assumed_rank = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
+    end function
+
+    function hipsparseZdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
+        cscColPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerColumn
+      complex(c_double_complex),target,contiguous,dimension(..) :: cscVal
+      integer(c_int),target,contiguous,dimension(..) :: cscRowInd
+      integer(c_int),target,contiguous,dimension(..) :: cscColPtr
+      !
+      hipsparseZdense2csc_assumed_rank = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
+    end function
+
+    function hipsparseSdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      !
+      hipsparseSdense2csr_assumed_rank = hipsparseSdense2csr_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
+    end function
+
+    function hipsparseDdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      !
+      hipsparseDdense2csr_assumed_rank = hipsparseDdense2csr_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
+    end function
+
+    function hipsparseCdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      !
+      hipsparseCdense2csr_assumed_rank = hipsparseCdense2csr_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
+    end function
+
+    function hipsparseZdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr,csrColInd)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: ld
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      !
+      hipsparseZdense2csr_assumed_rank = hipsparseZdense2csr_(handle,m,n,descr,c_loc(A),ld, &
+        c_loc(nnzPerRow),c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd))
+    end function
+
+    function hipsparseSgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseSgebsr2csr_assumed_rank = hipsparseSgebsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDim,colBlockDim,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseDgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseDgebsr2csr_assumed_rank = hipsparseDgebsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDim,colBlockDim,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseCgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseCgebsr2csr_assumed_rank = hipsparseCgebsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDim,colBlockDim,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseZgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA, &
+        rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      !
+      hipsparseZgebsr2csr_assumed_rank = hipsparseZgebsr2csr_(handle,dirA,mb,nb,descrA,c_loc(bsrValA), &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDim,colBlockDim,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC))
+    end function
+
+    function hipsparseSgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseSgebsr2gebsr_bufferSize_assumed_rank = hipsparseSgebsr2gebsr_bufferSize_(handle,dirA,mb, &
+        nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseDgebsr2gebsr_bufferSize_assumed_rank = hipsparseDgebsr2gebsr_bufferSize_(handle,dirA,mb, &
+        nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseCgebsr2gebsr_bufferSize_assumed_rank = hipsparseCgebsr2gebsr_bufferSize_(handle,dirA,mb, &
+        nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
+        bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      integer(c_int) :: pBufferSizeInBytes
+      !
+      hipsparseZgebsr2gebsr_bufferSize_assumed_rank = hipsparseZgebsr2gebsr_bufferSize_(handle,dirA,mb, &
+        nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA, &
+        colBlockDimA,rowBlockDimC,colBlockDimC,pBufferSizeInBytes)
+    end function
+
+    function hipsparseXgebsr2gebsrNnz_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA,bsrColIndA, &
+        rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr, &
+        buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: buffer
+      !
+      hipsparseXgebsr2gebsrNnz_assumed_rank = hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb,nnzb,descrA, &
+        c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrRowPtrC), &
+        rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer)
+    end function
+
+    function hipsparseSgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
+        colBlockDimC,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
+      !
+      hipsparseSgebsr2gebsr_assumed_rank = hipsparseSgebsr2gebsr_(handle,dirA,mb,nb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
+    end function
+
+    function hipsparseDgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
+        colBlockDimC,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
+      !
+      hipsparseDgebsr2gebsr_assumed_rank = hipsparseDgebsr2gebsr_(handle,dirA,mb,nb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
+    end function
+
+    function hipsparseCgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
+        colBlockDimC,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
+      !
+      hipsparseCgebsr2gebsr_assumed_rank = hipsparseCgebsr2gebsr_(handle,dirA,mb,nb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
+    end function
+
+    function hipsparseZgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
+        bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
+        colBlockDimC,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValA
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsrValC
+      integer(c_int),target,contiguous,dimension(..) :: bsrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: bsrColIndC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
+      !
+      hipsparseZgebsr2gebsr_assumed_rank = hipsparseZgebsr2gebsr_(handle,dirA,mb,nb,nnzb,descrA, &
+        c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
+    end function
+
+    function hipsparseShyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShyb2csr_assumed_rank
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      real(c_float),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      !
+      hipsparseShyb2csr_assumed_rank = hipsparseShyb2csr_(handle,descrA,hybA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
+    end function
+
+    function hipsparseDhyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhyb2csr_assumed_rank
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      real(c_double),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      !
+      hipsparseDhyb2csr_assumed_rank = hipsparseDhyb2csr_(handle,descrA,hybA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
+    end function
+
+    function hipsparseChyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChyb2csr_assumed_rank
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      !
+      hipsparseChyb2csr_assumed_rank = hipsparseChyb2csr_(handle,descrA,hybA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
+    end function
+
+    function hipsparseZhyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
+        csrSortedColIndA)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhyb2csr_assumed_rank
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrSortedValA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrSortedColIndA
+      !
+      hipsparseZhyb2csr_assumed_rank = hipsparseZhyb2csr_(handle,descrA,hybA,c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA))
+    end function
+
+    function hipsparseSnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRowColumn
+      integer(c_int) :: nnzTotalDevHostPtr
+      !
+      hipsparseSnnz_assumed_rank = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
+    function hipsparseDnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRowColumn
+      integer(c_int) :: nnzTotalDevHostPtr
+      !
+      hipsparseDnnz_assumed_rank = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
+    function hipsparseCnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRowColumn
+      integer(c_int) :: nnzTotalDevHostPtr
+      !
+      hipsparseCnnz_assumed_rank = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
+    function hipsparseZnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRowColumn
+      integer(c_int) :: nnzTotalDevHostPtr
+      !
+      hipsparseZnnz_assumed_rank = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
+    function hipsparseSnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      integer(c_int),target,contiguous,dimension(..) :: nnzC
+      real(c_float) :: tol
+      !
+      hipsparseSnnz_compress_assumed_rank = hipsparseSnnz_compress_(handle,m,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseDnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      integer(c_int),target,contiguous,dimension(..) :: nnzC
+      real(c_double) :: tol
+      !
+      hipsparseDnnz_compress_assumed_rank = hipsparseDnnz_compress_(handle,m,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseCnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      integer(c_int),target,contiguous,dimension(..) :: nnzC
+      complex(c_float_complex) :: tol
+      !
+      hipsparseCnnz_compress_assumed_rank = hipsparseCnnz_compress_(handle,m,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseZnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: nnzPerRow
+      integer(c_int),target,contiguous,dimension(..) :: nnzC
+      complex(c_double_complex) :: tol
+      !
+      hipsparseZnnz_compress_assumed_rank = hipsparseZnnz_compress_(handle,m,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSize_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSize_assumed_rank = hipsparseSpruneCsr2csr_bufferSize_(handle,m,n, &
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSize_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSize_assumed_rank = hipsparseDpruneCsr2csr_bufferSize_(handle,m,n, &
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank = hipsparseSpruneCsr2csr_bufferSizeExt_(handle, &
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank = hipsparseDpruneCsr2csr_bufferSizeExt_(handle, &
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneCsr2csrNnz_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: threshold
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneCsr2csrNnz_assumed_rank = hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,buffer)
+    end function
+
+    function hipsparseDpruneCsr2csrNnz_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: threshold
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneCsr2csrNnz_assumed_rank = hipsparseDpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,buffer)
+    end function
+
+    function hipsparseSpruneCsr2csr_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: threshold
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneCsr2csr_assumed_rank = hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
+    function hipsparseDpruneCsr2csr_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: threshold
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneCsr2csr_assumed_rank = hipsparseDpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
+    function hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank = &
+        hipsparseSpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank = &
+        hipsparseDpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA, &
+        csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank = &
+        hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA, &
+        csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
+        pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank = &
+        hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank = hipsparseSpruneCsr2csrNnzByPercentage_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage, &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
+    function hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank = hipsparseDpruneCsr2csrNnzByPercentage_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage, &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
+    function hipsparseSpruneCsr2csrByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
+      real(c_float),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneCsr2csrByPercentage_assumed_rank = hipsparseSpruneCsr2csrByPercentage_(handle,m,n, &
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
+    end function
+
+    function hipsparseDpruneCsr2csrByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
+      real(c_double),target,contiguous,dimension(..) :: csrValC
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrC
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndC
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneCsr2csrByPercentage_assumed_rank = hipsparseDpruneCsr2csrByPercentage_(handle,m,n, &
+        nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSize_assumed_rank(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSize_assumed_rank = hipsparseSpruneDense2csr_bufferSize_(handle,m, &
+        n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSize_assumed_rank(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSize_assumed_rank = hipsparseDpruneDense2csr_bufferSize_(handle,m, &
+        n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank = hipsparseSpruneDense2csr_bufferSizeExt_( &
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: threshold
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank = hipsparseDpruneDense2csr_bufferSizeExt_( &
+        handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
+        c_loc(csrColInd),pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneDense2csrNnz_assumed_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
+        nnzTotalDevHostPtr,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: threshold
+      type(c_ptr) :: descr
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneDense2csrNnz_assumed_rank = hipsparseSpruneDense2csrNnz_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+    end function
+
+    function hipsparseDpruneDense2csrNnz_assumed_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
+        nnzTotalDevHostPtr,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: threshold
+      type(c_ptr) :: descr
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneDense2csrNnz_assumed_rank = hipsparseDpruneDense2csrNnz_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+    end function
+
+    function hipsparseSpruneDense2csr_assumed_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
+        csrColInd,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: threshold
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneDense2csr_assumed_rank = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
+    function hipsparseDpruneDense2csr_assumed_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
+        csrColInd,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: threshold
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneDense2csr_assumed_rank = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
+    function hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank(handle,m,n,A,lda,percentage, &
+        descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank = &
+        hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank(handle,m,n,A,lda,percentage, &
+        descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank = &
+        hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,A,lda, &
+        percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank = &
+        hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,A,lda, &
+        percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank = &
+        hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage, &
+        descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSpruneDense2csrNnzByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr, &
+        csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneDense2csrNnzByPercentage_assumed_rank = hipsparseSpruneDense2csrNnzByPercentage_( &
+        handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
+    function hipsparseDpruneDense2csrNnzByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr, &
+        csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int) :: nnzTotalDevHostPtr
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneDense2csrNnzByPercentage_assumed_rank = hipsparseDpruneDense2csrNnzByPercentage_( &
+        handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
+    function hipsparseSpruneDense2csrByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr,csrVal, &
+        csrRowPtr,csrColInd,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
+      real(c_float),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseSpruneDense2csrByPercentage_assumed_rank = hipsparseSpruneDense2csrByPercentage_(handle, &
+        m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo, &
+        buffer)
+    end function
+
+    function hipsparseDpruneDense2csrByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr,csrVal, &
+        csrRowPtr,csrColInd,myInfo,buffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
+      real(c_double),target,contiguous,dimension(..) :: csrVal
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtr
+      integer(c_int),target,contiguous,dimension(..) :: csrColInd
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
+      !
+      hipsparseDpruneDense2csrByPercentage_assumed_rank = hipsparseDpruneDense2csrByPercentage_(handle, &
+        m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo, &
+        buffer)
+    end function
+
+    function hipsparseScsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_float),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: fractionToColor
+      integer(c_int) :: ncolors
+      integer(c_int) :: coloring
+      integer(c_int) :: reordering
+      type(c_ptr) :: myInfo
+      !
+      hipsparseScsrcolor_assumed_rank = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
+    end function
+
+    function hipsparseDcsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      real(c_double),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: fractionToColor
+      integer(c_int) :: ncolors
+      integer(c_int) :: coloring
+      integer(c_int) :: reordering
+      type(c_ptr) :: myInfo
+      !
+      hipsparseDcsrcolor_assumed_rank = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
+    end function
+
+    function hipsparseCcsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_float_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: fractionToColor
+      integer(c_int) :: ncolors
+      integer(c_int) :: coloring
+      integer(c_int) :: reordering
+      type(c_ptr) :: myInfo
+      !
+      hipsparseCcsrcolor_assumed_rank = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
+    end function
+
+    function hipsparseZcsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
+      complex(c_double_complex),target,contiguous,dimension(..) :: csrValA
+      integer(c_int),target,contiguous,dimension(..) :: csrRowPtrA
+      integer(c_int),target,contiguous,dimension(..) :: csrColIndA
+      type(c_ptr) :: fractionToColor
+      integer(c_int) :: ncolors
+      integer(c_int) :: coloring
+      integer(c_int) :: reordering
+      type(c_ptr) :: myInfo
+      !
+      hipsparseZcsrcolor_assumed_rank = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
+    end function
+
+#else
 
 #ifndef USE_CUDA_NAMES
     function hipsparseSaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
@@ -43162,5 +53524,6 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
 
+#endif
 #endif
 end module hipfort_hipsparse
