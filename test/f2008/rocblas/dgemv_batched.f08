@@ -46,9 +46,12 @@ program dgemv_batched
   hAp(1) = dA1; hAp(2) = dA2
   hxp(1) = dx1; hxp(2) = dx2
   hyp(1) = dy1; hyp(2) = dy2
-  call hipCheck(hipMalloc(dAp, int(batch,c_size_t)*psize)); call hipCheck(hipMemcpy(dAp, c_loc(hAp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
-  call hipCheck(hipMalloc(dxp, int(batch,c_size_t)*psize)); call hipCheck(hipMemcpy(dxp, c_loc(hxp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
-  call hipCheck(hipMalloc(dyp, int(batch,c_size_t)*psize)); call hipCheck(hipMemcpy(dyp, c_loc(hyp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(dAp, int(batch,c_size_t)*psize))
+  call hipCheck(hipMemcpy(dAp, c_loc(hAp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(dxp, int(batch,c_size_t)*psize))
+  call hipCheck(hipMemcpy(dxp, c_loc(hxp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(dyp, int(batch,c_size_t)*psize))
+  call hipCheck(hipMemcpy(dyp, c_loc(hyp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
 
   call hipCheck(rocblas_create_handle(handle))
   call hipCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, alpha, dAp, lda, &
