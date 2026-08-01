@@ -353,10 +353,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSorgbr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSorgbr_bufferSize_rank_0,&
       hipsolverSorgbr_bufferSize_rank_1,&
       hipsolverSorgbr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -381,10 +386,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDorgbr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDorgbr_bufferSize_rank_0,&
       hipsolverDorgbr_bufferSize_rank_1,&
       hipsolverDorgbr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -409,10 +419,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCungbr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCungbr_bufferSize_rank_0,&
       hipsolverCungbr_bufferSize_rank_1,&
       hipsolverCungbr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -437,10 +452,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZungbr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZungbr_bufferSize_rank_0,&
       hipsolverZungbr_bufferSize_rank_1,&
       hipsolverZungbr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -467,10 +487,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSorgbr_assumed_rank
+#else
     module procedure &
       hipsolverSorgbr_rank_0,&
       hipsolverSorgbr_rank_1,&
       hipsolverSorgbr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -497,10 +522,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDorgbr_assumed_rank
+#else
     module procedure &
       hipsolverDorgbr_rank_0,&
       hipsolverDorgbr_rank_1,&
       hipsolverDorgbr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -527,10 +557,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCungbr_assumed_rank
+#else
     module procedure &
       hipsolverCungbr_rank_0,&
       hipsolverCungbr_rank_1,&
       hipsolverCungbr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -557,10 +592,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZungbr_assumed_rank
+#else
     module procedure &
       hipsolverZungbr_rank_0,&
       hipsolverZungbr_rank_1,&
       hipsolverZungbr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -584,10 +624,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSorgqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSorgqr_bufferSize_rank_0,&
       hipsolverSorgqr_bufferSize_rank_1,&
       hipsolverSorgqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -611,10 +656,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDorgqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDorgqr_bufferSize_rank_0,&
       hipsolverDorgqr_bufferSize_rank_1,&
       hipsolverDorgqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -638,10 +688,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCungqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCungqr_bufferSize_rank_0,&
       hipsolverCungqr_bufferSize_rank_1,&
       hipsolverCungqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -665,10 +720,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZungqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZungqr_bufferSize_rank_0,&
       hipsolverZungqr_bufferSize_rank_1,&
       hipsolverZungqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -694,10 +754,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSorgqr_assumed_rank
+#else
     module procedure &
       hipsolverSorgqr_rank_0,&
       hipsolverSorgqr_rank_1,&
       hipsolverSorgqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -723,10 +788,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDorgqr_assumed_rank
+#else
     module procedure &
       hipsolverDorgqr_rank_0,&
       hipsolverDorgqr_rank_1,&
       hipsolverDorgqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -752,10 +822,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCungqr_assumed_rank
+#else
     module procedure &
       hipsolverCungqr_rank_0,&
       hipsolverCungqr_rank_1,&
       hipsolverCungqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -781,10 +856,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZungqr_assumed_rank
+#else
     module procedure &
       hipsolverZungqr_rank_0,&
       hipsolverZungqr_rank_1,&
       hipsolverZungqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -807,10 +887,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSorgtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSorgtr_bufferSize_rank_0,&
       hipsolverSorgtr_bufferSize_rank_1,&
       hipsolverSorgtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -833,10 +918,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDorgtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDorgtr_bufferSize_rank_0,&
       hipsolverDorgtr_bufferSize_rank_1,&
       hipsolverDorgtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -859,10 +949,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCungtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCungtr_bufferSize_rank_0,&
       hipsolverCungtr_bufferSize_rank_1,&
       hipsolverCungtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -885,10 +980,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZungtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZungtr_bufferSize_rank_0,&
       hipsolverZungtr_bufferSize_rank_1,&
       hipsolverZungtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -913,10 +1013,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSorgtr_assumed_rank
+#else
     module procedure &
       hipsolverSorgtr_rank_0,&
       hipsolverSorgtr_rank_1,&
       hipsolverSorgtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -941,10 +1046,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDorgtr_assumed_rank
+#else
     module procedure &
       hipsolverDorgtr_rank_0,&
       hipsolverDorgtr_rank_1,&
       hipsolverDorgtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -969,10 +1079,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCungtr_assumed_rank
+#else
     module procedure &
       hipsolverCungtr_rank_0,&
       hipsolverCungtr_rank_1,&
       hipsolverCungtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -997,10 +1112,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZungtr_assumed_rank
+#else
     module procedure &
       hipsolverZungtr_rank_0,&
       hipsolverZungtr_rank_1,&
       hipsolverZungtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1028,10 +1148,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSormqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSormqr_bufferSize_rank_0,&
       hipsolverSormqr_bufferSize_rank_1,&
       hipsolverSormqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1059,10 +1184,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDormqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDormqr_bufferSize_rank_0,&
       hipsolverDormqr_bufferSize_rank_1,&
       hipsolverDormqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1090,10 +1220,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCunmqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCunmqr_bufferSize_rank_0,&
       hipsolverCunmqr_bufferSize_rank_1,&
       hipsolverCunmqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1121,10 +1256,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZunmqr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZunmqr_bufferSize_rank_0,&
       hipsolverZunmqr_bufferSize_rank_1,&
       hipsolverZunmqr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1154,10 +1294,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSormqr_assumed_rank
+#else
     module procedure &
       hipsolverSormqr_rank_0,&
       hipsolverSormqr_rank_1,&
       hipsolverSormqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1187,10 +1332,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDormqr_assumed_rank
+#else
     module procedure &
       hipsolverDormqr_rank_0,&
       hipsolverDormqr_rank_1,&
       hipsolverDormqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1220,10 +1370,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCunmqr_assumed_rank
+#else
     module procedure &
       hipsolverCunmqr_rank_0,&
       hipsolverCunmqr_rank_1,&
       hipsolverCunmqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1253,10 +1408,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZunmqr_assumed_rank
+#else
     module procedure &
       hipsolverZunmqr_rank_0,&
       hipsolverZunmqr_rank_1,&
       hipsolverZunmqr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1284,10 +1444,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSormtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSormtr_bufferSize_rank_0,&
       hipsolverSormtr_bufferSize_rank_1,&
       hipsolverSormtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1315,10 +1480,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDormtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDormtr_bufferSize_rank_0,&
       hipsolverDormtr_bufferSize_rank_1,&
       hipsolverDormtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1346,10 +1516,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCunmtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCunmtr_bufferSize_rank_0,&
       hipsolverCunmtr_bufferSize_rank_1,&
       hipsolverCunmtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1377,10 +1552,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZunmtr_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZunmtr_bufferSize_rank_0,&
       hipsolverZunmtr_bufferSize_rank_1,&
       hipsolverZunmtr_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1410,10 +1590,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSormtr_assumed_rank
+#else
     module procedure &
       hipsolverSormtr_rank_0,&
       hipsolverSormtr_rank_1,&
       hipsolverSormtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1443,10 +1628,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDormtr_assumed_rank
+#else
     module procedure &
       hipsolverDormtr_rank_0,&
       hipsolverDormtr_rank_1,&
       hipsolverDormtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1476,10 +1666,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCunmtr_assumed_rank
+#else
     module procedure &
       hipsolverCunmtr_rank_0,&
       hipsolverCunmtr_rank_1,&
       hipsolverCunmtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1509,10 +1704,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZunmtr_assumed_rank
+#else
     module procedure &
       hipsolverZunmtr_rank_0,&
       hipsolverZunmtr_rank_1,&
       hipsolverZunmtr_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1604,10 +1804,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgebrd_assumed_rank
+#else
     module procedure &
       hipsolverSgebrd_rank_0,&
       hipsolverSgebrd_rank_1,&
       hipsolverSgebrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1635,10 +1840,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgebrd_assumed_rank
+#else
     module procedure &
       hipsolverDgebrd_rank_0,&
       hipsolverDgebrd_rank_1,&
       hipsolverDgebrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1666,10 +1876,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgebrd_assumed_rank
+#else
     module procedure &
       hipsolverCgebrd_rank_0,&
       hipsolverCgebrd_rank_1,&
       hipsolverCgebrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1697,10 +1912,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgebrd_assumed_rank
+#else
     module procedure &
       hipsolverZgebrd_rank_0,&
       hipsolverZgebrd_rank_1,&
       hipsolverZgebrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1942,10 +2162,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgeqrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSgeqrf_bufferSize_rank_0,&
       hipsolverSgeqrf_bufferSize_rank_1,&
       hipsolverSgeqrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1967,10 +2192,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgeqrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDgeqrf_bufferSize_rank_0,&
       hipsolverDgeqrf_bufferSize_rank_1,&
       hipsolverDgeqrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -1992,10 +2222,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgeqrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCgeqrf_bufferSize_rank_0,&
       hipsolverCgeqrf_bufferSize_rank_1,&
       hipsolverCgeqrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2017,10 +2252,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgeqrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZgeqrf_bufferSize_rank_0,&
       hipsolverZgeqrf_bufferSize_rank_1,&
       hipsolverZgeqrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2045,10 +2285,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgeqrf_assumed_rank
+#else
     module procedure &
       hipsolverSgeqrf_rank_0,&
       hipsolverSgeqrf_rank_1,&
       hipsolverSgeqrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2073,10 +2318,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgeqrf_assumed_rank
+#else
     module procedure &
       hipsolverDgeqrf_rank_0,&
       hipsolverDgeqrf_rank_1,&
       hipsolverDgeqrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2101,10 +2351,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgeqrf_assumed_rank
+#else
     module procedure &
       hipsolverCgeqrf_rank_0,&
       hipsolverCgeqrf_rank_1,&
       hipsolverCgeqrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2129,10 +2384,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgeqrf_assumed_rank
+#else
     module procedure &
       hipsolverZgeqrf_rank_0,&
       hipsolverZgeqrf_rank_1,&
       hipsolverZgeqrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2159,10 +2419,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSSgesv_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSSgesv_bufferSize_rank_0,&
       hipsolverSSgesv_bufferSize_rank_1,&
       hipsolverSSgesv_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2189,10 +2454,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDDgesv_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDDgesv_bufferSize_rank_0,&
       hipsolverDDgesv_bufferSize_rank_1,&
       hipsolverDDgesv_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2219,10 +2489,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCCgesv_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCCgesv_bufferSize_rank_0,&
       hipsolverCCgesv_bufferSize_rank_1,&
       hipsolverCCgesv_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2249,10 +2524,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZZgesv_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZZgesv_bufferSize_rank_0,&
       hipsolverZZgesv_bufferSize_rank_1,&
       hipsolverZZgesv_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2282,10 +2562,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSSgesv_assumed_rank
+#else
     module procedure &
       hipsolverSSgesv_rank_0,&
       hipsolverSSgesv_rank_1,&
       hipsolverSSgesv_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2315,10 +2600,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDDgesv_assumed_rank
+#else
     module procedure &
       hipsolverDDgesv_rank_0,&
       hipsolverDDgesv_rank_1,&
       hipsolverDDgesv_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2348,10 +2638,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCCgesv_assumed_rank
+#else
     module procedure &
       hipsolverCCgesv_rank_0,&
       hipsolverCCgesv_rank_1,&
       hipsolverCCgesv_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -2381,10 +2676,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZZgesv_assumed_rank
+#else
     module procedure &
       hipsolverZZgesv_rank_0,&
       hipsolverZZgesv_rank_1,&
       hipsolverZZgesv_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3054,10 +3354,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgetrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSgetrf_bufferSize_rank_0,&
       hipsolverSgetrf_bufferSize_rank_1,&
       hipsolverSgetrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3079,10 +3384,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgetrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDgetrf_bufferSize_rank_0,&
       hipsolverDgetrf_bufferSize_rank_1,&
       hipsolverDgetrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3104,10 +3414,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgetrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCgetrf_bufferSize_rank_0,&
       hipsolverCgetrf_bufferSize_rank_1,&
       hipsolverCgetrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3129,10 +3444,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgetrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZgetrf_bufferSize_rank_0,&
       hipsolverZgetrf_bufferSize_rank_1,&
       hipsolverZgetrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3157,10 +3477,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgetrf_assumed_rank
+#else
     module procedure &
       hipsolverSgetrf_rank_0,&
       hipsolverSgetrf_rank_1,&
       hipsolverSgetrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3185,10 +3510,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgetrf_assumed_rank
+#else
     module procedure &
       hipsolverDgetrf_rank_0,&
       hipsolverDgetrf_rank_1,&
       hipsolverDgetrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3213,10 +3543,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgetrf_assumed_rank
+#else
     module procedure &
       hipsolverCgetrf_rank_0,&
       hipsolverCgetrf_rank_1,&
       hipsolverCgetrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3241,10 +3576,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgetrf_assumed_rank
+#else
     module procedure &
       hipsolverZgetrf_rank_0,&
       hipsolverZgetrf_rank_1,&
       hipsolverZgetrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3270,10 +3610,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgetrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSgetrs_bufferSize_rank_0,&
       hipsolverSgetrs_bufferSize_rank_1,&
       hipsolverSgetrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3299,10 +3644,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgetrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDgetrs_bufferSize_rank_0,&
       hipsolverDgetrs_bufferSize_rank_1,&
       hipsolverDgetrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3328,10 +3678,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgetrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCgetrs_bufferSize_rank_0,&
       hipsolverCgetrs_bufferSize_rank_1,&
       hipsolverCgetrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3357,10 +3712,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgetrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZgetrs_bufferSize_rank_0,&
       hipsolverZgetrs_bufferSize_rank_1,&
       hipsolverZgetrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3388,10 +3748,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSgetrs_assumed_rank
+#else
     module procedure &
       hipsolverSgetrs_rank_0,&
       hipsolverSgetrs_rank_1,&
       hipsolverSgetrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3419,10 +3784,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDgetrs_assumed_rank
+#else
     module procedure &
       hipsolverDgetrs_rank_0,&
       hipsolverDgetrs_rank_1,&
       hipsolverDgetrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3450,10 +3820,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCgetrs_assumed_rank
+#else
     module procedure &
       hipsolverCgetrs_rank_0,&
       hipsolverCgetrs_rank_1,&
       hipsolverCgetrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3481,10 +3856,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZgetrs_assumed_rank
+#else
     module procedure &
       hipsolverZgetrs_rank_0,&
       hipsolverZgetrs_rank_1,&
       hipsolverZgetrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3506,10 +3886,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSpotrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSpotrf_bufferSize_rank_0,&
       hipsolverSpotrf_bufferSize_rank_1,&
       hipsolverSpotrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3531,10 +3916,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDpotrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDpotrf_bufferSize_rank_0,&
       hipsolverDpotrf_bufferSize_rank_1,&
       hipsolverDpotrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3556,10 +3946,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCpotrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCpotrf_bufferSize_rank_0,&
       hipsolverCpotrf_bufferSize_rank_1,&
       hipsolverCpotrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3581,10 +3976,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZpotrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZpotrf_bufferSize_rank_0,&
       hipsolverZpotrf_bufferSize_rank_1,&
       hipsolverZpotrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3608,10 +4008,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSpotrf_assumed_rank
+#else
     module procedure &
       hipsolverSpotrf_rank_0,&
       hipsolverSpotrf_rank_1,&
       hipsolverSpotrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3635,10 +4040,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDpotrf_assumed_rank
+#else
     module procedure &
       hipsolverDpotrf_rank_0,&
       hipsolverDpotrf_rank_1,&
       hipsolverDpotrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3662,10 +4072,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCpotrf_assumed_rank
+#else
     module procedure &
       hipsolverCpotrf_rank_0,&
       hipsolverCpotrf_rank_1,&
       hipsolverCpotrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3689,10 +4104,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZpotrf_assumed_rank
+#else
     module procedure &
       hipsolverZpotrf_rank_0,&
       hipsolverZpotrf_rank_1,&
       hipsolverZpotrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3874,10 +4294,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSpotri_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSpotri_bufferSize_rank_0,&
       hipsolverSpotri_bufferSize_rank_1,&
       hipsolverSpotri_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3899,10 +4324,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDpotri_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDpotri_bufferSize_rank_0,&
       hipsolverDpotri_bufferSize_rank_1,&
       hipsolverDpotri_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3924,10 +4354,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCpotri_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCpotri_bufferSize_rank_0,&
       hipsolverCpotri_bufferSize_rank_1,&
       hipsolverCpotri_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3949,10 +4384,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZpotri_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZpotri_bufferSize_rank_0,&
       hipsolverZpotri_bufferSize_rank_1,&
       hipsolverZpotri_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -3976,10 +4416,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSpotri_assumed_rank
+#else
     module procedure &
       hipsolverSpotri_rank_0,&
       hipsolverSpotri_rank_1,&
       hipsolverSpotri_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4003,10 +4448,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDpotri_assumed_rank
+#else
     module procedure &
       hipsolverDpotri_rank_0,&
       hipsolverDpotri_rank_1,&
       hipsolverDpotri_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4030,10 +4480,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCpotri_assumed_rank
+#else
     module procedure &
       hipsolverCpotri_rank_0,&
       hipsolverCpotri_rank_1,&
       hipsolverCpotri_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4057,10 +4512,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZpotri_assumed_rank
+#else
     module procedure &
       hipsolverZpotri_rank_0,&
       hipsolverZpotri_rank_1,&
       hipsolverZpotri_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4085,10 +4545,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSpotrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSpotrs_bufferSize_rank_0,&
       hipsolverSpotrs_bufferSize_rank_1,&
       hipsolverSpotrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4113,10 +4578,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDpotrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDpotrs_bufferSize_rank_0,&
       hipsolverDpotrs_bufferSize_rank_1,&
       hipsolverDpotrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4141,10 +4611,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCpotrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCpotrs_bufferSize_rank_0,&
       hipsolverCpotrs_bufferSize_rank_1,&
       hipsolverCpotrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4169,10 +4644,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZpotrs_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZpotrs_bufferSize_rank_0,&
       hipsolverZpotrs_bufferSize_rank_1,&
       hipsolverZpotrs_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4199,10 +4679,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSpotrs_assumed_rank
+#else
     module procedure &
       hipsolverSpotrs_rank_0,&
       hipsolverSpotrs_rank_1,&
       hipsolverSpotrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4229,10 +4714,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDpotrs_assumed_rank
+#else
     module procedure &
       hipsolverDpotrs_rank_0,&
       hipsolverDpotrs_rank_1,&
       hipsolverDpotrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4259,10 +4749,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCpotrs_assumed_rank
+#else
     module procedure &
       hipsolverCpotrs_rank_0,&
       hipsolverCpotrs_rank_1,&
       hipsolverCpotrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4289,10 +4784,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZpotrs_assumed_rank
+#else
     module procedure &
       hipsolverZpotrs_rank_0,&
       hipsolverZpotrs_rank_1,&
       hipsolverZpotrs_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4504,10 +5004,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsyevd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSsyevd_bufferSize_rank_0,&
       hipsolverSsyevd_bufferSize_rank_1,&
       hipsolverSsyevd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4531,10 +5036,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsyevd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDsyevd_bufferSize_rank_0,&
       hipsolverDsyevd_bufferSize_rank_1,&
       hipsolverDsyevd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4558,10 +5068,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCheevd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCheevd_bufferSize_rank_0,&
       hipsolverCheevd_bufferSize_rank_1,&
       hipsolverCheevd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4585,10 +5100,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZheevd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZheevd_bufferSize_rank_0,&
       hipsolverZheevd_bufferSize_rank_1,&
       hipsolverZheevd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4614,10 +5134,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsyevd_assumed_rank
+#else
     module procedure &
       hipsolverSsyevd_rank_0,&
       hipsolverSsyevd_rank_1,&
       hipsolverSsyevd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4643,10 +5168,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsyevd_assumed_rank
+#else
     module procedure &
       hipsolverDsyevd_rank_0,&
       hipsolverDsyevd_rank_1,&
       hipsolverDsyevd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4672,10 +5202,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCheevd_assumed_rank
+#else
     module procedure &
       hipsolverCheevd_rank_0,&
       hipsolverCheevd_rank_1,&
       hipsolverCheevd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -4701,10 +5236,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZheevd_assumed_rank
+#else
     module procedure &
       hipsolverZheevd_rank_0,&
       hipsolverZheevd_rank_1,&
       hipsolverZheevd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5330,10 +5870,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsygvd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSsygvd_bufferSize_rank_0,&
       hipsolverSsygvd_bufferSize_rank_1,&
       hipsolverSsygvd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5360,10 +5905,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsygvd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDsygvd_bufferSize_rank_0,&
       hipsolverDsygvd_bufferSize_rank_1,&
       hipsolverDsygvd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5390,10 +5940,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverChegvd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverChegvd_bufferSize_rank_0,&
       hipsolverChegvd_bufferSize_rank_1,&
       hipsolverChegvd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5420,10 +5975,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZhegvd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZhegvd_bufferSize_rank_0,&
       hipsolverZhegvd_bufferSize_rank_1,&
       hipsolverZhegvd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5452,10 +6012,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsygvd_assumed_rank
+#else
     module procedure &
       hipsolverSsygvd_rank_0,&
       hipsolverSsygvd_rank_1,&
       hipsolverSsygvd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5484,10 +6049,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsygvd_assumed_rank
+#else
     module procedure &
       hipsolverDsygvd_rank_0,&
       hipsolverDsygvd_rank_1,&
       hipsolverDsygvd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5516,10 +6086,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverChegvd_assumed_rank
+#else
     module procedure &
       hipsolverChegvd_rank_0,&
       hipsolverChegvd_rank_1,&
       hipsolverChegvd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -5548,10 +6123,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZhegvd_assumed_rank
+#else
     module procedure &
       hipsolverZhegvd_rank_0,&
       hipsolverZhegvd_rank_1,&
       hipsolverZhegvd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6024,10 +6604,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsytrd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSsytrd_bufferSize_rank_0,&
       hipsolverSsytrd_bufferSize_rank_1,&
       hipsolverSsytrd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6052,10 +6637,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsytrd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDsytrd_bufferSize_rank_0,&
       hipsolverDsytrd_bufferSize_rank_1,&
       hipsolverDsytrd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6080,10 +6670,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverChetrd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverChetrd_bufferSize_rank_0,&
       hipsolverChetrd_bufferSize_rank_1,&
       hipsolverChetrd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6108,10 +6703,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZhetrd_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZhetrd_bufferSize_rank_0,&
       hipsolverZhetrd_bufferSize_rank_1,&
       hipsolverZhetrd_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6138,10 +6738,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsytrd_assumed_rank
+#else
     module procedure &
       hipsolverSsytrd_rank_0,&
       hipsolverSsytrd_rank_1,&
       hipsolverSsytrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6168,10 +6773,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsytrd_assumed_rank
+#else
     module procedure &
       hipsolverDsytrd_rank_0,&
       hipsolverDsytrd_rank_1,&
       hipsolverDsytrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6198,10 +6808,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverChetrd_assumed_rank
+#else
     module procedure &
       hipsolverChetrd_rank_0,&
       hipsolverChetrd_rank_1,&
       hipsolverChetrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6228,10 +6843,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZhetrd_assumed_rank
+#else
     module procedure &
       hipsolverZhetrd_rank_0,&
       hipsolverZhetrd_rank_1,&
       hipsolverZhetrd_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6252,10 +6872,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsytrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverSsytrf_bufferSize_rank_0,&
       hipsolverSsytrf_bufferSize_rank_1,&
       hipsolverSsytrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6276,10 +6901,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsytrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverDsytrf_bufferSize_rank_0,&
       hipsolverDsytrf_bufferSize_rank_1,&
       hipsolverDsytrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6300,10 +6930,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCsytrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverCsytrf_bufferSize_rank_0,&
       hipsolverCsytrf_bufferSize_rank_1,&
       hipsolverCsytrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6324,10 +6959,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZsytrf_bufferSize_assumed_rank
+#else
     module procedure &
       hipsolverZsytrf_bufferSize_rank_0,&
       hipsolverZsytrf_bufferSize_rank_1,&
       hipsolverZsytrf_bufferSize_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6352,10 +6992,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverSsytrf_assumed_rank
+#else
     module procedure &
       hipsolverSsytrf_rank_0,&
       hipsolverSsytrf_rank_1,&
       hipsolverSsytrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6380,10 +7025,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverDsytrf_assumed_rank
+#else
     module procedure &
       hipsolverDsytrf_rank_0,&
       hipsolverDsytrf_rank_1,&
       hipsolverDsytrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6408,10 +7058,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverCsytrf_assumed_rank
+#else
     module procedure &
       hipsolverCsytrf_rank_0,&
       hipsolverCsytrf_rank_1,&
       hipsolverCsytrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -6436,10 +7091,15 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure &
+      hipsolverZsytrf_assumed_rank
+#else
     module procedure &
       hipsolverZsytrf_rank_0,&
       hipsolverZsytrf_rank_1,&
       hipsolverZsytrf_full_rank
+#endif
 #endif
   end interface
 #endif
@@ -13789,6 +14449,2576 @@ module hipfort_hipsolver
 
 #ifdef USE_FPOINTER_INTERFACES
   contains
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipsolverSorgbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverSorgbr_bufferSize_assumed_rank = hipsolverSorgbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
+        lda,tau,lwork)
+    end function
+
+    function hipsolverDorgbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverDorgbr_bufferSize_assumed_rank = hipsolverDorgbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
+        lda,tau,lwork)
+    end function
+
+    function hipsolverCungbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverCungbr_bufferSize_assumed_rank = hipsolverCungbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
+        lda,tau,lwork)
+    end function
+
+    function hipsolverZungbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverZungbr_bufferSize_assumed_rank = hipsolverZungbr_bufferSize_(handle,side,m,n,k,c_loc(A), &
+        lda,tau,lwork)
+    end function
+
+    function hipsolverSorgbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSorgbr_assumed_rank = hipsolverSorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverDorgbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDorgbr_assumed_rank = hipsolverDorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverCungbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCungbr_assumed_rank = hipsolverCungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverZungbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZungbr_assumed_rank = hipsolverZungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverSorgqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverSorgqr_bufferSize_assumed_rank = hipsolverSorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverDorgqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverDorgqr_bufferSize_assumed_rank = hipsolverDorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverCungqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverCungqr_bufferSize_assumed_rank = hipsolverCungqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverZungqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverZungqr_bufferSize_assumed_rank = hipsolverZungqr_bufferSize_(handle,m,n,k,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverSorgqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSorgqr_assumed_rank = hipsolverSorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverDorgqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDorgqr_assumed_rank = hipsolverDorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverCungqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCungqr_assumed_rank = hipsolverCungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverZungqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZungqr_assumed_rank = hipsolverZungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverSorgtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverSorgtr_bufferSize_assumed_rank = hipsolverSorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverDorgtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverDorgtr_bufferSize_assumed_rank = hipsolverDorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverCungtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverCungtr_bufferSize_assumed_rank = hipsolverCungtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverZungtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverZungtr_bufferSize_assumed_rank = hipsolverZungtr_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        tau,lwork)
+    end function
+
+    function hipsolverSorgtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSorgtr_assumed_rank = hipsolverSorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverDorgtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDorgtr_assumed_rank = hipsolverDorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverCungtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCungtr_assumed_rank = hipsolverCungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverZungtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZungtr_assumed_rank = hipsolverZungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverSormqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverSormqr_bufferSize_assumed_rank = hipsolverSormqr_bufferSize_(handle,side,trans,m,n,k, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverDormqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverDormqr_bufferSize_assumed_rank = hipsolverDormqr_bufferSize_(handle,side,trans,m,n,k, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverCunmqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverCunmqr_bufferSize_assumed_rank = hipsolverCunmqr_bufferSize_(handle,side,trans,m,n,k, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverZunmqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverZunmqr_bufferSize_assumed_rank = hipsolverZunmqr_bufferSize_(handle,side,trans,m,n,k, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverSormqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSormqr_assumed_rank = hipsolverSormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
+        ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverDormqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDormqr_assumed_rank = hipsolverDormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
+        ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverCunmqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCunmqr_assumed_rank = hipsolverCunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
+        ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverZunmqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZunmqr_assumed_rank = hipsolverZunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C), &
+        ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverSormtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverSormtr_bufferSize_assumed_rank = hipsolverSormtr_bufferSize_(handle,side,uplo,trans,m,n, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverDormtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverDormtr_bufferSize_assumed_rank = hipsolverDormtr_bufferSize_(handle,side,uplo,trans,m,n, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverCunmtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverCunmtr_bufferSize_assumed_rank = hipsolverCunmtr_bufferSize_(handle,side,uplo,trans,m,n, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverZunmtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      integer(c_int) :: lwork
+      !
+      hipsolverZunmtr_bufferSize_assumed_rank = hipsolverZunmtr_bufferSize_(handle,side,uplo,trans,m,n, &
+        c_loc(A),lda,tau,c_loc(C),ldc,lwork)
+    end function
+
+    function hipsolverSormtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      real(c_float),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSormtr_assumed_rank = hipsolverSormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
+        c_loc(C),ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverDormtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      real(c_double),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDormtr_assumed_rank = hipsolverDormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
+        c_loc(C),ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverCunmtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCunmtr_assumed_rank = hipsolverCunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
+        c_loc(C),ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverZunmtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      integer(c_int) :: ldc
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZunmtr_assumed_rank = hipsolverZunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau, &
+        c_loc(C),ldc,work,lwork,devInfo)
+    end function
+
+    function hipsolverSgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      real(c_float),target,contiguous,dimension(..) :: E
+      real(c_float),target,contiguous,dimension(..) :: tauq
+      real(c_float),target,contiguous,dimension(..) :: taup
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSgebrd_assumed_rank = hipsolverSgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tauq),c_loc(taup),work,lwork,devInfo)
+    end function
+
+    function hipsolverDgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      real(c_double),target,contiguous,dimension(..) :: E
+      real(c_double),target,contiguous,dimension(..) :: tauq
+      real(c_double),target,contiguous,dimension(..) :: taup
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDgebrd_assumed_rank = hipsolverDgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tauq),c_loc(taup),work,lwork,devInfo)
+    end function
+
+    function hipsolverCgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      real(c_float),target,contiguous,dimension(..) :: E
+      complex(c_float_complex),target,contiguous,dimension(..) :: tauq
+      complex(c_float_complex),target,contiguous,dimension(..) :: taup
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCgebrd_assumed_rank = hipsolverCgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tauq),c_loc(taup),work,lwork,devInfo)
+    end function
+
+    function hipsolverZgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      real(c_double),target,contiguous,dimension(..) :: E
+      complex(c_double_complex),target,contiguous,dimension(..) :: tauq
+      complex(c_double_complex),target,contiguous,dimension(..) :: taup
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZgebrd_assumed_rank = hipsolverZgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E), &
+        c_loc(tauq),c_loc(taup),work,lwork,devInfo)
+    end function
+
+    function hipsolverSgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverSgeqrf_bufferSize_assumed_rank = hipsolverSgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverDgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverDgeqrf_bufferSize_assumed_rank = hipsolverDgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverCgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverCgeqrf_bufferSize_assumed_rank = hipsolverCgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverZgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverZgeqrf_bufferSize_assumed_rank = hipsolverZgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverSgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSgeqrf_assumed_rank = hipsolverSgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverDgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDgeqrf_assumed_rank = hipsolverDgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverCgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCgeqrf_assumed_rank = hipsolverCgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverZgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZgeqrf_assumed_rank = hipsolverZgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
+    end function
+
+    function hipsolverSSgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(c_size_t) :: lwork
+      !
+      hipsolverSSgesv_bufferSize_assumed_rank = hipsolverSSgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
+        c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
+    end function
+
+    function hipsolverDDgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(c_size_t) :: lwork
+      !
+      hipsolverDDgesv_bufferSize_assumed_rank = hipsolverDDgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
+        c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
+    end function
+
+    function hipsolverCCgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(c_size_t) :: lwork
+      !
+      hipsolverCCgesv_bufferSize_assumed_rank = hipsolverCCgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
+        c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
+    end function
+
+    function hipsolverZZgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(c_size_t) :: lwork
+      !
+      hipsolverZZgesv_bufferSize_assumed_rank = hipsolverZZgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda, &
+        c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
+    end function
+
+    function hipsolverSSgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
+        devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      type(c_ptr) :: work
+      integer(c_size_t) :: lwork
+      type(c_ptr) :: niters
+      integer(c_int) :: devInfo
+      !
+      hipsolverSSgesv_assumed_rank = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
+    end function
+
+    function hipsolverDDgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
+        devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      type(c_ptr) :: work
+      integer(c_size_t) :: lwork
+      type(c_ptr) :: niters
+      integer(c_int) :: devInfo
+      !
+      hipsolverDDgesv_assumed_rank = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
+    end function
+
+    function hipsolverCCgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
+        devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      type(c_ptr) :: work
+      integer(c_size_t) :: lwork
+      type(c_ptr) :: niters
+      integer(c_int) :: devInfo
+      !
+      hipsolverCCgesv_assumed_rank = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
+    end function
+
+    function hipsolverZZgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
+        devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target,contiguous,dimension(..) :: X
+      integer(c_int) :: ldx
+      type(c_ptr) :: work
+      integer(c_size_t) :: lwork
+      type(c_ptr) :: niters
+      integer(c_int) :: devInfo
+      !
+      hipsolverZZgesv_assumed_rank = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
+    end function
+
+    function hipsolverSgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverSgetrf_bufferSize_assumed_rank = hipsolverSgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverDgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverDgetrf_bufferSize_assumed_rank = hipsolverDgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverCgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverCgetrf_bufferSize_assumed_rank = hipsolverCgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverZgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverZgetrf_bufferSize_assumed_rank = hipsolverZgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverSgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int) :: devInfo
+      !
+      hipsolverSgetrf_assumed_rank = hipsolverSgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
+        devInfo)
+    end function
+
+    function hipsolverDgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int) :: devInfo
+      !
+      hipsolverDgetrf_assumed_rank = hipsolverDgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
+        devInfo)
+    end function
+
+    function hipsolverCgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int) :: devInfo
+      !
+      hipsolverCgetrf_assumed_rank = hipsolverCgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
+        devInfo)
+    end function
+
+    function hipsolverZgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int) :: devInfo
+      !
+      hipsolverZgetrf_assumed_rank = hipsolverZgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv), &
+        devInfo)
+    end function
+
+    function hipsolverSgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverSgetrs_bufferSize_assumed_rank = hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs, &
+        c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverDgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverDgetrs_bufferSize_assumed_rank = hipsolverDgetrs_bufferSize_(handle,trans,n,nrhs, &
+        c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverCgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverCgetrs_bufferSize_assumed_rank = hipsolverCgetrs_bufferSize_(handle,trans,n,nrhs, &
+        c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverZgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverZgetrs_bufferSize_assumed_rank = hipsolverZgetrs_bufferSize_(handle,trans,n,nrhs, &
+        c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverSgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSgetrs_assumed_rank = hipsolverSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,work,lwork,devInfo)
+    end function
+
+    function hipsolverDgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDgetrs_assumed_rank = hipsolverDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,work,lwork,devInfo)
+    end function
+
+    function hipsolverCgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCgetrs_assumed_rank = hipsolverCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,work,lwork,devInfo)
+    end function
+
+    function hipsolverZgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZgetrs_assumed_rank = hipsolverZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
+        c_loc(B),ldb,work,lwork,devInfo)
+    end function
+
+    function hipsolverSpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverSpotrf_bufferSize_assumed_rank = hipsolverSpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverDpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverDpotrf_bufferSize_assumed_rank = hipsolverDpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverCpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverCpotrf_bufferSize_assumed_rank = hipsolverCpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverZpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverZpotrf_bufferSize_assumed_rank = hipsolverZpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverSpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSpotrf_assumed_rank = hipsolverSpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverDpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDpotrf_assumed_rank = hipsolverDpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverCpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCpotrf_assumed_rank = hipsolverCpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverZpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZpotrf_assumed_rank = hipsolverZpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverSpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverSpotri_bufferSize_assumed_rank = hipsolverSpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverDpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverDpotri_bufferSize_assumed_rank = hipsolverDpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverCpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverCpotri_bufferSize_assumed_rank = hipsolverCpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverZpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverZpotri_bufferSize_assumed_rank = hipsolverZpotri_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        lwork)
+    end function
+
+    function hipsolverSpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSpotri_assumed_rank = hipsolverSpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverDpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDpotri_assumed_rank = hipsolverDpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverCpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCpotri_assumed_rank = hipsolverCpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverZpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZpotri_assumed_rank = hipsolverZpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
+    end function
+
+    function hipsolverSpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverSpotrs_bufferSize_assumed_rank = hipsolverSpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
+        lda,c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverDpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverDpotrs_bufferSize_assumed_rank = hipsolverDpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
+        lda,c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverCpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverCpotrs_bufferSize_assumed_rank = hipsolverCpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
+        lda,c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverZpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int) :: lwork
+      !
+      hipsolverZpotrs_bufferSize_assumed_rank = hipsolverZpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A), &
+        lda,c_loc(B),ldb,lwork)
+    end function
+
+    function hipsolverSpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSpotrs_assumed_rank = hipsolverSpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverDpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDpotrs_assumed_rank = hipsolverDpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverCpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCpotrs_assumed_rank = hipsolverCpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverZpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZpotrs_assumed_rank = hipsolverZpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverSsyevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      integer(c_int) :: lwork
+      !
+      hipsolverSsyevd_bufferSize_assumed_rank = hipsolverSsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
+        lda,c_loc(D),lwork)
+    end function
+
+    function hipsolverDsyevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      integer(c_int) :: lwork
+      !
+      hipsolverDsyevd_bufferSize_assumed_rank = hipsolverDsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
+        lda,c_loc(D),lwork)
+    end function
+
+    function hipsolverCheevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      integer(c_int) :: lwork
+      !
+      hipsolverCheevd_bufferSize_assumed_rank = hipsolverCheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
+        lda,c_loc(D),lwork)
+    end function
+
+    function hipsolverZheevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      integer(c_int) :: lwork
+      !
+      hipsolverZheevd_bufferSize_assumed_rank = hipsolverZheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A), &
+        lda,c_loc(D),lwork)
+    end function
+
+    function hipsolverSsyevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSsyevd_assumed_rank = hipsolverSsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverDsyevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDsyevd_assumed_rank = hipsolverDsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverCheevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCheevd_assumed_rank = hipsolverCheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverZheevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZheevd_assumed_rank = hipsolverZheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work, &
+        lwork,devInfo)
+    end function
+
+    function hipsolverSsygvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: W
+      integer(c_int) :: lwork
+      !
+      hipsolverSsygvd_bufferSize_assumed_rank = hipsolverSsygvd_bufferSize_(handle,itype,jobz,uplo,n, &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
+    end function
+
+    function hipsolverDsygvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: W
+      integer(c_int) :: lwork
+      !
+      hipsolverDsygvd_bufferSize_assumed_rank = hipsolverDsygvd_bufferSize_(handle,itype,jobz,uplo,n, &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
+    end function
+
+    function hipsolverChegvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: W
+      integer(c_int) :: lwork
+      !
+      hipsolverChegvd_bufferSize_assumed_rank = hipsolverChegvd_bufferSize_(handle,itype,jobz,uplo,n, &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
+    end function
+
+    function hipsolverZhegvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: W
+      integer(c_int) :: lwork
+      !
+      hipsolverZhegvd_bufferSize_assumed_rank = hipsolverZhegvd_bufferSize_(handle,itype,jobz,uplo,n, &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(W),lwork)
+    end function
+
+    function hipsolverSsygvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: W
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSsygvd_assumed_rank = hipsolverSsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
+        ldb,c_loc(W),work,lwork,devInfo)
+    end function
+
+    function hipsolverDsygvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: W
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDsygvd_assumed_rank = hipsolverDsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
+        ldb,c_loc(W),work,lwork,devInfo)
+    end function
+
+    function hipsolverChegvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,contiguous,dimension(..) :: W
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverChegvd_assumed_rank = hipsolverChegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
+        ldb,c_loc(W),work,lwork,devInfo)
+    end function
+
+    function hipsolverZhegvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,contiguous,dimension(..) :: W
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZhegvd_assumed_rank = hipsolverZhegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B), &
+        ldb,c_loc(W),work,lwork,devInfo)
+    end function
+
+    function hipsolverSsytrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      real(c_float),target,contiguous,dimension(..) :: E
+      real(c_float) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverSsytrd_bufferSize_assumed_rank = hipsolverSsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),tau,lwork)
+    end function
+
+    function hipsolverDsytrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      real(c_double),target,contiguous,dimension(..) :: E
+      real(c_double) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverDsytrd_bufferSize_assumed_rank = hipsolverDsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),tau,lwork)
+    end function
+
+    function hipsolverChetrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      real(c_float),target,contiguous,dimension(..) :: E
+      complex(c_float_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverChetrd_bufferSize_assumed_rank = hipsolverChetrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),tau,lwork)
+    end function
+
+    function hipsolverZhetrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      real(c_double),target,contiguous,dimension(..) :: E
+      complex(c_double_complex) :: tau
+      integer(c_int) :: lwork
+      !
+      hipsolverZhetrd_bufferSize_assumed_rank = hipsolverZhetrd_bufferSize_(handle,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),tau,lwork)
+    end function
+
+    function hipsolverSsytrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      real(c_float),target,contiguous,dimension(..) :: E
+      real(c_float) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSsytrd_assumed_rank = hipsolverSsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
+        work,lwork,devInfo)
+    end function
+
+    function hipsolverDsytrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      real(c_double),target,contiguous,dimension(..) :: E
+      real(c_double) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDsytrd_assumed_rank = hipsolverDsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
+        work,lwork,devInfo)
+    end function
+
+    function hipsolverChetrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: D
+      real(c_float),target,contiguous,dimension(..) :: E
+      complex(c_float_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverChetrd_assumed_rank = hipsolverChetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
+        work,lwork,devInfo)
+    end function
+
+    function hipsolverZhetrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: D
+      real(c_double),target,contiguous,dimension(..) :: E
+      complex(c_double_complex) :: tau
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZhetrd_assumed_rank = hipsolverZhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau, &
+        work,lwork,devInfo)
+    end function
+
+    function hipsolverSsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverSsytrf_bufferSize_assumed_rank = hipsolverSsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverDsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverDsytrf_bufferSize_assumed_rank = hipsolverDsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverCsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverCsytrf_bufferSize_assumed_rank = hipsolverCsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverZsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: lwork
+      !
+      hipsolverZsytrf_bufferSize_assumed_rank = hipsolverZsytrf_bufferSize_(handle,n,c_loc(A),lda,lwork)
+    end function
+
+    function hipsolverSsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverSsytrf_assumed_rank = hipsolverSsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverDsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverDsytrf_assumed_rank = hipsolverDsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverCsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverCsytrf_assumed_rank = hipsolverCsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
+    end function
+
+    function hipsolverZsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_assumed_rank
+      type(c_ptr) :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr) :: work
+      integer(c_int) :: lwork
+      integer(c_int) :: devInfo
+      !
+      hipsolverZsytrf_assumed_rank = hipsolverZsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),work,lwork, &
+        devInfo)
+    end function
+
+#else
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSorgbr_bufferSize_rank_0(handle,side,m,n,k,A,lda,tau,lwork)
@@ -21777,6 +25007,7 @@ module hipfort_hipsolver
         lwork,devInfo)
     end function
 
+#endif
 #endif
 #endif
 end module hipfort_hipsolver

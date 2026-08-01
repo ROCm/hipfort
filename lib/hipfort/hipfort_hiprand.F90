@@ -175,6 +175,16 @@ module hipfort_hiprand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerate_assumed_rank
+#else
+    module procedure &
+      hiprandGenerate_rank_0,&
+      hiprandGenerate_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed 8-bit unsigned integers.
@@ -272,6 +282,16 @@ module hipfort_hiprand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateLongLong_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateLongLong_rank_0,&
+      hiprandGenerateLongLong_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed floats.
@@ -306,6 +326,16 @@ module hipfort_hiprand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateUniform_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateUniform_rank_0,&
+      hiprandGenerateUniform_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed double-precision floating-point values.
@@ -348,6 +378,16 @@ module hipfort_hiprand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateUniformDouble_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateUniformDouble_rank_0,&
+      hiprandGenerateUniformDouble_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed half-precision floating-point values.
@@ -419,6 +459,16 @@ module hipfort_hiprand
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateNormal_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateNormal_rank_0,&
+      hiprandGenerateNormal_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates normally distributed doubles.
@@ -457,6 +507,16 @@ module hipfort_hiprand
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateNormalDouble_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateNormalDouble_rank_0,&
+      hiprandGenerateNormalDouble_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates normally distributed halfs.
@@ -488,8 +548,8 @@ module hipfort_hiprand
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
-      integer(c_int),value :: mean
-      integer(c_int),value :: stddev
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
     end function
   end interface
 #endif
@@ -530,6 +590,16 @@ module hipfort_hiprand
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateLogNormal_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateLogNormal_rank_0,&
+      hiprandGenerateLogNormal_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates log-normally distributed doubles.
@@ -568,6 +638,16 @@ module hipfort_hiprand
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGenerateLogNormalDouble_assumed_rank
+#else
+    module procedure &
+      hiprandGenerateLogNormalDouble_rank_0,&
+      hiprandGenerateLogNormalDouble_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates log-normally distributed halfs.
@@ -599,8 +679,8 @@ module hipfort_hiprand
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
-      integer(c_int),value :: mean
-      integer(c_int),value :: stddev
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
     end function
   end interface
 #endif
@@ -639,6 +719,16 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
       real(c_double),value :: lambda
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hiprandGeneratePoisson_assumed_rank
+#else
+    module procedure &
+      hiprandGeneratePoisson_rank_0,&
+      hiprandGeneratePoisson_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Initializes the generator's state on GPU or host.
@@ -999,4 +1089,404 @@ module hipfort_hiprand
     end function
   end interface
 
+
+#ifdef USE_FPOINTER_INTERFACES
+  contains
+
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerate_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_assumed_rank
+      type(c_ptr) :: generator
+      integer(c_int),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerate_assumed_rank = hiprandGenerate_(generator,c_loc(output_data),n)
+    end function
+
+#else
+    function hiprandGenerate_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_0
+      type(c_ptr) :: generator
+      integer(c_int),target :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerate_rank_0 = hiprandGenerate_(generator,c_loc(output_data),n)
+    end function
+
+    function hiprandGenerate_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_1
+      type(c_ptr) :: generator
+      integer(c_int),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerate_rank_1 = hiprandGenerate_(generator,c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateLongLong_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_assumed_rank
+      type(c_ptr) :: generator
+      integer(c_int64_t),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateLongLong_assumed_rank = hiprandGenerateLongLong_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#else
+    function hiprandGenerateLongLong_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_0
+      type(c_ptr) :: generator
+      integer(c_int64_t),target :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateLongLong_rank_0 = hiprandGenerateLongLong_(generator,c_loc(output_data),n)
+    end function
+
+    function hiprandGenerateLongLong_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_1
+      type(c_ptr) :: generator
+      integer(c_int64_t),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateLongLong_rank_1 = hiprandGenerateLongLong_(generator,c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateUniform_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_assumed_rank
+      type(c_ptr) :: generator
+      real(c_float),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateUniform_assumed_rank = hiprandGenerateUniform_(generator,c_loc(output_data),n)
+    end function
+
+#else
+    function hiprandGenerateUniform_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_0
+      type(c_ptr) :: generator
+      real(c_float),target :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateUniform_rank_0 = hiprandGenerateUniform_(generator,c_loc(output_data),n)
+    end function
+
+    function hiprandGenerateUniform_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_1
+      type(c_ptr) :: generator
+      real(c_float),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateUniform_rank_1 = hiprandGenerateUniform_(generator,c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateUniformDouble_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_assumed_rank
+      type(c_ptr) :: generator
+      real(c_double),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateUniformDouble_assumed_rank = hiprandGenerateUniformDouble_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#else
+    function hiprandGenerateUniformDouble_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_0
+      type(c_ptr) :: generator
+      real(c_double),target :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateUniformDouble_rank_0 = hiprandGenerateUniformDouble_(generator, &
+        c_loc(output_data),n)
+    end function
+
+    function hiprandGenerateUniformDouble_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_1
+      type(c_ptr) :: generator
+      real(c_double),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      hiprandGenerateUniformDouble_rank_1 = hiprandGenerateUniformDouble_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateNormal_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_assumed_rank
+      type(c_ptr) :: generator
+      real(c_float),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      hiprandGenerateNormal_assumed_rank = hiprandGenerateNormal_(generator,c_loc(output_data),n, &
+        mean,stddev)
+    end function
+
+#else
+    function hiprandGenerateNormal_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_0
+      type(c_ptr) :: generator
+      real(c_float),target :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      hiprandGenerateNormal_rank_0 = hiprandGenerateNormal_(generator,c_loc(output_data),n,mean, &
+        stddev)
+    end function
+
+    function hiprandGenerateNormal_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_1
+      type(c_ptr) :: generator
+      real(c_float),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      hiprandGenerateNormal_rank_1 = hiprandGenerateNormal_(generator,c_loc(output_data),n,mean, &
+        stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateNormalDouble_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_assumed_rank
+      type(c_ptr) :: generator
+      real(c_double),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      hiprandGenerateNormalDouble_assumed_rank = hiprandGenerateNormalDouble_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function hiprandGenerateNormalDouble_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_0
+      type(c_ptr) :: generator
+      real(c_double),target :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      hiprandGenerateNormalDouble_rank_0 = hiprandGenerateNormalDouble_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+    function hiprandGenerateNormalDouble_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_1
+      type(c_ptr) :: generator
+      real(c_double),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      hiprandGenerateNormalDouble_rank_1 = hiprandGenerateNormalDouble_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateLogNormal_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_assumed_rank
+      type(c_ptr) :: generator
+      real(c_float),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      hiprandGenerateLogNormal_assumed_rank = hiprandGenerateLogNormal_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function hiprandGenerateLogNormal_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_0
+      type(c_ptr) :: generator
+      real(c_float),target :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      hiprandGenerateLogNormal_rank_0 = hiprandGenerateLogNormal_(generator,c_loc(output_data),n, &
+        mean,stddev)
+    end function
+
+    function hiprandGenerateLogNormal_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_1
+      type(c_ptr) :: generator
+      real(c_float),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      hiprandGenerateLogNormal_rank_1 = hiprandGenerateLogNormal_(generator,c_loc(output_data),n, &
+        mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGenerateLogNormalDouble_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_assumed_rank
+      type(c_ptr) :: generator
+      real(c_double),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      hiprandGenerateLogNormalDouble_assumed_rank = hiprandGenerateLogNormalDouble_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function hiprandGenerateLogNormalDouble_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_0
+      type(c_ptr) :: generator
+      real(c_double),target :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      hiprandGenerateLogNormalDouble_rank_0 = hiprandGenerateLogNormalDouble_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+    function hiprandGenerateLogNormalDouble_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_1
+      type(c_ptr) :: generator
+      real(c_double),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      hiprandGenerateLogNormalDouble_rank_1 = hiprandGenerateLogNormalDouble_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hiprandGeneratePoisson_assumed_rank(generator,output_data,n,lambda)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_assumed_rank
+      type(c_ptr) :: generator
+      integer(c_int),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: lambda
+      !
+      hiprandGeneratePoisson_assumed_rank = hiprandGeneratePoisson_(generator,c_loc(output_data), &
+        n,lambda)
+    end function
+
+#else
+    function hiprandGeneratePoisson_rank_0(generator,output_data,n,lambda)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_0
+      type(c_ptr) :: generator
+      integer(c_int),target :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: lambda
+      !
+      hiprandGeneratePoisson_rank_0 = hiprandGeneratePoisson_(generator,c_loc(output_data),n,lambda)
+    end function
+
+    function hiprandGeneratePoisson_rank_1(generator,output_data,n,lambda)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_1
+      type(c_ptr) :: generator
+      integer(c_int),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: lambda
+      !
+      hiprandGeneratePoisson_rank_1 = hiprandGeneratePoisson_(generator,c_loc(output_data),n,lambda)
+    end function
+
+#endif
+#endif
 end module hipfort_hiprand

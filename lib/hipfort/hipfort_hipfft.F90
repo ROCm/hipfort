@@ -171,9 +171,13 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftPlanMany_assumed_rank
+#else
     module procedure &
       hipfftPlanMany_rank_0,&
       hipfftPlanMany_rank_1
+#endif
 #endif
   end interface
 
@@ -379,9 +383,13 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftMakePlanMany_assumed_rank
+#else
     module procedure &
       hipfftMakePlanMany_rank_0,&
       hipfftMakePlanMany_rank_1
+#endif
 #endif
   end interface
 
@@ -414,9 +422,13 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftMakePlanMany64_assumed_rank
+#else
     module procedure &
       hipfftMakePlanMany64_rank_0,&
       hipfftMakePlanMany64_rank_1
+#endif
 #endif
   end interface
 
@@ -532,9 +544,13 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftEstimateMany_assumed_rank
+#else
     module procedure &
       hipfftEstimateMany_rank_0,&
       hipfftEstimateMany_rank_1
+#endif
 #endif
   end interface
 
@@ -658,9 +674,13 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftGetSizeMany_assumed_rank
+#else
     module procedure &
       hipfftGetSizeMany_rank_0,&
       hipfftGetSizeMany_rank_1
+#endif
 #endif
   end interface
 
@@ -693,9 +713,13 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftGetSizeMany64_assumed_rank
+#else
     module procedure &
       hipfftGetSizeMany64_rank_0,&
       hipfftGetSizeMany64_rank_1
+#endif
 #endif
   end interface
 
@@ -782,11 +806,15 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftExecC2C_assumed_rank
+#else
     module procedure &
       hipfftExecC2C_rank_0,&
       hipfftExecC2C_rank_1,&
       hipfftExecC2C_rank_2,&
       hipfftExecC2C_rank_3
+#endif
 #endif
   end interface
 
@@ -814,11 +842,15 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftExecR2C_assumed_rank
+#else
     module procedure &
       hipfftExecR2C_rank_0,&
       hipfftExecR2C_rank_1,&
       hipfftExecR2C_rank_2,&
       hipfftExecR2C_rank_3
+#endif
 #endif
   end interface
 
@@ -846,11 +878,15 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftExecC2R_assumed_rank
+#else
     module procedure &
       hipfftExecC2R_rank_0,&
       hipfftExecC2R_rank_1,&
       hipfftExecC2R_rank_2,&
       hipfftExecC2R_rank_3
+#endif
 #endif
   end interface
 
@@ -880,11 +916,15 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftExecZ2Z_assumed_rank
+#else
     module procedure &
       hipfftExecZ2Z_rank_0,&
       hipfftExecZ2Z_rank_1,&
       hipfftExecZ2Z_rank_2,&
       hipfftExecZ2Z_rank_3
+#endif
 #endif
   end interface
 
@@ -912,11 +952,15 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftExecD2Z_assumed_rank
+#else
     module procedure &
       hipfftExecD2Z_rank_0,&
       hipfftExecD2Z_rank_1,&
       hipfftExecD2Z_rank_2,&
       hipfftExecD2Z_rank_3
+#endif
 #endif
   end interface
 
@@ -944,11 +988,15 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftExecZ2D_assumed_rank
+#else
     module procedure &
       hipfftExecZ2D_rank_0,&
       hipfftExecZ2D_rank_1,&
       hipfftExecZ2D_rank_2,&
       hipfftExecZ2D_rank_3
+#endif
 #endif
   end interface
 
@@ -1025,12 +1073,46 @@ module hipfort_hipfft
       integer(kind(HIPFFT_MAJOR_VERSION)),value :: myType
       type(c_ptr),value :: myValue
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftGetProperty_assumed_rank
+#else
+    module procedure &
+      hipfftGetProperty_rank_0,&
+      hipfftGetProperty_rank_1
+#endif
+#endif
   end interface
 
 
 #ifdef USE_FPOINTER_INTERFACES
   contains
 
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftPlanMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_assumed_rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
+      integer(c_int),target,contiguous,dimension(..) :: n
+      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      !
+      hipfftPlanMany_assumed_rank = hipfftPlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch)
+    end function
+
+#else
     function hipfftPlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch)
       use iso_c_binding
@@ -1075,6 +1157,32 @@ module hipfort_hipfft
         c_loc(onembed),ostride,odist,myType,batch)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftMakePlanMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
+        odist,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_assumed_rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
+      integer(c_int),target,contiguous,dimension(..) :: n
+      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t) :: workSize
+      !
+      hipfftMakePlanMany_assumed_rank = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
+    end function
+
+#else
     function hipfftMakePlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
       use iso_c_binding
@@ -1121,6 +1229,32 @@ module hipfort_hipfft
         idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftMakePlanMany64_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
+        odist,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_assumed_rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target,contiguous,dimension(..) :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int64_t),target,contiguous,dimension(..) :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int64_t) :: batch
+      integer(c_size_t) :: workSize
+      !
+      hipfftMakePlanMany64_assumed_rank = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
+    end function
+
+#else
     function hipfftMakePlanMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
       use iso_c_binding
@@ -1167,6 +1301,31 @@ module hipfort_hipfft
         istride,idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftEstimateMany_assumed_rank(rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,contiguous,dimension(..) :: n
+      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t) :: workSize
+      !
+      hipfftEstimateMany_assumed_rank = hipfftEstimateMany_(rank,c_loc(n),c_loc(inembed),istride, &
+        idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
+    end function
+
+#else
     function hipfftEstimateMany_rank_0(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch,workSize)
       use iso_c_binding
@@ -1211,6 +1370,32 @@ module hipfort_hipfft
         c_loc(onembed),ostride,odist,myType,batch,workSize)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftGetSizeMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
+        odist,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_assumed_rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
+      integer(c_int),target,contiguous,dimension(..) :: n
+      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t) :: workSize
+      !
+      hipfftGetSizeMany_assumed_rank = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
+    end function
+
+#else
     function hipfftGetSizeMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
       use iso_c_binding
@@ -1257,6 +1442,32 @@ module hipfort_hipfft
         idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftGetSizeMany64_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
+        odist,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_assumed_rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target,contiguous,dimension(..) :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int64_t),target,contiguous,dimension(..) :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int64_t) :: batch
+      integer(c_size_t) :: workSize
+      !
+      hipfftGetSizeMany64_assumed_rank = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
+    end function
+
+#else
     function hipfftGetSizeMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
       use iso_c_binding
@@ -1303,6 +1514,22 @@ module hipfort_hipfft
         idist,c_loc(onembed),ostride,odist,myType,batch,workSize)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftExecC2C_assumed_rank(plan,idata,odata,direction)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_assumed_rank
+      type(c_ptr) :: plan
+      complex(c_float_complex),target,contiguous,dimension(..) :: idata
+      complex(c_float_complex),target,contiguous,dimension(..) :: odata
+      integer(c_int) :: direction
+      !
+      hipfftExecC2C_assumed_rank = hipfftExecC2C_(plan,c_loc(idata),c_loc(odata),direction)
+    end function
+
+#else
     function hipfftExecC2C_rank_0(plan,idata,odata,direction)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1355,6 +1582,21 @@ module hipfort_hipfft
       hipfftExecC2C_rank_3 = hipfftExecC2C_(plan,c_loc(idata),c_loc(odata),direction)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftExecR2C_assumed_rank(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_assumed_rank
+      type(c_ptr) :: plan
+      real(c_float),target,contiguous,dimension(..) :: idata
+      complex(c_float_complex),target,contiguous,dimension(..) :: odata
+      !
+      hipfftExecR2C_assumed_rank = hipfftExecR2C_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+#else
     function hipfftExecR2C_rank_0(plan,idata,odata)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1403,6 +1645,21 @@ module hipfort_hipfft
       hipfftExecR2C_rank_3 = hipfftExecR2C_(plan,c_loc(idata),c_loc(odata))
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftExecC2R_assumed_rank(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_assumed_rank
+      type(c_ptr) :: plan
+      complex(c_float_complex),target,contiguous,dimension(..) :: idata
+      real(c_float),target,contiguous,dimension(..) :: odata
+      !
+      hipfftExecC2R_assumed_rank = hipfftExecC2R_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+#else
     function hipfftExecC2R_rank_0(plan,idata,odata)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1451,6 +1708,22 @@ module hipfort_hipfft
       hipfftExecC2R_rank_3 = hipfftExecC2R_(plan,c_loc(idata),c_loc(odata))
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftExecZ2Z_assumed_rank(plan,idata,odata,direction)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_assumed_rank
+      type(c_ptr) :: plan
+      complex(c_double_complex),target,contiguous,dimension(..) :: idata
+      complex(c_double_complex),target,contiguous,dimension(..) :: odata
+      integer(c_int) :: direction
+      !
+      hipfftExecZ2Z_assumed_rank = hipfftExecZ2Z_(plan,c_loc(idata),c_loc(odata),direction)
+    end function
+
+#else
     function hipfftExecZ2Z_rank_0(plan,idata,odata,direction)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1503,6 +1776,21 @@ module hipfort_hipfft
       hipfftExecZ2Z_rank_3 = hipfftExecZ2Z_(plan,c_loc(idata),c_loc(odata),direction)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftExecD2Z_assumed_rank(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_assumed_rank
+      type(c_ptr) :: plan
+      real(c_double),target,contiguous,dimension(..) :: idata
+      complex(c_double_complex),target,contiguous,dimension(..) :: odata
+      !
+      hipfftExecD2Z_assumed_rank = hipfftExecD2Z_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+#else
     function hipfftExecD2Z_rank_0(plan,idata,odata)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1551,6 +1839,21 @@ module hipfort_hipfft
       hipfftExecD2Z_rank_3 = hipfftExecD2Z_(plan,c_loc(idata),c_loc(odata))
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftExecZ2D_assumed_rank(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_assumed_rank
+      type(c_ptr) :: plan
+      complex(c_double_complex),target,contiguous,dimension(..) :: idata
+      real(c_double),target,contiguous,dimension(..) :: odata
+      !
+      hipfftExecZ2D_assumed_rank = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+#else
     function hipfftExecZ2D_rank_0(plan,idata,odata)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1599,5 +1902,42 @@ module hipfort_hipfft
       hipfftExecZ2D_rank_3 = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftGetProperty_assumed_rank(myType,myValue)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_assumed_rank
+      integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
+      integer(c_int),target,contiguous,dimension(..) :: myValue
+      !
+      hipfftGetProperty_assumed_rank = hipfftGetProperty_(myType,c_loc(myValue))
+    end function
+
+#else
+    function hipfftGetProperty_rank_0(myType,myValue)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_rank_0
+      integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
+      integer(c_int),target :: myValue
+      !
+      hipfftGetProperty_rank_0 = hipfftGetProperty_(myType,c_loc(myValue))
+    end function
+
+    function hipfftGetProperty_rank_1(myType,myValue)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_rank_1
+      integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
+      integer(c_int),target,dimension(:) :: myValue
+      !
+      hipfftGetProperty_rank_1 = hipfftGetProperty_(myType,c_loc(myValue))
+    end function
+
+#endif
 #endif
 end module hipfort_hipfft
