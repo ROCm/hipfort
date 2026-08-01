@@ -4,18 +4,10 @@
 
 ### Added
 
-* Experimental Fortran 2018 assumed-rank array interfaces, enabled with the
-  `-DHIPFORT_ASSUMED_RANK=ON` CMake option (guarded by `USE_ASSUMED_RANK_INTERFACES`).
-  When enabled, each array generic is backed by a single `dimension(..)` overload
-  that accepts an actual of any rank — including ranks greater than 2 (see issue
-  #175) — instead of the rank-specific overloads. This covers the math libraries
-  (rocBLAS, hipBLAS, rocSOLVER, hipSOLVER, rocSPARSE, hipSPARSE), the RNG libraries
-  (rocRAND, hipRAND), hipFFT, and the HIP runtime `hipMemcpy` family. The overloads
-  are mutually exclusive with the classic per-rank interfaces and completely inert
-  when the option is off, so the Fortran 2003 (`c_ptr`) and Fortran 2008 (per-rank)
-  code paths are unchanged. Off by default; requires a compiler with F2018
-  assumed-rank support (`gfortran` >= 13, `amdflang`). Only contiguous arrays may
-  be passed.
+* Experimental Fortran 2018 assumed-rank array interfaces, enabled with the `-DHIPFORT_ASSUMED_RANK=ON` CMake option (guarded by `USE_ASSUMED_RANK_INTERFACES`).
+When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
+The overloads are mutually exclusive with the classic per-rank interfaces.
+Only contiguous arrays may be passed.
 
 ## hipfort 0.8.0 for ROCm 7.14.0
 
