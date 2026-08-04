@@ -6,17 +6,17 @@
 # Local equivalent of the math-ci hipfort precheckin job.
 #
 # Usage:
-#   bash check_compilers.sh                  # every compiler found, both variants
-#   bash check_compilers.sh gnu amdflang     # only these toolchains
-#   bash check_compilers.sh --build-only     # skip ctest (no GPU needed)
-#   bash check_compilers.sh --no-assumed-rank
-#   BUILD_ROOT=/tmp/hfm bash check_compilers.sh
+#   bash test/check_compilers.sh                  # every compiler found, both variants
+#   bash test/check_compilers.sh gnu amdflang     # only these toolchains
+#   bash test/check_compilers.sh --build-only     # skip ctest (no GPU needed)
+#   bash test/check_compilers.sh --no-assumed-rank
+#   BUILD_ROOT=/tmp/hfm bash test/check_compilers.sh
 #
 # Exit: non-zero if any available configuration fails to build or fails ctest.
 
 set -uo pipefail
 
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"           # repo root; this script lives in test/
 BUILD_ROOT="${BUILD_ROOT:-$ROOT/build/compilers}"   # under build/, which .gitignore covers
 CTEST_ARGS="${CTEST_ARGS:---output-on-failure}"
 

@@ -8,7 +8,7 @@
 When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
 The overloads are mutually exclusive with the classic per-rank interfaces.
 Only contiguous arrays may be passed.
-* `check_compilers.sh`, which builds hipfort and runs the CTest suite once per
+* `test/check_compilers.sh`, which builds hipfort and runs the CTest suite once per
   Fortran compiler found on the machine, with and without `HIPFORT_ASSUMED_RANK`,
   using the toolchain files in `cmake/toolchains`. Compilers that are not
   installed are skipped, and the run degrades to build-only when no GPU is
