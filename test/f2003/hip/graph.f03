@@ -8,7 +8,6 @@
 ! hipGraphLaunch / hipGraphExecDestroy / hipGraphDestroy.
 !!!!!!!!!!!!!!
 !
-! Named test_graph: a program unit cannot share its name with a local variable.
 program test_graph
   use iso_c_binding
   use hipfort
