@@ -62,7 +62,7 @@ module hipfort_hipfftw
       use iso_c_binding
       use hipfort_hipfftw_enums
       implicit none
-      real(c_double) :: fftw_alloc_real_
+      type(c_ptr) :: fftw_alloc_real_
       integer(c_size_t),value :: n
     end function
   end interface
@@ -73,7 +73,7 @@ module hipfort_hipfftw
       use iso_c_binding
       use hipfort_hipfftw_enums
       implicit none
-      real(c_float) :: fftwf_alloc_real_
+      type(c_ptr) :: fftwf_alloc_real_
       integer(c_size_t),value :: n
     end function
   end interface
