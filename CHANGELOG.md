@@ -8,6 +8,30 @@
 When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
 The overloads are mutually exclusive with the classic per-rank interfaces.
 Only contiguous arrays may be passed.
+* `check_compilers.sh`, which builds hipfort and runs the CTest suite once per
+  Fortran compiler found on the machine, with and without `HIPFORT_ASSUMED_RANK`,
+  using the toolchain files in `cmake/toolchains`. Compilers that are not
+  installed are skipped, and the run degrades to build-only when no GPU is
+  visible. It is the local equivalent of the math-ci hipfort precheckin job, so a
+  CI matrix failure can be reproduced without Jenkins.
+
+### Fixed
+
+* Test executables no longer fail to link with compilers whose driver defaults to
+  `--as-needed` (for example `gfortran` on Ubuntu). `libhipfort-amdgcn.a` is shared
+  by every `hipfort::` component, so CMake placed it *after* the ROCm shared
+  libraries; the linker then discarded those libraries before the archive
+  referenced them, and rocSOLVER tests failed with undefined references to
+  `rocsolver_?laswp` and `rocsolver_?lacgv`. The ROCm libraries are now declared as
+  build-interface dependencies of the archive, which puts the archive first.
+* The Fortran 2018 assumed-rank tests are now named `.f90` instead of `.f18`. No
+  Fortran driver recognizes a `.f18` suffix: gfortran and flang both treated the
+  file as linker input, produced no object file and failed at link time, so the
+  `-DHIPFORT_ASSUMED_RANK=ON` build could never complete.
+* `test/f2003/hip/stream.f03` and `test/f2003/hip/graph.f03` gave the program unit
+  the same name as one of its local variables, which is not valid Fortran. The
+  program units are now `test_stream` and `test_graph`; gfortran rejected the
+  originals with "Symbol is not appropriate for an expression".
 
 ## hipfort 0.8.0 for ROCm 7.14.0
 

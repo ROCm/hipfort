@@ -8,7 +8,8 @@
 ! hipGraphLaunch / hipGraphExecDestroy / hipGraphDestroy.
 !!!!!!!!!!!!!!
 !
-program graph
+! Named test_graph: a program unit cannot share its name with a local variable.
+program test_graph
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -68,4 +69,4 @@ program graph
 
   write(*,*) "PASSED!"
 
-end program graph
+end program test_graph

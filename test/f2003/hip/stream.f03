@@ -6,7 +6,8 @@
 ! hipStreamDestroy.
 !!!!!!!!!!!!!!
 !
-program stream
+! Named test_stream: a program unit cannot share its name with a local variable.
+program test_stream
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -38,4 +39,4 @@ program stream
 
   write(*,*) "PASSED!"
 
-end program stream
+end program test_stream

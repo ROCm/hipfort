@@ -29,7 +29,9 @@ if(BUILD_TESTING)
     if(dir STREQUAL "f2008")
       set(ext "f08")
     elseif(dir STREQUAL "f2018")
-      set(ext "f18")
+      # .f90, not .f18: no Fortran driver recognizes a .f18 suffix and the file is
+      # silently treated as linker input.
+      set(ext "f90")
     else()
       set(ext "f03")
     endif()
