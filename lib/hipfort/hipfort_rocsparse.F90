@@ -1018,7 +1018,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_spvec_get_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
@@ -1037,7 +1037,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_const_spvec_get_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
@@ -3836,7 +3836,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_get_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       type(c_ptr) :: values
       type(c_ptr),value :: data_type
     end function
@@ -3850,7 +3850,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_const_dnvec_get_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       type(c_ptr) :: values
       type(c_ptr),value :: data_type
     end function

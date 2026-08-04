@@ -23187,7 +23187,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGet_
       type(c_ptr),value :: spVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
@@ -23212,7 +23212,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGet_
       type(c_ptr),value :: spVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
@@ -24257,7 +24257,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnVecGet_
       type(c_ptr),value :: dnVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       type(c_ptr) :: values
       type(c_ptr),value :: valueType
     end function
@@ -24276,7 +24276,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGet_
       type(c_ptr),value :: dnVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       type(c_ptr) :: values
       type(c_ptr),value :: valueType
     end function
