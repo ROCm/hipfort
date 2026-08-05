@@ -9,6 +9,14 @@ When enabled, each array generic is backed by a single `dimension(..)` overload 
 The overloads are mutually exclusive with the classic per-rank interfaces.
 Only contiguous arrays may be passed.
 
+### Fixed
+
+* Test executables no longer fail to link with compilers whose driver defaults to
+  `--as-needed`, such as `gfortran` on Ubuntu. `libhipfort-amdgcn.a` is shared by
+  every `hipfort::` component, so CMake placed it after the ROCm shared libraries
+  and the linker discarded them before the archive referenced their symbols. They
+  are now build-interface dependencies of the archive, which puts the archive first.
+
 ## hipfort 0.8.0 for ROCm 7.14.0
 
 ### Added

@@ -8,7 +8,7 @@
 ! hipGraphLaunch / hipGraphExecDestroy / hipGraphDestroy.
 !!!!!!!!!!!!!!
 !
-program graph
+program test_graph
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -68,4 +68,4 @@ program graph
 
   write(*,*) "PASSED!"
 
-end program graph
+end program test_graph

@@ -6,7 +6,7 @@
 ! hipStreamDestroy.
 !!!!!!!!!!!!!!
 !
-program stream
+program test_stream
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -38,4 +38,4 @@ program stream
 
   write(*,*) "PASSED!"
 
-end program stream
+end program test_stream

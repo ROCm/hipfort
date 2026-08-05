@@ -116,6 +116,9 @@ macro(hipfort_add_component name imported_target)
       EXPORT_NAME ${name}
   )
   target_link_libraries(hipfort-${name} INTERFACE hipfort-amdgcn ${imported_target})
+  # The archive is shared by every component, so CMake orders it after the ROCm
+  # .so files and --as-needed drops them. This dependency puts the archive first.
+  target_link_libraries(hipfort-amdgcn INTERFACE "$<BUILD_INTERFACE:${imported_target}>")
   rocm_install(
     TARGETS
       hipfort-${name}
