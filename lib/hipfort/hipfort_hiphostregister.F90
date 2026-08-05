@@ -401,14 +401,14 @@ module hipfort_hiphostregister
   !>
   !>   @see hipHostMalloc
 #ifdef USE_CUDA_NAMES
-    function hipHostGetFlags_(flags, hostPtr) bind(c, name="cudaHostGetFlags")
+    function hipHostGetFlags_(flagsPtr, hostPtr) bind(c, name="cudaHostGetFlags")
 #else
-    function hipHostGetFlags_(flags, hostPtr) bind(c, name="hipHostGetFlags")
+    function hipHostGetFlags_(flagsPtr, hostPtr) bind(c, name="hipHostGetFlags")
 #endif
       use iso_c_binding
       implicit none
       integer(c_int) :: hipHostGetFlags_
-      integer(c_int) :: flags
+      integer(c_int) :: flagsPtr
       type(c_ptr), value :: hostPtr
     end function hipHostGetFlags_
     module procedure hipHostGetFlags_i4_0

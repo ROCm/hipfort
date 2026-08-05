@@ -33,7 +33,7 @@ module hipfort_hipmalloc
   !>   @brief Allocate memory on the default accelerator
   !>
   !>   @param[out] ptr Pointer to the allocated memory
-  !>   @param[in]  size Requested memory size
+  !>   @param[in]  sizeBytes Requested memory size
   !>
   !>   If size is 0, no memory is allocated, *ptr returns nullptr, and hipSuccess is returned.
   !>
@@ -234,8 +234,8 @@ module hipfort_hipmalloc
   !>
   !>  @note   It is recommend to do the capability check before call this API.
   !>
-  !>  @param [out] dev_ptr - pointer to allocated device memory
-  !>  @param [in]  size    - requested allocation size in bytes, it should be granularity of 4KB
+  !>  @param [out] ptr - pointer to allocated device memory
+  !>  @param [in] sizeBytes - requested allocation size in bytes, it should be granularity of 4KB
   !>  @param [in]  flags   - must be either hipMemAttachGlobal or hipMemAttachHost
   !>                         (defaults to hipMemAttachGlobal)
   !>
@@ -432,7 +432,7 @@ module hipfort_hipmalloc
   !>   Developers need to choose proper allocation flag with consideration of synchronization.
   !>
   !>   @param[out] ptr Pointer to the allocated host pinned memory
-  !>   @param[in]  size Requested memory size in bytes
+  !>   @param[in]  sizeBytes Requested memory size in bytes
   !>   If size is 0, no memory is allocated, *ptr returns nullptr, and hipSuccess is returned.
   !>   @param[in]  flags Type of host memory allocation. See the description of flags in
   !>   hipSetDeviceFlags.
