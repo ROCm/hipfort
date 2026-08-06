@@ -443,7 +443,11 @@ module hipfort_hipmalloc
   !>
   !>
   !>   @see hipSetDeviceFlags, hiptHostFree
+#ifdef USE_CUDA_NAMES
+    function hipHostMalloc_(ptr, sizeBytes, flags) bind(c, name="cudaHostAlloc")
+#else
     function hipHostMalloc_(ptr, sizeBytes, flags) bind(c, name="hipHostMalloc")
+#endif
       use iso_c_binding
       implicit none
       integer(c_int) :: hipHostMalloc_
@@ -703,7 +707,11 @@ module hipfort_hipmalloc
   !>
   !>   @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D,
   !>  hipMalloc3DArray, hipHostMalloc
+#ifdef USE_CUDA_NAMES
+    function hipHostFree_(ptr) bind(c, name="cudaFreeHost")
+#else
     function hipHostFree_(ptr) bind(c, name="hipHostFree")
+#endif
       use iso_c_binding
       implicit none
       integer(c_int) :: hipHostFree_
