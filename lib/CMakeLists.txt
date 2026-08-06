@@ -102,12 +102,24 @@ set(HIPFORT_ARCH "amdgcn")
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
 
+# The CUDA-name variant of the bindings (every bind(c) name swapped from hipFoo to
+# cudaFoo). It is never linked on an AMD build, so it is opt-in rather than built
+# every time.
+option(USE_CUDA_NAMES "Also build hipfort-nvptx, the CUDA-name variant of the bindings" OFF)
+if(USE_CUDA_NAMES)
 set(HIPFORT_ARCH "nvptx")
     # nvptx
     set(HIPFORT_LIB     "hipfort-${HIPFORT_ARCH}")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
-    ADD_LIBRARY(${HIPFORT_LIB} STATIC 
-         ${HIPFORT_SRC_HIP} 
+    # rocBLAS, rocFFT, rocSOLVER, rocSPARSE and rocRAND are AMD-only and have no
+    # CUDA equivalent, so their binding modules are left out: compiling them here
+    # would leave ~1200 unresolvable roc* symbols. The matching *_enums modules
+    # stay, since other modules use them and they declare no bind(c) names.
+    set(HIPFORT_SRC_CUDA ${HIPFORT_SRC_HIP})
+    list(FILTER HIPFORT_SRC_CUDA EXCLUDE REGEX
+         "hipfort_roc(blas|blas_auxiliary|fft|rand|solver|sparse)\\.F90$")
+    ADD_LIBRARY(${HIPFORT_LIB} STATIC
+         ${HIPFORT_SRC_CUDA}
          )
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
@@ -120,17 +132,51 @@ set(HIPFORT_ARCH "nvptx")
     # Install Target hipfort-nvptx
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
+        EXPORT hipfort-nvptx-targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
+
+    rocm_install(
+      EXPORT hipfort-nvptx-targets
+      FILE hipfort-nvptx-targets.cmake
+      NAMESPACE hipfort::
+      DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
+    )
    
+
+    # A static archive is never linked, so nothing would check that the cuda* names
+    # in the bindings actually resolve. Link the CUDA libraries and force every
+    # archive member into a small executable, which turns a wrong or missing CUDA
+    # symbol into a build failure instead of a surprise for the first NVIDIA user.
+    find_package(CUDAToolkit)
+    if(CUDAToolkit_FOUND)
+      set(HIPFORT_CUDA_LIBS "")
+      foreach(t cudart cublas cufft curand cusparse cusolver)
+        if(TARGET CUDA::${t})
+          list(APPEND HIPFORT_CUDA_LIBS CUDA::${t})
+        endif()
+      endforeach()
+      target_link_libraries(${HIPFORT_LIB} PUBLIC ${HIPFORT_CUDA_LIBS})
+
+      if(CMAKE_Fortran_COMPILER_ID MATCHES "GNU|LLVMFlang|Flang|Intel|NVHPC")
+        set(_lc ${CMAKE_CURRENT_BINARY_DIR}/hipfort_nvptx_link_check.f90)
+        file(WRITE ${_lc} "program hipfort_nvptx_link_check\nend program hipfort_nvptx_link_check\n")
+        add_executable(hipfort-nvptx-link-check ${_lc})
+        target_link_libraries(hipfort-nvptx-link-check PRIVATE
+          -Wl,--whole-archive ${HIPFORT_LIB} -Wl,--no-whole-archive ${HIPFORT_CUDA_LIBS})
+      endif()
+    else()
+      message(STATUS "CUDAToolkit not found: building hipfort-nvptx without a link check")
+    endif()
+endif()
     # Install include files marking as devel component
     rocm_install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort
                  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 		 COMPONENT devel)
-
-#   target_link_libraries(${HIPFORT_LIB} PUBLIC 
-#   /usr/local/cuda/targets/x86_64-linux/lib/libcudart_static.a)
 
 rocm_install(
   EXPORT hipfort-amdgcn-targets
@@ -139,6 +185,12 @@ rocm_install(
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
 )
 
+# Which binding archive the components wrap: the AMD one, or the CUDA-name one
+# when targeting NVIDIA.
+if(NOT DEFINED HIPFORT_BASE_LIB)
+  set(HIPFORT_BASE_LIB hipfort-amdgcn)
+endif()
+
 macro(hipfort_add_component name imported_target)
   add_library(hipfort-${name} INTERFACE)
   add_library(hipfort::${name} ALIAS hipfort-${name})
@@ -146,10 +198,10 @@ macro(hipfort_add_component name imported_target)
     PROPERTIES
       EXPORT_NAME ${name}
   )
-  target_link_libraries(hipfort-${name} INTERFACE hipfort-amdgcn ${imported_target})
+  target_link_libraries(hipfort-${name} INTERFACE ${HIPFORT_BASE_LIB} ${imported_target})
   # The archive is shared by every component, so CMake orders it after the ROCm
   # .so files and --as-needed drops them. This dependency puts the archive first.
-  target_link_libraries(hipfort-amdgcn INTERFACE "$<BUILD_INTERFACE:${imported_target}>")
+  target_link_libraries(${HIPFORT_BASE_LIB} INTERFACE "$<BUILD_INTERFACE:${imported_target}>")
   rocm_install(
     TARGETS
       hipfort-${name}
@@ -281,4 +333,21 @@ if(HIP_PLATFORM STREQUAL "amd")
       ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
   )
+elseif(USE_CUDA_NAMES AND CUDAToolkit_FOUND)
+  # NVIDIA: the same Fortran bindings, bound to CUDA symbols, wrapping the
+  # hipfort-nvptx archive instead of hipfort-amdgcn. Only the hip* components
+  # exist: rocBLAS, rocFFT, rocSOLVER, rocSPARSE, rocRAND and the FFTW3 API are
+  # AMD-only and have no CUDA counterpart, so their tests do not exist here.
+  set(HIPFORT_BASE_LIB hipfort-nvptx)
+  foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
+               "hiprand:curand" "hipsolver:cusolver" "hipsparse:cusparse")
+    string(REPLACE ":" ";" pair "${pair}")
+    list(GET pair 0 _comp)
+    list(GET pair 1 _cudalib)
+    if(TARGET CUDA::${_cudalib})
+      hipfort_add_component(${_comp} CUDA::${_cudalib})
+    else()
+      message(STATUS "Skipping hipfort::${_comp} target export (no CUDA::${_cudalib})")
+    endif()
+  endforeach()
 endif()
