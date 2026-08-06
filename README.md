@@ -71,7 +71,8 @@ support is ignored (with a warning).
 **Experimental (`-DHIPFORT_ASSUMED_RANK=ON`).** By default each array generic is resolved by a set of rank-specific overloads (`rank_0`, `rank_1`, ...).
 With this option `hipfort` builds a single Fortran 2018 assumed-rank (`dimension(..)`) overload per routine instead.
 It requires a compiler with F2018 assumed-rank plus `c_loc` support, which `hipfort` probes for at configure time;
-if the probe fails (or `HIPFORT_USE_FPOINTER_INTERFACES` is off), it warns and falls back to the per-rank interfaces instead of failing the build.
+if the probe fails, it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build.
+It also requires `HIPFORT_USE_FPOINTER_INTERFACES` (on which the per-rank interfaces themselves depend); with that off there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
 Off by default.
 
 The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous (the dummy is declared `contiguous`).

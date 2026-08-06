@@ -60,7 +60,9 @@ if(HIPFORT_ASSUMED_RANK AND NOT (HIPFORT_USE_FPOINTER_INTERFACES AND CMAKE_Fortr
   message(WARNING
     "HIPFORT_ASSUMED_RANK was requested but the Fortran 2018 assumed-rank "
     "interfaces are unavailable (they need a Fortran 2018 compiler and the F2008 "
-    "interfaces enabled); falling back to the per-rank interfaces.")
+    "interfaces enabled); disabling the assumed-rank interfaces (the build falls "
+    "back to the per-rank F2008 interfaces, or the plain F2003 C bindings if "
+    "HIPFORT_USE_FPOINTER_INTERFACES is off).")
   set(HIPFORT_ASSUMED_RANK OFF CACHE BOOL
     "Use the F2018 assumed-rank array interfaces" FORCE)
 endif()
