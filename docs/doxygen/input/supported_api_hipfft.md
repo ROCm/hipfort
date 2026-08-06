@@ -34,4 +34,4 @@
 30 | [hipfftSetStream](interfacehipfort__hipfft_1_1hipfftsetstream.html "Interface documentation") | C binding
 31 | [hipfftDestroy](interfacehipfort__hipfft_1_1hipfftdestroy.html "Interface documentation") | C binding
 32 | [hipfftGetVersion](interfacehipfort__hipfft_1_1hipfftgetversion.html "Interface documentation") | C binding
-33 | [hipfftGetProperty](interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+33 | [hipfftGetProperty](interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | C binding
