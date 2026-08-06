@@ -22,11 +22,25 @@ file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
 file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
 set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
 
-# The Fortran 2008 array interfaces (USE_FPOINTER_INTERFACES) are enabled whenever
-# the Fortran compiler supports the Fortran 2008 standard.
-set(HIPFORT_USE_FPOINTER_INTERFACES OFF)
+# The Fortran 2008 array interfaces (USE_FPOINTER_INTERFACES) default ON whenever
+# the compiler supports Fortran 2008. Exposed as a cache option so it can be forced
+# OFF for an old compiler, or one whose F2008 support is buggy (e.g. some Intel
+# releases) — the library then builds with plain C-binding interfaces only.
+set(_hipfort_fpointer_default OFF)
 if(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  set(HIPFORT_USE_FPOINTER_INTERFACES ON)
+  set(_hipfort_fpointer_default ON)
+endif()
+option(HIPFORT_USE_FPOINTER_INTERFACES
+  "Enable the Fortran 2008 array interfaces" ${_hipfort_fpointer_default})
+
+# The F2008 interfaces cannot be built on a compiler without F2008 support. FORCE
+# the cache so the effective value is consistent in the test/ subdirectory too.
+if(HIPFORT_USE_FPOINTER_INTERFACES AND NOT CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+  message(WARNING
+    "HIPFORT_USE_FPOINTER_INTERFACES was requested but ${CMAKE_Fortran_COMPILER} "
+    "does not support Fortran 2008; disabling it (plain C-binding build).")
+  set(HIPFORT_USE_FPOINTER_INTERFACES OFF CACHE BOOL
+    "Enable the Fortran 2008 array interfaces" FORCE)
 endif()
 
 # Experimental: replace the per-rank array interfaces (rank_0..rank_N + full_rank)
@@ -35,6 +49,21 @@ endif()
 # USE_FPOINTER_INTERFACES (the two are mutually exclusive in each generic).
 # Requires a Fortran 2018 compiler.
 option(HIPFORT_ASSUMED_RANK "Use the F2018 assumed-rank array interfaces" OFF)
+
+# Guard the opt-in: assumed-rank is nested in the F2008 interfaces and additionally
+# needs a Fortran 2018 compiler (c_loc() of a dimension(..) argument; see the
+# CMAKE_Fortran_COMPILER_SUPPORTS_F18 probe in the top-level CMakeLists.txt). If it
+# was requested but either prerequisite is missing, warn and fall back to the
+# per-rank interfaces (or plain C bindings if those are off too) rather than
+# failing the build. FORCE the cache so test/ sees the same effective value.
+if(HIPFORT_ASSUMED_RANK AND NOT (HIPFORT_USE_FPOINTER_INTERFACES AND CMAKE_Fortran_COMPILER_SUPPORTS_F18))
+  message(WARNING
+    "HIPFORT_ASSUMED_RANK was requested but the Fortran 2018 assumed-rank "
+    "interfaces are unavailable (they need a Fortran 2018 compiler and the F2008 "
+    "interfaces enabled); falling back to the per-rank interfaces.")
+  set(HIPFORT_ASSUMED_RANK OFF CACHE BOOL
+    "Use the F2018 assumed-rank array interfaces" FORCE)
+endif()
 
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn

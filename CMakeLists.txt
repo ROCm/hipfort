@@ -116,6 +116,50 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   unset(CMAKE_Fortran_COMPILER_SUPPORTS_F08 CACHE)
 ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 
+# Test for Fortran 2018 support using the assumed-rank construct the generated
+# bindings rely on: an assumed-rank (dimension(..)) dummy passed to c_loc(). This
+# is exactly what the USE_ASSUMED_RANK_INTERFACES wrappers do, so it is the right
+# discriminator for whether HIPFORT_ASSUMED_RANK can be enabled.
+IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+  MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2018")
+  INCLUDE(CheckFortranSourceCompiles)
+  # NB: CHECK_FORTRAN_SOURCE_COMPILES writes the snippet to a .F file (fixed form),
+  # so — like the Fortran 08 test above — every statement must start at column 7.
+  CHECK_FORTRAN_SOURCE_COMPILES("
+      module mod18
+      contains
+      function foo(x) result(p)
+      use iso_c_binding
+      integer(c_int),target,contiguous,dimension(..) :: x
+      type(c_ptr) :: p
+      p = c_loc(x)
+      end function
+      end module
+      PROGRAM TESTFortran18
+      use mod18
+      use iso_c_binding
+      implicit none
+      integer(c_int),target :: a(5)
+      type(c_ptr) :: p
+      p = foo(a)
+      END PROGRAM TESTFortran18
+    " CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+  IF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+    MESSAGE(CHECK_PASS "yes")
+    file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeOutput.log
+      "Determining if the Fortran compiler supports Fortran 2018 passed with "
+      "the following output:\n${OUTPUT}\n\n")
+    set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 1)
+  ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+    MESSAGE(CHECK_FAIL "no")
+    file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeError.log
+      "Determining if the Fortran compiler supports Fortran 2018 failed with "
+      "the following output:\n${OUTPUT}\n\n")
+    set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 0)
+  ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+  unset(CMAKE_Fortran_COMPILER_SUPPORTS_F18 CACHE)
+ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+
 # Set compile flags for DEBUG, # RELEASE, or TESTING.  
 INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake) 
 message("-- Done setting FortranFlags")

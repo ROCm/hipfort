@@ -23,6 +23,12 @@ if(BUILD_TESTING)
   endif()
 
   function(hipfort_add_test lib func dir)
+    # The f2008 tests exercise the array overloads (USE_FPOINTER_INTERFACES) and
+    # the f2018 tests the assumed-rank overloads; skip each when its interface
+    # level is disabled so a plain C-binding build still tests cleanly.
+    if(dir STREQUAL "f2008" AND NOT HIPFORT_USE_FPOINTER_INTERFACES)
+      return()
+    endif()
     if(dir STREQUAL "f2018" AND NOT HIPFORT_ASSUMED_RANK)
       return()
     endif()
