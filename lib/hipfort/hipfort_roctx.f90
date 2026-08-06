@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,40 +26,38 @@
 
 module hipfort_roctx
 
-   interface
-      subroutine roctxMark(message) bind(c, name="roctxMarkA")
-         use iso_c_binding, only: c_char
-         implicit none
-         character(kind=c_char) :: message(*)
-      end subroutine roctxMark
+  interface
+    subroutine roctxMark(message) bind(c, name="roctxMarkA")
+      use iso_c_binding, only: c_char
+      implicit none
+      character(kind=c_char) :: message(*)
+    end subroutine roctxMark
 
-      function roctxRangePush(message) bind(c, name="roctxRangePushA")
-         use iso_c_binding, only: c_int,&
-                                  c_char
-         implicit none
-         integer(c_int) :: roctxRangePush
-         character(kind=c_char) :: message(*)
-      end function roctxRangePush
+    function roctxRangePush(message) bind(c, name="roctxRangePushA")
+      use iso_c_binding, only: c_int, c_char
+      implicit none
+      integer(c_int) :: roctxRangePush
+      character(kind=c_char) :: message(*)
+    end function roctxRangePush
 
-      function roctxRangePop() bind(c, name="roctxRangePop")
-         use iso_c_binding, only: c_int
-         implicit none
-         integer(c_int) :: roctxRangePop
-      end function roctxRangePop
+    function roctxRangePop() bind(c, name="roctxRangePop")
+      use iso_c_binding, only: c_int
+      implicit none
+      integer(c_int) :: roctxRangePop
+    end function roctxRangePop
 
-      function roctxRangeStart(message) bind(c, name="roctxRangeStartA")
-         use iso_c_binding, only: c_size_t,&
-                                  c_char
-         implicit none
-         integer(c_size_t) :: roctxRangeStart
-         character(kind=c_char) :: message(*)
-      end function roctxRangeStart
+    function roctxRangeStart(message) bind(c, name="roctxRangeStartA")
+      use iso_c_binding, only: c_size_t, c_char
+      implicit none
+      integer(c_size_t) :: roctxRangeStart
+      character(kind=c_char) :: message(*)
+    end function roctxRangeStart
 
-      subroutine roctxRangeStop(range_id) bind (c, name="roctxRangeStop")
-         use iso_c_binding, only: c_size_t
-         implicit none
-         integer(c_size_t) :: range_id
-      end subroutine roctxRangeStop
-   end interface
+    subroutine roctxRangeStop(range_id) bind(c, name="roctxRangeStop")
+      use iso_c_binding, only: c_size_t
+      implicit none
+      integer(c_size_t) :: range_id
+    end subroutine roctxRangeStop
+  end interface
 
 end module hipfort_roctx
