@@ -53,6 +53,52 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup aux_module
+  !>   \brief Create a rocSPARSE handle on a user-defined stream.
+  !>
+  !>   \details
+  !>   \p rocsparse_handle_create associates the handle with the user-provided \p stream
+  !>   before performing any setup work. All device memory allocation and initialization are
+  !>   enqueued on \p stream using stream-ordered operations, so handle creation is
+  !>   asynchronous with respect to the host: it returns to the caller without blocking the
+  !>   calling CPU thread or any GPU stream.
+  !>
+  !>   \note
+  !>   This routine is not compatible with HIP graph stream capture. It performs
+  !>   stream-ordered device allocations and a warm-up kernel launch, so it must not be
+  !>   called while \p stream (or any other stream) is being captured into a HIP graph.
+  !>
+  !>   \note
+  !>   The handle is fully initialized for operations submitted on \p stream (stream
+  !>   ordering guarantees correctness). If the handle must be used on a different stream
+  !>   before \p stream has finished executing, the caller must first synchronize \p stream
+  !>   (e.g. via \p hipStreamSynchronize or a HIP event dependency).
+  !>
+  !>   The handle should be destroyed at the end using \ref rocsparse_handle_destroy or
+  !>   \ref rocsparse_destroy_handle.
+  !>
+  !>   @param[out] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[in] stream - the user-defined stream to associate with the handle and to use for
+  !>            all stream-ordered setup work during creation.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>
+  !>   \retval rocsparse_status_success the initialization succeeded.
+  !>   \retval rocsparse_status_invalid_pointer \p handle pointer is invalid.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
+  interface rocsparse_handle_create
+    function rocsparse_handle_create_(handle,stream,p_error) bind(c, name="rocsparse_handle_create")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_handle_create_
+      type(c_ptr) :: handle
+      type(c_ptr),value :: stream
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup aux_module
   !>   \brief Destroy a rocSPARSE handle.
   !>
   !>   \details
@@ -71,6 +117,31 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_destroy_handle_
       type(c_ptr),value :: handle
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Destroy a rocSPARSE handle.
+  !>
+  !>   \details
+  !>   \p rocsparse_handle_destroy destroys the rocSPARSE library context and releases
+  !>   all resources used by the rocSPARSE library.
+  !>
+  !>   @param[in] handle - the handle to the rocSPARSE library context, which can be a null pointer.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
+  interface rocsparse_handle_destroy
+    function rocsparse_handle_destroy_(handle,p_error) bind(c, name="rocsparse_handle_destroy")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_handle_destroy_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: p_error
     end function
   end interface
 
@@ -872,7 +943,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -891,7 +962,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1086,7 +1157,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1107,7 +1178,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1150,7 +1221,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: coo_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1202,8 +1273,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
       type(c_ptr),value :: bsr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1226,8 +1297,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
       type(c_ptr),value :: bsr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1273,8 +1344,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1295,8 +1366,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
-      integer(kind(rocsparse_indextype_u16)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1343,8 +1414,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_val
-      integer(kind(rocsparse_indextype_u16)),value :: col_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: row_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1365,8 +1436,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_val
-      integer(kind(rocsparse_indextype_u16)),value :: col_ptr_type
-      integer(kind(rocsparse_indextype_u16)),value :: row_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: col_ptr_type
+      integer(kind(rocsparse_indextype_i32)),value :: row_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1410,7 +1481,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
       integer(c_int64_t),value :: ell_width
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1462,7 +1533,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: ell_cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1484,7 +1555,7 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: ell_cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
-      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_indextype_i32)),value :: idx_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1541,8 +1612,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: sell_slice_offsets
       type(c_ptr),value :: sell_col_ind
       type(c_ptr),value :: sell_val
-      integer(kind(rocsparse_indextype_u16)),value :: sell_slice_offsets_type
-      integer(kind(rocsparse_indextype_u16)),value :: sell_col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_slice_offsets_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -1566,8 +1637,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: sell_slice_offsets
       type(c_ptr),value :: sell_col_ind
       type(c_ptr),value :: sell_val
-      integer(kind(rocsparse_indextype_u16)),value :: sell_slice_offsets_type
-      integer(kind(rocsparse_indextype_u16)),value :: sell_col_ind_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_slice_offsets_type
+      integer(kind(rocsparse_indextype_i32)),value :: sell_col_ind_type
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
     end function
@@ -2445,6 +2516,154 @@ module hipfort_rocsparse
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
       integer(kind(rocsparse_spilu0_output_singularity)),value :: spilu0_output
+      type(c_ptr),value :: output
+      integer(c_size_t),value :: output_size_in_bytes
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Create SpILDLT0 descriptor.
+  !>
+  !>   \details
+  !>   \p rocsparse_spildlt0_descr_create creates the descriptor of the configuration of the sparse
+  !>   Incomplete \f$LDL^H\f$ of level 0.
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[out] p_spildlt0_descr - pointer to the descriptor of the SpILDLT0 routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>
+  !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
+  !>   \retval      rocsparse_status_success the operation completed successfully.
+  !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
+  interface rocsparse_spildlt0_descr_create
+    function rocsparse_spildlt0_descr_create_(handle,p_spildlt0_descr,p_error) &
+        bind(c, name="rocsparse_spildlt0_descr_create")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_descr_create_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: p_spildlt0_descr
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Destroy SpILDLT0 descriptor.
+  !>
+  !>   \details
+  !>   \p rocsparse_spildlt0_descr_destroy destroys the descriptor of the configuration of the
+  !>   sparse Incomplete \f$LDL^H\f$ of level 0.
+  !>
+  !>   @param[in] handle - the handle to the rocSPARSE library context.
+  !>   @param[in] spildlt0_descr - descriptor of the SpILDLT0 routine.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
+  !>   \retval      rocsparse_status_success the operation completed successfully.
+  interface rocsparse_spildlt0_descr_destroy
+    function rocsparse_spildlt0_descr_destroy_(handle,spildlt0_descr,p_error) &
+        bind(c, name="rocsparse_spildlt0_descr_destroy")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_descr_destroy_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: spildlt0_descr
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Set the requested `rocsparse_spildlt0_input` data in the SpILDLT0 descriptor.
+  !>
+  !>   \note
+  !>   - `rocsparse_spildlt0_input_alg` is `rocsparse_spildlt0_alg`. It can only be set before
+  !>   applying any phase.
+  !>   - `rocsparse_spildlt0_input_compute_datatype` is `rocsparse_datatype`. It can only be set
+  !>   before applying any phase. For now, it must be of value type of A.
+  !>   - `rocsparse_spildlt0_input_analysis_policy` is `rocsparse_analysis_policy`. It can only be
+  !>   set before applying any phase.
+  !>   - `rocsparse_spildlt0_input_singularity_tolerance` is a device/host double pointer. Its
+  !>   device mode is determined from the `rocsparse_handle`.
+  !>   -     `rocsparse_spildlt0_input_boost_enable` is an \p int32_t.
+  !>   - `rocsparse_spildlt0_input_boost_value` is a pointer to a scalar of value type A. Its device
+  !>   mode is determined from the `rocsparse_handle`.
+  !>   - `rocsparse_spildlt0_input_boost_tolerance` is a double pointer. Its device mode is
+  !>   determined from the `rocsparse_handle`.
+  !>   - `rocsparse_spildlt0_input_diag` is an \b optional device pointer (void*) to a dense array
+  !>   in device memory of \p m * \p batch_count real-valued entries that receives a copy of the
+  !>   diagonal \f$D\f$ (\p m entries per batch, batch \p b at offset \p b * \p m).
+  !>         \f$D\f$ is always real, even for complex matrices, so for \p s and \p c variants this
+  !>         is \p float* and for \p d and \p z variants this is \p double*.
+  !>         It is optional: \f$D\f$ is always stored in-place on the (implicit unit) diagonal of
+  !>         the \f$L\f$ factor and can be read back from there after
+  !>         `rocsparse_spildlt0_stage_compute`. If set, it must be set before calling \ref
+  !>         rocsparse_spildlt0 with stage `rocsparse_spildlt0_stage_compute`.
+  !>
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] spildlt0_descr - the pointer to the SpILDLT0 descriptor.
+  !>   @param[in] spildlt0_input - value of `rocsparse_spildlt0_input`.
+  !>   @param[in] input - input data.
+  !>   @param[in] input_size_in_bytes - input data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
+  !>   \retval rocsparse_status_invalid_value if \p input is invalid.
+  !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
+  interface rocsparse_spildlt0_set_input
+    function rocsparse_spildlt0_set_input_(handle,spildlt0_descr,spildlt0_input,input, &
+        input_size_in_bytes,p_error) &
+        bind(c, name="rocsparse_spildlt0_set_input")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_set_input_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: spildlt0_descr
+      integer(kind(rocsparse_spildlt0_input_alg)),value :: spildlt0_input
+      type(c_ptr),value :: input
+      integer(c_size_t),value :: input_size_in_bytes
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Get the requested `rocsparse_spildlt0_output` data from the SpILDLT0 descriptor.
+  !>   \note
+  !>   -     `rocsparse_spildlt0_output_singularity` is `rocsparse_singularity`.
+  !>   -     `rocsparse_spildlt0_output_singularity_position` is \p int64_t.
+  !>   @param[in] handle - the pointer to the handle to the rocSPARSE library context.
+  !>   @param[inout] spildlt0_descr - the pointer to the SpILDLT0 descriptor.
+  !>   @param[in] spildlt0_output - value of `rocsparse_spildlt0_output`.
+  !>   @param[out] output - output data.
+  !>   @param[in] output_size_in_bytes - output data size in bytes.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
+  !>   \retval rocsparse_status_invalid_value if \p output is invalid.
+  !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
+  interface rocsparse_spildlt0_get_output
+    function rocsparse_spildlt0_get_output_(handle,spildlt0_descr,spildlt0_output,output, &
+        output_size_in_bytes,p_error) &
+        bind(c, name="rocsparse_spildlt0_get_output")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_get_output_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: spildlt0_descr
+      integer(kind(rocsparse_spildlt0_output_singularity)),value :: spildlt0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
       type(c_ptr) :: p_error
@@ -9468,7 +9687,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       type(c_ptr),value :: p
-      integer(kind(rocsparse_indextype_u16)),value :: indextype
+      integer(kind(rocsparse_indextype_i32)),value :: indextype
     end function
   end interface
 
@@ -15824,6 +16043,157 @@ module hipfort_rocsparse
       type(c_ptr),value :: A
       type(c_ptr),value :: P
       integer(kind(rocsparse_spic0_stage_analysis)),value :: spic0_stage
+      integer(c_size_t),value :: buffer_size_in_bytes
+      type(c_ptr),value :: buffer
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup generic_module
+  !>   \brief Incomplete \f$LDL^H\f$ factorization with 0 fill-ins and no pivoting.
+  !>   \details
+  !>   \p rocsparse_spildlt0_buffer_size returns the size of the non-persistent buffer
+  !>   that is required by \ref rocsparse_spildlt0 and must be allocated by the user.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   \note
+  !>   Supported format is `rocsparse_format_csr`.
+  !>
+  !>   \note
+  !>   This routine only supports uniform strided batched computation, that is, the same sparsity
+  !>   pattern but strided batched values of the matrices.
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] spildlt0_descr - SpILDLT0 descriptor.
+  !>   @param[in] A - descriptor of the matrix to factorize.
+  !>   @param[in] P - descriptor of the factorization. In-place \p P = \p A is allowed.
+  !>   @param[in] spildlt0_stage - stage for the SpILDLT0 computation.
+  !>   @param[out] p_buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if error descriptor is not required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_not_implemented the sparse format is invalid or the preconditioner
+  !>   \p P is not identical to the matrix to factorize \p A.
+  !>   \retval rocsparse_status_invalid_value the \p spildlt0_stage value is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p spildlt0_descr, \p A, \p P, or \p
+  !>   p_buffer_size_in_bytes pointer is invalid.
+  interface rocsparse_spildlt0_buffer_size
+    function rocsparse_spildlt0_buffer_size_(handle,spildlt0_descr,A,P,spildlt0_stage, &
+        p_buffer_size_in_bytes,p_error) &
+        bind(c, name="rocsparse_spildlt0_buffer_size")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_buffer_size_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: spildlt0_descr
+      type(c_ptr),value :: A
+      type(c_ptr),value :: P
+      integer(kind(rocsparse_spildlt0_stage_analysis)),value :: spildlt0_stage
+      type(c_ptr),value :: p_buffer_size_in_bytes
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup generic_module
+  !>   \brief Incomplete \f$LDL^H\f$ factorization with 0 fill-ins and no pivoting.
+  !>
+  !>   \details
+  !>   \p rocsparse_spildlt0 computes the incomplete \f$LDL^H\f$ factorization with 0 fill-ins
+  !>   and no pivoting of a sparse \f$m \times m\f$ Hermitian (or symmetric for real types)
+  !>   matrix \f$A\f$, such that
+  !>   \f[
+  !>     A \approx L D L^H
+  !>   \f]
+  !>   where \f$L\f$ is unit lower triangular and \f$D\f$ is a real diagonal matrix.
+  !>
+  !>   The diagonal entries of \f$D\f$ are computed as:
+  !>   \f[
+  !>     D_i = \mathrm{real}(A_{ii}) - \sum_{k<i} |L_{ik}|^2 D_k
+  !>   \f]
+  !>   and the off-diagonal entries of \f$L\f$ as:
+  !>   \f[
+  !>     L_{ij} = \frac{1}{D_j} \left( A_{ij} - \sum_{k<j} L_{ik} D_k \overline{L_{jk}} \right)
+  !>   \f]
+  !>   for each entry found in the lower triangular part of the matrix \f$A\f$.
+  !>
+  !>   Performing the above operation requires two stages, the stage
+  !>   `rocsparse_spildlt0_stage_analysis` and the stage `rocsparse_spildlt0_stage_compute`.
+  !>   The stage `rocsparse_spildlt0_stage_analysis` is required to perform the stage
+  !>   `rocsparse_spildlt0_stage_compute` and only needs to be called once for a given sparse matrix
+  !>   \f$A\f$, while the stage `rocsparse_spildlt0_stage_compute` can be repeatedly used with
+  !>   different matrices \f$A\f$ that have the same sparsity pattern.
+  !>
+  !>   The factorization overwrites the values array of \p P with \f$L + D - I\f$: the strict
+  !>   lower-triangular entries hold \f$L\f$ (its unit diagonal is implicit), and the diagonal
+  !>   entries hold the real diagonal \f$D\f$.
+  !>
+  !>   \p rocsparse_spildlt0 supports the following
+  !>   data types for \p A : `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>   `rocsparse_datatype_f32_c`, and `rocsparse_datatype_f64_c`.
+  !>
+  !>   \note The descriptor \p spildlt0_descr needs to be configured with \ref
+  !>   rocsparse_spildlt0_set_input.
+  !>
+  !>   \note
+  !>   The sparse matrix format currently supported is `rocsparse_format_csr`.
+  !>
+  !>   \note
+  !>   the `rocsparse_spildlt0_stage_compute` stage is non-blocking
+  !>   and executed asynchronously with respect to the host. It can return before the actual
+  !>   computation has finished.
+  !>   The `rocsparse_spildlt0_stage_analysis` stage is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   Only the `rocsparse_spildlt0_stage_compute` stage
+  !>   supports execution in a hipGraph context. The `rocsparse_spildlt0_stage_analysis` stage does
+  !>   not support hipGraph.
+  !>
+  !>   \note
+  !>   This routine only supports uniform strided batched computation, that is, the same sparsity
+  !>   pattern but strided batched values of the matrices.
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] spildlt0_descr - SpILDLT0 descriptor.
+  !>   @param[in] A - descriptor of the matrix to factorize.
+  !>   @param[out] P - descriptor of the factorization. In-place \p P = \p A is allowed.
+  !>   @param[in] spildlt0_stage - stage for the SpILDLT0 computation.
+  !>   @param[in] buffer_size_in_bytes - number of bytes of the buffer.
+  !>   @param[in] buffer - buffer allocated by the user.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>   `rocsparse_status_success`. A null pointer can be passed if an error descriptor is not
+  !>   required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_not_implemented the sparse format is invalid or the preconditioner
+  !>   \p P is not identical to the matrix to factorize \p A.
+  !>   \retval rocsparse_status_invalid_value the \p spildlt0_stage value is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p spildlt0_descr, \p A, \p P, or \p
+  !>   buffer_size_in_bytes pointer is invalid.
+  !>
+  !>   \par Example
+  interface rocsparse_spildlt0
+    function rocsparse_spildlt0_(handle,spildlt0_descr,A,P,spildlt0_stage,buffer_size_in_bytes, &
+        buffer,p_error) &
+        bind(c, name="rocsparse_spildlt0")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: spildlt0_descr
+      type(c_ptr),value :: A
+      type(c_ptr),value :: P
+      integer(kind(rocsparse_spildlt0_stage_analysis)),value :: spildlt0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr) :: p_error

@@ -161,6 +161,16 @@ module hipfort_rocrand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_rank_0,&
+      rocrand_generate_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed 64-bit unsigned integers.
@@ -193,6 +203,16 @@ module hipfort_rocrand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_long_long_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_long_long_rank_0,&
+      rocrand_generate_long_long_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed 8-bit unsigned integers.
@@ -284,6 +304,16 @@ module hipfort_rocrand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_uniform_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_uniform_rank_0,&
+      rocrand_generate_uniform_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed double-precision floating-point values.
@@ -315,6 +345,16 @@ module hipfort_rocrand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_uniform_double_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_uniform_double_rank_0,&
+      rocrand_generate_uniform_double_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates uniformly distributed half-precision floating-point values.
@@ -378,6 +418,16 @@ module hipfort_rocrand
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_normal_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_normal_rank_0,&
+      rocrand_generate_normal_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates normally distributed \p double values.
@@ -410,6 +460,16 @@ module hipfort_rocrand
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_normal_double_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_normal_double_rank_0,&
+      rocrand_generate_normal_double_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates normally distributed \p half values.
@@ -474,6 +534,16 @@ module hipfort_rocrand
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_log_normal_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_log_normal_rank_0,&
+      rocrand_generate_log_normal_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates log-normally distributed \p double values.
@@ -506,6 +576,16 @@ module hipfort_rocrand
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_log_normal_double_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_log_normal_double_rank_0,&
+      rocrand_generate_log_normal_double_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Generates log-normally distributed \p half values.
@@ -569,6 +649,16 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
       real(c_double),value :: lambda
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_generate_poisson_assumed_rank
+#else
+    module procedure &
+      rocrand_generate_poisson_rank_0,&
+      rocrand_generate_poisson_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Initializes the generator's state on GPU or host.
@@ -851,6 +941,16 @@ module hipfort_rocrand
       integer(c_int),value :: offset
       type(c_ptr) :: discrete_distribution
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocrand_create_discrete_distribution_assumed_rank
+#else
+    module procedure &
+      rocrand_create_discrete_distribution_rank_0,&
+      rocrand_create_discrete_distribution_rank_1
+#endif
+#endif
   end interface
 
   !>  \brief Destroy the histogram array for a discrete distribution.
@@ -950,4 +1050,457 @@ module hipfort_rocrand
     end function
   end interface
 
+
+#ifdef USE_FPOINTER_INTERFACES
+  contains
+
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_assumed_rank
+      type(c_ptr) :: generator
+      integer(c_int),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_assumed_rank = rocrand_generate_(generator,c_loc(output_data),n)
+    end function
+
+#else
+    function rocrand_generate_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_0
+      type(c_ptr) :: generator
+      integer(c_int),target :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_rank_0 = rocrand_generate_(generator,c_loc(output_data),n)
+    end function
+
+    function rocrand_generate_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_1
+      type(c_ptr) :: generator
+      integer(c_int),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_rank_1 = rocrand_generate_(generator,c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_long_long_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_assumed_rank
+      type(c_ptr) :: generator
+      integer(c_int64_t),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_long_long_assumed_rank = rocrand_generate_long_long_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#else
+    function rocrand_generate_long_long_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_0
+      type(c_ptr) :: generator
+      integer(c_int64_t),target :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_long_long_rank_0 = rocrand_generate_long_long_(generator, &
+        c_loc(output_data),n)
+    end function
+
+    function rocrand_generate_long_long_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_1
+      type(c_ptr) :: generator
+      integer(c_int64_t),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_long_long_rank_1 = rocrand_generate_long_long_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_uniform_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_assumed_rank
+      type(c_ptr) :: generator
+      real(c_float),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_uniform_assumed_rank = rocrand_generate_uniform_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#else
+    function rocrand_generate_uniform_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_0
+      type(c_ptr) :: generator
+      real(c_float),target :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_uniform_rank_0 = rocrand_generate_uniform_(generator,c_loc(output_data),n)
+    end function
+
+    function rocrand_generate_uniform_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_1
+      type(c_ptr) :: generator
+      real(c_float),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_uniform_rank_1 = rocrand_generate_uniform_(generator,c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_uniform_double_assumed_rank(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_assumed_rank
+      type(c_ptr) :: generator
+      real(c_double),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_uniform_double_assumed_rank = rocrand_generate_uniform_double_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#else
+    function rocrand_generate_uniform_double_rank_0(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_0
+      type(c_ptr) :: generator
+      real(c_double),target :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_uniform_double_rank_0 = rocrand_generate_uniform_double_(generator, &
+        c_loc(output_data),n)
+    end function
+
+    function rocrand_generate_uniform_double_rank_1(generator,output_data,n)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_1
+      type(c_ptr) :: generator
+      real(c_double),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      !
+      rocrand_generate_uniform_double_rank_1 = rocrand_generate_uniform_double_(generator, &
+        c_loc(output_data),n)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_normal_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_assumed_rank
+      type(c_ptr) :: generator
+      real(c_float),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      rocrand_generate_normal_assumed_rank = rocrand_generate_normal_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function rocrand_generate_normal_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_0
+      type(c_ptr) :: generator
+      real(c_float),target :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      rocrand_generate_normal_rank_0 = rocrand_generate_normal_(generator,c_loc(output_data),n, &
+        mean,stddev)
+    end function
+
+    function rocrand_generate_normal_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_1
+      type(c_ptr) :: generator
+      real(c_float),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      rocrand_generate_normal_rank_1 = rocrand_generate_normal_(generator,c_loc(output_data),n, &
+        mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_normal_double_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_assumed_rank
+      type(c_ptr) :: generator
+      real(c_double),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      rocrand_generate_normal_double_assumed_rank = rocrand_generate_normal_double_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function rocrand_generate_normal_double_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_0
+      type(c_ptr) :: generator
+      real(c_double),target :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      rocrand_generate_normal_double_rank_0 = rocrand_generate_normal_double_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+    function rocrand_generate_normal_double_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_1
+      type(c_ptr) :: generator
+      real(c_double),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      rocrand_generate_normal_double_rank_1 = rocrand_generate_normal_double_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_log_normal_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_assumed_rank
+      type(c_ptr) :: generator
+      real(c_float),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      rocrand_generate_log_normal_assumed_rank = rocrand_generate_log_normal_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function rocrand_generate_log_normal_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_0
+      type(c_ptr) :: generator
+      real(c_float),target :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      rocrand_generate_log_normal_rank_0 = rocrand_generate_log_normal_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+    function rocrand_generate_log_normal_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_1
+      type(c_ptr) :: generator
+      real(c_float),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_float) :: mean
+      real(c_float) :: stddev
+      !
+      rocrand_generate_log_normal_rank_1 = rocrand_generate_log_normal_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_log_normal_double_assumed_rank(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_assumed_rank
+      type(c_ptr) :: generator
+      real(c_double),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      rocrand_generate_log_normal_double_assumed_rank = rocrand_generate_log_normal_double_( &
+        generator,c_loc(output_data),n,mean,stddev)
+    end function
+
+#else
+    function rocrand_generate_log_normal_double_rank_0(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_0
+      type(c_ptr) :: generator
+      real(c_double),target :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      rocrand_generate_log_normal_double_rank_0 = rocrand_generate_log_normal_double_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+    function rocrand_generate_log_normal_double_rank_1(generator,output_data,n,mean,stddev)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_1
+      type(c_ptr) :: generator
+      real(c_double),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: mean
+      real(c_double) :: stddev
+      !
+      rocrand_generate_log_normal_double_rank_1 = rocrand_generate_log_normal_double_(generator, &
+        c_loc(output_data),n,mean,stddev)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_generate_poisson_assumed_rank(generator,output_data,n,lambda)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_assumed_rank
+      type(c_ptr) :: generator
+      integer(c_int),target,contiguous,dimension(..) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: lambda
+      !
+      rocrand_generate_poisson_assumed_rank = rocrand_generate_poisson_(generator, &
+        c_loc(output_data),n,lambda)
+    end function
+
+#else
+    function rocrand_generate_poisson_rank_0(generator,output_data,n,lambda)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_0
+      type(c_ptr) :: generator
+      integer(c_int),target :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: lambda
+      !
+      rocrand_generate_poisson_rank_0 = rocrand_generate_poisson_(generator,c_loc(output_data),n, &
+        lambda)
+    end function
+
+    function rocrand_generate_poisson_rank_1(generator,output_data,n,lambda)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_1
+      type(c_ptr) :: generator
+      integer(c_int),target,dimension(:) :: output_data
+      integer(c_size_t) :: n
+      real(c_double) :: lambda
+      !
+      rocrand_generate_poisson_rank_1 = rocrand_generate_poisson_(generator,c_loc(output_data),n, &
+        lambda)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocrand_create_discrete_distribution_assumed_rank(probabilities,mySize,offset, &
+        discrete_distribution)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_assumed_rank
+      real(c_double),target,contiguous,dimension(..) :: probabilities
+      integer(c_int) :: mySize
+      integer(c_int) :: offset
+      type(c_ptr) :: discrete_distribution
+      !
+      rocrand_create_discrete_distribution_assumed_rank = rocrand_create_discrete_distribution_( &
+        c_loc(probabilities),mySize,offset,discrete_distribution)
+    end function
+
+#else
+    function rocrand_create_discrete_distribution_rank_0(probabilities,mySize,offset, &
+        discrete_distribution)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_rank_0
+      real(c_double),target :: probabilities
+      integer(c_int) :: mySize
+      integer(c_int) :: offset
+      type(c_ptr) :: discrete_distribution
+      !
+      rocrand_create_discrete_distribution_rank_0 = rocrand_create_discrete_distribution_(c_loc( &
+        probabilities),mySize,offset,discrete_distribution)
+    end function
+
+    function rocrand_create_discrete_distribution_rank_1(probabilities,mySize,offset, &
+        discrete_distribution)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_rank_1
+      real(c_double),target,dimension(:) :: probabilities
+      integer(c_int) :: mySize
+      integer(c_int) :: offset
+      type(c_ptr) :: discrete_distribution
+      !
+      rocrand_create_discrete_distribution_rank_1 = rocrand_create_discrete_distribution_(c_loc( &
+        probabilities),mySize,offset,discrete_distribution)
+    end function
+
+#endif
+#endif
 end module hipfort_rocrand
