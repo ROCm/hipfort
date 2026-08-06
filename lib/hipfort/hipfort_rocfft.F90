@@ -101,9 +101,13 @@ module hipfort_rocfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocfft_plan_create_assumed_rank
+#else
     module procedure &
       rocfft_plan_create_rank_0,&
       rocfft_plan_create_rank_1
+#endif
 #endif
   end interface
 
@@ -253,9 +257,13 @@ module hipfort_rocfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocfft_plan_description_set_data_layout_assumed_rank
+#else
     module procedure &
       rocfft_plan_description_set_data_layout_rank_0,&
       rocfft_plan_description_set_data_layout_rank_1
+#endif
 #endif
   end interface
 
@@ -794,6 +802,27 @@ module hipfort_rocfft
 #ifdef USE_FPOINTER_INTERFACES
   contains
 
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocfft_plan_create_assumed_rank(plan,placement,transform_type,myPrecision,dimensions, &
+        lengths,number_of_transforms,description)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_create_assumed_rank
+      type(c_ptr) :: plan
+      integer(kind(rocfft_placement_inplace)) :: placement
+      integer(kind(rocfft_transform_type_complex_forward)) :: transform_type
+      integer(kind(rocfft_precision_single)) :: myPrecision
+      integer(c_size_t) :: dimensions
+      integer(c_size_t),target,contiguous,dimension(..) :: lengths
+      integer(c_size_t) :: number_of_transforms
+      type(c_ptr) :: description
+      !
+      rocfft_plan_create_assumed_rank = rocfft_plan_create_(plan,placement,transform_type, &
+        myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+    end function
+
+#else
     function rocfft_plan_create_rank_0(plan,placement,transform_type,myPrecision,dimensions, &
         lengths,number_of_transforms,description)
       use iso_c_binding
@@ -832,6 +861,34 @@ module hipfort_rocfft
         dimensions,c_loc(lengths),number_of_transforms,description)
     end function
 
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocfft_plan_description_set_data_layout_assumed_rank(description,in_array_type, &
+        out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
+        out_strides_size,out_strides,out_distance)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_assumed_rank
+      type(c_ptr) :: description
+      integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
+      integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
+      integer(c_size_t),target,contiguous,dimension(..) :: in_offsets
+      integer(c_size_t),target,contiguous,dimension(..) :: out_offsets
+      integer(c_size_t) :: in_strides_size
+      integer(c_size_t),target,contiguous,dimension(..) :: in_strides
+      integer(c_size_t) :: in_distance
+      integer(c_size_t) :: out_strides_size
+      integer(c_size_t),target,contiguous,dimension(..) :: out_strides
+      integer(c_size_t) :: out_distance
+      !
+      rocfft_plan_description_set_data_layout_assumed_rank = &
+        rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type, &
+        c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance, &
+        out_strides_size,c_loc(out_strides),out_distance)
+    end function
+
+#else
     function rocfft_plan_description_set_data_layout_rank_0(description,in_array_type, &
         out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
         out_strides_size,out_strides,out_distance)
@@ -882,5 +939,6 @@ module hipfort_rocfft
         out_distance)
     end function
 
+#endif
 #endif
 end module hipfort_rocfft

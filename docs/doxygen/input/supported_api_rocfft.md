@@ -4,11 +4,11 @@
 ----|---------------|---------
 1 | [rocfft_setup](interfacehipfort__rocfft_1_1rocfft__setup.html "Interface documentation") | C binding
 2 | [rocfft_cleanup](interfacehipfort__rocfft_1_1rocfft__cleanup.html "Interface documentation") | C binding
-3 | [rocfft_plan_create](interfacehipfort__rocfft_1_1rocfft__plan__create.html "Interface documentation") | C binding, rank_0, rank_1
+3 | [rocfft_plan_create](interfacehipfort__rocfft_1_1rocfft__plan__create.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 4 | [rocfft_execute](interfacehipfort__rocfft_1_1rocfft__execute.html "Interface documentation") | C binding
 5 | [rocfft_plan_destroy](interfacehipfort__rocfft_1_1rocfft__plan__destroy.html "Interface documentation") | C binding
 6 | [rocfft_plan_description_set_scale_factor](interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__factor.html "Interface documentation") | C binding
-7 | [rocfft_plan_description_set_data_layout](interfacehipfort__rocfft_1_1rocfft__plan__description__set__data__layout.html "Interface documentation") | C binding, rank_0, rank_1
+7 | [rocfft_plan_description_set_data_layout](interfacehipfort__rocfft_1_1rocfft__plan__description__set__data__layout.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 8 | [rocfft_field_create](interfacehipfort__rocfft_1_1rocfft__field__create.html "Interface documentation") | C binding
 9 | [rocfft_field_destroy](interfacehipfort__rocfft_1_1rocfft__field__destroy.html "Interface documentation") | C binding
 10 | [rocfft_get_version_string](interfacehipfort__rocfft_1_1rocfft__get__version__string.html "Interface documentation") | C binding

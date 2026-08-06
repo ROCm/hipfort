@@ -307,8 +307,8 @@
 303 | [rocsparse_dprune_dense2csr_nnz](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr__nnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 304 | [rocsparse_sprune_dense2csr](interfacehipfort__rocsparse_1_1rocsparse__sprune__dense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 305 | [rocsparse_dprune_dense2csr](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-306 | [rocsparse_sprune_dense2csr_by_percentage_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__sprune__dense2csr__by__percentage__buffer__size.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-307 | [rocsparse_dprune_dense2csr_by_percentage_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr__by__percentage__buffer__size.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+306 | [rocsparse_sprune_dense2csr_by_percentage_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__sprune__dense2csr__by__percentage__buffer__size.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+307 | [rocsparse_dprune_dense2csr_by_percentage_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr__by__percentage__buffer__size.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 308 | [rocsparse_sprune_dense2csr_nnz_by_percentage](interfacehipfort__rocsparse_1_1rocsparse__sprune__dense2csr__nnz__by__percentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 309 | [rocsparse_dprune_dense2csr_nnz_by_percentage](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr__nnz__by__percentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 310 | [rocsparse_sprune_dense2csr_by_percentage](interfacehipfort__rocsparse_1_1rocsparse__sprune__dense2csr__by__percentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
