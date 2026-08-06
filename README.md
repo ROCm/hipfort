@@ -61,9 +61,18 @@ definition, which `hipfort` enables automatically once it detects Fortran 2008 s
 in your compiler. By convention, application and test sources that rely on them use the
 `.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
 
+You can override the automatic detection with the `HIPFORT_USE_FPOINTER_INTERFACES`
+CMake option. It defaults to `ON` when the compiler supports Fortran 2008; set
+`-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` to build with the plain Fortran 2003
+`type(c_ptr)` interfaces only. This is useful for an old compiler, or one whose
+Fortran 2008 support is buggy. Requesting it on a compiler without Fortran 2008
+support is ignored (with a warning).
+
 **Experimental (`-DHIPFORT_ASSUMED_RANK=ON`).** By default each array generic is resolved by a set of rank-specific overloads (`rank_0`, `rank_1`, ...).
 With this option `hipfort` builds a single Fortran 2018 assumed-rank (`dimension(..)`) overload per routine instead.
-It requires a compiler with F2018 assumed-rank plus `c_loc` support.
+It requires a compiler with F2018 assumed-rank plus `c_loc` support, which `hipfort` probes for at configure time;
+if the probe fails, it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build.
+It also requires `HIPFORT_USE_FPOINTER_INTERFACES` (on which the per-rank interfaces themselves depend); with that off there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
 Off by default.
 
 The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous (the dummy is declared `contiguous`).

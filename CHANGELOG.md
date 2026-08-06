@@ -4,6 +4,9 @@
 
 ### Added
 
+* CMake option `HIPFORT_USE_FPOINTER_INTERFACES` to control the Fortran 2008 array interfaces (`USE_FPOINTER_INTERFACES`).
+It defaults to `ON` when the compiler supports Fortran 2008; set `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` to build with the plain Fortran 2003 `type(c_ptr)` interfaces only, for an old compiler or one whose Fortran 2008 support is buggy.
+`hipfort` now also probes for Fortran 2018 support at configure time: `HIPFORT_ASSUMED_RANK` is gated on it (and on `HIPFORT_USE_FPOINTER_INTERFACES`). Without a Fortran 2018 compiler it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build; with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
 * Experimental Fortran 2018 assumed-rank array interfaces, enabled with the `-DHIPFORT_ASSUMED_RANK=ON` CMake option (guarded by `USE_ASSUMED_RANK_INTERFACES`).
 When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
 The overloads are mutually exclusive with the classic per-rank interfaces.
