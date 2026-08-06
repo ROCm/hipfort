@@ -1073,6 +1073,16 @@ module hipfort_hipfft
       integer(kind(HIPFFT_MAJOR_VERSION)),value :: myType
       type(c_ptr),value :: myValue
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipfftGetProperty_assumed_rank
+#else
+    module procedure &
+      hipfftGetProperty_rank_0,&
+      hipfftGetProperty_rank_1
+#endif
+#endif
   end interface
 
 
@@ -1890,6 +1900,42 @@ module hipfort_hipfft
       real(c_double),target,dimension(:,:,:) :: odata
       !
       hipfftExecZ2D_rank_3 = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipfftGetProperty_assumed_rank(myType,myValue)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_assumed_rank
+      integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
+      integer(c_int),target,contiguous,dimension(..) :: myValue
+      !
+      hipfftGetProperty_assumed_rank = hipfftGetProperty_(myType,c_loc(myValue))
+    end function
+
+#else
+    function hipfftGetProperty_rank_0(myType,myValue)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_rank_0
+      integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
+      integer(c_int),target :: myValue
+      !
+      hipfftGetProperty_rank_0 = hipfftGetProperty_(myType,c_loc(myValue))
+    end function
+
+    function hipfftGetProperty_rank_1(myType,myValue)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_rank_1
+      integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
+      integer(c_int),target,dimension(:) :: myValue
+      !
+      hipfftGetProperty_rank_1 = hipfftGetProperty_(myType,c_loc(myValue))
     end function
 
 #endif
