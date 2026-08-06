@@ -45669,6 +45669,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasSetVector_l_assumed_rank,hipblasSetVector_i4_assumed_rank,hipblasSetVector_i8_assumed_rank,&
+      hipblasSetVector_r4_assumed_rank,hipblasSetVector_r8_assumed_rank,hipblasSetVector_c4_assumed_rank,&
+      hipblasSetVector_c8_assumed_rank
+#else
     module procedure hipblasSetVector_l_rank_0,hipblasSetVector_l_full_rank,&
       hipblasSetVector_i4_rank_0,hipblasSetVector_i4_full_rank,&
       hipblasSetVector_i8_rank_0,hipblasSetVector_i8_full_rank,&
@@ -45676,6 +45681,7 @@ module hipfort_hipblas
       hipblasSetVector_r8_rank_0,hipblasSetVector_r8_full_rank,&
       hipblasSetVector_c4_rank_0,hipblasSetVector_c4_full_rank,&
       hipblasSetVector_c8_rank_0,hipblasSetVector_c8_full_rank
+#endif
 #endif
   end interface
 
@@ -45698,6 +45704,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasGetVector_l_assumed_rank,hipblasGetVector_i4_assumed_rank,hipblasGetVector_i8_assumed_rank,&
+      hipblasGetVector_r4_assumed_rank,hipblasGetVector_r8_assumed_rank,hipblasGetVector_c4_assumed_rank,&
+      hipblasGetVector_c8_assumed_rank
+#else
     module procedure hipblasGetVector_l_rank_0,hipblasGetVector_l_full_rank,&
       hipblasGetVector_i4_rank_0,hipblasGetVector_i4_full_rank,&
       hipblasGetVector_i8_rank_0,hipblasGetVector_i8_full_rank,&
@@ -45705,6 +45716,7 @@ module hipfort_hipblas
       hipblasGetVector_r8_rank_0,hipblasGetVector_r8_full_rank,&
       hipblasGetVector_c4_rank_0,hipblasGetVector_c4_full_rank,&
       hipblasGetVector_c8_rank_0,hipblasGetVector_c8_full_rank
+#endif
 #endif
   end interface
 
@@ -45728,6 +45740,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasSetMatrix_l_assumed_rank,hipblasSetMatrix_i4_assumed_rank,hipblasSetMatrix_i8_assumed_rank,&
+      hipblasSetMatrix_r4_assumed_rank,hipblasSetMatrix_r8_assumed_rank,hipblasSetMatrix_c4_assumed_rank,&
+      hipblasSetMatrix_c8_assumed_rank
+#else
     module procedure hipblasSetMatrix_l_full_rank,hipblasSetMatrix_l_rank_0,hipblasSetMatrix_l_rank_1,&
       hipblasSetMatrix_i4_full_rank,hipblasSetMatrix_i4_rank_0,hipblasSetMatrix_i4_rank_1,&
       hipblasSetMatrix_i8_full_rank,hipblasSetMatrix_i8_rank_0,hipblasSetMatrix_i8_rank_1,&
@@ -45735,6 +45752,7 @@ module hipfort_hipblas
       hipblasSetMatrix_r8_full_rank,hipblasSetMatrix_r8_rank_0,hipblasSetMatrix_r8_rank_1,&
       hipblasSetMatrix_c4_full_rank,hipblasSetMatrix_c4_rank_0,hipblasSetMatrix_c4_rank_1,&
       hipblasSetMatrix_c8_full_rank,hipblasSetMatrix_c8_rank_0,hipblasSetMatrix_c8_rank_1
+#endif
 #endif
   end interface
 
@@ -45758,6 +45776,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasGetMatrix_l_assumed_rank,hipblasGetMatrix_i4_assumed_rank,hipblasGetMatrix_i8_assumed_rank,&
+      hipblasGetMatrix_r4_assumed_rank,hipblasGetMatrix_r8_assumed_rank,hipblasGetMatrix_c4_assumed_rank,&
+      hipblasGetMatrix_c8_assumed_rank
+#else
     module procedure hipblasGetMatrix_l_full_rank,hipblasGetMatrix_l_rank_0,hipblasGetMatrix_l_rank_1,&
       hipblasGetMatrix_i4_full_rank,hipblasGetMatrix_i4_rank_0,hipblasGetMatrix_i4_rank_1,&
       hipblasGetMatrix_i8_full_rank,hipblasGetMatrix_i8_rank_0,hipblasGetMatrix_i8_rank_1,&
@@ -45765,6 +45788,7 @@ module hipfort_hipblas
       hipblasGetMatrix_r8_full_rank,hipblasGetMatrix_r8_rank_0,hipblasGetMatrix_r8_rank_1,&
       hipblasGetMatrix_c4_full_rank,hipblasGetMatrix_c4_rank_0,hipblasGetMatrix_c4_rank_1,&
       hipblasGetMatrix_c8_full_rank,hipblasGetMatrix_c8_rank_0,hipblasGetMatrix_c8_rank_1
+#endif
 #endif
   end interface
 
@@ -45788,6 +45812,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasSetVectorAsync_l_assumed_rank,hipblasSetVectorAsync_i4_assumed_rank,hipblasSetVectorAsync_i8_assumed_rank,&
+      hipblasSetVectorAsync_r4_assumed_rank,hipblasSetVectorAsync_r8_assumed_rank,hipblasSetVectorAsync_c4_assumed_rank,&
+      hipblasSetVectorAsync_c8_assumed_rank
+#else
     module procedure hipblasSetVectorAsync_l_rank_0,hipblasSetVectorAsync_l_full_rank,&
       hipblasSetVectorAsync_i4_rank_0,hipblasSetVectorAsync_i4_full_rank,&
       hipblasSetVectorAsync_i8_rank_0,hipblasSetVectorAsync_i8_full_rank,&
@@ -45795,6 +45824,7 @@ module hipfort_hipblas
       hipblasSetVectorAsync_r8_rank_0,hipblasSetVectorAsync_r8_full_rank,&
       hipblasSetVectorAsync_c4_rank_0,hipblasSetVectorAsync_c4_full_rank,&
       hipblasSetVectorAsync_c8_rank_0,hipblasSetVectorAsync_c8_full_rank
+#endif
 #endif
   end interface
 
@@ -45818,6 +45848,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasGetVectorAsync_l_assumed_rank,hipblasGetVectorAsync_i4_assumed_rank,hipblasGetVectorAsync_i8_assumed_rank,&
+      hipblasGetVectorAsync_r4_assumed_rank,hipblasGetVectorAsync_r8_assumed_rank,hipblasGetVectorAsync_c4_assumed_rank,&
+      hipblasGetVectorAsync_c8_assumed_rank
+#else
     module procedure hipblasGetVectorAsync_l_rank_0,hipblasGetVectorAsync_l_full_rank,&
       hipblasGetVectorAsync_i4_rank_0,hipblasGetVectorAsync_i4_full_rank,&
       hipblasGetVectorAsync_i8_rank_0,hipblasGetVectorAsync_i8_full_rank,&
@@ -45825,6 +45860,7 @@ module hipfort_hipblas
       hipblasGetVectorAsync_r8_rank_0,hipblasGetVectorAsync_r8_full_rank,&
       hipblasGetVectorAsync_c4_rank_0,hipblasGetVectorAsync_c4_full_rank,&
       hipblasGetVectorAsync_c8_rank_0,hipblasGetVectorAsync_c8_full_rank
+#endif
 #endif
   end interface
 
@@ -45849,6 +45885,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasSetMatrixAsync_l_assumed_rank,hipblasSetMatrixAsync_i4_assumed_rank,hipblasSetMatrixAsync_i8_assumed_rank,&
+      hipblasSetMatrixAsync_r4_assumed_rank,hipblasSetMatrixAsync_r8_assumed_rank,hipblasSetMatrixAsync_c4_assumed_rank,&
+      hipblasSetMatrixAsync_c8_assumed_rank
+#else
     module procedure hipblasSetMatrixAsync_l_full_rank,hipblasSetMatrixAsync_l_rank_0,hipblasSetMatrixAsync_l_rank_1,&
       hipblasSetMatrixAsync_i4_full_rank,hipblasSetMatrixAsync_i4_rank_0,hipblasSetMatrixAsync_i4_rank_1,&
       hipblasSetMatrixAsync_i8_full_rank,hipblasSetMatrixAsync_i8_rank_0,hipblasSetMatrixAsync_i8_rank_1,&
@@ -45856,6 +45897,7 @@ module hipfort_hipblas
       hipblasSetMatrixAsync_r8_full_rank,hipblasSetMatrixAsync_r8_rank_0,hipblasSetMatrixAsync_r8_rank_1,&
       hipblasSetMatrixAsync_c4_full_rank,hipblasSetMatrixAsync_c4_rank_0,hipblasSetMatrixAsync_c4_rank_1,&
       hipblasSetMatrixAsync_c8_full_rank,hipblasSetMatrixAsync_c8_rank_0,hipblasSetMatrixAsync_c8_rank_1
+#endif
 #endif
   end interface
 
@@ -45880,6 +45922,11 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure hipblasGetMatrixAsync_l_assumed_rank,hipblasGetMatrixAsync_i4_assumed_rank,hipblasGetMatrixAsync_i8_assumed_rank,&
+      hipblasGetMatrixAsync_r4_assumed_rank,hipblasGetMatrixAsync_r8_assumed_rank,hipblasGetMatrixAsync_c4_assumed_rank,&
+      hipblasGetMatrixAsync_c8_assumed_rank
+#else
     module procedure hipblasGetMatrixAsync_l_full_rank,hipblasGetMatrixAsync_l_rank_0,hipblasGetMatrixAsync_l_rank_1,&
       hipblasGetMatrixAsync_i4_full_rank,hipblasGetMatrixAsync_i4_rank_0,hipblasGetMatrixAsync_i4_rank_1,&
       hipblasGetMatrixAsync_i8_full_rank,hipblasGetMatrixAsync_i8_rank_0,hipblasGetMatrixAsync_i8_rank_1,&
@@ -45887,6 +45934,7 @@ module hipfort_hipblas
       hipblasGetMatrixAsync_r8_full_rank,hipblasGetMatrixAsync_r8_rank_0,hipblasGetMatrixAsync_r8_rank_1,&
       hipblasGetMatrixAsync_c4_full_rank,hipblasGetMatrixAsync_c4_rank_0,hipblasGetMatrixAsync_c4_rank_1,&
       hipblasGetMatrixAsync_c8_full_rank,hipblasGetMatrixAsync_c8_rank_0,hipblasGetMatrixAsync_c8_rank_1
+#endif
 #endif
   end interface
 
@@ -102631,6 +102679,848 @@ module hipfort_hipblas
 
 #endif
 #endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function hipblasSetVector_l_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_l_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetMatrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetVectorAsync_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetMatrixAsync_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+#else
     function hipblasSetVector_l_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -104689,5 +105579,6 @@ module hipfort_hipblas
       ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
+#endif
 #endif
 end module hipfort_hipblas
