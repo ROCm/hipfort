@@ -7,8 +7,8 @@
 3 | [hipHostMalloc](interfacehipfort__hipmalloc_1_1hiphostmalloc.html "Interface documentation") | C binding
 4 | [hipFree](interfacehipfort__hipmalloc_1_1hipfree.html "Interface documentation") | C binding
 5 | [hipHostFree](interfacehipfort__hipmalloc_1_1hiphostfree.html "Interface documentation") | C binding
-6 | [hipMemcpy](interfacehipfort__hipmemcpy_1_1hipmemcpy.html "Interface documentation") | C binding
-7 | [hipMemcpyAsync](interfacehipfort__hipmemcpy_1_1hipmemcpyasync.html "Interface documentation") | C binding
+6 | [hipMemcpy](interfacehipfort__hipmemcpy_1_1hipmemcpy.html "Interface documentation") | C binding, assumed_rank
+7 | [hipMemcpyAsync](interfacehipfort__hipmemcpy_1_1hipmemcpyasync.html "Interface documentation") | C binding, assumed_rank
 8 | [hipMemcpy2D](interfacehipfort__hipmemcpy_1_1hipmemcpy2d.html "Interface documentation") | C binding
 9 | [hipMemcpy2DAsync](interfacehipfort__hipmemcpy_1_1hipmemcpy2dasync.html "Interface documentation") | C binding
 10 | [hipHostRegister](interfacehipfort__hiphostregister_1_1hiphostregister.html "Interface documentation") | C binding
