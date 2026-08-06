@@ -36,6 +36,19 @@ endif()
 # Requires a Fortran 2018 compiler.
 option(HIPFORT_ASSUMED_RANK "Use the F2018 assumed-rank array interfaces" OFF)
 
+# Guard the opt-in against compilers without Fortran 2018 support: the assumed-rank
+# wrappers pass a dimension(..) argument to c_loc(), which is an F2018 feature (see
+# the CMAKE_Fortran_COMPILER_SUPPORTS_F18 probe in the top-level CMakeLists.txt).
+# If it was requested but the compiler can't build it, warn and fall back to the
+# per-rank Fortran 2008 interfaces rather than failing the build.
+if(HIPFORT_ASSUMED_RANK AND NOT CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+  message(WARNING
+    "HIPFORT_ASSUMED_RANK was requested but ${CMAKE_Fortran_COMPILER} does not "
+    "support the Fortran 2018 assumed-rank interfaces; falling back to the "
+    "per-rank Fortran 2008 interfaces.")
+  set(HIPFORT_ASSUMED_RANK OFF)
+endif()
+
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn
     set(HIPFORT_LIB      "hipfort-${HIPFORT_ARCH}")
