@@ -1,5 +1,9 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (c) 2021 Advanced Micro Devices, Inc.
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -13,16 +17,15 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
-!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          
-           
+
 module hipfort_cuda_errors
+
   implicit none
 
   enum, bind(c)
@@ -36,6 +39,7 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorProfilerAlreadyStarted = 7
     enumerator :: cudaErrorProfilerAlreadyStopped = 8
     enumerator :: cudaErrorInvalidConfiguration = 9
+    enumerator :: cudaErrorVersionTranslation = 10
     enumerator :: cudaErrorInvalidPitchValue = 12
     enumerator :: cudaErrorInvalidSymbol = 13
     enumerator :: cudaErrorInvalidHostPointer = 16
@@ -53,7 +57,9 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorMixedDeviceExecution = 28
     enumerator :: cudaErrorNotYetImplemented = 31
     enumerator :: cudaErrorMemoryValueTooLarge = 32
+    enumerator :: cudaErrorStubLibrary = 34
     enumerator :: cudaErrorInsufficientDriver = 35
+    enumerator :: cudaErrorCallRequiresNewerDriver = 36
     enumerator :: cudaErrorInvalidSurface = 37
     enumerator :: cudaErrorDuplicateVariableName = 43
     enumerator :: cudaErrorDuplicateTextureName = 44
@@ -70,6 +76,8 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorInvalidDeviceFunction = 98
     enumerator :: cudaErrorNoDevice = 100
     enumerator :: cudaErrorInvalidDevice = 101
+    enumerator :: cudaErrorDeviceNotLicensed = 102
+    enumerator :: cudaErrorSoftwareValidityNotEstablished = 103
     enumerator :: cudaErrorStartupFailure = 127
     enumerator :: cudaErrorInvalidKernelImage = 200
     enumerator :: cudaErrorDeviceUninitialized = 201
@@ -90,6 +98,11 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorInvalidGraphicsContext = 219
     enumerator :: cudaErrorNvlinkUncorrectable = 220
     enumerator :: cudaErrorJitCompilerNotFound = 221
+    enumerator :: cudaErrorUnsupportedPtxVersion = 222
+    enumerator :: cudaErrorJitCompilationDisabled = 223
+    enumerator :: cudaErrorUnsupportedExecAffinity = 224
+    enumerator :: cudaErrorUnsupportedDevSideSync = 225
+    enumerator :: cudaErrorContained = 226
     enumerator :: cudaErrorInvalidSource = 300
     enumerator :: cudaErrorFileNotFound = 301
     enumerator :: cudaErrorSharedObjectSymbolNotFound = 302
@@ -97,6 +110,7 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorOperatingSystem = 304
     enumerator :: cudaErrorInvalidResourceHandle = 400
     enumerator :: cudaErrorIllegalState = 401
+    enumerator :: cudaErrorLossyQuery = 402
     enumerator :: cudaErrorSymbolNotFound = 500
     enumerator :: cudaErrorNotReady = 600
     enumerator :: cudaErrorIllegalAddress = 700
@@ -118,11 +132,20 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorInvalidPc = 718
     enumerator :: cudaErrorLaunchFailure = 719
     enumerator :: cudaErrorCooperativeLaunchTooLarge = 720
+    enumerator :: cudaErrorTensorMemoryLeak = 721
     enumerator :: cudaErrorNotPermitted = 800
     enumerator :: cudaErrorNotSupported = 801
     enumerator :: cudaErrorSystemNotReady = 802
     enumerator :: cudaErrorSystemDriverMismatch = 803
     enumerator :: cudaErrorCompatNotSupportedOnDevice = 804
+    enumerator :: cudaErrorMpsConnectionFailed = 805
+    enumerator :: cudaErrorMpsRpcFailure = 806
+    enumerator :: cudaErrorMpsServerNotReady = 807
+    enumerator :: cudaErrorMpsMaxClientsReached = 808
+    enumerator :: cudaErrorMpsMaxConnectionsReached = 809
+    enumerator :: cudaErrorMpsClientTerminated = 810
+    enumerator :: cudaErrorCdpNotSupported = 811
+    enumerator :: cudaErrorCdpVersionMismatch = 812
     enumerator :: cudaErrorStreamCaptureUnsupported = 900
     enumerator :: cudaErrorStreamCaptureInvalidated = 901
     enumerator :: cudaErrorStreamCaptureMerge = 902
@@ -134,6 +157,13 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorStreamCaptureWrongThread = 908
     enumerator :: cudaErrorTimeout = 909
     enumerator :: cudaErrorGraphExecUpdateFailure = 910
+    enumerator :: cudaErrorExternalDevice = 911
+    enumerator :: cudaErrorInvalidClusterSize = 912
+    enumerator :: cudaErrorFunctionNotLoaded = 913
+    enumerator :: cudaErrorInvalidResourceType = 914
+    enumerator :: cudaErrorInvalidResourceConfiguration = 915
+    enumerator :: cudaErrorStreamDetached = 917
+    enumerator :: cudaErrorGraphRecaptureFailure = 918
     enumerator :: cudaErrorUnknown = 999
     enumerator :: cudaErrorApiFailureBase = 10000
   end enum
