@@ -102,8 +102,9 @@ set(HIPFORT_ARCH "amdgcn")
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
 
-# The CUDA-name variant of the bindings. Never linked on an AMD build, so opt-in.
-option(USE_CUDA_NAMES "Also build hipfort-nvptx, the CUDA-name variant of the bindings" OFF)
+# The CUDA-name variant of the bindings, built as it always was. Components and
+# tests only appear when the CUDA libraries are actually detected, below.
+option(USE_CUDA_NAMES "Also build hipfort-nvptx, the CUDA-name variant of the bindings" ON)
 if(USE_CUDA_NAMES)
 set(HIPFORT_ARCH "nvptx")
     # nvptx
