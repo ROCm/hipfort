@@ -28,8 +28,7 @@ their backend can resolve. `libhipfort-amdgcn.a` no longer includes
 rocBLAS / rocSOLVER / rocSPARSE / rocFFT / rocRAND API modules (whose `roc*`
 symbols have no CUDA equivalent). Each archive can therefore be turned into a
 shared library against its own backend's libraries alone, with no dangling
-symbols. The `roc*_enums` modules stay in both backends. They define only
-`enum, bind(c)` constants that `hipfort_check` uses regardless of backend.
+symbols.
 
 ### Fixed
 
