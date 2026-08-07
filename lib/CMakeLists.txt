@@ -317,6 +317,17 @@ endif()
 # the corresponding stack. Override the lib directories with HIPFORT_ROCM_LIB_DIR
 # / HIPFORT_CUDA_LIB_DIR (e.g. to point nvptx at a non-default CUDA toolkit).
 if(HIPFORT_EXTENDED_TESTS)
+  # amdflang/LLVMFlang emits absolute R_X86_64_64 relocations for its derived-type
+  # module descriptors (e.g. in the *_types modules) that its default linker,
+  # ld.lld, refuses in a shared object — and -fPIC does not change them (a flang
+  # codegen limitation). Allow text relocations so the shared-link check still
+  # validates symbol resolution; the flag is accepted by both ld.lld and GNU ld.
+  # gfortran + GNU ld links these archives without it.
+  set(_shared_ldflags "")
+  if(CMAKE_Fortran_COMPILER_ID STREQUAL "LLVMFlang" OR CMAKE_Fortran_COMPILER_ID STREQUAL "Flang")
+    set(_shared_ldflags -Wl,-z,notext)
+  endif()
+
   # ---- amdgcn: link against the ROCm runtime libraries ----
   if(TARGET hipfort-amdgcn)
     set(_amd_dir "${HIPFORT_ROCM_LIB_DIR}")
@@ -346,7 +357,7 @@ if(HIPFORT_EXTENDED_TESTS)
         list(APPEND _amd_lflags "-l${_l}")
       endforeach()
       add_test(NAME hipfort_shared_link_amdgcn
-        COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared
+        COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared ${_shared_ldflags}
                 -Wl,--whole-archive $<TARGET_FILE:hipfort-amdgcn> -Wl,--no-whole-archive
                 -Wl,--no-undefined -L${_amd_dir} ${_amd_lflags}
                 -o ${CMAKE_CURRENT_BINARY_DIR}/libhipfort-amdgcn.so)
@@ -385,7 +396,7 @@ if(HIPFORT_EXTENDED_TESTS)
         list(APPEND _cuda_lflags "-l${_l}")
       endforeach()
       add_test(NAME hipfort_shared_link_nvptx
-        COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared
+        COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared ${_shared_ldflags}
                 -Wl,--whole-archive $<TARGET_FILE:hipfort-nvptx> -Wl,--no-whole-archive
                 -Wl,--no-undefined -L${_cuda_dir} ${_cuda_lflags}
                 -o ${CMAKE_CURRENT_BINARY_DIR}/libhipfort-nvptx.so)
