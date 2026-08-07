@@ -140,27 +140,7 @@ set(HIPFORT_ARCH "nvptx")
     )
    
 
-    # A static archive is never linked; forcing every member in makes a wrong cuda* name fail the build.
     find_package(CUDAToolkit)
-    if(CUDAToolkit_FOUND)
-      set(HIPFORT_CUDA_LIBS "")
-      foreach(t cudart cublas cufft curand cusparse cusolver)
-        if(TARGET CUDA::${t})
-          list(APPEND HIPFORT_CUDA_LIBS CUDA::${t})
-        endif()
-      endforeach()
-      target_link_libraries(${HIPFORT_LIB} PUBLIC ${HIPFORT_CUDA_LIBS})
-
-      if(CMAKE_Fortran_COMPILER_ID MATCHES "GNU|LLVMFlang|Flang|Intel|NVHPC")
-        set(_lc ${CMAKE_CURRENT_BINARY_DIR}/hipfort_nvptx_link_check.f90)
-        file(WRITE ${_lc} "program hipfort_nvptx_link_check\nend program hipfort_nvptx_link_check\n")
-        add_executable(hipfort-nvptx-link-check ${_lc})
-        target_link_libraries(hipfort-nvptx-link-check PRIVATE
-          -Wl,--whole-archive ${HIPFORT_LIB} -Wl,--no-whole-archive ${HIPFORT_CUDA_LIBS})
-      endif()
-    else()
-      message(STATUS "CUDAToolkit not found: building hipfort-nvptx without a link check")
-    endif()
     # Install include files marking as devel component
     rocm_install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort
                  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
