@@ -102,10 +102,6 @@ set(HIPFORT_ARCH "amdgcn")
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
 
-# The CUDA-name variant of the bindings, built as it always was. Components and
-# tests only appear when the CUDA libraries are actually detected, below.
-option(USE_CUDA_NAMES "Also build hipfort-nvptx, the CUDA-name variant of the bindings" ON)
-if(USE_CUDA_NAMES)
 set(HIPFORT_ARCH "nvptx")
     # nvptx
     set(HIPFORT_LIB     "hipfort-${HIPFORT_ARCH}")
@@ -144,8 +140,7 @@ set(HIPFORT_ARCH "nvptx")
     )
    
 
-    # A static archive is never linked, so force every member into an executable:
-    # that is what turns a wrong cuda* name into a build failure.
+    # A static archive is never linked; forcing every member in makes a wrong cuda* name fail the build.
     find_package(CUDAToolkit)
     if(CUDAToolkit_FOUND)
       set(HIPFORT_CUDA_LIBS "")
@@ -166,7 +161,6 @@ set(HIPFORT_ARCH "nvptx")
     else()
       message(STATUS "CUDAToolkit not found: building hipfort-nvptx without a link check")
     endif()
-endif()
     # Install include files marking as devel component
     rocm_install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort
                  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
@@ -179,7 +173,6 @@ rocm_install(
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
 )
 
-# Which binding archive the components wrap: amdgcn, or nvptx when targeting NVIDIA.
 if(NOT DEFINED HIPFORT_BASE_LIB)
   set(HIPFORT_BASE_LIB hipfort-amdgcn)
 endif()
@@ -326,7 +319,7 @@ if(HIP_PLATFORM STREQUAL "amd")
       ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
   )
-elseif(USE_CUDA_NAMES AND CUDAToolkit_FOUND)
+elseif(CUDAToolkit_FOUND)
   # Only the hip* components exist here; roc* and the FFTW3 API have no CUDA counterpart.
   set(HIPFORT_BASE_LIB hipfort-nvptx)
   foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
