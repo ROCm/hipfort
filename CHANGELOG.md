@@ -11,6 +11,25 @@ It defaults to `ON` when the compiler supports Fortran 2008; set `-DHIPFORT_USE_
 When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
 The overloads are mutually exclusive with the classic per-rank interfaces.
 Only contiguous arrays may be passed.
+* CMake option `HIPFORT_EXTENDED_TESTS` (default `OFF`) that links each backend
+static archive into a shared library with `-Wl,--whole-archive` and
+`-Wl,--no-undefined`, failing on any unresolved symbol. It is opt-in because it
+needs a recent, fully installed ROCm (amdgcn) or CUDA (nvptx) stack with every
+math library present to be certain it passes; each backend's test is skipped when
+its libraries are not found. Override the library directories with
+`HIPFORT_ROCM_LIB_DIR` / `HIPFORT_CUDA_LIB_DIR`.
+
+### Changed
+
+* The per-backend static archives are now cleaned to contain only the symbols
+their backend can resolve. `libhipfort-amdgcn.a` no longer includes
+`hipfort_cuda_errors` (the CUDA `cudaError_t` enum, referenced only under
+`USE_CUDA_NAMES`), and `libhipfort-nvptx.a` no longer includes the AMD-only
+rocBLAS / rocSOLVER / rocSPARSE / rocFFT / rocRAND API modules (whose `roc*`
+symbols have no CUDA equivalent). Each archive can therefore be turned into a
+shared library against its own backend's libraries alone, with no dangling
+symbols. The `roc*_enums` modules stay in both backends — they define only
+`enum, bind(c)` constants that `hipfort_check` uses regardless of backend.
 
 ### Fixed
 

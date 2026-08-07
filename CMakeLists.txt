@@ -178,7 +178,10 @@ option(BUILD_TESTING "Build tests" OFF)
 # -Wl,--no-undefined and fail on any unresolved symbol. Each backend's test is
 # only added when all of its runtime libraries are found (see lib/CMakeLists.txt),
 # so this is a no-op on machines without the corresponding ROCm/CUDA stack.
-option(HIPFORT_EXTENDED_TESTS "Test that the backend static archives link into shared libraries with no undefined symbols" OFF)
+# Opt-in (default OFF): it needs a recent, complete ROCm or CUDA install (all math
+# libraries present) to be certain it passes, so it is not part of the default
+# test suite.
+option(HIPFORT_EXTENDED_TESTS "Link each backend static archive into a shared library and fail on undefined symbols (needs a recent, complete ROCm/CUDA install)" OFF)
 set(HIPFORT_ROCM_LIB_DIR "" CACHE PATH "Directory of the ROCm runtime libraries for the amdgcn extended shared-link test (default: <ROCM_PATH>/lib)")
 set(HIPFORT_CUDA_LIB_DIR "" CACHE PATH "Directory of the CUDA runtime libraries for the nvptx extended shared-link test (default: from find_package(CUDAToolkit))")
 
