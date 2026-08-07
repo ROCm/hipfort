@@ -306,3 +306,92 @@ if(HIP_PLATFORM STREQUAL "amd")
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
   )
 endif()
+
+# ---------------------------------------------------------------------------
+# HIPFORT_EXTENDED_TESTS: verify each backend static archive links into a shared
+# library with every symbol resolved. Each test runs
+#   $FC -fPIC -shared -Wl,--whole-archive libhipfort-<arch>.a -Wl,--no-whole-archive
+#       -Wl,--no-undefined -L<dir> <-l deps> -o libhipfort-<arch>.so
+# and fails (non-zero exit) on any unresolved symbol. A backend's test is only
+# added when all of its runtime libraries are found, so this is a no-op without
+# the corresponding stack. Override the lib directories with HIPFORT_ROCM_LIB_DIR
+# / HIPFORT_CUDA_LIB_DIR (e.g. to point nvptx at a non-default CUDA toolkit).
+if(HIPFORT_EXTENDED_TESTS)
+  # ---- amdgcn: link against the ROCm runtime libraries ----
+  if(TARGET hipfort-amdgcn)
+    set(_amd_dir "${HIPFORT_ROCM_LIB_DIR}")
+    if(NOT _amd_dir)
+      if(ROCM_PATH)
+        set(_amd_dir "${ROCM_PATH}/lib")
+      else()
+        set(_amd_dir "/opt/rocm/lib")
+      endif()
+    endif()
+    # NB: the HIP runtime is libamdhip64, not "libhip".
+    set(_amd_libs hipfftw hipfft rocfft hipsolver rocsolver hipblas rocblas
+                  rocrand hiprand hipsparse rocsparse amdhip64)
+    set(_amd_ok TRUE)
+    set(_amd_missing "")
+    foreach(_l IN LISTS _amd_libs)
+      unset(_amd_lib_${_l} CACHE)
+      find_library(_amd_lib_${_l} NAMES ${_l} HINTS ${_amd_dir} NO_DEFAULT_PATH)
+      if(NOT _amd_lib_${_l})
+        set(_amd_ok FALSE)
+        list(APPEND _amd_missing ${_l})
+      endif()
+    endforeach()
+    if(_amd_ok)
+      set(_amd_lflags "")
+      foreach(_l IN LISTS _amd_libs)
+        list(APPEND _amd_lflags "-l${_l}")
+      endforeach()
+      add_test(NAME hipfort_shared_link_amdgcn
+        COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared
+                -Wl,--whole-archive $<TARGET_FILE:hipfort-amdgcn> -Wl,--no-whole-archive
+                -Wl,--no-undefined -L${_amd_dir} ${_amd_lflags}
+                -o ${CMAKE_CURRENT_BINARY_DIR}/libhipfort-amdgcn.so)
+      message(STATUS "HIPFORT_EXTENDED_TESTS: added amdgcn shared-link test (libs in ${_amd_dir})")
+    else()
+      message(STATUS "HIPFORT_EXTENDED_TESTS: skipping amdgcn shared-link test; missing in ${_amd_dir}: ${_amd_missing}")
+    endif()
+  endif()
+
+  # ---- nvptx: link against the CUDA runtime libraries ----
+  if(TARGET hipfort-nvptx)
+    set(_cuda_dir "${HIPFORT_CUDA_LIB_DIR}")
+    if(NOT _cuda_dir)
+      find_package(CUDAToolkit QUIET)
+      if(CUDAToolkit_FOUND)
+        set(_cuda_dir "${CUDAToolkit_LIBRARY_DIR}")
+      endif()
+    endif()
+    set(_cuda_libs cufft cusolver cublas curand cusparse cudart)
+    set(_cuda_ok FALSE)
+    set(_cuda_missing "")
+    if(_cuda_dir)
+      set(_cuda_ok TRUE)
+      foreach(_l IN LISTS _cuda_libs)
+        unset(_cuda_lib_${_l} CACHE)
+        find_library(_cuda_lib_${_l} NAMES ${_l} HINTS ${_cuda_dir} NO_DEFAULT_PATH)
+        if(NOT _cuda_lib_${_l})
+          set(_cuda_ok FALSE)
+          list(APPEND _cuda_missing ${_l})
+        endif()
+      endforeach()
+    endif()
+    if(_cuda_ok)
+      set(_cuda_lflags "")
+      foreach(_l IN LISTS _cuda_libs)
+        list(APPEND _cuda_lflags "-l${_l}")
+      endforeach()
+      add_test(NAME hipfort_shared_link_nvptx
+        COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared
+                -Wl,--whole-archive $<TARGET_FILE:hipfort-nvptx> -Wl,--no-whole-archive
+                -Wl,--no-undefined -L${_cuda_dir} ${_cuda_lflags}
+                -o ${CMAKE_CURRENT_BINARY_DIR}/libhipfort-nvptx.so)
+      message(STATUS "HIPFORT_EXTENDED_TESTS: added nvptx shared-link test (libs in ${_cuda_dir})")
+    else()
+      message(STATUS "HIPFORT_EXTENDED_TESTS: skipping nvptx shared-link test; CUDA libraries not found (set HIPFORT_CUDA_LIB_DIR). missing: ${_cuda_missing}")
+    endif()
+  endif()
+endif()
