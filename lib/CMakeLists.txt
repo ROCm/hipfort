@@ -22,6 +22,30 @@ file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
 file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
 set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
 
+# Partition the sources by backend so each archive only carries what its backend
+# can actually resolve:
+#   * the roc* API modules (rocBLAS/rocSOLVER/rocSPARSE/rocFFT/rocRAND) wrap
+#     AMD-only libraries with no CUDA equivalent -> amdgcn only. Compiling them for
+#     nvptx just adds unresolvable roc* symbols to the archive. Their *_enums
+#     modules are kept in both backends: they carry only `enum, bind(c)` constants
+#     (no external symbols) and hipfort_check uses the roc*_status enums for its
+#     error-check helpers regardless of backend.
+#   * hipfort_cuda_errors (the cudaError_t enum) is only used under USE_CUDA_NAMES
+#     -> nvptx only. On amdgcn every `use hipfort_cuda_errors` is #ifdef'd out.
+# Everything else is common to both backends.
+set(HIPFORT_SRC_ROC "")
+foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand)
+  file(GLOB _rocfiles "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_${_roclib}.[fF]90")  # API module only, not *_enums
+  list(APPEND HIPFORT_SRC_ROC ${_rocfiles})
+endforeach()
+file(GLOB HIPFORT_SRC_CUDA_ERRORS "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_cuda_errors.[fF]90")
+
+set(HIPFORT_SRC_COMMON ${HIPFORT_SRC_HIP})
+list(REMOVE_ITEM HIPFORT_SRC_COMMON ${HIPFORT_SRC_ROC} ${HIPFORT_SRC_CUDA_ERRORS})
+
+set(HIPFORT_SRC_AMDGCN ${HIPFORT_SRC_COMMON} ${HIPFORT_SRC_ROC})            # + AMD-only roc*
+set(HIPFORT_SRC_NVPTX  ${HIPFORT_SRC_COMMON} ${HIPFORT_SRC_CUDA_ERRORS})    # + CUDA-only cuda_errors
+
 # The Fortran 2008 array interfaces (USE_FPOINTER_INTERFACES) default ON whenever
 # the compiler supports Fortran 2008. Exposed as a cache option so it can be forced
 # OFF for an old compiler, or one whose F2008 support is buggy (e.g. some Intel
@@ -71,8 +95,8 @@ set(HIPFORT_ARCH "amdgcn")
     # amdgcn
     set(HIPFORT_LIB      "hipfort-${HIPFORT_ARCH}")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
-    ADD_LIBRARY(${HIPFORT_LIB} STATIC 
-        ${HIPFORT_SRC_HIP} 
+    ADD_LIBRARY(${HIPFORT_LIB} STATIC
+        ${HIPFORT_SRC_AMDGCN}
         )
     target_include_directories(${HIPFORT_LIB}
       PUBLIC
@@ -106,8 +130,8 @@ set(HIPFORT_ARCH "nvptx")
     # nvptx
     set(HIPFORT_LIB     "hipfort-${HIPFORT_ARCH}")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
-    ADD_LIBRARY(${HIPFORT_LIB} STATIC 
-         ${HIPFORT_SRC_HIP} 
+    ADD_LIBRARY(${HIPFORT_LIB} STATIC
+         ${HIPFORT_SRC_NVPTX}
          )
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
