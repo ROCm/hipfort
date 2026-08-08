@@ -700,4 +700,16 @@ if(BUILD_TESTING)
       )
     endif()
   endif()
+
+  # Regression test for SWDEV-427498: installing hipfort and calling
+  # find_package(hipfort) from the install prefix must succeed. This guards the
+  # multitoolchain-layout shim (lib/cmake/hipfort forwarding to
+  # lib/fortran/<compiler>/cmake/hipfort) and the flat-layout config alike.
+  add_test(NAME hipfort_find_package_install
+    COMMAND ${CMAKE_COMMAND}
+      -DHIPFORT_BUILD_DIR=${CMAKE_BINARY_DIR}
+      -DCONSUMER_SRC=${CMAKE_CURRENT_SOURCE_DIR}/find_package
+      -DWORK_DIR=${CMAKE_CURRENT_BINARY_DIR}/find_package_work
+      -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
+      -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
 endif()
