@@ -305,6 +305,27 @@ if(HIP_PLATFORM STREQUAL "amd")
       ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
   )
+
+  # With the multitoolchain layout the package files above live under
+  # lib/fortran/<compiler>/cmake/hipfort, which is not on CMake's default
+  # find_package search path. Also install a compiler-agnostic shim at the
+  # standard lib/cmake/hipfort so `find_package(hipfort)` succeeds from the
+  # install prefix (e.g. /opt/rocm); at use time it forwards to the toolchain
+  # subdirectory matching the consumer's Fortran compiler. The version file is
+  # compiler-independent and installed alongside so version checks still work.
+  if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
+    # Plain install() (not rocm_install) because rocm_install does not support
+    # RENAME; the file is still packaged by CPACK.
+    install(
+      FILES ${CMAKE_CURRENT_SOURCE_DIR}/hipfort-config-shim.cmake
+      RENAME hipfort-config.cmake
+      DESTINATION lib/cmake/hipfort
+    )
+    install(
+      FILES ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
+      DESTINATION lib/cmake/hipfort
+    )
+  endif()
 endif()
 
 # ---------------------------------------------------------------------------

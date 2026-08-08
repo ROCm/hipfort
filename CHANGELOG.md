@@ -32,6 +32,14 @@ symbols.
 
 ### Fixed
 
+* `find_package(hipfort)` now works from the install prefix (e.g.
+  `-DCMAKE_PREFIX_PATH=/opt/rocm`) with the multitoolchain layout. That layout
+  installs the package files under `lib/fortran/<compiler>/cmake/hipfort`, which
+  is not on CMake's default search path, so `find_package(hipfort)` could not find
+  them. A compiler-agnostic shim is now also installed at the standard
+  `lib/cmake/hipfort`; at configure time it forwards to the subdirectory matching
+  the consuming project's Fortran compiler (or errors listing the available
+  toolchains).
 * Test executables no longer fail to link with compilers whose driver defaults to
   `--as-needed`, such as `gfortran` on Ubuntu. `libhipfort-amdgcn.a` is shared by
   every `hipfort::` component, so CMake placed it after the ROCm shared libraries
