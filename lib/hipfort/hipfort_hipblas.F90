@@ -41733,8 +41733,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetVectorAsync_l_assumed_rank,hipblasSetVectorAsync_i4_assumed_rank,hipblasSetVectorAsync_i8_assumed_rank,&
-      hipblasSetVectorAsync_r4_assumed_rank,hipblasSetVectorAsync_r8_assumed_rank,hipblasSetVectorAsync_c4_assumed_rank,&
+    module procedure hipblasSetVectorAsync_l_assumed_rank,hipblasSetVectorAsync_i4_assumed_rank,&
+      hipblasSetVectorAsync_i8_assumed_rank,hipblasSetVectorAsync_r4_assumed_rank,&
+      hipblasSetVectorAsync_r8_assumed_rank,hipblasSetVectorAsync_c4_assumed_rank,&
       hipblasSetVectorAsync_c8_assumed_rank
 #else
     module procedure hipblasSetVectorAsync_l_rank_0,hipblasSetVectorAsync_l_full_rank,&
@@ -41769,8 +41770,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetVectorAsync_l_assumed_rank,hipblasGetVectorAsync_i4_assumed_rank,hipblasGetVectorAsync_i8_assumed_rank,&
-      hipblasGetVectorAsync_r4_assumed_rank,hipblasGetVectorAsync_r8_assumed_rank,hipblasGetVectorAsync_c4_assumed_rank,&
+    module procedure hipblasGetVectorAsync_l_assumed_rank,hipblasGetVectorAsync_i4_assumed_rank,&
+      hipblasGetVectorAsync_i8_assumed_rank,hipblasGetVectorAsync_r4_assumed_rank,&
+      hipblasGetVectorAsync_r8_assumed_rank,hipblasGetVectorAsync_c4_assumed_rank,&
       hipblasGetVectorAsync_c8_assumed_rank
 #else
     module procedure hipblasGetVectorAsync_l_rank_0,hipblasGetVectorAsync_l_full_rank,&
@@ -41806,8 +41808,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetMatrixAsync_l_assumed_rank,hipblasSetMatrixAsync_i4_assumed_rank,hipblasSetMatrixAsync_i8_assumed_rank,&
-      hipblasSetMatrixAsync_r4_assumed_rank,hipblasSetMatrixAsync_r8_assumed_rank,hipblasSetMatrixAsync_c4_assumed_rank,&
+    module procedure hipblasSetMatrixAsync_l_assumed_rank,hipblasSetMatrixAsync_i4_assumed_rank,&
+      hipblasSetMatrixAsync_i8_assumed_rank,hipblasSetMatrixAsync_r4_assumed_rank,&
+      hipblasSetMatrixAsync_r8_assumed_rank,hipblasSetMatrixAsync_c4_assumed_rank,&
       hipblasSetMatrixAsync_c8_assumed_rank
 #else
     module procedure hipblasSetMatrixAsync_l_full_rank,hipblasSetMatrixAsync_l_rank_0,hipblasSetMatrixAsync_l_rank_1,&
@@ -41843,8 +41846,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetMatrixAsync_l_assumed_rank,hipblasGetMatrixAsync_i4_assumed_rank,hipblasGetMatrixAsync_i8_assumed_rank,&
-      hipblasGetMatrixAsync_r4_assumed_rank,hipblasGetMatrixAsync_r8_assumed_rank,hipblasGetMatrixAsync_c4_assumed_rank,&
+    module procedure hipblasGetMatrixAsync_l_assumed_rank,hipblasGetMatrixAsync_i4_assumed_rank,&
+      hipblasGetMatrixAsync_i8_assumed_rank,hipblasGetMatrixAsync_r4_assumed_rank,&
+      hipblasGetMatrixAsync_r8_assumed_rank,hipblasGetMatrixAsync_c4_assumed_rank,&
       hipblasGetMatrixAsync_c8_assumed_rank
 #else
     module procedure hipblasGetMatrixAsync_l_full_rank,hipblasGetMatrixAsync_l_rank_0,hipblasGetMatrixAsync_l_rank_1,&
