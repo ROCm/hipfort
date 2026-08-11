@@ -175,9 +175,7 @@ rocm_install(
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
 )
 
-if(NOT DEFINED HIPFORT_BASE_LIB)
-  set(HIPFORT_BASE_LIB hipfort-amdgcn)
-endif()
+set(HIPFORT_BASE_LIB hipfort-amdgcn)
 
 macro(hipfort_add_component name imported_target)
   add_library(hipfort-${name} INTERFACE)
