@@ -144,8 +144,20 @@ set(HIPFORT_ARCH "nvptx")
     # Install Target hipfort-nvptx
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
+        EXPORT hipfort-nvptx-targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
+    )
+
+    rocm_install(
+      EXPORT hipfort-nvptx-targets
+      FILE hipfort-nvptx-targets.cmake
+      NAMESPACE hipfort::
+      DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
     )
    
     # Install include files marking as devel component
@@ -163,6 +175,10 @@ rocm_install(
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
 )
 
+if(NOT DEFINED HIPFORT_BASE_LIB)
+  set(HIPFORT_BASE_LIB hipfort-amdgcn)
+endif()
+
 macro(hipfort_add_component name imported_target)
   add_library(hipfort-${name} INTERFACE)
   add_library(hipfort::${name} ALIAS hipfort-${name})
@@ -170,10 +186,10 @@ macro(hipfort_add_component name imported_target)
     PROPERTIES
       EXPORT_NAME ${name}
   )
-  target_link_libraries(hipfort-${name} INTERFACE hipfort-amdgcn ${imported_target})
+  target_link_libraries(hipfort-${name} INTERFACE ${HIPFORT_BASE_LIB} ${imported_target})
   # The archive is shared by every component, so CMake orders it after the ROCm
   # .so files and --as-needed drops them. This dependency puts the archive first.
-  target_link_libraries(hipfort-amdgcn INTERFACE "$<BUILD_INTERFACE:${imported_target}>")
+  target_link_libraries(${HIPFORT_BASE_LIB} INTERFACE "$<BUILD_INTERFACE:${imported_target}>")
   rocm_install(
     TARGETS
       hipfort-${name}
@@ -192,6 +208,7 @@ macro(hipfort_add_component name imported_target)
 endmacro()
 
 find_package(hip PATHS ${ROCM_PATH} /opt/rocm)
+find_package(CUDAToolkit QUIET)
 if(HIP_PLATFORM STREQUAL "amd")
   if(hip_FOUND)
     hipfort_add_component(hip hip::host)
@@ -326,6 +343,20 @@ if(HIP_PLATFORM STREQUAL "amd")
       DESTINATION lib/cmake/hipfort
     )
   endif()
+elseif(CUDAToolkit_FOUND)
+  # Only the hip* components exist here; roc* and the FFTW3 API have no CUDA counterpart.
+  set(HIPFORT_BASE_LIB hipfort-nvptx)
+  foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
+               "hiprand:curand" "hipsolver:cusolver" "hipsparse:cusparse")
+    string(REPLACE ":" ";" pair "${pair}")
+    list(GET pair 0 _comp)
+    list(GET pair 1 _cudalib)
+    if(TARGET CUDA::${_cudalib})
+      hipfort_add_component(${_comp} CUDA::${_cudalib})
+    else()
+      message(STATUS "Skipping hipfort::${_comp} target export (no CUDA::${_cudalib})")
+    endif()
+  endforeach()
 endif()
 
 # ---------------------------------------------------------------------------
