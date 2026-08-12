@@ -49,17 +49,61 @@ module hipfort_hiprand_enums
   ! hiprandRngType
   enum, bind(c)
     enumerator :: HIPRAND_RNG_TEST = 0
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_PSEUDO_DEFAULT = 100
+#else
     enumerator :: HIPRAND_RNG_PSEUDO_DEFAULT = 400
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_PSEUDO_XORWOW = 101
+#else
     enumerator :: HIPRAND_RNG_PSEUDO_XORWOW = 401
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_PSEUDO_MRG32K3A = 121
+#else
     enumerator :: HIPRAND_RNG_PSEUDO_MRG32K3A = 402
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_PSEUDO_MTGP32 = 141
+#else
     enumerator :: HIPRAND_RNG_PSEUDO_MTGP32 = 403
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_PSEUDO_MT19937 = 142
+#else
     enumerator :: HIPRAND_RNG_PSEUDO_MT19937 = 404
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_PSEUDO_PHILOX4_32_10 = 161
+#else
     enumerator :: HIPRAND_RNG_PSEUDO_PHILOX4_32_10 = 405
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_QUASI_DEFAULT = 200
+#else
     enumerator :: HIPRAND_RNG_QUASI_DEFAULT = 500
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_QUASI_SOBOL32 = 201
+#else
     enumerator :: HIPRAND_RNG_QUASI_SOBOL32 = 501
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL32 = 202
+#else
     enumerator :: HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL32 = 502
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_QUASI_SOBOL64 = 203
+#else
     enumerator :: HIPRAND_RNG_QUASI_SOBOL64 = 503
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64 = 204
+#else
     enumerator :: HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64 = 504
+#endif
   end enum
 
   ! hiprandOrdering

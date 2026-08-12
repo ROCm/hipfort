@@ -22,7 +22,8 @@ program hip_cgemm_strided_batched
   type(c_ptr) :: handle = c_null_ptr
 
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  ! epsilon of the data kind, not the accumulator: these results are complex(kind=4).
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
 
   write(*,"(a)",advance="no") "-- Running test 'CGEMM_STRIDED_BATCHED' (Fortran 2008 interfaces) - "
 
