@@ -822,4 +822,46 @@ if(BUILD_TESTING)
       -DWORK_DIR=${CMAKE_CURRENT_BINARY_DIR}/find_package_work
       -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
+
+  # test/openmp needs offload (LLVM Flang), rocSOLVER, and a host LAPACK for the
+  # reference, so every other toolchain skips with a reason instead of failing.
+  if(TARGET hipfort::rocsolver AND CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
+    # "native" stays xnack-agnostic; an arch pinned to one HSA_XNACK mode will
+    # not load in the other.
+    set(HIPFORT_OFFLOAD_ARCH "native" CACHE STRING
+      "AMD GPU architecture for the OpenMP offload tests (gfxNNN, or native)")
+    set(_offload_flags -fopenmp -fopenmp-version=51 -fopenmp-offload-mandatory
+                       --offload-arch=${HIPFORT_OFFLOAD_ARCH})
+
+    # Also the GPU-less guard: --offload-arch=native cannot compile without a GPU.
+    include(CheckFortranSourceCompiles)
+    set(CMAKE_REQUIRED_FLAGS "-fopenmp --offload-arch=${HIPFORT_OFFLOAD_ARCH}")
+    check_fortran_source_compiles("
+program p
+integer :: i(1)
+!$omp target map(tofrom: i)
+i(1) = 1
+!$omp end target
+end program" HIPFORT_HAVE_OMP_OFFLOAD)
+    unset(CMAKE_REQUIRED_FLAGS)
+
+    find_package(LAPACK QUIET)   # zhegvd, the reference for rocsolver_zhegvdx
+
+    if(NOT HIPFORT_HAVE_OMP_OFFLOAD)
+      message(STATUS "Skipping OpenMP offload tests: ${CMAKE_Fortran_COMPILER} cannot offload to ${HIPFORT_OFFLOAD_ARCH}")
+    elseif(NOT LAPACK_FOUND)
+      message(STATUS "Skipping OpenMP offload tests: no host LAPACK for the reference result")
+    else()
+      add_executable(hipfort_test_openmp_rocsolver_zhegvdx
+        openmp/rocsolver/test_rocsolver_zhegvdx.f90)
+      target_compile_options(hipfort_test_openmp_rocsolver_zhegvdx PRIVATE ${_offload_flags})
+      target_link_options(hipfort_test_openmp_rocsolver_zhegvdx PRIVATE ${_offload_flags})
+      target_link_libraries(hipfort_test_openmp_rocsolver_zhegvdx
+        PRIVATE hipfort::rocsolver ${LAPACK_LIBRARIES})
+      set_target_properties(hipfort_test_openmp_rocsolver_zhegvdx
+        PROPERTIES LINKER_LANGUAGE Fortran)
+      add_test(NAME hipfort_test_openmp_rocsolver_zhegvdx
+        COMMAND hipfort_test_openmp_rocsolver_zhegvdx)
+    endif()
+  endif()
 endif()

@@ -11,9 +11,8 @@ program test_rocsolver_zhegvdx
 
         implicit none
 
-        complex(r64), allocatable :: A_lapack(:,:), B_lapack(:,:)
-        complex(r64), pointer, contiguous :: A_rocsolver(:,:), B_rocsolver(:,:)
-        type(c_ptr) :: A_rocsolver_cptr, B_rocsolver_cptr
+        complex(r64), allocatable, target :: A_lapack(:,:), B_lapack(:,:)
+        complex(r64), allocatable, target :: A_rocsolver(:,:), B_rocsolver(:,:)
         type(c_ptr)               :: handle = c_null_ptr
         integer(i32), parameter   :: n = 3
         real(r64), parameter      :: abstol = 1.0e-8_r64
@@ -25,7 +24,7 @@ program test_rocsolver_zhegvdx
         complex(r64), allocatable :: work(:)
         real(r64), allocatable    :: rwork(:)
         integer(r64), allocatable :: iwork(:), ifail(:)
-        integer(i32) :: info, m, cerr
+        integer(i32) :: info, m, cerr, i, j
         real(r64), parameter      :: rtol = 1.0e-6_r64
 
         complex(r64), allocatable :: Z(:,:), Zref(:,:)
@@ -33,7 +32,7 @@ program test_rocsolver_zhegvdx
 
         ! For the rocsolver
         integer(i32) :: device_id
-        type(c_ptr)  :: dA, dB, dW, dZ
+        type(c_ptr)  :: dA, dB, dW, dZ, dInfo
 
         ! Get device id
         device_id = omp_get_default_device()
@@ -55,18 +54,21 @@ program test_rocsolver_zhegvdx
                 (2.3758726221976016, -0.4747827863735063), (3.5288683548091355, 1.5600560529683896), (13.826224543945107, 0.0) &
                 ], shape=[3,3], order=[2,1])
 
-        A_rocsolver_cptr = omp_target_alloc(2 * size(A_lapack) * c_sizeof(1_r64), device_id)
-        B_rocsolver_cptr = omp_target_alloc(2 * size(B_lapack) * c_sizeof(1_r64), device_id)
+        ! rocsolver overwrites its inputs, so hand it device-resident copies.
+        ! Filling them in a target region also proves device code really runs.
+        allocate(A_rocsolver(n,n), B_rocsolver(n,n))
+        !$omp target enter data map(to: A_lapack, B_lapack) map(alloc: A_rocsolver, B_rocsolver)
 
-        call c_f_pointer(A_rocsolver_cptr, A_rocsolver, [n,n])
-        call c_f_pointer(B_rocsolver_cptr, B_rocsolver, [n,n])
-        
-        !$omp target map(to: A_lapack, B_lapack) has_device_addr(A_rocsolver, B_rocsolver) 
-        A_rocsolver(:,:) = A_lapack(:,:)
-        B_rocsolver(:,:) = B_lapack(:,:)
-        !$omp end target
-        
-        nullify(A_rocsolver,B_rocsolver)
+        !$omp target teams distribute parallel do collapse(2) private(i, j)
+        do j = 1, n
+            do i = 1, n
+                A_rocsolver(i,j) = A_lapack(i,j)
+                B_rocsolver(i,j) = B_lapack(i,j)
+            end do
+        end do
+        !$omp end target teams distribute parallel do
+
+        !$omp target exit data map(delete: A_lapack, B_lapack)
 
         ! First create the LAPACK reference
         lwork  = 2*n+n**2
@@ -96,11 +98,15 @@ program test_rocsolver_zhegvdx
         if (cerr /= rocblas_status_success) error stop "rocblas_create_handle failed"
 
         !$omp target data map(from: W, Z, m, info) 
-        !$omp target data use_device_addr(m, info)
+        !$omp target data use_device_addr(m)
+        dA     = get_device_pointer(A_rocsolver, device_id)
+        dB     = get_device_pointer(B_rocsolver, device_id)
         dW     = get_device_pointer(W, device_id)
         dZ     = get_device_pointer(Z, device_id)
+        ! rocsolver_zhegvdx takes info as a device pointer, not a Fortran integer
+        dInfo  = get_device_pointer(info, device_id)
         cerr = rocsolver_zhegvdx(handle, rocblas_eform_ax, rocblas_evect_original, rocblas_erange_index, rocblas_fill_upper, &
-                                 n, A_rocsolver_cptr, n, B_rocsolver_cptr, n, vl, vu, il, iu, m, dW, dZ, n, info)
+                                 n, dA, n, dB, n, vl, vu, il, iu, m, dW, dZ, n, dInfo)
         if (cerr /= rocblas_status_success) error stop "rocsolver_zhegvdx failed"
 
         ! NOTE: it will be better to get the stream of the rocblas handler and sync that instead of the whole device
@@ -123,8 +129,7 @@ program test_rocsolver_zhegvdx
         cerr = rocblas_destroy_handle(handle)
         if (cerr /= rocblas_status_success) error stop "rocblas_destroy_handle failed"
 
-        call omp_target_free(A_rocsolver_cptr, device_id)
-        call omp_target_free(B_rocsolver_cptr, device_id)
+        !$omp target exit data map(delete: A_rocsolver, B_rocsolver)
 
         deallocate(A_lapack, B_lapack)
 
@@ -153,7 +158,9 @@ contains
           type(*), target, intent(in) :: host_data(..)
           integer, intent(in) :: device_id
           get_device_pointer = omp_get_mapped_ptr(c_loc(host_data), device_id)
-          if (.not. c_associated(get_device_pointer)) error stop "Error(get_device_pointer) : returned null pointer"
+          ! Under unified shared memory nothing is mapped, so there is no device
+          ! pointer to look up: the host address is already device-accessible.
+          if (.not. c_associated(get_device_pointer)) get_device_pointer = c_loc(host_data)
         end function get_device_pointer
       
 end program test_rocsolver_zhegvdx
