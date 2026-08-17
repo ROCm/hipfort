@@ -822,9 +822,9 @@ if(BUILD_TESTING)
       -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
 
-  # test/openmp needs offload (LLVM Flang), rocSOLVER, and a host LAPACK for the
-  # reference, so every other toolchain skips with a reason instead of failing.
-  if(TARGET hipfort::rocsolver AND CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
+  # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference,
+  # so every other toolchain skips with a reason instead of failing.
+  if(CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
     # "native" stays xnack-agnostic; an arch pinned to one HSA_XNACK mode will
     # not load in the other.
     set(HIPFORT_OFFLOAD_ARCH "native" CACHE STRING
@@ -851,16 +851,29 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
     elseif(NOT LAPACK_FOUND)
       message(STATUS "Skipping OpenMP offload tests: no host LAPACK for the reference result")
     else()
-      add_executable(hipfort_test_openmp_rocsolver_zhegvdx
-        openmp/rocsolver/test_rocsolver_zhegvdx.f90)
-      target_compile_options(hipfort_test_openmp_rocsolver_zhegvdx PRIVATE ${_offload_flags})
-      target_link_options(hipfort_test_openmp_rocsolver_zhegvdx PRIVATE ${_offload_flags})
-      target_link_libraries(hipfort_test_openmp_rocsolver_zhegvdx
-        PRIVATE hipfort::rocsolver ${LAPACK_LIBRARIES})
-      set_target_properties(hipfort_test_openmp_rocsolver_zhegvdx
-        PROPERTIES LINKER_LANGUAGE Fortran)
-      add_test(NAME hipfort_test_openmp_rocsolver_zhegvdx
-        COMMAND hipfort_test_openmp_rocsolver_zhegvdx)
+      # openmp/<library>/test_<name>.f90 builds against hipfort::<library>, so a
+      # new file is picked up on the next configure with no edit here.
+      file(GLOB _omp_sources CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/openmp/*/test_*.f90")
+      foreach(_src IN LISTS _omp_sources)
+        get_filename_component(_lib "${_src}" DIRECTORY)
+        get_filename_component(_lib "${_lib}" NAME)
+        get_filename_component(_name "${_src}" NAME_WE)
+        string(REGEX REPLACE "^test_" "" _name "${_name}")
+        if(NOT TARGET hipfort::${_lib})
+          message(STATUS "Skipping OpenMP offload test ${_name}: no hipfort::${_lib}")
+          continue()
+        endif()
+        add_executable(hipfort_test_openmp_${_name} "${_src}")
+        target_compile_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
+        target_link_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
+        target_link_libraries(hipfort_test_openmp_${_name}
+          PRIVATE hipfort::${_lib} ${LAPACK_LIBRARIES})
+        set_target_properties(hipfort_test_openmp_${_name}
+          PROPERTIES LINKER_LANGUAGE Fortran)
+        add_test(NAME hipfort_test_openmp_${_name}
+          COMMAND hipfort_test_openmp_${_name})
+      endforeach()
     endif()
   endif()
 endif()
