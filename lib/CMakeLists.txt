@@ -426,6 +426,12 @@ if(HIPFORT_EXTENDED_TESTS)
         set(_cuda_dir "${CUDAToolkit_LIBRARY_DIR}")
       endif()
     endif()
+    # Only the CUDA math/runtime libraries are needed: the whole-archive shared
+    # link references solely the C symbols the archive's wrappers actually *call*
+    # (the bind(C) interface bodies alone emit no reference). That set is entirely
+    # runtime (cuda*/cublas*/...); the ~50 CUDA driver-API (cu*) routines are only
+    # declared, never called here, so libcuda is not required. (The exhaustive
+    # test_hip symbol test *does* call them and links the driver stub itself.)
     set(_cuda_libs cufft cusolver cublas curand cusparse cudart)
     set(_cuda_ok FALSE)
     set(_cuda_missing "")
