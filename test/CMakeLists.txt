@@ -1032,4 +1032,7 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
       endforeach()
     endif()
   endif()
+  # Source-only lint, so it needs no GPU and no built targets.
+  add_test(NAME hipfort_fortran_line_length
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/check_line_length.sh)
 endif()
