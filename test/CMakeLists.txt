@@ -22,6 +22,13 @@ if(BUILD_TESTING)
            CMAKE_Fortran_COMPILE_OBJECT "${CMAKE_Fortran_COMPILE_OBJECT}")
   endif()
 
+  # ROCm/hipfort#456: run the suite in both HSA_XNACK modes. CI enables it on the
+  # MI300A nodes; only LLVM Flang supports the offload and USM tests it pairs with.
+  option(HIPFORT_XNACK_MATRIX "Also run every test with HSA_XNACK=1" OFF)
+  if(NOT CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
+    set(HIPFORT_XNACK_MATRIX OFF)
+  endif()
+
   function(hipfort_add_test lib func dir)
     # The f2008 tests exercise the array overloads (USE_FPOINTER_INTERFACES) and
     # the f2018 tests the assumed-rank overloads; skip each when its interface
@@ -60,6 +67,16 @@ if(BUILD_TESTING)
       NAME hipfort_test_${dir}_${lib}_${func}
       COMMAND hipfort_test_${dir}_${lib}_${func}
     )
+    if(HIPFORT_XNACK_MATRIX)
+      set_tests_properties(hipfort_test_${dir}_${lib}_${func}
+        PROPERTIES ENVIRONMENT "HSA_XNACK=0")
+      add_test(
+        NAME hipfort_test_${dir}_${lib}_${func}_xnack
+        COMMAND hipfort_test_${dir}_${lib}_${func}
+      )
+      set_tests_properties(hipfort_test_${dir}_${lib}_${func}_xnack
+        PROPERTIES ENVIRONMENT "HSA_XNACK=1")
+    endif()
   endfunction()
 
   # Extended, exhaustive per-library "symbol" tests (test_<lib>.F03),
@@ -981,14 +998,31 @@ if(BUILD_TESTING)
   # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference,
   # so every other toolchain skips with a reason instead of failing.
   if(CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
-    # "native" stays xnack-agnostic; an arch pinned to one HSA_XNACK mode will
-    # not load in the other.
-    set(HIPFORT_OFFLOAD_ARCH "native" CACHE STRING
-      "AMD GPU architecture for the OpenMP offload tests (gfxNNN, or native)")
+    # The arch must stay XNACK-agnostic, since the tests below run in both modes.
+    # rocm_agent_enumerator gives the bare gfxNNN; "native", offload-arch and
+    # "rocm_agent_enumerator -name" all pin the build machine's current mode.
+    if(NOT DEFINED HIPFORT_OFFLOAD_ARCH)
+      set(_hipfort_arch "native")
+      find_program(HIPFORT_AGENT_ENUMERATOR rocm_agent_enumerator
+                   HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
+      if(HIPFORT_AGENT_ENUMERATOR)
+        execute_process(COMMAND ${HIPFORT_AGENT_ENUMERATOR}
+                        OUTPUT_VARIABLE _hipfort_agents
+                        OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+        string(REGEX MATCHALL "gfx[0-9a-z]+" _hipfort_gpus "${_hipfort_agents}")
+        list(REMOVE_ITEM _hipfort_gpus "gfx000")   # the CPU agent
+        list(REMOVE_DUPLICATES _hipfort_gpus)
+        if(_hipfort_gpus)
+          list(GET _hipfort_gpus 0 _hipfort_arch)
+        endif()
+      endif()
+      set(HIPFORT_OFFLOAD_ARCH "${_hipfort_arch}" CACHE STRING
+        "XNACK-agnostic AMD GPU architecture for the OpenMP offload tests")
+    endif()
     set(_offload_flags -fopenmp -fopenmp-version=51 -fopenmp-offload-mandatory
                        --offload-arch=${HIPFORT_OFFLOAD_ARCH})
 
-    # Also the GPU-less guard: --offload-arch=native cannot compile without a GPU.
+    # Also the GPU-less guard: the probe cannot compile without a GPU present.
     include(CheckFortranSourceCompiles)
     set(CMAKE_REQUIRED_FLAGS "-fopenmp --offload-arch=${HIPFORT_OFFLOAD_ARCH}")
     check_fortran_source_compiles("
@@ -1020,15 +1054,43 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
           message(STATUS "Skipping OpenMP offload test ${_name}: no hipfort::${_lib}")
           continue()
         endif()
-        add_executable(hipfort_test_openmp_${_name} "${_src}")
-        target_compile_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
-        target_link_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
-        target_link_libraries(hipfort_test_openmp_${_name}
-          PRIVATE hipfort::${_lib} ${LAPACK_LIBRARIES})
-        set_target_properties(hipfort_test_openmp_${_name}
-          PROPERTIES LINKER_LANGUAGE Fortran)
+        # USM is a compile-time flag, so it needs its own binary.
+        set(_variants explicit)
+        if(HIPFORT_XNACK_MATRIX)
+          list(APPEND _variants usm)
+        endif()
+        foreach(_variant IN LISTS _variants)
+          set(_tgt hipfort_test_openmp_${_name})
+          set(_flags ${_offload_flags})
+          if(_variant STREQUAL "usm")
+            string(APPEND _tgt "_usm")
+            list(APPEND _flags -fopenmp-force-usm)
+          endif()
+          add_executable(${_tgt} "${_src}")
+          target_compile_options(${_tgt} PRIVATE ${_flags})
+          target_link_options(${_tgt} PRIVATE ${_flags})
+          target_link_libraries(${_tgt} PRIVATE hipfort::${_lib} ${LAPACK_LIBRARIES})
+          set_target_properties(${_tgt} PROPERTIES LINKER_LANGUAGE Fortran)
+        endforeach()
+
         add_test(NAME hipfort_test_openmp_${_name}
           COMMAND hipfort_test_openmp_${_name})
+
+        if(HIPFORT_XNACK_MATRIX)
+          # Pinned, not inherited: the USM binary faults with XNACK off.
+          set_tests_properties(hipfort_test_openmp_${_name}
+            PROPERTIES ENVIRONMENT "HSA_XNACK=0")
+
+          add_test(NAME hipfort_test_openmp_${_name}_xnack
+            COMMAND hipfort_test_openmp_${_name})
+          set_tests_properties(hipfort_test_openmp_${_name}_xnack
+            PROPERTIES ENVIRONMENT "HSA_XNACK=1")
+
+          add_test(NAME hipfort_test_openmp_${_name}_usm
+            COMMAND hipfort_test_openmp_${_name}_usm)
+          set_tests_properties(hipfort_test_openmp_${_name}_usm
+            PROPERTIES ENVIRONMENT "HSA_XNACK=1")
+        endif()
       endforeach()
     endif()
   endif()
