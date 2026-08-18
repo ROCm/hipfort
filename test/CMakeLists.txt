@@ -189,7 +189,7 @@ if(BUILD_TESTING)
     f2008/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
   )
 
-  # ROCm/hipfort#456: run the suite in both HSA_XNACK modes. CI enables it on the
+  # Run the suite in both HSA_XNACK modes. CI enables it on the
   # MI300A nodes; only LLVM Flang supports the offload and USM tests it pairs with.
   option(HIPFORT_XNACK_MATRIX "Also run every test with HSA_XNACK=1" OFF)
   if(NOT CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
