@@ -74,6 +74,9 @@ endif()
 # Requires a Fortran 2018 compiler.
 option(HIPFORT_ASSUMED_RANK "Use the F2018 assumed-rank array interfaces" OFF)
 
+# The CUDA backend is built even on ROCm-only builds; turn it off if unused.
+option(HIPFORT_BUILD_NVPTX "Build the CUDA (nvptx) backend archive" ON)
+
 # Guard the opt-in: assumed-rank is nested in the F2008 interfaces and additionally
 # needs a Fortran 2018 compiler (c_loc() of a dimension(..) argument; see the
 # CMAKE_Fortran_COMPILER_SUPPORTS_F18 probe in the top-level CMakeLists.txt). If it
@@ -126,6 +129,7 @@ set(HIPFORT_ARCH "amdgcn")
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
 
+if(HIPFORT_BUILD_NVPTX)
 set(HIPFORT_ARCH "nvptx")
     # nvptx
     set(HIPFORT_LIB     "hipfort-${HIPFORT_ARCH}")
@@ -159,6 +163,7 @@ set(HIPFORT_ARCH "nvptx")
       NAMESPACE hipfort::
       DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
     )
+endif()
    
     # Install include files marking as devel component
     rocm_install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort
@@ -341,7 +346,7 @@ if(HIP_PLATFORM STREQUAL "amd")
       DESTINATION lib/cmake/hipfort
     )
   endif()
-elseif(CUDAToolkit_FOUND)
+elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)
   # Only the hip* components exist here; roc* and the FFTW3 API have no CUDA counterpart.
   set(HIPFORT_BASE_LIB hipfort-nvptx)
   foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
