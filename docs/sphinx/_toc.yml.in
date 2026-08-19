@@ -21,6 +21,10 @@ subtrees:
         title: Examples
       - file: tutorials/rocfft-examples.rst
         title: rocFFT examples
+      - file: tutorials/hipfft-examples.rst
+        title: hipFFT examples
+      - file: tutorials/hipfftw-examples.rst
+        title: hipFFTW examples
 
   - caption: API reference
     entries:
