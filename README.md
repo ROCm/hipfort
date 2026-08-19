@@ -18,7 +18,7 @@ Then build, install, and test hipfort from source with the commands below:
 ```shell
 git clone https://github.com/ROCm/hipfort.git
 cd hipfort
-cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
 cmake --build build
 cmake --install build
 ctest --test-dir build
