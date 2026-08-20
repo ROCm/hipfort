@@ -17,7 +17,7 @@ The one difference that matters: the ``in`` and ``out`` arguments are
 ``hipMalloc`` passes straight through, but host arrays do not work.
 
 Every program on this page is a complete, self-contained example that is built
-and run as part of the hipFORT test suite. The sources live in
+and run as part of the hipFORT test suite. The tests live in
 ``test/f2003/hipfftw``. Unlike the other FFT libraries there is no Fortran 2008
 variant, because the FFTW API is pointer-based throughout and gains nothing
 from Fortran array pointers.
