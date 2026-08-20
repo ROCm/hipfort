@@ -927,10 +927,26 @@ if(BUILD_TESTING)
     find_package(hip QUIET PATHS ${ROCM_PATH} /opt/rocm)
     find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
     if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd")
+      # --offload-arch=native and `rocm_agent_enumerator -name` both append the
+      # :xnack suffix, which pins the code object to one XNACK mode and makes
+      # hipModuleLoad fail in the other. The bare gfxNNN loads under both.
+      set(_hipfort_arch "native")
+      find_program(HIPFORT_AGENT_ENUM rocm_agent_enumerator
+                   HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
+      if(HIPFORT_AGENT_ENUM)
+        execute_process(COMMAND ${HIPFORT_AGENT_ENUM}
+                        OUTPUT_VARIABLE _hipfort_agents
+                        OUTPUT_STRIP_TRAILING_WHITESPACE)
+        string(REPLACE "\n" ";" _hipfort_agents "${_hipfort_agents}")
+        list(REMOVE_ITEM _hipfort_agents "gfx000")
+        if(_hipfort_agents)
+          list(GET _hipfort_agents 0 _hipfort_arch)
+        endif()
+      endif()
       set(_hipfort_code_object "${CMAKE_CURRENT_BINARY_DIR}/vecadd_kernel.co")
       add_custom_command(
         OUTPUT "${_hipfort_code_object}"
-        COMMAND ${HIPFORT_HIPCC} --genco --offload-arch=native
+        COMMAND ${HIPFORT_HIPCC} --genco --offload-arch=${_hipfort_arch}
                 "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
                 -o "${_hipfort_code_object}"
         DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
@@ -940,6 +956,21 @@ if(BUILD_TESTING)
       add_dependencies(hipfort_test_f2003_hip_module_kernel hipfort_test_code_object)
       set_tests_properties(hipfort_test_f2003_hip_module_kernel PROPERTIES
         ENVIRONMENT "HIPFORT_TEST_CODE_OBJECT=${_hipfort_code_object}")
+
+      # The runtime-API occupancy calls take the host stub of a __global__
+      # function, so this test links the vecadd kernel instead of loading it.
+      include(CheckLanguage)
+      check_language(HIP)
+      if(CMAKE_HIP_COMPILER)
+        enable_language(HIP)
+        hipfort_add_test(hip occupancy f2003)
+        target_sources(hipfort_test_f2003_hip_occupancy PRIVATE f2003/vecadd/hip_implementation.cpp)
+        set_source_files_properties(f2003/vecadd/hip_implementation.cpp PROPERTIES LANGUAGE HIP)
+        set_target_properties(hipfort_test_f2003_hip_occupancy
+          PROPERTIES
+            LINKER_LANGUAGE Fortran
+            POSITION_INDEPENDENT_CODE ON)
+      endif()
     endif()
   endif()
 
