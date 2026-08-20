@@ -12,7 +12,7 @@ mirrors cuFFT, so the same source builds against either backend. hipFORT
 exposes it through the ``hipfort_hipfft`` module.
 
 Every program on this page is a complete, self-contained example that is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
+and run as part of the hipFORT test suite. The Fortran 2008 tests live in
 ``test/f2008/hipfft`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/hipfft``.
