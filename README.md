@@ -31,7 +31,7 @@ to select the Fortran compiler and backend without setting cache variables by
 hand. Pass one with `-DCMAKE_TOOLCHAIN_FILE`:
 
 ```shell
-cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
+cmake -S . -B build -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 ```
 
 ## Fortran interfaces
