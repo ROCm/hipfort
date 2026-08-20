@@ -4,8 +4,8 @@
 !
 ! Captures a device memset into a HIP graph, instantiates it, launches the
 ! executable graph and verifies the buffer was written. Exercises
-! hipStreamBeginCapture / hipStreamEndCapture / hipGraphInstantiate /
-! hipGraphLaunch / hipGraphExecDestroy / hipGraphDestroy.
+! hipStreamBeginCapture / hipStreamIsCapturing / hipStreamEndCapture /
+! hipGraphInstantiate / hipGraphLaunch / hipGraphExecDestroy / hipGraphDestroy.
 !!!!!!!!!!!!!!
 !
 program test_graph
@@ -24,6 +24,7 @@ program test_graph
   type(c_ptr) :: errnode = c_null_ptr
   type(c_ptr) :: dptr = c_null_ptr
   integer(c_size_t) :: nbytes
+  integer(kind(hipStreamCaptureStatusNone)), target :: capstat
   integer :: i
 
   write(*,"(a)",advance="no") "-- Running test 'hip graph' (Fortran 2003 interfaces) - "
@@ -35,9 +36,12 @@ program test_graph
   call hipCheck(hipMalloc(dptr, nbytes))
 
   ! Capture a device memset (value 5) into a graph.
+  call check_capture(hipStreamCaptureStatusNone, "before capture")
   call hipCheck(hipStreamBeginCapture(stream, hipStreamCaptureModeGlobal))
+  call check_capture(hipStreamCaptureStatusActive, "during capture")
   call hipCheck(hipMemsetAsync(dptr, 5, nbytes, stream))
   call hipCheck(hipStreamEndCapture(stream, graph))
+  call check_capture(hipStreamCaptureStatusNone, "after capture")
   if (.not. c_associated(graph)) then
      write(*,*) "FAILED! captured graph is null"
      call exit(1)
@@ -67,5 +71,18 @@ program test_graph
   call hipCheck(hipStreamDestroy(stream))
 
   write(*,*) "PASSED!"
+
+contains
+
+  subroutine check_capture(want, what)
+    integer(kind(hipStreamCaptureStatusNone)), intent(in) :: want
+    character(len=*), intent(in) :: what
+    capstat = -1
+    call hipCheck(hipStreamIsCapturing(stream, c_loc(capstat)))
+    if (capstat /= want) then
+       write(*,*) "FAILED! capture status ", what, " = ", capstat, " (expected ", want, ")"
+       call exit(1)
+    end if
+  end subroutine check_capture
 
 end program test_graph

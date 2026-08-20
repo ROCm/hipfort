@@ -889,8 +889,8 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_zsptrsm f2003)
   endif()
 
-  # HIP runtime API tests (pure Fortran, no custom kernel): device management,
-  # streams, events, memset and asynchronous copies.
+  # HIP runtime API tests: device management, streams, events, memset,
+  # asynchronous copies, unified-memory hints and the module/kernel API.
   if(TARGET hipfort::hip)
     hipfort_add_symbol_test(hip)
     hipfort_add_test(hip device_management f2003)
@@ -909,6 +909,38 @@ if(BUILD_TESTING)
     hipfort_add_test(hip graph_nodes f2003)
     hipfort_add_test(hip graph_memset_node f2003)
     hipfort_add_test(hip peer_access f2003)
+    hipfort_add_test(hip graph_empty_node f2003)
+    hipfort_add_test(hip stream_flags f2003)
+    hipfort_add_test(hip stream_callback f2003)
+    hipfort_add_test(hip event_timing f2003)
+    hipfort_add_test(hip memory_ops f2003)
+    hipfort_add_test(hip device_properties f2003)
+    hipfort_add_test(hip error_version f2003)
+    hipfort_add_test(hip pointer_attributes f2003)
+    hipfort_add_test(hip mem_advise f2003)
+    hipfort_add_test(hip pointer_attributes f2008)
+    hipfort_add_test(hip mem_advise f2008)
+
+    # The hipModule* entry points need a real GPU kernel, so this test loads a
+    # standalone code object built from the existing vecadd source. They have no
+    # CUDA-driver counterpart in the generated bindings, hence the AMD-only guard.
+    find_package(hip QUIET PATHS ${ROCM_PATH} /opt/rocm)
+    find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
+    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd")
+      set(_hipfort_code_object "${CMAKE_CURRENT_BINARY_DIR}/vecadd_kernel.co")
+      add_custom_command(
+        OUTPUT "${_hipfort_code_object}"
+        COMMAND ${HIPFORT_HIPCC} --genco --offload-arch=native
+                "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
+                -o "${_hipfort_code_object}"
+        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
+        COMMENT "Building the HIP code object used by the module_kernel test")
+      add_custom_target(hipfort_test_code_object DEPENDS "${_hipfort_code_object}")
+      hipfort_add_test(hip module_kernel f2003)
+      add_dependencies(hipfort_test_f2003_hip_module_kernel hipfort_test_code_object)
+      set_tests_properties(hipfort_test_f2003_hip_module_kernel PROPERTIES
+        ENVIRONMENT "HIPFORT_TEST_CODE_OBJECT=${_hipfort_code_object}")
+    endif()
   endif()
 
   # vecadd mixes a Fortran driver with a HIP C++ kernel, so it needs the HIP
