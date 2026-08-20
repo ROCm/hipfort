@@ -15,7 +15,7 @@ program dsterf
   ! Define our input data
   real(c_double), target :: hD(3) = (/ 2, 2, 2 /)
   real(c_double), target :: hE(2) = (/ -1, -1 /)
-  real(c_double), target :: hResult(3) = (/ 0.58578643762690495, 2.0000000000000000, 3.4142135627309505 /)
+  real(c_double), target :: hResult(3) = (/ 0.58578643762690485d0, 2.0d0, 3.41421356237309515d0 /)
   integer(c_int), target :: hInfo = -1
 
   integer(c_int), parameter :: n = 3
