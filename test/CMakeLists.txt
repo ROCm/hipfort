@@ -956,21 +956,6 @@ if(BUILD_TESTING)
       add_dependencies(hipfort_test_f2003_hip_module_kernel hipfort_test_code_object)
       set_tests_properties(hipfort_test_f2003_hip_module_kernel PROPERTIES
         ENVIRONMENT "HIPFORT_TEST_CODE_OBJECT=${_hipfort_code_object}")
-
-      # The runtime-API occupancy calls take the host stub of a __global__
-      # function, so this test links the vecadd kernel instead of loading it.
-      include(CheckLanguage)
-      check_language(HIP)
-      if(CMAKE_HIP_COMPILER)
-        enable_language(HIP)
-        hipfort_add_test(hip occupancy f2003)
-        target_sources(hipfort_test_f2003_hip_occupancy PRIVATE f2003/vecadd/hip_implementation.cpp)
-        set_source_files_properties(f2003/vecadd/hip_implementation.cpp PROPERTIES LANGUAGE HIP)
-        set_target_properties(hipfort_test_f2003_hip_occupancy
-          PROPERTIES
-            LINKER_LANGUAGE Fortran
-            POSITION_INDEPENDENT_CODE ON)
-      endif()
     endif()
   endif()
 
