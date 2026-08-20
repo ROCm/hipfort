@@ -33,7 +33,7 @@ program rocrand_xorwow_uniform_double_test
 
     integer(c_size_t), parameter :: N = 65536
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
-    real(c_double), parameter :: expected_mean = 0.5, delta = 0.1
+    real(c_double), parameter :: expected_mean = 0.5_c_double, delta = 0.1_c_double
 
     type(c_ptr) :: gen = c_null_ptr
 
