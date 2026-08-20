@@ -34,7 +34,7 @@ program rocrand_philox_normal_double_test
     integer(c_size_t), parameter :: N = 65536
     integer(c_size_t), parameter :: Nbytes = N * 8 ! double precision
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
-    real(c_double), parameter :: mean = 0.0_c_double, stddev = 1.0_c_double, delta = 0.2
+    real(c_double), parameter :: mean = 0.0_c_double, stddev = 1.0_c_double, delta = 0.2_c_double
 
     type(c_ptr) :: gen = c_null_ptr
     type(c_ptr) :: dx = c_null_ptr
