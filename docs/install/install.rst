@@ -84,6 +84,13 @@ against the appropriate ROCm libraries. hipFORT provides exported CMake targets 
    add_executable(my_app main.f08)
    target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 
+The installed CMake package targets the ROCm backend only. ``hipfort-config.cmake``
+is written when hipFORT is configured for ROCm; it pulls in ``libhipfort-amdgcn`` and
+resolves each component against its ROCm package, so ``find_package(hipfort)`` does
+not work against the optional CUDA (``nvptx``) backend even when that archive is
+built and installed. Link ``libhipfort-nvptx`` and the CUDA libraries directly
+instead.
+
 
 Examples and tests
 ====================
