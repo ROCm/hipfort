@@ -18,6 +18,10 @@ needs a recent, fully installed ROCm (amdgcn) or CUDA (nvptx) stack with every
 math library present to be certain it passes; each backend's test is skipped when
 its libraries are not found. Override the library directories with
 `HIPFORT_ROCM_LIB_DIR` / `HIPFORT_CUDA_LIB_DIR`.
+* CMake option `HIPFORT_BUILD_NVPTX` (default `ON`) that controls whether the CUDA
+(nvptx) backend archive is built. Build with `-DHIPFORT_BUILD_NVPTX=OFF` to skip
+`libhipfort-nvptx` on ROCm-only systems, which halves the build time and avoids
+installing an archive that will never be linked.
 
 ### Changed
 
