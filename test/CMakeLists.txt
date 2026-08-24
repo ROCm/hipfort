@@ -999,8 +999,6 @@ if(BUILD_TESTING)
   # so every other toolchain skips with a reason instead of failing.
   if(CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
     # The arch must stay XNACK-agnostic, since the tests below run in both modes.
-    # rocm_agent_enumerator gives the bare gfxNNN; "native", offload-arch and
-    # "rocm_agent_enumerator -name" all pin the build machine's current mode.
     if(NOT DEFINED HIPFORT_OFFLOAD_ARCH)
       set(_hipfort_arch "native")
       find_program(HIPFORT_AGENT_ENUMERATOR rocm_agent_enumerator
