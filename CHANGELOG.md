@@ -4,7 +4,7 @@
 
 ### Added
 
-* Added a *rocSOLVER examples* documentation page that walks through complete
+* Added a rocSOLVER tutorial in the documentation that walks through complete
   Fortran programs for LU factorization and solve (including the batched,
   strided-batched, and 64-bit APIs), Cholesky, QR and its `orgqr`/`ormqr`
   follow-ons, least squares, symmetric eigenvalues, the SVD, the symmetric
