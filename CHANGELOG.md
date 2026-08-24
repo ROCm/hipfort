@@ -9,8 +9,7 @@
   strided-batched, and 64-bit APIs), Cholesky, QR and its `orgqr`/`ormqr`
   follow-ons, least squares, symmetric eigenvalues, the SVD, the symmetric
   indefinite factorization, the triangular inverse, and the reductions to
-  condensed form. The page includes the test sources directly, so the documented
-  code is the code that is built and run by CTest.
+  condensed form.
 * CMake option `HIPFORT_USE_FPOINTER_INTERFACES` to control the Fortran 2008 array interfaces (`USE_FPOINTER_INTERFACES`).
 It defaults to `ON` when the compiler supports Fortran 2008; set `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` to build with the plain Fortran 2003 `type(c_ptr)` interfaces only, for an old compiler or one whose Fortran 2008 support is buggy.
 `hipfort` now also probes for Fortran 2018 support at configure time: `HIPFORT_ASSUMED_RANK` is gated on it (and on `HIPFORT_USE_FPOINTER_INTERFACES`). Without a Fortran 2018 compiler it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build; with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
