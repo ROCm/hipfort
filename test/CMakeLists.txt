@@ -1073,13 +1073,24 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
           set_target_properties(${_tgt} PROPERTIES LINKER_LANGUAGE Fortran)
         endforeach()
 
-        add_test(NAME hipfort_test_openmp_${_name}
-          COMMAND hipfort_test_openmp_${_name})
+        # A test_<name>_host.f90 hands host allocations straight to the library,
+        # so it has nothing mapped to fall back on and needs XNACK on.
+        set(_needs_xnack FALSE)
+        if(_name MATCHES "_host$")
+          set(_needs_xnack TRUE)
+        endif()
+
+        if(NOT _needs_xnack)
+          add_test(NAME hipfort_test_openmp_${_name}
+            COMMAND hipfort_test_openmp_${_name})
+        endif()
 
         if(HIPFORT_XNACK_MATRIX)
           # Pinned, not inherited: the USM binary faults with XNACK off.
-          set_tests_properties(hipfort_test_openmp_${_name}
-            PROPERTIES ENVIRONMENT "HSA_XNACK=0")
+          if(NOT _needs_xnack)
+            set_tests_properties(hipfort_test_openmp_${_name}
+              PROPERTIES ENVIRONMENT "HSA_XNACK=0")
+          endif()
 
           add_test(NAME hipfort_test_openmp_${_name}_xnack
             COMMAND hipfort_test_openmp_${_name})

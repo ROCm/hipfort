@@ -197,15 +197,33 @@ file(GLOB_RECURSE hipfort_src
     "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.F90"
     "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.f90")
 
+# flang_rt.hostdevice was renamed flang_rt.runtime; pick whichever the toolchain has
+include(CheckFortranSourceCompiles)
+set(FLANG_RT "flang_rt.hostdevice")
+find_library(FLANG_RT_HOSTDEVICE NAMES flang_rt.hostdevice
+             HINTS ${ROCM_PATH}/lib/llvm/lib /opt/rocm/lib/llvm/lib PATH_SUFFIXES clang/*/lib/x86_64-unknown-linux-gnu)
+if(NOT FLANG_RT_HOSTDEVICE)
+    set(FLANG_RT "flang_rt.runtime")
+endif()
+
 ##### Programs ############
 
+add_executable(test_rocblas_dgemv_host ${CMAKE_SOURCE_DIR}/rocblas/test_rocblas_dgemv_host.f90 ${hipfort_src})
+target_link_libraries(test_rocblas_dgemv_host PUBLIC roc::rocblas ${FLANG_RT})
+set_property(TARGET test_rocblas_dgemv_host PROPERTY LINKER_LANGUAGE Fortran)
+
 add_executable(test_rocsolver_zhegvdx ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolver_zhegvdx.f90 ${hipfort_src})
-target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES} flang_rt.hostdevice)
+add_executable(test_rocsolver_zhegvdx_host ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolver_zhegvdx_host.f90 ${hipfort_src})
+target_link_libraries(test_rocsolver_zhegvdx_host PUBLIC roc::rocsolver ${BLAS_LIBRARIES} ${FLANG_RT})
+set_property(TARGET test_rocsolver_zhegvdx_host PROPERTY LINKER_LANGUAGE Fortran)
+target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES} ${FLANG_RT})
 set_property(TARGET test_rocsolver_zhegvdx PROPERTY LINKER_LANGUAGE Fortran)
 
 #### Test ####
 enable_testing()
 add_test(NAME test_rocsolver_zhegvdx COMMAND test_rocsolver_zhegvdx)
+add_test(NAME test_rocsolver_zhegvdx_host COMMAND test_rocsolver_zhegvdx_host)
+add_test(NAME test_rocblas_dgemv_host COMMAND test_rocblas_dgemv_host)
 
 
 
