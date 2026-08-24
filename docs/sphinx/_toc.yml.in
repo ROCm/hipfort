@@ -27,6 +27,8 @@ subtrees:
         title: hipFFT examples
       - file: tutorials/hipfftw-examples.rst
         title: hipFFTW examples
+      - file: tutorials/hipsolver-examples.rst
+        title: hipSOLVER examples
 
   - caption: API reference
     entries:
