@@ -57,6 +57,7 @@ Library examples
 ================
 
 Complete, runnable programs for the ROCm math libraries are available for
-rocFFT:
+rocFFT and rocSOLVER:
 
 * :doc:`rocFFT examples <./rocfft-examples>`
+* :doc:`rocSOLVER examples <./rocsolver-examples>`
