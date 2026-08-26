@@ -281,3 +281,8 @@ add_executable(test_hipsparse_dcsrmv_host ${CMAKE_SOURCE_DIR}/hipsparse/test_hip
 target_link_libraries(test_hipsparse_dcsrmv_host PUBLIC /opt/rocm/lib/libhipsparse.so /opt/rocm/lib/libamdhip64.so ${FLANG_RT})
 set_property(TARGET test_hipsparse_dcsrmv_host PROPERTY LINKER_LANGUAGE Fortran)
 add_test(NAME test_hipsparse_dcsrmv_host COMMAND test_hipsparse_dcsrmv_host)
+
+add_executable(test_hip_memcpy_host ${CMAKE_SOURCE_DIR}/hip/test_hip_memcpy_host.f90 ${hipfort_src})
+target_link_libraries(test_hip_memcpy_host PUBLIC /opt/rocm/lib/libamdhip64.so ${FLANG_RT})
+set_property(TARGET test_hip_memcpy_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hip_memcpy_host COMMAND test_hip_memcpy_host)
