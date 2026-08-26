@@ -464,6 +464,16 @@ module hipfort_rocblas
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocblas_sscal_assumed_rank
+#else
+    module procedure &
+      rocblas_sscal_rank_0,&
+      rocblas_sscal_rank_1
+#endif
+#endif
   end interface
 
   interface rocblas_dscal
@@ -478,6 +488,16 @@ module hipfort_rocblas
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
+
+#ifdef USE_FPOINTER_INTERFACES
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    module procedure rocblas_dscal_assumed_rank
+#else
+    module procedure &
+      rocblas_dscal_rank_0,&
+      rocblas_dscal_rank_1
+#endif
+#endif
   end interface
 
   interface rocblas_cscal
@@ -37833,6 +37853,96 @@ module hipfort_rocblas
 #ifdef USE_FPOINTER_INTERFACES
   contains
 
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocblas_sscal_assumed_rank(handle,n,alpha,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sscal_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      !
+      rocblas_sscal_assumed_rank = rocblas_sscal_(handle,n,alpha,c_loc(x),incx)
+    end function
+
+#else
+    function rocblas_sscal_rank_0(handle,n,alpha,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sscal_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      !
+      rocblas_sscal_rank_0 = rocblas_sscal_(handle,n,alpha,c_loc(x),incx)
+    end function
+
+    function rocblas_sscal_rank_1(handle,n,alpha,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sscal_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      !
+      rocblas_sscal_rank_1 = rocblas_sscal_(handle,n,alpha,c_loc(x),incx)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK_INTERFACES
+    function rocblas_dscal_assumed_rank(handle,n,alpha,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dscal_assumed_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      !
+      rocblas_dscal_assumed_rank = rocblas_dscal_(handle,n,alpha,c_loc(x),incx)
+    end function
+
+#else
+    function rocblas_dscal_rank_0(handle,n,alpha,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dscal_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      !
+      rocblas_dscal_rank_0 = rocblas_dscal_(handle,n,alpha,c_loc(x),incx)
+    end function
+
+    function rocblas_dscal_rank_1(handle,n,alpha,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dscal_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      !
+      rocblas_dscal_rank_1 = rocblas_dscal_(handle,n,alpha,c_loc(x),incx)
+    end function
+
+#endif
 #ifdef USE_ASSUMED_RANK_INTERFACES
     function rocblas_cscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
