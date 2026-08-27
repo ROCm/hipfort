@@ -960,6 +960,11 @@ if(BUILD_TESTING)
       # the tests call EXIT, which is a GNU extension in gfortran
       target_compile_options(${vecadd_target} PRIVATE $<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=gnu>)
       add_test(NAME ${vecadd_target} COMMAND ${vecadd_target})
+      if(HIPFORT_XNACK_MATRIX)
+        set_tests_properties(${vecadd_target} PROPERTIES ENVIRONMENT "HSA_XNACK=0")
+        add_test(NAME ${vecadd_target}_xnack COMMAND ${vecadd_target})
+        set_tests_properties(${vecadd_target}_xnack PROPERTIES ENVIRONMENT "HSA_XNACK=1")
+      endif()
     endforeach()
   endif()
 
