@@ -22,12 +22,8 @@ if(BUILD_TESTING)
            CMAKE_Fortran_COMPILE_OBJECT "${CMAKE_Fortran_COMPILE_OBJECT}")
   endif()
 
-  # Run the suite in both HSA_XNACK modes. CI enables it on the
-  # MI300A nodes; only LLVM Flang supports the offload and USM tests it pairs with.
+  # Run the suite in both HSA_XNACK modes. CI enables it on the MI300A nodes.
   option(HIPFORT_XNACK_MATRIX "Also run every test with HSA_XNACK=1" OFF)
-  if(NOT CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
-    set(HIPFORT_XNACK_MATRIX OFF)
-  endif()
 
   function(hipfort_add_test lib func dir)
     # The f2008 tests exercise the array overloads (USE_FPOINTER_INTERFACES) and
@@ -1041,8 +1037,6 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
 
     if(NOT HIPFORT_HAVE_OMP_OFFLOAD)
       message(STATUS "Skipping OpenMP offload tests: ${CMAKE_Fortran_COMPILER} cannot offload to ${HIPFORT_OFFLOAD_ARCH}")
-    elseif(NOT LAPACK_FOUND)
-      message(STATUS "Skipping OpenMP offload tests: no host LAPACK for the reference result")
     else()
       # openmp/<library>/test_<name>.f90 builds against hipfort::<library>, so a
       # new file is picked up on the next configure with no edit here.
@@ -1057,9 +1051,14 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
           message(STATUS "Skipping OpenMP offload test ${_name}: no hipfort::${_lib}")
           continue()
         endif()
+        # Only the zhegvdx pair needs a host LAPACK for its reference result.
+        if(_name MATCHES "^rocsolver_zhegvdx" AND NOT LAPACK_FOUND)
+          message(WARNING "Skipping OpenMP offload test ${_name}: no host LAPACK for the reference result")
+          continue()
+        endif()
         # USM is a compile-time flag, so it needs its own binary.
         set(_variants explicit)
-        if(HIPFORT_XNACK_MATRIX)
+        if(HIPFORT_XNACK_MATRIX AND CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
           list(APPEND _variants usm)
         endif()
         foreach(_variant IN LISTS _variants)
@@ -1100,10 +1099,12 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
           set_tests_properties(hipfort_test_openmp_${_name}_xnack
             PROPERTIES ENVIRONMENT "HSA_XNACK=1")
 
-          add_test(NAME hipfort_test_openmp_${_name}_usm
-            COMMAND hipfort_test_openmp_${_name}_usm)
-          set_tests_properties(hipfort_test_openmp_${_name}_usm
-            PROPERTIES ENVIRONMENT "HSA_XNACK=1")
+          if(TARGET hipfort_test_openmp_${_name}_usm)
+            add_test(NAME hipfort_test_openmp_${_name}_usm
+              COMMAND hipfort_test_openmp_${_name}_usm)
+            set_tests_properties(hipfort_test_openmp_${_name}_usm
+              PROPERTIES ENVIRONMENT "HSA_XNACK=1")
+          endif()
         endif()
       endforeach()
     endif()
