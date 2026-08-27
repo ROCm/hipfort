@@ -44,8 +44,9 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
-      type(c_ptr) :: hipCreateChannelDesc_
+      type(hipChannelFormatDesc) :: hipCreateChannelDesc_
       integer(c_int),value :: x
       integer(c_int),value :: y
       integer(c_int),value :: z
@@ -2869,12 +2870,9 @@ module hipfort
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
   !>
   !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+#ifndef USE_CUDA_NAMES
   interface hipMemPrefetchAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemPrefetchAsync_(dev_ptr,count,device,stream) bind(c, name="cudaMemPrefetchAsync")
-#else
     function hipMemPrefetchAsync_(dev_ptr,count,device,stream) bind(c, name="hipMemPrefetchAsync")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -2885,6 +2883,7 @@ module hipfort
       type(c_ptr),value :: stream
     end function
   end interface
+#endif
 
   !>  @brief Prefetches memory to the specified destination device using HIP.
   !>
@@ -2935,12 +2934,9 @@ module hipfort
   !>  and afterwards.
   !>
   !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+#ifndef USE_CUDA_NAMES
   interface hipMemAdvise
-#ifdef USE_CUDA_NAMES
-    function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="cudaMemAdvise")
-#else
     function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -2951,6 +2947,7 @@ module hipfort
       integer(c_int),value :: device
     end function
   end interface
+#endif
 
   !>  @brief Advise about the usage of a given memory range to HIP.
   !>
@@ -9312,14 +9309,10 @@ module hipfort
   !>  @param [out] pId - Unique capture ID.
   !>
   !>  @returns `hipSuccess`, `hipErrorStreamCaptureImplicit`
+#ifndef USE_CUDA_NAMES
   interface hipStreamGetCaptureInfo
-#ifdef USE_CUDA_NAMES
-    function hipStreamGetCaptureInfo_(stream,pCaptureStatus,pId) &
-        bind(c, name="cudaStreamGetCaptureInfo")
-#else
     function hipStreamGetCaptureInfo_(stream,pCaptureStatus,pId) &
         bind(c, name="hipStreamGetCaptureInfo")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9329,6 +9322,7 @@ module hipfort
       type(c_ptr),value :: pId
     end function
   end interface
+#endif
 
   !>  @brief Get stream's capture state
   !>
@@ -9475,14 +9469,10 @@ module hipfort
   !>  @param [in] to - Pointer to the graph nodes to add dependencies to.
   !>  @param [in] numDependencies - Number of dependencies to add.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
   interface hipGraphAddDependencies
-#ifdef USE_CUDA_NAMES
-    function hipGraphAddDependencies_(graph,from,to,numDependencies) &
-        bind(c, name="cudaGraphAddDependencies")
-#else
     function hipGraphAddDependencies_(graph,from,to,numDependencies) &
         bind(c, name="hipGraphAddDependencies")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9493,6 +9483,7 @@ module hipfort
       integer(c_size_t),value :: numDependencies
     end function
   end interface
+#endif
 
   !>  @brief Removes dependency edges from a graph.
   !>
@@ -9501,14 +9492,10 @@ module hipfort
   !>  @param [in] to - Array of dependent nodes.
   !>  @param [in] numDependencies - Number of dependencies to remove.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
   interface hipGraphRemoveDependencies
-#ifdef USE_CUDA_NAMES
-    function hipGraphRemoveDependencies_(graph,from,to,numDependencies) &
-        bind(c, name="cudaGraphRemoveDependencies")
-#else
     function hipGraphRemoveDependencies_(graph,from,to,numDependencies) &
         bind(c, name="hipGraphRemoveDependencies")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9519,6 +9506,7 @@ module hipfort
       integer(c_size_t),value :: numDependencies
     end function
   end interface
+#endif
 
   !>  @brief Returns a graph's dependency edges.
   !>
@@ -9532,12 +9520,9 @@ module hipfort
   !>  numEdges. Otherwise, numEdges entries will be filled in. If numEdges is higher than the actual
   !>  number of edges, the remaining entries in from and to will be set to NULL, and the number of
   !>  edges actually returned will be written to numEdges.
+#ifndef USE_CUDA_NAMES
   interface hipGraphGetEdges
-#ifdef USE_CUDA_NAMES
-    function hipGraphGetEdges_(graph,from,to,numEdges) bind(c, name="cudaGraphGetEdges")
-#else
     function hipGraphGetEdges_(graph,from,to,numEdges) bind(c, name="hipGraphGetEdges")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9548,6 +9533,7 @@ module hipfort
       type(c_ptr),value :: numEdges
     end function
   end interface
+#endif
 
   !>  @brief Returns a graph's nodes.
   !>
@@ -9619,14 +9605,10 @@ module hipfort
   !>  higher than the actual number of dependencies, the remaining entries in pDependencies will be
   !>  set
   !>  to NULL, and the number of nodes actually obtained will be returned in pNumDependencies.
+#ifndef USE_CUDA_NAMES
   interface hipGraphNodeGetDependencies
-#ifdef USE_CUDA_NAMES
-    function hipGraphNodeGetDependencies_(node,pDependencies,pNumDependencies) &
-        bind(c, name="cudaGraphNodeGetDependencies")
-#else
     function hipGraphNodeGetDependencies_(node,pDependencies,pNumDependencies) &
         bind(c, name="hipGraphNodeGetDependencies")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9636,6 +9618,7 @@ module hipfort
       type(c_ptr),value :: pNumDependencies
     end function
   end interface
+#endif
 
   !>  @brief Returns a node's dependent nodes.
   !>
@@ -9651,14 +9634,10 @@ module hipfort
   !>  pDependentNodes will be set to NULL, and the number of nodes actually obtained will be
   !>  returned
   !>  in pNumDependentNodes.
+#ifndef USE_CUDA_NAMES
   interface hipGraphNodeGetDependentNodes
-#ifdef USE_CUDA_NAMES
-    function hipGraphNodeGetDependentNodes_(node,pDependentNodes,pNumDependentNodes) &
-        bind(c, name="cudaGraphNodeGetDependentNodes")
-#else
     function hipGraphNodeGetDependentNodes_(node,pDependentNodes,pNumDependentNodes) &
         bind(c, name="hipGraphNodeGetDependentNodes")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9668,6 +9647,7 @@ module hipfort
       type(c_ptr),value :: pNumDependentNodes
     end function
   end interface
+#endif
 
   !>  @brief Returns a node's type.
   !>
@@ -9761,14 +9741,10 @@ module hipfort
   !>  @param [out] bufferSize - Size of the log buffer.
   !>
   !>  @returns `hipSuccess`, `hipErrorOutOfMemory`
+#ifndef USE_CUDA_NAMES
   interface hipGraphInstantiate
-#ifdef USE_CUDA_NAMES
-    function hipGraphInstantiate_(pGraphExec,graph,pErrorNode,pLogBuffer,bufferSize) &
-        bind(c, name="cudaGraphInstantiate")
-#else
     function hipGraphInstantiate_(pGraphExec,graph,pErrorNode,pLogBuffer,bufferSize) &
         bind(c, name="hipGraphInstantiate")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -9780,6 +9756,7 @@ module hipfort
       integer(c_size_t),value :: bufferSize
     end function
   end interface
+#endif
 
   !>  @brief Creates an executable graph from a graph.
   !>

@@ -244,6 +244,15 @@ module hipfort_types
   end type hipDeviceProp_t
 #endif
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipPointerAttribute_t  ! cudaPointerAttributes as of cuda 13.3
+    integer(c_int) :: type
+    integer(c_int) :: device
+    type(c_ptr) :: devicePointer
+    type(c_ptr) :: hostPointer
+    integer(c_long) :: reserved(8)
+  end type hipPointerAttribute_t
+#else
   type, bind(c) :: hipPointerAttribute_t
     integer(c_int) :: type
     integer(c_int) :: device
@@ -252,6 +261,7 @@ module hipfort_types
     integer(c_int) :: isManaged
     integer(c_int) :: allocationFlags
   end type hipPointerAttribute_t
+#endif
 
   type, bind(c) :: hipChannelFormatDesc
     integer(c_int) :: x
