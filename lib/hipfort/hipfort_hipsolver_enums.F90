@@ -34,16 +34,44 @@ module hipfort_hipsolver_enums
     enumerator :: HIPSOLVER_STATUS_NOT_INITIALIZED = 1
     enumerator :: HIPSOLVER_STATUS_ALLOC_FAILED = 2
     enumerator :: HIPSOLVER_STATUS_INVALID_VALUE = 3
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_MAPPING_ERROR = 5
+#else
     enumerator :: HIPSOLVER_STATUS_MAPPING_ERROR = 4
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_EXECUTION_FAILED = 6
+#else
     enumerator :: HIPSOLVER_STATUS_EXECUTION_FAILED = 5
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_INTERNAL_ERROR = 7
+#else
     enumerator :: HIPSOLVER_STATUS_INTERNAL_ERROR = 6
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_NOT_SUPPORTED = 9
+#else
     enumerator :: HIPSOLVER_STATUS_NOT_SUPPORTED = 7
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_ARCH_MISMATCH = 4
+#else
     enumerator :: HIPSOLVER_STATUS_ARCH_MISMATCH = 8
+#endif
     enumerator :: HIPSOLVER_STATUS_HANDLE_IS_NULLPTR = 9
     enumerator :: HIPSOLVER_STATUS_INVALID_ENUM = 10
     enumerator :: HIPSOLVER_STATUS_UNKNOWN = 11
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_ZERO_PIVOT = 10
+#else
     enumerator :: HIPSOLVER_STATUS_ZERO_PIVOT = 12
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_MATRIX_TYPE_NOT_SUPPORTED = 8
+#else
     enumerator :: HIPSOLVER_STATUS_MATRIX_TYPE_NOT_SUPPORTED = 13
+#endif
   end enum
 
   ! hipblasOperation_t
@@ -75,34 +103,82 @@ module hipfort_hipsolver_enums
 
   ! hipsolverEigMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_MODE_NOVECTOR = 0
+#else
     enumerator :: HIPSOLVER_EIG_MODE_NOVECTOR = 201
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_MODE_VECTOR = 1
+#else
     enumerator :: HIPSOLVER_EIG_MODE_VECTOR = 202
+#endif
   end enum
 
   ! hipsolverEigType_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_TYPE_1 = 1
+#else
     enumerator :: HIPSOLVER_EIG_TYPE_1 = 211
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_TYPE_2 = 2
+#else
     enumerator :: HIPSOLVER_EIG_TYPE_2 = 212
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_TYPE_3 = 3
+#else
     enumerator :: HIPSOLVER_EIG_TYPE_3 = 213
+#endif
   end enum
 
   ! hipsolverEigRange_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_RANGE_ALL = 1001
+#else
     enumerator :: HIPSOLVER_EIG_RANGE_ALL = 221
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_RANGE_V = 1003
+#else
     enumerator :: HIPSOLVER_EIG_RANGE_V = 222
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_EIG_RANGE_I = 1002
+#else
     enumerator :: HIPSOLVER_EIG_RANGE_I = 223
+#endif
   end enum
 
   ! hipsolverDeterministicMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_DETERMINISTIC_RESULTS = 1
+#else
     enumerator :: HIPSOLVER_DETERMINISTIC_RESULTS = 241
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_ALLOW_NON_DETERMINISTIC_RESULTS = 2
+#else
     enumerator :: HIPSOLVER_ALLOW_NON_DETERMINISTIC_RESULTS = 242
+#endif
   end enum
 
   ! hipsolverAlgMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_ALG_0 = 0
+#else
     enumerator :: HIPSOLVER_ALG_0 = 231
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_ALG_1 = 1
+#else
     enumerator :: HIPSOLVER_ALG_1 = 232
+#endif
   end enum
 
   ! hipsolverDnFunction_t
