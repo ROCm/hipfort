@@ -168,8 +168,8 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 The tests are driven by CTest. Configure the build with `-DBUILD_TESTING=ON`,
 build hipfort, and run the suite with `ctest`.
 
-> **NOTE**: Running the tests requires that all ROCm math libraries can be found at `/opt/rocm`.
-Specify a different ROCm location via the `ROCM_PATH` environment variable.
+> **NOTE**: Running the tests requires the ROCm math libraries. The ROCm root is
+detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=`.
 
 ```shell
 cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON

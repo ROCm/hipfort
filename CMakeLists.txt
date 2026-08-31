@@ -49,10 +49,32 @@ endif()
 
 include(GNUInstallDirs)
 
+# ROCm root, resolved once for every find_package/find_program below.
+# Precedence: -DROCM_PATH > $ROCM_PATH > hipcc on PATH > /opt/rocm.
+if(NOT DEFINED ROCM_PATH)
+  if(DEFINED ENV{ROCM_PATH})
+    set(_rocm_path "$ENV{ROCM_PATH}")
+  else()
+    find_program(HIPFORT_HIPCC_EXECUTABLE NAMES hipcc hipconfig)
+    mark_as_advanced(HIPFORT_HIPCC_EXECUTABLE)
+    if(HIPFORT_HIPCC_EXECUTABLE)
+      # REALPATH first: distros symlink hipcc into /usr/bin, whose parent is not ROCm.
+      get_filename_component(_rocm_path "${HIPFORT_HIPCC_EXECUTABLE}" REALPATH)
+      get_filename_component(_rocm_path "${_rocm_path}" DIRECTORY)
+      get_filename_component(_rocm_path "${_rocm_path}" DIRECTORY)
+    else()
+      set(_rocm_path "/opt/rocm")
+    endif()
+  endif()
+  set(ROCM_PATH "${_rocm_path}" CACHE PATH "ROCm installation root")
+  unset(_rocm_path)
+endif()
+
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- Fortran Compiler:       ${CMAKE_Fortran_COMPILER}")
 message("-- Build Type:             ${CMAKE_BUILD_TYPE}")
 message("-- Installation Directory: ${CMAKE_INSTALL_PREFIX}")
+message("-- ROCm Path:              ${ROCM_PATH}")
 message("-- hipfort Version:        ${hipfort_VERSION}")
 message("-- HIPFORT ----------------------------------------------")
 
