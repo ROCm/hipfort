@@ -15,7 +15,7 @@ set(CMAKE_CXX_COMPILER     nvc++     CACHE FILEPATH "NVIDIA C++ compiler")
 
 # Select the NVIDIA HIP backend. Adjust the paths to your HIP/CUDA install.
 # set(HIP_PLATFORM nvidia    CACHE STRING "HIP platform (amd or nvidia)")
-# set(ROCM_PATH    /opt/rocm CACHE PATH   "HIP installation root")
+# set(ROCM_PATH    <hip-root> CACHE PATH   "HIP installation root")
 
 # nvfortran does not implement -march=native the way GNU does; leave the
 # portable defaults from cmake/Modules/SetFortranFlags.cmake in place.

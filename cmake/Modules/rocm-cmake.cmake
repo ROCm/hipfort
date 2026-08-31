@@ -1,8 +1,8 @@
 # Find or download/install rocm-cmake project
 
-find_package(ROCmCMakeBuildTools QUIET PATHS ${ROCM_PATH} /opt/rocm )
+find_package(ROCmCMakeBuildTools QUIET PATHS ${ROCM_PATH})
 if(NOT ROCmCMakeBuildTools_FOUND)
-  find_package(ROCM QUIET CONFIG PATHS ${ROCM_PATH} /opt/rocm)
+  find_package(ROCM QUIET CONFIG PATHS ${ROCM_PATH})
   if(NOT ROCM_FOUND)
     set(rocm_cmake_tag "master" CACHE STRING "rocm-cmake tag to download")
     file(

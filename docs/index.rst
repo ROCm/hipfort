@@ -32,6 +32,7 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipFORT>`_
      * :doc:`rocFFT examples <./tutorials/rocfft-examples>`
      * :doc:`rocSOLVER examples <./tutorials/rocsolver-examples>`
      * :doc:`rocSPARSE examples <./tutorials/rocsparse-examples>`
+     * :doc:`hipSPARSE examples <./tutorials/hipsparse-examples>`
 
   .. grid-item-card:: API reference
 

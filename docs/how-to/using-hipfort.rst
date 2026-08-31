@@ -103,6 +103,7 @@ For complete, runnable programs that use a ROCm math library, see the
 :doc:`rocFFT examples <../tutorials/rocfft-examples>`, the
 :doc:`rocSOLVER examples <../tutorials/rocsolver-examples>`, and the
 :doc:`rocSPARSE examples <../tutorials/rocsparse-examples>`.
+:doc:`hipSPARSE examples <../tutorials/hipsparse-examples>`.
 
 Supported HIP and ROCm APIs
 ---------------------------

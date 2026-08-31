@@ -31,6 +31,8 @@ subtrees:
         title: hipFFTW examples
       - file: tutorials/hipsolver-examples.rst
         title: hipSOLVER examples
+      - file: tutorials/hipsparse-examples.rst
+        title: hipSPARSE examples
 
   - caption: API reference
     entries:

@@ -6,12 +6,8 @@
 # Usage:
 #   cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 #
-# By default the ROCm compilers are looked up on PATH. Set ROCM_PATH (below or
-# on the command line) if your ROCm install is elsewhere.
-
-if(NOT DEFINED ROCM_PATH AND DEFINED ENV{ROCM_PATH})
-  set(ROCM_PATH "$ENV{ROCM_PATH}" CACHE PATH "ROCm installation root")
-endif()
+# The ROCm compilers are looked up on PATH. Set $ROCM_PATH or -DROCM_PATH= if
+# your install is elsewhere.
 
 set(CMAKE_Fortran_COMPILER amdflang   CACHE FILEPATH "Fortran compiler")
 set(CMAKE_C_COMPILER       amdclang   CACHE FILEPATH "C compiler")

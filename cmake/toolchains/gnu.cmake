@@ -13,12 +13,7 @@ set(CMAKE_Fortran_COMPILER gfortran CACHE FILEPATH "Fortran compiler")
 set(CMAKE_C_COMPILER   gcc CACHE FILEPATH "C compiler")
 set(CMAKE_CXX_COMPILER g++ CACHE FILEPATH "C++ compiler")
 
-# Point CMake at your ROCm installation when it is not in the default location
-# (equivalent to passing -DROCM_PATH=... on the command line).
-if(NOT DEFINED ROCM_PATH AND DEFINED ENV{ROCM_PATH})
-  set(ROCM_PATH "$ENV{ROCM_PATH}" CACHE PATH "ROCm installation root")
-endif()
-
+# ROCm root: $ROCM_PATH or hipcc on PATH; override with -DROCM_PATH=.
 # Free-form parsing and C preprocessing are enabled by hipfort itself, via
 # CMAKE_Fortran_FORMAT and CMAKE_Fortran_PREPROCESS in the top-level
 # CMakeLists.txt. CMake emits the preprocessing flag each compiler expects

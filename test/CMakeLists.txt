@@ -89,7 +89,7 @@ if(BUILD_TESTING)
   # discriminator -- HIP_PLATFORM is.
   set(_hipfort_cuda_backend FALSE)
   if(HIPFORT_EXTENDED_TESTS)
-    find_package(hip QUIET PATHS ${ROCM_PATH} /opt/rocm)
+    find_package(hip QUIET PATHS ${ROCM_PATH})
     find_package(CUDAToolkit QUIET)
     if(NOT HIP_PLATFORM STREQUAL "amd" AND CUDAToolkit_FOUND)
       set(_hipfort_cuda_backend TRUE)
@@ -1013,15 +1013,15 @@ if(BUILD_TESTING)
     # The hipModule* entry points need a real GPU kernel, so this test loads a
     # standalone code object built from the existing vecadd source. They have no
     # CUDA-driver counterpart in the generated bindings, hence the AMD-only guard.
-    find_package(hip QUIET PATHS ${ROCM_PATH} /opt/rocm)
-    find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
+    find_package(hip QUIET PATHS ${ROCM_PATH})
+    find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin)
     if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd")
       # --offload-arch=native and `rocm_agent_enumerator -name` both append the
       # :xnack suffix, which pins the code object to one XNACK mode and makes
       # hipModuleLoad fail in the other. The bare gfxNNN loads under both.
       set(_hipfort_arch "native")
       find_program(HIPFORT_AGENT_ENUM rocm_agent_enumerator
-                   HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
+                   HINTS ${ROCM_PATH}/bin)
       if(HIPFORT_AGENT_ENUM)
         execute_process(COMMAND ${HIPFORT_AGENT_ENUM}
                         OUTPUT_VARIABLE _hipfort_agents
