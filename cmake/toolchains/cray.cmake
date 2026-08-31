@@ -4,12 +4,11 @@
 # PrgEnv-cray and rocm), then configure with:
 #   cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/cray.cmake
 #
-# The Cray compiler drivers (ftn/cc/CC) forward to the underlying compilers and
+# The Cray compiler drivers (ftn/cc) forward to the underlying compilers and
 # already know about the system headers and libraries.
 
 set(CMAKE_Fortran_COMPILER ftn CACHE FILEPATH "Cray Fortran wrapper")
 set(CMAKE_C_COMPILER       cc  CACHE FILEPATH "Cray C wrapper")
-set(CMAKE_CXX_COMPILER     CC  CACHE FILEPATH "Cray C++ wrapper")
 
 # cmake/Modules/SetFortranFlags.cmake already special-cases the Cray compiler,
 # so no extra Fortran flags are needed here. Ensure ROCM_PATH points at the

@@ -1,6 +1,6 @@
 # Intel oneAPI toolchain file for hipfort (ifx, AMD ROCm backend).
 #
-# Uses the LLVM-based Intel compilers (ifx/icx/icpx). For the end-of-life
+# Uses the LLVM-based Intel compilers (ifx/icx). For the end-of-life
 # classic ifort compiler, see intel-classic.cmake.
 #
 # Usage:
@@ -9,7 +9,6 @@
 
 set(CMAKE_Fortran_COMPILER ifx  CACHE FILEPATH "Intel Fortran compiler (LLVM)")
 set(CMAKE_C_COMPILER       icx  CACHE FILEPATH "Intel C compiler (LLVM)")
-set(CMAKE_CXX_COMPILER     icpx CACHE FILEPATH "Intel C++ compiler (LLVM)")
 
 if(NOT DEFINED ROCM_PATH AND DEFINED ENV{ROCM_PATH})
   set(ROCM_PATH "$ENV{ROCM_PATH}" CACHE PATH "ROCm installation root")

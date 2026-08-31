@@ -7,11 +7,8 @@
 
 set(CMAKE_Fortran_COMPILER gfortran CACHE FILEPATH "Fortran compiler")
 
-# find_package(hip) pulls in hip-config.cmake, which requires C and CXX to be
-# enabled. The stock gcc/g++ are sufficient: hipfort builds only Fortran module
-# files, so no device (.hip) sources are compiled here.
+# find_package(hip) pulls in hip-config.cmake, which needs the C language enabled.
 set(CMAKE_C_COMPILER   gcc CACHE FILEPATH "C compiler")
-set(CMAKE_CXX_COMPILER g++ CACHE FILEPATH "C++ compiler")
 
 # Point CMake at your ROCm installation when it is not in the default location
 # (equivalent to passing -DROCM_PATH=... on the command line).

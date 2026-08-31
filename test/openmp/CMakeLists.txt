@@ -1,7 +1,7 @@
 # HIPFORT using OpenMP offload with amdflang to AMD GPUs
 
 cmake_minimum_required(VERSION 3.25)
-project(hipfort_openmp LANGUAGES Fortran C CXX)
+project(hipfort_openmp LANGUAGES Fortran C)
 
 ##### Compiler ##############
 # This file is intended to be used with amdflang

@@ -9,7 +9,6 @@
 
 set(CMAKE_Fortran_COMPILER ifort CACHE FILEPATH "Classic Intel Fortran compiler")
 set(CMAKE_C_COMPILER       icx   CACHE FILEPATH "Intel C compiler (LLVM)")
-set(CMAKE_CXX_COMPILER     icpx  CACHE FILEPATH "Intel C++ compiler (LLVM)")
 
 if(NOT DEFINED ROCM_PATH AND DEFINED ENV{ROCM_PATH})
   set(ROCM_PATH "$ENV{ROCM_PATH}" CACHE PATH "ROCm installation root")
