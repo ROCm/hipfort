@@ -20,6 +20,12 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"           # repo root; this script live
 BUILD_ROOT="${BUILD_ROOT:-$ROOT/build/compilers}"   # under build/, which .gitignore covers
 CTEST_ARGS="${CTEST_ARGS:---output-on-failure}"
 
+# ROCm root, resolved as in the top-level CMakeLists.txt.
+if [ -z "${ROCM_PATH:-}" ] && _hipcc="$(command -v hipcc)"; then
+  ROCM_PATH="$(dirname "$(dirname "$(readlink -f "$_hipcc")")")"
+fi
+ROCM_PATH="${ROCM_PATH:-/opt/rocm}"
+
 # toolchain (cmake/toolchains/<name>.cmake) | binary probed for availability.
 # CI gates amdflang and gnu; the rest are for developer machines that have them.
 TOOLCHAINS=(
@@ -32,7 +38,7 @@ TOOLCHAINS=(
 )
 
 # amdflang/flang may live under ROCm rather than on PATH.
-EXTRA_PATHS=("${ROCM_PATH:-/opt/rocm}/bin" "${ROCM_PATH:-/opt/rocm}/llvm/bin")
+EXTRA_PATHS=("$ROCM_PATH/bin" "$ROCM_PATH/llvm/bin")
 find_bin() {
   command -v "$1" 2>/dev/null && return
   local d
@@ -78,7 +84,7 @@ run_config() {
         -DCMAKE_TOOLCHAIN_FILE="$tc" \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_TESTING=ON \
-        -DCMAKE_PREFIX_PATH="${ROCM_PATH:-/opt/rocm}" \
+        -DCMAKE_PREFIX_PATH="$ROCM_PATH" \
         "$@" >"$log" 2>&1; then
     printf "  FAIL  %-22s (configure) log: %s\n" "$label" "$log"
     tail -15 "$log" | sed 's/^/      /'

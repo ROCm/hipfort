@@ -108,8 +108,8 @@ The tests are driven by CTest. Configure the build with ``-DBUILD_TESTING=ON``,
 build hipFORT, and run the suite with ``ctest``
 (see :ref:`build-test-hipfort-from-source`).
 
-The commands below expect the ROCm math libraries to be found at ``/opt/rocm``.
-To specify a different ROCm location, use the ``ROCM_PATH`` environment variable.
+The commands below need the ROCm math libraries. The ROCm root is detected from
+``ROCM_PATH`` or from ``hipcc`` on your ``PATH``; override with ``-DROCM_PATH=``.
 
 .. code-block:: shell
 

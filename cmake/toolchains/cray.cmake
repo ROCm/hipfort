@@ -12,12 +12,8 @@ set(CMAKE_C_COMPILER       cc  CACHE FILEPATH "Cray C wrapper")
 set(CMAKE_CXX_COMPILER     CC  CACHE FILEPATH "Cray C++ wrapper")
 
 # cmake/Modules/SetFortranFlags.cmake already special-cases the Cray compiler,
-# so no extra Fortran flags are needed here. Ensure ROCM_PATH points at the
-# ROCm install (usually provided by the 'rocm' environment module).
-if(NOT DEFINED ROCM_PATH AND DEFINED ENV{ROCM_PATH})
-  set(ROCM_PATH "$ENV{ROCM_PATH}" CACHE PATH "ROCm installation root")
-endif()
-
+# so no extra Fortran flags are needed here. The ROCm root comes from the 'rocm'
+# environment module.
 # Free-form parsing and C preprocessing are enabled by hipfort itself, via
 # CMAKE_Fortran_FORMAT and CMAKE_Fortran_PREPROCESS in the top-level
 # CMakeLists.txt. CMake emits the preprocessing flag each compiler expects
