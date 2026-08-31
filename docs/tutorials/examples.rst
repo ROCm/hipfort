@@ -57,8 +57,9 @@ Library examples
 ================
 
 Complete, runnable programs for the ROCm math libraries are available for
-rocFFT, rocSOLVER, and hipSPARSE:
+rocFFT, rocSOLVER, rocSPARSE, and hipSPARSE:
 
 * :doc:`rocFFT examples <./rocfft-examples>`
 * :doc:`rocSOLVER examples <./rocsolver-examples>`
+* :doc:`rocSPARSE examples <./rocsparse-examples>`
 * :doc:`hipSPARSE examples <./hipsparse-examples>`

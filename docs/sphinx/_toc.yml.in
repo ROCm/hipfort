@@ -23,6 +23,8 @@ subtrees:
         title: rocFFT examples
       - file: tutorials/rocsolver-examples.rst
         title: rocSOLVER examples
+      - file: tutorials/rocsparse-examples.rst
+        title: rocSPARSE examples
       - file: tutorials/hipfft-examples.rst
         title: hipFFT examples
       - file: tutorials/hipfftw-examples.rst

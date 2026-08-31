@@ -4,6 +4,12 @@
 
 ### Added
 
+* Added a rocSPARSE tutorial in the documentation that walks through complete
+  Fortran programs for sparse matrix-vector and matrix-matrix products, sampled
+  dense-dense multiplication (including the batched form), sparse triangular
+  solves, sparse matrix arithmetic, block-sparse products, incomplete
+  factorization preconditioners, tridiagonal and pentadiagonal solvers, sparse
+  vector operations, and format conversions.
 * Added a hipSPARSE tutorial in the documentation that walks through complete
   Fortran programs for sparse matrix-vector and matrix-matrix products, sampled
   dense-dense multiplication, sparse triangular solves, sparse matrix-matrix
