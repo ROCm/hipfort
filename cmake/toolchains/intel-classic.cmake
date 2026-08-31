@@ -9,7 +9,6 @@
 
 set(CMAKE_Fortran_COMPILER ifort CACHE FILEPATH "Classic Intel Fortran compiler")
 set(CMAKE_C_COMPILER       icx   CACHE FILEPATH "Intel C compiler (LLVM)")
-set(CMAKE_CXX_COMPILER     icpx  CACHE FILEPATH "Intel C++ compiler (LLVM)")
 
 # Free-form parsing and C preprocessing are enabled by hipfort itself, via
 # CMAKE_Fortran_FORMAT and CMAKE_Fortran_PREPROCESS in the top-level

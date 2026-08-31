@@ -30,8 +30,8 @@ if(DEFINED HIPFORT_INSTALL_DIR)
   set(CMAKE_INSTALL_PREFIX "${HIPFORT_INSTALL_DIR}" CACHE STRING "Install directory")
 endif()
 
-# hip-config.cmake requires CXX enabled
-PROJECT(hipfort VERSION 0.8.0 LANGUAGES Fortran C CXX)
+# hipfort itself is pure Fortran. C is enabled because hip-config.cmake pulls in FindThreads.
+PROJECT(hipfort VERSION 0.8.0 LANGUAGES Fortran C)
 
 # get compiler name
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)

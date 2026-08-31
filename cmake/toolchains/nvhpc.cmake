@@ -11,7 +11,6 @@
 
 set(CMAKE_Fortran_COMPILER nvfortran CACHE FILEPATH "NVIDIA Fortran compiler")
 set(CMAKE_C_COMPILER       nvc       CACHE FILEPATH "NVIDIA C compiler")
-set(CMAKE_CXX_COMPILER     nvc++     CACHE FILEPATH "NVIDIA C++ compiler")
 
 # Select the NVIDIA HIP backend. Adjust the paths to your HIP/CUDA install.
 # set(HIP_PLATFORM nvidia    CACHE STRING "HIP platform (amd or nvidia)")

@@ -11,7 +11,6 @@
 
 set(CMAKE_Fortran_COMPILER amdflang   CACHE FILEPATH "Fortran compiler")
 set(CMAKE_C_COMPILER       amdclang   CACHE FILEPATH "C compiler")
-set(CMAKE_CXX_COMPILER     amdclang++ CACHE FILEPATH "C++ compiler")
 
 # Free-form parsing and C preprocessing are enabled by hipfort itself, via
 # CMAKE_Fortran_FORMAT and CMAKE_Fortran_PREPROCESS in the top-level
