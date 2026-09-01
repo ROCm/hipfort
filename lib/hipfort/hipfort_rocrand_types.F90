@@ -24,20 +24,23 @@
 ! THE SOFTWARE.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-module hipfort_hipfftw_enums
+module hipfort_rocrand_types
   use, intrinsic :: iso_c_binding
   implicit none
 
-  integer(c_int), parameter :: FFTW_MEASURE = 0
-  integer(c_int), parameter :: FFTW_DESTROY_INPUT = 1
-  integer(c_int), parameter :: FFTW_UNALIGNED = 2
-  integer(c_int), parameter :: FFTW_CONSERVE_MEMORY = 4
-  integer(c_int), parameter :: FFTW_EXHAUSTIVE = 8
-  integer(c_int), parameter :: FFTW_PRESERVE_INPUT = 16
-  integer(c_int), parameter :: FFTW_PATIENT = 32
-  integer(c_int), parameter :: FFTW_ESTIMATE = 64
-  integer(c_int), parameter :: FFTW_WISDOM_ONLY = 2097152
-  integer(c_int), parameter :: FFTW_FORWARD = -1
-  integer(c_int), parameter :: FFTW_BACKWARD = 1
+  type, bind(c) :: uint4
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+    integer(c_int) :: w
+  end type uint4
 
-end module hipfort_hipfftw_enums
+  type, bind(c) :: rocrand_discrete_distribution_st
+    integer(c_int) :: size !< Number of entries in the probability table
+    integer(c_int) :: offset !< The distribution can be offset
+    type(c_ptr) :: alias !< Alias table
+    type(c_ptr) :: probability !< Probability data for the alias table
+    type(c_ptr) :: cdf !< Cumulative distribution function
+  end type rocrand_discrete_distribution_st
+
+end module hipfort_rocrand_types

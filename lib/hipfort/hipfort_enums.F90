@@ -1068,7 +1068,7 @@ module hipfort_enums
   integer(c_int), parameter :: hipEventWaitExternal = 1
   integer(c_int), parameter :: hipEventDisableSystemFence = 536870912
   integer(c_int), parameter :: hipEventReleaseToDevice = 1073741824
-  integer(c_int64_t), parameter :: hipEventReleaseToSystem = 2147483648_c_int64_t
+  integer(c_int), parameter :: hipEventReleaseToSystem = -2147483647 - 1  ! 0x80000000
   integer(c_int), parameter :: hipEnableDefault = 0
   integer(c_int), parameter :: hipEnableLegacyStream = 1
   integer(c_int), parameter :: hipEnablePerThreadDefaultStream = 2
@@ -1083,7 +1083,7 @@ module hipfort_enums
   integer(c_int), parameter :: hipHostMallocUncached = 268435456
   integer(c_int), parameter :: hipHostMallocNumaUser = 536870912
   integer(c_int), parameter :: hipHostMallocCoherent = 1073741824
-  integer(c_int64_t), parameter :: hipHostMallocNonCoherent = 2147483648_c_int64_t
+  integer(c_int), parameter :: hipHostMallocNonCoherent = -2147483647 - 1  ! 0x80000000
   integer(c_int), parameter :: hipMemAttachGlobal = 1
   integer(c_int), parameter :: hipMemAttachHost = 2
   integer(c_int), parameter :: hipMemAttachSingle = 4
@@ -1098,7 +1098,7 @@ module hipfort_enums
   integer(c_int), parameter :: hipHostRegisterIoMemory = 4
   integer(c_int), parameter :: hipHostRegisterReadOnly = 8
   integer(c_int), parameter :: hipExtHostRegisterCoarseGrained = 8
-  integer(c_int64_t), parameter :: hipExtHostRegisterUncached = 2147483648_c_int64_t
+  integer(c_int), parameter :: hipExtHostRegisterUncached = -2147483647 - 1  ! 0x80000000
   integer(c_int), parameter :: hipDeviceScheduleAuto = 0
   integer(c_int), parameter :: hipDeviceScheduleSpin = 1
   integer(c_int), parameter :: hipDeviceScheduleYield = 2
@@ -1115,6 +1115,8 @@ module hipfort_enums
   integer(c_int), parameter :: hipOccupancyDisableCachingOverride = 1
   integer(c_int), parameter :: hipCooperativeLaunchMultiDeviceNoPreSync = 1
   integer(c_int), parameter :: hipCooperativeLaunchMultiDeviceNoPostSync = 2
+  integer(c_int), parameter :: hipCpuDeviceId = -1
+  integer(c_int), parameter :: hipInvalidDeviceId = -2
   integer(c_int), parameter :: hipExtAnyOrderLaunch = 1
   integer(c_int), parameter :: hipStreamWaitValueGte = 0
   integer(c_int), parameter :: hipStreamWaitValueEq = 1

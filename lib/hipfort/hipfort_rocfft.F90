@@ -683,8 +683,8 @@ module hipfort_rocfft
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_load_callback_
       type(c_ptr),value :: myInfo
-      type(c_ptr) :: cb_functions
-      type(c_ptr) :: cb_data
+      type(c_ptr),value :: cb_functions
+      type(c_ptr),value :: cb_data
       integer(c_size_t),value :: shared_mem_bytes
     end function
   end interface
@@ -743,8 +743,8 @@ module hipfort_rocfft
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_store_callback_
       type(c_ptr),value :: myInfo
-      type(c_ptr) :: cb_functions
-      type(c_ptr) :: cb_data
+      type(c_ptr),value :: cb_functions
+      type(c_ptr),value :: cb_data
       integer(c_size_t),value :: shared_mem_bytes
     end function
   end interface

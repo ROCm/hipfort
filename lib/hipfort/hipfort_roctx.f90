@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2024-2026 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -56,7 +56,7 @@ module hipfort_roctx
     subroutine roctxRangeStop(range_id) bind(c, name="roctxRangeStop")
       use iso_c_binding, only: c_size_t
       implicit none
-      integer(c_size_t) :: range_id
+      integer(c_size_t), value :: range_id
     end subroutine roctxRangeStop
   end interface
 
