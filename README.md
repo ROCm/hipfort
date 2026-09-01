@@ -122,7 +122,7 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ### Supported HIP and ROCm API
 
-The current batch of HIPFORT interfaces is derived from ROCm 7.14.0.
+The current batch of HIPFORT interfaces is derived from ROCm 10.0.0.
 The following tables list the supported API:
 
 * [HIP](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hip.html)

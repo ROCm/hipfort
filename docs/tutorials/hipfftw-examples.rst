@@ -16,7 +16,7 @@ The one difference that matters: the ``in`` and ``out`` arguments are
 **device** pointers. FFTW declares them ``void*``, so a pointer from
 ``hipMalloc`` passes straight through, but host arrays do not work.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The tests live in
 ``test/f2003/hipfftw``. Unlike the other FFT libraries there is no Fortran 2008
 variant, because the FFTW API is pointer-based throughout and gains nothing
@@ -51,10 +51,10 @@ Keep the following conventions in mind:
 * The double precision routines are named ``fftw_*`` and the single precision
   ones ``fftwf_*``.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples only need the ``hipfftw`` and ``hip`` hipFORT components:
+The programs only need the ``hipfftw`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
@@ -102,7 +102,7 @@ Batched transforms
 The ``_many`` planners transform a batch of signals with one plan. The
 ``inembed`` and ``onembed`` arguments describe the memory layout, ``stride``
 is the gap between elements of one transform and ``dist`` the gap between the
-start of consecutive transforms. This example covers the complex-to-complex,
+start of consecutive transforms. This program covers the complex-to-complex,
 real-to-complex and complex-to-real cases.
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_many.f03
@@ -116,7 +116,7 @@ descriptors, one per dimension, each giving a length and its input and output
 strides. It expresses layouts the simpler planners cannot.
 
 Note how the arrays are passed: the dummy arguments are scalar
-``type(fftw_iodim)``, so the example passes the first element of each array and
+``type(fftw_iodim)``, so the program passes the first element of each array and
 the callee receives the base address of the contiguous struct array.
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_guru.f03

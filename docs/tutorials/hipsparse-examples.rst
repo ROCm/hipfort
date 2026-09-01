@@ -7,20 +7,20 @@ hipSPARSE examples
 ******************
 
 `hipSPARSE <https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/>`_ is a thin
-portability layer over rocSPARSE on AMD GPUs and cuSPARSE on NVIDIA GPUs. Its API
-mirrors cuSPARSE, so the same source builds against either backend. hipFORT
-exposes it through the ``hipfort_hipsparse`` module.
+layer over rocSPARSE whose API follows cuSPARSE. hipFORT exposes it through the
+``hipfort_hipsparse`` module.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 sources live in
 ``test/f2008/hipsparse`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/hipsparse``.
 
-If you want direct access to rocSPARSE rather than a portable interface, the
-equivalent programs are written against the ``hipfort_rocsparse`` module.
+If you want direct access to rocSPARSE rather than a cuSPARSE-style interface,
+see the :doc:`rocSPARSE examples <rocsparse-examples>`, where the equivalent
+programs are written against the ``hipfort_rocsparse`` module.
 
-Where a routine has the four precisions, the example is provided for each: ``s``
+Where a routine has the four precisions, a program is provided for each: ``s``
 (real single), ``d`` (real double), ``c`` (complex single), and ``z`` (complex
 double). This page shows the double-precision program of each group; the other
 precisions differ only in the host data type and the ``hipsparse`` prefix
@@ -29,12 +29,12 @@ letter.
 Conventions
 ===========
 
-hipSPARSE follows a small number of conventions that recur in every example:
+hipSPARSE follows a small number of conventions that recur in every program:
 
-* **Sparse matrix formats.** Most examples store the sparse matrix in CSR
+* **Sparse matrix formats.** Most programs store the sparse matrix in CSR
   (compressed sparse row): a row-pointer array, a column-index array, and a
   values array. A few routines take COO (coordinate) row/column arrays.
-* **Zero-based indexing.** The examples use ``HIPSPARSE_INDEX_BASE_ZERO``, so
+* **Zero-based indexing.** The programs use ``HIPSPARSE_INDEX_BASE_ZERO``, so
   CSR row pointers and column indices start at 0, matching the cuSPARSE
   samples. The Fortran host arrays that hold them are ordinary 1-based arrays
   whose *values* are 0-based.
@@ -46,16 +46,16 @@ hipSPARSE follows a small number of conventions that recur in every example:
   and a matrix descriptor (``hipsparseCreateMatDescr``).
 * **Zero-size buffers.** When a workspace query returns 0, pass a null pointer,
   not an allocated one: hipSPARSE returns ``HIPSPARSE_STATUS_INVALID_VALUE`` if
-  a non-null buffer is supplied for a zero-size workspace. The examples allocate
+  a non-null buffer is supplied for a zero-size workspace. The programs allocate
   the buffer only when the queried size is positive.
-* **Every call returns a status code.** The examples wrap hipSPARSE calls in
+* **Every call returns a status code.** The programs wrap hipSPARSE calls in
   ``hipsparseCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
   module, both of which abort on failure.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples only need the ``hipsparse`` and ``hip`` hipFORT components:
+The programs only need the ``hipsparse`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
@@ -88,7 +88,7 @@ Sampled dense-dense matrix multiplication
 
 ``SDDMM`` is the transpose of the SpMM data flow: the dense product ``A*B`` is
 evaluated only at the nonzero positions of a sparse ``C``, giving
-``C = alpha * (A*B) .* spy(C) + beta*C``. The example uses dense descriptors for
+``C = alpha * (A*B) .* spy(C) + beta*C``. The program uses dense descriptors for
 ``A`` and ``B``, a CSR descriptor for ``C``, and the three
 ``SDDMM_bufferSize`` / ``SDDMM_preprocess`` / ``SDDMM`` stages.
 

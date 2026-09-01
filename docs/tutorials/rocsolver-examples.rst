@@ -13,13 +13,16 @@ rocSOLVER is built on rocBLAS and reuses its handle type, so every program also
 uses the ``hipfort_rocblas`` module for ``rocblas_create_handle`` and the
 ``rocblas_*`` enumerators.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 sources live in
 ``test/f2008/rocsolver`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/rocsolver``.
 
-Each example is provided in the four LAPACK precisions where the routine has
+hipSOLVER offers the same functionality through an API that follows cuSOLVER;
+see the :doc:`hipSOLVER examples <hipsolver-examples>`.
+
+Each routine is provided in the four LAPACK precisions where it has
 them: ``s`` (real single), ``d`` (real double), ``c`` (complex single), and
 ``z`` (complex double). This page shows the double-precision program of each
 group; the other precisions differ only in the host data type and the
@@ -28,7 +31,7 @@ group; the other precisions differ only in the host data type and the
 Conventions
 ===========
 
-rocSOLVER follows a small number of conventions that recur in every example:
+rocSOLVER follows a small number of conventions that recur in every program:
 
 * **Column-major storage.** rocSOLVER matrices are column-major, which matches
   Fortran's native array layout, so a Fortran 2-D array maps directly onto a
@@ -47,14 +50,14 @@ rocSOLVER follows a small number of conventions that recur in every example:
   ``A**T``; ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the stored
   triangle; ``rocblas_evect_*`` and ``rocblas_svect_*`` choose whether vectors
   are computed.
-* **Every call returns a status code.** The examples wrap rocSOLVER calls in
+* **Every call returns a status code.** The programs wrap rocSOLVER calls in
   ``rocsolverCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
   module, both of which abort on failure.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples need the ``rocsolver``, ``rocblas``, and ``hip`` hipFORT
+The programs need the ``rocsolver``, ``rocblas``, and ``hip`` hipFORT
 components:
 
 .. code-block:: cmake
@@ -67,17 +70,17 @@ components:
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 
 LU factorization and solve
-===========================
+==========================
 
 ``getrf`` computes the LU factorization ``A = P*L*U`` with partial pivoting,
 writing the factors in place over ``A`` and the pivot indices into ``ipiv``.
-The example factorizes a matrix and reconstructs ``L*U`` to confirm the result.
+The program factorizes a matrix and reconstructs ``L*U`` to confirm the result.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrf.f08
    :language: fortran
 
 ``getrs`` uses the factors and pivots from ``getrf`` to solve ``A*X = B``. The
-example picks a known solution ``x``, forms ``b = A*x``, factorizes, solves, and
+program picks a known solution ``x``, forms ``b = A*x``, factorizes, solves, and
 checks that the recovered ``X`` matches ``x``.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrs.f08
@@ -122,7 +125,7 @@ Cholesky factorization and solve
 
 ``potrf`` computes the Cholesky factorization of a symmetric (or Hermitian)
 positive-definite matrix, writing the factor into the triangle chosen by the
-fill mode. The example uses ``rocblas_fill_upper`` and checks the factor against
+fill mode. The program uses ``rocblas_fill_upper`` and checks the factor against
 the known Cholesky root.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dpotrf.f08
@@ -153,7 +156,7 @@ Linear least squares
 
 ``gels`` solves the least-squares problem ``min || A*X - B ||`` (or the
 minimum-norm problem for underdetermined systems) using a QR or LQ
-factorization. The example solves a square nonsingular system and confirms the
+factorization. The program solves a square nonsingular system and confirms the
 overwritten ``B`` recovers the known solution.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgels.f08
@@ -165,7 +168,7 @@ Symmetric eigenvalues
 ``syev`` (``heev`` for Hermitian matrices) computes the eigenvalues, and
 optionally the eigenvectors, of a symmetric matrix. The
 ``rocblas_evect_none``/``rocblas_evect_original`` argument selects whether
-eigenvectors are produced; the example requests eigenvalues only.
+eigenvectors are produced; the program requests eigenvalues only.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dsyev.f08
    :language: fortran
@@ -179,7 +182,7 @@ Singular value decomposition
 
 ``gesvd`` computes the singular value decomposition ``A = U*S*V**T``. The
 ``rocblas_svect_*`` arguments choose which of the singular-vector matrices are
-computed. The example requests all vectors and reconstructs ``A`` from the
+computed. The program requests all vectors and reconstructs ``A`` from the
 factors (rocSOLVER returns ``V**T``).
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgesvd.f08
@@ -193,7 +196,7 @@ Symmetric indefinite factorization
 ==================================
 
 ``sytrf`` computes the Bunch-Kaufman factorization of a symmetric indefinite
-matrix, and ``sytrs`` uses that factorization to solve ``A*X = B``. The example
+matrix, and ``sytrs`` uses that factorization to solve ``A*X = B``. The program
 factorizes with ``rocblas_fill_upper`` and checks the recovered solution.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dsytrs.f08
@@ -202,7 +205,7 @@ factorizes with ``rocblas_fill_upper`` and checks the recovered solution.
 Triangular inverse
 ==================
 
-``trtri`` inverts a triangular matrix in place. The example inverts an
+``trtri`` inverts a triangular matrix in place. The program inverts an
 upper-triangular matrix and checks ``U * U^-1 == I``.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dtrtri.f08
@@ -232,4 +235,4 @@ off-diagonal of the tridiagonal matrix:
    :language: fortran
 
 See ``test/f2008/rocsolver`` for the ``sytrd``, ``latrd``, ``steqr``,
-``stedc``, and ``larft`` examples.
+``stedc``, and ``larft`` programs.
