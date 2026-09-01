@@ -26,6 +26,7 @@
 
 module hipfort_rocrand
   use hipfort_rocrand_enums
+  use hipfort_rocrand_types
   implicit none
 
   !>  \brief Creates a new random number generator.
@@ -767,10 +768,11 @@ module hipfort_rocrand
     function rocrand_set_seed_uint4_(generator,seed) bind(c, name="rocrand_set_seed_uint4")
       use iso_c_binding
       use hipfort_rocrand_enums
+      use hipfort_rocrand_types
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_uint4_
       type(c_ptr),value :: generator
-      type(c_ptr),value :: seed
+      type(uint4),value :: seed
     end function
   end interface
 
