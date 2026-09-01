@@ -521,6 +521,7 @@ module hipfort_types
   type, bind(c) :: hipDevResource
     integer(c_int) :: type
     character(c_char) :: internal_padding(92)
+    integer(c_int32_t) :: anonymous_union(10) !< 40-byte C union: keeps the layout exact, members not individually accessible
     type(c_ptr) :: nextResource
   end type hipDevResource
 

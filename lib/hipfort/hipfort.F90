@@ -8593,7 +8593,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveClusters_
       type(c_ptr),value :: numClusters
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       type(hipLaunchConfig_t) :: config
     end function
   end interface
@@ -8617,7 +8617,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialClusterSize_
       type(c_ptr),value :: clusterSize
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       type(hipLaunchConfig_t) :: config
     end function
   end interface
