@@ -39,8 +39,8 @@ rocFFT in ``clients/samples/rocfft``:
    * - ``rocfft_example_set_stream.cpp``
      - `Running on HIP streams`_
    * - ``rocfft_example_callback.cpp``
-     - Not available: load and store callbacks require device functions, which
-       cannot be written in Fortran.
+     - `Callbacks`_, in part: registering a callback needs the address of a
+       device function, which Fortran cannot take.
 
 The remaining programs cover material from the rocFFT how-to guides:
 `Normalizing with a scale factor`_, `Inspecting a plan`_ and
@@ -204,6 +204,25 @@ stream, and each stream has to be synchronized before its results are read
 back. This program runs two independent transforms on two streams.
 
 .. literalinclude:: ../../test/f2008/rocfft/rocfft_stream_z.f08
+   :language: fortran
+
+Callbacks
+=========
+
+A load callback runs on every element rocFFT reads and a store callback on
+every element it writes, which folds pre- and post-processing into the
+transform. Both are registered on an execution info handle with
+``rocfft_execution_info_set_load_callback`` and
+``rocfft_execution_info_set_store_callback``, and both are given as arrays with
+one function pointer per brick of the field. A null array selects the default
+behaviour, a plain load or store, and clears any previous registration.
+``shared_mem_bytes`` must be 0, since rocFFT allocates no shared memory for
+callbacks.
+
+The callback functions themselves have to be device functions, so a Fortran
+program can only use the default callbacks.
+
+.. literalinclude:: ../../test/f2008/rocfft/rocfft_callback_z.f08
    :language: fortran
 
 Inspecting a plan
