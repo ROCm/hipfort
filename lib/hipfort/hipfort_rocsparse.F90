@@ -182,7 +182,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      character(c_char) :: rocsparse_error_get_message_
+      type(c_ptr) :: rocsparse_error_get_message_
       type(c_ptr),value :: error
     end function
   end interface
@@ -203,7 +203,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      character(c_char) :: rocsparse_get_status_name_
+      type(c_ptr) :: rocsparse_get_status_name_
       integer(kind(rocsparse_status_success)),value :: status
     end function
   end interface
@@ -225,7 +225,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      character(c_char) :: rocsparse_get_status_description_
+      type(c_ptr) :: rocsparse_get_status_description_
       integer(kind(rocsparse_status_success)),value :: status
     end function
   end interface

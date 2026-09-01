@@ -973,10 +973,11 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipIpcOpenMemHandle_
       type(c_ptr) :: devPtr
-      type(c_ptr),value :: handle
+      type(hipIpcMemHandle_t),value :: handle
       integer(c_int),value :: flags
     end function
   end interface
@@ -1065,10 +1066,11 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipIpcOpenEventHandle_
       type(c_ptr) :: event
-      type(c_ptr),value :: handle
+      type(hipIpcEventHandle_t),value :: handle
     end function
   end interface
 
@@ -1285,7 +1287,7 @@ module hipfort
       use iso_c_binding
       use hipfort_enums
       implicit none
-      character(c_char) :: hipGetErrorName_
+      type(c_ptr) :: hipGetErrorName_
       integer(kind(hipSuccess)),value :: hip_error
     end function
   end interface
@@ -1305,7 +1307,7 @@ module hipfort
       use iso_c_binding
       use hipfort_enums
       implicit none
-      character(c_char) :: hipGetErrorString_
+      type(c_ptr) :: hipGetErrorString_
       integer(kind(hipSuccess)),value :: hipError
     end function
   end interface
@@ -2957,11 +2959,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemPrefetchAsync_v2_
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
-      type(c_ptr),value :: location
+      type(hipMemLocation),value :: location
       integer(c_int),value :: flags
       type(c_ptr),value :: stream
     end function
@@ -3223,12 +3226,13 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemAdvise_v2_
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
       integer(kind(hipMemAdviseSetReadMostly)),value :: advice
-      type(c_ptr),value :: location
+      type(hipMemLocation),value :: location
     end function
   end interface
 
@@ -5028,11 +5032,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemset3D_
-      type(c_ptr),value :: pitchedDevPtr
+      type(hipPitchedPtr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
     end function
   end interface
 
@@ -5053,11 +5058,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemset3DAsync_
-      type(c_ptr),value :: pitchedDevPtr
+      type(hipPitchedPtr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
       type(c_ptr),value :: stream
     end function
   end interface
@@ -5404,7 +5410,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMalloc3D_
       type(hipPitchedPtr) :: pitchedDevPtr
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
     end function
   end interface
 
@@ -5450,7 +5456,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMalloc3DArray_
       type(c_ptr) :: array
       type(hipChannelFormatDesc) :: desc
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
       integer(c_int),value :: flags
     end function
   end interface
@@ -8048,7 +8054,7 @@ module hipfort
       integer(c_int),value :: sharedMemBytes
       type(c_ptr),value :: stream
       type(c_ptr) :: kernelParams
-      type(c_ptr) :: extra
+      type(c_ptr),value :: extra
     end function
   end interface
 #endif
@@ -8167,11 +8173,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipLaunchCooperativeKernel_
       type(c_ptr),value :: f
-      type(c_ptr),value :: gridDim
-      type(c_ptr),value :: blockDimX
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDimX
       type(c_ptr) :: kernelParams
       integer(c_int),value :: sharedMemBytes
       type(c_ptr),value :: stream
@@ -8284,7 +8291,7 @@ module hipfort
       type(HIP_LAUNCH_CONFIG) :: config
       type(c_ptr),value :: f
       type(c_ptr) :: params
-      type(c_ptr) :: extra
+      type(c_ptr),value :: extra
     end function
   end interface
 #endif
@@ -8466,7 +8473,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_
       type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
@@ -8495,7 +8502,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
       type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: flags
@@ -8526,7 +8533,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize_
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
     end function
@@ -8561,7 +8568,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_
       type(c_ptr),value :: dynamicSmemSize
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       integer(c_int),value :: numBlocks
       integer(c_int),value :: blockSize
     end function
@@ -8586,7 +8593,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveClusters_
       type(c_ptr),value :: numClusters
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       type(hipLaunchConfig_t) :: config
     end function
   end interface
@@ -8610,7 +8617,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialClusterSize_
       type(c_ptr),value :: clusterSize
-      type(c_ptr),value :: f
+      type(c_funptr),value :: f
       type(hipLaunchConfig_t) :: config
     end function
   end interface
@@ -8676,10 +8683,11 @@ module hipfort
     function hipConfigureCall_(gridDim,blockDim,sharedMem,stream) bind(c, name="hipConfigureCall")
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipConfigureCall_
-      type(c_ptr),value :: gridDim
-      type(c_ptr),value :: blockDim
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDim
       integer(c_size_t),value :: sharedMem
       type(c_ptr),value :: stream
     end function
@@ -8747,11 +8755,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipLaunchKernel_
       type(c_ptr),value :: function_address
-      type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: dimBlocks
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
       type(c_ptr) :: args
       integer(c_size_t),value :: sharedMemBytes
       type(c_ptr),value :: stream
@@ -8842,11 +8851,12 @@ module hipfort
         bind(c, name="hipExtLaunchKernel")
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipExtLaunchKernel_
       type(c_ptr),value :: function_address
-      type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: dimBlocks
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
       type(c_ptr) :: args
       integer(c_size_t),value :: sharedMemBytes
       type(c_ptr),value :: stream
@@ -9132,7 +9142,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMallocMipmappedArray_
       type(c_ptr) :: mipmappedArray
       type(hipChannelFormatDesc) :: desc
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
       integer(c_int),value :: numLevels
       integer(c_int),value :: flags
     end function
@@ -10020,7 +10030,7 @@ module hipfort
       use iso_c_binding
       use hipfort_enums
       implicit none
-      character(c_char) :: hipApiName_
+      type(c_ptr) :: hipApiName_
       integer(c_int32_t),value :: id
     end function
   end interface
@@ -10037,7 +10047,7 @@ module hipfort
       use iso_c_binding
       use hipfort_enums
       implicit none
-      character(c_char) :: hipKernelNameRef_
+      type(c_ptr) :: hipKernelNameRef_
       type(c_ptr),value :: f
     end function
   end interface
@@ -10055,7 +10065,7 @@ module hipfort
       use iso_c_binding
       use hipfort_enums
       implicit none
-      character(c_char) :: hipKernelNameRefByPtr_
+      type(c_ptr) :: hipKernelNameRefByPtr_
       type(c_ptr),value :: hostFunction
       type(c_ptr),value :: stream
     end function
@@ -13466,11 +13476,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemset3DAsync_spt_
-      type(c_ptr),value :: pitchedDevPtr
+      type(hipPitchedPtr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
       type(c_ptr),value :: stream
     end function
   end interface
@@ -13483,11 +13494,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemset3D_spt_
-      type(c_ptr),value :: pitchedDevPtr
+      type(hipPitchedPtr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
-      type(c_ptr),value :: extent
+      type(hipExtent),value :: extent
     end function
   end interface
 
@@ -13807,11 +13819,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipLaunchCooperativeKernel_spt_
       type(c_ptr),value :: f
-      type(c_ptr),value :: gridDim
-      type(c_ptr),value :: blockDim
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDim
       type(c_ptr) :: kernelParams
       integer(c_int32_t),value :: sharedMemBytes
       type(c_ptr),value :: hStream
@@ -13828,11 +13841,12 @@ module hipfort
 #endif
       use iso_c_binding
       use hipfort_enums
+      use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipLaunchKernel_spt_
       type(c_ptr),value :: function_address
-      type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: dimBlocks
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
       type(c_ptr) :: args
       integer(c_size_t),value :: sharedMemBytes
       type(c_ptr),value :: stream

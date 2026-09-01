@@ -95,7 +95,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      character(c_char) :: hipsparseGetErrorName_
+      type(c_ptr) :: hipsparseGetErrorName_
       integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
     end function
   end interface
@@ -118,7 +118,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      character(c_char) :: hipsparseGetErrorString_
+      type(c_ptr) :: hipsparseGetErrorString_
       integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
     end function
   end interface
