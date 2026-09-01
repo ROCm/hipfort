@@ -2,13 +2,10 @@
 ! HIP runtime error-handling and version queries
 ! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
-! Exercises hipGetLastError, hipPeekAtLastError, hipRuntimeGetVersion,
-! hipDriverGetVersion. Deliberately provokes hipErrorInvalidDevice via
-! an out-of-range hipSetDevice and validates the peek-vs-clear semantics.
-!
-! hipGetErrorName / hipGetErrorString are left out: both bindings declare the
-! return as character(c_char) where C returns const char*, so the string cannot
-! be recovered. That is a binding defect.
+! Exercises hipGetLastError, hipPeekAtLastError, hipGetErrorName,
+! hipGetErrorString, hipRuntimeGetVersion and hipDriverGetVersion. Deliberately
+! provokes hipErrorInvalidDevice via an out-of-range hipSetDevice and validates
+! the peek-vs-clear semantics.
 !!!!!!!!!!!!!!
 !
 program error_version
@@ -24,6 +21,7 @@ program error_version
   real(c_float), target     :: hval
   type(c_ptr)               :: dptr = c_null_ptr
   integer(c_size_t)         :: nbytes
+  character(len=256)        :: ename, estr
 
   write(*,"(a)",advance="no") "-- Running test 'hip error_version' (Fortran 2003 interfaces) - "
 
@@ -85,6 +83,19 @@ program error_version
      call exit(1)
   end if
 
+  ! Both accessors describe the error the runtime just reported.
+  ename = c_string(hipGetErrorName(hipErrorInvalidDevice))
+  if (trim(ename) /= "hipErrorInvalidDevice") then
+     write(*,*) "FAILED! hipGetErrorName = '", trim(ename), "'"
+     call exit(1)
+  end if
+
+  estr = c_string(hipGetErrorString(hipErrorInvalidDevice))
+  if (len_trim(estr) == 0 .or. index(estr, "device") == 0) then
+     write(*,*) "FAILED! hipGetErrorString = '", trim(estr), "'"
+     call exit(1)
+  end if
+
   ! Confirm the runtime still accepts work after the error cycle.
   nbytes = int(4, c_size_t)   ! one real(c_float)
   call hipCheck(hipMalloc(dptr, nbytes))
@@ -99,5 +110,23 @@ program error_version
   call hipCheck(hipFree(dptr))
 
   write(*,*) "PASSED!"
+
+contains
+
+  ! Copy a null-terminated C string returned by reference into a Fortran string.
+  function c_string(cptr) result(res)
+    type(c_ptr), intent(in) :: cptr
+    character(len=256) :: res
+    character(kind=c_char), pointer :: chars(:)
+    integer :: i
+
+    res = " "
+    if (.not. c_associated(cptr)) return
+    call c_f_pointer(cptr, chars, [len(res)])
+    do i = 1, len(res)
+       if (chars(i) == c_null_char) exit
+       res(i:i) = chars(i)
+    end do
+  end function c_string
 
 end program error_version

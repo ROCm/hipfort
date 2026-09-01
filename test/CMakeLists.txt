@@ -654,6 +654,8 @@ if(BUILD_TESTING)
     hipfort_add_test(rocfft rocfft_plan_print_z f2008)
     hipfort_add_test(rocfft rocfft_cache_z f2003)
     hipfort_add_test(rocfft rocfft_cache_z f2008)
+    hipfort_add_test(rocfft rocfft_callback_z f2003)
+    hipfort_add_test(rocfft rocfft_callback_z f2008)
     # Single-process multi-GPU field/brick decomposition; skips on < 2 GPUs.
     hipfort_add_test(rocfft rocfft_field_brick_z f2003)
     hipfort_add_test(rocfft rocfft_field_brick_z f2008)
@@ -1007,6 +1009,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hip error_version f2003)
     hipfort_add_test(hip pointer_attributes f2003)
     hipfort_add_test(hip mem_advise f2003)
+    hipfort_add_test(hip virtual_memory f2003)
     hipfort_add_test(hip pointer_attributes f2008)
     hipfort_add_test(hip mem_advise f2008)
 
@@ -1080,6 +1083,21 @@ if(BUILD_TESTING)
       # the tests call EXIT, which is a GNU extension in gfortran
       target_compile_options(${vecadd_target} PRIVATE $<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=gnu>)
       add_test(NAME ${vecadd_target} COMMAND ${vecadd_target})
+    endforeach()
+  endif()
+
+  # hipOccupancy* and hipLaunchCooperativeKernel take the host stub of a kernel.
+  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd")
+    foreach(kernel_test IN ITEMS occupancy cooperative_launch)
+      hipfort_add_test(hip ${kernel_test} f2003)
+      target_sources(hipfort_test_f2003_hip_${kernel_test}
+        PRIVATE f2003/vecadd/hip_implementation.cpp)
+      set_source_files_properties(f2003/vecadd/hip_implementation.cpp
+        PROPERTIES LANGUAGE HIP)
+      set_target_properties(hipfort_test_f2003_hip_${kernel_test}
+        PROPERTIES
+          LINKER_LANGUAGE Fortran
+          POSITION_INDEPENDENT_CODE ON)
     endforeach()
   endif()
 
