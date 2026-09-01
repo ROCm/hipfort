@@ -334,11 +334,14 @@ module hipfort_types
   end type HIP_TEXTURE_DESC
 
   type, bind(c) :: hipResourceDesc
-    integer(c_int64_t) :: opaque(8)
+    integer(c_int) :: resType !< Resource type
+    integer(c_int64_t) :: res(7) !< 56-byte C union: keeps the layout exact, members not individually accessible
   end type hipResourceDesc
 
   type, bind(c) :: HIP_RESOURCE_DESC
-    integer(c_int64_t) :: opaque(18)
+    integer(c_int) :: resType !< Resource type
+    integer(c_int64_t) :: res(16) !< 128-byte C union: keeps the layout exact, members not individually accessible
+    integer(c_int) :: flags !< Flags (must be zero)
   end type HIP_RESOURCE_DESC
 
   type, bind(c) :: hipResourceViewDesc
@@ -439,7 +442,8 @@ module hipfort_types
   end type hipOffset3D
 
   type, bind(c) :: hipMemcpy3DOperand
-    integer(c_int64_t) :: opaque(5)
+    integer(c_int) :: type
+    integer(c_int64_t) :: op(4) !< 32-byte C union: keeps the layout exact, members not individually accessible
   end type hipMemcpy3DOperand
 
   type, bind(c) :: hipMemcpy3DBatchOp
@@ -607,7 +611,11 @@ module hipfort_types
   end type hipFunctionLaunchParams
 
   type, bind(c) :: hipExternalMemoryHandleDesc
-    integer(c_int64_t) :: opaque(13)
+    integer(c_int) :: type
+    integer(c_int64_t) :: handle(2) !< 16-byte C union: keeps the layout exact, members not individually accessible
+    integer(c_int64_t) :: size
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(16)
   end type hipExternalMemoryHandleDesc
 
   type, bind(c) :: hipExternalMemoryBufferDesc
@@ -626,15 +634,22 @@ module hipfort_types
   end type hipExternalMemoryMipmappedArrayDesc
 
   type, bind(c) :: hipExternalSemaphoreHandleDesc
-    integer(c_int64_t) :: opaque(12)
+    integer(c_int) :: type
+    integer(c_int64_t) :: handle(2) !< 16-byte C union: keeps the layout exact, members not individually accessible
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(16)
   end type hipExternalSemaphoreHandleDesc
 
   type, bind(c) :: hipExternalSemaphoreSignalParams
-    integer(c_int64_t) :: opaque(18)
+    integer(c_int64_t) :: params(9) !< 72-byte unnamed C struct: keeps the layout exact, fields not individually accessible
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(16)
   end type hipExternalSemaphoreSignalParams
 
   type, bind(c) :: hipExternalSemaphoreWaitParams
-    integer(c_int64_t) :: opaque(18)
+    integer(c_int64_t) :: params(9) !< 72-byte unnamed C struct: keeps the layout exact, fields not individually accessible
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(16)
   end type hipExternalSemaphoreWaitParams
 
   type, bind(c) :: hipHostNodeParams
@@ -702,7 +717,11 @@ module hipfort_types
   end type hipGraphInstantiateParams
 
   type, bind(c) :: hipMemAllocationProp
-    integer(c_int64_t) :: opaque(4)
+    integer(c_int) :: type !< Memory allocation type
+    integer(c_int) :: requestedHandleType !< C union; also spelled requestedHandleTypes
+    type(hipMemLocation) :: location !< Memory location
+    type(c_ptr) :: win32HandleMetaData !< Metadata for Win32 handles
+    integer(c_int16_t) :: allocFlags(2) !< 4-byte unnamed C struct: keeps the layout exact, fields not individually accessible
   end type hipMemAllocationProp
 
   type, bind(c) :: hipExternalSemaphoreSignalNodeParams
@@ -718,7 +737,17 @@ module hipfort_types
   end type hipExternalSemaphoreWaitNodeParams
 
   type, bind(c) :: hipArrayMapInfo
-    integer(c_int64_t) :: opaque(19)
+    integer(c_int) :: resourceType !< Resource type
+    integer(c_int64_t) :: resource(8) !< 64-byte C union: keeps the layout exact, members not individually accessible
+    integer(c_int) :: subresourceType !< Sparse subresource type
+    integer(c_int64_t) :: subresource(4) !< 32-byte C union: keeps the layout exact, members not individually accessible
+    integer(c_int) :: memOperationType !< Memory operation type
+    integer(c_int) :: memHandleType !< Memory handle type
+    type(c_ptr) :: memHandle
+    integer(c_int64_t) :: offset !< Offset within the memory
+    integer(c_int) :: deviceBitMask !< Device ordinal bit mask
+    integer(c_int) :: flags !< flags for future use, must be zero now.
+    integer(c_int) :: reserved(2) !< Reserved for future use, must be zero now.
   end type hipArrayMapInfo
 
   type, bind(c) :: hipMemcpyNodeParams
@@ -746,6 +775,7 @@ module hipfort_types
   type, bind(c) :: hipGraphNodeParams
     integer(c_int) :: type
     integer(c_int) :: reserved0(3)
+    integer(c_int64_t) :: anonymous_union(29) !< 232-byte C union: keeps the layout exact, members not individually accessible
     integer(c_int64_t) :: reserved2
   end type hipGraphNodeParams
 
@@ -759,6 +789,7 @@ module hipfort_types
   type, bind(c) :: hipLaunchAttribute
     integer(c_int) :: id !< Identifier of the launch attribute
     character(c_char) :: pad(4) !< Padding to align the structure to 8 bytes
+    integer(c_int64_t) :: anonymous_union(8) !< 64-byte C union: keeps the layout exact, members not individually accessible
   end type hipLaunchAttribute
 
   type, bind(c) :: hipLaunchConfig_t

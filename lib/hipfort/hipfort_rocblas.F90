@@ -37264,7 +37264,7 @@ module hipfort_rocblas
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
-      character(c_char) :: rocblas_status_to_string_
+      type(c_ptr) :: rocblas_status_to_string_
       integer(kind(rocblas_status_success)),value :: status
     end function
   end interface

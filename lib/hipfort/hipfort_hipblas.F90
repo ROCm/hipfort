@@ -41564,7 +41564,7 @@ module hipfort_hipblas
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      character(c_char) :: hipblasStatusToString_
+      type(c_ptr) :: hipblasStatusToString_
       integer(kind(HIPBLAS_STATUS_SUCCESS)),value :: status
     end function
   end interface
