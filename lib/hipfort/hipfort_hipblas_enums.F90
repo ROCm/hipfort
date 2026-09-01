@@ -194,8 +194,9 @@ module hipfort_hipblas_enums
   end enum
 
   integer(c_int), parameter :: hipblasVersionMajor = 3
-  integer(c_int), parameter :: hipblaseVersionMinor = 2
-  integer(c_int), parameter :: hipblasVersionMinor = 2
+  integer(c_int), parameter :: hipblaseVersionMinor = 6
+  integer(c_int), parameter :: hipblasVersionMinor = 6
   integer(c_int), parameter :: hipblasVersionPatch = 0
+  integer(c_int), parameter :: hipblasVersionK = 100
 
 end module hipfort_hipblas_enums

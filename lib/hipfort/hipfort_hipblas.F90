@@ -41590,8 +41590,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetVector_l_assumed_rank,hipblasSetVector_i4_assumed_rank,hipblasSetVector_i8_assumed_rank,&
-      hipblasSetVector_r4_assumed_rank,hipblasSetVector_r8_assumed_rank,hipblasSetVector_c4_assumed_rank,&
+    module procedure hipblasSetVector_l_assumed_rank,hipblasSetVector_i4_assumed_rank,&
+      hipblasSetVector_i8_assumed_rank,hipblasSetVector_r4_assumed_rank,&
+      hipblasSetVector_r8_assumed_rank,hipblasSetVector_c4_assumed_rank,&
       hipblasSetVector_c8_assumed_rank
 #else
     module procedure hipblasSetVector_l_rank_0,hipblasSetVector_l_full_rank,&
@@ -41625,8 +41626,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetVector_l_assumed_rank,hipblasGetVector_i4_assumed_rank,hipblasGetVector_i8_assumed_rank,&
-      hipblasGetVector_r4_assumed_rank,hipblasGetVector_r8_assumed_rank,hipblasGetVector_c4_assumed_rank,&
+    module procedure hipblasGetVector_l_assumed_rank,hipblasGetVector_i4_assumed_rank,&
+      hipblasGetVector_i8_assumed_rank,hipblasGetVector_r4_assumed_rank,&
+      hipblasGetVector_r8_assumed_rank,hipblasGetVector_c4_assumed_rank,&
       hipblasGetVector_c8_assumed_rank
 #else
     module procedure hipblasGetVector_l_rank_0,hipblasGetVector_l_full_rank,&
@@ -41661,8 +41663,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetMatrix_l_assumed_rank,hipblasSetMatrix_i4_assumed_rank,hipblasSetMatrix_i8_assumed_rank,&
-      hipblasSetMatrix_r4_assumed_rank,hipblasSetMatrix_r8_assumed_rank,hipblasSetMatrix_c4_assumed_rank,&
+    module procedure hipblasSetMatrix_l_assumed_rank,hipblasSetMatrix_i4_assumed_rank,&
+      hipblasSetMatrix_i8_assumed_rank,hipblasSetMatrix_r4_assumed_rank,&
+      hipblasSetMatrix_r8_assumed_rank,hipblasSetMatrix_c4_assumed_rank,&
       hipblasSetMatrix_c8_assumed_rank
 #else
     module procedure hipblasSetMatrix_l_full_rank,hipblasSetMatrix_l_rank_0,hipblasSetMatrix_l_rank_1,&
@@ -41697,8 +41700,9 @@ module hipfort_hipblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetMatrix_l_assumed_rank,hipblasGetMatrix_i4_assumed_rank,hipblasGetMatrix_i8_assumed_rank,&
-      hipblasGetMatrix_r4_assumed_rank,hipblasGetMatrix_r8_assumed_rank,hipblasGetMatrix_c4_assumed_rank,&
+    module procedure hipblasGetMatrix_l_assumed_rank,hipblasGetMatrix_i4_assumed_rank,&
+      hipblasGetMatrix_i8_assumed_rank,hipblasGetMatrix_r4_assumed_rank,&
+      hipblasGetMatrix_r8_assumed_rank,hipblasGetMatrix_c4_assumed_rank,&
       hipblasGetMatrix_c8_assumed_rank
 #else
     module procedure hipblasGetMatrix_l_full_rank,hipblasGetMatrix_l_rank_0,hipblasGetMatrix_l_rank_1,&

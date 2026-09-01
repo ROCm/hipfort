@@ -227,7 +227,7 @@ module hipfort_hipsolver_enums
   end enum
 
   integer(c_int), parameter :: hipsolverVersionMajor = 3
-  integer(c_int), parameter :: hipsolverVersionMinor = 2
+  integer(c_int), parameter :: hipsolverVersionMinor = 6
   integer(c_int), parameter :: hipsolverVersionPatch = 0
 
 end module hipfort_hipsolver_enums

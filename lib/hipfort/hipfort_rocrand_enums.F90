@@ -81,7 +81,7 @@ module hipfort_rocrand_enums
     enumerator :: ROCRAND_SCRAMBLED_DIRECTION_VECTORS_64_JOEKUO6 = 104
   end enum
 
-  integer(c_int), parameter :: ROCRAND_VERSION = 400200
+  integer(c_int), parameter :: ROCRAND_VERSION = 400500
   integer(c_int), parameter :: ROCRAND_DEFAULT_MAX_BLOCK_SIZE = 256
 
 end module hipfort_rocrand_enums

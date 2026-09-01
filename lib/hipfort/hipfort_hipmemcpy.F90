@@ -527,7 +527,7 @@ module hipfort_hipmemcpy
   !>   @warning  Calling hipMemcpy2D with dst and src pointers that do not match the hipMemcpyKind
   !>  results in undefined behavior.
   !>
-  !>   @param[in]   dest    Destination memory address
+  !>   @param[out]  dest Destination memory address
   !>   @param[in]   dpitch Pitch size in bytes of destination memory
   !>   @param[in]   src    Source memory address
   !>   @param[in]   spitch Pitch size in bytes of source memory
@@ -718,7 +718,7 @@ module hipfort_hipmemcpy
   !>  best performance, use hipHostMalloc to allocate host memory that is transferred
   !>  asynchronously.
   !>
-  !>   @param[in]   dest    Pointer to destination memory address
+  !>   @param[out]  dest Pointer to destination memory address
   !>   @param[in]   dpitch Pitch size in bytes of destination memory
   !>   @param[in]   src    Pointer to source memory address
   !>   @param[in]   spitch Pitch size in bytes of source memory
