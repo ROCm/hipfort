@@ -3,9 +3,9 @@
   :description: hipFORT documentation and API reference library
   :keywords: hipFORT, ROCm, API, documentation
 
-********************************************************************
+*********************
 hipFORT documentation
-********************************************************************
+*********************
 
 hipFORT is a Fortran interface library for accessing GPU kernels.
 It exposes the HIP API and ROCm accelerated libraries in Fortran with
@@ -32,6 +32,9 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipFORT>`_
      * :doc:`rocFFT examples <./tutorials/rocfft-examples>`
      * :doc:`rocSOLVER examples <./tutorials/rocsolver-examples>`
      * :doc:`rocSPARSE examples <./tutorials/rocsparse-examples>`
+     * :doc:`hipFFT examples <./tutorials/hipfft-examples>`
+     * :doc:`hipFFTW examples <./tutorials/hipfftw-examples>`
+     * :doc:`hipSOLVER examples <./tutorials/hipsolver-examples>`
      * :doc:`hipSPARSE examples <./tutorials/hipsparse-examples>`
 
   .. grid-item-card:: API reference

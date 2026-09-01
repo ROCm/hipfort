@@ -11,7 +11,7 @@ Use the following examples to express Fortran 2003 (`f2003`) interfaces:
 **Example 1**
 
 
-.. code-block:: 
+.. code-block::
 
     use iso_c_binding
     use hipfort
@@ -20,7 +20,7 @@ Use the following examples to express Fortran 2003 (`f2003`) interfaces:
     type(c_ptr) :: a_d         ! device array pointer
     !
     ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
-                                           ! append suffix '_c_size_t' to write '4' 
+                                           ! append suffix '_c_size_t' to write '4'
                                            ! as 'integer(c_size_t)'
     ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
 
@@ -43,7 +43,7 @@ Use the following examples to express Fortran 2003 (`f2003`) interfaces:
 
    The Fortran 2008 (`f2008`) interfaces also overload ``hipMalloc``, similar to the Fortran 2008 ``ALLOCATE`` intrinsic. For example:
 
-.. code-block:: 
+.. code-block::
 
         integer     :: ierr        ! error code
         real        :: a_h(5,6)    ! host array
@@ -56,10 +56,16 @@ In addition to ``source``, there is also ``dsource``, which is used if the sourc
 Library examples
 ================
 
-Complete, runnable programs for the ROCm math libraries are available for
-rocFFT, rocSOLVER, rocSPARSE, and hipSPARSE:
+Complete, runnable programs are available for the ROCm math libraries:
 
 * :doc:`rocFFT examples <./rocfft-examples>`
 * :doc:`rocSOLVER examples <./rocsolver-examples>`
 * :doc:`rocSPARSE examples <./rocsparse-examples>`
+
+The ``hip*`` libraries offer the same functionality through APIs that follow
+their NVIDIA counterparts:
+
+* :doc:`hipFFT examples <./hipfft-examples>`
+* :doc:`hipFFTW examples <./hipfftw-examples>`
+* :doc:`hipSOLVER examples <./hipsolver-examples>`
 * :doc:`hipSPARSE examples <./hipsparse-examples>`

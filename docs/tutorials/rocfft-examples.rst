@@ -11,13 +11,17 @@ implementation of the fast Fourier transform for AMD GPUs. hipFORT exposes it
 through the ``hipfort_rocfft`` module, which mirrors the rocFFT C API one to
 one.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 sources live in
 ``test/f2008/rocfft`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/rocfft``.
 
-Most of the examples are Fortran counterparts of the C++ samples shipped with
+hipFFT offers the same functionality through an API that follows cuFFT; see the
+:doc:`hipFFT examples <hipfft-examples>` or, for FFTW3-compatible code, the
+:doc:`hipFFTW examples <hipfftw-examples>`.
+
+Most of the programs are Fortran counterparts of the C++ samples shipped with
 rocFFT in ``clients/samples/rocfft``:
 
 .. list-table::
@@ -25,7 +29,7 @@ rocFFT in ``clients/samples/rocfft``:
    :widths: 45 55
 
    * - rocFFT sample
-     - hipFORT example
+     - hipFORT program
    * - ``rocfft_example_complexcomplex.cpp``
      - `Complex-to-complex transform`_, `Out-of-place transforms`_,
        `Managing the work buffer`_
@@ -38,7 +42,7 @@ rocFFT in ``clients/samples/rocfft``:
      - Not available: load and store callbacks require device functions, which
        cannot be written in Fortran.
 
-The remaining examples cover material from the rocFFT how-to guides:
+The remaining programs cover material from the rocFFT how-to guides:
 `Normalizing with a scale factor`_, `Inspecting a plan`_ and
 `Reusing compiled kernels`_.
 
@@ -80,13 +84,13 @@ Keep the following conventions in mind:
 * ``rocfft_execute`` takes *arrays* of buffer pointers. In Fortran you pass a
   ``type(c_ptr)`` expression, such as ``c_loc(dx)``, and the compiler passes
   its address. For in-place transforms the output argument is ``c_null_ptr``.
-* Every rocFFT call returns a status code. The examples wrap them in
+* Every rocFFT call returns a status code. The programs wrap them in
   ``rocfftCheck`` from the ``hipfort_check`` module, which aborts on failure.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples only need the ``rocfft`` and ``hip`` hipFORT components:
+The programs only need the ``rocfft`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
@@ -197,7 +201,7 @@ By default rocFFT executes on the null stream. Associate an application-owned
 stream with an execution info handle to overlap independent transforms. The
 handle must be passed to every ``rocfft_execute`` call that should use the
 stream, and each stream has to be synchronized before its results are read
-back. This example runs two independent transforms on two streams.
+back. This program runs two independent transforms on two streams.
 
 .. literalinclude:: ../../test/f2008/rocfft/rocfft_stream_z.f08
    :language: fortran

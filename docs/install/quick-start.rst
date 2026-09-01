@@ -4,12 +4,12 @@
 
 
 Quick start installation guide
-*********************************
+******************************
 
 This topic discusses how to quickly build hipFORT from source.
 
 Prerequisites
-===============
+=============
 
 hipFORT requires a Fortran compiler that supports at least the Fortran 2003 standard.
 AMD ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default;
@@ -18,7 +18,7 @@ AMD ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended defau
 Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
 
 Building and testing hipFORT from source
-==========================================
+========================================
 
 1. Ensure you have installed a Fortran compiler (``amdflang`` or ``gfortran``), ``git``, ``cmake``, and :doc:`HIP <hip:index>`.
 2. Build, install, and test hipFORT from source using the following commands:

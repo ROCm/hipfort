@@ -6,18 +6,17 @@
 hipFFT examples
 ***************
 
-`hipFFT <https://rocm.docs.amd.com/projects/hipFFT/en/latest/>`_ is a thin
-portability layer over rocFFT on AMD GPUs and cuFFT on NVIDIA GPUs. Its API
-mirrors cuFFT, so the same source builds against either backend. hipFORT
-exposes it through the ``hipfort_hipfft`` module.
+`hipFFT <https://rocm.docs.amd.com/projects/hipFFT/en/latest/>`_ is a thin layer
+over rocFFT whose API follows cuFFT. hipFORT exposes it through the
+``hipfort_hipfft`` module.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 tests live in
 ``test/f2008/hipfft`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/hipfft``.
 
-If you want direct access to rocFFT rather than a portable interface, see
+If you want direct access to rocFFT rather than a cuFFT-style interface, see
 :doc:`rocfft-examples`.
 
 Transform workflow
@@ -47,13 +46,13 @@ Keep the following conventions in mind:
 * Multi-dimensional plans take lengths in C order, with the **last** dimension
   contiguous. This is the opposite of rocFFT, which takes the fastest-varying
   dimension first.
-* Every hipFFT call returns a status code. The examples wrap them in
+* Every hipFFT call returns a status code. The programs wrap them in
   ``hipfftCheck`` from the ``hipfort_check`` module, which aborts on failure.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples only need the ``hipfft`` and ``hip`` hipFORT components:
+The programs only need the ``hipfft`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
@@ -118,7 +117,7 @@ Advanced data layout
 
 ``hipfftPlanMany`` also describes strided and interleaved data. The stride is
 the distance between consecutive elements of one transform, and the distance is
-the gap between the start of consecutive transforms. This example batches a
+the gap between the start of consecutive transforms. This program batches a
 two-dimensional transform.
 
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_planmany_2d_z2z.f08
@@ -156,7 +155,7 @@ Running on HIP streams
 By default hipFFT executes on the null stream. Bind a plan to an
 application-owned stream with ``hipfftSetStream`` to overlap independent
 transforms. Each stream has to be synchronized before its results are read
-back. This example runs two plans, each on its own stream, with different
+back. This program runs two plans, each on its own stream, with different
 input harmonics so that a swapped stream would be visible in the output.
 
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_setstream_z.f08

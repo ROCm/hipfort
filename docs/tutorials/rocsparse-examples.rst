@@ -9,16 +9,19 @@ rocSPARSE examples
 `rocSPARSE <https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/>`_ is the AMD
 implementation of sparse linear algebra for AMD GPUs. hipFORT exposes it through
 the ``hipfort_rocsparse`` module, which mirrors the rocSPARSE C API one to one.
-rocSPARSE reuses the rocBLAS handle type, so the examples that create a handle
+rocSPARSE reuses the rocBLAS handle type, so the programs that create a handle
 call ``rocsparse_create_handle`` from the same module.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 sources live in
 ``test/f2008/rocsparse`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/rocsparse``.
 
-Where a routine has the four precisions, the example is provided for each: ``s``
+hipSPARSE offers the same functionality through an API that follows cuSPARSE;
+see the :doc:`hipSPARSE examples <hipsparse-examples>`.
+
+Where a routine has the four precisions, a program is provided for each: ``s``
 (real single), ``d`` (real double), ``c`` (complex single), and ``z`` (complex
 double). This page shows the double-precision program of each group; the other
 precisions differ only in the host data type and the ``rocsparse_`` prefix
@@ -27,13 +30,13 @@ letter.
 Conventions
 ===========
 
-rocSPARSE follows a small number of conventions that recur in every example:
+rocSPARSE follows a small number of conventions that recur in every program:
 
-* **Sparse matrix formats.** Most examples store the sparse matrix in CSR
+* **Sparse matrix formats.** Most programs store the sparse matrix in CSR
   (compressed sparse row): a row-pointer array, a column-index array, and a
   values array. Block variants use BSR, and a few routines take COO
   (coordinate) row/column arrays.
-* **Zero-based indexing.** The examples use ``rocsparse_index_base_zero``, so
+* **Zero-based indexing.** The programs use ``rocsparse_index_base_zero``, so
   CSR row pointers and column indices start at 0, matching the C samples. The
   Fortran host arrays that hold them are ordinary 1-based arrays whose *values*
   are 0-based.
@@ -43,18 +46,18 @@ rocSPARSE follows a small number of conventions that recur in every example:
   ``rocsparse_create_dnvec_descr``) and run in stages: query a workspace size,
   optionally preprocess/analyze, then compute. The descriptor constructors are
   ``c_ptr``-only (no array overloads), so device buffers are passed via
-  ``c_loc(...)`` even in the Fortran 2008 examples.
+  ``c_loc(...)`` even in the Fortran 2008 programs.
 * **Scalars.** ``alpha`` and ``beta`` are passed by address (``c_loc(alpha)``)
   in the generic API, and as host scalars by reference in the older
   level-2/level-3 routines such as ``bsrmv`` and ``gemvi``.
-* **Every call returns a status code.** The examples wrap rocSPARSE calls in
+* **Every call returns a status code.** The programs wrap rocSPARSE calls in
   ``rocsparseCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
   module, both of which abort on failure.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples need the ``rocsparse``, ``rocblas``, and ``hip`` hipFORT
+The programs need the ``rocsparse``, ``rocblas``, and ``hip`` hipFORT
 components:
 
 .. code-block:: cmake
@@ -89,7 +92,7 @@ Sampled dense-dense matrix multiplication
 ``sddmm`` is the transpose of the SpMM data flow: the dense product ``A*B`` is
 evaluated only at the nonzero positions of a sparse ``C``, giving
 ``C = alpha * (A*B) .* spy(C) + beta*C``. It is the core primitive behind
-attention and graph-neural-network kernels. The example uses dense descriptors
+attention and graph-neural-network kernels. The program uses dense descriptors
 for ``A`` and ``B``, a CSR descriptor for ``C``, and the three sddmm stages.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dsddmm.f08
@@ -159,7 +162,7 @@ Incomplete factorizations produce approximate factors that keep the sparsity of
 the input and are used as preconditioners. Each runs an analysis stage before
 the compute stage. ``csrilu0`` computes an incomplete LU factorization with zero
 fill-in; on a matrix with no fill-in (such as a tridiagonal one) it reproduces
-the exact LU, which the example checks.
+the exact LU, which the program checks.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dcsrilu0.f08
    :language: fortran

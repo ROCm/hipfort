@@ -2,15 +2,15 @@
   :description: Install guide for hipFORT
   :keywords: install, hipFORT, AMD, ROCm, building, tests
 
-*********************************
+*******************************
 Installing and building hipFORT
-*********************************
+*******************************
 
 This topic discusses how to build and install hipFORT from source with CMake.
 It also provides information on how to build and run the tests.
 
 Prerequisites
-===============
+=============
 
 hipFORT requires a Fortran compiler that supports at least the Fortran 2003 standard.
 AMD ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default;
@@ -22,7 +22,7 @@ Ready-made CMake toolchain files are provided; see :ref:`hipfort-toolchain-files
 .. _build-test-hipfort-from-source:
 
 Building and testing hipFORT from source
-==========================================
+========================================
 
 #. Ensure you have installed a Fortran compiler (``amdflang`` or ``gfortran``), ``git``, ``cmake``, and :doc:`HIP <hip:index>`.
 #. Build, install, and test hipFORT from source using the following commands:
@@ -42,7 +42,7 @@ Building and testing hipFORT from source
       When installing hipFORT from source, you do not need to specify the ``HIP_PLATFORM`` environment variable.
 
 Customizing the build
------------------------
+---------------------
 
 You can customize the build by setting the following environment variables:
 
@@ -59,7 +59,7 @@ or by setting the CMake cache variables:
 .. _hipfort-toolchain-files:
 
 Toolchain files
------------------
+---------------
 
 Rather than setting the compiler and backend cache variables by hand, you can select a
 ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCHAIN_FILE``:
@@ -72,7 +72,7 @@ Each file only sets the Fortran, C, and C++ compilers (plus optional ``ROCM_PATH
 ``HIP_PLATFORM`` hints), so they compose with the other build options above.
 
 Linking against hipFORT
-========================
+=======================
 
 To use hipFORT in your project, invoke your Fortran and HIP compilers directly and link
 against the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
@@ -93,7 +93,7 @@ instead.
 
 
 Examples and tests
-====================
+==================
 
 The examples in the ``f2003`` and ``f2008`` subdirectories of the ``test`` folder in the repository
 also serve as tests. Both test collections implement the same tests. However, the ``f2008`` tests require the
@@ -102,7 +102,7 @@ The ``f2003`` tests only require support for the Fortran 2003 (`f2003`) standard
 The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various hip* and roc* libraries.
 
 Building and running the tests
--------------------------------
+------------------------------
 
 The tests are driven by CTest. Configure the build with ``-DBUILD_TESTING=ON``,
 build hipFORT, and run the suite with ``ctest``

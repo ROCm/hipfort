@@ -2,25 +2,25 @@
   :description: hipSOLVER examples written with the hipFORT Fortran interfaces
   :keywords: hipFORT, ROCm, hipSOLVER, LAPACK, Fortran, examples, tutorials
 
-*******************
+******************
 hipSOLVER examples
-*******************
+******************
 
 `hipSOLVER <https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/>`_ is a thin
-portability layer over rocSOLVER on AMD GPUs and cuSOLVER on NVIDIA GPUs. Its API
-mirrors cuSOLVER, so the same source builds against either backend. hipFORT
-exposes it through the ``hipfort_hipsolver`` module.
+layer over rocSOLVER whose API follows cuSOLVER. hipFORT exposes it through the
+``hipfort_hipsolver`` module.
 
-Every program on this page is a complete, self-contained example that is built
+Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 tests live in
 ``test/f2008/hipsolver`` and the equivalent Fortran 2003 sources, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/hipsolver``.
 
-hipSOLVER is a portability layer; for direct access to rocSOLVER on AMD GPUs,
-the equivalent programs are written against the ``hipfort_rocsolver`` module.
+If you want direct access to rocSOLVER rather than a cuSOLVER-style interface,
+see the :doc:`rocSOLVER examples <rocsolver-examples>`, where the equivalent
+programs are written against the ``hipfort_rocsolver`` module.
 
-Each example is provided in the four LAPACK precisions where the routine has
+Each routine is provided in the four LAPACK precisions where it has
 them: ``s`` (real single), ``d`` (real double), ``c`` (complex single), and
 ``z`` (complex double). This page shows the double-precision program of each
 group; the other precisions differ only in the host data type and the
@@ -57,14 +57,14 @@ Keep the following conventions in mind:
   ``HIPSOLVER_EIG_MODE_NOVECTOR`` / ``HIPSOLVER_EIG_MODE_VECTOR`` choose whether
   eigenvectors are computed. The SVD job arguments are ``character(c_char)`` job
   codes (``'N'``, ``'A'``, ``'S'``, ``'V'``) passed by value.
-* **Every call returns a status code.** The examples wrap hipSOLVER calls in
+* **Every call returns a status code.** The programs wrap hipSOLVER calls in
   ``hipsolverCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
   module, both of which abort on failure.
 
-Building an example
-===================
+Building and running
+====================
 
-The examples only need the ``hipsolver`` and ``hip`` hipFORT components:
+The programs only need the ``hipsolver`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
@@ -80,14 +80,14 @@ LU factorization and solve
 
 ``getrf`` computes the LU factorization ``A = P*L*U`` with partial pivoting,
 writing the factors in place over ``A`` and the pivot indices into ``ipiv``. The
-example queries the workspace with ``hipsolverDgetrf_bufferSize``, factorizes,
+program queries the workspace with ``hipsolverDgetrf_bufferSize``, factorizes,
 and reconstructs ``L*U`` to confirm the result.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dgetrf.f08
    :language: fortran
 
 ``getrs`` uses the factors and pivots from ``getrf`` to solve ``A*X = B``. The
-example picks a known solution ``x``, forms ``b = A*x``, factorizes, solves, and
+program picks a known solution ``x``, forms ``b = A*x``, factorizes, solves, and
 checks that the recovered ``X`` matches ``x``.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dgetrs.f08
@@ -98,13 +98,13 @@ Cholesky factorization and solve
 
 ``potrf`` computes the Cholesky factorization of a symmetric (or Hermitian)
 positive-definite matrix, writing the factor into the triangle chosen by the
-fill mode. The example uses ``HIPSOLVER_FILL_MODE_UPPER`` and checks the factor
+fill mode. The program uses ``HIPSOLVER_FILL_MODE_UPPER`` and checks the factor
 against the known Cholesky root.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dpotrf.f08
    :language: fortran
 
-``potrs`` solves ``A*X = B`` from a ``potrf`` factorization. The example forms
+``potrs`` solves ``A*X = B`` from a ``potrf`` factorization. The program forms
 ``b = A*x`` for a known ``x`` and confirms the solve recovers it.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dpotrs.f08
@@ -149,7 +149,7 @@ Symmetric eigenvalues
 ``syevd`` (``heevd`` for Hermitian matrices) computes the eigenvalues, and
 optionally the eigenvectors, of a symmetric matrix with a divide-and-conquer
 algorithm. The ``HIPSOLVER_EIG_MODE_*`` argument selects whether eigenvectors are
-produced; the example requests eigenvalues only and checks their sum against the
+produced; the program requests eigenvalues only and checks their sum against the
 trace.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dsyevd.f08
@@ -157,7 +157,7 @@ trace.
 
 ``syevj``/``heevj`` solve the same problem with a Jacobi algorithm, which is
 often faster for small matrices. With ``HIPSOLVER_EIG_MODE_VECTOR`` the matrix is
-overwritten with the eigenvectors; the example confirms each eigenpair satisfies
+overwritten with the eigenvectors; the program confirms each eigenpair satisfies
 ``A*v = lambda*v``.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dsyevj.f08
@@ -168,13 +168,13 @@ Singular value decomposition
 
 ``gesvd`` computes the singular value decomposition ``A = U*S*V**T``. The
 ``character(c_char)`` job codes choose which singular-vector matrices are
-computed. The example requests singular values only (``'N'``) and checks the
+computed. The program requests singular values only (``'N'``) and checks the
 convention-independent invariant ``sum(sigma_i**2) == ||A||_F**2``.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dgesvd.f08
    :language: fortran
 
-``gesvdj`` computes the same decomposition with a Jacobi algorithm. The example
+``gesvdj`` computes the same decomposition with a Jacobi algorithm. The program
 requests all vectors and reconstructs ``A`` from the factors, which avoids the
 sign and order ambiguity of the singular vectors.
 
