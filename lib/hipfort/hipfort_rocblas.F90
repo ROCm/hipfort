@@ -37605,8 +37605,9 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_set_vector_l_assumed_rank,rocblas_set_vector_i4_assumed_rank,rocblas_set_vector_i8_assumed_rank,&
-      rocblas_set_vector_r4_assumed_rank,rocblas_set_vector_r8_assumed_rank,rocblas_set_vector_c4_assumed_rank,&
+    module procedure rocblas_set_vector_l_assumed_rank,rocblas_set_vector_i4_assumed_rank,&
+      rocblas_set_vector_i8_assumed_rank,rocblas_set_vector_r4_assumed_rank,&
+      rocblas_set_vector_r8_assumed_rank,rocblas_set_vector_c4_assumed_rank,&
       rocblas_set_vector_c8_assumed_rank
 #else
     module procedure rocblas_set_vector_l_rank_0,rocblas_set_vector_l_full_rank,&
@@ -37636,8 +37637,9 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_get_vector_l_assumed_rank,rocblas_get_vector_i4_assumed_rank,rocblas_get_vector_i8_assumed_rank,&
-      rocblas_get_vector_r4_assumed_rank,rocblas_get_vector_r8_assumed_rank,rocblas_get_vector_c4_assumed_rank,&
+    module procedure rocblas_get_vector_l_assumed_rank,rocblas_get_vector_i4_assumed_rank,&
+      rocblas_get_vector_i8_assumed_rank,rocblas_get_vector_r4_assumed_rank,&
+      rocblas_get_vector_r8_assumed_rank,rocblas_get_vector_c4_assumed_rank,&
       rocblas_get_vector_c8_assumed_rank
 #else
     module procedure rocblas_get_vector_l_rank_0,rocblas_get_vector_l_full_rank,&
@@ -37668,8 +37670,9 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_set_matrix_l_assumed_rank,rocblas_set_matrix_i4_assumed_rank,rocblas_set_matrix_i8_assumed_rank,&
-      rocblas_set_matrix_r4_assumed_rank,rocblas_set_matrix_r8_assumed_rank,rocblas_set_matrix_c4_assumed_rank,&
+    module procedure rocblas_set_matrix_l_assumed_rank,rocblas_set_matrix_i4_assumed_rank,&
+      rocblas_set_matrix_i8_assumed_rank,rocblas_set_matrix_r4_assumed_rank,&
+      rocblas_set_matrix_r8_assumed_rank,rocblas_set_matrix_c4_assumed_rank,&
       rocblas_set_matrix_c8_assumed_rank
 #else
     module procedure rocblas_set_matrix_l_full_rank,rocblas_set_matrix_l_rank_0,rocblas_set_matrix_l_rank_1,&
@@ -37700,8 +37703,9 @@ module hipfort_rocblas
 
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_get_matrix_l_assumed_rank,rocblas_get_matrix_i4_assumed_rank,rocblas_get_matrix_i8_assumed_rank,&
-      rocblas_get_matrix_r4_assumed_rank,rocblas_get_matrix_r8_assumed_rank,rocblas_get_matrix_c4_assumed_rank,&
+    module procedure rocblas_get_matrix_l_assumed_rank,rocblas_get_matrix_i4_assumed_rank,&
+      rocblas_get_matrix_i8_assumed_rank,rocblas_get_matrix_r4_assumed_rank,&
+      rocblas_get_matrix_r8_assumed_rank,rocblas_get_matrix_c4_assumed_rank,&
       rocblas_get_matrix_c8_assumed_rank
 #else
     module procedure rocblas_get_matrix_l_full_rank,rocblas_get_matrix_l_rank_0,rocblas_get_matrix_l_rank_1,&

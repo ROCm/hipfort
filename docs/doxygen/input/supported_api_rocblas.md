@@ -29,8 +29,8 @@
 25 | [rocblas_set_solution_fitness_query](interfacehipfort__rocblas_1_1rocblas__set__solution__fitness__query.html "Interface documentation") | C binding
 26 | [rocblas_set_performance_metric](interfacehipfort__rocblas_1_1rocblas__set__performance__metric.html "Interface documentation") | C binding
 27 | [rocblas_get_performance_metric](interfacehipfort__rocblas_1_1rocblas__get__performance__metric.html "Interface documentation") | C binding
-28 | [rocblas_sscal](interfacehipfort__rocblas_1_1rocblas__sscal.html "Interface documentation") | C binding
-29 | [rocblas_dscal](interfacehipfort__rocblas_1_1rocblas__dscal.html "Interface documentation") | C binding
+28 | [rocblas_sscal](interfacehipfort__rocblas_1_1rocblas__sscal.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+29 | [rocblas_dscal](interfacehipfort__rocblas_1_1rocblas__dscal.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 30 | [rocblas_cscal](interfacehipfort__rocblas_1_1rocblas__cscal.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 31 | [rocblas_zscal](interfacehipfort__rocblas_1_1rocblas__zscal.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 32 | [rocblas_csscal](interfacehipfort__rocblas_1_1rocblas__csscal.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank

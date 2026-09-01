@@ -67,7 +67,7 @@ module hipfort_hipfft_enums
 
   integer(c_int), parameter :: hipfftVersionMajor = 1
   integer(c_int), parameter :: hipfftVersionMinor = 0
-  integer(c_int), parameter :: hipfftVersionPatch = 22
+  integer(c_int), parameter :: hipfftVersionPatch = 25
   integer(c_int), parameter :: HIPFFT_FORWARD = -1
   integer(c_int), parameter :: HIPFFT_BACKWARD = 1
 
