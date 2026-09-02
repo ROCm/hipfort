@@ -32,9 +32,8 @@ program test_rocblas
   integer(kind(rocblas_gemm_algo_standard)) :: v18
   integer(c_int32_t) :: v19
   integer(kind(rocblas_geam_ex_operation_min_plus)) :: v20
-  character(c_char) :: v21
-  integer(c_size_t) :: v22
-  logical(c_bool) :: v23
+  integer(c_size_t) :: v21
+  logical(c_bool) :: v22
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -1305,27 +1304,27 @@ program test_rocblas
     if (never) v1 = rocblas_scal_batched_ex_64_(v0, v4, v0, v17, v0, v17, v4, v4, v17)
     if (never) v1 = rocblas_scal_strided_batched_ex_(v0, v8, v0, v17, v0, v17, v8, v4, v8, v17)
     if (never) v1 = rocblas_scal_strided_batched_ex_64_(v0, v4, v0, v17, v0, v17, v4, v4, v4, v17)
-    if (never) v21 = rocblas_status_to_string_(v1)
+    if (never) v0 = rocblas_status_to_string_(v1)
     if (never) call rocblas_initialize_()
-    if (never) v1 = rocblas_get_version_string_(v0, v22)
-    if (never) v1 = rocblas_get_version_string_size_(v22)
-    if (never) v1 = rocblas_get_commit_hash_string_(v0, v22)
-    if (never) v1 = rocblas_get_commit_hash_string_size_(v22)
+    if (never) v1 = rocblas_get_version_string_(v0, v21)
+    if (never) v1 = rocblas_get_version_string_size_(v21)
+    if (never) v1 = rocblas_get_commit_hash_string_(v0, v21)
+    if (never) v1 = rocblas_get_commit_hash_string_size_(v21)
     if (never) v1 = rocblas_start_device_memory_size_query_(v0)
-    if (never) v1 = rocblas_stop_device_memory_size_query_(v0, v22)
-    if (never) v23 = rocblas_is_device_memory_size_query_(v0)
-    if (never) v1 = rocblas_set_optimal_device_memory_size_impl_(v0, v22)
-    if (never) v1 = rocblas_device_malloc_alloc_(v0, v0, v22)
-    if (never) v23 = rocblas_device_malloc_success_(v0)
+    if (never) v1 = rocblas_stop_device_memory_size_query_(v0, v21)
+    if (never) v22 = rocblas_is_device_memory_size_query_(v0)
+    if (never) v1 = rocblas_set_optimal_device_memory_size_impl_(v0, v21)
+    if (never) v1 = rocblas_device_malloc_alloc_(v0, v0, v21)
+    if (never) v22 = rocblas_device_malloc_success_(v0)
     if (never) v1 = rocblas_device_malloc_ptr_(v0, v0)
-    if (never) v1 = rocblas_device_malloc_get_(v0, v22, v0)
+    if (never) v1 = rocblas_device_malloc_get_(v0, v21, v0)
     if (never) v1 = rocblas_device_malloc_free_(v0)
-    if (never) call rocblas_device_malloc_set_default_memory_size_(v22)
-    if (never) v1 = rocblas_get_device_memory_size_(v0, v22)
-    if (never) v1 = rocblas_set_device_memory_size_(v0, v22)
-    if (never) v1 = rocblas_set_workspace_(v0, v0, v22)
-    if (never) v23 = rocblas_is_managing_device_memory_(v0)
-    if (never) v23 = rocblas_is_user_managing_device_memory_(v0)
+    if (never) call rocblas_device_malloc_set_default_memory_size_(v21)
+    if (never) v1 = rocblas_get_device_memory_size_(v0, v21)
+    if (never) v1 = rocblas_set_device_memory_size_(v0, v21)
+    if (never) v1 = rocblas_set_workspace_(v0, v0, v21)
+    if (never) v22 = rocblas_is_managing_device_memory_(v0)
+    if (never) v22 = rocblas_is_user_managing_device_memory_(v0)
     if (never) call rocblas_abort_()
     if (never) v1 = rocblas_set_vector_(v8, v8, v0, v8, v0, v8)
     if (never) v1 = rocblas_get_vector_(v8, v8, v0, v8, v0, v8)

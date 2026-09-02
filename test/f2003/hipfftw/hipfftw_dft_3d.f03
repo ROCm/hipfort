@@ -11,9 +11,6 @@ program hipfftw_dft_3d_test
   integer(c_size_t), parameter :: Nbytes = NX * NY * NZ * 16  ! sizeof(double complex) = 16
   double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
   double precision, parameter :: tol = 1.0d-10
-  ! FFTW_ESTIMATE is not emitted by the generated enums module; use the
-  ! standard FFTW planner-flag value.
-  integer(c_int), parameter :: FFTW_ESTIMATE = 64
 
   complex(c_double_complex), allocatable, target, dimension(:) :: hx, hresult
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr

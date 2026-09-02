@@ -33,7 +33,6 @@ program test_hipblas
   integer(kind(HIPBLAS_COMPUTE_16F)) :: v18
   integer(kind(HIPBLAS_GEMM_DEFAULT)) :: v19
   integer(kind(HIPBLAS_GEMM_FLAGS_NONE)) :: v20
-  character(c_char) :: v21
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -1418,7 +1417,7 @@ program test_hipblas
     if (never) v1 = hipblasScalBatchedEx_64_(v0, v8, v0, v17, v0, v17, v8, v8, v17)
     if (never) v1 = hipblasScalStridedBatchedEx_(v0, v2, v0, v17, v0, v17, v2, v8, v2, v17)
     if (never) v1 = hipblasScalStridedBatchedEx_64_(v0, v8, v0, v17, v0, v17, v8, v8, v8, v17)
-    if (never) v21 = hipblasStatusToString_(v1)
+    if (never) v0 = hipblasStatusToString_(v1)
 #endif
     if (never) v1 = hipblasSetVector_(v2, v2, v0, v2, v0, v2)
     if (never) v1 = hipblasGetVector_(v2, v2, v0, v2, v0, v2)
