@@ -20,3 +20,4 @@ This section provides technical descriptions and important information about the
 - {doc}`/doxygen/html/md_input_2supported__api__rocrand`
 - {doc}`/doxygen/html/md_input_2supported__api__rocsolver`
 - {doc}`/doxygen/html/md_input_2supported__api__rocsparse`
+- {doc}`/doxygen/html/md_input_2supported__api__roctx`

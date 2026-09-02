@@ -41,9 +41,12 @@ Keep the following conventions in mind:
 
 * FFTW transforms are **unnormalized**. A forward transform followed by an
   inverse transform of length ``N`` returns ``N`` times the original data.
-* Planner flags are the standard FFTW values. ``FFTW_ESTIMATE`` is not emitted
-  by the generated enums module, so declare it yourself as
-  ``integer(c_int), parameter :: FFTW_ESTIMATE = 64``.
+* Planner flags are the standard FFTW values and come from the
+  ``hipfort_hipfftw_enums`` module, which ``hipfort_hipfftw`` re-exports:
+  ``FFTW_ESTIMATE``, ``FFTW_MEASURE``, ``FFTW_PATIENT``, ``FFTW_EXHAUSTIVE``,
+  ``FFTW_WISDOM_ONLY``, and the direction flags ``FFTW_FORWARD`` and
+  ``FFTW_BACKWARD``. Do not redeclare them locally; a local definition clashes
+  with the use-associated one.
 * Real forward transforms produce Hermitian-symmetric output, so only
   ``N/2 + 1`` complex values are stored.
 * Multi-dimensional transforms use C row-major order, so the last dimension is

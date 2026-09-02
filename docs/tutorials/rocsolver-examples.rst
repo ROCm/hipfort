@@ -50,9 +50,12 @@ rocSOLVER follows a small number of conventions that recur in every program:
   ``A**T``; ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the stored
   triangle; ``rocblas_evect_*`` and ``rocblas_svect_*`` choose whether vectors
   are computed.
-* **Every call returns a status code.** The programs wrap rocSOLVER calls in
-  ``rocsolverCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
-  module, both of which abort on failure.
+* **Every call returns a status code.** The ``hipfort_check`` module provides
+  ``hipCheck`` for HIP calls and ``rocsolverCheck`` for rocSOLVER calls; both abort
+  on failure. Most of the programs below route rocSOLVER status codes through
+  ``hipCheck`` as well. That works because both status enumerations use ``0`` for
+  success, but prefer ``rocsolverCheck`` in new code so that a failure is reported
+  as a rocSOLVER error rather than a HIP one.
 
 Building and running
 ====================

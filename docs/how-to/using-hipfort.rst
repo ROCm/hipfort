@@ -31,10 +31,14 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 
    *  hipBLAS
    *  hipFFT
-   *  hipFFTW
    *  hipRAND
    *  hipSOLVER
    *  hipSPARSE
+
+*  **FFTW3-compatible interface**:
+
+   *  hipFFTW, whose routine names, planner flags, and calling sequence follow FFTW3
+      rather than an NVIDIA library
 
 The available interfaces depend on which Fortran compiler was used to compile the hipFORT modules and libraries.
 The interfaces use the ``iso_c_binding`` module, so the minimum requirement is a Fortran compiler that supports
@@ -43,12 +47,14 @@ and the number of bytes to memory management. Some examples include ``hipMalloc`
 
 If your compiler can understand the Fortran 2008 (`f2008`) code constructs,
 additional interfaces are compiled into the hipFORT modules and libraries.
-These interfaces take Fortran (array) variables, the number of elements instead of ``type(c_ptr)`` variables,
-and the number of bytes, respectively. Therefore, they reduce the chance of introducing compile-time and runtime errors
+These interfaces take Fortran (array) variables and the number of elements, instead of ``type(c_ptr)``
+variables and the number of bytes. Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read.
 
 These additional interfaces are guarded by the ``USE_FPOINTER_INTERFACES`` preprocessor definition,
-which hipFORT enables automatically once it detects Fortran 2008 support in your compiler. By convention,
+which hipFORT enables automatically once it detects Fortran 2008 support in your compiler. The
+``hipMalloc`` and ``hipMemcpy`` array overloads are an exception: they are not guarded and are
+therefore available in every hipFORT build. By convention,
 application and test sources that rely on them use the ``.f08`` file extension (see the ``test/f2008``
 examples), while Fortran 2003 sources use ``.f03``.
 
@@ -66,6 +72,9 @@ underlying ROCm library it wraps.
 
 .. code-block:: cmake
 
+   cmake_minimum_required(VERSION 3.18)
+   project(my_app Fortran)
+
    find_package(hipfort REQUIRED COMPONENTS hip rocblas hipblas)
 
    add_executable(my_app main.f08)
@@ -75,7 +84,9 @@ List the libraries your code uses as ``COMPONENTS`` (``hip``, ``roctx``,
 ``rocblas``, ``rocfft``, ``rocrand``, ``rocsolver``, ``rocsparse``,
 ``hipblas``, ``hipfft``, ``hipfftw``, ``hiprand``, ``hipsolver``,
 ``hipsparse``) and link the matching ``hipfort::<component>`` targets.
-``hipfort::hip`` is always required. If hipFORT is not in a default location,
+A ``hipfort::<component>`` target is only defined when that component is listed,
+and the Fortran language must be enabled before ``find_package(hipfort)``.
+If hipFORT is not in a default location,
 point CMake at it with ``-Dhipfort_ROOT=/path/to/hipfort`` (or
 ``CMAKE_PREFIX_PATH``).
 
@@ -104,9 +115,10 @@ For complete, runnable programs that use a ROCm math library, see the
 :doc:`rocSPARSE examples <../tutorials/rocsparse-examples>`.
 The ``hip*`` libraries, whose APIs follow their NVIDIA counterparts, have their
 own examples: the :doc:`hipFFT examples <../tutorials/hipfft-examples>`, the
-:doc:`hipFFTW examples <../tutorials/hipfftw-examples>`, the
 :doc:`hipSOLVER examples <../tutorials/hipsolver-examples>`, and the
 :doc:`hipSPARSE examples <../tutorials/hipsparse-examples>`.
+For the FFTW3-compatible interface, see the
+:doc:`hipFFTW examples <../tutorials/hipfftw-examples>`.
 
 Supported HIP and ROCm APIs
 ---------------------------
@@ -125,6 +137,7 @@ The current set of hipFORT interfaces is derived from ROCm 10.0.0. The following
 * :doc:`rocRAND API <../doxygen/html/md_input_2supported__api__rocrand>`
 * :doc:`rocSOLVER API <../doxygen/html/md_input_2supported__api__rocsolver>`
 * :doc:`rocSPARSE API <../doxygen/html/md_input_2supported__api__rocsparse>`
+* :doc:`rocTX API <../doxygen/html/md_input_2supported__api__roctx>`
 
 .. note::
 

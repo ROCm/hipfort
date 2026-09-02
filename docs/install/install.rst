@@ -31,14 +31,16 @@ Building and testing hipFORT from source
 
       git clone https://github.com/ROCm/hipfort.git
       cd hipfort
-      cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+      cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
       cmake --build build
       cmake --install build
       ctest --test-dir build
 
    .. note::
 
-      The hipFORT installation compiles a backend for ROCm (``hipfort-amdgcn``).
+      ``-DHIPFORT_BUILD_NVPTX=OFF`` restricts the build to the ROCm backend
+      (``hipfort-amdgcn``). The CUDA backend archive (``hipfort-nvptx``) is built by
+      default, so omit the option if you also want it.
       When installing hipFORT from source, you do not need to specify the ``HIP_PLATFORM`` environment variable.
 
 Customizing the build
@@ -55,6 +57,8 @@ or by setting the CMake cache variables:
 *  ``CMAKE_AR``: Static archive command
 *  ``CMAKE_RANLIB``: The ``ranlib`` used to create the static archive
 *  ``CMAKE_INSTALL_PREFIX``: The install directory
+*  ``ROCM_PATH``: The ROCm installation root, if it cannot be detected automatically
+*  ``HIPFORT_BUILD_NVPTX``: Build the CUDA (``nvptx``) backend archive (``ON`` by default)
 
 .. _hipfort-toolchain-files:
 
@@ -68,8 +72,8 @@ ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCH
 
    cmake -S . -Bbuild -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 
-Each file only sets the Fortran, C, and C++ compilers (plus optional ``ROCM_PATH`` and
-``HIP_PLATFORM`` hints), so they compose with the other build options above.
+Each file only sets the Fortran and C compilers, so they compose with the other build
+options above. hipFORT is pure Fortran, so no C++ compiler is required.
 
 Linking against hipFORT
 =======================
@@ -80,9 +84,16 @@ against the appropriate ROCm libraries. hipFORT provides exported CMake targets 
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED)
+   project(my_app Fortran)
+
+   find_package(hipfort REQUIRED COMPONENTS hip hipblas)
    add_executable(my_app main.f08)
    target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
+
+List each library you use as a ``COMPONENTS`` entry: a ``hipfort::<component>`` target
+is only defined when that component is requested. The Fortran language must be enabled
+before ``find_package(hipfort)``. See :doc:`../how-to/using-hipfort` for the full
+component list.
 
 The installed CMake package targets the ROCm backend only. ``hipfort-config.cmake``
 is written when hipFORT is configured for ROCm; it pulls in ``libhipfort-amdgcn`` and
@@ -113,7 +124,7 @@ The commands below need the ROCm math libraries. The ROCm root is detected from
 
 .. code-block:: shell
 
-   cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+   cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
    cmake --build build
    ctest --test-dir build
 
