@@ -9,6 +9,7 @@ program test_rocrand
   use iso_c_binding
   use hipfort_rocrand
   use hipfort_rocrand_enums
+  use hipfort_rocrand_types
   implicit none
   logical :: never
   type(c_ptr) :: v0
@@ -19,9 +20,10 @@ program test_rocrand
   real(c_double) :: v5
   integer(c_short) :: v6
   integer(c_int64_t) :: v7
-  integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)) :: v8
-  integer(c_int) :: v9
-  integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v10
+  type(uint4) :: v8
+  integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)) :: v9
+  integer(c_int) :: v10
+  integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v11
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -48,16 +50,16 @@ program test_rocrand
     if (never) v2 = rocrand_initialize_generator_(v0)
     if (never) v2 = rocrand_set_stream_(v0, v0)
     if (never) v2 = rocrand_set_seed_(v0, v7)
-    if (never) v2 = rocrand_set_seed_uint4_(v0, v0)
+    if (never) v2 = rocrand_set_seed_uint4_(v0, v8)
     if (never) v2 = rocrand_set_offset_(v0, v7)
-    if (never) v2 = rocrand_set_ordering_(v0, v8)
-    if (never) v2 = rocrand_set_quasi_random_generator_dimensions_(v0, v9)
-    if (never) v2 = rocrand_get_version_(v9)
+    if (never) v2 = rocrand_set_ordering_(v0, v9)
+    if (never) v2 = rocrand_set_quasi_random_generator_dimensions_(v0, v10)
+    if (never) v2 = rocrand_get_version_(v10)
     if (never) v2 = rocrand_create_poisson_distribution_(v5, v0)
-    if (never) v2 = rocrand_create_discrete_distribution_(v0, v9, v9, v0)
+    if (never) v2 = rocrand_create_discrete_distribution_(v0, v10, v10, v0)
     if (never) v2 = rocrand_destroy_discrete_distribution_(v0)
-    if (never) v2 = rocrand_get_direction_vectors32_(v0, v10)
-    if (never) v2 = rocrand_get_direction_vectors64_(v0, v10)
+    if (never) v2 = rocrand_get_direction_vectors32_(v0, v11)
+    if (never) v2 = rocrand_get_direction_vectors64_(v0, v11)
     if (never) v2 = rocrand_get_scramble_constants32_(v0)
     if (never) v2 = rocrand_get_scramble_constants64_(v0)
 

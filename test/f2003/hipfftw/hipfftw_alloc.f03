@@ -15,9 +15,6 @@ program hipfftw_alloc_test
   double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
   double precision, parameter :: tol = 1.0d-12
   real, parameter :: tol_s = 1.0e-4
-  ! FFTW_ESTIMATE is not emitted by the generated enums module; use the
-  ! standard FFTW planner-flag value.
-  integer(c_int), parameter :: FFTW_ESTIMATE = 64
 
   type(c_ptr) :: pr = c_null_ptr, pc = c_null_ptr, plan = c_null_ptr
   real(c_double), pointer :: x(:) => null()
