@@ -38,11 +38,14 @@ cmake -S . -B build -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolc
 
 `hipfort` provides interfaces to the following HIP and ROCm libraries:
 
-* **HIP:** HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipFFTW, hipRAND, hipSOLVER
-* **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
+* **HIP runtime and tooling:** HIP runtime, rocTX
+* **HIP math libraries (`hip*`):** hipBLAS, hipFFT, hipRAND, hipSOLVER, hipSPARSE
+* **FFTW3-compatible interface:** hipFFTW
+* **ROCm math libraries (`roc*`):** rocBLAS, rocFFT, rocRAND, rocSOLVER, rocSPARSE
 
-While the HIP interfaces and libraries allow to write portable code, the ROCm ones 
-can only be used with AMD devices.
+The APIs of the `hip*` math libraries follow their NVIDIA counterparts (cuBLAS, cuFFT,
+cuRAND, cuSOLVER, and cuSPARSE), whereas hipFFTW follows FFTW3. The `roc*` libraries
+expose AMD-specific APIs.
 
 The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries.
 As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
@@ -137,6 +140,7 @@ The following tables list the supported API:
 * [rocRAND](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocrand.html)
 * [rocSOLVER](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocsolver.html)
 * [rocSPARSE](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocsparse.html)
+* [rocTX](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__roctx.html)
 
 You may further find it convenient to directly use the search function on
 [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/develop/) to get information on the arguments of an interface.
@@ -150,10 +154,16 @@ link against the appropriate ROCm libraries. hipfort provides exported CMake tar
 straightforward:
 
 ```cmake
-find_package(hipfort REQUIRED)
+project(my_app Fortran)
+
+find_package(hipfort REQUIRED COMPONENTS hip hipblas)
 add_executable(my_app main.f08)
 target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 ```
+
+List each library you use as a `COMPONENTS` entry: a `hipfort::<component>` target is
+only defined when that component is requested. The Fortran language must be enabled
+before `find_package(hipfort)`.
 
 ## Examples and tests
 

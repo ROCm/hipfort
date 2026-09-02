@@ -15,9 +15,9 @@ Use the following examples to express Fortran 2003 (`f2003`) interfaces:
 
     use iso_c_binding
     use hipfort
-    integer     :: ierr        ! error code
-    real        :: a_h(5,6)    ! host array
-    type(c_ptr) :: a_d         ! device array pointer
+    integer        :: ierr        ! error code
+    real, target   :: a_h(5,6)    ! host array ('target' is required by c_loc)
+    type(c_ptr)    :: a_d         ! device array pointer
     !
     ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
                                            ! append suffix '_c_size_t' to write '4'
@@ -41,7 +41,11 @@ Use the following examples to express Fortran 2003 (`f2003`) interfaces:
 
 .. note::
 
-   The Fortran 2008 (`f2008`) interfaces also overload ``hipMalloc``, similar to the Fortran 2008 ``ALLOCATE`` intrinsic. For example:
+   ``hipMalloc`` is also overloaded with ``source`` and ``mold`` arguments, similar to
+   the ``ALLOCATE`` intrinsic. Unlike the array interfaces of the math libraries, the
+   ``hipMalloc`` and ``hipMemcpy`` overloads are not guarded by
+   ``USE_FPOINTER_INTERFACES``, so they are available in every hipFORT build.
+   For example:
 
 .. code-block::
 
@@ -68,6 +72,9 @@ The ``hip*`` libraries offer the same functionality through APIs that follow
 their NVIDIA counterparts:
 
 * :doc:`hipFFT examples <./hipfft-examples>`
-* :doc:`hipFFTW examples <./hipfftw-examples>`
 * :doc:`hipSOLVER examples <./hipsolver-examples>`
 * :doc:`hipSPARSE examples <./hipsparse-examples>`
+
+hipFFTW instead exposes an FFTW3-compatible API:
+
+* :doc:`hipFFTW examples <./hipfftw-examples>`
