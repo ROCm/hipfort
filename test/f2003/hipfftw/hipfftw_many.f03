@@ -19,9 +19,6 @@ program hipfftw_many_test
 
   double precision, parameter :: tol = 1.0d-12
   double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
-  ! FFTW_ESTIMATE is not emitted by the generated enums module; use the
-  ! standard FFTW planner-flag value.
-  integer(c_int), parameter :: FFTW_ESTIMATE = 64
   integer :: nfail, seed_size
   integer, allocatable :: seed(:)
 
