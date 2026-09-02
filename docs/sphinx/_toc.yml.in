@@ -19,6 +19,8 @@ subtrees:
     entries:
       - file: tutorials/examples.rst
         title: Examples
+      - file: tutorials/hip-examples.rst
+        title: HIP runtime examples
       - file: tutorials/rocfft-examples.rst
         title: rocFFT examples
       - file: tutorials/rocsolver-examples.rst

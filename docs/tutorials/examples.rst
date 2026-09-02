@@ -56,8 +56,10 @@ In addition to ``source``, there is also ``dsource``, which is used if the sourc
 Library examples
 ================
 
-Complete, runnable programs are available for the ROCm math libraries:
+Complete, runnable programs are available for the HIP runtime and the ROCm math
+libraries:
 
+* :doc:`HIP runtime examples <./hip-examples>`
 * :doc:`rocFFT examples <./rocfft-examples>`
 * :doc:`rocSOLVER examples <./rocsolver-examples>`
 * :doc:`rocSPARSE examples <./rocsparse-examples>`
