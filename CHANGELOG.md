@@ -1,71 +1,44 @@
 # Changelog for hipfort
 
-## (Unreleased)
+## hipfort 0.9.0 for ROCm 10.0.0
 
 ### Added
 
-* Added a rocSPARSE tutorial in the documentation that walks through complete
-  Fortran programs for sparse matrix-vector and matrix-matrix products, sampled
-  dense-dense multiplication (including the batched form), sparse triangular
-  solves, sparse matrix arithmetic, block-sparse products, incomplete
-  factorization preconditioners, tridiagonal and pentadiagonal solvers, sparse
-  vector operations, and format conversions.
-* Added a hipSPARSE tutorial in the documentation that walks through complete
-  Fortran programs for sparse matrix-vector and matrix-matrix products, sampled
-  dense-dense multiplication, sparse triangular solves, sparse matrix-matrix
-  multiplication, the incomplete-LU preconditioner, the tridiagonal solver,
-  sparse vector operations, and format conversions.
-* Added a rocSOLVER tutorial in the documentation that walks through complete
-  Fortran programs for LU factorization and solve (including the batched,
-  strided-batched, and 64-bit APIs), Cholesky, QR and its `orgqr`/`ormqr`
-  follow-ons, least squares, symmetric eigenvalues, the SVD, the symmetric
-  indefinite factorization, the triangular inverse, and the reductions to
-  condensed form.
-* CMake option `HIPFORT_USE_FPOINTER_INTERFACES` to control the Fortran 2008 array interfaces (`USE_FPOINTER_INTERFACES`).
-It defaults to `ON` when the compiler supports Fortran 2008; set `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` to build with the plain Fortran 2003 `type(c_ptr)` interfaces only, for an old compiler or one whose Fortran 2008 support is buggy.
-`hipfort` now also probes for Fortran 2018 support at configure time: `HIPFORT_ASSUMED_RANK` is gated on it (and on `HIPFORT_USE_FPOINTER_INTERFACES`). Without a Fortran 2018 compiler it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build; with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
-* Experimental Fortran 2018 assumed-rank array interfaces, enabled with the `-DHIPFORT_ASSUMED_RANK=ON` CMake option (guarded by `USE_ASSUMED_RANK_INTERFACES`).
-When enabled, each array generic is backed by a single `dimension(..)` overload that accepts an actual of any rank.
-The overloads are mutually exclusive with the classic per-rank interfaces.
-Only contiguous arrays may be passed.
-* CMake option `HIPFORT_EXTENDED_TESTS` (default `OFF`) that links each backend
-static archive into a shared library with `-Wl,--whole-archive` and
-`-Wl,--no-undefined`, failing on any unresolved symbol. It is opt-in because it
-needs a recent, fully installed ROCm (amdgcn) or CUDA (nvptx) stack with every
-math library present to be certain it passes; each backend's test is skipped when
-its libraries are not found. Override the library directories with
-`HIPFORT_ROCM_LIB_DIR` / `HIPFORT_CUDA_LIB_DIR`.
+* Regenerated all Fortran bindings against the ROCm 10.0 API. This covers the HIP
+  runtime and every math library, and exposes the functions, enumerators, and
+  structures added since ROCm 7.14.0.
+* Added `hipfort_rocrand_types`, a new module holding the rocRAND `uint4` and
+  `rocrand_discrete_distribution_st` derived types.
+* Added the `hipCpuDeviceId` and `hipInvalidDeviceId` device-id constants to
+  `hipfort_enums`.
+* Tutorial pages of complete, runnable Fortran programs for the HIP runtime, hipFFT,
+  hipFFTW, hipSOLVER, rocSOLVER, hipSPARSE and rocSPARSE, a rocTX page with its
+  supported-API table, and documentation of the rocFFT callbacks.
+* Experimental Fortran 2018 assumed-rank array interfaces, enabled with
+  `-DHIPFORT_ASSUMED_RANK=ON`. Each array generic is then backed by a single
+  `dimension(..)` overload accepting an actual of any rank;
+  it is mutually exclusive with the classic per-rank interfaces, and only
+  contiguous arrays may be passed.
 * CMake option `HIPFORT_BUILD_NVPTX` (default `ON`) that controls whether the CUDA
-(nvptx) backend archive is built. Build with `-DHIPFORT_BUILD_NVPTX=OFF` to skip
-`libhipfort-nvptx` on ROCm-only systems, which halves the build time and avoids
-installing an archive that will never be linked.
+  (nvptx) backend archive is built. `-DHIPFORT_BUILD_NVPTX=OFF` skips
+  `libhipfort-nvptx` on ROCm-only systems, halving the build time.
 
 ### Changed
 
-* The per-backend static archives are now cleaned to contain only the symbols
-their backend can resolve. `libhipfort-amdgcn.a` no longer includes
-`hipfort_cuda_errors` (the CUDA `cudaError_t` enum, referenced only under
-`USE_CUDA_NAMES`), and `libhipfort-nvptx.a` no longer includes the AMD-only
-rocBLAS / rocSOLVER / rocSPARSE / rocFFT / rocRAND API modules (whose `roc*`
-symbols have no CUDA equivalent). Each archive can therefore be turned into a
-shared library against its own backend's libraries alone, with no dangling
-symbols.
+* hipfort no longer enables the C++ language. It is pure Fortran (C is enabled only
+  because `hip-config.cmake` pulls in `FindThreads`), so a C++ compiler is no longer
+  required to build it, and the bundled toolchain files no longer set
+  `CMAKE_CXX_COMPILER`.
+* Each per-backend archive now contains only the symbols its backend can resolve:
+  `libhipfort-amdgcn.a` drops `hipfort_cuda_errors` and `libhipfort-nvptx.a`
+  drops the AMD-only `roc*` API modules.
 
 ### Fixed
 
-* `find_package(hipfort)` now works from the install prefix (e.g.
-  `-DCMAKE_PREFIX_PATH=/opt/rocm`) with the multitoolchain layout. That layout
-  installs the package files under `lib/fortran/<compiler>/cmake/hipfort`, which
-  is not on CMake's default search path, so `find_package(hipfort)` could not find
-  them. A compiler-agnostic shim is now also installed at the standard
-  `lib/cmake/hipfort`; at configure time it forwards to the subdirectory matching
-  the consuming project's Fortran compiler (or errors listing the available
-  toolchains).
-* Test executables no longer fail to link with compilers whose driver defaults to
-  `--as-needed`, such as `gfortran` on Ubuntu. `libhipfort-amdgcn.a` is shared by
-  every `hipfort::` component, so CMake placed it after the ROCm shared libraries
-  and the linker discarded them before the archive referenced their symbols. They
-  are now build-interface dependencies of the archive, which puts the archive first.
+* Fixed several HIP derived types that had been emitted as opaque byte blobs
+  now expose their named scalar fields (`resType`, `size`, `flags`, ...)
+  alongside a correctly sized filler for the embedded C unions, so the
+  layout stays exact.
 
 ## hipfort 0.8.0 for ROCm 7.14.0
 
