@@ -31,7 +31,7 @@ if(DEFINED HIPFORT_INSTALL_DIR)
 endif()
 
 # hipfort itself is pure Fortran. C is enabled because hip-config.cmake pulls in FindThreads.
-PROJECT(hipfort VERSION 0.8.0 LANGUAGES Fortran C)
+PROJECT(hipfort VERSION 0.9.0 LANGUAGES Fortran C)
 
 # get compiler name
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
