@@ -21,12 +21,16 @@ subtrees:
         title: Examples
       - file: tutorials/hip-examples.rst
         title: HIP runtime examples
+      - file: tutorials/rocblas-examples.rst
+        title: rocBLAS examples
       - file: tutorials/rocfft-examples.rst
         title: rocFFT examples
       - file: tutorials/rocsolver-examples.rst
         title: rocSOLVER examples
       - file: tutorials/rocsparse-examples.rst
         title: rocSPARSE examples
+      - file: tutorials/hipblas-examples.rst
+        title: hipBLAS examples
       - file: tutorials/hipfft-examples.rst
         title: hipFFT examples
       - file: tutorials/hipfftw-examples.rst

@@ -64,6 +64,7 @@ Complete, runnable programs are available for the HIP runtime and the ROCm math
 libraries:
 
 * :doc:`HIP runtime examples <./hip-examples>`
+* :doc:`rocBLAS examples <./rocblas-examples>`
 * :doc:`rocFFT examples <./rocfft-examples>`
 * :doc:`rocSOLVER examples <./rocsolver-examples>`
 * :doc:`rocSPARSE examples <./rocsparse-examples>`
@@ -71,6 +72,7 @@ libraries:
 The ``hip*`` libraries offer the same functionality through APIs that follow
 their NVIDIA counterparts:
 
+* :doc:`hipBLAS examples <./hipblas-examples>`
 * :doc:`hipFFT examples <./hipfft-examples>`
 * :doc:`hipSOLVER examples <./hipsolver-examples>`
 * :doc:`hipSPARSE examples <./hipsparse-examples>`
