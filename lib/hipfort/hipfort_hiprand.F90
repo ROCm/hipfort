@@ -946,6 +946,18 @@ module hipfort_hiprand
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_
       integer(c_int) :: version
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hiprandGetVersion_dptr(version) bind(c, name="curandGetVersion")
+#else
+    function hiprandGetVersion_dptr(version) bind(c, name="hiprandGetVersion")
+#endif
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_dptr
+      type(c_ptr),value :: version
+    end function
   end interface
 
   !>  \brief Construct the histogram for a Poisson distribution.
