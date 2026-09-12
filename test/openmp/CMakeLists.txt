@@ -144,6 +144,25 @@ find_package(rocsolver REQUIRED)
 set(rocsolverlib ${ROCSOLVER_LIBRARIES})
 message(STATUS "rocSOLVER found: ${rocsolverlib}")
 
+# Find rocRAND
+find_package(rocrand REQUIRED)
+message(STATUS "rocRAND found")
+
+# Find rocSPARSE
+find_package(rocsparse REQUIRED)
+message(STATUS "rocSPARSE found")
+
+# Find hipBLAS
+find_package(hipblas REQUIRED)
+message(STATUS "hipBLAS found")
+
+# The HIP runtime and the hip* libraries used by the host-buffer tests
+find_package(hip REQUIRED)
+find_package(hipfft REQUIRED)
+find_package(hiprand REQUIRED)
+find_package(hipsolver REQUIRED)
+find_package(hipsparse REQUIRED)
+
 message(STATUS "ROCM include directory: ${ROCFFT_INCLUDE_DIRS}")
 file(READ ${ROCFFT_INCLUDE_DIRS}/rocm-core/rocm_version.h FILE_CONTENT)
 
@@ -197,17 +216,80 @@ file(GLOB_RECURSE hipfort_src
     "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.F90"
     "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.f90")
 
+# flang_rt.hostdevice was renamed flang_rt.runtime; pick whichever the toolchain has
+include(CheckFortranSourceCompiles)
+set(FLANG_RT "flang_rt.hostdevice")
+find_library(FLANG_RT_HOSTDEVICE NAMES flang_rt.hostdevice
+             HINTS ${ROCM_PATH}/lib/llvm/lib PATH_SUFFIXES clang/*/lib/x86_64-unknown-linux-gnu)
+if(NOT FLANG_RT_HOSTDEVICE)
+    set(FLANG_RT "flang_rt.runtime")
+endif()
+
 ##### Programs ############
 
+add_executable(test_rocblas_dgemv_host ${CMAKE_SOURCE_DIR}/rocblas/test_rocblas_dgemv_host.f90 ${hipfort_src})
+target_link_libraries(test_rocblas_dgemv_host PUBLIC roc::rocblas ${FLANG_RT})
+set_property(TARGET test_rocblas_dgemv_host PROPERTY LINKER_LANGUAGE Fortran)
+
 add_executable(test_rocsolver_zhegvdx ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolver_zhegvdx.f90 ${hipfort_src})
-target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES} flang_rt.hostdevice)
+add_executable(test_rocsolver_zhegvdx_host ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolver_zhegvdx_host.f90 ${hipfort_src})
+target_link_libraries(test_rocsolver_zhegvdx_host PUBLIC roc::rocsolver ${BLAS_LIBRARIES} ${FLANG_RT})
+set_property(TARGET test_rocsolver_zhegvdx_host PROPERTY LINKER_LANGUAGE Fortran)
+target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES} ${FLANG_RT})
 set_property(TARGET test_rocsolver_zhegvdx PROPERTY LINKER_LANGUAGE Fortran)
 
 #### Test ####
 enable_testing()
 add_test(NAME test_rocsolver_zhegvdx COMMAND test_rocsolver_zhegvdx)
+add_test(NAME test_rocsolver_zhegvdx_host COMMAND test_rocsolver_zhegvdx_host)
+add_test(NAME test_rocblas_dgemv_host COMMAND test_rocblas_dgemv_host)
 
 
 
 
 
+
+add_executable(test_rocfft_c2c_1d_z_host ${CMAKE_SOURCE_DIR}/rocfft/test_rocfft_c2c_1d_z_host.f90 ${hipfort_src})
+target_link_libraries(test_rocfft_c2c_1d_z_host PUBLIC roc::rocfft hip::host ${FLANG_RT})
+set_property(TARGET test_rocfft_c2c_1d_z_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_rocfft_c2c_1d_z_host COMMAND test_rocfft_c2c_1d_z_host)
+
+add_executable(test_rocrand_philox_uniform_host ${CMAKE_SOURCE_DIR}/rocrand/test_rocrand_philox_uniform_host.f90 ${hipfort_src})
+target_link_libraries(test_rocrand_philox_uniform_host PUBLIC roc::rocrand ${FLANG_RT})
+set_property(TARGET test_rocrand_philox_uniform_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_rocrand_philox_uniform_host COMMAND test_rocrand_philox_uniform_host)
+
+add_executable(test_hiprand_philox_uniform_host ${CMAKE_SOURCE_DIR}/hiprand/test_hiprand_philox_uniform_host.f90 ${hipfort_src})
+target_link_libraries(test_hiprand_philox_uniform_host PUBLIC hip::hiprand hip::host ${FLANG_RT})
+set_property(TARGET test_hiprand_philox_uniform_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hiprand_philox_uniform_host COMMAND test_hiprand_philox_uniform_host)
+
+add_executable(test_hipblas_dgemv_host ${CMAKE_SOURCE_DIR}/hipblas/test_hipblas_dgemv_host.f90 ${hipfort_src})
+target_link_libraries(test_hipblas_dgemv_host PUBLIC roc::hipblas hip::host ${FLANG_RT})
+set_property(TARGET test_hipblas_dgemv_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hipblas_dgemv_host COMMAND test_hipblas_dgemv_host)
+
+add_executable(test_rocsparse_dcsrmv_host ${CMAKE_SOURCE_DIR}/rocsparse/test_rocsparse_dcsrmv_host.f90 ${hipfort_src})
+target_link_libraries(test_rocsparse_dcsrmv_host PUBLIC roc::rocsparse hip::host ${FLANG_RT})
+set_property(TARGET test_rocsparse_dcsrmv_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_rocsparse_dcsrmv_host COMMAND test_rocsparse_dcsrmv_host)
+
+add_executable(test_hipfft_c2c_1d_z_host ${CMAKE_SOURCE_DIR}/hipfft/test_hipfft_c2c_1d_z_host.f90 ${hipfort_src})
+target_link_libraries(test_hipfft_c2c_1d_z_host PUBLIC hip::hipfft hip::host ${FLANG_RT})
+set_property(TARGET test_hipfft_c2c_1d_z_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hipfft_c2c_1d_z_host COMMAND test_hipfft_c2c_1d_z_host)
+
+add_executable(test_hipsolver_dsyevd_host ${CMAKE_SOURCE_DIR}/hipsolver/test_hipsolver_dsyevd_host.f90 ${hipfort_src})
+target_link_libraries(test_hipsolver_dsyevd_host PUBLIC roc::hipsolver hip::host ${FLANG_RT})
+set_property(TARGET test_hipsolver_dsyevd_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hipsolver_dsyevd_host COMMAND test_hipsolver_dsyevd_host)
+
+add_executable(test_hipsparse_dcsrmv_host ${CMAKE_SOURCE_DIR}/hipsparse/test_hipsparse_dcsrmv_host.f90 ${hipfort_src})
+target_link_libraries(test_hipsparse_dcsrmv_host PUBLIC roc::hipsparse hip::host ${FLANG_RT})
+set_property(TARGET test_hipsparse_dcsrmv_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hipsparse_dcsrmv_host COMMAND test_hipsparse_dcsrmv_host)
+
+add_executable(test_hip_memcpy_host ${CMAKE_SOURCE_DIR}/hip/test_hip_memcpy_host.f90 ${hipfort_src})
+target_link_libraries(test_hip_memcpy_host PUBLIC hip::host ${FLANG_RT})
+set_property(TARGET test_hip_memcpy_host PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hip_memcpy_host COMMAND test_hip_memcpy_host)
