@@ -55,6 +55,7 @@ program test_rocrand
     if (never) v2 = rocrand_set_ordering_(v0, v9)
     if (never) v2 = rocrand_set_quasi_random_generator_dimensions_(v0, v10)
     if (never) v2 = rocrand_get_version_(v10)
+    if (never) v2 = rocrand_get_version_dptr(v0)
     if (never) v2 = rocrand_create_poisson_distribution_(v5, v0)
     if (never) v2 = rocrand_create_discrete_distribution_(v0, v10, v10, v0)
     if (never) v2 = rocrand_destroy_discrete_distribution_(v0)

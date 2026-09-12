@@ -485,6 +485,16 @@ module hipfort_rocfft
       type(c_ptr),value :: plan
       integer(c_size_t) :: size_in_bytes
     end function
+
+    function rocfft_plan_get_work_buffer_size_dptr(plan,size_in_bytes) &
+        bind(c, name="rocfft_plan_get_work_buffer_size")
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_dptr
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: size_in_bytes
+    end function
   end interface
 
   !>  @brief Print all plan information

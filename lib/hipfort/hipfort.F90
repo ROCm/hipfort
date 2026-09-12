@@ -55,15 +55,9 @@ module hipfort
     end function
   end interface
 
-  !>   @defgroup API HIP API
+  !> @ingroup Driver
   !>
   !>
-  !>   Defines the HIP API.  See the individual sections for more information.
-  !>
-  !>
-  !>   @defgroup Driver Initialization and Version
-  !>
-  !>   This section describes the initializtion and version functions of HIP runtime API.
   !>
   !>
   !>
@@ -120,6 +114,18 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDriverGetVersion_
       integer(c_int) :: driverVersion
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipDriverGetVersion_dptr(driverVersion) bind(c, name="cudaDriverGetVersion")
+#else
+    function hipDriverGetVersion_dptr(driverVersion) bind(c, name="hipDriverGetVersion")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDriverGetVersion_dptr
+      type(c_ptr),value :: driverVersion
+    end function
   end interface
 
   !>  @brief Returns the approximate HIP Runtime version.
@@ -146,6 +152,18 @@ module hipfort
       integer(kind(hipSuccess)) :: hipRuntimeGetVersion_
       integer(c_int) :: runtimeVersion
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipRuntimeGetVersion_dptr(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
+#else
+    function hipRuntimeGetVersion_dptr(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipRuntimeGetVersion_dptr
+      type(c_ptr),value :: runtimeVersion
+    end function
   end interface
 
   !>  @brief Returns a handle to a compute device
@@ -161,6 +179,15 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGet_
       integer(c_int) :: device
+      integer(c_int),value :: ordinal
+    end function
+
+    function hipDeviceGet_dptr(device,ordinal) bind(c, name="hipDeviceGet")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGet_dptr
+      type(c_ptr),value :: device
       integer(c_int),value :: ordinal
     end function
   end interface
@@ -182,6 +209,17 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceComputeCapability_
       integer(c_int) :: major
       integer(c_int) :: minor
+      integer(c_int),value :: device
+    end function
+
+    function hipDeviceComputeCapability_dptr(major,minor,device) &
+        bind(c, name="hipDeviceComputeCapability")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceComputeCapability_dptr
+      type(c_ptr),value :: major
+      type(c_ptr),value :: minor
       integer(c_int),value :: device
     end function
   end interface
@@ -299,6 +337,19 @@ module hipfort
       integer(c_int) :: device
       type(c_ptr),value :: pciBusId
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetByPCIBusId_dptr(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
+#else
+    function hipDeviceGetByPCIBusId_dptr(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_dptr
+      type(c_ptr),value :: device
+      type(c_ptr),value :: pciBusId
+    end function
   end interface
 
   !>  @brief Returns the total amount of memory on the device.
@@ -316,12 +367,22 @@ module hipfort
       integer(c_size_t) :: bytes
       integer(c_int),value :: device
     end function
+
+    function hipDeviceTotalMem_dptr(bytes,device) bind(c, name="hipDeviceTotalMem")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceTotalMem_dptr
+      type(c_ptr),value :: bytes
+      integer(c_int),value :: device
+    end function
   end interface
 #endif
 
-  !>   @defgroup Device Device Management
+  !> @ingroup Device
   !>
-  !>   This section describes the device management functions of HIP runtime API.
+  !>
+  !>
   !>
   !>
   !>  @brief Waits on all active streams on current device
@@ -463,6 +524,18 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetDevice_
       integer(c_int) :: deviceId
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipGetDevice_dptr(deviceId) bind(c, name="cudaGetDevice")
+#else
+    function hipGetDevice_dptr(deviceId) bind(c, name="hipGetDevice")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDevice_dptr
+      type(c_ptr),value :: deviceId
+    end function
   end interface
 
   !>  @brief Return number of compute-capable devices.
@@ -487,6 +560,18 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetDeviceCount_
       integer(c_int) :: count
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipGetDeviceCount_dptr(count) bind(c, name="cudaGetDeviceCount")
+#else
+    function hipGetDeviceCount_dptr(count) bind(c, name="hipGetDeviceCount")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDeviceCount_dptr
+      type(c_ptr),value :: count
+    end function
   end interface
 
   !>  @brief Query for a specific device attribute.
@@ -507,6 +592,20 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetAttribute_
       integer(c_int) :: pi
+      integer(kind(hipDeviceAttributeCudaCompatibleBegin)),value :: attr
+      integer(c_int),value :: deviceId
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetAttribute_dptr(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
+#else
+    function hipDeviceGetAttribute_dptr(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetAttribute_dptr
+      type(c_ptr),value :: pi
       integer(kind(hipDeviceAttributeCudaCompatibleBegin)),value :: attr
       integer(c_int),value :: deviceId
     end function
@@ -707,6 +806,19 @@ module hipfort
       integer(c_size_t) :: pValue
       integer(kind(hipLimitStackSize)),value :: limit
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetLimit_dptr(pValue,limit) bind(c, name="cudaDeviceGetLimit")
+#else
+    function hipDeviceGetLimit_dptr(pValue,limit) bind(c, name="hipDeviceGetLimit")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetLimit_dptr
+      type(c_ptr),value :: pValue
+      integer(kind(hipLimitStackSize)),value :: limit
+    end function
   end interface
 
   !>  @brief Sets resource limits of current device.
@@ -780,6 +892,18 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGetDeviceFlags_
       integer(c_int) :: flags
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipGetDeviceFlags_dptr(flags) bind(c, name="cudaGetDeviceFlags")
+#else
+    function hipGetDeviceFlags_dptr(flags) bind(c, name="hipGetDeviceFlags")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDeviceFlags_dptr
+      type(c_ptr),value :: flags
     end function
   end interface
 
@@ -893,6 +1017,18 @@ module hipfort
       integer(c_int),value :: device2
       integer(c_int32_t) :: linktype
       integer(c_int32_t) :: hopcount
+    end function
+
+    function hipExtGetLinkTypeAndHopCount_dptr(device1,device2,linktype,hopcount) &
+        bind(c, name="hipExtGetLinkTypeAndHopCount")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_dptr
+      integer(c_int),value :: device1
+      integer(c_int),value :: device2
+      type(c_ptr),value :: linktype
+      type(c_ptr),value :: hopcount
     end function
   end interface
 #endif
@@ -1074,9 +1210,10 @@ module hipfort
     end function
   end interface
 
-  !>   @defgroup Execution Execution Control
+  !> @ingroup Execution
   !>
-  !>   This section describes the execution control functions of HIP runtime API.
+  !>
+  !>
   !>
   !>
   !>
@@ -1200,13 +1337,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Error
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Error Error Handling
-  !>
-  !>   This section describes the error handling functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Return last error returned by any HIP runtime API call and resets the stored error code
   !>  to
   !>  `hipSuccess`
@@ -1485,6 +1623,21 @@ module hipfort
       integer(c_int) :: leastPriority
       integer(c_int) :: greatestPriority
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetStreamPriorityRange_dptr(leastPriority,greatestPriority) &
+        bind(c, name="cudaDeviceGetStreamPriorityRange")
+#else
+    function hipDeviceGetStreamPriorityRange_dptr(leastPriority,greatestPriority) &
+        bind(c, name="hipDeviceGetStreamPriorityRange")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_dptr
+      type(c_ptr),value :: leastPriority
+      type(c_ptr),value :: greatestPriority
+    end function
   end interface
 
   !>  @brief Destroys the specified stream.
@@ -1644,6 +1797,19 @@ module hipfort
       type(c_ptr),value :: stream
       integer(c_int) :: flags
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipStreamGetFlags_dptr(stream,flags) bind(c, name="cudaStreamGetFlags")
+#else
+    function hipStreamGetFlags_dptr(stream,flags) bind(c, name="hipStreamGetFlags")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetFlags_dptr
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: flags
+    end function
   end interface
 
   !>  @brief Queries the Id of a stream.
@@ -1691,6 +1857,19 @@ module hipfort
       type(c_ptr),value :: stream
       integer(c_int) :: priority
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipStreamGetPriority_dptr(stream,priority) bind(c, name="cudaStreamGetPriority")
+#else
+    function hipStreamGetPriority_dptr(stream,priority) bind(c, name="hipStreamGetPriority")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetPriority_dptr
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: priority
+    end function
   end interface
 
   !>  @brief Gets the device associated with the stream.
@@ -1714,6 +1893,19 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamGetDevice_
       type(c_ptr),value :: stream
       integer(c_int) :: device
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipStreamGetDevice_dptr(stream,device) bind(c, name="cudaStreamGetDevice")
+#else
+    function hipStreamGetDevice_dptr(stream,device) bind(c, name="hipStreamGetDevice")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetDevice_dptr
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: device
     end function
   end interface
 
@@ -2217,13 +2409,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Event
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Event Event Management
-  !>
-  !>   This section describes the event management functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Create an event with the specified flags
   !>
   !>  @param[out] event - Returns the newly created event.
@@ -2456,6 +2649,20 @@ module hipfort
       type(c_ptr),value :: start
       type(c_ptr),value :: myStop
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipEventElapsedTime_dptr(ms,start,myStop) bind(c, name="cudaEventElapsedTime")
+#else
+    function hipEventElapsedTime_dptr(ms,start,myStop) bind(c, name="hipEventElapsedTime")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipEventElapsedTime_dptr
+      type(c_ptr),value :: ms
+      type(c_ptr),value :: start
+      type(c_ptr),value :: myStop
+    end function
   end interface
 
   !>  @brief Query event status
@@ -2601,16 +2808,11 @@ module hipfort
   end interface
 #endif
 
+  !> @ingroup External
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup External External Resource Interoperability
-  !>
-  !>   @ingroup API
-  !>
-  !>   This section describes the external resource interoperability functions of HIP runtime API.
-  !>
-  !>
-  !>
   !>   @brief Imports an external semaphore.
   !>
   !>   @param[out] extSem_out - External semaphores to be waited on
@@ -4050,6 +4252,21 @@ module hipfort
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipMallocPitch_dptr(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
+#else
+    function hipMallocPitch_dptr(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMallocPitch_dptr
+      type(c_ptr) :: ptr
+      type(c_ptr),value :: pitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
   end interface
 
   !>   Allocates at least width (in bytes) * height bytes of linear memory
@@ -4082,6 +4299,19 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemAllocPitch_
       type(c_ptr) :: dptr
       integer(c_size_t) :: pitch
+      integer(c_size_t),value :: widthInBytes
+      integer(c_size_t),value :: height
+      integer(c_int),value :: elementSizeBytes
+    end function
+
+    function hipMemAllocPitch_dptr(dptr,pitch,widthInBytes,height,elementSizeBytes) &
+        bind(c, name="hipMemAllocPitch")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemAllocPitch_dptr
+      type(c_ptr) :: dptr
+      type(c_ptr),value :: pitch
       integer(c_size_t),value :: widthInBytes
       integer(c_size_t),value :: height
       integer(c_int),value :: elementSizeBytes
@@ -4537,6 +4767,17 @@ module hipfort
       type(c_ptr),value :: hmod
       type(c_ptr),value :: name
     end function
+
+    function hipModuleGetGlobal_dptr(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetGlobal_dptr
+      type(c_ptr) :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr),value :: hmod
+      type(c_ptr),value :: name
+    end function
   end interface
 #endif
 
@@ -4578,6 +4819,19 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGetSymbolSize_
       integer(c_size_t) :: mySize
+      type(c_ptr),value :: symbol
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipGetSymbolSize_dptr(mySize,symbol) bind(c, name="cudaGetSymbolSize")
+#else
+    function hipGetSymbolSize_dptr(mySize,symbol) bind(c, name="hipGetSymbolSize")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetSymbolSize_dptr
+      type(c_ptr),value :: mySize
       type(c_ptr),value :: symbol
     end function
   end interface
@@ -5275,6 +5529,19 @@ module hipfort
       integer(c_size_t) :: free
       integer(c_size_t) :: total
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipMemGetInfo_dptr(free,total) bind(c, name="cudaMemGetInfo")
+#else
+    function hipMemGetInfo_dptr(free,total) bind(c, name="hipMemGetInfo")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetInfo_dptr
+      type(c_ptr),value :: free
+      type(c_ptr),value :: total
+    end function
   end interface
 
   !>  @brief Get allocated memory size via memory pointer.
@@ -5294,6 +5561,15 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemPtrGetInfo_
       type(c_ptr),value :: ptr
       integer(c_size_t) :: mySize
+    end function
+
+    function hipMemPtrGetInfo_dptr(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPtrGetInfo_dptr
+      type(c_ptr),value :: ptr
+      type(c_ptr),value :: mySize
     end function
   end interface
 #endif
@@ -6035,6 +6311,16 @@ module hipfort
       integer(c_size_t) :: psize
       type(c_ptr),value :: dptr
     end function
+
+    function hipMemGetAddressRange_dptr(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAddressRange_dptr
+      type(c_ptr) :: pbase
+      type(c_ptr),value :: psize
+      type(c_ptr),value :: dptr
+    end function
   end interface
 #endif
 
@@ -6179,14 +6465,14 @@ module hipfort
   end interface
 #endif
 
+  !> @ingroup PeerToPeer
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup PeerToPeer PeerToPeer Device Memory Access
-  !>
-  !>   @ingroup API
-  !>   This section describes the PeerToPeer device memory access functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Determines if a device can access a peer device's memory.
   !>
   !>  @param [out] canAccessPeer - Returns the peer access capability (0 or 1)
@@ -6221,6 +6507,22 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_
       integer(c_int) :: canAccessPeer
+      integer(c_int),value :: deviceId
+      integer(c_int),value :: peerDeviceId
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipDeviceCanAccessPeer_dptr(canAccessPeer,deviceId,peerDeviceId) &
+        bind(c, name="cudaDeviceCanAccessPeer")
+#else
+    function hipDeviceCanAccessPeer_dptr(canAccessPeer,deviceId,peerDeviceId) &
+        bind(c, name="hipDeviceCanAccessPeer")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_dptr
+      type(c_ptr),value :: canAccessPeer
       integer(c_int),value :: deviceId
       integer(c_int),value :: peerDeviceId
     end function
@@ -6337,13 +6639,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup ExecutionContext
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup ExecutionContext Execution Context Management
-  !>
-  !>   This section describes execution context management functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Gets device resource of a given type for a device.
   !>
   !>  @param [out] resource - Output device resource pointer
@@ -6850,6 +7153,14 @@ module hipfort
       integer(kind(hipSuccess)) :: hipCtxGetDevice_
       integer(c_int) :: device
     end function
+
+    function hipCtxGetDevice_dptr(device) bind(c, name="hipCtxGetDevice")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetDevice_dptr
+      type(c_ptr),value :: device
+    end function
   end interface
 #endif
 
@@ -6881,6 +7192,15 @@ module hipfort
       integer(kind(hipSuccess)) :: hipCtxGetApiVersion_
       type(c_ptr),value :: ctx
       integer(c_int) :: apiVersion
+    end function
+
+    function hipCtxGetApiVersion_dptr(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetApiVersion_dptr
+      type(c_ptr),value :: ctx
+      type(c_ptr),value :: apiVersion
     end function
   end interface
 #endif
@@ -7039,6 +7359,14 @@ module hipfort
       integer(kind(hipSuccess)) :: hipCtxGetFlags_
       integer(c_int) :: flags
     end function
+
+    function hipCtxGetFlags_dptr(flags) bind(c, name="hipCtxGetFlags")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetFlags_dptr
+      type(c_ptr),value :: flags
+    end function
   end interface
 #endif
 
@@ -7133,6 +7461,17 @@ module hipfort
       integer(c_int),value :: dev
       integer(c_int) :: flags
       integer(c_int) :: active
+    end function
+
+    function hipDevicePrimaryCtxGetState_dptr(dev,flags,active) &
+        bind(c, name="hipDevicePrimaryCtxGetState")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_dptr
+      integer(c_int),value :: dev
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: active
     end function
   end interface
 #endif
@@ -7235,15 +7574,14 @@ module hipfort
   end interface
 #endif
 
+  !> @ingroup Module
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>
-  !>   @defgroup Module Module Management
-  !>
-  !>   @ingroup API
-  !>   This section describes the module management functions of HIP runtime API.
-  !>
-  !>
   !>
   !>  @brief Loads fatbin object
   !>
@@ -7354,6 +7692,19 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_
       integer(c_int) :: count
+      type(c_ptr),value :: mod
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipModuleGetFunctionCount_dptr(count,mod) bind(c, name="cuModuleGetFunctionCount")
+#else
+    function hipModuleGetFunctionCount_dptr(count,mod) bind(c, name="hipModuleGetFunctionCount")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_dptr
+      type(c_ptr),value :: count
       type(c_ptr),value :: mod
     end function
   end interface
@@ -7540,6 +7891,19 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_
       integer(c_int) :: count
+      type(c_ptr),value :: library
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipLibraryGetKernelCount_dptr(count,library) bind(c, name="cudaLibraryGetKernelCount")
+#else
+    function hipLibraryGetKernelCount_dptr(count,library) bind(c, name="hipLibraryGetKernelCount")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_dptr
+      type(c_ptr),value :: count
       type(c_ptr),value :: library
     end function
   end interface
@@ -8329,14 +8693,11 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Occupancy
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Occupancy Occupancy
-  !>
-  !>   This section describes the occupancy functions of HIP runtime API.
-  !>
-  !>
-  !>
   !>  @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
   !>
   !>  @param [out] gridSize           minimum grid size for maximum potential occupancy
@@ -8361,6 +8722,20 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_
       integer(c_int) :: gridSize
       integer(c_int) :: blockSize
+      type(c_ptr),value :: f
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: blockSizeLimit
+    end function
+
+    function hipModuleOccupancyMaxPotentialBlockSize_dptr(gridSize,blockSize,f,dynSharedMemPerBlk, &
+        blockSizeLimit) &
+        bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_dptr
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
@@ -8398,6 +8773,21 @@ module hipfort
       integer(c_int),value :: blockSizeLimit
       integer(c_int),value :: flags
     end function
+
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_dptr(gridSize,blockSize,f, &
+        dynSharedMemPerBlk,blockSizeLimit,flags) &
+        bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_dptr
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
+      type(c_ptr),value :: f
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: blockSizeLimit
+      integer(c_int),value :: flags
+    end function
   end interface
 #endif
 
@@ -8418,6 +8808,19 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_
       integer(c_int) :: numBlocks
+      type(c_ptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+    end function
+
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_dptr(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk) &
+        bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_dptr
+      type(c_ptr),value :: numBlocks
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
@@ -8443,6 +8846,20 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
       integer(c_int) :: numBlocks
+      type(c_ptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: flags
+    end function
+
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlag_dptr(numBlocks,f, &
+        blockSize,dynSharedMemPerBlk,flags) &
+        bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlag_dptr
+      type(c_ptr),value :: numBlocks
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
@@ -8657,13 +9074,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Clang
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Clang Launch API to support the triple-chevron syntax
-  !>
-  !>   This section describes the API to support the triple-chevron syntax.
-  !>
-  !>
   !>  @brief Configure a kernel launch.
   !>
   !>  @param [in] gridDim   grid dimension specified as multiple of blockDim.
@@ -9494,6 +9912,19 @@ module hipfort
       type(hipChannelFormatDesc) :: desc
       integer(c_size_t),value :: mySize
     end function
+
+    function hipBindTexture_dptr(offset,tex,devPtr,desc,mySize) bind(c, name="hipBindTexture")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTexture_dptr
+      type(c_ptr),value :: offset
+      type(textureReference) :: tex
+      type(c_ptr),value :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t),value :: mySize
+    end function
   end interface
 #endif
 
@@ -9520,6 +9951,22 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipBindTexture2D_
       integer(c_size_t) :: offset
+      type(textureReference) :: tex
+      type(c_ptr),value :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_size_t),value :: pitch
+    end function
+
+    function hipBindTexture2D_dptr(offset,tex,devPtr,desc,width,height,pitch) &
+        bind(c, name="hipBindTexture2D")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTexture2D_dptr
+      type(c_ptr),value :: offset
       type(textureReference) :: tex
       type(c_ptr),value :: devPtr
       type(hipChannelFormatDesc) :: desc
@@ -9572,6 +10019,17 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_
       integer(c_size_t) :: offset
+      type(textureReference) :: texref
+    end function
+
+    function hipGetTextureAlignmentOffset_dptr(offset,texref) &
+        bind(c, name="hipGetTextureAlignmentOffset")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_dptr
+      type(c_ptr),value :: offset
       type(textureReference) :: texref
     end function
   end interface
@@ -9847,6 +10305,19 @@ module hipfort
       type(c_ptr),value :: dptr
       integer(c_size_t),value :: bytes
     end function
+
+    function hipTexRefSetAddress_dptr(ByteOffset,texRef,dptr,bytes) &
+        bind(c, name="hipTexRefSetAddress")
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetAddress_dptr
+      type(c_ptr),value :: ByteOffset
+      type(textureReference) :: texRef
+      type(c_ptr),value :: dptr
+      integer(c_size_t),value :: bytes
+    end function
   end interface
 #endif
 
@@ -10014,9 +10485,8 @@ module hipfort
   end interface
 #endif
 
-  !>   @defgroup Callback Callback Activity APIs
+  !> @ingroup Callback
   !>
-  !>   This section describes the callback/Activity of HIP runtime API.
   !>
   !>
   !>  @brief Returns HIP API name by ID.
@@ -12337,6 +12807,22 @@ module hipfort
       type(c_ptr),value :: hNode
       integer(c_int) :: isEnabled
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipGraphNodeGetEnabled_dptr(hGraphExec,hNode,isEnabled) &
+        bind(c, name="cudaGraphNodeGetEnabled")
+#else
+    function hipGraphNodeGetEnabled_dptr(hGraphExec,hNode,isEnabled) &
+        bind(c, name="hipGraphNodeGetEnabled")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetEnabled_dptr
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(c_ptr),value :: isEnabled
+    end function
   end interface
 
   !>  @brief Creates a external semaphor wait node and adds it to a graph.
@@ -14030,4 +14516,103 @@ module hipfort
     end function
   end interface
 
+
+#ifdef USE_FPOINTER_INTERFACES
+  contains
+
+#endif
+
+  !>   @defgroup API HIP API
+  !>
+  !>   Defines the HIP API. See the individual sections for more information.
+  !>
+
+  !>   @defgroup Driver Initialization and Version
+  !>
+  !>   This section describes the initialization and version functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Device Device Management
+  !>
+  !>   This section describes the device management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Execution Execution Control
+  !>
+  !>   This section describes the execution control functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Error Error Handling
+  !>
+  !>   This section describes the error handling functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Event Event Management
+  !>
+  !>   This section describes the event management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup External External Resource Interoperability
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the external resource interoperability functions of HIP runtime API.
+  !>
+
+  !>   @defgroup PeerToPeer PeerToPeer Device Memory Access
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the PeerToPeer device memory access functions of HIP runtime API.
+  !>
+
+  !>   @defgroup ExecutionContext Execution Context Management
+  !>
+  !>   This section describes execution context management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Module Module Management
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the module management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Occupancy Occupancy
+  !>
+  !>   This section describes the occupancy functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Clang Launch API to support the triple-chevron syntax
+  !>
+  !>   This section describes the API to support the triple-chevron syntax.
+  !>
+
+  !>   @defgroup Callback Callback Activity APIs
+  !>
+  !>   This section describes the callback/Activity of HIP runtime API.
+  !>
+
+  !>   @defgroup Memory Memory Management
+  !>
+  !>   @ingroup API
+  !>
+  !>   Memory management functions of the HIP runtime API.
+  !>
+
+  !>   @defgroup MemoryD Memory Management [Deprecated]
+  !>
+  !>   @ingroup Memory
+  !>
+  !>   Deprecated memory management functions of the HIP runtime API.
+  !>
+
+  !>   @defgroup MemoryM Managed Memory
+  !>
+  !>   @ingroup Memory
+  !>
+  !>   This section describes the managed memory management functions of HIP runtime API.
+  !>
+  !>   @note  The managed memory management APIs are implemented on Linux, under development on Windows.
+  !>
 end module hipfort

@@ -888,6 +888,14 @@ module hipfort_rocrand
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
       integer(c_int) :: version
     end function
+
+    function rocrand_get_version_dptr(version) bind(c, name="rocrand_get_version")
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_dptr
+      type(c_ptr),value :: version
+    end function
   end interface
 
   !>  \brief Construct the histogram for a Poisson distribution.

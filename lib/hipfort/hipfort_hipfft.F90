@@ -252,6 +252,22 @@ module hipfort_hipfft
       integer(c_int),value :: batch
       integer(c_size_t) :: workSize
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftMakePlan1d_dptr(plan,nx,myType,batch,workSize) bind(c, name="cufftMakePlan1d")
+#else
+    function hipfftMakePlan1d_dptr(plan,nx,myType,batch,workSize) bind(c, name="hipfftMakePlan1d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: nx
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int),value :: batch
+      type(c_ptr),value :: workSize
+    end function
   end interface
 
   !>  @brief Initialize a new two-dimensional FFT plan.
@@ -282,6 +298,22 @@ module hipfort_hipfft
       integer(c_int),value :: ny
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftMakePlan2d_dptr(plan,nx,ny,myType,workSize) bind(c, name="cufftMakePlan2d")
+#else
+    function hipfftMakePlan2d_dptr(plan,nx,ny,myType,workSize) bind(c, name="hipfftMakePlan2d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: nx
+      integer(c_int),value :: ny
+      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -315,6 +347,23 @@ module hipfort_hipfft
       integer(c_int),value :: nz
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftMakePlan3d_dptr(plan,nx,ny,nz,myType,workSize) bind(c, name="cufftMakePlan3d")
+#else
+    function hipfftMakePlan3d_dptr(plan,nx,ny,nz,myType,workSize) bind(c, name="hipfftMakePlan3d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: nx
+      integer(c_int),value :: ny
+      integer(c_int),value :: nz
+      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -382,6 +431,33 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_CUDA_NAMES
+    function hipfftMakePlanMany_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="cufftMakePlanMany")
+#else
+    function hipfftMakePlanMany_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="hipfftMakePlanMany")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int),value :: batch
+      type(c_ptr),value :: workSize
+    end function
+
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
     module procedure hipfftMakePlanMany_assumed_rank
@@ -421,6 +497,33 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_CUDA_NAMES
+    function hipfftMakePlanMany64_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="cufftMakePlanMany64")
+#else
+    function hipfftMakePlanMany64_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="hipfftMakePlanMany64")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: inembed
+      integer(c_int64_t),value :: istride
+      integer(c_int64_t),value :: idist
+      type(c_ptr),value :: onembed
+      integer(c_int64_t),value :: ostride
+      integer(c_int64_t),value :: odist
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int64_t),value :: batch
+      type(c_ptr),value :: workSize
+    end function
+
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
     module procedure hipfftMakePlanMany64_assumed_rank
@@ -453,6 +556,21 @@ module hipfort_hipfft
       integer(c_int),value :: batch
       integer(c_size_t) :: workSize
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftEstimate1d_dptr(nx,myType,batch,workSize) bind(c, name="cufftEstimate1d")
+#else
+    function hipfftEstimate1d_dptr(nx,myType,batch,workSize) bind(c, name="hipfftEstimate1d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate1d_dptr
+      integer(c_int),value :: nx
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int),value :: batch
+      type(c_ptr),value :: workSize
+    end function
   end interface
 
   !>  @brief Return an estimate of the work area size required for a 2D plan.
@@ -475,6 +593,21 @@ module hipfort_hipfft
       integer(c_int),value :: ny
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftEstimate2d_dptr(nx,ny,myType,workSize) bind(c, name="cufftEstimate2d")
+#else
+    function hipfftEstimate2d_dptr(nx,ny,myType,workSize) bind(c, name="hipfftEstimate2d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate2d_dptr
+      integer(c_int),value :: nx
+      integer(c_int),value :: ny
+      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -500,6 +633,22 @@ module hipfort_hipfft
       integer(c_int),value :: nz
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftEstimate3d_dptr(nx,ny,nz,myType,workSize) bind(c, name="cufftEstimate3d")
+#else
+    function hipfftEstimate3d_dptr(nx,ny,nz,myType,workSize) bind(c, name="hipfftEstimate3d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate3d_dptr
+      integer(c_int),value :: nx
+      integer(c_int),value :: ny
+      integer(c_int),value :: nz
+      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -543,6 +692,32 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_CUDA_NAMES
+    function hipfftEstimateMany_dptr(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="cufftEstimateMany")
+#else
+    function hipfftEstimateMany_dptr(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
+        batch,workSize) &
+        bind(c, name="hipfftEstimateMany")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_dptr
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int),value :: batch
+      type(c_ptr),value :: workSize
+    end function
+
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
     module procedure hipfftEstimateMany_assumed_rank
@@ -577,6 +752,22 @@ module hipfort_hipfft
       integer(c_int),value :: batch
       integer(c_size_t) :: workSize
     end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftGetSize1d_dptr(plan,nx,myType,batch,workSize) bind(c, name="cufftGetSize1d")
+#else
+    function hipfftGetSize1d_dptr(plan,nx,myType,batch,workSize) bind(c, name="hipfftGetSize1d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: nx
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int),value :: batch
+      type(c_ptr),value :: workSize
+    end function
   end interface
 
   !>  @brief Return size of the work area size required for a 2D plan.
@@ -601,6 +792,22 @@ module hipfort_hipfft
       integer(c_int),value :: ny
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftGetSize2d_dptr(plan,nx,ny,myType,workSize) bind(c, name="cufftGetSize2d")
+#else
+    function hipfftGetSize2d_dptr(plan,nx,ny,myType,workSize) bind(c, name="hipfftGetSize2d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: nx
+      integer(c_int),value :: ny
+      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -628,6 +835,23 @@ module hipfort_hipfft
       integer(c_int),value :: nz
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftGetSize3d_dptr(plan,nx,ny,nz,myType,workSize) bind(c, name="cufftGetSize3d")
+#else
+    function hipfftGetSize3d_dptr(plan,nx,ny,nz,myType,workSize) bind(c, name="hipfftGetSize3d")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: nx
+      integer(c_int),value :: ny
+      integer(c_int),value :: nz
+      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -673,6 +897,33 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_CUDA_NAMES
+    function hipfftGetSizeMany_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="cufftGetSizeMany")
+#else
+    function hipfftGetSizeMany_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="hipfftGetSizeMany")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int),value :: batch
+      type(c_ptr),value :: workSize
+    end function
+
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
     module procedure hipfftGetSizeMany_assumed_rank
@@ -712,6 +963,33 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_CUDA_NAMES
+    function hipfftGetSizeMany64_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="cufftGetSizeMany64")
+#else
+    function hipfftGetSizeMany64_dptr(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
+        myType,batch,workSize) &
+        bind(c, name="hipfftGetSizeMany64")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_dptr
+      type(c_ptr),value :: plan
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: inembed
+      integer(c_int64_t),value :: istride
+      integer(c_int64_t),value :: idist
+      type(c_ptr),value :: onembed
+      integer(c_int64_t),value :: ostride
+      integer(c_int64_t),value :: odist
+      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int64_t),value :: batch
+      type(c_ptr),value :: workSize
+    end function
+
 #ifdef USE_FPOINTER_INTERFACES
 #ifdef USE_ASSUMED_RANK_INTERFACES
     module procedure hipfftGetSizeMany64_assumed_rank
@@ -739,6 +1017,19 @@ module hipfort_hipfft
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_
       type(c_ptr),value :: plan
       integer(c_size_t) :: workSize
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftGetSize_dptr(plan,workSize) bind(c, name="cufftGetSize")
+#else
+    function hipfftGetSize_dptr(plan,workSize) bind(c, name="hipfftGetSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_dptr
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: workSize
     end function
   end interface
 
@@ -1053,6 +1344,18 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetVersion_
       integer(c_int) :: version
+    end function
+
+#ifdef USE_CUDA_NAMES
+    function hipfftGetVersion_dptr(version) bind(c, name="cufftGetVersion")
+#else
+    function hipfftGetVersion_dptr(version) bind(c, name="hipfftGetVersion")
+#endif
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetVersion_dptr
+      type(c_ptr),value :: version
     end function
   end interface
 

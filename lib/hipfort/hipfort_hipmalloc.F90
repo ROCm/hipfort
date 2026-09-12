@@ -209,19 +209,11 @@ module hipfort_hipmalloc
   end interface hipMalloc
 
   interface hipMallocManaged
+  !> @ingroup MemoryM
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup MemoryM Managed Memory
-  !>
-  !>   @ingroup Memory
-  !>
-  !>   This section describes the managed memory management functions of HIP runtime API.
-  !>
-  !>   @note  The managed memory management APIs are implemented on Linux, under developement
-  !>   on Windows.
-  !>
-  !>
-  !>
   !>  @brief Allocates memory that will be automatically managed by HIP.
   !>
   !>  This API is used for managed memory, allows data be shared and accessible to both CPU and
