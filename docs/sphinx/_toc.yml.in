@@ -25,6 +25,8 @@ subtrees:
         title: rocBLAS examples
       - file: tutorials/rocfft-examples.rst
         title: rocFFT examples
+      - file: tutorials/rocrand-examples.rst
+        title: rocRAND examples
       - file: tutorials/rocsolver-examples.rst
         title: rocSOLVER examples
       - file: tutorials/rocsparse-examples.rst

@@ -66,6 +66,7 @@ libraries:
 * :doc:`HIP runtime examples <./hip-examples>`
 * :doc:`rocBLAS examples <./rocblas-examples>`
 * :doc:`rocFFT examples <./rocfft-examples>`
+* :doc:`rocRAND examples <./rocrand-examples>`
 * :doc:`rocSOLVER examples <./rocsolver-examples>`
 * :doc:`rocSPARSE examples <./rocsparse-examples>`
 
