@@ -19,6 +19,9 @@ and run as part of the hipFORT test suite. The Fortran 2008 sources live in
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/rocrand``.
 
+hipRAND offers the same functionality through an API that follows cuRAND; see
+the :doc:`hipRAND examples <hiprand-examples>`.
+
 The page is organised by generator, because that is the one choice a program
 makes up front. Each section shows one worked example and names the sibling
 programs that pair the same generator with the other distributions.

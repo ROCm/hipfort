@@ -75,6 +75,7 @@ their NVIDIA counterparts:
 
 * :doc:`hipBLAS examples <./hipblas-examples>`
 * :doc:`hipFFT examples <./hipfft-examples>`
+* :doc:`hipRAND examples <./hiprand-examples>`
 * :doc:`hipSOLVER examples <./hipsolver-examples>`
 * :doc:`hipSPARSE examples <./hipsparse-examples>`
 
