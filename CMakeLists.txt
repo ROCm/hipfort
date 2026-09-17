@@ -199,6 +199,10 @@ if(BUILD_TESTING OR HIPFORT_EXTENDED_TESTS)
   enable_testing()
 endif()
 
+# Optional gcov instrumentation plus the `coverage` / `coverage_cleanup` targets.
+# Defines HIPFORT_CODE_COVERAGE and returns immediately when it is OFF.
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/CodeCoverage.cmake)
+
 # Subdirectories and packaging
 # NOTE: rocm-cmake must be included before
 # adding subdirectories.
