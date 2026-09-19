@@ -1296,6 +1296,10 @@ if(BUILD_TESTING)
     endforeach()
   endif()
 
+  # rocTX carries over into this layout as `module roctx`. It had been left out
+  # while the bindings were generated from roctracer/roctx.h, which is not the API
+  # hipfort::roctx links; they are now generated from rocprofiler-sdk-roctx/roctx.h,
+  # so the side is picked and the tests build again.
   if(TARGET hipfort::roctx)
     hipfort_add_symbol_test(roctx)
     include(CheckLanguage)

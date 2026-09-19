@@ -7,7 +7,7 @@
 
 program test_roctx
   use iso_c_binding
-  use hipfort_roctx
+  use roctx
   implicit none
   logical :: never
   type(c_ptr) :: v0

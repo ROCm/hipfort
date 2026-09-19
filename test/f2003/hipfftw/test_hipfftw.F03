@@ -7,9 +7,7 @@
 
 program test_hipfftw
   use iso_c_binding
-  use hipfort_hipfftw
-  use hipfort_hipfftw_enums
-  use hipfort_hipfftw_types
+  use hipfftw
   implicit none
   logical :: never
   integer(c_size_t) :: v0
@@ -23,20 +21,28 @@ program test_hipfftw
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) v1 = fftw_malloc_(v0)
-    if (never) v1 = fftwf_malloc_(v0)
-    if (never) v1 = fftw_alloc_real_(v0)
-    if (never) v1 = fftwf_alloc_real_(v0)
-    if (never) v1 = fftw_alloc_complex_(v0)
-    if (never) v1 = fftwf_alloc_complex_(v0)
-    if (never) call fftw_free_(v1)
-    if (never) call fftwf_free_(v1)
-    if (never) v1 = fftw_plan_dft_1d_(v2, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_dft_1d_(v2, v1, v1, v2, v2)
-    if (never) v1 = fftw_plan_dft_2d_(v2, v2, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_dft_2d_(v2, v2, v1, v1, v2, v2)
-    if (never) v1 = fftw_plan_dft_3d_(v2, v2, v2, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_dft_3d_(v2, v2, v2, v1, v1, v2, v2)
+    if (never) v1 = fftw_malloc(v0)
+    if (never) v1 = fftwf_malloc(v0)
+    if (never) v1 = fftw_alloc_real(v0)
+    if (never) v1 = fftwf_alloc_real(v0)
+    if (never) v1 = fftw_alloc_complex(v0)
+    if (never) v1 = fftwf_alloc_complex(v0)
+    if (never) call fftw_free(v1)
+    if (never) call fftwf_free(v1)
+    if (never) v1 = fftw_plan_dft_1d(v2, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_dft_1d(v2, v1, v1, v2, v2)
+    if (never) v1 = fftw_plan_dft_2d(v2, v2, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_dft_2d(v2, v2, v1, v1, v2, v2)
+    if (never) v1 = fftw_plan_dft_3d(v2, v2, v2, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_dft_3d(v2, v2, v2, v1, v1, v2, v2)
+    if (never) v1 = fftw_plan_guru_dft(v2, v3, v2, v3, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_guru_dft(v2, v1, v2, v1, v1, v1, v2, v2)
+    if (never) v1 = fftw_plan_guru64_dft(v2, v4, v2, v4, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_guru64_dft(v2, v1, v2, v1, v1, v1, v2, v2)
+    if (never) call fftw_set_timelimit(v5)
+    if (never) call fftwf_set_timelimit(v5)
+    if (never) call fftw_cleanup()
+    if (never) call fftwf_cleanup()
     if (never) v1 = fftw_plan_dft_(v2, v1, v1, v1, v2, v2)
     if (never) v1 = fftwf_plan_dft_(v2, v1, v1, v1, v2, v2)
     if (never) v1 = fftw_plan_dft_r2c_1d_(v2, v1, v1, v2)
@@ -61,14 +67,10 @@ program test_hipfftw
     if (never) v1 = fftwf_plan_many_dft_r2c_(v2, v1, v2, v1, v1, v2, v2, v1, v1, v2, v2, v2)
     if (never) v1 = fftw_plan_many_dft_c2r_(v2, v1, v2, v1, v1, v2, v2, v1, v1, v2, v2, v2)
     if (never) v1 = fftwf_plan_many_dft_c2r_(v2, v1, v2, v1, v1, v2, v2, v1, v1, v2, v2, v2)
-    if (never) v1 = fftw_plan_guru_dft_(v2, v3, v2, v3, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_guru_dft_(v2, v1, v2, v1, v1, v1, v2, v2)
     if (never) v1 = fftw_plan_guru_dft_r2c_(v2, v3, v2, v3, v1, v1, v2)
     if (never) v1 = fftwf_plan_guru_dft_r2c_(v2, v1, v2, v1, v1, v1, v2)
     if (never) v1 = fftw_plan_guru_dft_c2r_(v2, v3, v2, v3, v1, v1, v2)
     if (never) v1 = fftwf_plan_guru_dft_c2r_(v2, v1, v2, v1, v1, v1, v2)
-    if (never) v1 = fftw_plan_guru64_dft_(v2, v4, v2, v4, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_guru64_dft_(v2, v1, v2, v1, v1, v1, v2, v2)
     if (never) v1 = fftw_plan_guru64_dft_r2c_(v2, v4, v2, v4, v1, v1, v2)
     if (never) v1 = fftwf_plan_guru64_dft_r2c_(v2, v1, v2, v1, v1, v1, v2)
     if (never) v1 = fftw_plan_guru64_dft_c2r_(v2, v4, v2, v4, v1, v1, v2)
@@ -85,14 +87,10 @@ program test_hipfftw
     if (never) call fftwf_destroy_plan_(v1)
     if (never) call fftw_print_plan_(v1)
     if (never) call fftwf_print_plan_(v1)
-    if (never) call fftw_set_timelimit_(v5)
-    if (never) call fftwf_set_timelimit_(v5)
     if (never) v5 = fftw_cost_(v1)
     if (never) v5 = fftwf_cost_(v1)
     if (never) call fftw_flops_(v1, v1, v1, v1)
     if (never) call fftwf_flops_(v1, v1, v1, v1)
-    if (never) call fftw_cleanup_()
-    if (never) call fftwf_cleanup_()
 
   write(*,"(a)") "-- test_hipfftw (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipfftw

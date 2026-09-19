@@ -1,8 +1,7 @@
 program rocfft_r2c_c2r_1d_s
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

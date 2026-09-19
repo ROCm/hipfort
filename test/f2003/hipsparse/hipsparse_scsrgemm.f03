@@ -14,10 +14,8 @@
 !
 program scsrgemm
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
-  use hipfort_hipsparse_enums
+  use hip
+  use hipsparse
 
   implicit none
   integer :: i

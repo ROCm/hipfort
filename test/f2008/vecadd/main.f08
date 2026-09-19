@@ -1,6 +1,5 @@
 program fortran_hip
-  use hipfort
-  use hipfort_check
+  use hip
   
   implicit none
 
@@ -8,7 +7,7 @@ program fortran_hip
      ! dim3(320), dim3(256), 0, 0
      subroutine launch(grid,block,shmem,stream,out,a,b,N) bind(c)
        use iso_c_binding
-       use hipfort_types
+       use hip
        implicit none
        type(c_ptr),value :: a, b, out
        integer(c_int), value :: N, shmem

@@ -6,12 +6,9 @@
 !
 program dstedc
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
-  use hipfort_rocsolver_enums
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: N = 4, ldc = 4
   real(c_double) :: hD(N)   = (/2.0d0, 2.0d0, 2.0d0, 2.0d0/)   ! diagonal

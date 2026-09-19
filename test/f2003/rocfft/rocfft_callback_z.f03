@@ -4,10 +4,8 @@
 ! null (default) ones, which rocFFT documents as clearing any registration.
 program rocfft_callback_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
-  use hipfort_rocfft_enums
+  use hip
+  use rocfft
 
   implicit none
 

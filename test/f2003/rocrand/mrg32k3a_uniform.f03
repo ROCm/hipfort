@@ -25,10 +25,8 @@
 program rocrand_mrg32k3a_uniform_test
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocrand
-    use hipfort_rocrand_enums
+    use hip
+    use rocrand
 
     implicit none
 

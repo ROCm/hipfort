@@ -1,7 +1,6 @@
 program fortran_hip
   use iso_c_binding
-  use hipfort
-  use hipfort_check
+  use hip
 
   implicit none
 

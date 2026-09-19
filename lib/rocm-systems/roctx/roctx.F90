@@ -24,7 +24,7 @@
 ! THE SOFTWARE.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-module hipfort_roctx
+module roctx
   use, intrinsic :: iso_c_binding
   implicit none
 
@@ -247,4 +247,4 @@ module hipfort_roctx
     end function
   end interface
 
-end module hipfort_roctx
+end module roctx

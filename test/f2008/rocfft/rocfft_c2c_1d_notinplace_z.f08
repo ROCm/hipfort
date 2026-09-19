@@ -2,9 +2,8 @@
 ! clients/samples/rocfft/rocfft_example_complexcomplex.cpp (--outofplace).
 program rocfft_c2c_1d_notinplace_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

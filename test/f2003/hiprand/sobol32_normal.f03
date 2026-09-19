@@ -25,10 +25,8 @@
 program hiprand_sobol32_normal_test
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_hiprand
-    use hipfort_hiprand_enums
+    use hip
+    use hiprand
 
     implicit none
 

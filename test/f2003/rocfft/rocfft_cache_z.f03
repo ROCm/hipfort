@@ -4,9 +4,8 @@
 ! back into another process.
 program rocfft_cache_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

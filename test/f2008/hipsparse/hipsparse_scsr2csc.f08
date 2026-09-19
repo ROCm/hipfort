@@ -9,9 +9,8 @@
 !
 program hipsparse_scsr2csc
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer :: i
   ! 3x3 CSR (0-based): row0:(0,0)=1,(0,2)=2  row1:(1,1)=3  row2:(2,0)=4,(2,2)=5

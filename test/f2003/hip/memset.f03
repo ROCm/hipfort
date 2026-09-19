@@ -8,9 +8,7 @@
 !
 program memset
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
 
   implicit none
 

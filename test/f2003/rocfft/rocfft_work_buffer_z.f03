@@ -3,9 +3,8 @@
 ! memory a plan needs and supply it through an execution info handle.
 program rocfft_work_buffer_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

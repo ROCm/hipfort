@@ -5,10 +5,9 @@
 !
 program sgeqrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results

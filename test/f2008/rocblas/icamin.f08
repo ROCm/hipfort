@@ -24,9 +24,8 @@
 program rocblas_icamin_test
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocblas
+    use hip
+    use rocblas
 
     implicit none
 

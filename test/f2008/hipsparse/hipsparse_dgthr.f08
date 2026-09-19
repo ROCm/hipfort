@@ -8,9 +8,8 @@
 !
 program hipsparse_dgthr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: n = 5, nnz = 3

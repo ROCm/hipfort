@@ -25,10 +25,8 @@
 program rocrand_philox_log_normal_double_test
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocrand
-    use hipfort_rocrand_enums
+    use hip
+    use rocrand
 
     implicit none
 

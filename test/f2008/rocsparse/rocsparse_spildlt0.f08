@@ -15,9 +15,8 @@
 !
 program spildlt0
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer(c_int), parameter :: m = 4, nnz = 7
   ! SPD lower-CSR (from the rocSPARSE example): factorizable without singularity.
