@@ -32,6 +32,7 @@ sphinx-build -b html docs docs/_build/html
 
 Open `docs/_build/html/index.html` in a browser.
 
-`docs/conf.py` preprocesses every `lib/hipfort/*.[fF]90` file with
+`docs/conf.py` preprocesses every `lib/rocm-systems/*/*.F90` and
+`lib/rocm-libraries/*/*.F90` file with
 `gfortran -E -cpp -P -DUSE_FPOINTER_INTERFACES -UUSE_CUDA_NAMES` into
 `docs/doxygen/input/`, then `rocm-docs-core` runs Doxygen and integrates the result.

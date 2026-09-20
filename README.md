@@ -87,7 +87,7 @@ While you could write the following using the `f2003` interfaces:
 
 ```Fortran
 use iso_c_binding
-use hipfort
+use hip
 integer     :: ierr        ! error code
 real,target :: a_h(5,6)    ! host array
 type(c_ptr) :: a_d         ! device array pointer
@@ -101,7 +101,7 @@ ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
 you could express the same with the `f2008` interfaces as follows:
 
 ```Fortran
-use hipfort
+use hip
 integer     :: ierr        ! error code
 real        :: a_h(5,6)    ! host array
 real,pointer :: a_d(:,:)   ! device array pointer
