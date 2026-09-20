@@ -73,7 +73,7 @@ program zungqr
       end if
       if(error .gt. error_max) then
           write(*,*) "FAILED! Q not unitary! Error = ", error, " (", i, ",", j, ")"
-          call exit
+          call exit(1)
       end if
     end do
   end do

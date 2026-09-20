@@ -83,7 +83,7 @@ program rocsparse_ddoti_test
 !   Verification
     if(h_dot /= 27d0) then
         write(*,*) 'FAILED!'
-        call exit
+        call exit(1)
     end if
 
 !   Clear rocSPARSE

@@ -66,7 +66,7 @@ program spotrf
         error = abs(hA(i,j) - hResult(i,j)) / max(abs(hResult(i,j)), 1.0)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hA(", i, ",", j, ") = ", hA(i,j)
-            call exit
+            call exit(1)
         end if
     end do
   end do

@@ -94,7 +94,7 @@ program dspmv
     error = abs(h_y(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0_c_double)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " y(", i, ") = ", h_y(i)
-        call exit
+        call exit(1)
     end if
   end do
 

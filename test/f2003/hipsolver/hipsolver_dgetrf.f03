@@ -68,7 +68,7 @@ program hipsolver_dgetrf
   ! Check info
   if(hInfo /= 0) then
     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
-    call exit
+    call exit(1)
   end if
 
   ! Check factor values
@@ -77,7 +77,7 @@ program hipsolver_dgetrf
         error = abs(hA(i,j) - hResult(i,j)) / max(abs(hResult(i,j)), 1.0_c_double)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hA(", i, ",", j, ") = ", hA(i,j)
-            call exit
+            call exit(1)
         end if
     end do
   end do
@@ -86,7 +86,7 @@ program hipsolver_dgetrf
   do i = 1,3
     if(hIpiv(i) .ne. hIpiv_ref(i)) then
         write(*,*) "FAILED! Pivot mismatch at ", i, " got ", hIpiv(i), " expected ", hIpiv_ref(i)
-        call exit
+        call exit(1)
     end if
   end do
 

@@ -87,7 +87,7 @@ program ssddmm
     error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " at nnz ", i
-        call exit
+        call exit(1)
     end if
   end do
 

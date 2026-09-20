@@ -49,7 +49,12 @@
 * `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
   `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
   this was harmless in practice; it is `integer(c_int64_t)` now.
-
+* Fixed every failing test reporting success. 413 failure branches across 271 test
+  programs ended in a bare `call exit`, which returns a zero exit status under
+  gfortran, so a program could print `FAILED!` and still be recorded as passing by
+  CTest. They now use `call exit(1)`. This uncovered 27 tests that were failing
+  silently, notably `gesvdj` in all four precisions, `gels`, `zgetrf`, `zgeqrf`,
+  `zpotrf`, and the rocSPARSE `sptrsv`/`sptrsm` pair.
 * Fixed `hipfort::hipblas` being silently skipped when ROCm is installed outside
   CMake's default search prefixes. `ROCM_PATH` is now added to `CMAKE_PREFIX_PATH`,
   so the `find_dependency(hipblas-common)` that `hipblas-config.cmake` performs

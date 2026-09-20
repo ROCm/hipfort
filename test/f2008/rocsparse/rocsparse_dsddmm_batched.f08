@@ -112,7 +112,7 @@ program dsddmm_batched
       if(error .gt. error_max) then
           write(*,*) "FAILED! Error bigger than max! Error = ", error, " at batch ", b, " nnz ", i, &
                      " got ", h_csr_val((b-1)*nnz+i), " expected ", h_expected(i,b)
-          call exit
+          call exit(1)
       end if
     end do
   end do

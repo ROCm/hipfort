@@ -77,7 +77,7 @@ program cgels
     error = abs(hB(i,1) - hX(i,1)) / max(abs(hX(i,1)), 1.0_c_float)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " X(", i, ") = ", hB(i,1)
-        call exit
+        call exit(1)
     end if
   end do
 

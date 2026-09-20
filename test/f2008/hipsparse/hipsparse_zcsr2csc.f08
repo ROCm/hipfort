@@ -58,7 +58,7 @@ program zcsr2csc
 
   ! Create handle and convert CSR -> CSC (numeric: also permute values)
   call hipsparseCheck(hipsparseCreate(handle))
-  call hipsparseCheck(hipsparseCcsr2csc(handle, M, N, nnz, &
+  call hipsparseCheck(hipsparseZcsr2csc(handle, M, N, nnz, &
                           c_loc(d_csr_val(1)), c_loc(d_csr_row_ptr(1)), c_loc(d_csr_col_ind(1)), &
                           c_loc(d_csc_val(1)), c_loc(d_csc_row_ind(1)), c_loc(d_csc_col_ptr(1)), &
                           HIPSPARSE_ACTION_NUMERIC, HIPSPARSE_INDEX_BASE_ZERO))
@@ -73,18 +73,18 @@ program zcsr2csc
   do i = 1,N+1
     if(h_csc_col_ptr(i) /= h_exp_col_ptr(i)) then
         write(*,*) "FAILED! csc_col_ptr(", i, ") = ", h_csc_col_ptr(i), " expected ", h_exp_col_ptr(i)
-        call exit
+        call exit(1)
     end if
   end do
   do i = 1,nnz
     if(h_csc_row_ind(i) /= h_exp_row_ind(i)) then
         write(*,*) "FAILED! csc_row_ind(", i, ") = ", h_csc_row_ind(i), " expected ", h_exp_row_ind(i)
-        call exit
+        call exit(1)
     end if
     error = abs(h_csc_val(i) - h_exp_val(i))
     if(error .gt. error_max) then
         write(*,*) "FAILED! csc_val(", i, ") = ", h_csc_val(i), " expected ", h_exp_val(i)
-        call exit
+        call exit(1)
     end if
   end do
 

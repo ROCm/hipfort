@@ -90,7 +90,7 @@ program cgesvdj
       error = abs(recon(i,j) - hA0(i,j))
       if(error .gt. error_max) then
           write(*,*) "FAILED! Error bigger than max! Error = ", error, " (", i, ",", j, ")"
-          call exit
+          call exit(1)
       end if
     end do
   end do

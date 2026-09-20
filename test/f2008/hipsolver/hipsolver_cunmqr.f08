@@ -71,7 +71,7 @@ program cunmqr
   error = abs(norm_out - norm_in) / max(norm_in, 1.0_c_float)
   if(error .gt. error_max) then
       write(*,*) "FAILED! Norm not preserved! ||C|| = ", norm_in, " ||Q*C|| = ", norm_out
-      call exit
+      call exit(1)
   end if
 
   call hipCheck(hipFree(dWork))

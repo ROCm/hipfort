@@ -63,12 +63,12 @@ program zsptrsm
   ! Allocate device memory and copy inputs
   call hipCheck(hipMalloc(d_csr_row_ptr, size_rp * 4))
   call hipCheck(hipMalloc(d_csr_col_ind, size_nz * 4))
-  call hipCheck(hipMalloc(d_csr_val,     size_nz * 8))
+  call hipCheck(hipMalloc(d_csr_val,     size_nz * 16))
   call hipCheck(hipMalloc(d_X,           size_mat * 16))
   call hipCheck(hipMalloc(d_C,           size_mat * 16))
   call hipCheck(hipMemcpy(d_csr_row_ptr, c_loc(h_csr_row_ptr(1)), size_rp * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(d_csr_col_ind, c_loc(h_csr_col_ind(1)), size_nz * 4, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(d_csr_val,     c_loc(h_csr_val(1)),     size_nz * 8, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(d_csr_val,     c_loc(h_csr_val(1)),     size_nz * 16, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(d_X,           c_loc(h_X(1,1)),         size_mat * 16, hipMemcpyHostToDevice))
 
   ! Create handle, CSR descriptor for L (lower / non-unit diag), dense matrices
@@ -106,7 +106,7 @@ program zsptrsm
       error = abs(h_C(i,j) - h_Y(i,j)) / max(abs(h_Y(i,j)), 1.0_c_double)
       if(error .gt. error_max) then
           write(*,*) "FAILED! Error bigger than max! Error = ", error, " C(", i, ",", j, ") = ", h_C(i,j)
-          call exit
+          call exit(1)
       end if
     end do
   end do

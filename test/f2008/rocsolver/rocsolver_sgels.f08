@@ -39,7 +39,7 @@ program sgels
   type(c_ptr) :: handle ! rocblas_handle
 
   real(c_float) :: error
-  real(c_float), parameter :: error_max = 100 * epsilon(error_max)
+  real(c_float), parameter :: error_max = 10000 * epsilon(error_max)   ! kappa_2(A) ~ 4.5e2; QR forward error ~ c*kappa_2*eps
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_sgels' (Fortran 2008 interfaces) - "
 
@@ -65,7 +65,7 @@ program sgels
     error = abs(hB(i,1) - hX(i,1)) / max(abs(hX(i,1)), 1.0_c_float)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " X(", i, ") = ", hB(i,1)
-        call exit
+        call exit(1)
     end if
   end do
 

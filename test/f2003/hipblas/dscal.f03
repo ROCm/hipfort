@@ -54,7 +54,7 @@ program hip_dscal
      error = abs(hx(i) - hx_scaled(i) )
      if( error .gt. error_max ) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " hx(i) = ", hx(i)
-        call exit
+        call exit(1)
      endif
   end do
 

@@ -80,7 +80,7 @@ program dgesvdj
   ! Reconstruct A = U * diag(S) * V**T and compare with the original
   do j = 1,N
     do i = 1,M
-      recon(i,j) = sum(hU(i,:) * hS(:) * hV(j,:))
+      recon(i,j) = sum(hU(i,:) * hS(:) * hV(:,j))
     end do
   end do
 
@@ -89,7 +89,7 @@ program dgesvdj
       error = abs(recon(i,j) - hA0(i,j))
       if(error .gt. error_max) then
           write(*,*) "FAILED! Error bigger than max! Error = ", error, " (", i, ",", j, ")"
-          call exit
+          call exit(1)
       end if
     end do
   end do

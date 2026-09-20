@@ -48,7 +48,7 @@ program csr2coo
   do i = 1,nnz
     if(h_coo_row_ind(i) /= h_expected(i)) then
         write(*,*) "FAILED! coo_row_ind(", i, ") = ", h_coo_row_ind(i), " expected ", h_expected(i)
-        call exit
+        call exit(1)
     end if
   end do
 

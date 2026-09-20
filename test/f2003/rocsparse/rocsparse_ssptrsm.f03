@@ -78,30 +78,30 @@ program ssptrsm
   call rocsparseCheck(rocsparse_create_csr_descr(matL, int(M,c_int64_t), int(M,c_int64_t), int(nnz,c_int64_t), &
                           d_csr_row_ptr, d_csr_col_ind, d_csr_val, &
                           rocsparse_indextype_i32, rocsparse_indextype_i32, &
-                          rocsparse_index_base_zero, rocsparse_datatype_f64_r))
+                          rocsparse_index_base_zero, rocsparse_datatype_f32_r))
   call rocsparseCheck(rocsparse_spmat_set_attribute(matL, rocsparse_spmat_fill_mode, c_loc(fill), int(4,c_size_t)))
   call rocsparseCheck(rocsparse_spmat_set_attribute(matL, rocsparse_spmat_diag_type, c_loc(diag), int(4,c_size_t)))
 
   ! Dense-matrix descriptors: B is the rhs (X), C is the solution
   call rocsparseCheck(rocsparse_create_dnmat_descr(matB, int(M,c_int64_t), int(nrhs,c_int64_t), int(M,c_int64_t), &
-                          d_X, rocsparse_datatype_f64_r, rocsparse_order_column))
+                          d_X, rocsparse_datatype_f32_r, rocsparse_order_column))
   call rocsparseCheck(rocsparse_create_dnmat_descr(matC, int(M,c_int64_t), int(nrhs,c_int64_t), int(M,c_int64_t), &
-                          d_C, rocsparse_datatype_f64_r, rocsparse_order_column))
+                          d_C, rocsparse_datatype_f32_r, rocsparse_order_column))
 
   ! Stage 1: workspace size
   call rocsparseCheck(rocsparse_spsm(handle, rocsparse_operation_none, rocsparse_operation_none, c_loc(alpha), &
-                          matL, matB, matC, rocsparse_datatype_f64_r, rocsparse_spsm_alg_default, &
+                          matL, matB, matC, rocsparse_datatype_f32_r, rocsparse_spsm_alg_default, &
                           rocsparse_spsm_stage_buffer_size, buffer_size, c_null_ptr))
   call hipCheck(hipMalloc(d_buffer, max(buffer_size, 1_c_size_t)))
 
   ! Stage 2: preprocess (analysis)
   call rocsparseCheck(rocsparse_spsm(handle, rocsparse_operation_none, rocsparse_operation_none, c_loc(alpha), &
-                          matL, matB, matC, rocsparse_datatype_f64_r, rocsparse_spsm_alg_default, &
+                          matL, matB, matC, rocsparse_datatype_f32_r, rocsparse_spsm_alg_default, &
                           rocsparse_spsm_stage_preprocess, buffer_size, d_buffer))
 
   ! Stage 3: solve
   call rocsparseCheck(rocsparse_spsm(handle, rocsparse_operation_none, rocsparse_operation_none, c_loc(alpha), &
-                          matL, matB, matC, rocsparse_datatype_f64_r, rocsparse_spsm_alg_default, &
+                          matL, matB, matC, rocsparse_datatype_f32_r, rocsparse_spsm_alg_default, &
                           rocsparse_spsm_stage_compute, buffer_size, d_buffer))
 
   ! Copy the recovered solution back
@@ -113,7 +113,7 @@ program ssptrsm
         error = abs(h_C(i,j) - h_Y(i,j)) / max(abs(h_Y(i,j)), 1.0)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " at (", i, ",", j, ")"
-            call exit
+            call exit(1)
         end if
     end do
   end do

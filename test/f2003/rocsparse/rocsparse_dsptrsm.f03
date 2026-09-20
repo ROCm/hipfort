@@ -113,7 +113,7 @@ program dsptrsm
         error = abs(h_C(i,j) - h_Y(i,j)) / max(abs(h_Y(i,j)), 1.0_c_double)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " at (", i, ",", j, ")"
-            call exit
+            call exit(1)
         end if
     end do
   end do

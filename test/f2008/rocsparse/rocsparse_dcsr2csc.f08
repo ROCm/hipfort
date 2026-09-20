@@ -79,18 +79,18 @@ program dcsr2csc
   do i = 1,N+1
     if(h_csc_col_ptr(i) /= h_exp_col_ptr(i)) then
         write(*,*) "FAILED! csc_col_ptr(", i, ") = ", h_csc_col_ptr(i), " expected ", h_exp_col_ptr(i)
-        call exit
+        call exit(1)
     end if
   end do
   do i = 1,nnz
     if(h_csc_row_ind(i) /= h_exp_row_ind(i)) then
         write(*,*) "FAILED! csc_row_ind(", i, ") = ", h_csc_row_ind(i), " expected ", h_exp_row_ind(i)
-        call exit
+        call exit(1)
     end if
     error = abs(h_csc_val(i) - h_exp_val(i))
     if(error .gt. error_max) then
         write(*,*) "FAILED! csc_val(", i, ") = ", h_csc_val(i), " expected ", h_exp_val(i)
-        call exit
+        call exit(1)
     end if
   end do
 

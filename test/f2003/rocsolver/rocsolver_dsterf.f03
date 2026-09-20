@@ -57,13 +57,13 @@ program dsterf
   ! Check and output results
   if(hInfo .gt. 0) then
     write(*,*) "FAILED! ", n, " elements of E did not converge to 0."
-    call exit
+    call exit(1)
   else
     do i = 1,n
       error = abs(hD(i) - hResult(i))
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hD(", i, ") = ", hD(i)
-            call exit
+            call exit(1)
         end if
     end do
   end if

@@ -111,7 +111,7 @@ program dsddmm
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " at nnz ", i, &
                    " got ", h_csr_val(i), " expected ", h_expected(i)
-        call exit
+        call exit(1)
     end if
   end do
 
