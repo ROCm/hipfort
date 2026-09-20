@@ -18,9 +18,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
-file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
-set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
+# Split layout: one directory per library, grouped by the upstream repository the
+# bindings will be co-located with (rocm-systems/, rocm-libraries/), instead of a
+# single flat hipfort/ directory.
+file(GLOB HIPFORT_LIB_DIRS LIST_DIRECTORIES true
+     "${CMAKE_CURRENT_SOURCE_DIR}/rocm-systems/*"
+     "${CMAKE_CURRENT_SOURCE_DIR}/rocm-libraries/*")
+
+set(HIPFORT_SRC_HIP "")
+set(HIPFORT_INCLUDE_DIRS "")
+foreach(_dir ${HIPFORT_LIB_DIRS})
+  if(NOT IS_DIRECTORY "${_dir}")
+    continue()
+  endif()
+  file(GLOB _srcs "${_dir}/*.f90" "${_dir}/*.F90")
+  # *_interfaces.f90 and *_wrappers.f90 are INCLUDEd by their module, not
+  # compilation units: compiling them standalone fails (they are bare interface
+  # and contains bodies with no enclosing module).
+  list(FILTER _srcs EXCLUDE REGEX "_(interfaces|wrappers)\\.f90$")
+  list(APPEND HIPFORT_SRC_HIP ${_srcs})
+  # Each module INCLUDEs its own fragments. gfortran resolves an INCLUDE relative
+  # to the including file, but that is not guaranteed, so name the directories.
+  list(APPEND HIPFORT_INCLUDE_DIRS "${_dir}")
+endforeach()
 
 # Partition the sources by backend so each archive only carries what its backend
 # can actually resolve:
@@ -39,11 +59,14 @@ set(HIPFORT_SRC_ROC "")
 # in the nvptx archive cost nothing. The generated module has a CONTAINS block
 # whose _cstr wrappers CALL roctxMarkA/RangePushA/RangeStartA, which do not exist
 # on a CUDA system, and hipfort_shared_link_nvptx fails on exactly those.
+# roctx sits under rocm-systems/ rather than rocm-libraries/, so glob both.
 foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand roctx)
-  file(GLOB _rocfiles "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_${_roclib}.[fF]90")  # API module only, not *_enums
+  file(GLOB _rocfiles  # API module only, not *_enums
+       "${CMAKE_CURRENT_SOURCE_DIR}/rocm-libraries/${_roclib}/hipfort_${_roclib}.[fF]90"
+       "${CMAKE_CURRENT_SOURCE_DIR}/rocm-systems/${_roclib}/hipfort_${_roclib}.[fF]90")
   list(APPEND HIPFORT_SRC_ROC ${_rocfiles})
 endforeach()
-file(GLOB HIPFORT_SRC_CUDA_ERRORS "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_cuda_errors.[fF]90")
+file(GLOB HIPFORT_SRC_CUDA_ERRORS "${CMAKE_CURRENT_SOURCE_DIR}/rocm-systems/hip/hipfort_cuda_errors.[fF]90")
 
 set(HIPFORT_SRC_COMMON ${HIPFORT_SRC_HIP})
 list(REMOVE_ITEM HIPFORT_SRC_COMMON ${HIPFORT_SRC_ROC} ${HIPFORT_SRC_CUDA_ERRORS})
@@ -109,6 +132,8 @@ set(HIPFORT_ARCH "amdgcn")
     target_include_directories(${HIPFORT_LIB}
       PUBLIC
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/hipfort/amdgcn>
+      PRIVATE
+        ${HIPFORT_INCLUDE_DIRS}
     )
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
@@ -142,6 +167,7 @@ set(HIPFORT_ARCH "nvptx")
     ADD_LIBRARY(${HIPFORT_LIB} STATIC
          ${HIPFORT_SRC_NVPTX}
          )
+    target_include_directories(${HIPFORT_LIB} PRIVATE ${HIPFORT_INCLUDE_DIRS})
     IF(HIPFORT_USE_FPOINTER_INTERFACES)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
     	IF(HIPFORT_ASSUMED_RANK)
