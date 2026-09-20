@@ -14,10 +14,10 @@ uses the ``hipfort_rocblas`` module for ``rocblas_create_handle`` and the
 ``rocblas_*`` enumerators.
 
 Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/rocsolver`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/rocsolver``.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/rocsolver``, and the equivalent Fortran 2003
+version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
+instead of Fortran array pointers, lives in ``test/f2003/rocsolver``.
 
 hipSOLVER offers the same functionality through an API that follows cuSOLVER;
 see the :doc:`hipSOLVER examples <hipsolver-examples>`.
@@ -45,11 +45,13 @@ rocSOLVER follows a small number of conventions that recur in every program:
 * **Pivots and scalar factors are device arrays.** Arguments such as ``ipiv``
   (pivot indices) and ``tau`` (Householder scalars) are outputs written on the
   device and are passed as device buffers.
-* **rocBLAS enumerators select variants.** ``rocblas_operation_none`` /
+* **Enumerators select variants.** ``rocblas_operation_none`` /
   ``rocblas_operation_transpose`` choose whether a routine works on ``A`` or
-  ``A**T``; ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the stored
-  triangle; ``rocblas_evect_*`` and ``rocblas_svect_*`` choose whether vectors
-  are computed.
+  ``A**T`` and ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the
+  stored triangle; both come from ``hipfort_rocblas_enums``. The
+  ``rocblas_evect_*`` and ``rocblas_svect_*`` selectors, which choose whether
+  vectors are computed, are rocSOLVER enumerators from
+  ``hipfort_rocsolver_enums`` despite their prefix.
 * **Every call returns a status code.** The ``hipfort_check`` module provides
   ``hipCheck`` for HIP calls and ``rocsolverCheck`` for rocSOLVER calls; both abort
   on failure. Most of the programs below route rocSOLVER status codes through
@@ -77,7 +79,8 @@ LU factorization and solve
 
 ``getrf`` computes the LU factorization ``A = P*L*U`` with partial pivoting,
 writing the factors in place over ``A`` and the pivot indices into ``ipiv``.
-The program factorizes a matrix and reconstructs ``L*U`` to confirm the result.
+The program factorizes a matrix and checks the packed factors and the pivot
+indices against reference values.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrf.f08
    :language: fortran
@@ -218,8 +221,8 @@ Reductions to condensed form
 ============================
 
 Several rocSOLVER routines reduce a matrix to a condensed form used inside the
-eigenvalue and SVD algorithms. ``getrf`` aside, these are lower-level building
-blocks:
+eigenvalue and SVD algorithms, or solve the condensed problem itself. These are
+lower-level building blocks:
 
 * ``gebrd`` reduces a general matrix to bidiagonal form.
 * ``sytrd`` reduces a symmetric matrix to tridiagonal form, and ``latrd``

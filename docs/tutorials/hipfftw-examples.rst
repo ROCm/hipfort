@@ -14,15 +14,19 @@ code moves across with little change. hipFORT exposes it through the
 
 The one difference that matters: the ``in`` and ``out`` arguments are
 **device** pointers. FFTW declares them ``void*``, so a pointer from
-``hipMalloc`` passes straight through, but host arrays do not work.
+``hipMalloc`` — or from ``fftw_alloc_real``/``fftw_alloc_complex`` — passes
+straight through, but a plain Fortran host array does not work.
 
-Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The tests live in
-``test/f2003/hipfftw``. Unlike the other FFT libraries there is no Fortran 2008
-variant, because the FFTW API is pointer-based throughout and gains nothing
-from Fortran array pointers.
+Every program on this page is complete and self-contained, and is built and run
+as part of the hipFORT test suite when the installed hipFFT is recent enough
+(hipFFT 1.0.22 and later, and 1.0.23 and later for the ``many`` and guru
+programs). Each program lives in ``test/f2003/hipfftw``. Unlike the other FFT
+libraries there is no Fortran 2008 version, because the FFTW API is
+pointer-based throughout and gains nothing from Fortran array pointers.
 
-For the cuFFT-style interface to the same library, see :doc:`hipfft-examples`.
+For the cuFFT-style interface to the same library, see the
+:doc:`hipFFT examples <hipfft-examples>`. For direct access to rocFFT, see the
+:doc:`rocFFT examples <rocfft-examples>`.
 
 Transform workflow
 ==================
@@ -48,7 +52,7 @@ Keep the following conventions in mind:
   ``FFTW_BACKWARD``. Do not redeclare them locally; a local definition clashes
   with the use-associated one.
 * Real forward transforms produce Hermitian-symmetric output, so only
-  ``N/2 + 1`` complex values are stored.
+  ``N/2 + 1`` complex values are stored. Size the complex buffer accordingly.
 * Multi-dimensional transforms use C row-major order, so the last dimension is
   contiguous.
 * The double precision routines are named ``fftw_*`` and the single precision
@@ -103,9 +107,10 @@ Batched transforms
 ==================
 
 The ``_many`` planners transform a batch of signals with one plan. The
-``inembed`` and ``onembed`` arguments describe the memory layout, ``stride``
-is the gap between elements of one transform and ``dist`` the gap between the
-start of consecutive transforms. This program covers the complex-to-complex,
+``inembed`` and ``onembed`` arguments describe the memory layout,
+``istride``/``ostride`` give the gap between elements of one transform and
+``idist``/``odist`` the gap between the start of consecutive transforms. This
+program covers the complex-to-complex,
 real-to-complex and complex-to-real cases.
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_many.f03
@@ -131,7 +136,8 @@ Allocating buffers
 ``fftw_alloc_real`` and ``fftw_alloc_complex``, along with the ``fftwf_``
 single precision forms, return correctly aligned host-accessible buffers that
 can be handed straight to a plan. Use ``c_f_pointer`` to get a Fortran array
-view, and release them with ``fftw_free``.
+view, and release them with ``fftw_free`` (``fftwf_free`` for the single
+precision buffers).
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_alloc.f03
    :language: fortran

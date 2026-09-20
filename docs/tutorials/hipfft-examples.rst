@@ -7,17 +7,18 @@ hipFFT examples
 ***************
 
 `hipFFT <https://rocm.docs.amd.com/projects/hipFFT/en/latest/>`_ is a thin layer
-over rocFFT whose API follows cuFFT. hipFORT exposes it through the
+over rocFFT with an API that follows cuFFT. hipFORT exposes it through the
 ``hipfort_hipfft`` module.
 
 Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The Fortran 2008 tests live in
-``test/f2008/hipfft`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/hipfft``.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/hipfft``, and the equivalent Fortran 2003 version,
+which uses ``type(c_ptr)`` device pointers and explicit byte counts instead of
+Fortran array pointers, lives in ``test/f2003/hipfft``.
 
 If you want direct access to rocFFT rather than a cuFFT-style interface, see
-:doc:`rocfft-examples`.
+the :doc:`rocFFT examples <rocfft-examples>`. For FFTW3-compatible code, see the
+:doc:`hipFFTW examples <hipfftw-examples>`.
 
 Transform workflow
 ==================
@@ -25,8 +26,8 @@ Transform workflow
 A hipFFT transform follows the same sequence as cuFFT:
 
 #. Create a plan with ``hipfftPlan1d``, ``hipfftPlan2d``, ``hipfftPlan3d`` or
-   ``hipfftPlanMany``, passing the transform lengths, the transform type and
-   the batch count.
+   ``hipfftPlanMany``, passing the transform lengths and the transform type.
+   ``hipfftPlan1d`` and ``hipfftPlanMany`` also take a batch count.
 #. Run the transform with the ``hipfftExec`` routine matching the plan type:
    ``hipfftExecZ2Z`` and ``hipfftExecC2C`` for complex-to-complex,
    ``hipfftExecD2Z`` and ``hipfftExecR2C`` for real-to-complex,
@@ -93,7 +94,7 @@ Multi-dimensional transforms
 ============================
 
 A two-dimensional transform uses ``hipfftPlan2d``. The last dimension is
-contiguous, so a plan created as ``hipfftPlan2d(plan, Nx, Ny, ...)`` expects
+contiguous, so a plan created as ``hipfftPlan2d(plan, Nx, Ny, type)`` expects
 ``Ny`` to vary fastest in memory.
 
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_c2c_2d_z.f08
@@ -129,8 +130,9 @@ Querying the work area size
 hipFFT needs scratch memory whose size depends on the transform. There are two
 ways to ask about it. ``hipfftEstimate1d`` and friends give a heuristic upper
 bound before a plan exists, which is useful for budgeting. ``hipfftGetSize1d``
-and ``hipfftGetSize`` report the exact requirement of a plan that has already
-been created.
+and friends refine that estimate for a given handle and parameter set, and
+``hipfftGetSize`` reports the exact requirement of a plan that has already been
+made.
 
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_estimate_getsize_d.f08
    :language: fortran
@@ -143,8 +145,9 @@ By default a plan allocates its own work area. Call
 off, then supply your own buffer with ``hipfftSetWorkArea``. This lets several
 plans share one allocation, or lets the application control when the memory is
 reserved. Plans built this way use ``hipfftCreate`` and ``hipfftMakePlanMany``
-rather than ``hipfftPlanMany``, because the work area has to be configured
-between the two calls.
+rather than ``hipfftPlanMany``, because auto-allocation has to be turned off
+between the two calls, and the required work area size is only known once
+``hipfftMakePlanMany`` has returned it.
 
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_makeplanmany_z.f08
    :language: fortran

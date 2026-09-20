@@ -13,11 +13,11 @@ re-exports the enumerations (``HIPBLAS_OP_N``, ``HIPBLAS_FILL_MODE_LOWER`` and
 so on) from ``hipfort_hipblas_enums``.
 
 Every program on this page is a complete, self-contained example that is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/hipblas`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/hipblas``. The packed triangular solve,
-``stpsv``, is Fortran 2008 only.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/hipblas``, and the equivalent Fortran 2003
+version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
+instead of Fortran array pointers, lives in ``test/f2003/hipblas``. The
+packed triangular solve, ``stpsv``, is Fortran 2008 only.
 
 If you want direct access to rocBLAS rather than a cuBLAS-style interface, see
 the :doc:`rocBLAS examples <rocblas-examples>`, where the equivalent programs
@@ -106,7 +106,7 @@ the device vector is both the input and the output.
 .. literalinclude:: ../../test/f2008/hipblas/dscal.f08
    :language: fortran
 
-This is the only ``scal`` example in the test suite; there is no
+This is the only hipBLAS ``scal`` example in the test suite; there is no
 single-precision or complex counterpart. The :doc:`rocBLAS examples
 <rocblas-examples>` cover the remaining precisions, including the
 mixed-precision forms that scale a complex vector by a real scalar.
@@ -371,7 +371,7 @@ remaining precisions.
 Extended-precision matrix multiplication (GemmEx)
 ------------------------------------------------------
 
-``hipblasGemmEx`` computes ``D := alpha * op(A) * op(B) + beta * C`` with the
+``hipblasGemmEx`` computes ``C := alpha * op(A) * op(B) + beta * C`` with the
 type of every buffer, and the type used for the arithmetic, given explicitly
 as arguments rather than fixed by the routine name. That makes it the entry
 point for mixed precision work.
