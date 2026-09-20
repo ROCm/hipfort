@@ -35,6 +35,11 @@
 
 ### Fixed
 
+* Fixed `hipfort::hipblas` being silently skipped when ROCm is installed outside
+  CMake's default search prefixes. `ROCM_PATH` is now added to `CMAKE_PREFIX_PATH`,
+  so the `find_dependency(hipblas-common)` that `hipblas-config.cmake` performs
+  resolves as well; `PATHS` alone applies only to the `find_package` call that
+  names it and is not propagated to a package's own dependency lookups.
 * Fixed several HIP derived types that had been emitted as opaque byte blobs
   now expose their named scalar fields (`resType`, `size`, `flags`, ...)
   alongside a correctly sized filler for the embedded C unions, so the
