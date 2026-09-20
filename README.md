@@ -38,7 +38,7 @@ cmake -S . -B build -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolc
 
 `hipfort` provides interfaces to the following HIP and ROCm libraries:
 
-* **HIP runtime and tooling:** HIP runtime, rocTX
+* **HIP runtime and tooling:** HIP runtime, ROCTx
 * **HIP math libraries (`hip*`):** hipBLAS, hipFFT, hipRAND, hipSOLVER, hipSPARSE
 * **FFTW3-compatible interface:** hipFFTW
 * **ROCm math libraries (`roc*`):** rocBLAS, rocFFT, rocRAND, rocSOLVER, rocSPARSE
@@ -140,7 +140,7 @@ The following tables list the supported API:
 * [rocRAND](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocrand.html)
 * [rocSOLVER](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocsolver.html)
 * [rocSPARSE](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocsparse.html)
-* [rocTX](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__roctx.html)
+* [ROCTx](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__roctx.html)
 
 You may further find it convenient to directly use the search function on
 [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/develop/) to get information on the arguments of an interface.

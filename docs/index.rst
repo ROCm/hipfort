@@ -30,11 +30,15 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipFORT>`_
 
      * :doc:`Examples <./tutorials/examples>`
      * :doc:`HIP runtime examples <./tutorials/hip-examples>`
+     * :doc:`rocBLAS examples <./tutorials/rocblas-examples>`
      * :doc:`rocFFT examples <./tutorials/rocfft-examples>`
+     * :doc:`rocRAND examples <./tutorials/rocrand-examples>`
      * :doc:`rocSOLVER examples <./tutorials/rocsolver-examples>`
      * :doc:`rocSPARSE examples <./tutorials/rocsparse-examples>`
+     * :doc:`hipBLAS examples <./tutorials/hipblas-examples>`
      * :doc:`hipFFT examples <./tutorials/hipfft-examples>`
      * :doc:`hipFFTW examples <./tutorials/hipfftw-examples>`
+     * :doc:`hipRAND examples <./tutorials/hiprand-examples>`
      * :doc:`hipSOLVER examples <./tutorials/hipsolver-examples>`
      * :doc:`hipSPARSE examples <./tutorials/hipsparse-examples>`
 

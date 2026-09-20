@@ -16,7 +16,7 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 *  **HIP runtime and tooling**:
 
    *  HIP runtime
-   *  rocTX
+   *  ROCTx
 
 *  **ROCm math libraries** (``roc*``):
 
@@ -137,7 +137,7 @@ The current set of hipFORT interfaces is derived from ROCm 10.0.0. The following
 * :doc:`rocRAND API <../doxygen/html/md_input_2supported__api__rocrand>`
 * :doc:`rocSOLVER API <../doxygen/html/md_input_2supported__api__rocsolver>`
 * :doc:`rocSPARSE API <../doxygen/html/md_input_2supported__api__rocsparse>`
-* :doc:`rocTX API <../doxygen/html/md_input_2supported__api__roctx>`
+* :doc:`ROCTx API <../doxygen/html/md_input_2supported__api__roctx>`
 
 .. note::
 

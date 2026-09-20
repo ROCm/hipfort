@@ -1,4 +1,4 @@
-# rocTX API Support
+# ROCTx API Support
 
 \# | API Name | Variants
 ----|---------------|---------
