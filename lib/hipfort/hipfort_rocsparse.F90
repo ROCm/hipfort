@@ -348,7 +348,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_get_pointer_mode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: pointer_mode
+      integer(c_int) :: pointer_mode
     end function
   end interface
 
@@ -61895,4 +61895,54 @@ module hipfort_rocsparse
 
 #endif
 #endif
+
+  !>   @defgroup aux_module Sparse Auxiliary Functions
+  !>
+  !>   Auxiliary functions, such as handle, descriptor and info object management.
+  !>
+
+  !>   @defgroup level1_module Sparse Level 1 Functions
+  !>
+  !>   Operations between a vector in sparse format and a vector in dense format.
+  !>
+
+  !>   @defgroup level2_module Sparse Level 2 Functions
+  !>
+  !>   Operations between a matrix in sparse format and a vector in dense format.
+  !>
+
+  !>   @defgroup level3_module Sparse Level 3 Functions
+  !>
+  !>   Operations between a matrix in sparse format and multiple vectors in dense format.
+  !>
+
+  !>   @defgroup extra_module Sparse Extra Functions
+  !>
+  !>   Operations that manipulate sparse matrices, such as addition and multiplication.
+  !>
+
+  !>   @defgroup precond_module Preconditioner Functions
+  !>
+  !>   Manipulations on a matrix in sparse format to obtain a preconditioner.
+  !>
+
+  !>   @defgroup conv_module Sparse Conversion Functions
+  !>
+  !>   Conversions between different sparse matrix storage formats.
+  !>
+
+  !>   @defgroup reordering_module Sparse Reordering Functions
+  !>
+  !>   Reordering operations on a matrix in sparse format.
+  !>
+
+  !>   @defgroup utility_module Sparse Utility Functions
+  !>
+  !>   Checks on a matrix in sparse format.
+  !>
+
+  !>   @defgroup generic_module Sparse Generic Functions
+  !>
+  !>   Generic sparse API operating on the descriptor-based sparse and dense types.
+  !>
 end module hipfort_rocsparse

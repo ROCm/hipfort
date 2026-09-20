@@ -95,7 +95,7 @@ program test_rocsparse
     if (never) v1 = rocsparse_set_stream_(v0, v0)
     if (never) v1 = rocsparse_get_stream_(v0, v0)
     if (never) v1 = rocsparse_set_pointer_mode_(v0, v2)
-    if (never) v1 = rocsparse_get_pointer_mode_(v0, v0)
+    if (never) v1 = rocsparse_get_pointer_mode_(v0, v3)
     if (never) v1 = rocsparse_get_version_(v0, v3)
     if (never) v1 = rocsparse_get_git_rev_(v0, v0)
     if (never) v1 = rocsparse_create_mat_descr_(v0)

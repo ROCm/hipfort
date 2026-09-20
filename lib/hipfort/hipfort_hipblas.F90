@@ -41572,9 +41572,11 @@ module hipfort_hipblas
 
   interface hipblasSetVector
 #ifdef USE_CUDA_NAMES
-    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, name="cublasSetVector") result(ret)
+    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, &
+        name="cublasSetVector") result(ret)
 #else
-    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, name="hipblasSetVector") result(ret)
+    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, &
+        name="hipblasSetVector") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41608,9 +41610,11 @@ module hipfort_hipblas
 
   interface hipblasGetVector
 #ifdef USE_CUDA_NAMES
-    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, name="cublasGetVector") result(ret)
+    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, &
+        name="cublasGetVector") result(ret)
 #else
-    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, name="hipblasGetVector") result(ret)
+    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, &
+        name="hipblasGetVector") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41644,9 +41648,11 @@ module hipfort_hipblas
 
   interface hipblasSetMatrix
 #ifdef USE_CUDA_NAMES
-    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="cublasSetMatrix") result(ret)
+    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
+        name="cublasSetMatrix") result(ret)
 #else
-    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="hipblasSetMatrix") result(ret)
+    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
+        name="hipblasSetMatrix") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41681,9 +41687,11 @@ module hipfort_hipblas
 
   interface hipblasGetMatrix
 #ifdef USE_CUDA_NAMES
-    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="cublasGetMatrix") result(ret)
+    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
+        name="cublasGetMatrix") result(ret)
 #else
-    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="hipblasGetMatrix") result(ret)
+    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
+        name="hipblasGetMatrix") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41718,9 +41726,11 @@ module hipfort_hipblas
 
   interface hipblasSetVectorAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasSetVectorAsync") result(ret)
+    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
+        name="cublasSetVectorAsync") result(ret)
 #else
-    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasSetVectorAsync") result(ret)
+    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
+        name="hipblasSetVectorAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41755,9 +41765,11 @@ module hipfort_hipblas
 
   interface hipblasGetVectorAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasGetVectorAsync") result(ret)
+    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
+        name="cublasGetVectorAsync") result(ret)
 #else
-    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasGetVectorAsync") result(ret)
+    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
+        name="hipblasGetVectorAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41792,9 +41804,11 @@ module hipfort_hipblas
 
   interface hipblasSetMatrixAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasSetMatrixAsync") result(ret)
+    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
+        name="cublasSetMatrixAsync") result(ret)
 #else
-    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasSetMatrixAsync") result(ret)
+    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
+        name="hipblasSetMatrixAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -41830,9 +41844,11 @@ module hipfort_hipblas
 
   interface hipblasGetMatrixAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasGetMatrixAsync") result(ret)
+    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
+        name="cublasGetMatrixAsync") result(ret)
 #else
-    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasGetMatrixAsync") result(ret)
+    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
+        name="hipblasGetMatrixAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums

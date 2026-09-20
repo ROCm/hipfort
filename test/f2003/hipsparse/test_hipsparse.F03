@@ -60,7 +60,7 @@ program test_hipsparse
     if (never) v1 = hipsparseSetStream_(v0, v0)
     if (never) v1 = hipsparseGetStream_(v0, v0)
     if (never) v1 = hipsparseSetPointerMode_(v0, v3)
-    if (never) v1 = hipsparseGetPointerMode_(v0, v0)
+    if (never) v1 = hipsparseGetPointerMode_(v0, v2)
     if (never) v1 = hipsparseCreateMatDescr_(v0)
     if (never) v1 = hipsparseDestroyMatDescr_(v0)
 #ifndef USE_CUDA_NAMES
