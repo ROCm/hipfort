@@ -31,9 +31,36 @@
   `CMAKE_CXX_COMPILER`.
 * Each per-backend archive now contains only the symbols its backend can resolve:
   `libhipfort-amdgcn.a` drops `hipfort_cuda_errors` and `libhipfort-nvptx.a`
-  drops the AMD-only `roc*` API modules.
+  drops the AMD-only `roc*` API modules. `hipfort_roctx` joins that AMD-only set:
+  it now compiles code that calls the ROCTx entry points, which do not exist on a
+  CUDA system.
+* **Breaking.** `hipfort_roctx` is generated rather than hand-written, and its
+  `const char*` arguments are now `type(c_ptr)` like every other `char*` argument
+  in hipfort, instead of `character(kind=c_char) :: message(*)`. Code that passed
+  a Fortran string must pass a C pointer to a NUL-terminated,
+  `character(kind=c_char)` array target:
+
+  ```fortran
+  character(kind=c_char), dimension(6), target :: msg = &
+      [c_char_"z", c_char_"o", c_char_"n", c_char_"e", c_null_char, c_null_char]
+  ret = roctxRangePush(c_loc(msg))
+  ```
+
+  This removes the last per-library exception in the binding generator: ROCTx was
+  the only module in `lib/hipfort/` that exposed `char*` as a Fortran string.
+* `hipfort_roctx` is generated from `rocprofiler-sdk-roctx/roctx.h`, the header
+  behind the package `hipfort::roctx` actually links, rather than the legacy
+  `roctracer/roctx.h`. It binds twelve entry points instead of five, adding
+  `roctxProfilerPause`, `roctxProfilerResume`, `roctxGetThreadId` and the
+  `roctxName{OsThread,HsaAgent,HipDevice,HipStream}` family.
+  `roctx_version_major` and `roctx_version_minor` are gone: they exist only in the
+  legacy header, and the library hipfort links does not export them.
 
 ### Fixed
+
+* `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
+  `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
+  this was harmless in practice; it is `integer(c_int64_t)` now.
 
 * Fixed `hipfort::hipblas` being silently skipped when ROCm is installed outside
   CMake's default search prefixes. `ROCM_PATH` is now added to `CMAKE_PREFIX_PATH`,
