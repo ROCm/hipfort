@@ -10,19 +10,26 @@ program test_roctx
   use hipfort_roctx
   implicit none
   logical :: never
-  character(kind=c_char) :: v0(1)
+  type(c_ptr) :: v0
   integer(c_int) :: v1
-  integer(c_size_t) :: v2
+  integer(c_int64_t) :: v2
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) call roctxMark(v0)
-    if (never) v1 = roctxRangePush(v0)
-    if (never) v1 = roctxRangePop()
-    if (never) v2 = roctxRangeStart(v0)
-    if (never) call roctxRangeStop(v2)
+    if (never) call roctxMark_(v0)
+    if (never) v1 = roctxRangePush_(v0)
+    if (never) v1 = roctxRangePop_()
+    if (never) v2 = roctxRangeStart_(v0)
+    if (never) call roctxRangeStop_(v2)
+    if (never) v1 = roctxProfilerPause_(v2)
+    if (never) v1 = roctxProfilerResume_(v2)
+    if (never) v1 = roctxNameOsThread_(v0)
+    if (never) v1 = roctxNameHsaAgent_(v0, v0)
+    if (never) v1 = roctxNameHipDevice_(v0, v1)
+    if (never) v1 = roctxNameHipStream_(v0, v0)
+    if (never) v1 = roctxGetThreadId_(v0)
 
   write(*,"(a)") "-- test_roctx (bind(C) symbols): PASSED (compile+link only)!"
 end program test_roctx

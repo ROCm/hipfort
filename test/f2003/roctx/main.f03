@@ -15,6 +15,13 @@ program fortran_hip
 
   integer :: i
   integer :: ret
+  ! roctxRangePush takes a const char*, bound as type(c_ptr) like every other
+  ! char* argument in hipfort. c_loc needs a TARGET, and only an array of
+  ! character(kind=c_char) is interoperable, so build the NUL-terminated buffer
+  ! explicitly rather than passing a string expression.
+  character(kind=c_char), dimension(12), target :: msg = &
+      [c_char_"h", c_char_"e", c_char_"l", c_char_"l", c_char_"o", c_char_"_", &
+       c_char_"w", c_char_"o", c_char_"r", c_char_"l", c_char_"d", c_null_char]
   type(hipDeviceProp_t),target :: props
 
   call hipCheck(hipGetDeviceProperties(props,0))
@@ -27,7 +34,7 @@ program fortran_hip
   end do
   write(*,"(a)",advance="no") " - "
 
-  ret = roctxRangePush(c_char_"hello_world"//c_null_char)
+  ret = roctxRangePush(c_loc(msg))
   if (ret /= 0) then
     write (*, *) "ROCTX ERROR: roctxRangePush: Invalid nested range level ", ret
   end if

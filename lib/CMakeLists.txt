@@ -34,7 +34,12 @@ set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
 #     -> nvptx only. On amdgcn every `use hipfort_cuda_errors` is #ifdef'd out.
 # Everything else is common to both backends.
 set(HIPFORT_SRC_ROC "")
-foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand)
+# roctx joins the AMD-only list. It was absent while hipfort_roctx was
+# interface-only: an interface nobody calls emits no relocation, so carrying it
+# in the nvptx archive cost nothing. The generated module has a CONTAINS block
+# whose _cstr wrappers CALL roctxMarkA/RangePushA/RangeStartA, which do not exist
+# on a CUDA system, and hipfort_shared_link_nvptx fails on exactly those.
+foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand roctx)
   file(GLOB _rocfiles "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_${_roclib}.[fF]90")  # API module only, not *_enums
   list(APPEND HIPFORT_SRC_ROC ${_rocfiles})
 endforeach()
@@ -395,22 +400,36 @@ if(HIPFORT_EXTENDED_TESTS)
       set(_amd_dir "${ROCM_PATH}/lib")
     endif()
     # NB: the HIP runtime is libamdhip64, not "libhip".
+    # rocTX is in this list now: the generated hipfort_roctx references
+    # roctxMarkA/RangePushA/RangeStartA from its cstr wrappers. It ships under two
+    # names and they are NOT interchangeable -- librocprofiler-sdk-roctx exports
+    # the plain symbols and is what hipfort::roctx links, while the legacy
+    # libroctx64 exports them versioned (roctxMarkA@@ROCTX_4.1) -- so resolve the
+    # same one the component does, falling back to the legacy name.
     set(_amd_libs hipfftw hipfft rocfft hipsolver rocsolver hipblas rocblas
-                  rocrand hiprand hipsparse rocsparse amdhip64)
+                  rocrand hiprand hipsparse rocsparse roctx amdhip64)
+    set(_amd_names_roctx rocprofiler-sdk-roctx roctx64)
     set(_amd_ok TRUE)
     set(_amd_missing "")
     foreach(_l IN LISTS _amd_libs)
       unset(_amd_lib_${_l} CACHE)
-      find_library(_amd_lib_${_l} NAMES ${_l} HINTS ${_amd_dir} NO_DEFAULT_PATH)
+      set(_names ${_l})
+      if(DEFINED _amd_names_${_l})
+        set(_names ${_amd_names_${_l}})
+      endif()
+      find_library(_amd_lib_${_l} NAMES ${_names} HINTS ${_amd_dir} NO_DEFAULT_PATH)
       if(NOT _amd_lib_${_l})
         set(_amd_ok FALSE)
         list(APPEND _amd_missing ${_l})
       endif()
     endforeach()
     if(_amd_ok)
+      # Link the files find_library resolved rather than re-deriving -l names: the
+      # list entry and the library name differ for rocTX, and "-lroctx" matches
+      # nothing.
       set(_amd_lflags "")
       foreach(_l IN LISTS _amd_libs)
-        list(APPEND _amd_lflags "-l${_l}")
+        list(APPEND _amd_lflags "${_amd_lib_${_l}}")
       endforeach()
       add_test(NAME hipfort_shared_link_amdgcn
         COMMAND ${CMAKE_Fortran_COMPILER} -fPIC -shared ${_shared_ldflags}
