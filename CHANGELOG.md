@@ -1,5 +1,69 @@
 # Changelog for hipfort
 
+## Unreleased
+
+### Added
+
+* Tutorial pages of complete, runnable Fortran programs for rocBLAS and hipBLAS,
+  and for rocRAND and hipRAND.
+* rocBLAS tests for `nrm2`/`asum`, `iamax`/`iamin`, `ger`, `syrk`/`herk`,
+  `symm`/`hemm`, `geam` and `gemm_ex`, and hipBLAS tests for `nrm2`/`asum`,
+  `iamax`, `syrk`/`symm`, `trmm`, `geam` and `GemmEx`.
+* rocRAND and hipRAND tests for the `mrg32k3a`, `mtgp32` and `sobol32`
+  generators and for the Poisson and log-normal distributions.
+
+### Changed
+
+* **Breaking.** `hipfort_roctx` is generated rather than hand-written, and its
+  `const char*` arguments are now `type(c_ptr)` like every other `char*` argument
+  in hipfort, instead of `character(kind=c_char) :: message(*)`. Code that passed
+  a Fortran string must pass a C pointer to a NUL-terminated,
+  `character(kind=c_char)` array target:
+
+  ```fortran
+  character(kind=c_char), dimension(6), target :: msg = &
+      [c_char_"z", c_char_"o", c_char_"n", c_char_"e", c_null_char, c_null_char]
+  ret = roctxRangePush(c_loc(msg))
+  ```
+
+  This removes the last per-library exception in the binding generator: ROCTx was
+  the only module in `lib/hipfort/` that exposed `char*` as a Fortran string.
+* `hipfort_roctx` is generated from `rocprofiler-sdk-roctx/roctx.h`, the header
+  behind the package `hipfort::roctx` actually links, rather than the legacy
+  `roctracer/roctx.h`. It binds twelve entry points instead of five, adding
+  `roctxProfilerPause`, `roctxProfilerResume`, `roctxGetThreadId` and the
+  `roctxName{OsThread,HsaAgent,HipDevice,HipStream}` family.
+  `roctx_version_major` and `roctx_version_minor` are gone: they exist only in the
+  legacy header, and the library hipfort links does not export them.
+* `hipfort_roctx` joins the AMD-only set of modules: it now compiles code that
+  calls the ROCTx entry points, which do not exist on a CUDA system, so
+  `libhipfort-nvptx.a` drops it alongside the `roc*` API modules.
+* The `hipMalloc` and `hipMemcpy` interface variants moved off the *hipFORT
+  examples* tutorial page onto a new *Fortran interface variants* how-to page,
+  which also documents the experimental Fortran 2018 assumed-rank mode. The
+  tutorial section now holds only pages of complete programs for a specific
+  library.
+
+### Fixed
+
+* `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
+  `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
+  this was harmless in practice; it is `integer(c_int64_t)` now.
+
+* Fixed `hipfort::hipblas` being silently skipped when ROCm is installed outside
+  CMake's default search prefixes. `ROCM_PATH` is now added to `CMAKE_PREFIX_PATH`,
+  so the `find_dependency(hipblas-common)` that `hipblas-config.cmake` performs
+  resolves as well; `PATHS` alone applies only to the `find_package` call that
+  names it and is not propagated to a package's own dependency lookups.
+* Fixed factual errors across the tutorial pages, where the prose contradicted
+  the bindings or the program it showed, and added the rocBLAS, hipBLAS, rocRAND
+  and hipRAND pages to the documentation landing page, which listed only nine of
+  the thirteen tutorials.
+* Fixed incorrect reference data and weak checks in the test programs the
+  tutorials show. Most notably the `getrf` and `getf2` reference matrices were
+  transposed by a spurious `reshape(..., order=(/2,1/))`, so those programs
+  printed `FAILED!` on every run.
+
 ## hipfort 0.9.0 for ROCm 10.0.0
 
 ### Added
@@ -31,42 +95,10 @@
   `CMAKE_CXX_COMPILER`.
 * Each per-backend archive now contains only the symbols its backend can resolve:
   `libhipfort-amdgcn.a` drops `hipfort_cuda_errors` and `libhipfort-nvptx.a`
-  drops the AMD-only `roc*` API modules. `hipfort_roctx` joins that AMD-only set:
-  it now compiles code that calls the ROCTx entry points, which do not exist on a
-  CUDA system.
-* **Breaking.** `hipfort_roctx` is generated rather than hand-written, and its
-  `const char*` arguments are now `type(c_ptr)` like every other `char*` argument
-  in hipfort, instead of `character(kind=c_char) :: message(*)`. Code that passed
-  a Fortran string must pass a C pointer to a NUL-terminated,
-  `character(kind=c_char)` array target:
-
-  ```fortran
-  character(kind=c_char), dimension(6), target :: msg = &
-      [c_char_"z", c_char_"o", c_char_"n", c_char_"e", c_null_char, c_null_char]
-  ret = roctxRangePush(c_loc(msg))
-  ```
-
-  This removes the last per-library exception in the binding generator: ROCTx was
-  the only module in `lib/hipfort/` that exposed `char*` as a Fortran string.
-* `hipfort_roctx` is generated from `rocprofiler-sdk-roctx/roctx.h`, the header
-  behind the package `hipfort::roctx` actually links, rather than the legacy
-  `roctracer/roctx.h`. It binds twelve entry points instead of five, adding
-  `roctxProfilerPause`, `roctxProfilerResume`, `roctxGetThreadId` and the
-  `roctxName{OsThread,HsaAgent,HipDevice,HipStream}` family.
-  `roctx_version_major` and `roctx_version_minor` are gone: they exist only in the
-  legacy header, and the library hipfort links does not export them.
+  drops the AMD-only `roc*` API modules.
 
 ### Fixed
 
-* `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
-  `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
-  this was harmless in practice; it is `integer(c_int64_t)` now.
-
-* Fixed `hipfort::hipblas` being silently skipped when ROCm is installed outside
-  CMake's default search prefixes. `ROCM_PATH` is now added to `CMAKE_PREFIX_PATH`,
-  so the `find_dependency(hipblas-common)` that `hipblas-config.cmake` performs
-  resolves as well; `PATHS` alone applies only to the `find_package` call that
-  names it and is not propagated to a package's own dependency lookups.
 * Fixed several HIP derived types that had been emitted as opaque byte blobs
   now expose their named scalar fields (`resType`, `size`, `flags`, ...)
   alongside a correctly sized filler for the embedded C unions, so the
