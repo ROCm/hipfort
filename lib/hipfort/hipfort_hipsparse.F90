@@ -246,7 +246,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGetPointerMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: mode
+      integer(c_int) :: mode
     end function
   end interface
 

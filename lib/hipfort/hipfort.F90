@@ -55,15 +55,9 @@ module hipfort
     end function
   end interface
 
-  !>   @defgroup API HIP API
+  !> @ingroup Driver
   !>
   !>
-  !>   Defines the HIP API.  See the individual sections for more information.
-  !>
-  !>
-  !>   @defgroup Driver Initialization and Version
-  !>
-  !>   This section describes the initializtion and version functions of HIP runtime API.
   !>
   !>
   !>
@@ -319,9 +313,10 @@ module hipfort
   end interface
 #endif
 
-  !>   @defgroup Device Device Management
+  !> @ingroup Device
   !>
-  !>   This section describes the device management functions of HIP runtime API.
+  !>
+  !>
   !>
   !>
   !>  @brief Waits on all active streams on current device
@@ -1074,9 +1069,10 @@ module hipfort
     end function
   end interface
 
-  !>   @defgroup Execution Execution Control
+  !> @ingroup Execution
   !>
-  !>   This section describes the execution control functions of HIP runtime API.
+  !>
+  !>
   !>
   !>
   !>
@@ -1200,13 +1196,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Error
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Error Error Handling
-  !>
-  !>   This section describes the error handling functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Return last error returned by any HIP runtime API call and resets the stored error code
   !>  to
   !>  `hipSuccess`
@@ -2217,13 +2214,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Event
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Event Event Management
-  !>
-  !>   This section describes the event management functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Create an event with the specified flags
   !>
   !>  @param[out] event - Returns the newly created event.
@@ -2601,16 +2599,11 @@ module hipfort
   end interface
 #endif
 
+  !> @ingroup External
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup External External Resource Interoperability
-  !>
-  !>   @ingroup API
-  !>
-  !>   This section describes the external resource interoperability functions of HIP runtime API.
-  !>
-  !>
-  !>
   !>   @brief Imports an external semaphore.
   !>
   !>   @param[out] extSem_out - External semaphores to be waited on
@@ -6179,14 +6172,14 @@ module hipfort
   end interface
 #endif
 
+  !> @ingroup PeerToPeer
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup PeerToPeer PeerToPeer Device Memory Access
-  !>
-  !>   @ingroup API
-  !>   This section describes the PeerToPeer device memory access functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Determines if a device can access a peer device's memory.
   !>
   !>  @param [out] canAccessPeer - Returns the peer access capability (0 or 1)
@@ -6337,13 +6330,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup ExecutionContext
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup ExecutionContext Execution Context Management
-  !>
-  !>   This section describes execution context management functions of HIP runtime API.
-  !>
-  !>
   !>  @brief Gets device resource of a given type for a device.
   !>
   !>  @param [out] resource - Output device resource pointer
@@ -7235,15 +7229,14 @@ module hipfort
   end interface
 #endif
 
+  !> @ingroup Module
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>
-  !>   @defgroup Module Module Management
-  !>
-  !>   @ingroup API
-  !>   This section describes the module management functions of HIP runtime API.
-  !>
-  !>
   !>
   !>  @brief Loads fatbin object
   !>
@@ -8329,14 +8322,11 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Occupancy
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Occupancy Occupancy
-  !>
-  !>   This section describes the occupancy functions of HIP runtime API.
-  !>
-  !>
-  !>
   !>  @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
   !>
   !>  @param [out] gridSize           minimum grid size for maximum potential occupancy
@@ -8657,13 +8647,14 @@ module hipfort
     end function
   end interface
 
+  !> @ingroup Clang
+  !>
+  !>
+  !>
+  !>
+  !>
   !> -------------------------------------------------------------------------------------------------
   !> -------------------------------------------------------------------------------------------------
-  !>   @defgroup Clang Launch API to support the triple-chevron syntax
-  !>
-  !>   This section describes the API to support the triple-chevron syntax.
-  !>
-  !>
   !>  @brief Configure a kernel launch.
   !>
   !>  @param [in] gridDim   grid dimension specified as multiple of blockDim.
@@ -10014,9 +10005,8 @@ module hipfort
   end interface
 #endif
 
-  !>   @defgroup Callback Callback Activity APIs
+  !> @ingroup Callback
   !>
-  !>   This section describes the callback/Activity of HIP runtime API.
   !>
   !>
   !>  @brief Returns HIP API name by ID.
@@ -14030,4 +14020,98 @@ module hipfort
     end function
   end interface
 
+
+  !>   @defgroup API HIP API
+  !>
+  !>   Defines the HIP API. See the individual sections for more information.
+  !>
+
+  !>   @defgroup Driver Initialization and Version
+  !>
+  !>   This section describes the initialization and version functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Device Device Management
+  !>
+  !>   This section describes the device management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Execution Execution Control
+  !>
+  !>   This section describes the execution control functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Error Error Handling
+  !>
+  !>   This section describes the error handling functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Event Event Management
+  !>
+  !>   This section describes the event management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup External External Resource Interoperability
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the external resource interoperability functions of HIP runtime API.
+  !>
+
+  !>   @defgroup PeerToPeer PeerToPeer Device Memory Access
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the PeerToPeer device memory access functions of HIP runtime API.
+  !>
+
+  !>   @defgroup ExecutionContext Execution Context Management
+  !>
+  !>   This section describes execution context management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Module Module Management
+  !>
+  !>   @ingroup API
+  !>
+  !>   This section describes the module management functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Occupancy Occupancy
+  !>
+  !>   This section describes the occupancy functions of HIP runtime API.
+  !>
+
+  !>   @defgroup Clang Launch API to support the triple-chevron syntax
+  !>
+  !>   This section describes the API to support the triple-chevron syntax.
+  !>
+
+  !>   @defgroup Callback Callback Activity APIs
+  !>
+  !>   This section describes the callback/Activity of HIP runtime API.
+  !>
+
+  !>   @defgroup Memory Memory Management
+  !>
+  !>   @ingroup API
+  !>
+  !>   Memory management functions of the HIP runtime API.
+  !>
+
+  !>   @defgroup MemoryD Memory Management [Deprecated]
+  !>
+  !>   @ingroup Memory
+  !>
+  !>   Deprecated memory management functions of the HIP runtime API.
+  !>
+
+  !>   @defgroup MemoryM Managed Memory
+  !>
+  !>   @ingroup Memory
+  !>
+  !>   This section describes the managed memory management functions of HIP runtime API.
+  !>
+  !>   @note  The managed memory management APIs are implemented on Linux, under development on Windows.
+  !>
 end module hipfort

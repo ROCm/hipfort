@@ -37590,7 +37590,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_vector
-    function rocblas_set_vector_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_set_vector") result(ret)
+    function rocblas_set_vector_(n,elem_size,x,incx,y,incy) bind(c, &
+        name="rocblas_set_vector") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37622,7 +37623,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_vector
-    function rocblas_get_vector_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_get_vector") result(ret)
+    function rocblas_get_vector_(n,elem_size,x,incx,y,incy) bind(c, &
+        name="rocblas_get_vector") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37654,7 +37656,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_matrix
-    function rocblas_set_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="rocblas_set_matrix") result(ret)
+    function rocblas_set_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
+        name="rocblas_set_matrix") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37687,7 +37690,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_matrix
-    function rocblas_get_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="rocblas_get_matrix") result(ret)
+    function rocblas_get_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
+        name="rocblas_get_matrix") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37720,7 +37724,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_vector_async
-    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_set_vector_async") result(ret)
+    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, &
+        name="rocblas_set_vector_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37753,7 +37758,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_vector_async
-    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_get_vector_async") result(ret)
+    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, &
+        name="rocblas_get_vector_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37786,7 +37792,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_set_matrix_async
-    function rocblas_set_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="rocblas_set_matrix_async") result(ret)
+    function rocblas_set_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
+        name="rocblas_set_matrix_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -37820,7 +37827,8 @@ module hipfort_rocblas
   end interface
 
   interface rocblas_get_matrix_async
-    function rocblas_get_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="rocblas_get_matrix_async") result(ret)
+    function rocblas_get_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
+        name="rocblas_get_matrix_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
