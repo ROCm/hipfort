@@ -62,6 +62,82 @@ AMD's ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended def
 ``gfortran`` (version 7.5.0 or newer) is also supported.
 Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
 
+Allocating and copying device memory
+------------------------------------
+
+The Fortran 2003 form holds the device pointer in a ``type(c_ptr)`` and counts
+bytes:
+
+.. code-block:: fortran
+
+   use iso_c_binding
+   use hipfort
+   integer      :: ierr       ! error code
+   real, target :: a_h(5,6)   ! host array ('target' is required by c_loc)
+   type(c_ptr)  :: a_d        ! device array pointer
+   !
+   ! real has 4 bytes; the '_c_size_t' suffix writes 4 as an integer(c_size_t)
+   ierr = hipMalloc(a_d, size(a_h)*4_c_size_t)
+   ierr = hipMemcpy(a_d, c_loc(a_h), size(a_h)*4_c_size_t, &
+                    hipMemcpyHostToDevice)
+
+The array overloads take a Fortran array pointer and a shape, and count
+elements rather than bytes:
+
+.. code-block:: fortran
+
+   use hipfort
+   integer       :: ierr      ! error code
+   real          :: a_h(5,6)  ! host array
+   real, pointer :: a_d(:,:)  ! device array pointer
+   !
+   ierr = hipMalloc(a_d, shape(a_h))   ! or hipMalloc(a_d, [5,6])
+                                       ! or hipMalloc(a_d, 5, 6)
+   ierr = hipMemcpy(a_d, a_h, size(a_h), hipMemcpyHostToDevice)
+
+``hipMalloc`` is also overloaded with ``mold``, ``source`` and ``dsource``
+arguments, in the spirit of the ``ALLOCATE`` intrinsic. ``mold`` takes the shape
+of another array without copying anything, while ``source`` takes its shape
+(including bounds) and performs a blocking copy to the device:
+
+.. code-block:: fortran
+
+   ierr = hipMalloc(a_d, mold=a_h)     ! shape of a_h, no copy
+   ierr = hipMalloc(a_d, source=a_h)   ! shape of a_h, plus a copy from the host
+
+Use ``dsource`` instead of ``source`` when the source array already lives on the
+device.
+
+Unlike the array interfaces of the math libraries, these ``hipMalloc`` and
+``hipMemcpy`` overloads are not guarded by ``USE_FPOINTER_INTERFACES``, so they
+are available in every hipFORT build.
+
+Assumed-rank interfaces (Fortran 2018)
+--------------------------------------
+
+The Fortran 2008 array interfaces are generated once per rank, so each generic
+carries a fixed set of ranks. Building hipFORT with
+``-DHIPFORT_ASSUMED_RANK=ON`` replaces those per-rank overloads with a single
+Fortran 2018 ``dimension(..)`` overload that accepts an actual argument of any
+rank. This is what lets a rank-3 array be passed to a routine whose per-rank
+overloads stop at rank 1, such as ``rocblas_saxpy``.
+
+The option is experimental and ``OFF`` by default. Note the following:
+
+* It is **mutually exclusive** with the classic per-rank interfaces rather than
+  additive: enabling it replaces them.
+* It requires a Fortran 2018 compiler (hipFORT probes for ``c_loc()`` of a
+  ``dimension(..)`` argument) and the Fortran 2008 interfaces. If either is
+  missing, hipFORT warns and falls back to the per-rank interfaces instead of
+  failing the build.
+* Only **contiguous** arrays may be passed.
+* ``hipMalloc`` keeps its per-rank overloads either way; ``hipMemcpy``,
+  ``hipMemcpyAsync`` and ``hipMemcpy2D`` gain assumed-rank forms.
+
+``test/f2018/rocblas/saxpy.f90`` is the one program that exercises this mode; it
+is skipped unless the option is enabled. See the
+:doc:`rocBLAS examples <../tutorials/rocblas-examples>` for a walkthrough.
+
 Building your application with CMake
 ------------------------------------
 
@@ -108,13 +184,17 @@ toolchain files in ``cmake/toolchains`` via ``-DCMAKE_TOOLCHAIN_FILE=...``.
 Examples
 --------
 
-To see some examples for the `f2003` and `f2008` interfaces, see the :doc:`hipFORT samples <../tutorials/examples>`.
-For complete, runnable programs that use a ROCm math library, see the
+For complete, runnable programs, see the
+:doc:`HIP runtime examples <../tutorials/hip-examples>` and, for the ROCm math
+libraries, the :doc:`rocBLAS examples <../tutorials/rocblas-examples>`, the
 :doc:`rocFFT examples <../tutorials/rocfft-examples>`, the
+:doc:`rocRAND examples <../tutorials/rocrand-examples>`, the
 :doc:`rocSOLVER examples <../tutorials/rocsolver-examples>`, and the
 :doc:`rocSPARSE examples <../tutorials/rocsparse-examples>`.
 The ``hip*`` libraries, whose APIs follow their NVIDIA counterparts, have their
-own examples: the :doc:`hipFFT examples <../tutorials/hipfft-examples>`, the
+own examples: the :doc:`hipBLAS examples <../tutorials/hipblas-examples>`, the
+:doc:`hipFFT examples <../tutorials/hipfft-examples>`, the
+:doc:`hipRAND examples <../tutorials/hiprand-examples>`, the
 :doc:`hipSOLVER examples <../tutorials/hipsolver-examples>`, and the
 :doc:`hipSPARSE examples <../tutorials/hipsparse-examples>`.
 For the FFTW3-compatible interface, see the

@@ -28,7 +28,6 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipFORT>`_
 
   .. grid-item-card:: Tutorials
 
-     * :doc:`Examples <./tutorials/examples>`
      * :doc:`HIP runtime examples <./tutorials/hip-examples>`
      * :doc:`rocBLAS examples <./tutorials/rocblas-examples>`
      * :doc:`rocFFT examples <./tutorials/rocfft-examples>`

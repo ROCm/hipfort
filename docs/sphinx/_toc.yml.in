@@ -17,8 +17,6 @@ subtrees:
 
   - caption: Tutorials
     entries:
-      - file: tutorials/examples.rst
-        title: Examples
       - file: tutorials/hip-examples.rst
         title: HIP runtime examples
       - file: tutorials/rocblas-examples.rst
