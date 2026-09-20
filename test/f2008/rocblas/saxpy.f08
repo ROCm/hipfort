@@ -85,7 +85,7 @@ program rocblas_saxpy_test
         error = abs(hy(i) - result)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hy(", i, ") = ", hy(i)
-            call exit
+            call exit(1)
         end if
     end do
 

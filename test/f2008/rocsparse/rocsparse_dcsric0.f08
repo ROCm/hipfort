@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!
-! rocsparse scsric0 example (incomplete Cholesky, single)
+! rocsparse dcsric0 example (incomplete Cholesky, double)
 ! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes the IC(0) factorization of an SPD sparse matrix in place

@@ -27,11 +27,14 @@ program hip_scopy
 
   write(*,"(a)",advance="no") "-- Running test 'Scopy' (Fortran 2008 interfaces) - "
 
+  ! Seed y with a sentinel so the check below actually exercises the copy:
+  ! filling y with x here would make the test pass even if hipblasScopy did
+  ! nothing.
   do j = 1,n
-    y(j) = x(j)
-   ! write(*,*) "value of y(j)" , y(j)
+    y(j) = -1.0
   end do
-  
+
+
   call hipblasCheck(hipblasCreate(handle))
 
   call hipCheck(hipMalloc(dx,source=x))
