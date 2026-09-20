@@ -12,7 +12,7 @@
 * Added the `hipCpuDeviceId` and `hipInvalidDeviceId` device-id constants to
   `hipfort_enums`.
 * Tutorial pages of complete, runnable Fortran programs for the HIP runtime, hipFFT,
-  hipFFTW, hipSOLVER, rocSOLVER, hipSPARSE and rocSPARSE, a rocTX page with its
+  hipFFTW, hipSOLVER, rocSOLVER, hipSPARSE and rocSPARSE, a ROCTx page with its
   supported-API table, and documentation of the rocFFT callbacks.
 * Experimental Fortran 2018 assumed-rank array interfaces, enabled with
   `-DHIPFORT_ASSUMED_RANK=ON`. Each array generic is then backed by a single

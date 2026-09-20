@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!
-! hipsparse Dcsrilu02 example (incomplete LU, single)
+! hipsparse Dcsrilu02 example (incomplete LU, double)
 ! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a sparse matrix in place using the legacy

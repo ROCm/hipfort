@@ -14,11 +14,11 @@ subtrees:
     entries:
       - file: how-to/using-hipfort.rst
         title: Use hipFORT
+      - file: how-to/fortran-interfaces.rst
+        title: Fortran interface variants
 
   - caption: Tutorials
     entries:
-      - file: tutorials/examples.rst
-        title: Examples
       - file: tutorials/hip-examples.rst
         title: HIP runtime examples
       - file: tutorials/rocblas-examples.rst

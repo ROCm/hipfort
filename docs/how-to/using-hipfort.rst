@@ -16,7 +16,7 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 *  **HIP runtime and tooling**:
 
    *  HIP runtime
-   *  rocTX
+   *  ROCTx
 
 *  **ROCm math libraries** (``roc*``):
 
@@ -57,6 +57,10 @@ which hipFORT enables automatically once it detects Fortran 2008 support in your
 therefore available in every hipFORT build. By convention,
 application and test sources that rely on them use the ``.f08`` file extension (see the ``test/f2008``
 examples), while Fortran 2003 sources use ``.f03``.
+
+For a side-by-side comparison of the call sites, the ``hipMalloc`` ``mold``,
+``source`` and ``dsource`` overloads, and the experimental Fortran 2018
+assumed-rank mode, see :doc:`fortran-interfaces`.
 
 AMD's ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default, and
 ``gfortran`` (version 7.5.0 or newer) is also supported.
@@ -108,13 +112,17 @@ toolchain files in ``cmake/toolchains`` via ``-DCMAKE_TOOLCHAIN_FILE=...``.
 Examples
 --------
 
-To see some examples for the `f2003` and `f2008` interfaces, see the :doc:`hipFORT samples <../tutorials/examples>`.
-For complete, runnable programs that use a ROCm math library, see the
+For complete, runnable programs, see the
+:doc:`HIP runtime examples <../tutorials/hip-examples>` and, for the ROCm math
+libraries, the :doc:`rocBLAS examples <../tutorials/rocblas-examples>`, the
 :doc:`rocFFT examples <../tutorials/rocfft-examples>`, the
+:doc:`rocRAND examples <../tutorials/rocrand-examples>`, the
 :doc:`rocSOLVER examples <../tutorials/rocsolver-examples>`, and the
 :doc:`rocSPARSE examples <../tutorials/rocsparse-examples>`.
 The ``hip*`` libraries, whose APIs follow their NVIDIA counterparts, have their
-own examples: the :doc:`hipFFT examples <../tutorials/hipfft-examples>`, the
+own examples: the :doc:`hipBLAS examples <../tutorials/hipblas-examples>`, the
+:doc:`hipFFT examples <../tutorials/hipfft-examples>`, the
+:doc:`hipRAND examples <../tutorials/hiprand-examples>`, the
 :doc:`hipSOLVER examples <../tutorials/hipsolver-examples>`, and the
 :doc:`hipSPARSE examples <../tutorials/hipsparse-examples>`.
 For the FFTW3-compatible interface, see the
@@ -137,7 +145,7 @@ The current set of hipFORT interfaces is derived from ROCm 10.0.0. The following
 * :doc:`rocRAND API <../doxygen/html/md_input_2supported__api__rocrand>`
 * :doc:`rocSOLVER API <../doxygen/html/md_input_2supported__api__rocsolver>`
 * :doc:`rocSPARSE API <../doxygen/html/md_input_2supported__api__rocsparse>`
-* :doc:`rocTX API <../doxygen/html/md_input_2supported__api__roctx>`
+* :doc:`ROCTx API <../doxygen/html/md_input_2supported__api__roctx>`
 
 .. note::
 

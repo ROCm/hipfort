@@ -12,10 +12,10 @@ through the ``hipfort_rocfft`` module, which mirrors the rocFFT C API one to
 one.
 
 Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/rocfft`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/rocfft``.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/rocfft``, and the equivalent Fortran 2003 version,
+which uses ``type(c_ptr)`` device pointers and explicit byte counts instead of
+Fortran array pointers, lives in ``test/f2003/rocfft``.
 
 hipFFT offers the same functionality through an API that follows cuFFT; see the
 :doc:`hipFFT examples <hipfft-examples>` or, for FFTW3-compatible code, the
@@ -46,13 +46,15 @@ The remaining programs cover material from the rocFFT how-to guides:
 `Normalizing with a scale factor`_, `Inspecting a plan`_ and
 `Reusing compiled kernels`_.
 
-Two areas have no Fortran counterpart. Distributed transforms, which the
-``clients/samples/multi_gpu`` sample demonstrates, are built on the rocFFT
-field and brick API that is still an experimental preview, and MPI transforms
-need a rocFFT built with MPI support. The hipFORT interfaces for both
-(``rocfft_field_create``, ``rocfft_brick_create``,
-``rocfft_plan_description_set_comm`` and friends) are generated and callable,
-but they are not exercised by the test suite.
+The field and brick API, which decomposes a transform across several devices
+and is still an experimental preview, is covered by
+``test/f2008/rocfft/rocfft_field_brick_z.f08``, the Fortran counterpart of the
+``clients/samples/multi_gpu`` sample. The test is skipped when fewer than two
+GPUs are visible.
+
+MPI transforms have no Fortran counterpart: they need a rocFFT built with MPI
+support, so ``rocfft_plan_description_set_comm`` and friends are generated and
+callable but are not exercised by the test suite.
 
 Transform workflow
 ==================
@@ -130,7 +132,8 @@ In-place real transforms
 
 An in-place real transform reads real values and writes ``N/2 + 1`` complex
 values into the same allocation, so the real buffer must be padded to
-``2*(N/2 + 1)`` reals: two extra reals in the contiguous dimension. The input
+``2*(N/2 + 1)`` reals: two extra reals in the contiguous dimension when ``N`` is
+even, one when it is odd. The input
 and output array types are declared on a plan description with
 ``rocfft_plan_description_set_data_layout``.
 

@@ -9,21 +9,21 @@ rocSPARSE examples
 `rocSPARSE <https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/>`_ is the AMD
 implementation of sparse linear algebra for AMD GPUs. hipFORT exposes it through
 the ``hipfort_rocsparse`` module, which mirrors the rocSPARSE C API one to one.
-rocSPARSE reuses the rocBLAS handle type, so the programs that create a handle
-call ``rocsparse_create_handle`` from the same module.
+Each program creates a library context with ``rocsparse_create_handle`` and
+releases it with ``rocsparse_destroy_handle``.
 
 Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/rocsparse`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/rocsparse``.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/rocsparse``. Most programs also have an equivalent
+Fortran 2003 version, which uses ``type(c_ptr)`` device pointers and explicit
+byte counts instead of Fortran array pointers, in ``test/f2003/rocsparse``.
 
 hipSPARSE offers the same functionality through an API that follows cuSPARSE;
 see the :doc:`hipSPARSE examples <hipsparse-examples>`.
 
-Where a routine has the four precisions, a program is provided for each: ``s``
-(real single), ``d`` (real double), ``c`` (complex single), and ``z`` (complex
-double). This page shows the double-precision program of each group; the other
+Many routines come in the four precisions: ``s`` (real single), ``d`` (real
+double), ``c`` (complex single), and ``z`` (complex double). Where several are
+provided, this page shows the double-precision program of the group; the other
 precisions differ only in the host data type and the ``rocsparse_`` prefix
 letter.
 
@@ -57,15 +57,14 @@ rocSPARSE follows a small number of conventions that recur in every program:
 Building and running
 ====================
 
-The programs need the ``rocsparse``, ``rocblas``, and ``hip`` hipFORT
-components:
+The programs only need the ``rocsparse`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocblas rocsparse)
+   find_package(hipfort REQUIRED COMPONENTS hip rocsparse)
 
    add_executable(my_sparse rocsparse_dspmv.f08)
-   target_link_libraries(my_sparse PRIVATE hipfort::rocsparse hipfort::rocblas hipfort::hip)
+   target_link_libraries(my_sparse PRIVATE hipfort::rocsparse hipfort::hip)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 
@@ -74,7 +73,8 @@ Sparse matrix-vector and matrix-matrix products
 
 ``spmv`` multiplies a sparse matrix by a dense vector, ``y = alpha*A*x + beta*y``,
 using the generic API: a CSR descriptor for ``A`` and dense-vector descriptors
-for ``x`` and ``y``, run through the ``buffer_size`` and ``compute`` stages.
+for ``x`` and ``y``, run through the ``buffer_size``, ``preprocess``, and
+``compute`` stages.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dspmv.f08
    :language: fortran
@@ -108,14 +108,14 @@ sparsity pattern across the batch with ``rocsparse_csr_set_strided_batch``.
 Sparse triangular solves
 ========================
 
-``sptrsv`` solves a sparse triangular system ``op(A)*y = alpha*x`` for a single
-right-hand side. The generic API adds an analysis stage between the buffer-size
+``spsv`` solves a sparse triangular system ``op(A)*y = alpha*x`` for a single
+right-hand side. The generic API adds a preprocess stage between the buffer-size
 query and the solve, which inspects the sparsity pattern once and can be reused.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dsptrsv.f08
    :language: fortran
 
-``sptrsm`` solves the same kind of system with several right-hand sides at once,
+``spsm`` solves the same kind of system with several right-hand sides at once,
 taking a dense-matrix descriptor for the right-hand sides.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dsptrsm.f08

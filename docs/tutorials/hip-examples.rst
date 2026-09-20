@@ -15,18 +15,21 @@ helpers in ``hipfort_check``. A few routines live in their own modules:
 ``hipfort_hipmemcpy`` and ``hipHostRegister`` in ``hipfort_hiphostregister``.
 
 Every program on this page is complete and self-contained, and is built and run
-as part of the hipFORT test suite. The sources live in ``test/f2003/hip``, and
-the programs that benefit from Fortran array pointers have a Fortran 2008 twin
-in ``test/f2008/hip``.
+as part of the hipFORT test suite. Each program lives in ``test/f2003/hip``,
+except the kernel-launch example, which lives in ``test/f2003/vecadd``. The
+programs that benefit from Fortran array pointers have a Fortran 2008 twin in
+``test/f2008/hip``.
 
 Conventions
 ===========
 
 * **Device pointers.** The Fortran 2003 programs hold device memory in a
   ``type(c_ptr)`` and pass byte counts, as in ``hipMalloc(dx, nbytes)`` and
-  ``hipMemcpy(dx, c_loc(hx(1)), nbytes, hipMemcpyHostToDevice)``. The Fortran
-  2008 interfaces instead accept a Fortran array pointer and an element count,
-  as in ``hipMalloc(dx, n)`` or ``hipMalloc(dx, source=hx)``.
+  ``hipMemcpy(dx, c_loc(hx(1)), nbytes, hipMemcpyHostToDevice)``. The array
+  overloads instead accept a Fortran array pointer and a shape, as in
+  ``hipMalloc(dx, n)`` or ``hipMalloc(dx, source=hx)``. Unlike the math
+  libraries, these overloads are not guarded by ``USE_FPOINTER_INTERFACES``, so
+  they are available in every hipFORT build.
 * **Every call returns a status code.** The programs wrap calls in ``hipCheck``
   from the ``hipfort_check`` module, which aborts on failure. A call whose
   non-success return is the thing being tested, such as ``hipStreamQuery``,
@@ -45,7 +48,7 @@ The programs only need the ``hip`` hipFORT component:
 
    find_package(hipfort REQUIRED COMPONENTS hip)
 
-   add_executable(my_app stream.f03)
+   add_executable(my_app device_management.f03)
    target_link_libraries(my_app PRIVATE hipfort::hip)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
@@ -66,8 +69,9 @@ and cross-checks a few fields against ``hipDeviceGetAttribute``.
 Memory copies and fills
 =======================
 
-Beyond ``hipMemcpy`` and ``hipMemset``, the runtime offers pitched two
-dimensional operations, typed fills, and asynchronous forms that take a stream.
+Beyond ``hipMemcpy`` and ``hipMemset``, the runtime offers pitched
+two-dimensional operations, typed fills, and asynchronous forms that take a
+stream.
 
 .. literalinclude:: ../../test/f2003/hip/memory_ops.f03
    :language: fortran
@@ -155,7 +159,8 @@ explicitly.
 
 ``test/f2003/hip/graph_memset_node.f03`` adds a memset node from a
 ``hipMemsetParams`` structure, and ``test/f2003/hip/graph_empty_node.f03``
-builds a diamond shape with an empty node as the join point.
+builds a diamond shape that fans out from an empty node and rejoins at the
+device-to-host copy.
 
 Launching a kernel
 ==================

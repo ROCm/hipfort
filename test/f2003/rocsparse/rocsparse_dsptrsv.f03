@@ -113,6 +113,9 @@ program dsptrsv
   end do
 
   ! Clean up
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matL))
+  call rocsparseCheck(rocsparse_destroy_dnvec_descr(vecX))
+  call rocsparseCheck(rocsparse_destroy_dnvec_descr(vecY))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

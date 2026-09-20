@@ -14,15 +14,15 @@ GPUs. hipFORT exposes it through the ``hipfort_rocrand`` module, together with
 both explicitly.
 
 Every program on this page is a complete, self-contained example that is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/rocrand`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/rocrand``.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/rocrand``, and the equivalent Fortran 2003
+version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
+instead of Fortran array pointers, lives in ``test/f2003/rocrand``.
 
 hipRAND offers the same functionality through an API that follows cuRAND; see
 the :doc:`hipRAND examples <hiprand-examples>`.
 
-The page is organised by generator, because that is the one choice a program
+The page is organized by generator, because that is the one choice a program
 makes up front. Each section shows one worked example and names the sibling
 programs that pair the same generator with the other distributions.
 
@@ -45,10 +45,11 @@ A rocRAND program always follows the same sequence:
 
 Keep the following conventions in mind:
 
-* rocRAND writes **directly into device memory**; there is no host-side
-  generation path. The output buffer argument is typed ``type(c_ptr)`` in the
-  binding, so the Fortran 2008 programs pass ``c_loc(dx(1))`` rather than the
-  array pointer itself.
+* The programs generate **directly into device memory**. The C-binding
+  overload takes ``type(c_ptr)``, and the programs call it explicitly with
+  ``c_loc(dx(1))`` so the same source compiles whether or not the Fortran
+  2008 array overloads are enabled. (rocRAND also provides host generators via
+  ``rocrand_create_generator_host``, which are not covered here.)
 * The count argument is the number of *elements*, typed
   ``integer(c_size_t)``, not a byte count.
 * A fixed seed makes a pseudo-random sequence reproducible, which is what lets
@@ -139,7 +140,7 @@ MTGP32
 ------
 
 ``ROCRAND_RNG_PSEUDO_MTGP32`` selects the Mersenne Twister for graphics
-processors. This example uses the double-precision normal distribution.
+processors. This example uses the normal distribution.
 
 .. literalinclude:: ../../test/f2008/rocrand/mtgp32_normal.f08
    :language: fortran

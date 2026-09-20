@@ -11,17 +11,17 @@ implementation of the Basic Linear Algebra Subprograms (BLAS) for AMD GPUs.
 hipFORT exposes it through the ``hipfort_rocblas`` module, which mirrors the
 rocBLAS C API one to one, together with ``hipfort_rocblas_enums`` for the
 enumerations (``rocblas_operation_none``, ``rocblas_fill_lower`` and so on).
-rocSOLVER and rocSPARSE reuse the rocBLAS handle type, so the patterns on this
-page carry over to those libraries as well.
+rocSOLVER reuses the rocBLAS handle type, so the patterns on this page carry
+over to that library as well; rocSPARSE has its own ``rocsparse_handle``.
 
 Every program on this page is a complete, self-contained example that is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/rocblas``. Most of them have an equivalent Fortran 2003 source in
-``test/f2003/rocblas``, which uses ``type(c_ptr)`` device pointers and explicit
-byte counts instead of Fortran array pointers. The two batched-pointer and
-packed-storage examples, ``dgemv_batched`` and ``stpsv``, are Fortran 2008
-only. One further program, ``test/f2018/rocblas/saxpy.f90``, exercises the
-Fortran 2018 assumed-rank interfaces and is described below.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/rocblas``. Most also have an equivalent Fortran
+2003 version in ``test/f2003/rocblas``, which uses ``type(c_ptr)`` device
+pointers and explicit byte counts instead of Fortran array pointers. The two
+batched-pointer and packed-storage examples, ``dgemv_batched`` and ``stpsv``,
+are Fortran 2008 only. One further program, ``test/f2018/rocblas/saxpy.f90``,
+exercises the Fortran 2018 assumed-rank interfaces and is described below.
 
 hipBLAS offers the same functionality through an API that follows cuBLAS; see
 the :doc:`hipBLAS examples <hipblas-examples>`.

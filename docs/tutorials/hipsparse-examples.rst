@@ -11,18 +11,18 @@ layer over rocSPARSE whose API follows cuSPARSE. hipFORT exposes it through the
 ``hipfort_hipsparse`` module.
 
 Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The Fortran 2008 sources live in
-``test/f2008/hipsparse`` and the equivalent Fortran 2003 sources, which use
-``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
-array pointers, live in ``test/f2003/hipsparse``.
+and run as part of the hipFORT test suite. The Fortran 2008 version of each
+program lives in ``test/f2008/hipsparse``, and the equivalent Fortran 2003
+version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
+instead of Fortran array pointers, lives in ``test/f2003/hipsparse``.
 
 If you want direct access to rocSPARSE rather than a cuSPARSE-style interface,
 see the :doc:`rocSPARSE examples <rocsparse-examples>`, where the equivalent
 programs are written against the ``hipfort_rocsparse`` module.
 
-Where a routine has the four precisions, a program is provided for each: ``s``
-(real single), ``d`` (real double), ``c`` (complex single), and ``z`` (complex
-double). This page shows the double-precision program of each group; the other
+Many routines come in the four precisions: ``s`` (real single), ``d`` (real
+double), ``c`` (complex single), and ``z`` (complex double). Where several are
+provided, this page shows the double-precision program of the group; the other
 precisions differ only in the host data type and the ``hipsparse`` prefix
 letter.
 
@@ -42,8 +42,9 @@ hipSPARSE follows a small number of conventions that recur in every program:
   wraps the operands in matrix/vector descriptors (``hipsparseCreateCsr``,
   ``hipsparseCreateDnMat``, ``hipsparseCreateDnVec``) and runs in stages: query
   a workspace size, optionally preprocess/analyze, then compute. The older
-  level-2/level-3 API (``csrsv2``, ``csrilu02``, ``gemvi``) uses an info handle
-  and a matrix descriptor (``hipsparseCreateMatDescr``).
+  level-2/level-3 API (``csrsv2``, ``csrilu02``) uses an info handle and a
+  matrix descriptor (``hipsparseCreateMatDescr``), while ``gemvi`` only needs a
+  plain workspace buffer.
 * **Zero-size buffers.** When a workspace query returns 0, pass a null pointer,
   not an allocated one: hipSPARSE returns ``HIPSPARSE_STATUS_INVALID_VALUE`` if
   a non-null buffer is supplied for a zero-size workspace. The programs allocate
@@ -118,7 +119,7 @@ analysis phase, then solve.
 Sparse matrix-matrix multiplication
 ===================================
 
-``csrgemm`` multiplies two sparse matrices, ``C = alpha*A*B``. Because the
+``csrgemm`` multiplies two sparse matrices, ``C = A*B``. Because the
 sparsity pattern of ``C`` is not known in advance, the routine runs in two
 passes: ``nnz`` first computes the number of nonzeros and the row pointers of
 ``C``, then the values pass fills the columns and values.
@@ -131,8 +132,9 @@ Incomplete-LU preconditioner
 
 ``csrilu02`` computes an incomplete LU factorization with zero fill-in, used as
 a preconditioner. It follows the info-handle pattern: a buffer-size query, an
-analysis phase that inspects the pattern, and the factorization itself, with a
-zero-pivot query to detect breakdown.
+analysis phase that inspects the pattern, and the factorization itself.
+``hipsparseXcsrilu02_zeroPivot`` can be queried after either phase to detect
+breakdown.
 
 .. literalinclude:: ../../test/f2008/hipsparse/hipsparse_dcsrilu02.f08
    :language: fortran
@@ -140,8 +142,9 @@ zero-pivot query to detect breakdown.
 Tridiagonal solver
 ==================
 
-``gtsv`` solves a tridiagonal system given its three diagonals. It is a direct
-banded solver rather than an iterative one.
+``gtsv2`` solves a tridiagonal system given its three diagonals. It is a direct
+banded solver rather than an iterative one. The program below is the single
+precision one.
 
 .. literalinclude:: ../../test/f2008/hipsparse/hipsparse_sgtsv.f08
    :language: fortran
