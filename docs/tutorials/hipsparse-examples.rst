@@ -8,7 +8,7 @@ hipSPARSE examples
 
 `hipSPARSE <https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/>`_ is a thin
 layer over rocSPARSE whose API follows cuSPARSE. hipFORT exposes it through the
-``hipfort_hipsparse`` module.
+``hipsparse`` module.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -18,7 +18,7 @@ instead of Fortran array pointers, lives in ``test/f2003/hipsparse``.
 
 If you want direct access to rocSPARSE rather than a cuSPARSE-style interface,
 see the :doc:`rocSPARSE examples <rocsparse-examples>`, where the equivalent
-programs are written against the ``hipfort_rocsparse`` module.
+programs are written against the ``rocsparse`` module.
 
 Many routines come in the four precisions: ``s`` (real single), ``d`` (real
 double), ``c`` (complex single), and ``z`` (complex double). Where several are
@@ -50,8 +50,8 @@ hipSPARSE follows a small number of conventions that recur in every program:
   a non-null buffer is supplied for a zero-size workspace. The programs allocate
   the buffer only when the queried size is positive.
 * **Every call returns a status code.** The programs wrap hipSPARSE calls in
-  ``hipsparseCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
-  module, both of which abort on failure.
+  ``hipsparseCheck`` from the ``hipsparse`` module and HIP calls in ``hipCheck``
+  from the ``hip`` module, both of which abort on failure.
 
 Building and running
 ====================

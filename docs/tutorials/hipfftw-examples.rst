@@ -10,7 +10,7 @@ hipFFTW is the FFTW3-compatible interface shipped with
 `hipFFT <https://rocm.docs.amd.com/projects/hipFFT/en/latest/>`_. The routine
 names, planner flags and calling sequence are those of FFTW3, so existing FFTW
 code moves across with little change. hipFORT exposes it through the
-``hipfort_hipfftw`` module.
+``hipfftw`` module.
 
 The one difference that matters: the ``in`` and ``out`` arguments must point to
 **GPU-accessible** memory. FFTW declares them ``void*``, so a pointer from
@@ -46,7 +46,7 @@ Keep the following conventions in mind:
 * FFTW transforms are **unnormalized**. A forward transform followed by an
   inverse transform of length ``N`` returns ``N`` times the original data.
 * Planner flags are the standard FFTW values and come from the
-  ``hipfort_hipfftw_enums`` module, which ``hipfort_hipfftw`` re-exports:
+  ``hipfftw`` module:
   ``FFTW_ESTIMATE``, ``FFTW_MEASURE``, ``FFTW_PATIENT``, ``FFTW_EXHAUSTIVE``,
   ``FFTW_WISDOM_ONLY``, and the direction flags ``FFTW_FORWARD`` and
   ``FFTW_BACKWARD``. Do not redeclare them locally; a local definition clashes

@@ -8,7 +8,7 @@ hipSOLVER examples
 
 `hipSOLVER <https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/>`_ is a thin
 layer over rocSOLVER whose API follows cuSOLVER. hipFORT exposes it through the
-``hipfort_hipsolver`` module.
+``hipsolver`` module.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 programs live in
@@ -18,7 +18,7 @@ array pointers, live in ``test/f2003/hipsolver``.
 
 If you want direct access to rocSOLVER rather than a cuSOLVER-style interface,
 see the :doc:`rocSOLVER examples <rocsolver-examples>`, where the equivalent
-programs are written against the ``hipfort_rocsolver`` module.
+programs are written against the ``rocsolver`` module.
 
 Many routines come in the four LAPACK precisions: ``s`` (real single), ``d``
 (real double), ``c`` (complex single), and ``z`` (complex double). Where several
@@ -60,8 +60,8 @@ Keep the following conventions in mind:
   eigenvectors are computed. The SVD job arguments are ``character(c_char)`` job
   codes (``'N'``, ``'A'``, ``'S'``, ``'O'``) passed by value.
 * **Every call returns a status code.** The programs wrap hipSOLVER calls in
-  ``hipsolverCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
-  module, both of which abort on failure.
+  ``hipsolverCheck`` from the ``hipsolver`` module and HIP calls in ``hipCheck``
+  from the ``hip`` module, both of which abort on failure.
 
 Building and running
 ====================

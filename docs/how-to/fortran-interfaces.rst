@@ -43,7 +43,7 @@ bytes:
 .. code-block:: fortran
 
    use iso_c_binding
-   use hipfort
+   use hip
    integer      :: ierr       ! error code
    real, target :: a_h(5,6)   ! host array ('target' is required by c_loc)
    type(c_ptr)  :: a_d        ! device array pointer
@@ -58,7 +58,7 @@ elements rather than bytes:
 
 .. code-block:: fortran
 
-   use hipfort
+   use hip
    integer       :: ierr      ! error code
    real          :: a_h(5,6)  ! host array
    real, pointer :: a_d(:,:)  ! device array pointer

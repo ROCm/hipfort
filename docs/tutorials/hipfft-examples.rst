@@ -8,7 +8,7 @@ hipFFT examples
 
 `hipFFT <https://rocm.docs.amd.com/projects/hipFFT/en/latest/>`_ is a thin layer
 over rocFFT with an API that follows cuFFT. hipFORT exposes it through the
-``hipfort_hipfft`` module.
+``hipfft`` module.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -49,7 +49,7 @@ Keep the following conventions in mind:
   contiguous. This is the opposite of rocFFT, which takes the fastest-varying
   dimension first.
 * Every hipFFT call returns a status code. The programs wrap them in
-  ``hipfftCheck`` from the ``hipfort_check`` module, which aborts on failure.
+  ``hipfftCheck`` from the ``hipfft`` module, which aborts on failure.
 
 Building and running
 ====================

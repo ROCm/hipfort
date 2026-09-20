@@ -8,9 +8,9 @@ rocBLAS examples
 
 `rocBLAS <https://rocm.docs.amd.com/projects/rocBLAS/en/latest/>`_ is the AMD
 implementation of the Basic Linear Algebra Subprograms (BLAS) for AMD GPUs.
-hipFORT exposes it through the ``hipfort_rocblas`` module, which mirrors the
-rocBLAS C API one to one, together with ``hipfort_rocblas_enums`` for the
-enumerations (``rocblas_operation_none``, ``rocblas_fill_lower`` and so on).
+hipFORT exposes it through the ``rocblas`` module, which mirrors the
+rocBLAS C API one to one and carries the enumerations
+(``rocblas_operation_none``, ``rocblas_fill_lower`` and so on).
 rocSOLVER reuses the rocBLAS handle type, so the patterns on this page carry
 over to that library as well; rocSPARSE has its own ``rocsparse_handle``.
 
@@ -63,9 +63,9 @@ Keep the following conventions in mind:
   dimension, ``size(dA,1)``.
 * Enumerations such as ``rocblas_operation_none``, ``rocblas_fill_lower``,
   ``rocblas_diagonal_non_unit`` and ``rocblas_side_left`` come from the
-  ``hipfort_rocblas_enums`` module (re-exported by ``hipfort_rocblas``).
+  ``rocblas`` module.
 * Every rocBLAS call returns a status code. The examples wrap them in
-  ``rocblasCheck`` from the ``hipfort_check`` module, which aborts on failure.
+  ``rocblasCheck`` from the ``rocblas`` module, which aborts on failure.
   (``dgemv_batched.f08`` uses ``hipCheck`` for its rocBLAS calls instead; both
   abort on a non-zero status.)
 

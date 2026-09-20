@@ -8,11 +8,9 @@ HIP runtime examples
 
 The `HIP runtime <https://rocm.docs.amd.com/projects/HIP/en/latest/>`_ is the
 API used to manage devices, memory, streams, events, graphs and kernel
-launches. hipFORT exposes it through the ``hipfort`` module, with enumerators in
-``hipfort_enums``, derived types in ``hipfort_types``, and the status-checking
-helpers in ``hipfort_check``. A few routines live in their own modules:
-``hipGetDeviceProperties`` in ``hipfort_auxiliary``, ``hipMemcpy2DAsync`` in
-``hipfort_hipmemcpy`` and ``hipHostRegister`` in ``hipfort_hiphostregister``.
+launches. hipFORT exposes all of it through a single ``hip`` module: the
+routines, the enumerators, the derived types and the ``hipCheck``
+status-checking helper.
 
 Every program on this page is complete and self-contained, and is built and run
 as part of the hipFORT test suite. Each program lives in ``test/f2003/hip``,
@@ -31,7 +29,7 @@ Conventions
   libraries, these overloads are not guarded by ``USE_FPOINTER_INTERFACES``, so
   they are available in every hipFORT build.
 * **Every call returns a status code.** The programs wrap calls in ``hipCheck``
-  from the ``hipfort_check`` module, which aborts on failure. A call whose
+  from the ``hip`` module, which aborts on failure. A call whose
   non-success return is the thing being tested, such as ``hipStreamQuery``,
   keeps the status in a variable instead.
 * **Enumerators are integers.** Declare status variables as

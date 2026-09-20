@@ -8,7 +8,7 @@ rocFFT examples
 
 `rocFFT <https://rocm.docs.amd.com/projects/rocFFT/en/latest/>`_ is the AMD
 implementation of the fast Fourier transform for AMD GPUs. hipFORT exposes it
-through the ``hipfort_rocfft`` module, which mirrors the rocFFT C API one to
+through the ``rocfft`` module, which mirrors the rocFFT C API one to
 one.
 
 Every program on this page is complete and self-contained, and is built
@@ -90,7 +90,7 @@ Keep the following conventions in mind:
   ``type(c_ptr)`` expression, such as ``c_loc(dx)``, and the compiler passes
   its address. For in-place transforms the output argument is ``c_null_ptr``.
 * Every rocFFT call returns a status code. The programs wrap them in
-  ``rocfftCheck`` from the ``hipfort_check`` module, which aborts on failure.
+  ``rocfftCheck`` from the ``rocfft`` module, which aborts on failure.
 
 Building and running
 ====================
