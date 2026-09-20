@@ -207,6 +207,14 @@ macro(hipfort_add_component name imported_target)
   )
 endmacro()
 
+# The find_package calls below pass PATHS ${ROCM_PATH}, but PATHS is local to
+# the call that names it: it is not propagated to the find_dependency calls a
+# package config makes for its own dependencies. hipblas-config.cmake, for
+# instance, does find_dependency(hipblas-common), which would then search only
+# CMAKE_PREFIX_PATH and miss a ROCm installed outside the default prefixes.
+# Putting ROCM_PATH on CMAKE_PREFIX_PATH covers those transitive lookups too.
+list(APPEND CMAKE_PREFIX_PATH ${ROCM_PATH})
+
 find_package(hip PATHS ${ROCM_PATH})
 find_package(CUDAToolkit QUIET)
 if(HIP_PLATFORM STREQUAL "amd")
