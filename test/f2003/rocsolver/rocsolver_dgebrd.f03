@@ -74,14 +74,14 @@ program dgebrd
     error = abs(hD(i) - refD(i))
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " D(", i, ") = ", hD(i)
-        call exit
+        call exit(1)
     end if
   end do
   do i = 1,2
     error = abs(hE(i) - refE(i))
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " E(", i, ") = ", hE(i)
-        call exit
+        call exit(1)
     end if
   end do
 
@@ -89,7 +89,7 @@ program dgebrd
   error = abs(sum(hD*hD) + sum(hE*hE) - normA2)
   if(error .gt. 1.0d-6) then
       write(*,*) "FAILED! Norm not preserved! Error = ", error
-      call exit
+      call exit(1)
   end if
 
   ! Clean up

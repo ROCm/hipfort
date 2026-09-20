@@ -97,7 +97,7 @@ program sgesvd
         error = abs(recon(i,j) - hA0(i,j)) / max(abs(hA0(i,j)), 1.0)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " at (", i, ",", j, ")"
-            call exit
+            call exit(1)
         end if
     end do
   end do

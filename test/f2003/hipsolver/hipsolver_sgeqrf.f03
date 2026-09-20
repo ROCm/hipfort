@@ -90,7 +90,7 @@ program sgeqrf
       error = abs(lhs - rhs)
       if(error .gt. error_max) then
           write(*,*) "FAILED! Error bigger than max! Error = ", error, " (", i, ",", j, ")"
-          call exit
+          call exit(1)
       end if
     end do
   end do

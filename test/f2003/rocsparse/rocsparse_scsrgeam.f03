@@ -103,12 +103,12 @@ program scsrgeam
   ! Verify nnz and row pointers
   if(nnz_C /= 5) then
     write(*,*) "FAILED! nnz_C = ", nnz_C, " expected 5"
-    call exit
+    call exit(1)
   end if
   do i = 1,N+1
     if(h_row_ptr_C(i) /= h_exp_row_ptr(i)) then
         write(*,*) "FAILED! row_ptr_C(", i, ") = ", h_row_ptr_C(i), " expected ", h_exp_row_ptr(i)
-        call exit
+        call exit(1)
     end if
   end do
 
@@ -121,12 +121,12 @@ program scsrgeam
     do i = 1,nnz_C
       if(h_col_ind_C(i) /= h_exp_col_ind(i)) then
           write(*,*) "FAILED! col_ind_C(", i, ") = ", h_col_ind_C(i), " expected ", h_exp_col_ind(i)
-          call exit
+          call exit(1)
       end if
       error = abs(h_val_C(i) - h_exp_val(i)) / max(abs(h_exp_val(i)), 1.0)
       if(error .gt. error_max) then
           write(*,*) "FAILED! val_C(", i, ") = ", h_val_C(i), " expected ", h_exp_val(i)
-          call exit
+          call exit(1)
       end if
     end do
   end block

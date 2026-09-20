@@ -76,28 +76,28 @@ program ssptrsv
   call rocsparseCheck(rocsparse_create_csr_descr(matL, int(M,c_int64_t), int(N,c_int64_t), int(nnz,c_int64_t), &
                           d_csr_row_ptr, d_csr_col_ind, d_csr_val, &
                           rocsparse_indextype_i32, rocsparse_indextype_i32, &
-                          rocsparse_index_base_zero, rocsparse_datatype_f64_r))
+                          rocsparse_index_base_zero, rocsparse_datatype_f32_r))
   call rocsparseCheck(rocsparse_spmat_set_attribute(matL, rocsparse_spmat_fill_mode, c_loc(fill), int(4,c_size_t)))
   call rocsparseCheck(rocsparse_spmat_set_attribute(matL, rocsparse_spmat_diag_type, c_loc(diag), int(4,c_size_t)))
 
   ! Dense-vector descriptors for the rhs (x) and the solution (y)
-  call rocsparseCheck(rocsparse_create_dnvec_descr(vecX, int(M,c_int64_t), d_x, rocsparse_datatype_f64_r))
-  call rocsparseCheck(rocsparse_create_dnvec_descr(vecY, int(M,c_int64_t), d_y, rocsparse_datatype_f64_r))
+  call rocsparseCheck(rocsparse_create_dnvec_descr(vecX, int(M,c_int64_t), d_x, rocsparse_datatype_f32_r))
+  call rocsparseCheck(rocsparse_create_dnvec_descr(vecY, int(M,c_int64_t), d_y, rocsparse_datatype_f32_r))
 
   ! Stage 1: workspace size
   call rocsparseCheck(rocsparse_spsv(handle, rocsparse_operation_none, c_loc(alpha), matL, vecX, vecY, &
-                          rocsparse_datatype_f64_r, rocsparse_spsv_alg_default, &
+                          rocsparse_datatype_f32_r, rocsparse_spsv_alg_default, &
                           rocsparse_spsv_stage_buffer_size, buffer_size, c_null_ptr))
   call hipCheck(hipMalloc(d_buffer, max(buffer_size, 1_c_size_t)))
 
   ! Stage 2: preprocess (analysis)
   call rocsparseCheck(rocsparse_spsv(handle, rocsparse_operation_none, c_loc(alpha), matL, vecX, vecY, &
-                          rocsparse_datatype_f64_r, rocsparse_spsv_alg_default, &
+                          rocsparse_datatype_f32_r, rocsparse_spsv_alg_default, &
                           rocsparse_spsv_stage_preprocess, buffer_size, d_buffer))
 
   ! Stage 3: solve
   call rocsparseCheck(rocsparse_spsv(handle, rocsparse_operation_none, c_loc(alpha), matL, vecX, vecY, &
-                          rocsparse_datatype_f64_r, rocsparse_spsv_alg_default, &
+                          rocsparse_datatype_f32_r, rocsparse_spsv_alg_default, &
                           rocsparse_spsv_stage_compute, buffer_size, d_buffer))
 
   ! Copy the recovered solution back
@@ -108,7 +108,7 @@ program ssptrsv
     error = abs(h_yout(i) - h_y(i)) / max(abs(h_y(i)), 1.0)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " y(", i, ") = ", h_yout(i)
-        call exit
+        call exit(1)
     end if
   end do
 

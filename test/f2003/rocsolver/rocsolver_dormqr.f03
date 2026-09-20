@@ -76,7 +76,7 @@ program dormqr
       error = abs(hC(i,j) - hC0(i,j))
       if(error .gt. error_max) then
           write(*,*) "FAILED! Round trip mismatch! Error = ", error, " (", i, ",", j, ")"
-          call exit
+          call exit(1)
       end if
     end do
   end do

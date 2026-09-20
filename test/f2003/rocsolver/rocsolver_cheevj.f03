@@ -84,7 +84,7 @@ program cheevj
         error = abs(lhs(i) - rhs(i))
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k
-            call exit
+            call exit(1)
         end if
     end do
   end do

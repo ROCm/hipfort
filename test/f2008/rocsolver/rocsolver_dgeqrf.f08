@@ -55,7 +55,7 @@ program dgeqrf
         error = abs(hA(i,j) - hResult(i,j))
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hA(", i, ",", j, ") = ", hA(i,j)
-            call exit
+            call exit(1)
         end if
       ! print *, (hA(i,j), j=1,size(hA,2))
       ! print *, (hResult(i,j), j=1,size(hA,2))

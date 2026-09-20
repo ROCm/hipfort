@@ -70,7 +70,7 @@ program fortran_hip
      error = abs(out(i) - (a(i)+b(i)) )
      if( error .gt. error_max ) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " Out = ", out(i)
-        call exit
+        call exit(1)
      endif
   end do
 
