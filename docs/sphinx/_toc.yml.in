@@ -16,6 +16,8 @@ subtrees:
         title: Use hipFORT
       - file: how-to/fortran-interfaces.rst
         title: Fortran interface variants
+      - file: how-to/migration-guide.rst
+        title: Migrate to the ROCm-packaged bindings
 
   - caption: Tutorials
     entries:
