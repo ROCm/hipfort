@@ -10,56 +10,56 @@ program test_rocrand
   use rocrand
   implicit none
   logical :: never
-  integer(c_int) :: v0
-  integer(kind(ROCRAND_STATUS_SUCCESS)) :: v1
-  real(c_double) :: v2
-  type(c_ptr) :: v3
-  integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v4
-  integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)) :: v5
-  integer(c_size_t) :: v6
-  real(c_float) :: v7
-  integer(c_short) :: v8
-  integer(c_int64_t) :: v9
-  type(uint4) :: v10
-  integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)) :: v11
+  type(c_ptr) :: v0
+  integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)) :: v1
+  integer(kind(ROCRAND_STATUS_SUCCESS)) :: v2
+  integer(c_size_t) :: v3
+  integer(c_short) :: v4
+  integer(c_int64_t) :: v5
+  type(uint4) :: v6
+  integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)) :: v7
+  integer(c_int) :: v8
+  real(c_double) :: v9
+  integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v10
+  real(c_float) :: v11
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) v1 = rocrand_get_version(v0)
-    if (never) v1 = rocrand_create_poisson_distribution(v2, v3)
-    if (never) v1 = rocrand_destroy_discrete_distribution(v3)
-    if (never) v1 = rocrand_get_direction_vectors32(v3, v4)
-    if (never) v1 = rocrand_get_direction_vectors64(v3, v4)
-    if (never) v1 = rocrand_get_scramble_constants32(v3)
-    if (never) v1 = rocrand_get_scramble_constants64(v3)
-    if (never) v1 = rocrand_create_generator_(v3, v5)
-    if (never) v1 = rocrand_create_generator_host_(v3, v5)
-    if (never) v1 = rocrand_create_generator_host_blocking_(v3, v5)
-    if (never) v1 = rocrand_destroy_generator_(v3)
-    if (never) v1 = rocrand_generate_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_long_long_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_char_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_short_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_uniform_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_uniform_double_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_uniform_half_(v3, v3, v6)
-    if (never) v1 = rocrand_generate_normal_(v3, v3, v6, v7, v7)
-    if (never) v1 = rocrand_generate_normal_double_(v3, v3, v6, v2, v2)
-    if (never) v1 = rocrand_generate_normal_half_(v3, v3, v6, v8, v8)
-    if (never) v1 = rocrand_generate_log_normal_(v3, v3, v6, v7, v7)
-    if (never) v1 = rocrand_generate_log_normal_double_(v3, v3, v6, v2, v2)
-    if (never) v1 = rocrand_generate_log_normal_half_(v3, v3, v6, v8, v8)
-    if (never) v1 = rocrand_generate_poisson_(v3, v3, v6, v2)
-    if (never) v1 = rocrand_initialize_generator_(v3)
-    if (never) v1 = rocrand_set_stream_(v3, v3)
-    if (never) v1 = rocrand_set_seed_(v3, v9)
-    if (never) v1 = rocrand_set_seed_uint4_(v3, v10)
-    if (never) v1 = rocrand_set_offset_(v3, v9)
-    if (never) v1 = rocrand_set_ordering_(v3, v11)
-    if (never) v1 = rocrand_set_quasi_random_generator_dimensions_(v3, v0)
-    if (never) v1 = rocrand_create_discrete_distribution_(v3, v0, v0, v3)
+    if (never) v2 = rocrand_create_generator(v0, v1)
+    if (never) v2 = rocrand_create_generator_host(v0, v1)
+    if (never) v2 = rocrand_create_generator_host_blocking(v0, v1)
+    if (never) v2 = rocrand_destroy_generator(v0)
+    if (never) v2 = rocrand_generate_char(v0, v0, v3)
+    if (never) v2 = rocrand_generate_short(v0, v0, v3)
+    if (never) v2 = rocrand_generate_uniform_half(v0, v0, v3)
+    if (never) v2 = rocrand_generate_normal_half(v0, v0, v3, v4, v4)
+    if (never) v2 = rocrand_generate_log_normal_half(v0, v0, v3, v4, v4)
+    if (never) v2 = rocrand_initialize_generator(v0)
+    if (never) v2 = rocrand_set_stream(v0, v0)
+    if (never) v2 = rocrand_set_seed(v0, v5)
+    if (never) v2 = rocrand_set_seed_uint4(v0, v6)
+    if (never) v2 = rocrand_set_offset(v0, v5)
+    if (never) v2 = rocrand_set_ordering(v0, v7)
+    if (never) v2 = rocrand_set_quasi_random_generator_dimensions(v0, v8)
+    if (never) v2 = rocrand_get_version(v8)
+    if (never) v2 = rocrand_create_poisson_distribution(v9, v0)
+    if (never) v2 = rocrand_destroy_discrete_distribution(v0)
+    if (never) v2 = rocrand_get_direction_vectors32(v0, v10)
+    if (never) v2 = rocrand_get_direction_vectors64(v0, v10)
+    if (never) v2 = rocrand_get_scramble_constants32(v0)
+    if (never) v2 = rocrand_get_scramble_constants64(v0)
+    if (never) v2 = rocrand_generate_(v0, v0, v3)
+    if (never) v2 = rocrand_generate_long_long_(v0, v0, v3)
+    if (never) v2 = rocrand_generate_uniform_(v0, v0, v3)
+    if (never) v2 = rocrand_generate_uniform_double_(v0, v0, v3)
+    if (never) v2 = rocrand_generate_normal_(v0, v0, v3, v11, v11)
+    if (never) v2 = rocrand_generate_normal_double_(v0, v0, v3, v9, v9)
+    if (never) v2 = rocrand_generate_log_normal_(v0, v0, v3, v11, v11)
+    if (never) v2 = rocrand_generate_log_normal_double_(v0, v0, v3, v9, v9)
+    if (never) v2 = rocrand_generate_poisson_(v0, v0, v3, v9)
+    if (never) v2 = rocrand_create_discrete_distribution_(v0, v8, v8, v0)
 
   write(*,"(a)") "-- test_rocrand (bind(C) symbols): PASSED (compile+link only)!"
 end program test_rocrand

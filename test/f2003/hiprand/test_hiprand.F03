@@ -10,52 +10,52 @@ program test_hiprand
   use hiprand
   implicit none
   logical :: never
-  integer(c_int) :: v0
-  integer(kind(HIPRAND_STATUS_SUCCESS)) :: v1
-  type(c_ptr) :: v2
-  integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v3
-  integer(kind(HIPRAND_RNG_TEST)) :: v4
-  integer(c_size_t) :: v5
-  real(c_float) :: v6
-  real(c_double) :: v7
-  integer(c_short) :: v8
-  integer(c_int64_t) :: v9
-  integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)) :: v10
+  type(c_ptr) :: v0
+  integer(kind(HIPRAND_RNG_TEST)) :: v1
+  integer(kind(HIPRAND_STATUS_SUCCESS)) :: v2
+  integer(c_size_t) :: v3
+  integer(c_short) :: v4
+  integer(c_int64_t) :: v5
+  integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)) :: v6
+  integer(c_int) :: v7
+  real(c_double) :: v8
+  integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v9
+  real(c_float) :: v10
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) v1 = hiprandGetVersion(v0)
-    if (never) v1 = hiprandGetDirectionVectors32(v2, v3)
-    if (never) v1 = hiprandGetDirectionVectors64(v2, v3)
-    if (never) v1 = hiprandGetScrambleConstants32(v2)
-    if (never) v1 = hiprandGetScrambleConstants64(v2)
-    if (never) v1 = hiprandCreateGenerator_(v2, v4)
-    if (never) v1 = hiprandCreateGeneratorHost_(v2, v4)
-    if (never) v1 = hiprandDestroyGenerator_(v2)
-    if (never) v1 = hiprandGenerate_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateChar_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateShort_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateLongLong_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateUniform_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateUniformDouble_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateUniformHalf_(v2, v2, v5)
-    if (never) v1 = hiprandGenerateNormal_(v2, v2, v5, v6, v6)
-    if (never) v1 = hiprandGenerateNormalDouble_(v2, v2, v5, v7, v7)
-    if (never) v1 = hiprandGenerateNormalHalf_(v2, v2, v5, v8, v8)
-    if (never) v1 = hiprandGenerateLogNormal_(v2, v2, v5, v6, v6)
-    if (never) v1 = hiprandGenerateLogNormalDouble_(v2, v2, v5, v7, v7)
-    if (never) v1 = hiprandGenerateLogNormalHalf_(v2, v2, v5, v8, v8)
-    if (never) v1 = hiprandGeneratePoisson_(v2, v2, v5, v7)
-    if (never) v1 = hiprandGenerateSeeds_(v2)
-    if (never) v1 = hiprandSetStream_(v2, v2)
-    if (never) v1 = hiprandSetPseudoRandomGeneratorSeed_(v2, v9)
-    if (never) v1 = hiprandSetGeneratorOffset_(v2, v9)
-    if (never) v1 = hiprandSetGeneratorOrdering_(v2, v10)
-    if (never) v1 = hiprandSetQuasiRandomGeneratorDimensions_(v2, v0)
-    if (never) v1 = hiprandCreatePoissonDistribution_(v7, v2)
-    if (never) v1 = hiprandDestroyDistribution_(v2)
+    if (never) v2 = hiprandCreateGenerator(v0, v1)
+    if (never) v2 = hiprandCreateGeneratorHost(v0, v1)
+    if (never) v2 = hiprandDestroyGenerator(v0)
+    if (never) v2 = hiprandGenerateChar(v0, v0, v3)
+    if (never) v2 = hiprandGenerateShort(v0, v0, v3)
+    if (never) v2 = hiprandGenerateUniformHalf(v0, v0, v3)
+    if (never) v2 = hiprandGenerateNormalHalf(v0, v0, v3, v4, v4)
+    if (never) v2 = hiprandGenerateLogNormalHalf(v0, v0, v3, v4, v4)
+    if (never) v2 = hiprandGenerateSeeds(v0)
+    if (never) v2 = hiprandSetStream(v0, v0)
+    if (never) v2 = hiprandSetPseudoRandomGeneratorSeed(v0, v5)
+    if (never) v2 = hiprandSetGeneratorOffset(v0, v5)
+    if (never) v2 = hiprandSetGeneratorOrdering(v0, v6)
+    if (never) v2 = hiprandSetQuasiRandomGeneratorDimensions(v0, v7)
+    if (never) v2 = hiprandGetVersion(v7)
+    if (never) v2 = hiprandCreatePoissonDistribution(v8, v0)
+    if (never) v2 = hiprandDestroyDistribution(v0)
+    if (never) v2 = hiprandGetDirectionVectors32(v0, v9)
+    if (never) v2 = hiprandGetDirectionVectors64(v0, v9)
+    if (never) v2 = hiprandGetScrambleConstants32(v0)
+    if (never) v2 = hiprandGetScrambleConstants64(v0)
+    if (never) v2 = hiprandGenerate_(v0, v0, v3)
+    if (never) v2 = hiprandGenerateLongLong_(v0, v0, v3)
+    if (never) v2 = hiprandGenerateUniform_(v0, v0, v3)
+    if (never) v2 = hiprandGenerateUniformDouble_(v0, v0, v3)
+    if (never) v2 = hiprandGenerateNormal_(v0, v0, v3, v10, v10)
+    if (never) v2 = hiprandGenerateNormalDouble_(v0, v0, v3, v8, v8)
+    if (never) v2 = hiprandGenerateLogNormal_(v0, v0, v3, v10, v10)
+    if (never) v2 = hiprandGenerateLogNormalDouble_(v0, v0, v3, v8, v8)
+    if (never) v2 = hiprandGeneratePoisson_(v0, v0, v3, v8)
 
   write(*,"(a)") "-- test_hiprand (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hiprand

@@ -18,18 +18,18 @@ program test_roctx
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) call roctxMark_(v0)
-    if (never) v1 = roctxRangePush_(v0)
-    if (never) v1 = roctxRangePop_()
-    if (never) v2 = roctxRangeStart_(v0)
-    if (never) call roctxRangeStop_(v2)
-    if (never) v1 = roctxProfilerPause_(v2)
-    if (never) v1 = roctxProfilerResume_(v2)
-    if (never) v1 = roctxNameOsThread_(v0)
-    if (never) v1 = roctxNameHsaAgent_(v0, v0)
-    if (never) v1 = roctxNameHipDevice_(v0, v1)
-    if (never) v1 = roctxNameHipStream_(v0, v0)
-    if (never) v1 = roctxGetThreadId_(v0)
+    if (never) call roctxMark(v0)
+    if (never) v1 = roctxRangePush(v0)
+    if (never) v1 = roctxRangePop()
+    if (never) v2 = roctxRangeStart(v0)
+    if (never) call roctxRangeStop(v2)
+    if (never) v1 = roctxProfilerPause(v2)
+    if (never) v1 = roctxProfilerResume(v2)
+    if (never) v1 = roctxNameOsThread(v0)
+    if (never) v1 = roctxNameHsaAgent(v0, v0)
+    if (never) v1 = roctxNameHipDevice(v0, v1)
+    if (never) v1 = roctxNameHipStream(v0, v0)
+    if (never) v1 = roctxGetThreadId(v0)
 
   write(*,"(a)") "-- test_roctx (bind(C) symbols): PASSED (compile+link only)!"
 end program test_roctx
