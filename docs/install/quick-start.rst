@@ -20,7 +20,7 @@ Please open an issue at https://github.com/ROCm/hipfort/issues if you run into p
 Building and testing hipFORT from source
 ========================================
 
-1. Ensure you have installed a Fortran compiler (``amdflang`` or ``gfortran``), ``git``, ``cmake``, and :doc:`HIP <hip:index>`.
+1. Ensure you have installed a Fortran compiler and a matching C compiler (``amdflang``/``amdclang`` or ``gfortran``/``gcc``), ``git``, ``cmake``, and :doc:`HIP <hip:index>`.
 2. Build, install, and test hipFORT from source using the following commands:
 
    .. code-block:: shell
@@ -33,5 +33,5 @@ Building and testing hipFORT from source
       ctest --test-dir build
 
 To build with a specific compiler and backend, pass one of the provided toolchain files, for
-example ``-DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake``. See
-:doc:`the detailed install guide <./install>` for the full list.
+example ``-DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake``. The available toolchain
+files are in ``cmake/toolchains/``; see :ref:`hipfort-toolchain-files` for details.

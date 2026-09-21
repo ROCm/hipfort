@@ -50,10 +50,10 @@ with open('../CMakeLists.txt', encoding='utf-8') as f:
     if not match:
         raise ValueError("HIPFORT_VERSION not found!")
     version_number = match[1]
-left_nav_title = f"hipfort {version_number} Documentation"
+left_nav_title = f"hipFORT {version_number} documentation"
 
 # for PDF output on Read the Docs
-project = "hipfort Documentation"
+project = "hipFORT documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc. All rights reserved."
 version = version_number

@@ -14,5 +14,3 @@ updates:
       - "documentation"
       - "dependencies"
       - "ci:docs-only"
-    reviewers:
-      - "samjwu"

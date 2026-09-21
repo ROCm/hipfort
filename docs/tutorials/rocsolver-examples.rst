@@ -10,8 +10,8 @@ rocSOLVER examples
 implementation of LAPACK for AMD GPUs. hipFORT exposes it through the
 ``hipfort_rocsolver`` module, which mirrors the rocSOLVER C API one to one.
 rocSOLVER is built on rocBLAS and reuses its handle type, so every program also
-uses the ``hipfort_rocblas`` module for ``rocblas_create_handle`` and the
-``rocblas_*`` enumerators.
+uses the ``hipfort_rocblas`` module for ``rocblas_create_handle`` and the rocBLAS
+enumerators.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -47,17 +47,18 @@ rocSOLVER follows a small number of conventions that recur in every program:
   device and are passed as device buffers.
 * **Enumerators select variants.** ``rocblas_operation_none`` /
   ``rocblas_operation_transpose`` choose whether a routine works on ``A`` or
-  ``A**T`` and ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the
+  ``A**T``, and ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the
   stored triangle; both come from ``hipfort_rocblas_enums``. The
   ``rocblas_evect_*`` and ``rocblas_svect_*`` selectors, which choose whether
   vectors are computed, are rocSOLVER enumerators from
   ``hipfort_rocsolver_enums`` despite their prefix.
 * **Every call returns a status code.** The ``hipfort_check`` module provides
-  ``hipCheck`` for HIP calls and ``rocsolverCheck`` for rocSOLVER calls; both abort
-  on failure. Most of the programs below route rocSOLVER status codes through
-  ``hipCheck`` as well. That works because both status enumerations use ``0`` for
-  success, but prefer ``rocsolverCheck`` in new code so that a failure is reported
-  as a rocSOLVER error rather than a HIP one.
+  ``hipCheck`` for HIP calls, ``rocblasCheck`` for the rocBLAS handle calls, and
+  ``rocsolverCheck`` for rocSOLVER calls; all abort on failure. Most of the
+  programs below route the rocBLAS and rocSOLVER status codes through
+  ``hipCheck`` as well. That works because both status enumerations use ``0``
+  for success, but prefer the matching helper in new code so that a failure is
+  reported as a rocBLAS or rocSOLVER error rather than a HIP one.
 
 Building and running
 ====================

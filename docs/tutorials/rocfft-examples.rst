@@ -49,8 +49,11 @@ The remaining programs cover material from the rocFFT how-to guides:
 The field and brick API, which decomposes a transform across several devices
 and is still an experimental preview, is covered by
 ``test/f2008/rocfft/rocfft_field_brick_z.f08``, the Fortran counterpart of the
-``clients/samples/multi_gpu`` sample. The test is skipped when fewer than two
-GPUs are visible.
+``clients/samples/multi_gpu`` sample. That program splits a two-dimensional
+transform over two GPUs with ``rocfft_field_create``, ``rocfft_brick_create``,
+``rocfft_plan_description_add_infield`` and
+``rocfft_plan_description_add_outfield``. The test is skipped when fewer than
+two GPUs are visible.
 
 MPI transforms have no Fortran counterpart: they need a rocFFT built with MPI
 support, so ``rocfft_plan_description_set_comm`` and friends are generated and
@@ -132,10 +135,9 @@ In-place real transforms
 
 An in-place real transform reads real values and writes ``N/2 + 1`` complex
 values into the same allocation, so the real buffer must be padded to
-``2*(N/2 + 1)`` reals: two extra reals in the contiguous dimension when ``N`` is
-even, one when it is odd. The input
-and output array types are declared on a plan description with
-``rocfft_plan_description_set_data_layout``.
+``2*(N/2 + 1)`` reals: two extra reals in the contiguous dimension when ``N``
+is even, one when it is odd. The input and output array types are declared on
+a plan description with ``rocfft_plan_description_set_data_layout``.
 
 .. literalinclude:: ../../test/f2008/rocfft/rocfft_r2c_c2r_1d_inplace_d.f08
    :language: fortran

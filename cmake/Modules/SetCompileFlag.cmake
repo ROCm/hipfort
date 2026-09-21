@@ -10,16 +10,16 @@
 # For example, if you have the flag CMAKE_C_FLAGS and you want to add
 # warnings and want to fail if this is not possible, you might call this
 # function in this manner:
-# SET_COMPILE_FLAGS(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" C REQUIRED
-#                   "-Wall"     # GNU
-#                   "-warn all" # Intel
-#                  )
-# The optin "-Wall" will be checked first, and if it works, will be
+# SET_COMPILE_FLAG(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" C REQUIRED
+#                  "-Wall"     # GNU
+#                  "-warn all" # Intel
+#                 )
+# The option "-Wall" will be checked first, and if it works, will be
 # appended to the CMAKE_C_FLAGS variable.  If it doesn't work, then
 # "-warn all" will be tried.  If this doesn't work then checking will
 # terminate because REQUIRED was given.  
 #
-# The reasong that the variable must be given twice (first as the name then
+# The reason that the variable must be given twice (first as the name then
 # as the value in quotes) is because of the way CMAKE handles the passing
 # of variables in functions; it is difficult to extract a variable's
 # contents and assign new values to it from within a function.
@@ -90,7 +90,7 @@ end program dummyprog
             ENDFOREACH(rx ${FAIL_REGEX})
 
         ELSE()
-            MESSAGE(FATAL_ERROR "Unknown language in SET_COMPILE_FLAGS: ${LANG}")
+            MESSAGE(FATAL_ERROR "Unknown language in SET_COMPILE_FLAG: ${LANG}")
         ENDIF(LANG STREQUAL "C")
 
         # If this worked, use these flags, otherwise use other flags

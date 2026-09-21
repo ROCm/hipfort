@@ -1,12 +1,19 @@
 # HIPFORT using OpenMP offload with amdflang to AMD GPUs
 
 cmake_minimum_required(VERSION 3.25)
-project(hipfort_openmp LANGUAGES Fortran C)
 
 ##### Compiler ##############
-# This file is intended to be used with amdflang
+# This project requires an LLVM Flang based compiler. Default to amdflang so that
+# it is picked even on a machine that also has gfortran. This must come before
+# project(), which is what detects the compiler: a set() placed after it would be
+# ignored, since project() has already written the cache entry.
+# Override on the command line if needed:
+#   cmake -S . -B build -DCMAKE_Fortran_COMPILER=/path/to/amdflang -DGPU_ARCH=gfx90a
 set(CMAKE_Fortran_COMPILER "amdflang" CACHE FILEPATH "Fortran compiler (set full path to amdflang if needed)")
 
+project(hipfort_openmp LANGUAGES Fortran C)
+
+# The check below aborts if the detected compiler ID is not LLVMFlang.
 if(NOT CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
     message(FATAL_ERROR "This project is intended to be used with amdflang or equivalent")
 endif()
@@ -15,7 +22,7 @@ set(CMAKE_Fortran_FLAGS "-O3 -g -cpp -fno-fast-math")
 
 ######## OpenMP offload ##########
 
-# GPU target (amdgcn arch), default to a recent AMD GPU arch; user may override
+# GPU target (amdgcn arch). No default: GPU_ARCH must be set by the user (see the FATAL_ERROR below).
 set(GPU_ARCH "None" CACHE STRING "AMD GPU architecture for OpenMP/HIP offload (e.g. gfx906,gfx90a)")
 
 if (GPU_ARCH MATCHES "None")
@@ -52,10 +59,10 @@ program main
     call cpu_time(start)
 
     ! Imagine B is given by an external routine in the CPU
-    allocate(B(n,n), source=cmplx(42.0, 42.0, kind=r64))
+    allocate(B(0:n-1,0:n-1), source=cmplx(42.0, 42.0, kind=r64))
     !$omp target enter data map(to: B)
 
-    allocate(C(n,n))
+    allocate(C(0:n-1,0:n-1))
     !$omp target enter data map(alloc: C)
 
     A_cptr = omp_target_alloc(2 * c_sizeof(1.0_c_double) * n * n, omp_get_default_device())
@@ -81,7 +88,6 @@ program main
 
     call cpu_time(finish)
 
-    write(*,*) A(1,1)
     print '(\"Time = \", f16.3, \" seconds.\")', finish - start
 
 contains
@@ -102,7 +108,8 @@ set(OMPOFFLOAD_CONFIG_TEST_LOG "${CMAKE_BINARY_DIR}/config_tests/ompoffload_test
 file(WRITE "${OMPOFFLOAD_CONFIG_TEST_LOG}" "Compilation Log:\n")
 set(OMPOFFLOAD_CONFIG_TEST_LOG_STR "")
 
-# Try to compile and run the Fortran test program during configuration.
+# Try to compile the Fortran test program during configuration. It is only
+# compiled, never run: running it would need a GPU at configure time.
 execute_process(
         COMMAND ${CMAKE_Fortran_COMPILER} ${OpenMP_Fortran_FLAGS} -o test_omp_offload test_omp_offload.f90
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/config_tests
@@ -115,7 +122,7 @@ execute_process(
 file(APPEND "${OMPOFFLOAD_CONFIG_TEST_LOG}" "${OMPOFFLOAD_CONFIG_TEST_LOG_STR}\n")
 
 # Check the compilation result and display a status message
-if (OMPOFFLOAD_TEST_COMPILE_RESULT)
+if (OMPOFFLOAD_TEST_COMPILE_RESULT EQUAL 0)
     message(STATUS "OMP OFFLOAD: Supported")
 else()
     message(STATUS "OMP OFFLOAD: Unsupported")

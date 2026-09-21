@@ -12,8 +12,8 @@ names, planner flags and calling sequence are those of FFTW3, so existing FFTW
 code moves across with little change. hipFORT exposes it through the
 ``hipfort_hipfftw`` module.
 
-The one difference that matters: the ``in`` and ``out`` arguments are
-**device** pointers. FFTW declares them ``void*``, so a pointer from
+The one difference that matters: the ``in`` and ``out`` arguments must point to
+**GPU-accessible** memory. FFTW declares them ``void*``, so a pointer from
 ``hipMalloc`` — or from ``fftw_alloc_real``/``fftw_alloc_complex`` — passes
 straight through, but a plain Fortran host array does not work.
 
@@ -110,8 +110,8 @@ The ``_many`` planners transform a batch of signals with one plan. The
 ``inembed`` and ``onembed`` arguments describe the memory layout,
 ``istride``/``ostride`` give the gap between elements of one transform and
 ``idist``/``odist`` the gap between the start of consecutive transforms. This
-program covers the complex-to-complex,
-real-to-complex and complex-to-real cases.
+program covers the complex-to-complex, real-to-complex and complex-to-real
+cases.
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_many.f03
    :language: fortran

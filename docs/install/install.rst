@@ -16,6 +16,8 @@ hipFORT requires a Fortran compiler that supports at least the Fortran 2003 stan
 AMD ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended default;
 ``gfortran`` version 7.5.0 or newer (see the `GFortran website
 <https://fortran-lang.org/learn/os_setup/install_gfortran/>`_) is also supported.
+A C compiler is also required: hipFORT enables the C language in CMake so that
+``hip-config.cmake`` can be used.
 Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
 Ready-made CMake toolchain files are provided; see :ref:`hipfort-toolchain-files`.
 
@@ -24,7 +26,7 @@ Ready-made CMake toolchain files are provided; see :ref:`hipfort-toolchain-files
 Building and testing hipFORT from source
 ========================================
 
-#. Ensure you have installed a Fortran compiler (``amdflang`` or ``gfortran``), ``git``, ``cmake``, and :doc:`HIP <hip:index>`.
+#. Ensure you have installed a Fortran compiler and a C compiler (``amdflang`` and ``amdclang``, or ``gfortran`` and ``gcc``), ``git``, ``cmake``, and :doc:`HIP <hip:index>`.
 #. Build, install, and test hipFORT from source using the following commands:
 
    .. code-block:: shell
@@ -59,6 +61,10 @@ or by setting the CMake cache variables:
 *  ``CMAKE_INSTALL_PREFIX``: The install directory
 *  ``ROCM_PATH``: The ROCm installation root, if it cannot be detected automatically
 *  ``HIPFORT_BUILD_NVPTX``: Build the CUDA (``nvptx``) backend archive (``ON`` by default)
+*  ``HIPFORT_USE_FPOINTER_INTERFACES``: Enable the Fortran 2008 array interfaces (``ON`` by default when the compiler supports Fortran 2008)
+*  ``HIPFORT_ASSUMED_RANK``: Use the experimental Fortran 2018 assumed-rank array interfaces instead of the per-rank overloads (``OFF`` by default)
+*  ``HIPFORT_MULTITOOLCHAIN_LAYOUT``: Install the modules and the library into compiler-specific subdirectories (``ON`` by default)
+*  ``BUILD_TESTING``: Build the CTest suite (``OFF`` by default)
 
 .. _hipfort-toolchain-files:
 
@@ -107,10 +113,14 @@ Examples and tests
 ==================
 
 The examples in the ``f2003`` and ``f2008`` subdirectories of the ``test`` folder in the repository
-also serve as tests. Both test collections implement the same tests. However, the ``f2008`` tests require the
-Fortran compiler to support the Fortran 2008 standard or newer.
-The ``f2003`` tests only require support for the Fortran 2003 (`f2003`) standard.
+also serve as tests. The two collections largely overlap, but they are not identical: some tests exist
+only in one of them. The ``f2008`` tests require the Fortran compiler to support the Fortran 2008
+standard or newer. The ``f2003`` tests only require support for the Fortran 2003 standard.
 The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various hip* and roc* libraries.
+The ``test`` folder also contains an ``f2018`` subdirectory holding an experimental example built on the
+Fortran 2018 assumed-rank interfaces. That example is only registered with CTest when hipFORT is configured
+with ``-DHIPFORT_ASSUMED_RANK=ON`` (off by default). The ``openmp`` subdirectory holds OpenMP target-offload
+tests, which require an offload-capable compiler.
 
 Building and running the tests
 ------------------------------

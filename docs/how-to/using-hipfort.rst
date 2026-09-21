@@ -42,10 +42,11 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 
 The available interfaces depend on which Fortran compiler was used to compile the hipFORT modules and libraries.
 The interfaces use the ``iso_c_binding`` module, so the minimum requirement is a Fortran compiler that supports
-the Fortran 2003 standard (`f2003`). These interfaces typically require passing ``type(c_ptr)`` variables
-and the number of bytes to memory management. Some examples include ``hipMalloc`` and math library routines like ``hipblasDGEMM``.
+the Fortran 2003 standard (``f2003``). These interfaces typically require passing ``type(c_ptr)`` variables
+and the number of bytes to memory management routines such as ``hipMalloc``, and ``type(c_ptr)`` variables
+to math library routines such as ``hipblasDgemm``.
 
-If your compiler can understand the Fortran 2008 (`f2008`) code constructs,
+If your compiler can understand the Fortran 2008 (``f2008``) code constructs,
 additional interfaces are compiled into the hipFORT modules and libraries.
 These interfaces take Fortran (array) variables and the number of elements, instead of ``type(c_ptr)``
 variables and the number of bytes. Therefore, they reduce the chance of introducing compile-time and runtime errors
