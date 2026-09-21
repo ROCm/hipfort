@@ -18,6 +18,8 @@ subtrees:
         title: Fortran interface variants
       - file: how-to/openmp-offload.rst
         title: Use hipFORT with OpenMP offload
+      - file: how-to/migration-guide.rst
+        title: Migrate to the ROCm-packaged bindings
 
   - caption: Tutorials
     entries:
