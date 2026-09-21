@@ -98,13 +98,6 @@ for ``A`` and ``B``, a CSR descriptor for ``C``, and the three sddmm stages.
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dsddmm.f08
    :language: fortran
 
-rocSPARSE also supports a batched SDDMM: the dense operands are strided-batched
-with ``rocsparse_dnmat_set_strided_batch`` and the sparse ``C`` shares one
-sparsity pattern across the batch with ``rocsparse_csr_set_strided_batch``.
-
-.. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dsddmm_batched.f08
-   :language: fortran
-
 Sparse triangular solves
 ========================
 
