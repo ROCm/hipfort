@@ -11,10 +11,10 @@ layer over rocSOLVER whose API follows cuSOLVER. hipFORT exposes it through the
 ``hipfort_hipsolver`` module.
 
 Every program on this page is complete and self-contained, and is built
-and run as part of the hipFORT test suite. The Fortran 2008 version of each
-program lives in ``test/f2008/hipsolver``, and the equivalent Fortran 2003
-version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
-instead of Fortran array pointers, lives in ``test/f2003/hipsolver``.
+and run as part of the hipFORT test suite. The Fortran 2008 programs live in
+``test/f2008/hipsolver``, and the Fortran 2003 versions, which use
+``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
+array pointers, live in ``test/f2003/hipsolver``.
 
 If you want direct access to rocSOLVER rather than a cuSOLVER-style interface,
 see the :doc:`rocSOLVER examples <rocsolver-examples>`, where the equivalent

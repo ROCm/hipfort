@@ -16,5 +16,5 @@ set(CMAKE_C_COMPILER       cc  CACHE FILEPATH "Cray C wrapper")
 # Free-form parsing and C preprocessing are enabled by hipfort itself, via
 # CMAKE_Fortran_FORMAT and CMAKE_Fortran_PREPROCESS in the top-level
 # CMakeLists.txt. CMake emits the preprocessing flag each compiler expects
-# (-eZ for the Cray compiler), so there is no need to add a preprocessing or
-# free-form flag here.
+# (-eT for the Cray compiler, -eZ before CCE 8.5), so there is no need to add a
+# preprocessing or free-form flag here.

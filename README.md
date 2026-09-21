@@ -1,7 +1,7 @@
 # hipfort: Fortran Interface For GPU Kernel Libraries
 
 This repository contains the source and testing for hipfort.
-This is a FORTRAN interface library for accessing GPU Kernels.
+This is a Fortran interface library for accessing GPU kernels.
 
 ## Documentation
 
@@ -10,9 +10,9 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 ## Build and test hipfort from source
 
-Install `git`, `cmake`, HIP, and a Fortran compiler, if not yet installed. `amdflang`
-(ROCm's LLVM Flang, bundled with ROCm) is the recommended default; `gfortran` (version
-7.5.0 or newer) is also supported.
+Install `git`, `cmake`, HIP, a Fortran compiler, and a matching C compiler, if not yet
+installed. `amdflang`/`amdclang` (ROCm's LLVM Flang and Clang, bundled with ROCm) is the
+recommended default; `gfortran`/`gcc` (version 7.5.0 or newer) is also supported.
 Then build, install, and test hipfort from source with the commands below:
 
 ```shell
@@ -50,15 +50,15 @@ expose AMD-specific APIs.
 The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries.
 As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
 that supports the Fortran 2003 standard (`f2003`).
-These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
-management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
+These interfaces typically require passing `type(c_ptr)` variables and the number of bytes to memory
+management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDgemm`).
 
 If your compiler understands the Fortran 2008 (`f2008`) code constructs,
 additional interfaces are compiled into the `hipfort` modules and libraries. 
 These directly take Fortran (array) variables and the number of
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
-Therefore, they reduce the chance to introduce compile-time and runtime errors
-into your code and makes it easier to read too.
+Therefore, they reduce the chance of introducing compile-time and runtime errors
+into your code and make it easier to read too.
 These additional interfaces are guarded by the `USE_FPOINTER_INTERFACES` preprocessor
 definition, which `hipfort` enables automatically once it detects Fortran 2008 support
 in your compiler. By convention, application and test sources that rely on them use the
@@ -89,7 +89,7 @@ While you could write the following using the `f2003` interfaces:
 use iso_c_binding
 use hipfort
 integer     :: ierr        ! error code
-real        :: a_h(5,6)    ! host array
+real,target :: a_h(5,6)    ! host array
 type(c_ptr) :: a_d         ! device array pointer
 !
 ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
@@ -110,7 +110,7 @@ ierr = hipMalloc(a_d,shape(a_h))  ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6
 ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
 ```
 
-The `f2008` interfaces also overload `hipMalloc` similar to the Fortran 2008 `ALLOCATE` intrinsic. 
+The `f2008` interfaces also overload `hipMalloc` similarly to the Fortran `ALLOCATE` statement.
 So you could write the whole code as shown below:
 
 ```Fortran
@@ -167,10 +167,14 @@ before `find_package(hipfort)`.
 
 ## Examples and tests
 
-The examples, which simultaneously serve as tests, are located in the 
-`f2003` and `f2008` subdirectories of the repo's `test/` folder.
-Both test collections implement the same tests but require
-that the used Fortran compiler supports at least the respective Fortran standard.
+The examples, which simultaneously serve as tests, are located in the
+`f2003`, `f2008`, `f2018`, and `openmp` subdirectories of the repo's `test/` folder.
+The `f2003` and `f2008` collections largely overlap, but they are not identical:
+some tests exist only in one of them. Each requires that the Fortran compiler
+used supports at least the respective Fortran standard.
+The `f2018` tests exercise the experimental assumed-rank interfaces and are only
+registered when configuring with `-DHIPFORT_ASSUMED_RANK=ON`; the `openmp` tests
+require an offload-capable compiler (LLVM Flang) and a host LAPACK.
 There are further subcategories per `hip*` or `roc*` library that is tested.
 
 ### Building and running the tests
@@ -179,7 +183,7 @@ The tests are driven by CTest. Configure the build with `-DBUILD_TESTING=ON`,
 build hipfort, and run the suite with `ctest`.
 
 > **NOTE**: Running the tests requires the ROCm math libraries. The ROCm root is
-detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=`.
+detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=<path>`.
 
 ```shell
 cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
@@ -195,7 +199,7 @@ ctest --test-dir build -R hipfort_test_f2008_hipblas_dgemm
 
 ## Copyright, License, and Disclaimer
 
-<A NAME="Copyright">
+<a id="Copyright"></a>
 
 Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 [MITx11 License]

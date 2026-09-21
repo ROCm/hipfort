@@ -42,7 +42,7 @@ program dgeqrf
   ! Create rocBLAS handle
   call hipCheck(rocblas_create_handle(handle))
 
-  ! Compute the QR factorization on the devi ce
+  ! Compute the QR factorization on the device
   call hipCheck(rocsolver_dgeqrf(handle, M, N, dA, lda, dIpiv))
 
   ! Copy result from device to host

@@ -1328,8 +1328,9 @@ if(BUILD_TESTING)
       -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
 
-  # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference,
-  # so every other toolchain skips with a reason instead of failing.
+  # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference.
+  # Other toolchains skip the whole block silently; under LLVM Flang, a missing
+  # GPU or LAPACK skips with an explicit reason instead of failing.
   if(CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
     # "native" stays xnack-agnostic; an arch pinned to one HSA_XNACK mode will
     # not load in the other.

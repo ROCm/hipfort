@@ -1,4 +1,4 @@
-# HIPFORT API Reference {#mainpage}
+# hipFORT API Reference {#mainpage}
 
-This is the full HIPFORT API Reference. The API is organized into
+This is the full hipFORT API Reference. The API is organized into
 [modules](namespaces.html) based on the wrapped API.

@@ -2,9 +2,9 @@
 # Determine and set the Fortran compiler flags we want 
 ######################################################
 
-####################################################################
-# Make sure that the default build type is RELEASE if not specified.
-####################################################################
+###################################################
+# Helper used below to probe compiler flag support.
+###################################################
 INCLUDE(${CMAKE_MODULE_PATH}/SetCompileFlag.cmake)
 
 
@@ -21,7 +21,7 @@ ENDIF(CMAKE_Fortran_FLAGS_RELEASE AND CMAKE_Fortran_FLAGS_TESTING AND CMAKE_Fort
 # For each option type, a list of possible flags is given that work
 # for various compilers.  The first flag that works is chosen.
 # If none of the flags work, nothing is added (unless the REQUIRED 
-# flag is given in the call).  This way unknown compiles are supported.
+# flag is given in the call).  This way unknown compilers are supported.
 #######################################################################
 
 #####################
@@ -43,7 +43,7 @@ if(BUILD_NATIVE)
                    Fortran "-xHost"        # Intel
                            "/QxHost"       # Intel Windows
                            ${GNUNATIVE}    # GNU
-                           "-ta=host"      # Portland Group
+                           "-tp=host"      # Portland Group
                   )
 endif()
 
@@ -95,7 +95,7 @@ SET(CMAKE_Fortran_FLAGS_TESTING "${CMAKE_Fortran_FLAGS_RELWITHDEBINFO}")
 ### RELEASE FLAGS ###
 #####################
 
-# NOTE: agressive optimizations (-O3) are already turned on by default
+# NOTE: aggressive optimizations (-O3) are already turned on by default
 
 IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 
@@ -131,9 +131,9 @@ SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}"
 
 # Vectorize code
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}"
-                 Fortran "-vec-report0"  # Intel
-                         "/Qvec-report0" # Intel Windows
-                         "-Mvect"        # Portland Group
+                 Fortran "-vec"   # Intel
+                         "/Qvec"  # Intel Windows
+                         "-Mvect" # Portland Group
                 )
 
 ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Fail if any Fortran line is 132 characters or longer. Free-form Fortran allows
-# at most 132, and hipfort passes no flag to raise that.
+# at most 132 and hipfort passes no flag to raise that, so we keep one character
+# of margin.
 
 set -uo pipefail
 
@@ -8,7 +9,8 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 MAX=131
 
 mapfile -t FILES < <(find "$ROOT/lib" "$ROOT/test" -type f \
-  \( -name '*.f90' -o -name '*.F90' -o -name '*.f03' -o -name '*.f08' \) | sort)
+  \( -name '*.f90' -o -name '*.F90' -o -name '*.f03' -o -name '*.F03' \
+     -o -name '*.f08' \) | sort)
 
 # A scan that finds nothing must not pass silently.
 if [ "${#FILES[@]}" -eq 0 ]; then

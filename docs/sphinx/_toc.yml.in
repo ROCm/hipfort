@@ -50,11 +50,8 @@ subtrees:
         title: hipFORT API reference
       - file: reference/index.md
         title: Supported APIs
-       
 
   - caption: About
     entries:
       - file: license.md
         title: License
-
-

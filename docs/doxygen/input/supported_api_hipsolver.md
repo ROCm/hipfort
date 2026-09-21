@@ -1,4 +1,4 @@
-# hipSOLVER API support
+# hipSOLVER API Support
 
 \# | API Name | Variants
 ----|---------------|---------

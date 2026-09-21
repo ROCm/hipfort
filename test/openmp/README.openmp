@@ -1,4 +1,10 @@
 The openmp directory contains tests that combine hipfort with OpenMP offload.
-These are intended to be used with amdflang or any other compiler
-using OpenMP offload. Note that they contain a different build mechanism than
-the other testers as one needs to specify the architecture.
+These require an LLVM Flang based compiler (amdflang, or upstream flang) with
+OpenMP offload support. They are registered by test/CMakeLists.txt and run
+through CTest like the other tests; with any other compiler, or when the
+offload check or the host LAPACK lookup fails, they are silently skipped.
+The GPU architecture defaults to "native" and can be overridden with
+-DHIPFORT_OFFLOAD_ARCH=gfxNNN. The standalone CMakeLists.txt in this directory
+is an alternative, self-contained build; it is not part of the main build, it
+rejects non-LLVM-Flang compilers outright, and it requires the architecture
+explicitly, with -DGPU_ARCH=gfxNNN.

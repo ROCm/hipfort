@@ -27,7 +27,8 @@ A hipFFT transform follows the same sequence as cuFFT:
 
 #. Create a plan with ``hipfftPlan1d``, ``hipfftPlan2d``, ``hipfftPlan3d`` or
    ``hipfftPlanMany``, passing the transform lengths and the transform type.
-   ``hipfftPlan1d`` and ``hipfftPlanMany`` also take a batch count.
+   ``hipfftPlan1d`` and ``hipfftPlanMany`` also take a batch count;
+   ``hipfftPlan2d`` and ``hipfftPlan3d`` always describe a single transform.
 #. Run the transform with the ``hipfftExec`` routine matching the plan type:
    ``hipfftExecZ2Z`` and ``hipfftExecC2C`` for complex-to-complex,
    ``hipfftExecD2Z`` and ``hipfftExecR2C`` for real-to-complex,

@@ -39,7 +39,7 @@ get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
 # setup default install directories
 option(HIPFORT_MULTITOOLCHAIN_LAYOUT "Install library files to toolchain-specific subdirectories" ON)
 if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
-  set(FORTRAN_LIBRARY_SUBDIR "fortran/${FCNAME}" CACHE STRING "Compiler-specific library symlink subdirectory")
+  set(FORTRAN_LIBRARY_SUBDIR "fortran/${FCNAME}" CACHE STRING "Compiler-specific library and module install subdirectory")
   set(CMAKE_INSTALL_LIBDIR "lib/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Library install directory")
   set(CMAKE_INSTALL_INCLUDEDIR "include/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Mod files install directory")
 else()
@@ -93,9 +93,9 @@ IF(NOT CMAKE_Fortran_COMPILER_SUPPORTS_F90)
   MESSAGE(FATAL_ERROR "Fortran compiler does not support F90")
 ENDIF(NOT CMAKE_Fortran_COMPILER_SUPPORTS_F90)
 
-# Test for Fortran 08 support by using an f08-specific construct.
+# Test for Fortran 2008 support by using an f08-specific construct.
 IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 08")
+  MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2008")
   INCLUDE(CheckFortranSourceCompiles)
   CHECK_FORTRAN_SOURCE_COMPILES("
       module mod
@@ -124,15 +124,9 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     " CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     MESSAGE(CHECK_PASS "yes")
-    file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeOutput.log
-      "Determining if the Fortran compiler supports Fortran 08 passed with "
-      "the following output:\n${OUTPUT}\n\n")
     set(CMAKE_Fortran_COMPILER_SUPPORTS_F08 1)
   ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     MESSAGE(CHECK_FAIL "no")
-    file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeError.log
-      "Determining if the Fortran compiler supports Fortran 08 failed with "
-      "the following output:\n${OUTPUT}\n\n")
     set(CMAKE_Fortran_COMPILER_SUPPORTS_F08 0)
   ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   unset(CMAKE_Fortran_COMPILER_SUPPORTS_F08 CACHE)
@@ -146,7 +140,7 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
   MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2018")
   INCLUDE(CheckFortranSourceCompiles)
   # NB: CHECK_FORTRAN_SOURCE_COMPILES writes the snippet to a .F file (fixed form),
-  # so — like the Fortran 08 test above — every statement must start at column 7.
+  # so — like the Fortran 2008 test above — every statement must start at column 7.
   CHECK_FORTRAN_SOURCE_COMPILES("
       module mod18
       contains
@@ -168,21 +162,15 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
     " CMAKE_Fortran_COMPILER_SUPPORTS_F18)
   IF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
     MESSAGE(CHECK_PASS "yes")
-    file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeOutput.log
-      "Determining if the Fortran compiler supports Fortran 2018 passed with "
-      "the following output:\n${OUTPUT}\n\n")
     set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 1)
   ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
     MESSAGE(CHECK_FAIL "no")
-    file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeError.log
-      "Determining if the Fortran compiler supports Fortran 2018 failed with "
-      "the following output:\n${OUTPUT}\n\n")
     set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 0)
   ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
   unset(CMAKE_Fortran_COMPILER_SUPPORTS_F18 CACHE)
 ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
 
-# Set compile flags for DEBUG, # RELEASE, or TESTING.  
+# Set compile flags for DEBUG, RELEASE, or TESTING.
 INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake) 
 message("-- Done setting FortranFlags")
 message("-- CMAKE_Fortran_FLAGS_DEBUG:   ${CMAKE_Fortran_FLAGS_DEBUG}")
@@ -212,15 +200,15 @@ if(BUILD_TESTING OR HIPFORT_EXTENDED_TESTS)
 endif()
 
 # Subdirectories and packaging
-# NOTE: rocm-cmake must be be included before
+# NOTE: rocm-cmake must be included before
 # adding subdirectories.
 INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
 rocm_setup_version(VERSION ${VERSION})
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-runtime-amd (>= 4.5.0)")
-set(CPACK_RPM_PACKAGE_REQUIRES "hip-runtime-amd >= 4.5.0")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-runtime-amd (>= 6.0.0)")
+set(CPACK_RPM_PACKAGE_REQUIRES "hip-runtime-amd >= 6.0.0")
 # Package name changed from hipfort to hipfort-devel/dev
 # Backward compatibility support for old package name
 set(CPACK_DEBIAN_PACKAGE_PROVIDES "hipfort")
