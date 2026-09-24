@@ -73,10 +73,11 @@ The examples only need the ``hipblas`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipblas)
+   find_package(hip-fortran REQUIRED)
+   find_package(hipblas-fortran REQUIRED)
 
    add_executable(my_blas saxpy.f08)
-   target_link_libraries(my_blas PRIVATE hipfort::hipblas hipfort::hip)
+   target_link_libraries(my_blas PRIVATE roc::hipblas_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

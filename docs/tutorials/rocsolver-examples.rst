@@ -68,10 +68,12 @@ components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocblas rocsolver)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocblas-fortran REQUIRED)
+   find_package(rocsolver-fortran REQUIRED)
 
    add_executable(my_solver rocsolver_dgetrf.f08)
-   target_link_libraries(my_solver PRIVATE hipfort::rocsolver hipfort::rocblas hipfort::hip)
+   target_link_libraries(my_solver PRIVATE roc::rocsolver_fortran roc::rocblas_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

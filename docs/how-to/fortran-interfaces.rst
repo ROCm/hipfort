@@ -88,20 +88,22 @@ Assumed-rank interfaces (Fortran 2018)
 ======================================
 
 The Fortran 2008 array interfaces are generated once per rank, so each generic
-carries a fixed set of ranks. Building hipFORT with
-``-DHIPFORT_ASSUMED_RANK=ON`` replaces those per-rank overloads with a single
+carries a fixed set of ranks. Building the bindings with
+``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` replaces those per-rank overloads with a single
 Fortran 2018 ``dimension(..)`` overload that accepts an actual argument of any
 rank. This is what lets a rank-3 array be passed to a routine whose per-rank
 overloads stop at rank 1, such as ``rocblas_saxpy``.
 
-The option is experimental and ``OFF`` by default. Note the following:
+The tier is experimental, and ``assumed-shape`` is the default. Note the
+following:
 
 * It is **mutually exclusive** with the classic per-rank interfaces rather than
-  additive: enabling it replaces them.
-* It requires a Fortran 2018 compiler (hipFORT probes for ``c_loc()`` of a
-  ``dimension(..)`` argument) and the Fortran 2008 interfaces. If either is
-  missing, hipFORT warns and falls back to the per-rank interfaces instead of
-  failing the build.
+  additive: selecting it replaces them. That is why the three tiers are one
+  option with three values rather than two booleans, which could express the
+  combination the language forbids.
+* It requires a Fortran 2018 compiler (the build probes for ``c_loc()`` of a
+  ``dimension(..)`` argument). If the compiler is not one, the build warns and
+  falls back to ``assumed-shape`` instead of failing.
 * Only **contiguous** arrays may be passed.
 * ``hipMalloc`` keeps its per-rank overloads either way; ``hipMemcpy``,
   ``hipMemcpyAsync`` and ``hipMemcpy2D`` gain assumed-rank forms.

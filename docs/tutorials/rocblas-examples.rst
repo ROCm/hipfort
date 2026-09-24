@@ -76,10 +76,11 @@ The examples only need the ``rocblas`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocblas)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocblas-fortran REQUIRED)
 
    add_executable(my_blas saxpy.f08)
-   target_link_libraries(my_blas PRIVATE hipfort::rocblas hipfort::hip)
+   target_link_libraries(my_blas PRIVATE roc::rocblas_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

@@ -36,15 +36,17 @@ PROJECT(hipfort VERSION 0.9.0 LANGUAGES Fortran C)
 # get compiler name
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
 
-# setup default install directories
-option(HIPFORT_MULTITOOLCHAIN_LAYOUT "Install library files to toolchain-specific subdirectories" ON)
-if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
-  set(FORTRAN_LIBRARY_SUBDIR "fortran/${FCNAME}" CACHE STRING "Compiler-specific library and module install subdirectory")
-  set(CMAKE_INSTALL_LIBDIR "lib/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Library install directory")
-  set(CMAKE_INSTALL_INCLUDEDIR "include/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Mod files install directory")
-else()
-  set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
-  set(CMAKE_INSTALL_INCLUDEDIR "include" CACHE STRING "Mod files install directory")
+# HIPFORT_MULTITOOLCHAIN_LAYOUT is gone: the per-compiler layout is now
+# unconditional, and it is each binding's own business rather than a global
+# install prefix. rocm_add_fortran_binding() puts the .mod in
+# include/fortran/<compiler>/ and the .a in lib/fortran/<compiler>/, where
+# <compiler> is the name you would type (amdflang, gfortran, ftn, ...) rather
+# than the CMake compiler ID. There is nothing left to opt out of, because a
+# .mod written by one compiler cannot be read by another.
+if(DEFINED HIPFORT_MULTITOOLCHAIN_LAYOUT)
+  message(WARNING
+    "HIPFORT_MULTITOOLCHAIN_LAYOUT is gone; the per-compiler install layout is "
+    "unconditional. See docs/how-to/migration-guide.rst, 'Where the files install'.")
 endif()
 
 include(GNUInstallDirs)
@@ -93,82 +95,16 @@ IF(NOT CMAKE_Fortran_COMPILER_SUPPORTS_F90)
   MESSAGE(FATAL_ERROR "Fortran compiler does not support F90")
 ENDIF(NOT CMAKE_Fortran_COMPILER_SUPPORTS_F90)
 
-# Test for Fortran 2008 support by using an f08-specific construct.
-IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2008")
-  INCLUDE(CheckFortranSourceCompiles)
-  CHECK_FORTRAN_SOURCE_COMPILES("
-      module mod
-        interface foo
-          module procedure :: foo_a,foo_b
-        end interface
-      contains
-        subroutine foo_a(a)
-          use iso_c_binding
-          integer,target,dimension(:) :: a
-          type(c_ptr) :: a_ptr
-          a_ptr = c_loc(a) ! gfortran < 4.9 fails here
-        end
-        subroutine foo_b(b)
-          integer,pointer,dimension(:,:) :: b
-        end
-      end
-      PROGRAM TESTFortran08
-        use mod
-        implicit none
-        integer :: a(5)
-        integer,allocatable :: b(:)
-        allocate(b,mold=a)
-        deallocate(b)
-      END PROGRAM TESTFortran08
-    " CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-    MESSAGE(CHECK_PASS "yes")
-    set(CMAKE_Fortran_COMPILER_SUPPORTS_F08 1)
-  ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-    MESSAGE(CHECK_FAIL "no")
-    set(CMAKE_Fortran_COMPILER_SUPPORTS_F08 0)
-  ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  unset(CMAKE_Fortran_COMPILER_SUPPORTS_F08 CACHE)
-ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-
-# Test for Fortran 2018 support using the assumed-rank construct the generated
-# bindings rely on: an assumed-rank (dimension(..)) dummy passed to c_loc(). This
-# is exactly what the USE_ASSUMED_RANK_INTERFACES wrappers do, so it is the right
-# discriminator for whether HIPFORT_ASSUMED_RANK can be enabled.
-IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
-  MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2018")
-  INCLUDE(CheckFortranSourceCompiles)
-  # NB: CHECK_FORTRAN_SOURCE_COMPILES writes the snippet to a .F file (fixed form),
-  # so — like the Fortran 2008 test above — every statement must start at column 7.
-  CHECK_FORTRAN_SOURCE_COMPILES("
-      module mod18
-      contains
-      function foo(x) result(p)
-      use iso_c_binding
-      integer(c_int),target,contiguous,dimension(..) :: x
-      type(c_ptr) :: p
-      p = c_loc(x)
-      end function
-      end module
-      PROGRAM TESTFortran18
-      use mod18
-      use iso_c_binding
-      implicit none
-      integer(c_int),target :: a(5)
-      type(c_ptr) :: p
-      p = foo(a)
-      END PROGRAM TESTFortran18
-    " CMAKE_Fortran_COMPILER_SUPPORTS_F18)
-  IF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
-    MESSAGE(CHECK_PASS "yes")
-    set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 1)
-  ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
-    MESSAGE(CHECK_FAIL "no")
-    set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 0)
-  ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
-  unset(CMAKE_Fortran_COMPILER_SUPPORTS_F18 CACHE)
-ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+# The Fortran 2008 / 2018 probes that decide which array interface tier
+# FORTRAN_ARRAY_INTERFACES can actually reach. They live in the binding helper
+# rather than here, because a standalone <lib>/fortran build needs them just as
+# much and there is no hipfort top level in that case. Results are cached, so
+# this runs the probes once and the subdirectories reuse them.
+# NB: CMAKE_MODULE_PATH is appended to exactly once, above. Several INCLUDE()s
+# below interpolate it as a single directory (${CMAKE_MODULE_PATH}/x.cmake), so
+# a second entry would turn it into a ";"-joined list and break them.
+include(ROCmFortranBinding)
+rocm_fortran_probe_standards()
 
 # Set compile flags for DEBUG, RELEASE, or TESTING.
 INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake) 
@@ -182,20 +118,37 @@ IF(FCNAME STREQUAL "pgf90")
     UNSET(CMAKE_SHARED_LIBRARY_LINK_Fortran_FLAGS)
 ENDIF(FCNAME STREQUAL "pgf90")
 
-option(BUILD_TESTING "Build tests" OFF)
+# BUILD_TESTING becomes BUILD_FORTRAN_TESTS, per library: after the split
+# hipFORT's single suite is distributed into each library's fortran/test/, and a
+# monorepo build needs a switch that means "the Fortran tests" rather than "all
+# tests". BUILD_FORTRAN_TESTS itself is declared by rocm_fortran_binding_options()
+# so a standalone <lib>/fortran build has it too.
+if(DEFINED BUILD_TESTING AND NOT DEFINED BUILD_FORTRAN_TESTS)
+  message(WARNING
+    "BUILD_TESTING is replaced by BUILD_FORTRAN_TESTS; honouring it this once. "
+    "See the option table in docs/how-to/migration-guide.rst.")
+  set(BUILD_FORTRAN_TESTS ${BUILD_TESTING} CACHE BOOL "Build the Fortran bindings' test suite" FORCE)
+endif()
+rocm_fortran_binding_options()
 
-# Extended tests: link each backend static archive into a shared library with
-# -Wl,--no-undefined and fail on any unresolved symbol. Each backend's test is
-# only added when all of its runtime libraries are found (see lib/CMakeLists.txt),
-# so this is a no-op on machines without the corresponding ROCm/CUDA stack.
-# Opt-in (default OFF): it needs a recent, complete ROCm or CUDA install (all math
-# libraries present) to be certain it passes, so it is not part of the default
-# test suite.
-option(HIPFORT_EXTENDED_TESTS "Link each backend static archive into a shared library and fail on undefined symbols (needs a recent, complete ROCm/CUDA install)" OFF)
-set(HIPFORT_ROCM_LIB_DIR "" CACHE PATH "Directory of the ROCm runtime libraries for the amdgcn extended shared-link test (default: <ROCM_PATH>/lib)")
-set(HIPFORT_CUDA_LIB_DIR "" CACHE PATH "Directory of the CUDA runtime libraries for the nvptx extended shared-link test (default: from find_package(CUDAToolkit))")
+# The exhaustive per-library symbol tests, on top of the runtime ones. Opt-in:
+# they reference every bind(c) routine of a library, so a symbol missing from an
+# older or partial ROCm turns into a build error. Handy to audit one ROCm
+# version, unhelpful as a default.
+#
+# The shared-link test that HIPFORT_EXTENDED_TESTS also gated is gone with the
+# single archive it linked. Its per-library successor belongs beside each
+# binding rather than here, and is not part of this preview.
+option(BUILD_FORTRAN_EXTENDED_TESTS "Add the exhaustive per-library Fortran symbol tests (needs a recent, complete ROCm install)" OFF)
+if(DEFINED HIPFORT_EXTENDED_TESTS)
+  message(WARNING
+    "HIPFORT_EXTENDED_TESTS is replaced by BUILD_FORTRAN_EXTENDED_TESTS; "
+    "honouring it this once.")
+  set(BUILD_FORTRAN_EXTENDED_TESTS ${HIPFORT_EXTENDED_TESTS} CACHE BOOL
+    "Add the exhaustive per-library Fortran symbol tests" FORCE)
+endif()
 
-if(BUILD_TESTING OR HIPFORT_EXTENDED_TESTS)
+if(BUILD_FORTRAN_TESTS OR BUILD_FORTRAN_EXTENDED_TESTS)
   enable_testing()
 endif()
 

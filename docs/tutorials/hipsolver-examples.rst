@@ -70,10 +70,11 @@ The programs only need the ``hipsolver`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipsolver)
+   find_package(hip-fortran REQUIRED)
+   find_package(hipsolver-fortran REQUIRED)
 
    add_executable(my_solver hipsolver_dgetrf.f08)
-   target_link_libraries(my_solver PRIVATE hipfort::hipsolver hipfort::hip)
+   target_link_libraries(my_solver PRIVATE roc::hipsolver_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

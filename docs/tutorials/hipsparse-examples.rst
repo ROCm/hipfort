@@ -60,10 +60,11 @@ The programs only need the ``hipsparse`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipsparse)
+   find_package(hip-fortran REQUIRED)
+   find_package(hipsparse-fortran REQUIRED)
 
    add_executable(my_sparse hipsparse_dspmv.f08)
-   target_link_libraries(my_sparse PRIVATE hipfort::hipsparse hipfort::hip)
+   target_link_libraries(my_sparse PRIVATE roc::hipsparse_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

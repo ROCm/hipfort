@@ -63,10 +63,11 @@ The examples only need the ``rocrand`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocrand)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocrand-fortran REQUIRED)
 
    add_executable(my_rand philox_uniform.f08)
-   target_link_libraries(my_rand PRIVATE hipfort::rocrand hipfort::hip)
+   target_link_libraries(my_rand PRIVATE roc::rocrand_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

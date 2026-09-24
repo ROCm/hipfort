@@ -99,10 +99,11 @@ The programs only need the ``rocfft`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocfft)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocfft-fortran REQUIRED)
 
    add_executable(my_fft rocfft_c2c_1d_z.f08)
-   target_link_libraries(my_fft PRIVATE hipfort::rocfft hipfort::hip)
+   target_link_libraries(my_fft PRIVATE roc::rocfft_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

@@ -44,10 +44,10 @@ The programs only need the ``hip`` hipFORT component:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip)
+   find_package(hip-fortran REQUIRED)
 
    add_executable(my_app device_management.f03)
-   target_link_libraries(my_app PRIVATE hipfort::hip)
+   target_link_libraries(my_app PRIVATE hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

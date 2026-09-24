@@ -58,10 +58,11 @@ The programs only need the ``hipfft`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipfft)
+   find_package(hip-fortran REQUIRED)
+   find_package(hipfft-fortran REQUIRED)
 
    add_executable(my_fft hipfft_c2c_1d_z.f08)
-   target_link_libraries(my_fft PRIVATE hipfort::hipfft hipfort::hip)
+   target_link_libraries(my_fft PRIVATE hip::hipfft_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 
