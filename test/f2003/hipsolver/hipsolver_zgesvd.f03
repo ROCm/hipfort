@@ -8,9 +8,8 @@
 !
 program hipsolver_zgesvd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer(c_int), parameter :: M = 2, N = 2, lda = 2, ldu = 2, ldv = 2
   integer(c_int), parameter :: mn = 2

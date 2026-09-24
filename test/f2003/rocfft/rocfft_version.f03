@@ -1,8 +1,8 @@
 ! Demonstrates rocfft_get_version_string, the rocFFT library version query.
 program rocfft_version
   use iso_c_binding
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

@@ -9,12 +9,9 @@
 !
 program dsyev
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
-  use hipfort_rocsolver_enums
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 

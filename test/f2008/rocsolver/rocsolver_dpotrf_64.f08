@@ -8,11 +8,9 @@
 !
 program dpotrf_64
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int64_t), parameter :: N = 3, lda = 3
   real(c_double), target :: hA(3,3) = reshape((/4, 12, -16, 12, 37, -43, -16, -43, 98/), (/3, 3/))

@@ -2,9 +2,8 @@
 ! Hence, no matrix must be transposed when interfacing with Fortran.
 program hip_sger
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
+  use hip
+  use hipblas
 
   implicit none
   

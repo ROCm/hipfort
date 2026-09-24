@@ -7,64 +7,55 @@
 
 program test_hiprand
   use iso_c_binding
-  use hipfort_hiprand
-  use hipfort_hiprand_enums
+  use hiprand
   implicit none
   logical :: never
   type(c_ptr) :: v0
   integer(kind(HIPRAND_RNG_TEST)) :: v1
   integer(kind(HIPRAND_STATUS_SUCCESS)) :: v2
   integer(c_size_t) :: v3
-  real(c_float) :: v4
-  real(c_double) :: v5
-  integer(c_short) :: v6
-  integer(c_int64_t) :: v7
-  integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)) :: v8
-  integer(c_int) :: v9
-  integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v10
+  integer(c_short) :: v4
+  integer(c_int64_t) :: v5
+  integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)) :: v6
+  integer(c_int) :: v7
+  real(c_double) :: v8
+  integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)) :: v9
+  real(c_float) :: v10
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) v2 = hiprandCreateGenerator_(v0, v1)
-    if (never) v2 = hiprandCreateGeneratorHost_(v0, v1)
-    if (never) v2 = hiprandDestroyGenerator_(v0)
+    if (never) v2 = hiprandCreateGenerator(v0, v1)
+    if (never) v2 = hiprandCreateGeneratorHost(v0, v1)
+    if (never) v2 = hiprandDestroyGenerator(v0)
+    if (never) v2 = hiprandGenerateChar(v0, v0, v3)
+    if (never) v2 = hiprandGenerateShort(v0, v0, v3)
+    if (never) v2 = hiprandGenerateUniformHalf(v0, v0, v3)
+    if (never) v2 = hiprandGenerateNormalHalf(v0, v0, v3, v4, v4)
+    if (never) v2 = hiprandGenerateLogNormalHalf(v0, v0, v3, v4, v4)
+    if (never) v2 = hiprandGenerateSeeds(v0)
+    if (never) v2 = hiprandSetStream(v0, v0)
+    if (never) v2 = hiprandSetPseudoRandomGeneratorSeed(v0, v5)
+    if (never) v2 = hiprandSetGeneratorOffset(v0, v5)
+    if (never) v2 = hiprandSetGeneratorOrdering(v0, v6)
+    if (never) v2 = hiprandSetQuasiRandomGeneratorDimensions(v0, v7)
+    if (never) v2 = hiprandGetVersion(v7)
+    if (never) v2 = hiprandCreatePoissonDistribution(v8, v0)
+    if (never) v2 = hiprandDestroyDistribution(v0)
+    if (never) v2 = hiprandGetDirectionVectors32(v0, v9)
+    if (never) v2 = hiprandGetDirectionVectors64(v0, v9)
+    if (never) v2 = hiprandGetScrambleConstants32(v0)
+    if (never) v2 = hiprandGetScrambleConstants64(v0)
     if (never) v2 = hiprandGenerate_(v0, v0, v3)
-#ifndef USE_CUDA_NAMES
-    if (never) v2 = hiprandGenerateChar_(v0, v0, v3)
-    if (never) v2 = hiprandGenerateShort_(v0, v0, v3)
-#endif
     if (never) v2 = hiprandGenerateLongLong_(v0, v0, v3)
     if (never) v2 = hiprandGenerateUniform_(v0, v0, v3)
     if (never) v2 = hiprandGenerateUniformDouble_(v0, v0, v3)
-#ifndef USE_CUDA_NAMES
-    if (never) v2 = hiprandGenerateUniformHalf_(v0, v0, v3)
-#endif
-    if (never) v2 = hiprandGenerateNormal_(v0, v0, v3, v4, v4)
-    if (never) v2 = hiprandGenerateNormalDouble_(v0, v0, v3, v5, v5)
-#ifndef USE_CUDA_NAMES
-    if (never) v2 = hiprandGenerateNormalHalf_(v0, v0, v3, v6, v6)
-#endif
-    if (never) v2 = hiprandGenerateLogNormal_(v0, v0, v3, v4, v4)
-    if (never) v2 = hiprandGenerateLogNormalDouble_(v0, v0, v3, v5, v5)
-#ifndef USE_CUDA_NAMES
-    if (never) v2 = hiprandGenerateLogNormalHalf_(v0, v0, v3, v6, v6)
-#endif
-    if (never) v2 = hiprandGeneratePoisson_(v0, v0, v3, v5)
-    if (never) v2 = hiprandGenerateSeeds_(v0)
-    if (never) v2 = hiprandSetStream_(v0, v0)
-    if (never) v2 = hiprandSetPseudoRandomGeneratorSeed_(v0, v7)
-    if (never) v2 = hiprandSetGeneratorOffset_(v0, v7)
-    if (never) v2 = hiprandSetGeneratorOrdering_(v0, v8)
-    if (never) v2 = hiprandSetQuasiRandomGeneratorDimensions_(v0, v9)
-    if (never) v2 = hiprandGetVersion_(v9)
-    if (never) v2 = hiprandCreatePoissonDistribution_(v5, v0)
-    if (never) v2 = hiprandDestroyDistribution_(v0)
-    if (never) v2 = hiprandGetDirectionVectors32_(v0, v10)
-    if (never) v2 = hiprandGetDirectionVectors64_(v0, v10)
-    if (never) v2 = hiprandGetScrambleConstants32_(v0)
-    if (never) v2 = hiprandGetScrambleConstants64_(v0)
+    if (never) v2 = hiprandGenerateNormal_(v0, v0, v3, v10, v10)
+    if (never) v2 = hiprandGenerateNormalDouble_(v0, v0, v3, v8, v8)
+    if (never) v2 = hiprandGenerateLogNormal_(v0, v0, v3, v10, v10)
+    if (never) v2 = hiprandGenerateLogNormalDouble_(v0, v0, v3, v8, v8)
+    if (never) v2 = hiprandGeneratePoisson_(v0, v0, v3, v8)
 
   write(*,"(a)") "-- test_hiprand (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hiprand

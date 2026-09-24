@@ -12,9 +12,8 @@
 !
 program zpotrfbatched
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: b
   integer(c_int), parameter :: N = 3, lda = 3, batch = 2

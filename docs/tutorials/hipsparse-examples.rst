@@ -8,7 +8,7 @@ hipSPARSE examples
 
 `hipSPARSE <https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/>`_ is a thin
 layer over rocSPARSE whose API follows cuSPARSE. hipFORT exposes it through the
-``hipfort_hipsparse`` module.
+``hipsparse`` module.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -18,7 +18,7 @@ instead of Fortran array pointers, lives in ``test/f2003/hipsparse``.
 
 If you want direct access to rocSPARSE rather than a cuSPARSE-style interface,
 see the :doc:`rocSPARSE examples <rocsparse-examples>`, where the equivalent
-programs are written against the ``hipfort_rocsparse`` module.
+programs are written against the ``rocsparse`` module.
 
 Many routines come in the four precisions: ``s`` (real single), ``d`` (real
 double), ``c`` (complex single), and ``z`` (complex double). Where several are
@@ -50,8 +50,8 @@ hipSPARSE follows a small number of conventions that recur in every program:
   a non-null buffer is supplied for a zero-size workspace. The programs allocate
   the buffer only when the queried size is positive.
 * **Every call returns a status code.** The programs wrap hipSPARSE calls in
-  ``hipsparseCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
-  module, both of which abort on failure.
+  ``hipsparseCheck`` from the ``hipsparse`` module and HIP calls in ``hipCheck``
+  from the ``hip`` module, both of which abort on failure.
 
 Building and running
 ====================
@@ -60,10 +60,11 @@ The programs only need the ``hipsparse`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipsparse)
+   find_package(hip-fortran REQUIRED)
+   find_package(hipsparse-fortran REQUIRED)
 
    add_executable(my_sparse hipsparse_dspmv.f08)
-   target_link_libraries(my_sparse PRIVATE hipfort::hipsparse hipfort::hip)
+   target_link_libraries(my_sparse PRIVATE roc::hipsparse_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

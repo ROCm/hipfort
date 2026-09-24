@@ -28,7 +28,10 @@ gfortran_exe = shutil.which("gfortran")
 if gfortran_exe is None:
     raise RuntimeError("Couldn't find the fortran compiler!")
 
-for filename in glob.glob("../lib/hipfort/*.[fF]90"):
+for filename in sorted(
+    glob.glob("../lib/rocm-systems/*/fortran/*.[fF]90")
+    + glob.glob("../lib/rocm-libraries/*/fortran/*.[fF]90")
+):
     path = Path(filename)
     # -P is to disable embedding line information
     subprocess.check_call(

@@ -14,7 +14,36 @@
 
 ### Changed
 
-* **Breaking.** `hipfort_roctx` is generated rather than hand-written, and its
+* **Breaking: one module per library, with no `hipfort_` prefix.** The flat
+  `lib/hipfort/` directory is replaced by one directory per library, grouped by
+  the upstream repository the bindings will be co-located with
+  (`lib/rocm-systems/`, `lib/rocm-libraries/`), and each library ships a single
+  self-contained module named after itself. The enums, derived types, opaque
+  handles and the `<lib>Check` helper are folded into it, so thirteen modules
+  replace thirty-three files.
+
+  Every `use` statement changes. `hipfort_rocblas` and its `_enums` companion
+  become `rocblas`; the HIP runtime modules (`hipfort`, `hipfort_check`,
+  `hipfort_enums`, `hipfort_types`, `hipfort_auxiliary`, `hipfort_hipmalloc`,
+  `hipfort_hipmemcpy`, `hipfort_hiphostregister`) all become `hip`:
+
+  ```fortran
+  ! before                 ! after
+  use hipfort              use hip
+  use hipfort_check        use rocblas
+  use hipfort_rocblas
+  ```
+
+  The `<lib>Check` helpers travel with their library: `rocblasCheck` now comes
+  from `rocblas`, and only `hipCheck` is in `hip`. The exported CMake targets
+  are unchanged, so `find_package(hipfort REQUIRED COMPONENTS ...)` and the
+  matching `hipfort::*` link lines still work as they are.
+* **Breaking: the CUDA (nvptx) backend is dropped.** These bindings are
+  generated for ROCm only and carry no `USE_CUDA_NAMES` branch, so an nvptx
+  build would compile cleanly while binding `hip*`/`roc*` symbols.
+  `HIPFORT_BUILD_NVPTX` now defaults to `OFF` and raises a fatal error if
+  enabled, rather than producing a silently wrong archive.
+* **Breaking.** the ROCTx module is generated rather than hand-written, and its
   `const char*` arguments are now `type(c_ptr)` like every other `char*` argument
   in hipfort, instead of `character(kind=c_char) :: message(*)`. Code that passed
   a Fortran string must pass a C pointer to a NUL-terminated,
@@ -27,15 +56,15 @@
   ```
 
   This removes the last per-library exception in the binding generator: ROCTx was
-  the only module in `lib/hipfort/` that exposed `char*` as a Fortran string.
-* `hipfort_roctx` is generated from `rocprofiler-sdk-roctx/roctx.h`, the header
+  the only module that exposed `char*` as a Fortran string.
+* The ROCTx module is generated from `rocprofiler-sdk-roctx/roctx.h`, the header
   behind the package `hipfort::roctx` actually links, rather than the legacy
   `roctracer/roctx.h`. It binds twelve entry points instead of five, adding
   `roctxProfilerPause`, `roctxProfilerResume`, `roctxGetThreadId` and the
   `roctxName{OsThread,HsaAgent,HipDevice,HipStream}` family.
   `roctx_version_major` and `roctx_version_minor` are gone: they exist only in the
   legacy header, and the library hipfort links does not export them.
-* `hipfort_roctx` joins the AMD-only set of modules: it now compiles code that
+* The ROCTx module joins the AMD-only set of modules: it now compiles code that
   calls the ROCTx entry points, which do not exist on a CUDA system, so
   `libhipfort-nvptx.a` drops it alongside the `roc*` API modules.
 * The `hipMalloc` and `hipMemcpy` interface variants moved off the *hipFORT
@@ -46,7 +75,7 @@
 
 ### Fixed
 
-* `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
+* `roctx_range_id_t` is a `uint64_t`, but the ROCTx module declared it
   `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
   this was harmless in practice; it is `integer(c_int64_t)` now.
 * Fixed every failing test reporting success. 413 failure branches across 271 test

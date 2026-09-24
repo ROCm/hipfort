@@ -3,9 +3,8 @@
 ! transform instead of scaling the result with a separate kernel.
 program rocfft_scale_factor_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

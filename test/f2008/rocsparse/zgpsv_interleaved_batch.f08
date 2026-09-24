@@ -24,9 +24,8 @@
 program rocsparse_zgpsv_interleaved_batch_test
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocsparse
+    use hip
+    use rocsparse
 
     implicit none
 

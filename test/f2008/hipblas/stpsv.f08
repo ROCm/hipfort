@@ -25,9 +25,8 @@
 program hipblas_stpsv_test
 
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
+  use hip
+  use hipblas
 
   implicit none
 

@@ -2,11 +2,9 @@ program test_rocsolver_zhegvdx
 
         use iso_fortran_env,  only: i32=>int32, r32=>real32, r64=>real64
         use iso_c_binding
-        use hipfort
-        use hipfort_rocblas_enums
-        use hipfort_rocblas
-        use hipfort_rocsolver_enums
-        use hipfort_rocsolver
+        use hip
+        use rocblas
+        use rocsolver
         use omp_lib
 
         implicit none

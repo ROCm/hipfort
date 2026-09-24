@@ -8,10 +8,9 @@ rocRAND examples
 
 `rocRAND <https://rocm.docs.amd.com/projects/rocRAND/en/latest/>`_ generates
 pseudo-random and quasi-random numbers directly into device memory on AMD
-GPUs. hipFORT exposes it through the ``hipfort_rocrand`` module, together with
-``hipfort_rocrand_enums`` for the generator enumerations
-(``ROCRAND_RNG_PSEUDO_PHILOX4_32_10`` and so on). The programs below import
-both explicitly.
+GPUs. hipFORT exposes it through the ``rocrand`` module, which carries
+the generator enumerations (``ROCRAND_RNG_PSEUDO_PHILOX4_32_10`` and so on)
+as well.
 
 Every program on this page is a complete, self-contained example that is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -55,7 +54,7 @@ Keep the following conventions in mind:
 * A fixed seed makes a pseudo-random sequence reproducible, which is what lets
   these programs assert on sample statistics.
 * Every rocRAND call returns a status code. The examples wrap them in
-  ``rocrandCheck`` from the ``hipfort_check`` module, which aborts on failure.
+  ``rocrandCheck`` from the ``rocrand`` module, which aborts on failure.
 
 Building an example
 ===================
@@ -64,10 +63,11 @@ The examples only need the ``rocrand`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocrand)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocrand-fortran REQUIRED)
 
    add_executable(my_rand philox_uniform.f08)
-   target_link_libraries(my_rand PRIVATE hipfort::rocrand hipfort::hip)
+   target_link_libraries(my_rand PRIVATE roc::rocrand_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

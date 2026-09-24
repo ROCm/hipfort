@@ -12,9 +12,8 @@
 !
 program hipsparse_cgemvi
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: m = 3, n = 4, lda = 3, nnz = 2

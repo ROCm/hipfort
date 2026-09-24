@@ -9,11 +9,9 @@
 !
 program csytrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: N = 4, lda = 4
   complex(c_float_complex) :: hA(N,N) = reshape((/ &

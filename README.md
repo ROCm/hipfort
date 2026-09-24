@@ -18,7 +18,7 @@ Then build, install, and test hipfort from source with the commands below:
 ```shell
 git clone https://github.com/ROCm/hipfort.git
 cd hipfort
-cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_FORTRAN_TESTS=ON
 cmake --build build
 cmake --install build
 ctest --test-dir build
@@ -31,7 +31,7 @@ to select the Fortran compiler and backend without setting cache variables by
 hand. Pass one with `-DCMAKE_TOOLCHAIN_FILE`:
 
 ```shell
-cmake -S . -B build -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 ```
 
 ## Fortran interfaces
@@ -64,19 +64,25 @@ definition, which `hipfort` enables automatically once it detects Fortran 2008 s
 in your compiler. By convention, application and test sources that rely on them use the
 `.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
 
-You can override the automatic detection with the `HIPFORT_USE_FPOINTER_INTERFACES`
-CMake option. It defaults to `ON` when the compiler supports Fortran 2008; set
-`-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` to build with the plain Fortran 2003
-`type(c_ptr)` interfaces only. This is useful for an old compiler, or one whose
-Fortran 2008 support is buggy. Requesting it on a compiler without Fortran 2008
-support is ignored (with a warning).
+Which interfaces are generated is selected by the tri-state `FORTRAN_ARRAY_INTERFACES`
+CMake option, one of `none`, `assumed-shape` (the default) or `assumed-rank`:
 
-**Experimental (`-DHIPFORT_ASSUMED_RANK=ON`).** By default each array generic is resolved by a set of rank-specific overloads (`rank_0`, `rank_1`, ...).
-With this option `hipfort` builds a single Fortran 2018 assumed-rank (`dimension(..)`) overload per routine instead.
-It requires a compiler with F2018 assumed-rank plus `c_loc` support, which `hipfort` probes for at configure time;
-if the probe fails, it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build.
-It also requires `HIPFORT_USE_FPOINTER_INTERFACES` (on which the per-rank interfaces themselves depend); with that off there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
-Off by default.
+| Value | Standard | What you get |
+| --- | --- | --- |
+| `none` | Fortran 2003 | The plain `type(c_ptr)` interfaces only. Useful for an old compiler, or one whose Fortran 2008 support is buggy |
+| `assumed-shape` | Fortran 2008 | The per-rank array overloads (`rank_0`, `rank_1`, ...), on top of the F2003 ones |
+| `assumed-rank` | Fortran 2018 | A single `dimension(..)` overload per routine **instead of** the per-rank ones |
+
+**Experimental (`-DFORTRAN_ARRAY_INTERFACES=assumed-rank`).**
+The assumed-rank overload accepts an actual argument of any rank, which is what lets a
+rank-3 array be passed to a routine whose per-rank overloads stop at rank 1.
+It requires a compiler with F2018 assumed-rank plus `c_loc` support, which the build probes
+for at configure time; if the probe fails, it warns and falls back to `assumed-shape`
+instead of failing the build.
+Note that it *replaces* the per-rank overloads rather than adding to them: an assumed-rank
+dummy is not distinguishable by rank from the per-rank specifics, so the two cannot legally
+coexist in one generic. That is exactly why these are three values of one option rather than
+two booleans, which could express the illegal combination.
 
 The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous (the dummy is declared `contiguous`).
 A non-contiguous section (e.g. `a(:,::2)`) would force the compiler to pass a temporary copy, so pass whole arrays or contiguous slices only.
@@ -87,7 +93,7 @@ While you could write the following using the `f2003` interfaces:
 
 ```Fortran
 use iso_c_binding
-use hipfort
+use hip
 integer     :: ierr        ! error code
 real,target :: a_h(5,6)    ! host array
 type(c_ptr) :: a_d         ! device array pointer
@@ -101,7 +107,7 @@ ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
 you could express the same with the `f2008` interfaces as follows:
 
 ```Fortran
-use hipfort
+use hip
 integer     :: ierr        ! error code
 real        :: a_h(5,6)    ! host array
 real,pointer :: a_d(:,:)   ! device array pointer
@@ -148,22 +154,32 @@ Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into p
 
 ## Linking against hipfort
 
-To use hipfort in your project, invoke your Fortran and HIP compilers directly and
-link against the appropriate ROCm libraries. hipfort provides exported CMake targets
-(such as `hipfort::hip`, `hipfort::rocblas`, and `hipfort::hipblas`) to make this
-straightforward:
+Each library ships its own Fortran archive, CMake package and target, so you ask for
+one package per library you `use` and link its target:
 
 ```cmake
-project(my_app Fortran)
+project(my_app Fortran C)
 
-find_package(hipfort REQUIRED COMPONENTS hip hipblas)
+find_package(hipblas-fortran REQUIRED)   # find_dependency()s hipblas itself
+find_package(hip-fortran REQUIRED)
 add_executable(my_app main.f08)
-target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
+target_link_libraries(my_app PRIVATE roc::hipblas_fortran hip::hip_fortran)
 ```
 
-List each library you use as a `COMPONENTS` entry: a `hipfort::<component>` target is
-only defined when that component is requested. The Fortran language must be enabled
-before `find_package(hipfort)`.
+The target sits in the C library's own namespace with a `_fortran` suffix, so it is
+`roc::rocblas_fortran` but `hip::hipfft_fortran`. The package name is hyphenated and the
+target underscored, which is ROCm's convention for the two rather than an inconsistency.
+The Fortran language must be enabled before `find_package`.
+
+Linking without CMake, give each library you `use` its own `-l<lib>_fortran`, and point
+`-I`/`-L` at your compiler's subdirectory:
+
+```shell
+gfortran app.f90 \
+  -I/opt/rocm/include/fortran/gfortran \
+  -L/opt/rocm/lib/fortran/gfortran -lrocblas_fortran -lhip_fortran \
+  -L/opt/rocm/lib -lrocblas -lamdhip64 -o app
+```
 
 ## Examples and tests
 
@@ -179,14 +195,14 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 
 ### Building and running the tests
 
-The tests are driven by CTest. Configure the build with `-DBUILD_TESTING=ON`,
-build hipfort, and run the suite with `ctest`.
+The tests are driven by CTest. Configure the build with `-DBUILD_FORTRAN_TESTS=ON`,
+build the bindings, and run the suite with `ctest`.
 
 > **NOTE**: Running the tests requires the ROCm math libraries. The ROCm root is
 detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=<path>`.
 
 ```shell
-cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_FORTRAN_TESTS=ON
 cmake --build build
 ctest --test-dir build
 ```

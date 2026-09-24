@@ -13,9 +13,8 @@
 !
 program zsddmm
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
 
   implicit none
   integer :: i

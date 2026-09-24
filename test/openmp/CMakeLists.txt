@@ -201,8 +201,10 @@ message(STATUS "Linear algebra libraries found : ${BLAS_LIBRARIES}")
 
 ##### HIPFORT source ######
 file(GLOB_RECURSE hipfort_src
-    "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.F90"
-    "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.f90")
+    "${CMAKE_SOURCE_DIR}/../../lib/rocm-systems/*/*.F90"
+    "${CMAKE_SOURCE_DIR}/../../lib/rocm-systems/*/*.f90"
+    "${CMAKE_SOURCE_DIR}/../../lib/rocm-libraries/*/*.F90"
+    "${CMAKE_SOURCE_DIR}/../../lib/rocm-libraries/*/*.f90")
 
 ##### Programs ############
 

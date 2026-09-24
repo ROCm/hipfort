@@ -1,9 +1,7 @@
 program hipfftw_guru_test
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipfftw
-  use hipfort_hipfftw_types
+  use hip
+  use hipfftw
 
   implicit none
 

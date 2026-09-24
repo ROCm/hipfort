@@ -6,10 +6,9 @@
 !
 program dgetri_npvt
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: N = 3, lda = 3
   real(c_double) :: hA(3,3)   = reshape((/4, 1, 1,  1, 4, 1,  1, 1, 4/), (/3,3/))  ! SPD, no pivoting

@@ -11,9 +11,8 @@
 !
 program coo2csr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: M = 3, nnz = 5

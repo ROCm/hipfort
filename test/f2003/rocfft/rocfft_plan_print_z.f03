@@ -5,9 +5,8 @@
 program rocfft_plan_print_z
   use iso_c_binding
   use iso_fortran_env, only: output_unit
-  use hipfort
-  use hipfort_check
-  use hipfort_rocfft
+  use hip
+  use rocfft
 
   implicit none
 

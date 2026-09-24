@@ -32,10 +32,8 @@ program rocblas_dtrmm_test
     ! is integer-valued in double precision and therefore checkable exactly.
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocblas
-    use hipfort_rocblas_enums
+    use hip
+    use rocblas
 
     implicit none
 

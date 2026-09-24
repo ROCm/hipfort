@@ -9,10 +9,7 @@
 !
 program virtual_memory
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
-  use hipfort_types
+  use hip
 
   implicit none
 
