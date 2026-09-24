@@ -517,8 +517,10 @@ rest of a monorepo build: ``<LIB>_BUILD_FORTRAN_BINDINGS`` and
 ``<LIB>_BUILD_FORTRAN_TESTS`` (for example
 ``-DROCSPARSE_BUILD_FORTRAN_BINDINGS=OFF``) win over the global spelling when
 set. ``<LIB>_FORTRAN_COMPILER_DIR`` overrides the per-compiler subdirectory
-name described in `Where the files install`_, which matters only at a site that
-installs several compilers' artifacts side by side.
+name described in `Where the files install`_. You do not need it merely because
+a prefix holds several compilers' artifacts, since that case resolves on its
+own; it is for naming a directory the compiler alone does not imply, such as a
+version-suffixed ``gfortran-13.3.0``, or for selecting one deliberately.
 
 The interface tiers themselves do not change: the raw ``type(c_ptr)`` surface
 is Fortran 2003 and is always present, the ergonomic array overloads are
@@ -607,8 +609,18 @@ Because the artifacts are compiler-specific, they install under a per-compiler
 subdirectory: the ``.mod`` files in ``include/fortran/<compiler>/`` (for
 example ``/opt/rocm/include/fortran/amdflang/``) and the ``.a`` files in
 ``lib/fortran/<compiler>/``. A CMake ``find_package`` picks your compiler's
-subdirectory automatically; if you link with raw flags, point ``-I`` and ``-L``
-at it.
+subdirectory automatically, including when a prefix holds more than one
+compiler's artifacts; if you link with raw flags, point ``-I`` and ``-L`` at it.
+
+If nothing is installed for your compiler, the package fails and names what is,
+so that you can tell a rebuild from a redirect:
+
+.. code-block:: none
+
+   This project builds with gfortran, but no rocrand.mod for it is installed
+   under /opt/rocm/include/fortran. Available: amdflang. A Fortran .mod cannot
+   be shared across compilers; rebuild the bindings with gfortran, or set
+   ROCRAND_FORTRAN_COMPILER_DIR to the directory to use.
 
 ``<compiler>`` is the name you would type, not the CMake compiler ID:
 
