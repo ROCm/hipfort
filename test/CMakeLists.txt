@@ -1310,16 +1310,25 @@ if(BUILD_FORTRAN_TESTS)
     endif()
   endif()
 
-  # Regression test for SWDEV-427498: installing hipfort and calling
-  # find_package(hipfort) from the install prefix must succeed. This guards the
-  # multitoolchain-layout shim (lib/cmake/hipfort forwarding to
-  # lib/fortran/<compiler>/cmake/hipfort) and the flat-layout config alike.
+  # Regression test for SWDEV-427498: installing the bindings and calling
+  # find_package(<lib>-fortran) from the install prefix must succeed. This
+  # guards the per-compiler shim (lib/cmake/<lib>-fortran forwarding to
+  # lib/fortran/<compiler>/cmake/<lib>-fortran).
+  #
+  # ROCM_PATH is passed because the consumer genuinely needs it: each
+  # <lib>-fortran config find_dependency()s the C library it wraps, so
+  # find_package(hip-fortran) pulls in hip. That is a real difference from the
+  # old hipfort package, which only resolved dependencies for the components you
+  # asked for and so needed nothing beyond its own prefix when asked for none.
+  # In production the question does not arise, ROCm being the install prefix;
+  # here the prefix is a scratch directory, so ROCm has to be named separately.
   add_test(NAME hipfort_find_package_install
     COMMAND ${CMAKE_COMMAND}
       -DHIPFORT_BUILD_DIR=${CMAKE_BINARY_DIR}
       -DCONSUMER_SRC=${CMAKE_CURRENT_SOURCE_DIR}/find_package
       -DWORK_DIR=${CMAKE_CURRENT_BINARY_DIR}/find_package_work
       -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
+      -DROCM_PATH=${ROCM_PATH}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
 
   # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference.

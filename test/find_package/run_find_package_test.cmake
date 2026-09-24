@@ -34,11 +34,17 @@ if(NOT EXISTS "${_prefix}/lib/cmake/hip-fortran/hip-fortran-config.cmake")
     "(find_package(hip-fortran) would not discover it from the install prefix).")
 endif()
 
+# ROCm goes on the prefix path alongside the install: hip-fortran's config
+# find_dependency()s hip, so resolving the binding means resolving the C library
+# behind it too. The whole -D must stay one quoted argument, so that the ";"
+# reaches the child as a literal and is read there as a two-element list;
+# unquoted it would split into two arguments to execute_process, and escaped
+# ("\;") it would arrive as a single path with a backslash in it.
 execute_process(
   COMMAND "${CMAKE_COMMAND}"
           -S "${CONSUMER_SRC}" -B "${WORK_DIR}/consumer"
           -DCMAKE_Fortran_COMPILER=${FORTRAN_COMPILER}
-          -DCMAKE_PREFIX_PATH=${_prefix}
+          "-DCMAKE_PREFIX_PATH=${_prefix};${ROCM_PATH}"
   RESULT_VARIABLE _rc OUTPUT_VARIABLE _log ERROR_VARIABLE _log)
 message(STATUS "${_log}")
 if(NOT _rc EQUAL 0)
