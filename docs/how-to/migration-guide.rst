@@ -662,6 +662,41 @@ self-contained Fortran, so compiling it needs only a Fortran compiler: it does
 not rebuild rocBLAS, and it needs neither the C headers nor the ``.so`` at
 build time (the vendor symbols resolve when you link your application).
 
+Getting the sources
+~~~~~~~~~~~~~~~~~~~
+
+ROCm ships the bindings precompiled for ``amdflang`` only, and it does not
+install the ``.F90`` they were generated from, so the first step is to obtain
+the source of the binding you want. It lives in the repository its library
+lives in: `rocm-systems <https://github.com/ROCm/rocm-systems>`_ for HIP,
+`rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ for the math
+libraries, in both cases under ``projects/<library>/fortran``.
+
+Check out the tag matching the ROCm you have installed rather than the default
+branch. A binding generated from a newer ROCm declares entry points your
+installed ``.so`` does not export, which surfaces as an undefined symbol when
+you link your application, or as an interface that differs silently from the
+one you meant to call. Both repositories tag releases as ``therock-<version>``.
+
+One directory is all you need, so a blobless sparse clone avoids fetching a
+monorepo you have no other use for:
+
+.. code-block:: shell
+
+   git clone --depth 1 --branch therock-10.0 \
+     --filter=blob:none --sparse \
+     https://github.com/ROCm/rocm-libraries.git
+   cd rocm-libraries
+   git sparse-checkout set projects/rocblas/fortran
+
+If you build ROCm from source already (through Spack, EasyBuild, or a distro
+package build), you have the tree and this step does not apply: pass
+``-DBUILD_FORTRAN_BINDINGS=ON`` to that build instead and the bindings come out
+built with your compiler.
+
+Building it
+~~~~~~~~~~~
+
 Each library's ``fortran/`` directory is a self-contained CMake project. Point
 it at an installed ROCm and build only the binding:
 
