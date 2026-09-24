@@ -1378,6 +1378,64 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
       endforeach()
     endif()
   endif()
+  # ---------------------------------------------------------------------------
+  # Upstream client samples, built against the generated bindings.
+  #
+  # Each library already ships Fortran samples in its own repository, written
+  # against the hand-written module it installs as source. They are copied into
+  # test/rocm-libraries/ verbatim (see the README there) and compiled here with
+  # nothing changed, which is the point: they open with `use rocblas` /
+  # `use rocsparse`, the very name the generated binding provides, so building
+  # them unedited is what shows the generated module is a drop-in replacement
+  # for the one it supersedes at 10.2.
+  #
+  # After the split these build inside their own library under
+  # BUILD_FORTRAN_CLIENTS, linking roc::<lib>_fortran instead of compiling the
+  # in-tree .f90. Here they stand in for that.
+  #
+  # OFF by default because the answer, today, is that they do NOT build: every
+  # one of the 18 fails, on three source-level differences between the
+  # hand-written module and the generated one that are catalogued in
+  # test/rocm-libraries/README.md. That is the finding, not a regression to fix
+  # here, so the sources stay in the tree as reproducible evidence and the
+  # targets are opt-in rather than a permanently red suite. Turn it on to
+  # reproduce:  -DBUILD_FORTRAN_CLIENT_SAMPLES=ON
+  option(BUILD_FORTRAN_CLIENT_SAMPLES
+    "Build each library's own upstream Fortran samples against the generated bindings" OFF)
+
+  function(hipfort_add_client_sample lib src)
+    if(NOT BUILD_FORTRAN_CLIENT_SAMPLES)
+      return()
+    endif()
+    hipfort_test_target(${lib} _fortran_target)
+    if(NOT _fortran_target)
+      return()
+    endif()
+    get_filename_component(_name "${src}" NAME_WE)
+    set(tgt hipfort_sample_${lib}_${_name})
+    set_source_files_properties("${src}" PROPERTIES
+      LANGUAGE Fortran Fortran_PREPROCESS ON)
+    add_executable(${tgt} "${src}")
+    set_target_properties(${tgt} PROPERTIES LINKER_LANGUAGE Fortran)
+    # The HIP runtime, but not the HIP binding's module: these samples declare
+    # their own hipMalloc/hipFree/hipMemcpy interfaces inline and bind those C
+    # symbols directly, so they need the library and never `use hip`.
+    target_link_libraries(${tgt} PRIVATE ${_fortran_target} ${ROCM_FORTRAN_TARGET_hip})
+    add_test(NAME ${tgt} COMMAND ${tgt})
+    # They report failure with a bare Fortran `stop`, which exits 0, so without
+    # this a runtime failure would be recorded as a pass. Matching the prefix
+    # they print keeps the sources verbatim.
+    set_tests_properties(${tgt} PROPERTIES FAIL_REGULAR_EXPRESSION "Error:")
+  endfunction()
+
+  foreach(_lib rocblas rocsparse)
+    file(GLOB _samples CONFIGURE_DEPENDS
+      "${CMAKE_CURRENT_SOURCE_DIR}/rocm-libraries/${_lib}/*.[fF]90")
+    foreach(_s IN LISTS _samples)
+      hipfort_add_client_sample(${_lib} "${_s}")
+    endforeach()
+  endforeach()
+
   # Source-only lint. Needs bash, so not on Windows.
   if(NOT CMAKE_HOST_WIN32)
     add_test(NAME hipfort_fortran_line_length
