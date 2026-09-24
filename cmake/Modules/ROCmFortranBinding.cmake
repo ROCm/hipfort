@@ -339,7 +339,37 @@ function(rocm_add_fortran_binding)
 
   # ---- the archive --------------------------------------------------------
   add_library(${_target} STATIC "${_rfb_SOURCE}")
-  add_library(${_rfb_NAMESPACE}::${_target} ALIAS ${_target})
+
+  # Normally the namespaced alias is the name everything links. It can already
+  # be taken: hipSOLVER is the one library that ALREADY exports
+  # roc::hipsolver_fortran, a *shared* library built from its hand-written
+  # hipsolver_module.f90, so find_package(hipsolver) imports that name before we
+  # get here and CMake refuses a second target with it. The generated binding
+  # supersedes that module at 10.2 and takes the same public name, so the
+  # collision is transitional: it only happens while building against a ROCm
+  # whose C package still ships the old target. Fall back to the plain target
+  # name inside this build tree rather than failing the whole configure, and say
+  # so, because the alternative is silently linking the other thing.
+  set(_link_target ${_rfb_NAMESPACE}::${_target})
+  if(TARGET ${_rfb_NAMESPACE}::${_target})
+    set(_link_target ${_target})
+    message(WARNING
+      "${_rfb_C_PACKAGE} already exports ${_rfb_NAMESPACE}::${_target} (the "
+      "hand-written Fortran binding it shipped before the split), so this build "
+      "links the generated one as plain '${_target}' instead. The installed "
+      "${_lib}-fortran package still exports it as ${_rfb_NAMESPACE}::${_target}, "
+      "so consuming that install on a ROCm whose ${_rfb_C_PACKAGE} still defines "
+      "the name will collide the same way. See 'Special cases' in "
+      "docs/how-to/migration-guide.rst.")
+  else()
+    add_library(${_rfb_NAMESPACE}::${_target} ALIAS ${_target})
+  endif()
+
+  # The name the rest of this build tree must link. Callers use this rather than
+  # reconstructing <namespace>::<lib>_fortran, which is not always reachable.
+  set(ROCM_FORTRAN_TARGET_${_lib} ${_link_target} CACHE INTERNAL
+    "Target to link for ${_lib}'s Fortran binding in this build tree")
+
   set_target_properties(${_target} PROPERTIES
     Fortran_MODULE_DIRECTORY "${_moddir}"
     Fortran_PREPROCESS ON
@@ -417,7 +447,9 @@ function(rocm_add_fortran_binding)
   install(FILES "${CMAKE_CURRENT_BINARY_DIR}/shim/${_lib}-fortran-config.cmake"
     DESTINATION "lib/cmake/${_lib}-fortran")
 
+  # Reports the in-tree link name, which is not the exported one when the
+  # namespaced target was already taken (see the collision above).
   message(STATUS
-    "${_lib}: Fortran binding -> ${_rfb_NAMESPACE}::${_target} "
+    "${_lib}: Fortran binding -> ${_link_target} "
     "(lib${_target}.a, ${_lib}.mod, ${_cdir})")
 endfunction()
