@@ -677,45 +677,42 @@ build time (the vendor symbols resolve when you link your application).
 Getting the sources
 ~~~~~~~~~~~~~~~~~~~
 
-ROCm ships the bindings precompiled for ``amdflang`` only, and it does not
-install the ``.F90`` they were generated from, so the first step is to obtain
-the source of the binding you want. It lives in the repository its library
-lives in: `rocm-systems <https://github.com/ROCm/rocm-systems>`_ for HIP,
-`rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ for the math
-libraries, in both cases under ``projects/<library>/fortran``.
-
-.. note::
-
-   Planned, not yet shipping. Installing the generated source alongside the
-   binding, at ``share/<library>/fortran/<library>.F90``, is agreed in the
-   design document but not implemented in any ROCm release, so the clone below
-   is the current path. Once it lands, the source is already on the prefix and
-   matches the installed ``.so`` by construction, which removes the version
-   skew this section otherwise has to warn about.
-
-   It goes under ``share/`` rather than ``include/`` because the ``.F90`` is
-   compiler-independent, unlike the ``.mod``: everything under
-   ``include/fortran/`` is partitioned by compiler, so a source file placed
-   there would be read as if it named one. ``share/`` is also where the rest of
-   ROCm keeps architecture-independent data, and it leaves room should the
-   Fortran side ever ship more than the module.
-
-Check out the tag matching the ROCm you have installed rather than the default
-branch. A binding generated from a newer ROCm declares entry points your
-installed ``.so`` does not export, which surfaces as an undefined symbol when
-you link your application, or as an interface that differs silently from the
-one you meant to call. Both repositories tag releases as ``therock-<version>``.
-
-One directory is all you need, so a blobless sparse clone avoids fetching a
-monorepo you have no other use for:
+ROCm ships the bindings precompiled for ``amdflang`` only, but it installs the
+``.F90`` they were generated from alongside them, so the source is already on
+your prefix:
 
 .. code-block:: shell
 
-   git clone --depth 1 --branch therock-10.0 \
-     --filter=blob:none --sparse \
-     https://github.com/ROCm/rocm-libraries.git
-   cd rocm-libraries
-   git sparse-checkout set projects/rocblas/fortran
+   /opt/rocm/share/<library>/fortran/<library>.F90
+
+for example ``/opt/rocm/share/rocblas/fortran/rocblas.F90``. Nothing to clone,
+and nothing to match up: the installed source was generated from the same
+headers as the installed library, so it cannot declare an entry point the
+``.so`` does not export.
+
+It sits under ``share/`` rather than ``include/`` because the ``.F90`` is
+compiler-independent, unlike the ``.mod``. Everything under
+``include/fortran/`` is partitioned by compiler, so a source file placed there
+would be read as if it named one.
+
+.. note::
+
+   On a ROCm that predates this, the source is not installed and you fetch it
+   from the repository its library lives in:
+   `rocm-systems <https://github.com/ROCm/rocm-systems>`_ for HIP,
+   `rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ for the math
+   libraries, under ``projects/<library>/fortran``. Check out the tag matching
+   the ROCm you have installed, not the default branch: a binding generated
+   from a newer ROCm declares entry points your installed ``.so`` does not
+   export. Both repositories tag releases as ``therock-<version>``.
+
+   .. code-block:: shell
+
+      git clone --depth 1 --branch therock-10.0 \
+        --filter=blob:none --sparse \
+        https://github.com/ROCm/rocm-libraries.git
+      cd rocm-libraries
+      git sparse-checkout set projects/rocblas/fortran
 
 If you build ROCm from source already (through Spack, EasyBuild, or a distro
 package build), you have the tree and this step does not apply: pass
