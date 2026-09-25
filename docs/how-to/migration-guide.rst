@@ -684,6 +684,22 @@ lives in: `rocm-systems <https://github.com/ROCm/rocm-systems>`_ for HIP,
 `rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ for the math
 libraries, in both cases under ``projects/<library>/fortran``.
 
+.. note::
+
+   Planned, not yet shipping. Installing the generated source alongside the
+   binding, at ``share/<library>/fortran/<library>.F90``, is agreed in the
+   design document but not implemented in any ROCm release, so the clone below
+   is the current path. Once it lands, the source is already on the prefix and
+   matches the installed ``.so`` by construction, which removes the version
+   skew this section otherwise has to warn about.
+
+   It goes under ``share/`` rather than ``include/`` because the ``.F90`` is
+   compiler-independent, unlike the ``.mod``: everything under
+   ``include/fortran/`` is partitioned by compiler, so a source file placed
+   there would be read as if it named one. ``share/`` is also where the rest of
+   ROCm keeps architecture-independent data, and it leaves room should the
+   Fortran side ever ship more than the module.
+
 Check out the tag matching the ROCm you have installed rather than the default
 branch. A binding generated from a newer ROCm declares entry points your
 installed ``.so`` does not export, which surfaces as an undefined symbol when
