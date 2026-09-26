@@ -13752,9 +13752,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -13772,9 +13772,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -13792,9 +13792,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -13812,9 +13812,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -13832,9 +13832,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -13852,9 +13852,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -13872,9 +13872,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -13892,9 +13892,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
+      type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      type(c_ptr) :: x
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -14472,8 +14472,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14491,8 +14491,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14510,8 +14510,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14529,8 +14529,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batch_count
     end function
@@ -14548,8 +14548,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -14567,8 +14567,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -14586,8 +14586,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
@@ -14605,8 +14605,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)),value :: transA
       integer(kind(rocblas_diagonal_non_unit)),value :: diag
       integer(c_int64_t),value :: n
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr),value :: A
+      type(c_ptr),value :: x
       integer(c_int64_t),value :: incx
       integer(c_int64_t),value :: batch_count
     end function
