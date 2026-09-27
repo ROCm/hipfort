@@ -1,9 +1,9 @@
 # hipfort package shim.
 #
-# Installed at <prefix>/lib/cmake/hipfort/hipfort-config.cmake when hipfort is
+# Installed at <prefix>/@HIPFORT_SHIM_DIR@/hipfort-config.cmake when hipfort is
 # built with HIPFORT_MULTITOOLCHAIN_LAYOUT=ON. Fortran .mod files are
 # compiler-specific, so the real hipfort package files are installed under a
-# compiler-specific subdirectory, <prefix>/lib/fortran/<compiler>/cmake/hipfort,
+# compiler-specific subdirectory, <prefix>/@HIPFORT_FORTRAN_LIBBASE@/<compiler>/cmake/hipfort,
 # which is not on CMake's default find_package search path. This shim lets
 # `find_package(hipfort)` succeed from the install prefix (e.g. /opt/rocm) by
 # forwarding to the subdirectory that matches the consuming project's Fortran
@@ -18,14 +18,17 @@ if(NOT CMAKE_Fortran_COMPILER)
 endif()
 
 get_filename_component(_hipfort_fc "${CMAKE_Fortran_COMPILER}" NAME)
-get_filename_component(_hipfort_prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
-set(_hipfort_real "${_hipfort_prefix}/lib/fortran/${_hipfort_fc}/cmake/hipfort/hipfort-config.cmake")
+# The climb back to the install prefix is computed at configure time from the
+# directory this file installs into, rather than counting ".." here: its depth
+# follows CMAKE_INSTALL_LIBDIR, which is two segments on Debian multiarch.
+get_filename_component(_hipfort_prefix "${CMAKE_CURRENT_LIST_DIR}/@HIPFORT_SHIM_TO_PREFIX@" ABSOLUTE)
+set(_hipfort_real "${_hipfort_prefix}/@HIPFORT_FORTRAN_LIBBASE@/${_hipfort_fc}/cmake/hipfort/hipfort-config.cmake")
 
 if(NOT EXISTS "${_hipfort_real}")
-  file(GLOB _hipfort_toolchains RELATIVE "${_hipfort_prefix}/lib/fortran" "${_hipfort_prefix}/lib/fortran/*")
+  file(GLOB _hipfort_toolchains RELATIVE "${_hipfort_prefix}/@HIPFORT_FORTRAN_LIBBASE@" "${_hipfort_prefix}/@HIPFORT_FORTRAN_LIBBASE@/*")
   set(hipfort_FOUND FALSE)
   set(hipfort_NOT_FOUND_MESSAGE
-      "hipfort is not installed for the Fortran compiler '${_hipfort_fc}'. Available toolchains: ${_hipfort_toolchains}. Rebuild hipfort with this compiler, or set hipfort_DIR to the matching lib/fortran/<compiler>/cmake/hipfort directory.")
+      "hipfort is not installed for the Fortran compiler '${_hipfort_fc}'. Available toolchains: ${_hipfort_toolchains}. Rebuild hipfort with this compiler, or set hipfort_DIR to the matching @HIPFORT_FORTRAN_LIBBASE@/<compiler>/cmake/hipfort directory.")
   unset(_hipfort_fc)
   unset(_hipfort_prefix)
   unset(_hipfort_real)
