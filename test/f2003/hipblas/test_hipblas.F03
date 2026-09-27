@@ -946,6 +946,12 @@ program test_hipblas
     if (never) v1 = hipblasDgemmBatched_64_(v0, v13, v13, v8, v8, v8, v10, v0, v8, v0, v8, v10, v0, v8, v8)
     if (never) v1 = hipblasCgemmBatched_64_(v0, v13, v13, v8, v8, v8, v11, v0, v8, v0, v8, v11, v0, v8, v8)
     if (never) v1 = hipblasZgemmBatched_64_(v0, v13, v13, v8, v8, v8, v12, v0, v8, v0, v8, v12, v0, v8, v8)
+#ifndef USE_CUDA_NAMES
+    if (never) v1 = hipblasSgemmGroupedBatched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v2, v0)
+    if (never) v1 = hipblasDgemmGroupedBatched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v2, v0)
+    if (never) v1 = hipblasSgemmGroupedBatched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v8, v0)
+    if (never) v1 = hipblasDgemmGroupedBatched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v8, v0)
+#endif
     if (never) v1 = hipblasHgemmStridedBatched_(v0, v13, v13, v2, v2, v2, v0, v0, v2, v8, v0, v2, v8, v0, v0, v2, v8, &
       v2)
     if (never) v1 = hipblasSgemmStridedBatched_(v0, v13, v13, v2, v2, v2, v9, v0, v2, v8, v0, v2, v8, v9, v0, v2, v8, &
@@ -1353,6 +1359,14 @@ program test_hipblas
 #ifndef USE_CUDA_NAMES
     if (never) v1 = hipblasGemmBatchedExWithFlags_64_(v0, v13, v13, v8, v8, v8, v0, v0, v17, v8, v0, v17, v8, v0, v0, &
       v17, v8, v8, v18, v19, v20)
+    if (never) v1 = hipblasGemmGroupedBatchedEx_(v0, v0, v0, v0, v0, v0, v0, v0, v17, v0, v0, v17, v0, v0, v0, v17, &
+      v0, v0, v17, v0, v2, v0, v18, v19)
+    if (never) v1 = hipblasGemmGroupedBatchedExWithFlags_(v0, v0, v0, v0, v0, v0, v0, v0, v17, v0, v0, v17, v0, v0, &
+      v0, v17, v0, v0, v17, v0, v2, v0, v18, v19, v20)
+    if (never) v1 = hipblasGemmGroupedBatchedEx_64_(v0, v0, v0, v0, v0, v0, v0, v0, v17, v0, v0, v17, v0, v0, v0, &
+      v17, v0, v0, v17, v0, v8, v0, v18, v19)
+    if (never) v1 = hipblasGemmGroupedBatchedExWithFlags_64_(v0, v0, v0, v0, v0, v0, v0, v0, v17, v0, v0, v17, v0, &
+      v0, v0, v17, v0, v0, v17, v0, v8, v0, v18, v19, v20)
 #endif
     if (never) v1 = hipblasGemmStridedBatchedEx_(v0, v13, v13, v2, v2, v2, v0, v0, v17, v2, v8, v0, v17, v2, v8, v0, &
       v0, v17, v2, v8, v2, v18, v19)

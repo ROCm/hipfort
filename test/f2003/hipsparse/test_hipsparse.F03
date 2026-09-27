@@ -39,11 +39,12 @@ program test_hipsparse
   integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)) :: v24
   integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)) :: v25
   integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)) :: v26
-  integer(kind(HIPSPARSE_SPGEMM_DEFAULT)) :: v27
-  integer(kind(HIPSPARSE_MM_ALG_DEFAULT)) :: v28
-  integer(kind(HIPSPARSE_MV_ALG_DEFAULT)) :: v29
-  integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)) :: v30
-  integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)) :: v31
+  integer(kind(HIPSPARSE_SPGEAM_ALG1)) :: v27
+  integer(kind(HIPSPARSE_SPGEMM_DEFAULT)) :: v28
+  integer(kind(HIPSPARSE_MM_ALG_DEFAULT)) :: v29
+  integer(kind(HIPSPARSE_MV_ALG_DEFAULT)) :: v30
+  integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)) :: v31
+  integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)) :: v32
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -654,34 +655,41 @@ program test_hipsparse
     if (never) v1 = hipsparseSDDMM_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v25, v0)
     if (never) v1 = hipsparseSparseToDense_bufferSize_(v0, v0, v0, v26, v14)
     if (never) v1 = hipsparseSparseToDense_(v0, v0, v0, v26, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v1 = hipsparseSpGEAM_createDescr_(v0)
+    if (never) v1 = hipsparseSpGEAM_destroyDescr_(v0)
+    if (never) v1 = hipsparseSpGEAM_bufferSize_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0, v0)
+    if (never) v1 = hipsparseSpGEAM_nnz_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0, v0)
+    if (never) v1 = hipsparseSpGEAM_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0, v0)
+#endif
     if (never) v1 = hipsparseSpGEMM_createDescr_(v0)
     if (never) v1 = hipsparseSpGEMM_destroyDescr_(v0)
-    if (never) v1 = hipsparseSpGEMM_workEstimation_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0, v0, v0)
-    if (never) v1 = hipsparseSpGEMM_compute_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0, v0, v0)
-    if (never) v1 = hipsparseSpGEMM_copy_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0)
-    if (never) v1 = hipsparseSpGEMMreuse_workEstimation_(v0, v13, v13, v0, v0, v0, v27, v0, v0, v0)
-    if (never) v1 = hipsparseSpGEMMreuse_nnz_(v0, v13, v13, v0, v0, v0, v27, v0, v0, v0, v0, v0, v0, v0)
-    if (never) v1 = hipsparseSpGEMMreuse_copy_(v0, v13, v13, v0, v0, v0, v27, v0, v0, v0)
-    if (never) v1 = hipsparseSpGEMMreuse_compute_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v27, v0)
-    if (never) v1 = hipsparseSpMM_bufferSize_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v14)
-    if (never) v1 = hipsparseSpMM_preprocess_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v0)
-    if (never) v1 = hipsparseSpMM_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v0)
-    if (never) v1 = hipsparseSpMV_bufferSize_(v0, v13, v0, v0, v0, v0, v0, v17, v29, v14)
-    if (never) v1 = hipsparseSpMV_preprocess_(v0, v13, v0, v0, v0, v0, v0, v17, v29, v0)
-    if (never) v1 = hipsparseSpMV_(v0, v13, v0, v0, v0, v0, v0, v17, v29, v0)
+    if (never) v1 = hipsparseSpGEMM_workEstimation_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v0, v0, v0)
+    if (never) v1 = hipsparseSpGEMM_compute_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v0, v0, v0)
+    if (never) v1 = hipsparseSpGEMM_copy_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v0)
+    if (never) v1 = hipsparseSpGEMMreuse_workEstimation_(v0, v13, v13, v0, v0, v0, v28, v0, v0, v0)
+    if (never) v1 = hipsparseSpGEMMreuse_nnz_(v0, v13, v13, v0, v0, v0, v28, v0, v0, v0, v0, v0, v0, v0)
+    if (never) v1 = hipsparseSpGEMMreuse_copy_(v0, v13, v13, v0, v0, v0, v28, v0, v0, v0)
+    if (never) v1 = hipsparseSpGEMMreuse_compute_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v28, v0)
+    if (never) v1 = hipsparseSpMM_bufferSize_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v29, v14)
+    if (never) v1 = hipsparseSpMM_preprocess_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v29, v0)
+    if (never) v1 = hipsparseSpMM_(v0, v13, v13, v0, v0, v0, v0, v0, v17, v29, v0)
+    if (never) v1 = hipsparseSpMV_bufferSize_(v0, v13, v0, v0, v0, v0, v0, v17, v30, v14)
+    if (never) v1 = hipsparseSpMV_preprocess_(v0, v13, v0, v0, v0, v0, v0, v17, v30, v0)
+    if (never) v1 = hipsparseSpMV_(v0, v13, v0, v0, v0, v0, v0, v17, v30, v0)
     if (never) v1 = hipsparseSpSM_createDescr_(v0)
     if (never) v1 = hipsparseSpSM_destroyDescr_(v0)
-    if (never) v1 = hipsparseSpSM_bufferSize_(v0, v13, v13, v0, v0, v0, v0, v17, v30, v0, v14)
-    if (never) v1 = hipsparseSpSM_analysis_(v0, v13, v13, v0, v0, v0, v0, v17, v30, v0, v0)
-    if (never) v1 = hipsparseSpSM_solve_(v0, v13, v13, v0, v0, v0, v0, v17, v30, v0, v0)
+    if (never) v1 = hipsparseSpSM_bufferSize_(v0, v13, v13, v0, v0, v0, v0, v17, v31, v0, v14)
+    if (never) v1 = hipsparseSpSM_analysis_(v0, v13, v13, v0, v0, v0, v0, v17, v31, v0, v0)
+    if (never) v1 = hipsparseSpSM_solve_(v0, v13, v13, v0, v0, v0, v0, v17, v31, v0, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v1 = hipsparseSpSM_solve_ex_(v0, v13, v13, v0, v0, v0, v0, v17, v30, v0)
+    if (never) v1 = hipsparseSpSM_solve_ex_(v0, v13, v13, v0, v0, v0, v0, v17, v31, v0)
 #endif
     if (never) v1 = hipsparseSpSV_createDescr_(v0)
     if (never) v1 = hipsparseSpSV_destroyDescr_(v0)
-    if (never) v1 = hipsparseSpSV_bufferSize_(v0, v13, v0, v0, v0, v0, v17, v31, v0, v14)
-    if (never) v1 = hipsparseSpSV_analysis_(v0, v13, v0, v0, v0, v0, v17, v31, v0, v0)
-    if (never) v1 = hipsparseSpSV_solve_(v0, v13, v0, v0, v0, v0, v17, v31, v0)
+    if (never) v1 = hipsparseSpSV_bufferSize_(v0, v13, v0, v0, v0, v0, v17, v32, v0, v14)
+    if (never) v1 = hipsparseSpSV_analysis_(v0, v13, v0, v0, v0, v0, v17, v32, v0, v0)
+    if (never) v1 = hipsparseSpSV_solve_(v0, v13, v0, v0, v0, v0, v17, v32, v0)
     if (never) v1 = hipsparseSpVV_bufferSize_(v0, v13, v0, v0, v0, v17, v14)
     if (never) v1 = hipsparseSpVV_(v0, v13, v0, v0, v0, v17, v0)
 

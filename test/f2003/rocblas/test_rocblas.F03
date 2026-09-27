@@ -1162,6 +1162,10 @@ program test_rocblas
       v4, v4, v4)
     if (never) v1 = rocblas_zgemm_strided_batched_64_(v0, v13, v13, v4, v4, v4, v11, v0, v4, v4, v0, v4, v4, v11, v0, &
       v4, v4, v4)
+    if (never) v1 = rocblas_sgemm_grouped_batched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v8, v0)
+    if (never) v1 = rocblas_dgemm_grouped_batched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v8, v0)
+    if (never) v1 = rocblas_sgemm_grouped_batched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v4, v0)
+    if (never) v1 = rocblas_dgemm_grouped_batched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v4, v0)
     if (never) v1 = rocblas_sdgmm_(v0, v16, v8, v8, v0, v8, v0, v8, v0, v8)
     if (never) v1 = rocblas_ddgmm_(v0, v16, v8, v8, v0, v8, v0, v8, v0, v8)
     if (never) v1 = rocblas_cdgmm_(v0, v16, v8, v8, v0, v8, v0, v8, v0, v8)
@@ -1228,6 +1232,10 @@ program test_rocblas
       v0, v0, v17, v8, v4, v0, v17, v8, v4, v8, v17, v18, v19, v19)
     if (never) v1 = rocblas_gemm_strided_batched_ex_64_(v0, v13, v13, v4, v4, v4, v0, v0, v17, v4, v4, v0, v17, v4, &
       v4, v0, v0, v17, v4, v4, v0, v17, v4, v4, v4, v17, v18, v19, v19)
+    if (never) v1 = rocblas_gemm_grouped_batched_ex_(v0, v0, v0, v0, v0, v0, v0, v0, v17, v0, v0, v17, v0, v0, v0, &
+      v17, v0, v0, v17, v0, v8, v0, v17, v18, v19)
+    if (never) v1 = rocblas_gemm_grouped_batched_ex_64_(v0, v0, v0, v0, v0, v0, v0, v0, v17, v0, v0, v17, v0, v0, v0, &
+      v17, v0, v0, v17, v0, v4, v0, v17, v18, v19)
     if (never) v1 = rocblas_sgemmt_(v0, v14, v13, v13, v8, v8, v9, v0, v8, v0, v8, v9, v0, v8)
     if (never) v1 = rocblas_dgemmt_(v0, v14, v13, v13, v8, v8, v6, v0, v8, v0, v8, v6, v0, v8)
     if (never) v1 = rocblas_cgemmt_(v0, v14, v13, v13, v8, v8, v10, v0, v8, v0, v8, v10, v0, v8)

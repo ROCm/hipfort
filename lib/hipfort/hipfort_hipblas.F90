@@ -25726,6 +25726,181 @@ module hipfort_hipblas
   !>     \brief  BLAS Level 3 API
   !>
   !>     \details
+  !>     The gemmGroupedBatched functions perform grouped batched matrix-matrix operations.
+  !>     There are ``group_count`` groups. Within group ``i``, all problems share the same
+  !>     ``transA``, ``transB``, ``m``, ``n``, ``k``, ``lda``, ``ldb``, ``ldc``, ``alpha``, and
+  !>     ``beta``.
+  !>     Each group ``i`` contains group_size[i] problems. The total number of problems is
+  !>     problem_count = sum(group_size[i]).
+  !>
+  !>     For each problem ``j`` in group ``i``:
+  !>
+  !>         C_j = alpha_i*op( A_j )*op( B_j ) + beta_i*C_j,
+  !>
+  !>     where ``op( X )`` is one of
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H.
+  !>
+  !>     ``Aarray``, ``Barray``, and ``Carray`` are device arrays of device pointers with length
+  !>     ``problem_count``.
+  !>
+  !>     - Supported precisions in rocBLAS : ``s`` and ``d``.
+  !>     - Supported precisions in cuBLAS  : not supported.
+  !>
+  !>     @param[in] handle - [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in] transA_array - [const hipblasOperation_t*]
+  !>               host array of length ``group_count`` specifying ``op( A )`` for each group.
+  !>     @param[in] transB_array - [const hipblasOperation_t*]
+  !>               host array of length ``group_count`` specifying ``op( B )`` for each group.
+  !>     @param[in] m_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] n_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] k_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] alpha_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in] Aarray - device array of device pointers storing each matrix ``A_j``.
+  !>     @param[in] lda_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] Barray - device array of device pointers storing each matrix ``B_j``.
+  !>     @param[in] ldb_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] beta_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in, out] Carray - device array of device pointers storing each matrix ``C_j``.
+  !>     @param[in] ldc_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] group_count - [int]
+  !>               number of groups.
+  !>     @param[in] group_size - [const int*]
+  !>               host array of length ``group_count`` with the number of problems in each group.
+#ifndef USE_CUDA_NAMES
+  interface hipblasSgemmGroupedBatched
+    function hipblasSgemmGroupedBatched_(handle,transA_array,transB_array,m_array,n_array,k_array, &
+        alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array,group_count, &
+        group_size) &
+        bind(c, name="hipblasSgemmGroupedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmGroupedBatched_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasDgemmGroupedBatched
+    function hipblasDgemmGroupedBatched_(handle,transA_array,transB_array,m_array,n_array,k_array, &
+        alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array,group_count, &
+        group_size) &
+        bind(c, name="hipblasDgemmGroupedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmGroupedBatched_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasSgemmGroupedBatched_64
+    function hipblasSgemmGroupedBatched_64_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="hipblasSgemmGroupedBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmGroupedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasDgemmGroupedBatched_64
+    function hipblasDgemmGroupedBatched_64_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="hipblasDgemmGroupedBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmGroupedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+#endif
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
   !>     The gemmStridedBatched functions perform one of the strided batched matrix-matrix
   !>     operations:
   !>
@@ -39172,6 +39347,240 @@ module hipfort_hipblas
       integer(kind(HIP_R_32F)),value :: cType
       integer(c_int64_t),value :: ldc
       integer(c_int64_t),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+  !>  \brief   BLAS EX API
+  !>
+  !>     \details
+  !>     The gemmGroupedBatchedEx functions perform grouped batched matrix-matrix operations
+  !>     with mixed precision types. There are ``group_count`` groups. Within group ``i``, all
+  !>     problems share the same ``transA``, ``transB``, ``m``, ``n``, ``k``, ``lda``, ``ldb``,
+  !>     ``ldc``, ``ldd``, ``alpha``, and ``beta``. Each group ``i`` contains group_size[i]
+  !>     problems.
+  !>
+  !>     For each problem ``j`` in group ``i``:
+  !>
+  !>         D_j = alpha_i*op( A_j )*op( B_j ) + beta_i*C_j,
+  !>
+  !>     Supported types are as follows:
+  !>         - HIP_R_32F = aType = bType = cType = dType = computeType
+  !>         - HIP_R_64F = aType = bType = cType = dType = computeType
+  !>         - HIP_R_16F = aType = bType = cType = dType = computeType
+  !>         - HIP_R_16F = aType = bType = cType = dType; HIPBLAS_COMPUTE_32F = computeType
+  !>         - HIP_R_16F = aType = bType; HIP_R_32F = cType = dType = computeType
+  !>         - HIP_R_16BF = aType = bType = cType = dType; HIPBLAS_COMPUTE_32F = computeType
+  !>         - HIP_R_16BF = aType = bType; HIP_R_32F = cType = dType = computeType
+  !>         - HIP_R_8I = aType = bType; HIP_R_32I = cType = dType = computeType
+  !>         - HIP_C_32F = aType = bType = cType = dType = computeType
+  !>         - HIP_C_64F = aType = bType = cType = dType = computeType
+  !>
+  !>     ``hipblasGemmGroupedBatchedExWithFlags`` is also available. This is identical to
+  !>     ``hipblasGemmGroupedBatchedEx`` with the addition of a ``flags`` parameter which controls
+  !>     the flags used in Tensile to control gemm algorithms with the rocBLAS backend. When using
+  !>     a cuBLAS backend, this function is not supported.
+  !>
+  !>     @param[in] handle - [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in] transA_array - [const hipblasOperation_t*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] transB_array - [const hipblasOperation_t*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] m_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] n_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] k_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] alpha_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in] Aarray - device array of device pointers storing each matrix ``A_j``.
+  !>     @param[in] aType - [hipDataType]
+  !>               datatype of each matrix ``A_j``.
+  !>     @param[in] lda_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] Barray - device array of device pointers storing each matrix ``B_j``.
+  !>     @param[in] bType - [hipDataType]
+  !>               datatype of each matrix ``B_j``.
+  !>     @param[in] ldb_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] beta_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in] Carray - device array of device pointers storing each matrix ``C_j``.
+  !>     @param[in] cType - [hipDataType]
+  !>               datatype of each matrix ``C_j``.
+  !>     @param[in] ldc_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in, out] Darray - device array of device pointers storing each matrix ``D_j``.
+  !>     @param[in] dType - [hipDataType]
+  !>               datatype of each matrix ``D_j``.
+  !>     @param[in] ldd_array - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] group_count - [int]
+  !>               number of groups.
+  !>     @param[in] group_size - [const int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] computeType - [hipblasComputeType_t]
+  !>               datatype of computation.
+  !>     @param[in] algo - [hipblasGemmAlgo_t]
+  !>               enumerant specifying the algorithm type.
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmGroupedBatchedEx
+    function hipblasGemmGroupedBatchedEx_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array,Carray,cType, &
+        ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo) &
+        bind(c, name="hipblasGemmGroupedBatchedEx")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmGroupedBatchedEx_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      integer(kind(HIP_R_32F)),value :: aType
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      integer(kind(HIP_R_32F)),value :: bType
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      integer(kind(HIP_R_32F)),value :: cType
+      type(c_ptr),value :: ldc_array
+      type(c_ptr),value :: Darray
+      integer(kind(HIP_R_32F)),value :: dType
+      type(c_ptr),value :: ldd_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmGroupedBatchedExWithFlags
+    function hipblasGemmGroupedBatchedExWithFlags_(handle,transA_array,transB_array,m_array, &
+        n_array,k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array, &
+        Carray,cType,ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo, &
+        flags) &
+        bind(c, name="hipblasGemmGroupedBatchedExWithFlags")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmGroupedBatchedExWithFlags_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      integer(kind(HIP_R_32F)),value :: aType
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      integer(kind(HIP_R_32F)),value :: bType
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      integer(kind(HIP_R_32F)),value :: cType
+      type(c_ptr),value :: ldc_array
+      type(c_ptr),value :: Darray
+      integer(kind(HIP_R_32F)),value :: dType
+      type(c_ptr),value :: ldd_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmGroupedBatchedEx_64
+    function hipblasGemmGroupedBatchedEx_64_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array,Carray,cType, &
+        ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo) &
+        bind(c, name="hipblasGemmGroupedBatchedEx_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmGroupedBatchedEx_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      integer(kind(HIP_R_32F)),value :: aType
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      integer(kind(HIP_R_32F)),value :: bType
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      integer(kind(HIP_R_32F)),value :: cType
+      type(c_ptr),value :: ldc_array
+      type(c_ptr),value :: Darray
+      integer(kind(HIP_R_32F)),value :: dType
+      type(c_ptr),value :: ldd_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmGroupedBatchedExWithFlags_64
+    function hipblasGemmGroupedBatchedExWithFlags_64_(handle,transA_array,transB_array,m_array, &
+        n_array,k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array, &
+        Carray,cType,ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo, &
+        flags) &
+        bind(c, name="hipblasGemmGroupedBatchedExWithFlags_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmGroupedBatchedExWithFlags_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transA_array
+      type(c_ptr),value :: transB_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      integer(kind(HIP_R_32F)),value :: aType
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      integer(kind(HIP_R_32F)),value :: bType
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      integer(kind(HIP_R_32F)),value :: cType
+      type(c_ptr),value :: ldc_array
+      type(c_ptr),value :: Darray
+      integer(kind(HIP_R_32F)),value :: dType
+      type(c_ptr),value :: ldd_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
       integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
       integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags

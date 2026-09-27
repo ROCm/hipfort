@@ -226,8 +226,13 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPGEMM_ALG3 = 5
   end enum
 
+  ! hipsparseSpGEAMAlg_t
+  enum, bind(c)
+    enumerator :: HIPSPARSE_SPGEAM_ALG1 = 0
+  end enum
+
   integer(c_int), parameter :: hipsparseVersionMajor = 4
-  integer(c_int), parameter :: hipsparseVersionMinor = 7
+  integer(c_int), parameter :: hipsparseVersionMinor = 8
   integer(c_int), parameter :: hipsparseVersionPatch = 0
 
 end module hipfort_hipsparse_enums

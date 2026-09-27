@@ -13289,6 +13289,70 @@ module hipfort_hipsolver
     end function
   end interface
 
+#ifndef USE_CUDA_NAMES
+  interface hipsolverDnXlarft_bufferSize
+    function hipsolverDnXlarft_bufferSize_(handle,params,myDirect,storev,n,k,dataTypeV,V,ldv, &
+        dataTypeTau,tau,dataTypeT,T,ldt,computeType,lworkOnDevice,lworkOnHost) &
+        bind(c, name="hipsolverDnXlarft_bufferSize")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXlarft_bufferSize_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: params
+      integer(kind(HIPSOLVER_DIRECT_FORWARD)),value :: myDirect
+      integer(kind(HIPSOLVER_STOREV_COLUMNWISE)),value :: storev
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      integer(kind(HIP_R_32F)),value :: dataTypeV
+      type(c_ptr),value :: V
+      integer(c_int64_t),value :: ldv
+      integer(kind(HIP_R_32F)),value :: dataTypeTau
+      type(c_ptr),value :: tau
+      integer(kind(HIP_R_32F)),value :: dataTypeT
+      type(c_ptr),value :: T
+      integer(c_int64_t),value :: ldt
+      integer(kind(HIP_R_32F)),value :: computeType
+      type(c_ptr),value :: lworkOnDevice
+      type(c_ptr),value :: lworkOnHost
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverDnXlarft
+    function hipsolverDnXlarft_(handle,params,myDirect,storev,n,k,dataTypeV,V,ldv,dataTypeTau,tau, &
+        dataTypeT,T,ldt,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost) &
+        bind(c, name="hipsolverDnXlarft")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXlarft_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: params
+      integer(kind(HIPSOLVER_DIRECT_FORWARD)),value :: myDirect
+      integer(kind(HIPSOLVER_STOREV_COLUMNWISE)),value :: storev
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      integer(kind(HIP_R_32F)),value :: dataTypeV
+      type(c_ptr),value :: V
+      integer(c_int64_t),value :: ldv
+      integer(kind(HIP_R_32F)),value :: dataTypeTau
+      type(c_ptr),value :: tau
+      integer(kind(HIP_R_32F)),value :: dataTypeT
+      type(c_ptr),value :: T
+      integer(c_int64_t),value :: ldt
+      integer(kind(HIP_R_32F)),value :: computeType
+      type(c_ptr),value :: workOnDevice
+      integer(c_size_t),value :: lworkOnDevice
+      type(c_ptr),value :: workOnHost
+      integer(c_size_t),value :: lworkOnHost
+    end function
+  end interface
+#endif
+
   interface hipsolverDnXpotrf_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsolverDnXpotrf_bufferSize_(handle,params,uplo,n,dataTypeA,A,lda,computeType, &

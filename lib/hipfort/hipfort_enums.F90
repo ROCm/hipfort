@@ -146,7 +146,7 @@ module hipfort_enums
     enumerator :: hipLibraryBinaryIsPreserved = 1
   end enum
 
-  ! enum (unnamed at /opt/rocm/include/hip/hip_runtime_api.h:33:1)
+  ! enum (unnamed at /opt/rocm-10.1/include/hip/hip_runtime_api.h:33:1)
   enum, bind(c)
     enumerator :: HIP_SUCCESS = 0
     enumerator :: HIP_ERROR_INVALID_VALUE = 1
@@ -351,6 +351,7 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeDmaBufSupported = 93
     enumerator :: hipDeviceAttributeGPUDirectRDMAWithHipVMMSupported = 94
     enumerator :: hipDeviceAttributeHandleTypeFabricSupported = 95
+    enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = 96
     enumerator :: hipDeviceAttributeCudaCompatibleEnd = 9999
     enumerator :: hipDeviceAttributeAmdSpecificBegin = 10000
     enumerator :: hipDeviceAttributeClockInstructionRate = 10000
@@ -1033,8 +1034,8 @@ module hipfort_enums
   end enum
 
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
-  integer(c_int), parameter :: HIP_VERSION_MINOR = 15
-  integer(c_int), parameter :: HIP_VERSION_PATCH = 26302
+  integer(c_int), parameter :: HIP_VERSION_MINOR = 16
+  integer(c_int), parameter :: HIP_VERSION_PATCH = 26362
   integer(c_int), parameter :: HIP_VERSION_BUILD_ID = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_DEFAULT = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_LEGACY_STREAM = 1
@@ -1106,6 +1107,7 @@ module hipfort_enums
   integer(c_int), parameter :: hipDeviceScheduleMask = 7
   integer(c_int), parameter :: hipDeviceMapHost = 8
   integer(c_int), parameter :: hipDeviceLmemResizeToMax = 16
+  integer(c_int), parameter :: hipInitDeviceFlagsAreValid = 1
   integer(c_int), parameter :: hipArrayDefault = 0
   integer(c_int), parameter :: hipArrayLayered = 1
   integer(c_int), parameter :: hipArraySurfaceLoadStore = 2

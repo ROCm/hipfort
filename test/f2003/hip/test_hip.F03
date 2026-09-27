@@ -120,6 +120,9 @@ program test_hip
     if (never) v3 = hipDeviceGetName_(v4, v0, v0)
 #endif
     if (never) v3 = hipDeviceGetUuid_(v5, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v3 = hipDeviceGetLuid_(v4, v4, v0)
+#endif
     if (never) v3 = hipDeviceGetP2PAttribute_(v4, v6, v0, v0)
     if (never) v3 = hipDeviceGetPCIBusId_(v4, v0, v0)
     if (never) v3 = hipDeviceGetByPCIBusId_(v0, v4)
@@ -145,6 +148,9 @@ program test_hip
     if (never) v3 = hipGetDeviceFlags_(v0)
     if (never) v3 = hipDeviceSetSharedMemConfig_(v11)
     if (never) v3 = hipSetDeviceFlags_(v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v3 = hipInitDevice_(v0, v0, v0)
+#endif
     if (never) v3 = hipChooseDeviceR0600_(v4, v12)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipExtGetLinkTypeAndHopCount_(v0, v0, v13, v13)

@@ -231,6 +231,10 @@ module hipfort_hipfft
   !>   @details Assumes that the plan has been created already, and
   !>   modifies the plan associated with the plan handle.
   !>
+  !>   If the plan has been configured for multiple GPUs via ::hipfftXtSetGPUs,
+  !>   this function returns `HIPFFT_NOT_IMPLEMENTED` when `batch` is `1`, with
+  !>   rocFFT backend.
+  !>
   !>   @param[in] plan - Handle of the FFT plan.
   !>   @param[in] nx - FFT length.
   !>   @param[in] myType - FFT type.
@@ -285,7 +289,7 @@ module hipfort_hipfft
     end function
   end interface
 
-  !>  @brief Initialize a new two-dimensional FFT plan.
+  !>  @brief Initialize a new three-dimensional FFT plan.
   !>
   !>   @details Assumes that the plan has been created already, and
   !>   modifies the plan associated with the plan handle.
@@ -723,10 +727,12 @@ module hipfort_hipfft
 #endif
   end interface
 
-  !>  @brief Return size of the work area size required for a rank-dimensional plan.
+  !>  @brief Return size(s) of the work area(s) required for an initialized plan.
   !>
-  !>   @param[in] plan - Pointer to the FFT plan.
-  !>   @param[out] workSize - Pointer to work area size (returned value).
+  !>   @param[in] plan - Pointer to the initialized FFT plan.
+  !>   @param[out] workSize - Pointer to work area size(s). As many values as the number
+  !>   of (local) devices used by the plan are written (following the same order as
+  !>   set via ::hipfftXtSetGPUs if more than one local device is used).
   interface hipfftGetSize
 #ifdef USE_CUDA_NAMES
     function hipfftGetSize_(plan,workSize) bind(c, name="cufftGetSize")
@@ -742,7 +748,7 @@ module hipfort_hipfft
     end function
   end interface
 
-  !>  @brief Set the plan's auto-allocation flag.  The plan will allocate its own workarea.
+  !>  @brief Set the plan's auto-allocation flag.  The plan will allocate its own workarea(s).
   !>
   !>   @param[in] plan - Pointer to the FFT plan.
   !>   @param[in] autoAllocate - 0 to disable auto-allocation, non-zero to enable.
@@ -762,9 +768,9 @@ module hipfort_hipfft
   end interface
 
   !>  @brief Set the plan's work area.
-  !>
+  !>   @note This function rejects multi-device plans. Use ::hipfftXtSetWorkArea instead.
   !>   @param[in] plan - Pointer to the FFT plan.
-  !>   @param[in] workArea - Pointer to the work area (on device).
+  !>   @param[in] workArea - Pointer to the work area (must be accessible by the device).
   interface hipfftSetWorkArea
 #ifdef USE_CUDA_NAMES
     function hipfftSetWorkArea_(plan,workArea) bind(c, name="cufftSetWorkArea")
@@ -779,6 +785,25 @@ module hipfort_hipfft
       type(c_ptr),value :: workArea
     end function
   end interface
+
+  !>  @brief Generalized version of ::hipfftSetWorkArea accepting multi-device plans.
+  !>
+  !>   @param[in] plan - Pointer to the (possibly multi-device) FFT plan.
+  !>   @param[in] workArea - Array of pointer(s) to the plan's work area(s), which must
+  !>   be accessible by the plan's used device(s) (in the same order as communicated
+  !>   via ::hipfftXtSetGPUs, if used prior).
+#ifndef USE_CUDA_NAMES
+  interface hipfftXtSetWorkArea
+    function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="hipfftXtSetWorkArea")
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetWorkArea_
+      type(c_ptr),value :: plan
+      type(c_ptr) :: workArea
+    end function
+  end interface
+#endif
 
   !>  @brief Execute a (float) complex-to-complex FFT.
   !>
