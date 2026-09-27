@@ -792,9 +792,12 @@ module hipfort_hipfft
   !>   @param[in] workArea - Array of pointer(s) to the plan's work area(s), which must
   !>   be accessible by the plan's used device(s) (in the same order as communicated
   !>   via ::hipfftXtSetGPUs, if used prior).
-#ifndef USE_CUDA_NAMES
   interface hipfftXtSetWorkArea
+#ifdef USE_CUDA_NAMES
+    function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="cufftXtSetWorkArea")
+#else
     function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="hipfftXtSetWorkArea")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -803,7 +806,6 @@ module hipfort_hipfft
       type(c_ptr) :: workArea
     end function
   end interface
-#endif
 
   !>  @brief Execute a (float) complex-to-complex FFT.
   !>

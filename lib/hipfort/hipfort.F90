@@ -240,9 +240,12 @@ module hipfort
   !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`,
   !>  `hipErrorNotInitialized`,
   !>  `hipErrorDeinitialized`, `hipErrorNotSupported`
-#ifndef USE_CUDA_NAMES
   interface hipDeviceGetLuid
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetLuid_(luid,deviceNodeMask,device) bind(c, name="cuDeviceGetLuid")
+#else
     function hipDeviceGetLuid_(luid,deviceNodeMask,device) bind(c, name="hipDeviceGetLuid")
+#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -252,7 +255,6 @@ module hipfort
       integer(c_int),value :: device
     end function
   end interface
-#endif
 
   !>  @brief Returns a value for attribute of link between two devices
   !>  @param [out] value Pointer of the value for the attrubute
@@ -892,9 +894,12 @@ module hipfort
   !>  @returns `hipSuccess`, `hipErrorNoDevice`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
   !>
   !>  @see hipSetDevice, hipSetDeviceFlags
-#ifndef USE_CUDA_NAMES
   interface hipInitDevice
+#ifdef USE_CUDA_NAMES
+    function hipInitDevice_(device,deviceFlags,flags) bind(c, name="cudaInitDevice")
+#else
     function hipInitDevice_(device,deviceFlags,flags) bind(c, name="hipInitDevice")
+#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -904,7 +909,6 @@ module hipfort
       integer(c_int),value :: flags
     end function
   end interface
-#endif
 
   !>  @brief Device which matches hipDeviceProp_t is returned
   !>

@@ -24416,9 +24416,12 @@ module hipfort_hipsparse
     end function
   end interface
 
-#ifndef USE_CUDA_NAMES
   interface hipsparseSpGEAM_createDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_createDescr_(descr) bind(c, name="cusparseSpGEAM_createDescr")
+#else
     function hipsparseSpGEAM_createDescr_(descr) bind(c, name="hipsparseSpGEAM_createDescr")
+#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -24426,11 +24429,13 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipsparseSpGEAM_destroyDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_destroyDescr_(descr) bind(c, name="cusparseSpGEAM_destroyDescr")
+#else
     function hipsparseSpGEAM_destroyDescr_(descr) bind(c, name="hipsparseSpGEAM_destroyDescr")
+#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -24438,13 +24443,17 @@ module hipfort_hipsparse
       type(c_ptr),value :: descr
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipsparseSpGEAM_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,bufferSize) &
+        bind(c, name="cusparseSpGEAM_bufferSize")
+#else
     function hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
         spgeamDescr,bufferSize) &
         bind(c, name="hipsparseSpGEAM_bufferSize")
+#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       use hipfort_enums
@@ -24464,13 +24473,17 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipsparseSpGEAM_nnz
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_nnz_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,externalBuffer) &
+        bind(c, name="cusparseSpGEAM_nnz")
+#else
     function hipsparseSpGEAM_nnz_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
         spgeamDescr,externalBuffer) &
         bind(c, name="hipsparseSpGEAM_nnz")
+#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       use hipfort_enums
@@ -24490,13 +24503,17 @@ module hipfort_hipsparse
       type(c_ptr),value :: externalBuffer
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipsparseSpGEAM
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,externalBuffer) &
+        bind(c, name="cusparseSpGEAM")
+#else
     function hipsparseSpGEAM_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
         spgeamDescr,externalBuffer) &
         bind(c, name="hipsparseSpGEAM")
+#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       use hipfort_enums
@@ -24516,7 +24533,6 @@ module hipfort_hipsparse
       type(c_ptr),value :: externalBuffer
     end function
   end interface
-#endif
 
   interface hipsparseSpGEMM_createDescr
 #ifdef USE_CUDA_NAMES

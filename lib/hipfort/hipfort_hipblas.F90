@@ -25778,12 +25778,18 @@ module hipfort_hipblas
   !>               number of groups.
   !>     @param[in] group_size - [const int*]
   !>               host array of length ``group_count`` with the number of problems in each group.
-#ifndef USE_CUDA_NAMES
   interface hipblasSgemmGroupedBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemmGroupedBatched_(handle,transA_array,transB_array,m_array,n_array,k_array, &
+        alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array,group_count, &
+        group_size) &
+        bind(c, name="cublasSgemmGroupedBatched")
+#else
     function hipblasSgemmGroupedBatched_(handle,transA_array,transB_array,m_array,n_array,k_array, &
         alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array,group_count, &
         group_size) &
         bind(c, name="hipblasSgemmGroupedBatched")
+#endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -25806,14 +25812,19 @@ module hipfort_hipblas
       type(c_ptr),value :: group_size
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipblasDgemmGroupedBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemmGroupedBatched_(handle,transA_array,transB_array,m_array,n_array,k_array, &
+        alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array,group_count, &
+        group_size) &
+        bind(c, name="cublasDgemmGroupedBatched")
+#else
     function hipblasDgemmGroupedBatched_(handle,transA_array,transB_array,m_array,n_array,k_array, &
         alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array,group_count, &
         group_size) &
         bind(c, name="hipblasDgemmGroupedBatched")
+#endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -25836,14 +25847,19 @@ module hipfort_hipblas
       type(c_ptr),value :: group_size
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipblasSgemmGroupedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemmGroupedBatched_64_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="cublasSgemmGroupedBatched_64")
+#else
     function hipblasSgemmGroupedBatched_64_(handle,transA_array,transB_array,m_array,n_array, &
         k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
         group_count,group_size) &
         bind(c, name="hipblasSgemmGroupedBatched_64")
+#endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -25866,14 +25882,19 @@ module hipfort_hipblas
       type(c_ptr),value :: group_size
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipblasDgemmGroupedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemmGroupedBatched_64_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="cublasDgemmGroupedBatched_64")
+#else
     function hipblasDgemmGroupedBatched_64_(handle,transA_array,transB_array,m_array,n_array, &
         k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
         group_count,group_size) &
         bind(c, name="hipblasDgemmGroupedBatched_64")
+#endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -25896,7 +25917,6 @@ module hipfort_hipblas
       type(c_ptr),value :: group_size
     end function
   end interface
-#endif
 
   !>     \brief  BLAS Level 3 API
   !>
@@ -39428,12 +39448,18 @@ module hipfort_hipblas
   !>               datatype of computation.
   !>     @param[in] algo - [hipblasGemmAlgo_t]
   !>               enumerant specifying the algorithm type.
-#ifndef USE_CUDA_NAMES
   interface hipblasGemmGroupedBatchedEx
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmGroupedBatchedEx_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array,Carray,cType, &
+        ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo) &
+        bind(c, name="cublasGemmGroupedBatchedEx")
+#else
     function hipblasGemmGroupedBatchedEx_(handle,transA_array,transB_array,m_array,n_array, &
         k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array,Carray,cType, &
         ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo) &
         bind(c, name="hipblasGemmGroupedBatchedEx")
+#endif
       use iso_c_binding
       use hipfort_hipblas_enums
       use hipfort_enums
@@ -39465,7 +39491,6 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
   end interface
-#endif
 
 #ifndef USE_CUDA_NAMES
   interface hipblasGemmGroupedBatchedExWithFlags
@@ -39508,12 +39533,18 @@ module hipfort_hipblas
   end interface
 #endif
 
-#ifndef USE_CUDA_NAMES
   interface hipblasGemmGroupedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmGroupedBatchedEx_64_(handle,transA_array,transB_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array,Carray,cType, &
+        ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo) &
+        bind(c, name="cublasGemmGroupedBatchedEx_64")
+#else
     function hipblasGemmGroupedBatchedEx_64_(handle,transA_array,transB_array,m_array,n_array, &
         k_array,alpha_array,Aarray,aType,lda_array,Barray,bType,ldb_array,beta_array,Carray,cType, &
         ldc_array,Darray,dType,ldd_array,group_count,group_size,computeType,algo) &
         bind(c, name="hipblasGemmGroupedBatchedEx_64")
+#endif
       use iso_c_binding
       use hipfort_hipblas_enums
       use hipfort_enums
@@ -39545,7 +39576,6 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
   end interface
-#endif
 
 #ifndef USE_CUDA_NAMES
   interface hipblasGemmGroupedBatchedExWithFlags_64

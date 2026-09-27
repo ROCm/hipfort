@@ -13289,11 +13289,16 @@ module hipfort_hipsolver
     end function
   end interface
 
-#ifndef USE_CUDA_NAMES
   interface hipsolverDnXlarft_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXlarft_bufferSize_(handle,params,myDirect,storev,n,k,dataTypeV,V,ldv, &
+        dataTypeTau,tau,dataTypeT,T,ldt,computeType,lworkOnDevice,lworkOnHost) &
+        bind(c, name="cusolverDnXlarft_bufferSize")
+#else
     function hipsolverDnXlarft_bufferSize_(handle,params,myDirect,storev,n,k,dataTypeV,V,ldv, &
         dataTypeTau,tau,dataTypeT,T,ldt,computeType,lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXlarft_bufferSize")
+#endif
       use iso_c_binding
       use hipfort_hipsolver_enums
       use hipfort_enums
@@ -13318,13 +13323,17 @@ module hipfort_hipsolver
       type(c_ptr),value :: lworkOnHost
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipsolverDnXlarft
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXlarft_(handle,params,myDirect,storev,n,k,dataTypeV,V,ldv,dataTypeTau,tau, &
+        dataTypeT,T,ldt,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost) &
+        bind(c, name="cusolverDnXlarft")
+#else
     function hipsolverDnXlarft_(handle,params,myDirect,storev,n,k,dataTypeV,V,ldv,dataTypeTau,tau, &
         dataTypeT,T,ldt,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost) &
         bind(c, name="hipsolverDnXlarft")
+#endif
       use iso_c_binding
       use hipfort_hipsolver_enums
       use hipfort_enums
@@ -13351,7 +13360,6 @@ module hipfort_hipsolver
       integer(c_size_t),value :: lworkOnHost
     end function
   end interface
-#endif
 
   interface hipsolverDnXpotrf_bufferSize
 #ifdef USE_CUDA_NAMES
