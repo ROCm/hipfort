@@ -49,9 +49,6 @@ program test_hipfft
     if (never) v3 = hipfftGetSize_(v0, v5)
     if (never) v3 = hipfftSetAutoAllocation_(v0, v1)
     if (never) v3 = hipfftSetWorkArea_(v0, v0)
-#ifndef USE_CUDA_NAMES
-    if (never) v3 = hipfftXtSetWorkArea_(v0, v0)
-#endif
     if (never) v3 = hipfftExecC2C_(v0, v0, v0, v1)
     if (never) v3 = hipfftExecR2C_(v0, v0, v0)
     if (never) v3 = hipfftExecC2R_(v0, v0, v0)

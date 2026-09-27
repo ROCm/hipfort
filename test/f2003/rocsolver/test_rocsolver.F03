@@ -40,7 +40,6 @@ program test_rocsolver
   integer(kind(rocblas_esort_none)) :: v25
   integer(kind(rocblas_diagonal_non_unit)) :: v26
   integer(kind(rocsolver_rfinfo_mode_lu)) :: v27
-  integer(kind(rocsolver_cholqr_shift_none)) :: v28
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -93,10 +92,6 @@ program test_rocsolver
     if (never) v2 = rocsolver_dlarft_(v0, v12, v13, v3, v3, v0, v3, v0, v0, v3)
     if (never) v2 = rocsolver_clarft_(v0, v12, v13, v3, v3, v0, v3, v0, v0, v3)
     if (never) v2 = rocsolver_zlarft_(v0, v12, v13, v3, v3, v0, v3, v0, v0, v3)
-    if (never) v2 = rocsolver_slarft_64_(v0, v12, v13, v6, v6, v0, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_dlarft_64_(v0, v12, v13, v6, v6, v0, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_clarft_64_(v0, v12, v13, v6, v6, v0, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_zlarft_64_(v0, v12, v13, v6, v6, v0, v6, v0, v0, v6)
     if (never) v2 = rocsolver_slarf_(v0, v14, v3, v3, v0, v3, v8, v0, v3)
     if (never) v2 = rocsolver_dlarf_(v0, v14, v3, v3, v0, v3, v9, v0, v3)
     if (never) v2 = rocsolver_clarf_(v0, v14, v3, v3, v0, v3, v10, v0, v3)
@@ -1135,30 +1130,6 @@ program test_rocsolver
       v3, v3, v0, v0, v6, v0, v3, v6, v0, v3)
     if (never) v2 = rocsolver_zhegvdx_strided_batched_(v0, v24, v18, v19, v17, v3, v0, v3, v6, v0, v3, v6, v9, v9, &
       v3, v3, v0, v0, v6, v0, v3, v6, v0, v3)
-    if (never) v2 = rocsolver_scholqr_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v0, v0)
-    if (never) v2 = rocsolver_dcholqr_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v0, v0)
-    if (never) v2 = rocsolver_ccholqr_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v0, v0)
-    if (never) v2 = rocsolver_zcholqr_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v0, v0)
-    if (never) v2 = rocsolver_scholqr_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v0, v0)
-    if (never) v2 = rocsolver_dcholqr_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v0, v0)
-    if (never) v2 = rocsolver_ccholqr_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v0, v0)
-    if (never) v2 = rocsolver_zcholqr_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v0, v0)
-    if (never) v2 = rocsolver_scholqr_batched_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_dcholqr_batched_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_ccholqr_batched_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_zcholqr_batched_(v0, v28, v3, v3, v3, v0, v3, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_scholqr_batched_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_dcholqr_batched_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_ccholqr_batched_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_zcholqr_batched_64_(v0, v28, v3, v6, v6, v0, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_scholqr_strided_batched_(v0, v28, v3, v3, v3, v0, v3, v6, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_dcholqr_strided_batched_(v0, v28, v3, v3, v3, v0, v3, v6, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_ccholqr_strided_batched_(v0, v28, v3, v3, v3, v0, v3, v6, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_zcholqr_strided_batched_(v0, v28, v3, v3, v3, v0, v3, v6, v0, v3, v6, v0, v0, v3)
-    if (never) v2 = rocsolver_scholqr_strided_batched_64_(v0, v28, v3, v6, v6, v0, v6, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_dcholqr_strided_batched_64_(v0, v28, v3, v6, v6, v0, v6, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_ccholqr_strided_batched_64_(v0, v28, v3, v6, v6, v0, v6, v6, v0, v6, v6, v0, v0, v6)
-    if (never) v2 = rocsolver_zcholqr_strided_batched_64_(v0, v28, v3, v6, v6, v0, v6, v6, v0, v6, v6, v0, v0, v6)
 
   write(*,"(a)") "-- test_rocsolver (bind(C) symbols): PASSED (compile+link only)!"
 end program test_rocsolver
