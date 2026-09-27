@@ -247,6 +247,7 @@ matrices.
 
 .. literalinclude:: ../../test/f2008/hipblas/stpsv.f08
    :language: fortran
+   :start-at: program hipblas_stpsv_test
 
 This is the only packed-storage example; there is no double-precision or
 complex counterpart in the test suite.

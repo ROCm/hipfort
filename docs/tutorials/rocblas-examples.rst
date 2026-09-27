@@ -94,6 +94,7 @@ single precision and checks the result against the expected value.
 
 .. literalinclude:: ../../test/f2008/rocblas/saxpy.f08
    :language: fortran
+   :start-at: program rocblas_saxpy_test
 
 ``test/f2008/rocblas/daxpy.f08``, ``caxpy.f08`` and ``zaxpy.f08`` run the same
 computation in double-precision real, single-precision complex and
@@ -112,6 +113,7 @@ counting all of the elements:
 
 .. literalinclude:: ../../test/f2018/rocblas/saxpy.f90
    :language: fortran
+   :start-at: ! Exercises the experimental F2018 assumed-rank interfaces: a rank-3 array is
 
 This is the only assumed-rank example in the test suite, and it is skipped
 unless ``HIPFORT_ASSUMED_RANK`` is enabled.
@@ -126,6 +128,7 @@ verification.
 
 .. literalinclude:: ../../test/f2008/rocblas/sscal.f08
    :language: fortran
+   :start-at: program rocblas_sscal_test
 
 ``test/f2008/rocblas/dscal.f08``, ``cscal.f08`` and ``zscal.f08`` cover the
 remaining precisions.
@@ -144,6 +147,7 @@ scalar result through a pointer whose location (host or device) is set by
 
 .. literalinclude:: ../../test/f2008/rocblas/sdot.f08
    :language: fortran
+   :start-at: program rocblas_sdot_test
 
 ``test/f2008/rocblas/ddot.f08`` is the double-precision equivalent.
 
@@ -161,6 +165,7 @@ through a pointer whose location follows the pointer mode.
 
 .. literalinclude:: ../../test/f2008/rocblas/snrm2.f08
    :language: fortran
+   :start-at: program rocblas_snrm2_test
 
 ``test/f2008/rocblas/dnrm2.f08`` is the double-precision equivalent. The
 complex forms are named for both types involved, because the norm of a complex
@@ -177,6 +182,7 @@ complex modulus.
 
 .. literalinclude:: ../../test/f2008/rocblas/sasum.f08
    :language: fortran
+   :start-at: program rocblas_sasum_test
 
 ``test/f2008/rocblas/dasum.f08`` is the double-precision equivalent, and
 ``scasum.f08`` and ``dzasum.f08`` are the mixed real/complex forms named on the
@@ -191,6 +197,7 @@ so it can be used to subscript a Fortran array directly.
 
 .. literalinclude:: ../../test/f2008/rocblas/isamax.f08
    :language: fortran
+   :start-at: program rocblas_isamax_test
 
 Both routines exist in all four precisions: ``isamax.f08``, ``idamax.f08``,
 ``icamax.f08`` and ``izamax.f08`` for the maximum, and ``isamin.f08``,
@@ -208,6 +215,7 @@ vector and easy to check.
 
 .. literalinclude:: ../../test/f2008/rocblas/sgemv.f08
    :language: fortran
+   :start-at: program rocblas_sgemv_test
 
 ``test/f2008/rocblas/dgemv.f08``, ``cgemv.f08`` and ``zgemv.f08`` cover the
 remaining precisions.
@@ -234,6 +242,7 @@ product of two vectors to a matrix in place.
 
 .. literalinclude:: ../../test/f2008/rocblas/sger.f08
    :language: fortran
+   :start-at: program rocblas_sger_test
 
 ``test/f2008/rocblas/dger.f08`` is the double-precision equivalent. Complex
 vectors split the routine in two, on the same conjugated/unconjugated
@@ -251,6 +260,7 @@ the transpose operation and whether the diagonal is unit or not. ``dx`` holds
 
 .. literalinclude:: ../../test/f2008/rocblas/strsv.f08
    :language: fortran
+   :start-at: program rocblas_strsv_test
 
 ``test/f2008/rocblas/dtrsv.f08``, ``ctrsv.f08`` and ``ztrsv.f08`` cover the
 remaining precisions.
@@ -265,6 +275,7 @@ matrices.
 
 .. literalinclude:: ../../test/f2008/rocblas/stpsv.f08
    :language: fortran
+   :start-at: program rocblas_stpsv_test
 
 This is the only packed-storage example; there is no double-precision or
 complex counterpart in the test suite.
@@ -281,6 +292,7 @@ constant matrix.
 
 .. literalinclude:: ../../test/f2008/rocblas/dgemm.f08
    :language: fortran
+   :start-at: program rocblas_dgemm_test
 
 ``test/f2008/rocblas/sgemm.f08``, ``cgemm.f08`` and ``zgemm.f08`` cover the
 remaining precisions.
@@ -299,6 +311,7 @@ use the Fortran 2008 ``hipMalloc(source=...)`` shortcut.
 
 .. literalinclude:: ../../test/f2008/rocblas/dgemm_batched.f08
    :language: fortran
+   :start-at: ! Note: hipfort's Fortran 2008 pointer-convenience interfaces for
 
 ``test/f2008/rocblas/sgemm_batched.f08``, ``cgemm_batched.f08`` and
 ``zgemm_batched.f08`` cover the remaining precisions.
@@ -314,6 +327,7 @@ batches are already laid out contiguously in memory.
 
 .. literalinclude:: ../../test/f2008/rocblas/dgemm_strided_batched.f08
    :language: fortran
+   :start-at: program rocblas_dgemm_strided_batched_test
 
 ``test/f2008/rocblas/sgemm_strided_batched.f08``,
 ``cgemm_strided_batched.f08`` and ``zgemm_strided_batched.f08`` cover the
@@ -329,6 +343,7 @@ separate ``C`` buffer instead of overwriting ``B``.
 
 .. literalinclude:: ../../test/f2008/rocblas/dtrmm.f08
    :language: fortran
+   :start-at: program rocblas_dtrmm_test
 
 ``dtrmm`` is the only ``trmm`` example among the rocBLAS programs.
 
@@ -342,6 +357,7 @@ exit.
 
 .. literalinclude:: ../../test/f2008/rocblas/dtrsm.f08
    :language: fortran
+   :start-at: program rocblas_dtrsm_test
 
 ``test/f2008/rocblas/strsm.f08``, ``ctrsm.f08`` and ``ztrsm.f08`` cover the
 remaining precisions.
@@ -355,6 +371,7 @@ referenced.
 
 .. literalinclude:: ../../test/f2008/rocblas/ssyrk.f08
    :language: fortran
+   :start-at: program rocblas_ssyrk_test
 
 ``test/f2008/rocblas/dsyrk.f08``, ``csyrk.f08`` and ``zsyrk.f08`` cover the
 remaining precisions. For complex data there is also a Hermitian form,
@@ -370,6 +387,7 @@ As with ``syrk``, only one triangle of ``A`` is referenced.
 
 .. literalinclude:: ../../test/f2008/rocblas/ssymm.f08
    :language: fortran
+   :start-at: program rocblas_ssymm_test
 
 ``test/f2008/rocblas/dsymm.f08``, ``csymm.f08`` and ``zsymm.f08`` cover the
 remaining precisions, and ``rocblas_?hemm`` is the Hermitian form for complex
@@ -384,6 +402,7 @@ routine also serves as an out-of-place transpose or a scaled copy.
 
 .. literalinclude:: ../../test/f2008/rocblas/sgeam.f08
    :language: fortran
+   :start-at: program rocblas_sgeam_test
 
 ``test/f2008/rocblas/dgeam.f08``, ``cgeam.f08`` and ``zgeam.f08`` cover the
 remaining precisions.
@@ -401,6 +420,7 @@ performs an ordinary single-precision ``gemm``.
 
 .. literalinclude:: ../../test/f2008/rocblas/gemm_ex.f08
    :language: fortran
+   :start-at: program rocblas_gemm_ex_test
 
 Because the buffer types are runtime arguments rather than part of the routine
 name, there is a single ``gemm_ex`` program rather than one per precision.

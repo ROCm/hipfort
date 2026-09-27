@@ -188,6 +188,7 @@ across the independent systems.
 
 .. literalinclude:: ../../test/f2008/rocsparse/zgpsv_interleaved_batch.f08
    :language: fortran
+   :start-at: program rocsparse_zgpsv_interleaved_batch_test
 
 Sparse vector operations
 ========================
@@ -208,6 +209,7 @@ a dense one. They are the pack/unpack pair for the sparse-vector format.
 
 .. literalinclude:: ../../test/f2008/rocsparse/ddoti.f08
    :language: fortran
+   :start-at: program rocsparse_ddoti_test
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dgemvi.f08
    :language: fortran
