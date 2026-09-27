@@ -1065,153 +1065,159 @@
 1061 | [rocblas_hgemm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__hgemm__strided__batched__64.html "Interface documentation") | C binding
 1062 | [rocblas_cgemm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cgemm__strided__batched__64.html "Interface documentation") | C binding
 1063 | [rocblas_zgemm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zgemm__strided__batched__64.html "Interface documentation") | C binding
-1064 | [rocblas_sdgmm](interfacehipfort__rocblas_1_1rocblas__sdgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1065 | [rocblas_ddgmm](interfacehipfort__rocblas_1_1rocblas__ddgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1066 | [rocblas_cdgmm](interfacehipfort__rocblas_1_1rocblas__cdgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1067 | [rocblas_zdgmm](interfacehipfort__rocblas_1_1rocblas__zdgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1068 | [rocblas_sdgmm_64](interfacehipfort__rocblas_1_1rocblas__sdgmm__64.html "Interface documentation") | C binding
-1069 | [rocblas_ddgmm_64](interfacehipfort__rocblas_1_1rocblas__ddgmm__64.html "Interface documentation") | C binding
-1070 | [rocblas_cdgmm_64](interfacehipfort__rocblas_1_1rocblas__cdgmm__64.html "Interface documentation") | C binding
-1071 | [rocblas_zdgmm_64](interfacehipfort__rocblas_1_1rocblas__zdgmm__64.html "Interface documentation") | C binding
-1072 | [rocblas_sdgmm_batched](interfacehipfort__rocblas_1_1rocblas__sdgmm__batched.html "Interface documentation") | C binding
-1073 | [rocblas_ddgmm_batched](interfacehipfort__rocblas_1_1rocblas__ddgmm__batched.html "Interface documentation") | C binding
-1074 | [rocblas_cdgmm_batched](interfacehipfort__rocblas_1_1rocblas__cdgmm__batched.html "Interface documentation") | C binding
-1075 | [rocblas_zdgmm_batched](interfacehipfort__rocblas_1_1rocblas__zdgmm__batched.html "Interface documentation") | C binding
-1076 | [rocblas_sdgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__sdgmm__batched__64.html "Interface documentation") | C binding
-1077 | [rocblas_ddgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__ddgmm__batched__64.html "Interface documentation") | C binding
-1078 | [rocblas_cdgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__cdgmm__batched__64.html "Interface documentation") | C binding
-1079 | [rocblas_zdgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__zdgmm__batched__64.html "Interface documentation") | C binding
-1080 | [rocblas_sdgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__sdgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1081 | [rocblas_ddgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__ddgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1082 | [rocblas_cdgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__cdgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1083 | [rocblas_zdgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__zdgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1084 | [rocblas_sdgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__sdgmm__strided__batched__64.html "Interface documentation") | C binding
-1085 | [rocblas_ddgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__ddgmm__strided__batched__64.html "Interface documentation") | C binding
-1086 | [rocblas_cdgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cdgmm__strided__batched__64.html "Interface documentation") | C binding
-1087 | [rocblas_zdgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zdgmm__strided__batched__64.html "Interface documentation") | C binding
-1088 | [rocblas_sgeam](interfacehipfort__rocblas_1_1rocblas__sgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1089 | [rocblas_dgeam](interfacehipfort__rocblas_1_1rocblas__dgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1090 | [rocblas_cgeam](interfacehipfort__rocblas_1_1rocblas__cgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1091 | [rocblas_zgeam](interfacehipfort__rocblas_1_1rocblas__zgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1092 | [rocblas_sgeam_64](interfacehipfort__rocblas_1_1rocblas__sgeam__64.html "Interface documentation") | C binding
-1093 | [rocblas_dgeam_64](interfacehipfort__rocblas_1_1rocblas__dgeam__64.html "Interface documentation") | C binding
-1094 | [rocblas_cgeam_64](interfacehipfort__rocblas_1_1rocblas__cgeam__64.html "Interface documentation") | C binding
-1095 | [rocblas_zgeam_64](interfacehipfort__rocblas_1_1rocblas__zgeam__64.html "Interface documentation") | C binding
-1096 | [rocblas_sgeam_batched](interfacehipfort__rocblas_1_1rocblas__sgeam__batched.html "Interface documentation") | C binding
-1097 | [rocblas_dgeam_batched](interfacehipfort__rocblas_1_1rocblas__dgeam__batched.html "Interface documentation") | C binding
-1098 | [rocblas_cgeam_batched](interfacehipfort__rocblas_1_1rocblas__cgeam__batched.html "Interface documentation") | C binding
-1099 | [rocblas_zgeam_batched](interfacehipfort__rocblas_1_1rocblas__zgeam__batched.html "Interface documentation") | C binding
-1100 | [rocblas_sgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__sgeam__batched__64.html "Interface documentation") | C binding
-1101 | [rocblas_dgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__dgeam__batched__64.html "Interface documentation") | C binding
-1102 | [rocblas_cgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__cgeam__batched__64.html "Interface documentation") | C binding
-1103 | [rocblas_zgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__zgeam__batched__64.html "Interface documentation") | C binding
-1104 | [rocblas_sgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__sgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1105 | [rocblas_dgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__dgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1106 | [rocblas_cgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__cgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1107 | [rocblas_zgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__zgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1108 | [rocblas_sgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__sgeam__strided__batched__64.html "Interface documentation") | C binding
-1109 | [rocblas_dgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__dgeam__strided__batched__64.html "Interface documentation") | C binding
-1110 | [rocblas_cgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cgeam__strided__batched__64.html "Interface documentation") | C binding
-1111 | [rocblas_zgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zgeam__strided__batched__64.html "Interface documentation") | C binding
-1112 | [rocblas_gemm_ex](interfacehipfort__rocblas_1_1rocblas__gemm__ex.html "Interface documentation") | C binding
-1113 | [rocblas_gemm_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__ex__64.html "Interface documentation") | C binding
-1114 | [rocblas_gemm_batched_ex](interfacehipfort__rocblas_1_1rocblas__gemm__batched__ex.html "Interface documentation") | C binding
-1115 | [rocblas_gemm_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__batched__ex__64.html "Interface documentation") | C binding
-1116 | [rocblas_gemm_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__gemm__strided__batched__ex.html "Interface documentation") | C binding
-1117 | [rocblas_gemm_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__strided__batched__ex__64.html "Interface documentation") | C binding
-1118 | [rocblas_sgemmt](interfacehipfort__rocblas_1_1rocblas__sgemmt.html "Interface documentation") | C binding
-1119 | [rocblas_dgemmt](interfacehipfort__rocblas_1_1rocblas__dgemmt.html "Interface documentation") | C binding
-1120 | [rocblas_cgemmt](interfacehipfort__rocblas_1_1rocblas__cgemmt.html "Interface documentation") | C binding
-1121 | [rocblas_zgemmt](interfacehipfort__rocblas_1_1rocblas__zgemmt.html "Interface documentation") | C binding
-1122 | [rocblas_sgemmt_64](interfacehipfort__rocblas_1_1rocblas__sgemmt__64.html "Interface documentation") | C binding
-1123 | [rocblas_dgemmt_64](interfacehipfort__rocblas_1_1rocblas__dgemmt__64.html "Interface documentation") | C binding
-1124 | [rocblas_cgemmt_64](interfacehipfort__rocblas_1_1rocblas__cgemmt__64.html "Interface documentation") | C binding
-1125 | [rocblas_zgemmt_64](interfacehipfort__rocblas_1_1rocblas__zgemmt__64.html "Interface documentation") | C binding
-1126 | [rocblas_sgemmt_batched](interfacehipfort__rocblas_1_1rocblas__sgemmt__batched.html "Interface documentation") | C binding
-1127 | [rocblas_dgemmt_batched](interfacehipfort__rocblas_1_1rocblas__dgemmt__batched.html "Interface documentation") | C binding
-1128 | [rocblas_cgemmt_batched](interfacehipfort__rocblas_1_1rocblas__cgemmt__batched.html "Interface documentation") | C binding
-1129 | [rocblas_zgemmt_batched](interfacehipfort__rocblas_1_1rocblas__zgemmt__batched.html "Interface documentation") | C binding
-1130 | [rocblas_sgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__sgemmt__batched__64.html "Interface documentation") | C binding
-1131 | [rocblas_dgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__dgemmt__batched__64.html "Interface documentation") | C binding
-1132 | [rocblas_cgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__cgemmt__batched__64.html "Interface documentation") | C binding
-1133 | [rocblas_zgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__zgemmt__batched__64.html "Interface documentation") | C binding
-1134 | [rocblas_sgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__sgemmt__strided__batched.html "Interface documentation") | C binding
-1135 | [rocblas_dgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__dgemmt__strided__batched.html "Interface documentation") | C binding
-1136 | [rocblas_cgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__cgemmt__strided__batched.html "Interface documentation") | C binding
-1137 | [rocblas_zgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__zgemmt__strided__batched.html "Interface documentation") | C binding
-1138 | [rocblas_sgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__sgemmt__strided__batched__64.html "Interface documentation") | C binding
-1139 | [rocblas_dgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__dgemmt__strided__batched__64.html "Interface documentation") | C binding
-1140 | [rocblas_cgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cgemmt__strided__batched__64.html "Interface documentation") | C binding
-1141 | [rocblas_zgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zgemmt__strided__batched__64.html "Interface documentation") | C binding
-1142 | [rocblas_geam_ex](interfacehipfort__rocblas_1_1rocblas__geam__ex.html "Interface documentation") | C binding
-1143 | [rocblas_trsm_ex](interfacehipfort__rocblas_1_1rocblas__trsm__ex.html "Interface documentation") | C binding
-1144 | [rocblas_trsm_batched_ex](interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html "Interface documentation") | C binding
-1145 | [rocblas_trsm_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__trsm__strided__batched__ex.html "Interface documentation") | C binding
-1146 | [rocblas_syrk_ex](interfacehipfort__rocblas_1_1rocblas__syrk__ex.html "Interface documentation") | C binding
-1147 | [rocblas_herk_ex](interfacehipfort__rocblas_1_1rocblas__herk__ex.html "Interface documentation") | C binding
-1148 | [rocblas_axpy_ex](interfacehipfort__rocblas_1_1rocblas__axpy__ex.html "Interface documentation") | C binding
-1149 | [rocblas_axpy_ex_64](interfacehipfort__rocblas_1_1rocblas__axpy__ex__64.html "Interface documentation") | C binding
-1150 | [rocblas_axpy_batched_ex](interfacehipfort__rocblas_1_1rocblas__axpy__batched__ex.html "Interface documentation") | C binding
-1151 | [rocblas_axpy_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__axpy__batched__ex__64.html "Interface documentation") | C binding
-1152 | [rocblas_axpy_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__axpy__strided__batched__ex.html "Interface documentation") | C binding
-1153 | [rocblas_axpy_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__axpy__strided__batched__ex__64.html "Interface documentation") | C binding
-1154 | [rocblas_dot_ex](interfacehipfort__rocblas_1_1rocblas__dot__ex.html "Interface documentation") | C binding
-1155 | [rocblas_dotc_ex](interfacehipfort__rocblas_1_1rocblas__dotc__ex.html "Interface documentation") | C binding
-1156 | [rocblas_dot_ex_64](interfacehipfort__rocblas_1_1rocblas__dot__ex__64.html "Interface documentation") | C binding
-1157 | [rocblas_dotc_ex_64](interfacehipfort__rocblas_1_1rocblas__dotc__ex__64.html "Interface documentation") | C binding
-1158 | [rocblas_dot_batched_ex](interfacehipfort__rocblas_1_1rocblas__dot__batched__ex.html "Interface documentation") | C binding
-1159 | [rocblas_dotc_batched_ex](interfacehipfort__rocblas_1_1rocblas__dotc__batched__ex.html "Interface documentation") | C binding
-1160 | [rocblas_dot_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dot__batched__ex__64.html "Interface documentation") | C binding
-1161 | [rocblas_dotc_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dotc__batched__ex__64.html "Interface documentation") | C binding
-1162 | [rocblas_dot_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__dot__strided__batched__ex.html "Interface documentation") | C binding
-1163 | [rocblas_dot_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dot__strided__batched__ex__64.html "Interface documentation") | C binding
-1164 | [rocblas_dotc_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__dotc__strided__batched__ex.html "Interface documentation") | C binding
-1165 | [rocblas_dotc_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dotc__strided__batched__ex__64.html "Interface documentation") | C binding
-1166 | [rocblas_nrm2_ex](interfacehipfort__rocblas_1_1rocblas__nrm2__ex.html "Interface documentation") | C binding
-1167 | [rocblas_nrm2_ex_64](interfacehipfort__rocblas_1_1rocblas__nrm2__ex__64.html "Interface documentation") | C binding
-1168 | [rocblas_nrm2_batched_ex](interfacehipfort__rocblas_1_1rocblas__nrm2__batched__ex.html "Interface documentation") | C binding
-1169 | [rocblas_nrm2_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__nrm2__batched__ex__64.html "Interface documentation") | C binding
-1170 | [rocblas_nrm2_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__nrm2__strided__batched__ex.html "Interface documentation") | C binding
-1171 | [rocblas_nrm2_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__nrm2__strided__batched__ex__64.html "Interface documentation") | C binding
-1172 | [rocblas_rot_ex](interfacehipfort__rocblas_1_1rocblas__rot__ex.html "Interface documentation") | C binding
-1173 | [rocblas_rot_ex_64](interfacehipfort__rocblas_1_1rocblas__rot__ex__64.html "Interface documentation") | C binding
-1174 | [rocblas_rot_batched_ex](interfacehipfort__rocblas_1_1rocblas__rot__batched__ex.html "Interface documentation") | C binding
-1175 | [rocblas_rot_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__rot__batched__ex__64.html "Interface documentation") | C binding
-1176 | [rocblas_rot_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__rot__strided__batched__ex.html "Interface documentation") | C binding
-1177 | [rocblas_rot_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__rot__strided__batched__ex__64.html "Interface documentation") | C binding
-1178 | [rocblas_scal_ex](interfacehipfort__rocblas_1_1rocblas__scal__ex.html "Interface documentation") | C binding
-1179 | [rocblas_scal_ex_64](interfacehipfort__rocblas_1_1rocblas__scal__ex__64.html "Interface documentation") | C binding
-1180 | [rocblas_scal_batched_ex](interfacehipfort__rocblas_1_1rocblas__scal__batched__ex.html "Interface documentation") | C binding
-1181 | [rocblas_scal_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__scal__batched__ex__64.html "Interface documentation") | C binding
-1182 | [rocblas_scal_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__scal__strided__batched__ex.html "Interface documentation") | C binding
-1183 | [rocblas_scal_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__scal__strided__batched__ex__64.html "Interface documentation") | C binding
-1184 | [rocblas_status_to_string](interfacehipfort__rocblas_1_1rocblas__status__to__string.html "Interface documentation") | C binding
-1185 | [rocblas_initialize](interfacehipfort__rocblas_1_1rocblas__initialize.html "Interface documentation") | C binding
-1186 | [rocblas_get_version_string](interfacehipfort__rocblas_1_1rocblas__get__version__string.html "Interface documentation") | C binding
-1187 | [rocblas_get_version_string_size](interfacehipfort__rocblas_1_1rocblas__get__version__string__size.html "Interface documentation") | C binding
-1188 | [rocblas_get_commit_hash_string](interfacehipfort__rocblas_1_1rocblas__get__commit__hash__string.html "Interface documentation") | C binding
-1189 | [rocblas_get_commit_hash_string_size](interfacehipfort__rocblas_1_1rocblas__get__commit__hash__string__size.html "Interface documentation") | C binding
-1190 | [rocblas_start_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__start__device__memory__size__query.html "Interface documentation") | C binding
-1191 | [rocblas_stop_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__stop__device__memory__size__query.html "Interface documentation") | C binding
-1192 | [rocblas_is_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__is__device__memory__size__query.html "Interface documentation") | C binding
-1193 | [rocblas_set_optimal_device_memory_size_impl](interfacehipfort__rocblas_1_1rocblas__set__optimal__device__memory__size__impl.html "Interface documentation") | C binding
-1194 | [rocblas_device_malloc_alloc](interfacehipfort__rocblas_1_1rocblas__device__malloc__alloc.html "Interface documentation") | C binding
-1195 | [rocblas_device_malloc_success](interfacehipfort__rocblas_1_1rocblas__device__malloc__success.html "Interface documentation") | C binding
-1196 | [rocblas_device_malloc_ptr](interfacehipfort__rocblas_1_1rocblas__device__malloc__ptr.html "Interface documentation") | C binding
-1197 | [rocblas_device_malloc_get](interfacehipfort__rocblas_1_1rocblas__device__malloc__get.html "Interface documentation") | C binding
-1198 | [rocblas_device_malloc_free](interfacehipfort__rocblas_1_1rocblas__device__malloc__free.html "Interface documentation") | C binding
-1199 | [rocblas_device_malloc_set_default_memory_size](interfacehipfort__rocblas_1_1rocblas__device__malloc__set__default__memory__size.html "Interface documentation") | C binding
-1200 | [rocblas_get_device_memory_size](interfacehipfort__rocblas_1_1rocblas__get__device__memory__size.html "Interface documentation") | C binding
-1201 | [rocblas_set_device_memory_size](interfacehipfort__rocblas_1_1rocblas__set__device__memory__size.html "Interface documentation") | C binding
-1202 | [rocblas_set_workspace](interfacehipfort__rocblas_1_1rocblas__set__workspace.html "Interface documentation") | C binding
-1203 | [rocblas_is_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__managing__device__memory.html "Interface documentation") | C binding
-1204 | [rocblas_is_user_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__user__managing__device__memory.html "Interface documentation") | C binding
-1205 | [rocblas_abort](interfacehipfort__rocblas_1_1rocblas__abort.html "Interface documentation") | C binding
-1206 | [rocblas_set_vector](interfacehipfort__rocblas_1_1rocblas__set__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1207 | [rocblas_get_vector](interfacehipfort__rocblas_1_1rocblas__get__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1208 | [rocblas_set_matrix](interfacehipfort__rocblas_1_1rocblas__set__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1209 | [rocblas_get_matrix](interfacehipfort__rocblas_1_1rocblas__get__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1210 | [rocblas_set_vector_async](interfacehipfort__rocblas_1_1rocblas__set__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1211 | [rocblas_get_vector_async](interfacehipfort__rocblas_1_1rocblas__get__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1212 | [rocblas_set_matrix_async](interfacehipfort__rocblas_1_1rocblas__set__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1213 | [rocblas_get_matrix_async](interfacehipfort__rocblas_1_1rocblas__get__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1064 | [rocblas_sgemm_grouped_batched](interfacehipfort__rocblas_1_1rocblas__sgemm__grouped__batched.html "Interface documentation") | C binding
+1065 | [rocblas_dgemm_grouped_batched](interfacehipfort__rocblas_1_1rocblas__dgemm__grouped__batched.html "Interface documentation") | C binding
+1066 | [rocblas_sgemm_grouped_batched_64](interfacehipfort__rocblas_1_1rocblas__sgemm__grouped__batched__64.html "Interface documentation") | C binding
+1067 | [rocblas_dgemm_grouped_batched_64](interfacehipfort__rocblas_1_1rocblas__dgemm__grouped__batched__64.html "Interface documentation") | C binding
+1068 | [rocblas_sdgmm](interfacehipfort__rocblas_1_1rocblas__sdgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1069 | [rocblas_ddgmm](interfacehipfort__rocblas_1_1rocblas__ddgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1070 | [rocblas_cdgmm](interfacehipfort__rocblas_1_1rocblas__cdgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1071 | [rocblas_zdgmm](interfacehipfort__rocblas_1_1rocblas__zdgmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1072 | [rocblas_sdgmm_64](interfacehipfort__rocblas_1_1rocblas__sdgmm__64.html "Interface documentation") | C binding
+1073 | [rocblas_ddgmm_64](interfacehipfort__rocblas_1_1rocblas__ddgmm__64.html "Interface documentation") | C binding
+1074 | [rocblas_cdgmm_64](interfacehipfort__rocblas_1_1rocblas__cdgmm__64.html "Interface documentation") | C binding
+1075 | [rocblas_zdgmm_64](interfacehipfort__rocblas_1_1rocblas__zdgmm__64.html "Interface documentation") | C binding
+1076 | [rocblas_sdgmm_batched](interfacehipfort__rocblas_1_1rocblas__sdgmm__batched.html "Interface documentation") | C binding
+1077 | [rocblas_ddgmm_batched](interfacehipfort__rocblas_1_1rocblas__ddgmm__batched.html "Interface documentation") | C binding
+1078 | [rocblas_cdgmm_batched](interfacehipfort__rocblas_1_1rocblas__cdgmm__batched.html "Interface documentation") | C binding
+1079 | [rocblas_zdgmm_batched](interfacehipfort__rocblas_1_1rocblas__zdgmm__batched.html "Interface documentation") | C binding
+1080 | [rocblas_sdgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__sdgmm__batched__64.html "Interface documentation") | C binding
+1081 | [rocblas_ddgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__ddgmm__batched__64.html "Interface documentation") | C binding
+1082 | [rocblas_cdgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__cdgmm__batched__64.html "Interface documentation") | C binding
+1083 | [rocblas_zdgmm_batched_64](interfacehipfort__rocblas_1_1rocblas__zdgmm__batched__64.html "Interface documentation") | C binding
+1084 | [rocblas_sdgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__sdgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1085 | [rocblas_ddgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__ddgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1086 | [rocblas_cdgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__cdgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1087 | [rocblas_zdgmm_strided_batched](interfacehipfort__rocblas_1_1rocblas__zdgmm__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1088 | [rocblas_sdgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__sdgmm__strided__batched__64.html "Interface documentation") | C binding
+1089 | [rocblas_ddgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__ddgmm__strided__batched__64.html "Interface documentation") | C binding
+1090 | [rocblas_cdgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cdgmm__strided__batched__64.html "Interface documentation") | C binding
+1091 | [rocblas_zdgmm_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zdgmm__strided__batched__64.html "Interface documentation") | C binding
+1092 | [rocblas_sgeam](interfacehipfort__rocblas_1_1rocblas__sgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1093 | [rocblas_dgeam](interfacehipfort__rocblas_1_1rocblas__dgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1094 | [rocblas_cgeam](interfacehipfort__rocblas_1_1rocblas__cgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1095 | [rocblas_zgeam](interfacehipfort__rocblas_1_1rocblas__zgeam.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1096 | [rocblas_sgeam_64](interfacehipfort__rocblas_1_1rocblas__sgeam__64.html "Interface documentation") | C binding
+1097 | [rocblas_dgeam_64](interfacehipfort__rocblas_1_1rocblas__dgeam__64.html "Interface documentation") | C binding
+1098 | [rocblas_cgeam_64](interfacehipfort__rocblas_1_1rocblas__cgeam__64.html "Interface documentation") | C binding
+1099 | [rocblas_zgeam_64](interfacehipfort__rocblas_1_1rocblas__zgeam__64.html "Interface documentation") | C binding
+1100 | [rocblas_sgeam_batched](interfacehipfort__rocblas_1_1rocblas__sgeam__batched.html "Interface documentation") | C binding
+1101 | [rocblas_dgeam_batched](interfacehipfort__rocblas_1_1rocblas__dgeam__batched.html "Interface documentation") | C binding
+1102 | [rocblas_cgeam_batched](interfacehipfort__rocblas_1_1rocblas__cgeam__batched.html "Interface documentation") | C binding
+1103 | [rocblas_zgeam_batched](interfacehipfort__rocblas_1_1rocblas__zgeam__batched.html "Interface documentation") | C binding
+1104 | [rocblas_sgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__sgeam__batched__64.html "Interface documentation") | C binding
+1105 | [rocblas_dgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__dgeam__batched__64.html "Interface documentation") | C binding
+1106 | [rocblas_cgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__cgeam__batched__64.html "Interface documentation") | C binding
+1107 | [rocblas_zgeam_batched_64](interfacehipfort__rocblas_1_1rocblas__zgeam__batched__64.html "Interface documentation") | C binding
+1108 | [rocblas_sgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__sgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1109 | [rocblas_dgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__dgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1110 | [rocblas_cgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__cgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1111 | [rocblas_zgeam_strided_batched](interfacehipfort__rocblas_1_1rocblas__zgeam__strided__batched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1112 | [rocblas_sgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__sgeam__strided__batched__64.html "Interface documentation") | C binding
+1113 | [rocblas_dgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__dgeam__strided__batched__64.html "Interface documentation") | C binding
+1114 | [rocblas_cgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cgeam__strided__batched__64.html "Interface documentation") | C binding
+1115 | [rocblas_zgeam_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zgeam__strided__batched__64.html "Interface documentation") | C binding
+1116 | [rocblas_gemm_ex](interfacehipfort__rocblas_1_1rocblas__gemm__ex.html "Interface documentation") | C binding
+1117 | [rocblas_gemm_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__ex__64.html "Interface documentation") | C binding
+1118 | [rocblas_gemm_batched_ex](interfacehipfort__rocblas_1_1rocblas__gemm__batched__ex.html "Interface documentation") | C binding
+1119 | [rocblas_gemm_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__batched__ex__64.html "Interface documentation") | C binding
+1120 | [rocblas_gemm_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__gemm__strided__batched__ex.html "Interface documentation") | C binding
+1121 | [rocblas_gemm_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__strided__batched__ex__64.html "Interface documentation") | C binding
+1122 | [rocblas_gemm_grouped_batched_ex](interfacehipfort__rocblas_1_1rocblas__gemm__grouped__batched__ex.html "Interface documentation") | C binding
+1123 | [rocblas_gemm_grouped_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__gemm__grouped__batched__ex__64.html "Interface documentation") | C binding
+1124 | [rocblas_sgemmt](interfacehipfort__rocblas_1_1rocblas__sgemmt.html "Interface documentation") | C binding
+1125 | [rocblas_dgemmt](interfacehipfort__rocblas_1_1rocblas__dgemmt.html "Interface documentation") | C binding
+1126 | [rocblas_cgemmt](interfacehipfort__rocblas_1_1rocblas__cgemmt.html "Interface documentation") | C binding
+1127 | [rocblas_zgemmt](interfacehipfort__rocblas_1_1rocblas__zgemmt.html "Interface documentation") | C binding
+1128 | [rocblas_sgemmt_64](interfacehipfort__rocblas_1_1rocblas__sgemmt__64.html "Interface documentation") | C binding
+1129 | [rocblas_dgemmt_64](interfacehipfort__rocblas_1_1rocblas__dgemmt__64.html "Interface documentation") | C binding
+1130 | [rocblas_cgemmt_64](interfacehipfort__rocblas_1_1rocblas__cgemmt__64.html "Interface documentation") | C binding
+1131 | [rocblas_zgemmt_64](interfacehipfort__rocblas_1_1rocblas__zgemmt__64.html "Interface documentation") | C binding
+1132 | [rocblas_sgemmt_batched](interfacehipfort__rocblas_1_1rocblas__sgemmt__batched.html "Interface documentation") | C binding
+1133 | [rocblas_dgemmt_batched](interfacehipfort__rocblas_1_1rocblas__dgemmt__batched.html "Interface documentation") | C binding
+1134 | [rocblas_cgemmt_batched](interfacehipfort__rocblas_1_1rocblas__cgemmt__batched.html "Interface documentation") | C binding
+1135 | [rocblas_zgemmt_batched](interfacehipfort__rocblas_1_1rocblas__zgemmt__batched.html "Interface documentation") | C binding
+1136 | [rocblas_sgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__sgemmt__batched__64.html "Interface documentation") | C binding
+1137 | [rocblas_dgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__dgemmt__batched__64.html "Interface documentation") | C binding
+1138 | [rocblas_cgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__cgemmt__batched__64.html "Interface documentation") | C binding
+1139 | [rocblas_zgemmt_batched_64](interfacehipfort__rocblas_1_1rocblas__zgemmt__batched__64.html "Interface documentation") | C binding
+1140 | [rocblas_sgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__sgemmt__strided__batched.html "Interface documentation") | C binding
+1141 | [rocblas_dgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__dgemmt__strided__batched.html "Interface documentation") | C binding
+1142 | [rocblas_cgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__cgemmt__strided__batched.html "Interface documentation") | C binding
+1143 | [rocblas_zgemmt_strided_batched](interfacehipfort__rocblas_1_1rocblas__zgemmt__strided__batched.html "Interface documentation") | C binding
+1144 | [rocblas_sgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__sgemmt__strided__batched__64.html "Interface documentation") | C binding
+1145 | [rocblas_dgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__dgemmt__strided__batched__64.html "Interface documentation") | C binding
+1146 | [rocblas_cgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__cgemmt__strided__batched__64.html "Interface documentation") | C binding
+1147 | [rocblas_zgemmt_strided_batched_64](interfacehipfort__rocblas_1_1rocblas__zgemmt__strided__batched__64.html "Interface documentation") | C binding
+1148 | [rocblas_geam_ex](interfacehipfort__rocblas_1_1rocblas__geam__ex.html "Interface documentation") | C binding
+1149 | [rocblas_trsm_ex](interfacehipfort__rocblas_1_1rocblas__trsm__ex.html "Interface documentation") | C binding
+1150 | [rocblas_trsm_batched_ex](interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html "Interface documentation") | C binding
+1151 | [rocblas_trsm_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__trsm__strided__batched__ex.html "Interface documentation") | C binding
+1152 | [rocblas_syrk_ex](interfacehipfort__rocblas_1_1rocblas__syrk__ex.html "Interface documentation") | C binding
+1153 | [rocblas_herk_ex](interfacehipfort__rocblas_1_1rocblas__herk__ex.html "Interface documentation") | C binding
+1154 | [rocblas_axpy_ex](interfacehipfort__rocblas_1_1rocblas__axpy__ex.html "Interface documentation") | C binding
+1155 | [rocblas_axpy_ex_64](interfacehipfort__rocblas_1_1rocblas__axpy__ex__64.html "Interface documentation") | C binding
+1156 | [rocblas_axpy_batched_ex](interfacehipfort__rocblas_1_1rocblas__axpy__batched__ex.html "Interface documentation") | C binding
+1157 | [rocblas_axpy_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__axpy__batched__ex__64.html "Interface documentation") | C binding
+1158 | [rocblas_axpy_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__axpy__strided__batched__ex.html "Interface documentation") | C binding
+1159 | [rocblas_axpy_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__axpy__strided__batched__ex__64.html "Interface documentation") | C binding
+1160 | [rocblas_dot_ex](interfacehipfort__rocblas_1_1rocblas__dot__ex.html "Interface documentation") | C binding
+1161 | [rocblas_dotc_ex](interfacehipfort__rocblas_1_1rocblas__dotc__ex.html "Interface documentation") | C binding
+1162 | [rocblas_dot_ex_64](interfacehipfort__rocblas_1_1rocblas__dot__ex__64.html "Interface documentation") | C binding
+1163 | [rocblas_dotc_ex_64](interfacehipfort__rocblas_1_1rocblas__dotc__ex__64.html "Interface documentation") | C binding
+1164 | [rocblas_dot_batched_ex](interfacehipfort__rocblas_1_1rocblas__dot__batched__ex.html "Interface documentation") | C binding
+1165 | [rocblas_dotc_batched_ex](interfacehipfort__rocblas_1_1rocblas__dotc__batched__ex.html "Interface documentation") | C binding
+1166 | [rocblas_dot_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dot__batched__ex__64.html "Interface documentation") | C binding
+1167 | [rocblas_dotc_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dotc__batched__ex__64.html "Interface documentation") | C binding
+1168 | [rocblas_dot_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__dot__strided__batched__ex.html "Interface documentation") | C binding
+1169 | [rocblas_dot_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dot__strided__batched__ex__64.html "Interface documentation") | C binding
+1170 | [rocblas_dotc_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__dotc__strided__batched__ex.html "Interface documentation") | C binding
+1171 | [rocblas_dotc_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__dotc__strided__batched__ex__64.html "Interface documentation") | C binding
+1172 | [rocblas_nrm2_ex](interfacehipfort__rocblas_1_1rocblas__nrm2__ex.html "Interface documentation") | C binding
+1173 | [rocblas_nrm2_ex_64](interfacehipfort__rocblas_1_1rocblas__nrm2__ex__64.html "Interface documentation") | C binding
+1174 | [rocblas_nrm2_batched_ex](interfacehipfort__rocblas_1_1rocblas__nrm2__batched__ex.html "Interface documentation") | C binding
+1175 | [rocblas_nrm2_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__nrm2__batched__ex__64.html "Interface documentation") | C binding
+1176 | [rocblas_nrm2_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__nrm2__strided__batched__ex.html "Interface documentation") | C binding
+1177 | [rocblas_nrm2_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__nrm2__strided__batched__ex__64.html "Interface documentation") | C binding
+1178 | [rocblas_rot_ex](interfacehipfort__rocblas_1_1rocblas__rot__ex.html "Interface documentation") | C binding
+1179 | [rocblas_rot_ex_64](interfacehipfort__rocblas_1_1rocblas__rot__ex__64.html "Interface documentation") | C binding
+1180 | [rocblas_rot_batched_ex](interfacehipfort__rocblas_1_1rocblas__rot__batched__ex.html "Interface documentation") | C binding
+1181 | [rocblas_rot_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__rot__batched__ex__64.html "Interface documentation") | C binding
+1182 | [rocblas_rot_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__rot__strided__batched__ex.html "Interface documentation") | C binding
+1183 | [rocblas_rot_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__rot__strided__batched__ex__64.html "Interface documentation") | C binding
+1184 | [rocblas_scal_ex](interfacehipfort__rocblas_1_1rocblas__scal__ex.html "Interface documentation") | C binding
+1185 | [rocblas_scal_ex_64](interfacehipfort__rocblas_1_1rocblas__scal__ex__64.html "Interface documentation") | C binding
+1186 | [rocblas_scal_batched_ex](interfacehipfort__rocblas_1_1rocblas__scal__batched__ex.html "Interface documentation") | C binding
+1187 | [rocblas_scal_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__scal__batched__ex__64.html "Interface documentation") | C binding
+1188 | [rocblas_scal_strided_batched_ex](interfacehipfort__rocblas_1_1rocblas__scal__strided__batched__ex.html "Interface documentation") | C binding
+1189 | [rocblas_scal_strided_batched_ex_64](interfacehipfort__rocblas_1_1rocblas__scal__strided__batched__ex__64.html "Interface documentation") | C binding
+1190 | [rocblas_status_to_string](interfacehipfort__rocblas_1_1rocblas__status__to__string.html "Interface documentation") | C binding
+1191 | [rocblas_initialize](interfacehipfort__rocblas_1_1rocblas__initialize.html "Interface documentation") | C binding
+1192 | [rocblas_get_version_string](interfacehipfort__rocblas_1_1rocblas__get__version__string.html "Interface documentation") | C binding
+1193 | [rocblas_get_version_string_size](interfacehipfort__rocblas_1_1rocblas__get__version__string__size.html "Interface documentation") | C binding
+1194 | [rocblas_get_commit_hash_string](interfacehipfort__rocblas_1_1rocblas__get__commit__hash__string.html "Interface documentation") | C binding
+1195 | [rocblas_get_commit_hash_string_size](interfacehipfort__rocblas_1_1rocblas__get__commit__hash__string__size.html "Interface documentation") | C binding
+1196 | [rocblas_start_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__start__device__memory__size__query.html "Interface documentation") | C binding
+1197 | [rocblas_stop_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__stop__device__memory__size__query.html "Interface documentation") | C binding
+1198 | [rocblas_is_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__is__device__memory__size__query.html "Interface documentation") | C binding
+1199 | [rocblas_set_optimal_device_memory_size_impl](interfacehipfort__rocblas_1_1rocblas__set__optimal__device__memory__size__impl.html "Interface documentation") | C binding
+1200 | [rocblas_device_malloc_alloc](interfacehipfort__rocblas_1_1rocblas__device__malloc__alloc.html "Interface documentation") | C binding
+1201 | [rocblas_device_malloc_success](interfacehipfort__rocblas_1_1rocblas__device__malloc__success.html "Interface documentation") | C binding
+1202 | [rocblas_device_malloc_ptr](interfacehipfort__rocblas_1_1rocblas__device__malloc__ptr.html "Interface documentation") | C binding
+1203 | [rocblas_device_malloc_get](interfacehipfort__rocblas_1_1rocblas__device__malloc__get.html "Interface documentation") | C binding
+1204 | [rocblas_device_malloc_free](interfacehipfort__rocblas_1_1rocblas__device__malloc__free.html "Interface documentation") | C binding
+1205 | [rocblas_device_malloc_set_default_memory_size](interfacehipfort__rocblas_1_1rocblas__device__malloc__set__default__memory__size.html "Interface documentation") | C binding
+1206 | [rocblas_get_device_memory_size](interfacehipfort__rocblas_1_1rocblas__get__device__memory__size.html "Interface documentation") | C binding
+1207 | [rocblas_set_device_memory_size](interfacehipfort__rocblas_1_1rocblas__set__device__memory__size.html "Interface documentation") | C binding
+1208 | [rocblas_set_workspace](interfacehipfort__rocblas_1_1rocblas__set__workspace.html "Interface documentation") | C binding
+1209 | [rocblas_is_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__managing__device__memory.html "Interface documentation") | C binding
+1210 | [rocblas_is_user_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__user__managing__device__memory.html "Interface documentation") | C binding
+1211 | [rocblas_abort](interfacehipfort__rocblas_1_1rocblas__abort.html "Interface documentation") | C binding
+1212 | [rocblas_set_vector](interfacehipfort__rocblas_1_1rocblas__set__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1213 | [rocblas_get_vector](interfacehipfort__rocblas_1_1rocblas__get__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1214 | [rocblas_set_matrix](interfacehipfort__rocblas_1_1rocblas__set__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1215 | [rocblas_get_matrix](interfacehipfort__rocblas_1_1rocblas__get__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1216 | [rocblas_set_vector_async](interfacehipfort__rocblas_1_1rocblas__set__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1217 | [rocblas_get_vector_async](interfacehipfort__rocblas_1_1rocblas__get__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1218 | [rocblas_set_matrix_async](interfacehipfort__rocblas_1_1rocblas__set__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1219 | [rocblas_get_matrix_async](interfacehipfort__rocblas_1_1rocblas__get__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank

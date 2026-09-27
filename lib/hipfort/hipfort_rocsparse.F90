@@ -3622,6 +3622,21 @@ module hipfort_rocsparse
   !>   @param[in] batch_count - batch_count of the sparse COO matrix.
   !>   @param[in] batch_stride - batch stride of the sparse COO matrix.
   !>
+  !>   \details
+  !>   The row index, column index, and value arrays of a batched COO matrix each store
+  !>   \p batch_count matrices back to back. The entries belonging to batch \f$i\f$ (where
+  !>   \f$0 &le; i < batch\_count\f$) begin at an offset of \f$i \times batch\_stride\f$ elements
+  !>   from the start of each of these arrays. In other words, the same \p batch_stride is
+  !>   applied to the row indices, the column indices, and the values. Setting \p batch_stride
+  !>   equal to the number of non-zeros of a single batch stores the batches contiguously with
+  !>   no gap, while a larger value can be used to leave padding between consecutive batches.
+  !>
+  !>   \note
+  !>   For the COO AoS format (`rocsparse_format_coo_aos`), the row and column indices are
+  !>   interleaved in a single array with two index entries per non-zero. In this case the value
+  !>   array advances by \p batch_stride elements per batch, while the interleaved index array
+  !>   advances by \f$2 \times batch\_stride\f$ entries per batch.
+  !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
   !>   \retval rocsparse_status_invalid_size if \p batch_count or \p batch_stride is invalid.
@@ -3692,6 +3707,30 @@ module hipfort_rocsparse
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: offsets_batch_stride
       integer(c_int64_t),value :: rows_values_batch_stride
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Set the batch count and batch stride in the sparse ELL matrix descriptor.
+  !>
+  !>   @param[inout] descr - the pointer to the sparse ELL matrix descriptor.
+  !>   @param[in] batch_count - batch_count of the sparse ELL matrix.
+  !>   @param[in] batch_stride - batch stride of the sparse ELL matrix. The same stride is
+  !>                applied to both the column indices and the values arrays.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer if \p descr is invalid.
+  !>   \retval rocsparse_status_invalid_size if \p batch_count or \p batch_stride is invalid.
+  interface rocsparse_ell_set_strided_batch
+    function rocsparse_ell_set_strided_batch_(descr,batch_count,batch_stride) &
+        bind(c, name="rocsparse_ell_set_strided_batch")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_ell_set_strided_batch_
+      type(c_ptr),value :: descr
+      integer(c_int),value :: batch_count
+      integer(c_int64_t),value :: batch_stride
     end function
   end interface
 
@@ -3790,6 +3829,24 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: mySize
       type(c_ptr),value :: values
       integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+    end function
+  end interface
+
+  interface rocsparse_dnvec_descr_create_scalar
+    function rocsparse_dnvec_descr_create_scalar_(handle,descr,pointer_mode,data_type, &
+        const_values,values,p_error) &
+        bind(c, name="rocsparse_dnvec_descr_create_scalar")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_descr_create_scalar_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: descr
+      integer(kind(rocsparse_pointer_mode_host)),value :: pointer_mode
+      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      type(c_ptr),value :: const_values
+      type(c_ptr),value :: values
+      type(c_ptr) :: p_error
     end function
   end interface
 
@@ -15243,7 +15300,74 @@ module hipfort_rocsparse
   !>   `rocsparse_sddmm_alg_default`.
   !>
   !>   \note
-  !>   This routine does not support batched computation.
+  !>   Batched computation is supported for the `rocsparse_format_csr`, `rocsparse_format_csc`,
+  !>   `rocsparse_format_coo`, `rocsparse_format_coo_aos` and `rocsparse_format_ell`
+  !>   formats when \p alg == `rocsparse_sddmm_alg_default`. The batch count is taken from the
+  !>   sparse matrix \f$C\f$. Each of the dense matrices \f$A\f$ and \f$B\f$ must either
+  !>   use the same batch count as \f$C\f$, or be configured with batch count 1 and
+  !>   batch stride 0 in order to broadcast that operand across all batches of \f$C\f$.
+  !>   Concretely, the following four configurations are accepted:
+  !>   \f[
+  !>     \begin{aligned}
+  !>       &C_i = (A   \cdot B  ) \circ C_i, &&\text{(both A and B broadcast)} \\%
+  !>       &C_i = (A   \cdot B_i) \circ C_i, &&\text{(A broadcast)} \\%
+  !>       &C_i = (A_i \cdot B  ) \circ C_i, &&\text{(B broadcast)} \\%
+  !>       &C_i = (A_i \cdot B_i) \circ C_i, &&\text{(fully batched)}
+  !>     \end{aligned}
+  !>   \f]
+  !>   Per-batch strides for the dense operands are configured via
+  !>   \ref rocsparse_dnmat_set_strided_batch, while the per-batch strides for the
+  !>   sparse output \f$C\f$ are configured with the format-specific routine:
+  !>   \ref rocsparse_coo_set_strided_batch for `rocsparse_format_coo`,
+  !>   \ref rocsparse_csr_set_strided_batch for `rocsparse_format_csr`,
+  !>   \ref rocsparse_csc_set_strided_batch for `rocsparse_format_csc` and
+  !>   `rocsparse_format_coo_aos`, and
+  !>   \ref rocsparse_ell_set_strided_batch for `rocsparse_format_ell`.
+  !>
+  !>   For COO, \ref rocsparse_coo_set_strided_batch sets a single
+  !>   per-batch stride that applies to all three COO buffers (row indices, column
+  !>   indices and values); i.e. the row-index, column-index and value buffers of
+  !>   batch \f$i\f$ are obtained from the base pointers by adding
+  !>   \p i * \p batch_stride, and must therefore be laid out with the same stride.
+  !>   The stride must be at least the per-batch nnz of \f$C\f$, and may be larger
+  !>   to allow padding.
+  !>
+  !>   For CSR, \ref rocsparse_csr_set_strided_batch sets two independent per-batch
+  !>   strides: \p offsets_batch_stride for the row offset buffer and
+  !>   \p columns_values_batch_stride for the column-index and value buffers. The
+  !>   row offset buffer of batch \f$i\f$ is obtained from the base pointer by adding
+  !>   \p i * \p offsets_batch_stride, and the column-index and value buffers of
+  !>   batch \f$i\f$ by adding \p i * \p columns_values_batch_stride. The offsets
+  !>   stride must be at least \f$m + 1\f$, and the columns/values stride must be at
+  !>   least the per-batch nnz of \f$C\f$; both may be larger to allow padding.
+  !>
+  !>   For CSC, \ref rocsparse_csc_set_strided_batch sets two independent per-batch
+  !>   strides: \p offsets_batch_stride for the column offset buffer and
+  !>   \p rows_values_batch_stride for the row-index and value buffers. The
+  !>   column offset buffer of batch \f$i\f$ is obtained from the base pointer by adding
+  !>   \p i * \p offsets_batch_stride, and the row-index and value buffers of
+  !>   batch \f$i\f$ by adding \p i * \p rows_values_batch_stride. The offsets
+  !>   stride must be at least \f$n + 1\f$, and the rows/values stride must be at
+  !>   least the per-batch nnz of \f$C\f$; both may be larger to allow padding.
+  !>
+  !>   For COO AoS, \ref rocsparse_coo_set_strided_batch sets a single per-batch
+  !>   stride \p batch_stride that is interpreted as the per-batch nnz stride of the
+  !>   value buffer. Because the row and column indices are stored interleaved in a
+  !>   single buffer (two index entries per nonzero), the interleaved index buffer of
+  !>   batch \f$i\f$ is obtained from the base pointer by adding
+  !>   \p i * (2 * \p batch_stride), while the value buffer of batch \f$i\f$ is
+  !>   obtained by adding \p i * \p batch_stride. The stride must be at least the
+  !>   per-batch nnz of \f$C\f$, and can be larger to allow padding.
+  !>
+  !>   For ELL, \ref rocsparse_ell_set_strided_batch sets a single per-batch stride
+  !>   that applies to both ELL buffers (column indices and values); i.e. the
+  !>   column-index and value buffers of batch \f$i\f$ are obtained from the base
+  !>   pointers by adding \p i * \p batch_stride, and must therefore be laid out with
+  !>   the same stride. The stride must be at least the per-batch nnz of \f$C\f$, and
+  !>   may be larger to allow padding.
+  !>
+  !>   All other formats and algorithms currently return `rocsparse_status_not_implemented`
+  !>   when the batch count is greater than one.
   !>
   !>   @param[in] handle - handle to the rocSPARSE library context queue.
   !>   @param[in] opA - dense matrix \f$A\f$ operation type.
@@ -15965,18 +16089,26 @@ module hipfort_rocsparse
   !>   \p rocsparse_spic0 computes the incomplete Cholesky factorization with 0 fill-ins
   !>   and no pivoting of a sparse \f$m \times m\f$ matrix \f$A\f$, such that
   !>   \f[
-  !>     A \approx LL^T
+  !>     A \approx LL^H
   !>   \f]
   !>   where the lower triangular matrix \f$L\f$ is computed using:
   !>   \f[
   !>     L_{ij} = \left\{
   !>     \begin{array}{ll}
-  !>         \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\%
-  !>         \frac{1}{L_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times L_{jk}), & \text{if i > j}
+  !>         \sqrt{A_{jj} - \sum_{k=0}^{j-1}\left| L_{jk} \right|^{2}},   & \text{if i == j} \\%
+  !>         \frac{1}{L_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times \overline{L_{jk}}), & \text{if
+  !>         i > j}
   !>     \end{array}
   !>     \right.
   !>   \f]
   !>   for each entry found in the matrix \f$A\f$.
+  !>
+  !>   \note
+  !>   For complex data types this is the Hermitian Cholesky factorization \f$A \approx L L^H\f$
+  !>   (note the
+  !>   conjugation in the formula above). For real data types \f$L^H = L^T\f$, so it reduces to the
+  !>   standard
+  !>   \f$A \approx L L^T\f$.
   !>
   !>   Performing the above operation requires two stages, the stage
   !>   `rocsparse_spic0_stage_analysis` and the stage `rocsparse_spic0_stage_compute`.
@@ -16045,6 +16177,83 @@ module hipfort_rocsparse
       integer(kind(rocsparse_spic0_stage_analysis)),value :: spic0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
+      type(c_ptr) :: p_error
+    end function
+  end interface
+
+  !>  \ingroup generic_module
+  !>   \brief Sparse matrix scaling.
+  !>
+  !>   \details
+  !>   \p rocsparse_spmat_scale multiplies the values of the sparse matrix \p source (\f$A\f$) by
+  !>   the
+  !>   scalar \f$\alpha\f$ and writes them into the sparse matrix \p target (\f$C\f$):
+  !>   \f[
+  !>     C := \alpha \cdot A.
+  !>   \f]
+  !>   Only the value array of \p target is written; its data type is scaled by \f$\alpha\f$. This
+  !>   is a
+  !>   uniform scalar multiply of the matrix values; it is unrelated to row/column equilibration
+  !>   scaling. No temporary storage buffer is required.
+  !>
+  !>   This routine does not copy the sparsity pattern. \p target is assumed to already describe the
+  !>   same sparsity pattern as \p source (same format, dimensions and nonzero count), so its index
+  !>   arrays are left untouched. When \p target and \p source alias the same value array the
+  !>   scaling
+  !>   is performed in place; otherwise the scaled source values are written into \p target.
+  !>   In-place
+  !>   operation is the common case. A value of \f$\alpha = 0\f$ writes all-zero values into \p
+  !>   target
+  !>   (the pattern is not dropped).
+  !>
+  !>   The scaling factor \f$\alpha\f$ is passed as a size-one dense vector descriptor. It can live
+  !>   in
+  !>   host or device memory; the memory space is taken from the descriptor itself (see
+  !>   \ref rocsparse_dnvec_descr_create_scalar), so the handle pointer mode does not affect it. The
+  !>   data type of \p alpha must match the data type of the matrices.
+  !>
+  !>   \note The following formats are supported: `rocsparse_format_coo`,
+  !>   `rocsparse_format_coo_aos`, `rocsparse_format_csr`, `rocsparse_format_csc`,
+  !>   `rocsparse_format_bsr`, `rocsparse_format_ell`, `rocsparse_format_bell` and
+  !>   `rocsparse_format_sell`. \p source and \p target must use the same format.
+  !>   \note Batched matrices are not supported.
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   \par Uniform Precisions:
+  !>   <table>
+  !>   <caption id="spmat_scale_uniform">Uniform Precisions</caption>
+  !>   <tr><th>alpha / A / C
+  !>   <tr><td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_f64_r
+  !>   <tr><td>rocsparse_datatype_f32_c
+  !>   <tr><td>rocsparse_datatype_f64_c
+  !>   </table>
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alpha - size-one dense vector descriptor holding the scalar \f$\alpha\f$.
+  !>   @param[in] source - sparse matrix \f$A\f$ descriptor.
+  !>   @param[out] target - sparse matrix \f$C\f$ descriptor.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>                `rocsparse_status_success`. A null pointer can be passed if an error
+  !>                descriptor is not required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_pointer \p alpha, \p source or \p target pointer is invalid.
+  !>   \retval rocsparse_status_not_implemented the formats of \p source and \p target differ, the
+  !>           format is not one of the supported formats, or a batched matrix is passed.
+  interface rocsparse_spmat_scale
+    function rocsparse_spmat_scale_(handle,alpha,source,target,p_error) &
+        bind(c, name="rocsparse_spmat_scale")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: source
+      type(c_ptr),value :: target
       type(c_ptr) :: p_error
     end function
   end interface
@@ -16540,40 +16749,43 @@ module hipfort_rocsparse
   !>
   !>   <table>
   !>   <caption id="spmm_csr_algorithms">CSR Algorithms</caption>
-  !>   <tr><th>CSR Algorithms <th>Deterministic <th>Preprocessing <th>Notes
-  !>   <tr><td>rocsparse_spmm_alg_csr</td> <td>Yes</td> <td>No</td> <td>Default algorithm.</td>
-  !>   <tr><td>rocsparse_spmm_alg_csr_row_split</td> <td>Yes</td> <td>No</td> <td>Assigns a fixed
-  !>   number of threads per row, regardless of the number of non-zeros in each row. This can
-  !>   perform well when each row in the matrix has roughly the same number of non-zeros.</td>
-  !>   <tr><td>rocsparse_spmm_alg_csr_nnz_split</td> <td>No</td> <td>Yes</td> <td>Distributes work
-  !>   by having each thread block work on a fixed number of non-zeros, regardless of the number of
-  !>   rows that might be involved. This can perform well when the matrix has some rows with few
-  !>   non-zeros and some rows with many non-zeros.</td>
-  !>   <tr><td>rocsparse_spmm_alg_csr_merge_path</td> <td>No</td> <td>Yes</td> <td>Attempts to
-  !>   combine the approaches of row-split and non-zero split by having each block work on a fixed
-  !>   amount of work, which can be either non-zeros or rows.</td>
+  !>   <tr><th>CSR Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
+  !>   <tr><td>rocsparse_spmm_alg_csr</td> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Default
+  !>   algorithm.</td>
+  !>   <tr><td>rocsparse_spmm_alg_csr_row_split</td> <td>Yes</td> <td>No</td> <td>Yes</td>
+  !>   <td>Assigns a fixed number of threads per row, regardless of the number of non-zeros in each
+  !>   row. This can perform well when each row in the matrix has roughly the same number of
+  !>   non-zeros.</td>
+  !>   <tr><td>rocsparse_spmm_alg_csr_nnz_split</td> <td>No</td> <td>Yes</td> <td>Yes</td>
+  !>   <td>Distributes work by having each thread block work on a fixed number of non-zeros,
+  !>   regardless of the number of rows that might be involved. This can perform well when the
+  !>   matrix has some rows with few non-zeros and some rows with many non-zeros.</td>
+  !>   <tr><td>rocsparse_spmm_alg_csr_merge_path</td> <td>No</td> <td>Yes</td> <td>Yes</td>
+  !>   <td>Attempts to combine the approaches of row-split and non-zero split by having each block
+  !>   work on a fixed amount of work, which can be either non-zeros or rows.</td>
   !>   </table>
   !>
   !>   <table>
   !>   <caption id="spmm_coo_algorithms">COO Algorithms</caption>
-  !>   <tr><th>COO Algorithms <th>Deterministic <th>Preprocessing <th>Notes
-  !>   <tr><td>rocsparse_spmm_alg_coo_segmented</td> <td>Yes</td> <td>No</td> <td>Generally not as
-  !>   fast as the atomic algorithm but is deterministic.</td>
-  !>   <tr><td>rocsparse_spmm_alg_coo_atomic</td> <td>No</td> <td>No</td> <td>Generally the fastest
-  !>   COO algorithm. This is the default algorithm.</td>
-  !>   <tr><td>rocsparse_spmm_alg_coo_segmented_atomic</td> <td>No</td> <td>No</td> <td> </td>
+  !>   <tr><th>COO Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
+  !>   <tr><td>rocsparse_spmm_alg_coo_segmented</td> <td>Yes</td> <td>No</td> <td>Yes</td>
+  !>   <td>Generally not as fast as the atomic algorithm but is deterministic.</td>
+  !>   <tr><td>rocsparse_spmm_alg_coo_atomic</td> <td>No</td> <td>No</td> <td>Yes</td> <td>Generally
+  !>   the fastest COO algorithm. This is the default algorithm.</td>
+  !>   <tr><td>rocsparse_spmm_alg_coo_segmented_atomic</td> <td>No</td> <td>No</td> <td>Yes</td>
+  !>   <td> </td>
   !>   </table>
   !>
   !>   <table>
   !>   <caption id="spmm_bell_algorithms">Blocked-ELL Algorithms</caption>
-  !>   <tr><th>Blocked ELL Algorithms       <th>Deterministic   <th>Preprocessing <th>Notes
-  !>   <tr><td>rocsparse_spmm_alg_bell</td> <td>Yes</td>        <td>No</td>       <td></td>
+  !>   <tr><th>Blocked ELL Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
+  !>   <tr><td>rocsparse_spmm_alg_bell</td> <td>Yes</td> <td>No</td> <td>No</td> <td></td>
   !>   </table>
   !>
   !>   <table>
   !>   <caption id="spmm_bsr_algorithms">BSR Algorithms</caption>
-  !>   <tr><th>BSR Algorithms                <th>Deterministic   <th>Preprocessing <th>Notes
-  !>   <tr><td>rocsparse_spmm_alg_bsr</td>   <td>Yes</td>        <td>No</td>       <td></td>
+  !>   <tr><th>BSR Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
+  !>   <tr><td>rocsparse_spmm_alg_bsr</td> <td>Yes</td> <td>No</td> <td>No</td> <td></td>
   !>   </table>
   !>
   !>   It is also possible to pass `rocsparse_spmm_alg_default`, which will automatically select
@@ -16625,8 +16837,18 @@ module hipfort_rocsparse
   !>   precisions
   !>   for storing the row pointer and column indices arrays of the sparse matrices.
   !>
-  !>   \p rocsparse_spmm also supports batched computation for CSR and COO matrices. There are three
-  !>   supported batch modes:
+  !>   \p rocsparse_spmm also supports batched computation for CSR and COO matrices. For the CSR
+  !>   format, batched computation is
+  !>   supported by all of the available algorithms, namely `rocsparse_spmm_alg_csr`,
+  !>   `rocsparse_spmm_alg_csr_row_split`,
+  !>   `rocsparse_spmm_alg_csr_nnz_split`, and `rocsparse_spmm_alg_csr_merge_path`. For the COO
+  !>   format, batched computation is
+  !>   likewise supported by all of the available algorithms, namely
+  !>   `rocsparse_spmm_alg_coo_segmented`,
+  !>   `rocsparse_spmm_alg_coo_atomic`, and `rocsparse_spmm_alg_coo_segmented_atomic`. Batched
+  !>   computation is not supported
+  !>   for the BSR and Blocked ELL formats.
+  !>   There are three supported batch modes:
   !>   \f[
   !>       C_i = A \times B_i \\%
   !>       C_i = A_i \times B \\%
@@ -16668,6 +16890,22 @@ module hipfort_rocsparse
   !>       batch\_stride_C=m*n
   !>   \f]
   !>   See the examples below.
+  !>
+  !>   \note
+  !>   When using batched computation, the sparsity pattern of the sparse matrix \f$A\f$ must be the
+  !>   same
+  !>   across all batches. That is, even in the batch modes that use a distinct \f$A_i\f$ per batch
+  !>   (\f$C_i = A_i \times B\f$ and \f$C_i = A_i \times B_i\f$), only the values of \f$A_i\f$ may
+  !>   differ
+  !>   between batches; the row offset and column index arrays must describe an identical sparsity
+  !>   pattern
+  !>   for every batch. This is because the `rocsparse_spmm_stage_preprocess` analysis of
+  !>   \f$op(A)\f$ is
+  !>   performed only once and is reused for all batches. Note that the offset and index arrays may
+  !>   still be
+  !>   laid out per batch in memory via \p offsets_batch_stride_A and \p
+  !>   columns_values_batch_stride_A, but
+  !>   their contents must be identical from one batch to the next.
   !>
   !>   \note
   !>   None of the algorithms above are deterministic when \f$A\f$ is transposed or conjugate
@@ -17134,7 +17372,7 @@ module hipfort_rocsparse
   !>   \details
   !>   \p rocsparse_spsv solves a triangular linear system of equations defined by a sparse \f$m
   !>   \times m\f$ square matrix \f$op(A)\f$,
-  !>   given in CSR or COO storage format, such that
+  !>   given in CSR, COO, CSC, or ELL storage format, such that
   !>   \f[
   !>     op(A) \cdot y = \alpha \cdot x,
   !>   \f]
@@ -17182,7 +17420,7 @@ module hipfort_rocsparse
   !>
   !>   \note
   !>   The sparse matrix formats currently supported are: `rocsparse_format_coo`,
-  !>   `rocsparse_format_csr`, and `rocsparse_format_csc`.
+  !>   `rocsparse_format_csr`, `rocsparse_format_csc`, and `rocsparse_format_ell`.
   !>
   !>   \note
   !>   Only the `rocsparse_spsv_stage_buffer_size` stage and the `rocsparse_spsv_stage_compute`
@@ -17194,6 +17432,12 @@ module hipfort_rocsparse
   !>   \note
   !>   Currently, only \p trans == `rocsparse_operation_none` and \p trans ==
   !>   `rocsparse_operation_transpose` is supported.
+  !>
+  !>   \note
+  !>   `rocsparse_format_ell` only supports \p trans == `rocsparse_operation_none`. Transposing an
+  !>   ELL matrix does not
+  !>   preserve its width, so the transposed operations return `rocsparse_status_not_implemented`
+  !>   for that format.
   !>
   !>   \note
   !>   Only the `rocsparse_spsv_stage_buffer_size` stage and the `rocsparse_spsv_stage_compute`
@@ -17533,7 +17777,7 @@ module hipfort_rocsparse
   !>   rocsparse_sptrsv_set_input.
   !>   \note
   !>   The sparse matrix formats currently supported are: `rocsparse_format_coo`,
-  !>   `rocsparse_format_csr`, and `rocsparse_format_csc`.
+  !>   `rocsparse_format_csr`, `rocsparse_format_csc`, and `rocsparse_format_ell`.
   !>
   !>   \note
   !>   the `rocsparse_sptrsv_stage_compute` stage is non-blocking
@@ -17547,6 +17791,12 @@ module hipfort_rocsparse
   !>   Only the `rocsparse_sptrsv_stage_compute` stage
   !>   supports execution in a hipGraph context. The `rocsparse_sptrsv_stage_analysis` stage does
   !>   not support hipGraph.
+  !>
+  !>   \note
+  !>   `rocsparse_format_ell` only supports \p trans == `rocsparse_operation_none`. Transposing an
+  !>   ELL matrix does not
+  !>   preserve its width, so the transposed operations return `rocsparse_status_not_implemented`
+  !>   for that format.
   !>
   !>   \note
   !>   This routine does not support batched computation.
@@ -26763,8 +27013,13 @@ module hipfort_rocsparse
   !>   \p rocsparse_bsric0 computes the incomplete Cholesky factorization with 0 fill-ins
   !>   and no pivoting of a sparse \f$mb \times mb\f$ BSR matrix \f$A\f$, such that
   !>   \f[
-  !>     A \approx LL^T
+  !>     A \approx LL^H
   !>   \f]
+  !>
+  !>   \note
+  !>   For complex data types this is the Hermitian Cholesky factorization \f$A \approx L L^H\f$.
+  !>   For real data
+  !>   types \f$L^H = L^T\f$, so it reduces to the standard \f$A \approx L L^T\f$.
   !>
   !>   Computing the above incomplete Cholesky factorization requires three steps to complete.
   !>   First,
@@ -26829,7 +27084,7 @@ module hipfort_rocsparse
   !>   \par Example
   !>   Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in BSR
   !>   storage format. The following example computes the incomplete Cholesky factorization
-  !>   \f$M \approx LL^T\f$ and solves the preconditioned system \f$My = x\f$.
+  !>   \f$M \approx LL^H\f$ and solves the preconditioned system \f$My = x\f$.
   interface rocsparse_sbsric0
     function rocsparse_sbsric0_(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr,bsr_col_ind, &
         block_dim,myInfo,policy,temp_buffer) &
@@ -28269,18 +28524,26 @@ module hipfort_rocsparse
   !>   \p rocsparse_csric0 computes the incomplete Cholesky factorization with 0 fill-ins
   !>   and no pivoting of a sparse \f$m \times m\f$ CSR matrix \f$A\f$, such that
   !>   \f[
-  !>     A \approx LL^T
+  !>     A \approx LL^H
   !>   \f]
   !>   where the lower triangular matrix \f$L\f$ is computed using:
   !>   \f[
   !>     L_{ij} = \left\{
   !>     \begin{array}{ll}
-  !>         \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\%
-  !>         \frac{1}{L_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times L_{jk}), & \text{if i > j}
+  !>         \sqrt{A_{jj} - \sum_{k=0}^{j-1}\left| L_{jk} \right|^{2}},   & \text{if i == j} \\%
+  !>         \frac{1}{L_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times \overline{L_{jk}}), & \text{if
+  !>         i > j}
   !>     \end{array}
   !>     \right.
   !>   \f]
   !>   for each entry found in the CSR matrix \f$A\f$.
+  !>
+  !>   \note
+  !>   For complex data types this is the Hermitian Cholesky factorization \f$A \approx L L^H\f$
+  !>   (note the
+  !>   conjugation in the formula above). For real data types \f$L^H = L^T\f$, so it reduces to the
+  !>   standard
+  !>   \f$A \approx L L^T\f$.
   !>
   !>   Computing the above incomplete Cholesky factorization requires three steps to complete.
   !>   First,
@@ -28304,8 +28567,8 @@ module hipfort_rocsparse
   !>   result in a division by zero.
   !>   This could occur from either \f$A_{jj}\f$ not existing in the sparse CSR matrix (referred to
   !>   as a structural zero) or because
-  !>   \f$A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2} == 0\f$ (referred to as a numerical zero). For
-  !>   example, running the Cholesky
+  !>   \f$A_{jj} - \sum_{k=0}^{j-1}\left| L_{jk} \right|^{2} == 0\f$ (referred to as a numerical
+  !>   zero). For example, running the Cholesky
   !>   factorization on the following matrix:
   !>   \f[
   !>     \begin{bmatrix}
@@ -28429,7 +28692,7 @@ module hipfort_rocsparse
   !>   \par Example
   !>   Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in the CSR
   !>   storage format. The following example computes the incomplete Cholesky factorization
-  !>   \f$M \approx LL^T\f$ and solves the preconditioned system \f$My = x\f$.
+  !>   \f$M \approx LL^H\f$ and solves the preconditioned system \f$My = x\f$.
   interface rocsparse_scsric0
     function rocsparse_scsric0_(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,policy, &
         temp_buffer) &

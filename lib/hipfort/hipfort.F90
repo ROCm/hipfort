@@ -227,6 +227,35 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Returns an LUID and device node mask for the device.
+  !>  @param [out] luid Returned 8-byte locally unique identifier for the device
+  !>  @param [out] deviceNodeMask Returned device node mask
+  !>  @param [in] device Device ordinal
+  !>
+  !>  Returns identifying information (@p luid and @p deviceNodeMask) that allows the device to be
+  !>  matched with graphics APIs. The LUID is only valid on Windows; on other platforms this
+  !>  function
+  !>  returns `hipErrorNotSupported` and does not modify @p luid or @p deviceNodeMask.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`,
+  !>  `hipErrorNotInitialized`,
+  !>  `hipErrorDeinitialized`, `hipErrorNotSupported`
+  interface hipDeviceGetLuid
+#ifdef USE_CUDA_NAMES
+    function hipDeviceGetLuid_(luid,deviceNodeMask,device) bind(c, name="cuDeviceGetLuid")
+#else
+    function hipDeviceGetLuid_(luid,deviceNodeMask,device) bind(c, name="hipDeviceGetLuid")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetLuid_
+      type(c_ptr),value :: luid
+      type(c_ptr),value :: deviceNodeMask
+      integer(c_int),value :: device
+    end function
+  end interface
+
   !>  @brief Returns a value for attribute of link between two devices
   !>  @param [out] value Pointer of the value for the attrubute
   !>  @param [in] attr enum of hipDeviceP2PAttr to query
@@ -839,6 +868,44 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipSetDeviceFlags_
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  !>  @brief Initialize the specified device to be used for GPU executions.
+  !>
+  !>  @param [in] device       Ordinal of the device to initialize.
+  !>  @param [in] deviceFlags  Scheduling/context flags to apply to the device. Uses the same values
+  !>                           as hipSetDeviceFlags (e.g. `hipDeviceScheduleSpin`,
+  !>                           `hipDeviceScheduleYield`, `hipDeviceScheduleBlockingSync`,
+  !>                           `hipDeviceScheduleAuto`). Only honored when @p flags is
+  !>                           `hipInitDeviceFlagsAreValid`.
+  !>  @param [in] flags        Must be either 0 or `hipInitDeviceFlagsAreValid`. When
+  !>                           `hipInitDeviceFlagsAreValid`, @p deviceFlags are applied to the
+  !>                           device;
+  !>                           when 0, @p deviceFlags are ignored.
+  !>
+  !>  Initializes the runtime state for the requested device. Unlike hipSetDevice, this API
+  !>  does NOT make the device current for the calling thread. On the ROCm platform the primary
+  !>  context of every device is created eagerly during runtime initialization, so this call mainly
+  !>  validates the device, applies the requested flags, and ensures the device's default stream is
+  !>  created.
+  !>
+  !>  @returns `hipSuccess`, `hipErrorNoDevice`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+  !>
+  !>  @see hipSetDevice, hipSetDeviceFlags
+  interface hipInitDevice
+#ifdef USE_CUDA_NAMES
+    function hipInitDevice_(device,deviceFlags,flags) bind(c, name="cudaInitDevice")
+#else
+    function hipInitDevice_(device,deviceFlags,flags) bind(c, name="hipInitDevice")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipInitDevice_
+      integer(c_int),value :: device
+      integer(c_int),value :: deviceFlags
       integer(c_int),value :: flags
     end function
   end interface

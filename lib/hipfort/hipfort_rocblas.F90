@@ -32027,6 +32027,171 @@ module hipfort_rocblas
   !>     \brief  BLAS Level 3 API
   !>
   !>     \details
+  !>     The gemm_grouped_batched functions perform grouped batched matrix-matrix operations.
+  !>     There are ``group_count`` groups. Within group ``i``, all problems share the same
+  !>     ``transA``, ``transB``, ``m``, ``n``, ``k``, ``lda``, ``ldb``, ``ldc``, ``alpha``, and
+  !>     ``beta``.
+  !>     Each group ``i`` contains group_size[i] problems. The total number of problems is
+  !>     problem_count = sum(group_size[i]).
+  !>
+  !>     For each problem ``j`` in group ``i``:
+  !>
+  !>         C_j = alpha_i*op( A_j )*op( B_j ) + beta_i*C_j,
+  !>
+  !>     where ``op( X )`` is one of
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H.
+  !>
+  !>     ``Aarray``, ``Barray``, and ``Carray`` are device arrays of device pointers with length
+  !>     ``problem_count``. The caller is responsible for ensuring that output matrices do not
+  !>     overlap.
+  !>
+  !>     @param[in] handle - [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in] transa_array - [const rocblas_operation*]
+  !>               host array of length ``group_count`` specifying ``op( A )`` for each group.
+  !>     @param[in] transb_array - [const rocblas_operation*]
+  !>               host array of length ``group_count`` specifying ``op( B )`` for each group.
+  !>     @param[in] m_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] n_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] k_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] alpha_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in] Aarray - device array of device pointers storing each matrix ``A_j``.
+  !>     @param[in] lda_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] Barray - device array of device pointers storing each matrix ``B_j``.
+  !>     @param[in] ldb_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] beta_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in, out] Carray - device array of device pointers storing each matrix ``C_j``.
+  !>     @param[in] ldc_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] group_count - [rocblas_int]
+  !>               number of groups.
+  !>     @param[in] group_size - [const rocblas_int*]
+  !>               host array of length ``group_count`` with the number of problems in each group.
+  interface rocblas_sgemm_grouped_batched
+    function rocblas_sgemm_grouped_batched_(handle,transa_array,transb_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="rocblas_sgemm_grouped_batched")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgemm_grouped_batched_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transa_array
+      type(c_ptr),value :: transb_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+
+  interface rocblas_dgemm_grouped_batched
+    function rocblas_dgemm_grouped_batched_(handle,transa_array,transb_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="rocblas_dgemm_grouped_batched")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgemm_grouped_batched_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transa_array
+      type(c_ptr),value :: transb_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+
+  interface rocblas_sgemm_grouped_batched_64
+    function rocblas_sgemm_grouped_batched_64_(handle,transa_array,transb_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="rocblas_sgemm_grouped_batched_64")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgemm_grouped_batched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transa_array
+      type(c_ptr),value :: transb_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+
+  interface rocblas_dgemm_grouped_batched_64
+    function rocblas_dgemm_grouped_batched_64_(handle,transa_array,transb_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
+        group_count,group_size) &
+        bind(c, name="rocblas_dgemm_grouped_batched_64")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgemm_grouped_batched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transa_array
+      type(c_ptr),value :: transb_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      type(c_ptr),value :: ldc_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
   !>     The dgmm functions perform one of the matrix-matrix operations:
   !>
   !>         C = A * diag(x) if side == rocblas_side_right
@@ -34114,6 +34279,156 @@ module hipfort_rocblas
       integer(kind(rocblas_datatype_f16_r)),value :: compute_type
       integer(kind(rocblas_gemm_algo_standard)),value :: algo
       integer(c_int32_t),value :: solution_index
+      integer(c_int32_t),value :: flags
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The gemm_grouped_batched_ex functions perform grouped batched matrix-matrix operations
+  !>     with mixed precision types. There are ``group_count`` groups. Within group ``i``, all
+  !>     problems share the same ``transA``, ``transB``, ``m``, ``n``, ``k``, ``lda``, ``ldb``,
+  !>     ``ldc``, ``ldd``, ``alpha``, and ``beta``. Each group ``i`` contains group_size[i]
+  !>     problems.
+  !>
+  !>     For each problem ``j`` in group ``i``:
+  !>
+  !>         D_j = alpha_i*op( A_j )*op( B_j ) + beta_i*C_j,
+  !>
+  !>     Supported types are as follows:
+  !>         - rocblas_datatype_f64_r = a_type = b_type = c_type = d_type = compute_type
+  !>         - rocblas_datatype_f32_r = a_type = b_type = c_type = d_type = compute_type
+  !>         - rocblas_datatype_f16_r = a_type = b_type = c_type = d_type = compute_type
+  !>         - rocblas_datatype_f16_r = a_type = b_type = c_type = d_type; rocblas_datatype_f32_r =
+  !>    compute_type
+  !>         - rocblas_datatype_f16_r = a_type = b_type; rocblas_datatype_f32_r = c_type = d_type =
+  !>    compute_type
+  !>         - rocblas_datatype_bf16_r = a_type = b_type = c_type = d_type; rocblas_datatype_f32_r =
+  !>    compute_type
+  !>         - rocblas_datatype_bf16_r = a_type = b_type; rocblas_datatype_f32_r = c_type = d_type =
+  !>    compute_type
+  !>         - rocblas_datatype_i8_r = a_type = b_type; rocblas_datatype_i32_r = c_type = d_type =
+  !>    compute_type
+  !>         - rocblas_datatype_f32_c  = a_type = b_type = c_type = d_type = compute_type
+  !>         - rocblas_datatype_f64_c  = a_type = b_type = c_type = d_type = compute_type
+  !>
+  !>     @param[in] handle - [rocblas_handle]
+  !>               handle to the rocBLAS library context queue.
+  !>     @param[in] transa_array - [const rocblas_operation*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] transb_array - [const rocblas_operation*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] m_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] n_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] k_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] alpha_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in] Aarray - device array of device pointers storing each matrix ``A_j``.
+  !>     @param[in] a_type - [rocblas_datatype]
+  !>               datatype of each matrix ``A_j``.
+  !>     @param[in] lda_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] Barray - device array of device pointers storing each matrix ``B_j``.
+  !>     @param[in] b_type - [rocblas_datatype]
+  !>               datatype of each matrix ``B_j``.
+  !>     @param[in] ldb_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] beta_array - device pointer or host pointer to an array of length
+  !>     ``group_count``.
+  !>     @param[in] Carray - device array of device pointers storing each matrix ``C_j``.
+  !>     @param[in] c_type - [rocblas_datatype]
+  !>               datatype of each matrix ``C_j``.
+  !>     @param[in] ldc_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in, out] Darray - device array of device pointers storing each matrix ``D_j``.
+  !>     @param[in] d_type - [rocblas_datatype]
+  !>               datatype of each matrix ``D_j``.
+  !>     @param[in] ldd_array - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] group_count - [rocblas_int]
+  !>               number of groups.
+  !>     @param[in] group_size - [const rocblas_int*]
+  !>               host array of length ``group_count``.
+  !>     @param[in] compute_type - [rocblas_datatype]
+  !>               datatype of computation.
+  !>     @param[in] algo - [rocblas_gemm_algo]
+  !>               enumerant specifying the algorithm type.
+  !>     @param[in] flags - [uint32_t]
+  !>               optional gemm flags.
+  interface rocblas_gemm_grouped_batched_ex
+    function rocblas_gemm_grouped_batched_ex_(handle,transa_array,transb_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,a_type,lda_array,Barray,b_type,ldb_array,beta_array,Carray, &
+        c_type,ldc_array,Darray,d_type,ldd_array,group_count,group_size,compute_type,algo,flags) &
+        bind(c, name="rocblas_gemm_grouped_batched_ex")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_gemm_grouped_batched_ex_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transa_array
+      type(c_ptr),value :: transb_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      integer(kind(rocblas_datatype_f16_r)),value :: a_type
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      integer(kind(rocblas_datatype_f16_r)),value :: b_type
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      integer(kind(rocblas_datatype_f16_r)),value :: c_type
+      type(c_ptr),value :: ldc_array
+      type(c_ptr),value :: Darray
+      integer(kind(rocblas_datatype_f16_r)),value :: d_type
+      type(c_ptr),value :: ldd_array
+      integer(c_int),value :: group_count
+      type(c_ptr),value :: group_size
+      integer(kind(rocblas_datatype_f16_r)),value :: compute_type
+      integer(kind(rocblas_gemm_algo_standard)),value :: algo
+      integer(c_int32_t),value :: flags
+    end function
+  end interface
+
+  interface rocblas_gemm_grouped_batched_ex_64
+    function rocblas_gemm_grouped_batched_ex_64_(handle,transa_array,transb_array,m_array,n_array, &
+        k_array,alpha_array,Aarray,a_type,lda_array,Barray,b_type,ldb_array,beta_array,Carray, &
+        c_type,ldc_array,Darray,d_type,ldd_array,group_count,group_size,compute_type,algo,flags) &
+        bind(c, name="rocblas_gemm_grouped_batched_ex_64")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_gemm_grouped_batched_ex_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: transa_array
+      type(c_ptr),value :: transb_array
+      type(c_ptr),value :: m_array
+      type(c_ptr),value :: n_array
+      type(c_ptr),value :: k_array
+      type(c_ptr),value :: alpha_array
+      type(c_ptr),value :: Aarray
+      integer(kind(rocblas_datatype_f16_r)),value :: a_type
+      type(c_ptr),value :: lda_array
+      type(c_ptr),value :: Barray
+      integer(kind(rocblas_datatype_f16_r)),value :: b_type
+      type(c_ptr),value :: ldb_array
+      type(c_ptr),value :: beta_array
+      type(c_ptr),value :: Carray
+      integer(kind(rocblas_datatype_f16_r)),value :: c_type
+      type(c_ptr),value :: ldc_array
+      type(c_ptr),value :: Darray
+      integer(kind(rocblas_datatype_f16_r)),value :: d_type
+      type(c_ptr),value :: ldd_array
+      integer(c_int64_t),value :: group_count
+      type(c_ptr),value :: group_size
+      integer(kind(rocblas_datatype_f16_r)),value :: compute_type
+      integer(kind(rocblas_gemm_algo_standard)),value :: algo
       integer(c_int32_t),value :: flags
     end function
   end interface

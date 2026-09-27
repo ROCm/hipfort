@@ -1206,6 +1206,90 @@ module hipfort_rocsolver
 #endif
   end interface
 
+  interface rocsolver_slarft_64
+    function rocsolver_slarft_64_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) &
+        bind(c, name="rocsolver_slarft_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarft_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: V
+      integer(c_int64_t),value :: ldv
+      type(c_ptr),value :: tau
+      type(c_ptr),value :: T
+      integer(c_int64_t),value :: ldt
+    end function
+  end interface
+
+  interface rocsolver_dlarft_64
+    function rocsolver_dlarft_64_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) &
+        bind(c, name="rocsolver_dlarft_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarft_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: V
+      integer(c_int64_t),value :: ldv
+      type(c_ptr),value :: tau
+      type(c_ptr),value :: T
+      integer(c_int64_t),value :: ldt
+    end function
+  end interface
+
+  interface rocsolver_clarft_64
+    function rocsolver_clarft_64_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) &
+        bind(c, name="rocsolver_clarft_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarft_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: V
+      integer(c_int64_t),value :: ldv
+      type(c_ptr),value :: tau
+      type(c_ptr),value :: T
+      integer(c_int64_t),value :: ldt
+    end function
+  end interface
+
+  interface rocsolver_zlarft_64
+    function rocsolver_zlarft_64_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) &
+        bind(c, name="rocsolver_zlarft_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarft_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_forward_direction)),value :: myDirect
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: V
+      integer(c_int64_t),value :: ldv
+      type(c_ptr),value :: tau
+      type(c_ptr),value :: T
+      integer(c_int64_t),value :: ldt
+    end function
+  end interface
+
   !>     \brief The LARF functions apply a Householder reflector H to a general matrix ``A``.
   !>
   !>     \details
@@ -5736,9 +5820,9 @@ module hipfort_rocsolver
   !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         QC   & \: \text{No transpose from the left,}\\%
   !>         Q^TC & \: \text{Transpose from the left,}\\%
-  !>         CQ & \: \text{No transpose from the right, and}\\%
+  !>         CQ   & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -29774,6 +29858,22 @@ module hipfort_rocsolver
   !>     ``lda`` must still fit within a 32-bit integer (less than 2^31). The internal tridiagonal
   !>     reduction and back-transformation steps remain 32-bit, which bounds the supported size.
   !>
+  !>     \parblock
+  !>     \note
+  !>     A 2-stage tridiagonalization approach is available for SYEVD to improve
+  !>     performance for large matrices, n > 8000.
+  !>     Use \ref rocsolver_set_alg_mode to enable it:
+  !>
+  !>         rocsolver_set_alg_mode( handle, rocsolver_function_sytrd, rocsolver_alg_mode_2stage );
+  !>
+  !>     Available modes are:
+  !>     Mode                       |  Description
+  !>     ---------------------------|-----------------------------------------
+  !>     rocsolver_alg_mode_1stage  |  Use 1-stage tridiagonalization algorithm (current default)
+  !>     rocsolver_alg_mode_2stage  |  Use 2-stage tridiagonalization algorithm
+  !>     rocsolver_alg_mode_auto    |  Automatically select the algorithm based on problem size
+  !>     \endparblock
+  !>
   !>     \details
   !>     The eigenvalues are returned in ascending order. The eigenvectors are computed using a
   !>     divide-and-conquer algorithm, depending on the value of ``evect``. The computed
@@ -29924,6 +30024,22 @@ module hipfort_rocsolver
   !>     The ``_64`` interface accepts ``int64_t`` arguments, but the matrix dimensions ``n`` and
   !>     ``lda`` must still fit within a 32-bit integer (less than 2^31). The internal tridiagonal
   !>     reduction and back-transformation steps remain 32-bit, which bounds the supported size.
+  !>
+  !>     \parblock
+  !>     \note
+  !>     A 2-stage tridiagonalization approach is available for HEEVD to improve
+  !>     performance for large matrices, n > 8000.
+  !>     Use \ref rocsolver_set_alg_mode to enable it:
+  !>
+  !>         rocsolver_set_alg_mode( handle, rocsolver_function_hetrd, rocsolver_alg_mode_2stage );
+  !>
+  !>     Available modes are:
+  !>     Mode                       |  Description
+  !>     ---------------------------|-----------------------------------------
+  !>     rocsolver_alg_mode_1stage  |  Use 1-stage tridiagonalization algorithm (current default)
+  !>     rocsolver_alg_mode_2stage  |  Use 2-stage tridiagonalization algorithm
+  !>     rocsolver_alg_mode_auto    |  Automatically select the algorithm based on problem size
+  !>     \endparblock
   !>
   !>     \details
   !>     The eigenvalues are returned in ascending order. The eigenvectors are computed using a
@@ -44612,6 +44728,1049 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideZ
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief CHOLQR computes an orthogonal factorization of a number of columns (rows) of a
+  !>     general m-by-n matrix
+  !>     \f$A\f$ using the Cholesky factorization of \f$A'A\f$ if \f$m &ge; n\f$ or \f$AA'\f$ if
+  !>     \f$m < n\f$.
+  !>
+  !>     \details
+  !>     The factorization has the form
+  !>
+  !>     \f[
+  !>         A = H W, \quad \text{with}
+  !>     \f]
+  !>     \f[
+  !>         H = \left[\begin{array}{c|c}
+  !>         Q & A^*
+  !>         \end{array}\right], \quad \text{and} \quad
+  !>         W = \left[\begin{array}{c|c}
+  !>         R & 0\\%
+  !>         \hline
+  !>         0 & I_{n-\text{nr}}
+  !>         \end{array}\right]
+  !>     \f]
+  !>     if \f$m &ge; n\f$, or
+  !>
+  !>     \f[
+  !>         A = W H, \quad \text{with}
+  !>     \f]
+  !>     \f[
+  !>         H = \left[\begin{array}{c}
+  !>         Q \\%
+  !>         A^*
+  !>         \end{array}\right], \quad \text{and} \quad
+  !>         W = \left[\begin{array}{c|c}
+  !>         L & 0\\%
+  !>         \hline
+  !>         0 & I_{m-\text{nr}}
+  !>         \end{array}\right]
+  !>     \f]
+  !>     if \f$m < n\f$.
+  !>
+  !>     R is an nr-by-nr upper triangular matrix. L is an nr-by-nr lower triangular matrix. Q is an
+  !>     m-by-nr (or nr-by-n) matrix with orthonormal columns (rows), and matrix A* represents the
+  !>     last n - nr columns (or m - nr rows) of A.
+  !>     nr is an output argument that indicates the number of columns (rows) of A that were
+  !>     properly factorized
+  !>     by the function (\f$\text{nr} &le; \text{min}(m,n)\f$).
+  !>     The factorization is computed using the CholeskyQR algorithm as described below.
+  !>
+  !>     The algorithm starts by computing \f$B = A'A\f$ (or \f$B = AA'\f$), and produces \f$W\f$
+  !>     via the Cholesky
+  !>     factorization \f$B=W'W\f$ (or \f$B=WW'\f$). Finally, it computes the factor \f$H\f$ as the
+  !>     solution of the
+  !>     triangular system \f$A=HW\f$ (\f$A=WH\f$).
+  !>
+  !>     The initial Cholesky factorization could fail if B is not positive definite, which could
+  !>     happen
+  !>     when A is ill-conditioned or singular. In this case, only nr columns (rows) of B will be
+  !>     reduced properly,
+  !>     which yields the general form of the factor W depicted above.
+  !>     nr is thus related with the value of info as returned by \ref rocsolver_spotrf "POTRF".
+  !>
+  !>     Alternatively, the algorithm could use a preconditioned matrix \f$B = A'A +
+  !>     \text{sigma}\cdot I\f$
+  !>     (or \f$B = AA' + \text{sigma}\cdot I\f$)
+  !>     to increase the chances of the Cholesky factorization of B to succeed, and thus increasing
+  !>     the
+  !>     value of nr. The shift, sigma, could be provided by the user
+  !>     (if cholshift = rocsolver_cholqr_shift_provided), or an "ideal" number could be computed
+  !>     internally
+  !>     (if cholshift = rocsolver_cholqr_shift_computed). If cholshift =
+  !>     rocsolver_cholqr_shift_none,
+  !>     then sigma is not referenced and could be null.
+  !>
+  !>     Additionally, an iterative refinement process could be used to improve the orthonormality
+  !>     of the columns (or rows) in Q.
+  !>     If \f$A=Q_1R_1\f$ (or \f$A=L_1Q_1\f$) is an initial factorization of A, one can always
+  !>     re-apply the CholeskyQR
+  !>     process to \f$Q_1\f$ to produce \f$Q_1=Q_2R_2\f$ (or \f$Q_1=L_2Q_2\f$). This would yield a
+  !>     new factorization \f$A=QR\f$ (or \f$A=LQ\f$), with
+  !>     \f$R=R_2R_1\f$ (\f$L=L_1L_2\f$), and \f$Q=Q_2\f$. The columns (rows) of Q are now expected
+  !>     to be closer to be orthonormal than
+  !>     the columns (rows) of the initial \f$Q_1\f$. CHOLQR will execute cholnum - 1 extra Cholesky
+  !>     factorizations
+  !>     to refine the factor Q.
+  !>
+  !>     \note
+  !>     If the Cholesky factorization of B fails, it returns the order of the first
+  !>     leading minor of B that is negative or zero as the value in info. nr is then equal to info
+  !>     - 1.
+  !>     However, the Cholesky factorization is not inherently a rank revealing method. Thus, nr
+  !>     should not be interpreted as the
+  !>     numerical rank of matrix A.
+  !>
+  !>     \note
+  !>     Common configurations of the CholeskyQR algorithm studied in the literature include:
+  !>     CholeskyQR1, which is equivalent to cholshift = rocsolver_cholqr_shift_none, and cholnum =
+  !>     1;
+  !>     CholeskyQR2, equivalent to cholshift = rocsolver_cholqr_shift_none, and cholnum = 2; and
+  !>     ShiftedCholeskyQR3, which can be executed with cholshift = rocsolver_cholqr_shift_computed,
+  !>     and cholnum = 3.
+  !>     It is documented that ShiftedCholeskyQR3 can successfully factorize ill-conditioned
+  !>     matrices with condition
+  !>     numbers up to \f$O(\text{eps}^{-1})\f$ (i.e. \f$\approx 4\times10^{15}\f$ in double
+  !>     precision).
+  !>
+  !>     \note
+  !>     Even if the factorization is complete, i.e. nr = min(m,n), the returned factors H and W do
+  !>     not
+  !>     form a full QR (or LQ) factorization of A. H will always be missing the last columns (rows)
+  !>     which correspond to
+  !>     the m - n (or n - m) orthonormal vectors generating the row (column) null-space of A. In
+  !>     other words, cholqr cannot be used as a
+  !>     row (column) compression method if the back transformation is required.
+  !>
+  !>
+  !>     @param[in] handle - rocblas_handle.
+  !>     @param[in] cholshift - `rocsolver_cholqr_shift`.
+  !>                 Specifies how the shift sigma will be used in the Cholesky factorization.
+  !>     @param[in] cholnum - rocblas_int. cholnum > 0 if cholshift = rocsolver_cholqr_shift_none,
+  !>     cholnum > 1 otherwise.
+  !>                 Specifies how many Cholesky factorizations will be executed in total. cholnum -
+  !>                 1
+  !>                 factorization will be used for the refinement of Q.
+  !>     @param[in] m - rocblas_int. m >= 0.
+  !>                 The number of rows of the matrix A.
+  !>     @param[in] n - rocblas_int. n >= 0.
+  !>                 The number of columns of the matrix A.
+  !>     @param[inout] A - pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the m-by-n matrix to be factored.
+  !>                 On exit, it is overwritten by the factor H.
+  !>     @param[in] lda - rocblas_int. lda >= m.
+  !>                 Specifies the leading dimension of A.
+  !>     @param[out] W - pointer to type. Array on the GPU of dimension ldw*min(m,n).
+  !>                 The min(m,n)-by-min(m,n) upper (lower) triangular factor W.
+  !>     @param[in] ldw - rocblas_int. ldw >= min(m,n).
+  !>                 Specifies the leading dimension of W.
+  !>     @param[inout] sigma - pointer to real type on the GPU.
+  !>                 For rocsolver_cholqr_shift_computed: On exit, contains the computed shift
+  !>                 value.
+  !>                 For rocsolver_cholqr_shift_provided: On entry, contains the user-provided shift
+  !>                 value.
+  !>                 Not referenced for rocsolver_cholqr_shift_none.
+  !>     @param[out] nr - pointer to rocblas_int on the GPU.
+  !>                 The number of columns (rows) of A succesfully factorized.
+  interface rocsolver_scholqr
+    function rocsolver_scholqr_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_scholqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scholqr_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_dcholqr
+    function rocsolver_dcholqr_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_dcholqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcholqr_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_ccholqr
+    function rocsolver_ccholqr_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_ccholqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ccholqr_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_zcholqr
+    function rocsolver_zcholqr_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_zcholqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zcholqr_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_scholqr_64
+    function rocsolver_scholqr_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_scholqr_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scholqr_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_dcholqr_64
+    function rocsolver_dcholqr_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_dcholqr_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcholqr_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_ccholqr_64
+    function rocsolver_ccholqr_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_ccholqr_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ccholqr_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  interface rocsolver_zcholqr_64
+    function rocsolver_zcholqr_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,sigma,nr) &
+        bind(c, name="rocsolver_zcholqr_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zcholqr_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+    end function
+  end interface
+
+  !>     \brief CHOLQR_BATCHED computes an orthogonal factorization of a number of columns (rows) of
+  !>     a batch of general m-by-n matrices
+  !>     \f$A_l\f$ using the Cholesky factorization of \f$A_l'A_l\f$ if \f$m &ge; n\f$ or
+  !>     \f$A_lA_l'\f$ if \f$m < n\f$.
+  !>
+  !>     \details
+  !>     For each instance of the batch, the factorization has the form
+  !>
+  !>     \f[
+  !>         A_l = H_l W_l, \quad \text{with}
+  !>     \f]
+  !>     \f[
+  !>         H_l = \left[\begin{array}{c|c}
+  !>         Q_l & A_l^*
+  !>         \end{array}\right], \quad \text{and} \quad
+  !>         W_l = \left[\begin{array}{c|c}
+  !>         R_l & 0\\%
+  !>         \hline
+  !>         0 & I_{n-\text{nr[l]}}
+  !>         \end{array}\right]
+  !>     \f]
+  !>     if \f$m &ge; n\f$, or
+  !>
+  !>     \f[
+  !>         A_l = W_l H_l, \quad \text{with}
+  !>     \f]
+  !>     \f[
+  !>         H_l = \left[\begin{array}{c}
+  !>         Q_l \\%
+  !>         A_l^*
+  !>         \end{array}\right], \quad \text{and} \quad
+  !>         W_l = \left[\begin{array}{c|c}
+  !>         L_l & 0\\%
+  !>         \hline
+  !>         0 & I_{m-\text{nr[l]}}
+  !>         \end{array}\right]
+  !>     \f]
+  !>     if \f$m < n\f$.
+  !>
+  !>     \f$R_l\f$ is an nr[l]-by-nr[l] upper triangular matrix. \f$L_l\f$ is an nr[l]-by-nr[l]
+  !>     lower triangular matrix.
+  !>     \f$Q_l\f$ is an m-by-nr[l] (or nr[l]-by-n) matrix with orthonormal columns (rows), and
+  !>     matrix \f$A_l^*\f$
+  !>     represents the last n - nr[l] columns (or m - nr[l] rows) of \f$A_l\f$.
+  !>     nr[l], the l-th element of vector nr, is an output argument that indicates the number of
+  !>     columns (rows) of \f$A_l\f$
+  !>     that were properly factorized by the function (\f$\text{nr[l]} &le; \text{min}(m,n)\f$).
+  !>     The factorization is computed using the CholeskyQR algorithm as described below.
+  !>
+  !>     The algorithm starts by computing \f$B_l = A_l'A_l\f$ (or \f$B_l = A_lA_l'\f$), and
+  !>     produces \f$W_l\f$ via the Cholesky
+  !>     factorization \f$B_l=W_l'W_l\f$ (or \f$B_l=W_lW_l'\f$). Finally, it computes the factor
+  !>     \f$H_l\f$ as the solution of the
+  !>     triangular system \f$A_l=H_lW_l\f$ (\f$A_l=W_lH_l\f$).
+  !>
+  !>     The initial Cholesky factorization could fail if \f$B_l\f$ is not positive definite, which
+  !>     could happen
+  !>     when \f$A_l\f$ is ill-conditioned or singular. In this case, only nr[l] columns (rows) of
+  !>     \f$B_l\f$ will be reduced properly,
+  !>     which yields the general form of the factor \f$W_l\f$ depicted above.
+  !>     nr[l] is thus related with the value of info[l] as returned by \ref
+  !>     rocsolver_spotrf_batched "POTRF_BATCHED".
+  !>
+  !>     Alternatively, the algorithm could use a preconditioned matrix \f$B_l = A_l'A_l +
+  !>     \text{sigma[l]}\cdot I\f$
+  !>     (or \f$B_l = A_lA_l' + \text{sigma[l]}\cdot I\f$)
+  !>     to increase the chances of the Cholesky factorization of \f$B_l\f$ to succeed, and thus
+  !>     increasing the
+  !>     value of nr[l]. The shift, sigma[l], could be provided by the user
+  !>     (if cholshift = rocsolver_cholqr_shift_provided), or an "ideal" number could be computed
+  !>     internally
+  !>     (if cholshift = rocsolver_cholqr_shift_computed). If cholshift =
+  !>     rocsolver_cholqr_shift_none,
+  !>     then sigma is not referenced and could be null.
+  !>
+  !>     Additionally, an iterative refinement process could be used to improve the orthonormality
+  !>     of the columns (or rows) in \f$Q_l\f$.
+  !>     If \f$A_l=Q_{l_1}R_{l_1}\f$ (or \f$A_l=L_{l_1}Q_{l_1}\f$) is an initial factorization of
+  !>     \f$A_l\f$, one can always re-apply the CholeskyQR
+  !>     process to \f$Q_{l_1}\f$ to produce \f$Q_{l_1}=Q_{l_2}R_{l_2}\f$ (or
+  !>     \f$Q_{l_1}=L_{l_2}Q_{l_2}\f$).
+  !>     This would yield a new factorization \f$A_l=Q_lR_l\f$ (or \f$A_l=L_lQ_l\f$), with
+  !>     \f$R_l=R_{l_2}R_{l_1}\f$ (\f$L_l=L_{l_1}L_{l_2}\f$), and \f$Q_l=Q_{l_2}\f$. The columns
+  !>     (rows) of \f$Q_l\f$ are now
+  !>     expected to be closer to be orthonormal than the columns (rows) of the initial
+  !>     \f$Q_{l_1}\f$.
+  !>     CHOLQR will execute cholnum - 1 extra Cholesky factorizations to refine the factor
+  !>     \f$Q_l\f$.
+  !>
+  !>     \note
+  !>     If the Cholesky factorization of \f$B_l\f$ fails, it returns the order of the first
+  !>     leading minor of \f$B_l\f$ that is negative or zero as the value in info[l]. nr[l] is then
+  !>     equal to info[l] - 1.
+  !>     However, the Cholesky factorization is not inherently a rank revealing method. Thus, nr[l]
+  !>     should not be interpreted as the
+  !>     numerical rank of matrix \f$A_l\f$.
+  !>
+  !>     \note
+  !>     Common configurations of the CholeskyQR algorithm studied in the literature include:
+  !>     CholeskyQR1, which is equivalent to cholshift = rocsolver_cholqr_shift_none, and cholnum =
+  !>     1;
+  !>     CholeskyQR2, equivalent to cholshift = rocsolver_cholqr_shift_none, and cholnum = 2; and
+  !>     ShiftedCholeskyQR3, which can be executed with cholshift = rocsolver_cholqr_shift_computed,
+  !>     and cholnum = 3.
+  !>     It is documented that ShiftedCholeskyQR3 can successfully factorize ill-conditioned
+  !>     matrices with condition
+  !>     numbers up to \f$O(\text{eps}^{-1})\f$ (i.e. \f$\approx 4\times10^{15}\f$ in double
+  !>     precision).
+  !>
+  !>     \note
+  !>     Even if the factorization of a matrix in the batch is complete, i.e. nr[l] = min(m,n), the
+  !>     returned factors \f$H_l\f$ and \f$W_l\f$ do not
+  !>     form a full QR (or LQ) factorization of \f$A_l\f$. \f$H_l\f$ will always be missing the
+  !>     last columns (rows) which correspond to
+  !>     the m - n (or n - m) orthonormal vectors generating the row (column) null-space of
+  !>     \f$A_l\f$. In other words, cholqr cannot be used as a
+  !>     row (column) compression method if the back transformation is required.
+  !>
+  !>
+  !>     @param[in] handle - rocblas_handle.
+  !>     @param[in] cholshift - `rocsolver_cholqr_shift`.
+  !>                 Specifies how the shift sigma will be used in the Cholesky factorization.
+  !>     @param[in] cholnum - rocblas_int. cholnum > 0 if cholshift = rocsolver_cholqr_shift_none,
+  !>     cholnum > 1 otherwise.
+  !>                 Specifies how many Cholesky factorizations will be executed in total. cholnum -
+  !>                 1
+  !>                 factorization will be used for the refinement of Q_l.
+  !>     @param[in] m - rocblas_int. m >= 0.
+  !>                 The number of rows of the matrices A_l.
+  !>     @param[in] n - rocblas_int. n >= 0.
+  !>                 The number of columns of the matrices A_l.
+  !>     @param[inout] A - Array of pointers to type. Each pointer points to an array on the GPU of
+  !>     dimension lda*n.
+  !>                 On entry, the m-by-n matrices A_l to be factored.
+  !>                 On exit, it is overwritten by the factors H_l.
+  !>     @param[in] lda - rocblas_int. lda >= m.
+  !>                 Specifies the leading dimension of A_l.
+  !>     @param[out] W - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideW).
+  !>                 The min(m,n)-by-min(m,n) upper (lower) triangular factors W_l.
+  !>     @param[in] ldw - rocblas_int. ldw >= min(m,n).
+  !>                 Specifies the leading dimension of W_l.
+  !>     @param[in] strideW - rocblas_stride. Stride from the start of one matrix W_l to the next
+  !>     one W_(l+1).
+  !>                 There is no restriction for the value of strideW. Normal use case is strideW >=
+  !>                 ldw*min(m,n).
+  !>     @param[inout] sigma - pointer to real type. Array on the GPU of size batch_count.
+  !>                 For rocsolver_cholqr_shift_computed: On exit, contains the computed shift
+  !>                 values.
+  !>                 For rocsolver_cholqr_shift_provided: On entry, contains the user-provided shift
+  !>                 values.
+  !>                 Not referenced for rocsolver_cholqr_shift_none.
+  !>     @param[out] nr - pointer to rocblas_int. Array on the GPU of size batch_count.
+  !>                 The number of columns (rows) succesfully factorized of each A_l.
+  !>     @param[in] batch_count - rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_scholqr_batched
+    function rocsolver_scholqr_batched_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma,nr, &
+        batch_count) &
+        bind(c, name="rocsolver_scholqr_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scholqr_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dcholqr_batched
+    function rocsolver_dcholqr_batched_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma,nr, &
+        batch_count) &
+        bind(c, name="rocsolver_dcholqr_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcholqr_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ccholqr_batched
+    function rocsolver_ccholqr_batched_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma,nr, &
+        batch_count) &
+        bind(c, name="rocsolver_ccholqr_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ccholqr_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zcholqr_batched
+    function rocsolver_zcholqr_batched_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma,nr, &
+        batch_count) &
+        bind(c, name="rocsolver_zcholqr_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zcholqr_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_scholqr_batched_64
+    function rocsolver_scholqr_batched_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma, &
+        nr,batch_count) &
+        bind(c, name="rocsolver_scholqr_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scholqr_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dcholqr_batched_64
+    function rocsolver_dcholqr_batched_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma, &
+        nr,batch_count) &
+        bind(c, name="rocsolver_dcholqr_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcholqr_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ccholqr_batched_64
+    function rocsolver_ccholqr_batched_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma, &
+        nr,batch_count) &
+        bind(c, name="rocsolver_ccholqr_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ccholqr_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zcholqr_batched_64
+    function rocsolver_zcholqr_batched_64_(handle,cholshift,cholnum,m,n,A,lda,W,ldw,strideW,sigma, &
+        nr,batch_count) &
+        bind(c, name="rocsolver_zcholqr_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zcholqr_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  !>     \brief CHOLQR_STRIDED_BATCHED computes an orthogonal factorization of a number of columns
+  !>     (rows) of a batch of general m-by-n matrices
+  !>     \f$A_l\f$ using the Cholesky factorization of \f$A_l'A_l\f$ if \f$m &ge; n\f$ or
+  !>     \f$A_lA_l'\f$ if \f$m < n\f$.
+  !>
+  !>     \details
+  !>     For each instance of the batch, the factorization has the form
+  !>
+  !>     \f[
+  !>         A_l = H_l W_l, \quad \text{with}
+  !>     \f]
+  !>     \f[
+  !>         H_l = \left[\begin{array}{c|c}
+  !>         Q_l & A_l^*
+  !>         \end{array}\right], \quad \text{and} \quad
+  !>         W_l = \left[\begin{array}{c|c}
+  !>         R_l & 0\\%
+  !>         \hline
+  !>         0 & I_{n-\text{nr[l]}}
+  !>         \end{array}\right]
+  !>     \f]
+  !>     if \f$m &ge; n\f$, or
+  !>
+  !>     \f[
+  !>         A_l = W_l H_l, \quad \text{with}
+  !>     \f]
+  !>     \f[
+  !>         H_l = \left[\begin{array}{c}
+  !>         Q_l \\%
+  !>         A_l^*
+  !>         \end{array}\right], \quad \text{and} \quad
+  !>         W_l = \left[\begin{array}{c|c}
+  !>         L_l & 0\\%
+  !>         \hline
+  !>         0 & I_{m-\text{nr[l]}}
+  !>         \end{array}\right]
+  !>     \f]
+  !>     if \f$m < n\f$.
+  !>
+  !>     \f$R_l\f$ is an nr[l]-by-nr[l] upper triangular matrix. \f$L_l\f$ is an nr[l]-by-nr[l]
+  !>     lower triangular matrix.
+  !>     \f$Q_l\f$ is an m-by-nr[l] (or nr[l]-by-n) matrix with orthonormal columns (rows), and
+  !>     matrix \f$A_l^*\f$
+  !>     represents the last n - nr[l] columns (or m - nr[l] rows) of \f$A_l\f$.
+  !>     nr[l], the l-th element of vector nr, is an output argument that indicates the number of
+  !>     columns (rows) of \f$A_l\f$
+  !>     that were properly factorized by the function (\f$\text{nr[l]} &le; \text{min}(m,n)\f$).
+  !>     The factorization is computed using the CholeskyQR algorithm as described below.
+  !>
+  !>     The algorithm starts by computing \f$B_l = A_l'A_l\f$ (or \f$B_l = A_lA_l'\f$), and
+  !>     produces \f$W_l\f$ via the Cholesky
+  !>     factorization \f$B_l=W_l'W_l\f$ (or \f$B_l=W_lW_l'\f$). Finally, it computes the factor
+  !>     \f$H_l\f$ as the solution of the
+  !>     triangular system \f$A_l=H_lW_l\f$ (\f$A_l=W_lH_l\f$).
+  !>
+  !>     The initial Cholesky factorization could fail if \f$B_l\f$ is not positive definite, which
+  !>     could happen
+  !>     when \f$A_l\f$ is ill-conditioned or singular. In this case, only nr[l] columns (rows) of
+  !>     \f$B_l\f$ will be reduced properly,
+  !>     which yields the general form of the factor \f$W_l\f$ depicted above.
+  !>     nr[l] is thus related with the value of info[l] as returned by \ref
+  !>     rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
+  !>
+  !>     Alternatively, the algorithm could use a preconditioned matrix \f$B_l = A_l'A_l +
+  !>     \text{sigma[l]}\cdot I\f$
+  !>     (or \f$B_l = A_lA_l' + \text{sigma[l]}\cdot I\f$)
+  !>     to increase the chances of the Cholesky factorization of \f$B_l\f$ to succeed, and thus
+  !>     increasing the
+  !>     value of nr[l]. The shift, sigma[l], could be provided by the user
+  !>     (if cholshift = rocsolver_cholqr_shift_provided), or an "ideal" number could be computed
+  !>     internally
+  !>     (if cholshift = rocsolver_cholqr_shift_computed). If cholshift =
+  !>     rocsolver_cholqr_shift_none,
+  !>     then sigma is not referenced and could be null.
+  !>
+  !>     Additionally, an iterative refinement process could be used to improve the orthonormality
+  !>     of the columns (or rows) in \f$Q_l\f$.
+  !>     If \f$A_l=Q_{l_1}R_{l_1}\f$ (or \f$A_l=L_{l_1}Q_{l_1}\f$) is an initial factorization of
+  !>     \f$A_l\f$, one can always re-apply the CholeskyQR
+  !>     process to \f$Q_{l_1}\f$ to produce \f$Q_{l_1}=Q_{l_2}R_{l_2}\f$ (or
+  !>     \f$Q_{l_1}=L_{l_2}Q_{l_2}\f$).
+  !>     This would yield a new factorization \f$A_l=Q_lR_l\f$ (or \f$A_l=L_lQ_l\f$), with
+  !>     \f$R_l=R_{l_2}R_{l_1}\f$ (\f$L_l=L_{l_1}L_{l_2}\f$), and \f$Q_l=Q_{l_2}\f$. The columns
+  !>     (rows) of \f$Q_l\f$ are now
+  !>     expected to be closer to be orthonormal than the columns (rows) of the initial
+  !>     \f$Q_{l_1}\f$.
+  !>     CHOLQR will execute cholnum - 1 extra Cholesky factorizations to refine the factor
+  !>     \f$Q_l\f$.
+  !>
+  !>     \note
+  !>     If the Cholesky factorization of \f$B_l\f$ fails, it returns the order of the first
+  !>     leading minor of \f$B_l\f$ that is negative or zero as the value in info[l]. nr[l] is then
+  !>     equal to info[l] - 1.
+  !>     However, the Cholesky factorization is not inherently a rank revealing method. Thus, nr[l]
+  !>     should not be interpreted as the
+  !>     numerical rank of matrix \f$A_l\f$.
+  !>
+  !>     \note
+  !>     Common configurations of the CholeskyQR algorithm studied in the literature include:
+  !>     CholeskyQR1, which is equivalent to cholshift = rocsolver_cholqr_shift_none, and cholnum =
+  !>     1;
+  !>     CholeskyQR2, equivalent to cholshift = rocsolver_cholqr_shift_none, and cholnum = 2; and
+  !>     ShiftedCholeskyQR3, which can be executed with cholshift = rocsolver_cholqr_shift_computed,
+  !>     and cholnum = 3.
+  !>     It is documented that ShiftedCholeskyQR3 can successfully factorize ill-conditioned
+  !>     matrices with condition
+  !>     numbers up to \f$O(\text{eps}^{-1})\f$ (i.e. \f$\approx 4\times10^{15}\f$ in double
+  !>     precision).
+  !>
+  !>     \note
+  !>     Even if the factorization of a matrix in the batch is complete, i.e. nr[l] = min(m,n), the
+  !>     returned factors \f$H_l\f$ and \f$W_l\f$ do not
+  !>     form a full QR (or LQ) factorization of \f$A_l\f$. \f$H_l\f$ will always be missing the
+  !>     last columns (rows) which correspond to
+  !>     the m - n (or n - m) orthonormal vectors generating the row (column) null-space of
+  !>     \f$A_l\f$. In other words, cholqr cannot be used as a
+  !>     row (column) compression method if the back transformation is required.
+  !>
+  !>
+  !>     @param[in] handle - rocblas_handle.
+  !>     @param[in] cholshift - `rocsolver_cholqr_shift`.
+  !>                 Specifies how the shift sigma will be used in the Cholesky factorization.
+  !>     @param[in] cholnum - rocblas_int. cholnum > 0 if cholshift = rocsolver_cholqr_shift_none,
+  !>     cholnum > 1 otherwise.
+  !>                 Specifies how many Cholesky factorizations will be executed in total. cholnum -
+  !>                 1
+  !>                 factorization will be used for the refinement of Q_l.
+  !>     @param[in] m - rocblas_int. m >= 0.
+  !>                 The number of rows of the matrices A_l.
+  !>     @param[in] n - rocblas_int. n >= 0.
+  !>                 The number of columns of the matrices A_l.
+  !>     @param[inout] A - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideA).
+  !>                 On entry, the m-by-n matrices A_l to be factored.
+  !>                 On exit, it is overwritten by the factors H_l.
+  !>     @param[in] lda - rocblas_int. lda >= m.
+  !>                 Specifies the leading dimension of A_l.
+  !>     @param[in] strideA - rocblas_stride. Stride from the start of one matrix A_l to the next
+  !>     one A_(l+1).
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >=
+  !>                 lda*n.
+  !>     @param[out] W - pointer to type. Array on the GPU (the size depends on the value of
+  !>     strideW).
+  !>                 The min(m,n)-by-min(m,n) upper (lower) triangular factors W_l.
+  !>     @param[in] ldw - rocblas_int. ldw >= min(m,n).
+  !>                 Specifies the leading dimension of W_l.
+  !>     @param[in] strideW - rocblas_stride. Stride from the start of one matrix W_l to the next
+  !>     one W_(l+1).
+  !>                 There is no restriction for the value of strideW. Normal use case is strideW >=
+  !>                 ldw*min(m,n).
+  !>     @param[inout] sigma - pointer to real type. Array on the GPU of size batch_count.
+  !>                 For rocsolver_cholqr_shift_computed: On exit, contains the computed shift
+  !>                 values.
+  !>                 For rocsolver_cholqr_shift_provided: On entry, contains the user-provided shift
+  !>                 values.
+  !>                 Not referenced for rocsolver_cholqr_shift_none.
+  !>     @param[out] nr - pointer to rocblas_int. Array on the GPU of size batch_count.
+  !>                 The number of columns (rows) succesfully factorized of each A_l.
+  !>     @param[in] batch_count - rocblas_int. batch_count >= 0.
+  !>                 Number of matrices in the batch.
+  interface rocsolver_scholqr_strided_batched
+    function rocsolver_scholqr_strided_batched_(handle,cholshift,cholnum,m,n,A,lda,strideA,W,ldw, &
+        strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_scholqr_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scholqr_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dcholqr_strided_batched
+    function rocsolver_dcholqr_strided_batched_(handle,cholshift,cholnum,m,n,A,lda,strideA,W,ldw, &
+        strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_dcholqr_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcholqr_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ccholqr_strided_batched
+    function rocsolver_ccholqr_strided_batched_(handle,cholshift,cholnum,m,n,A,lda,strideA,W,ldw, &
+        strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_ccholqr_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ccholqr_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zcholqr_strided_batched
+    function rocsolver_zcholqr_strided_batched_(handle,cholshift,cholnum,m,n,A,lda,strideA,W,ldw, &
+        strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_zcholqr_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zcholqr_strided_batched_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_scholqr_strided_batched_64
+    function rocsolver_scholqr_strided_batched_64_(handle,cholshift,cholnum,m,n,A,lda,strideA,W, &
+        ldw,strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_scholqr_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_scholqr_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_dcholqr_strided_batched_64
+    function rocsolver_dcholqr_strided_batched_64_(handle,cholshift,cholnum,m,n,A,lda,strideA,W, &
+        ldw,strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_dcholqr_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dcholqr_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_ccholqr_strided_batched_64
+    function rocsolver_ccholqr_strided_batched_64_(handle,cholshift,cholnum,m,n,A,lda,strideA,W, &
+        ldw,strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_ccholqr_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ccholqr_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
+    end function
+  end interface
+
+  interface rocsolver_zcholqr_strided_batched_64
+    function rocsolver_zcholqr_strided_batched_64_(handle,cholshift,cholnum,m,n,A,lda,strideA,W, &
+        ldw,strideW,sigma,nr,batch_count) &
+        bind(c, name="rocsolver_zcholqr_strided_batched_64")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zcholqr_strided_batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(rocsolver_cholqr_shift_none)),value :: cholshift
+      integer(c_int),value :: cholnum
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: W
+      integer(c_int64_t),value :: ldw
+      integer(c_int64_t),value :: strideW
+      type(c_ptr),value :: sigma
+      type(c_ptr),value :: nr
+      integer(c_int64_t),value :: batch_count
     end function
   end interface
 

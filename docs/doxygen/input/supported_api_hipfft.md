@@ -25,13 +25,14 @@
 21 | [hipfftGetSize](interfacehipfort__hipfft_1_1hipfftgetsize.html "Interface documentation") | C binding
 22 | [hipfftSetAutoAllocation](interfacehipfort__hipfft_1_1hipfftsetautoallocation.html "Interface documentation") | C binding
 23 | [hipfftSetWorkArea](interfacehipfort__hipfft_1_1hipfftsetworkarea.html "Interface documentation") | C binding
-24 | [hipfftExecC2C](interfacehipfort__hipfft_1_1hipfftexecc2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-25 | [hipfftExecR2C](interfacehipfort__hipfft_1_1hipfftexecr2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-26 | [hipfftExecC2R](interfacehipfort__hipfft_1_1hipfftexecc2r.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-27 | [hipfftExecZ2Z](interfacehipfort__hipfft_1_1hipfftexecz2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-28 | [hipfftExecD2Z](interfacehipfort__hipfft_1_1hipfftexecd2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-29 | [hipfftExecZ2D](interfacehipfort__hipfft_1_1hipfftexecz2d.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-30 | [hipfftSetStream](interfacehipfort__hipfft_1_1hipfftsetstream.html "Interface documentation") | C binding
-31 | [hipfftDestroy](interfacehipfort__hipfft_1_1hipfftdestroy.html "Interface documentation") | C binding
-32 | [hipfftGetVersion](interfacehipfort__hipfft_1_1hipfftgetversion.html "Interface documentation") | C binding
-33 | [hipfftGetProperty](interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+24 | [hipfftXtSetWorkArea](interfacehipfort__hipfft_1_1hipfftxtsetworkarea.html "Interface documentation") | C binding
+25 | [hipfftExecC2C](interfacehipfort__hipfft_1_1hipfftexecc2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+26 | [hipfftExecR2C](interfacehipfort__hipfft_1_1hipfftexecr2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+27 | [hipfftExecC2R](interfacehipfort__hipfft_1_1hipfftexecc2r.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+28 | [hipfftExecZ2Z](interfacehipfort__hipfft_1_1hipfftexecz2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+29 | [hipfftExecD2Z](interfacehipfort__hipfft_1_1hipfftexecd2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+30 | [hipfftExecZ2D](interfacehipfort__hipfft_1_1hipfftexecz2d.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+31 | [hipfftSetStream](interfacehipfort__hipfft_1_1hipfftsetstream.html "Interface documentation") | C binding
+32 | [hipfftDestroy](interfacehipfort__hipfft_1_1hipfftdestroy.html "Interface documentation") | C binding
+33 | [hipfftGetVersion](interfacehipfort__hipfft_1_1hipfftgetversion.html "Interface documentation") | C binding
+34 | [hipfftGetProperty](interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank

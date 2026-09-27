@@ -24416,6 +24416,124 @@ module hipfort_hipsparse
     end function
   end interface
 
+  interface hipsparseSpGEAM_createDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_createDescr_(descr) bind(c, name="cusparseSpGEAM_createDescr")
+#else
+    function hipsparseSpGEAM_createDescr_(descr) bind(c, name="hipsparseSpGEAM_createDescr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_createDescr_
+      type(c_ptr) :: descr
+    end function
+  end interface
+
+  interface hipsparseSpGEAM_destroyDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_destroyDescr_(descr) bind(c, name="cusparseSpGEAM_destroyDescr")
+#else
+    function hipsparseSpGEAM_destroyDescr_(descr) bind(c, name="hipsparseSpGEAM_destroyDescr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_destroyDescr_
+      type(c_ptr),value :: descr
+    end function
+  end interface
+
+  interface hipsparseSpGEAM_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,bufferSize) &
+        bind(c, name="cusparseSpGEAM_bufferSize")
+#else
+    function hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,bufferSize) &
+        bind(c, name="hipsparseSpGEAM_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
+      type(c_ptr),value :: spgeamDescr
+      type(c_ptr),value :: bufferSize
+    end function
+  end interface
+
+  interface hipsparseSpGEAM_nnz
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_nnz_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,externalBuffer) &
+        bind(c, name="cusparseSpGEAM_nnz")
+#else
+    function hipsparseSpGEAM_nnz_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,externalBuffer) &
+        bind(c, name="hipsparseSpGEAM_nnz")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_nnz_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
+      type(c_ptr),value :: spgeamDescr
+      type(c_ptr),value :: externalBuffer
+    end function
+  end interface
+
+  interface hipsparseSpGEAM
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEAM_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,externalBuffer) &
+        bind(c, name="cusparseSpGEAM")
+#else
+    function hipsparseSpGEAM_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
+        spgeamDescr,externalBuffer) &
+        bind(c, name="hipsparseSpGEAM")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
+      type(c_ptr),value :: spgeamDescr
+      type(c_ptr),value :: externalBuffer
+    end function
+  end interface
+
   interface hipsparseSpGEMM_createDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseSpGEMM_createDescr_(descr) bind(c, name="cusparseSpGEMM_createDescr")
