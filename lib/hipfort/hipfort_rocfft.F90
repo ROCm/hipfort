@@ -366,7 +366,7 @@ module hipfort_rocfft
   !>   underscores, and digits (0-9).  Additionally, they may not begin
   !>   with digits.
   !>
-  !>   ::rocfft_execution_info_set_load_callback_data can optionally be
+  !>   `rocfft_execution_info_set_load_callback_data` can optionally be
   !>   used to set the `cbdata` value received by the callback function.
   !>   rocFFT will pass nullptr for `cbdata` by default.
   !>
@@ -426,7 +426,7 @@ module hipfort_rocfft
   !>   underscores, and digits (0-9).  Additionally, they may not begin
   !>   with digits.
   !>
-  !>   ::rocfft_execution_info_set_store_callback_data can optionally be
+  !>   `rocfft_execution_info_set_store_callback_data` can optionally be
   !>   used to set the `cbdata` value received by the callback function.
   !>   rocFFT will pass nullptr for `cbdata` by default.
   !>
