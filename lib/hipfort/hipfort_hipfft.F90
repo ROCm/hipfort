@@ -231,7 +231,7 @@ module hipfort_hipfft
   !>   @details Assumes that the plan has been created already, and
   !>   modifies the plan associated with the plan handle.
   !>
-  !>   If the plan has been configured for multiple GPUs via ::hipfftXtSetGPUs,
+  !>   If the plan has been configured for multiple GPUs via `hipfftXtSetGPUs`,
   !>   this function returns `HIPFFT_NOT_IMPLEMENTED` when `batch` is `1`, with
   !>   rocFFT backend.
   !>
@@ -732,7 +732,7 @@ module hipfort_hipfft
   !>   @param[in] plan - Pointer to the initialized FFT plan.
   !>   @param[out] workSize - Pointer to work area size(s). As many values as the number
   !>   of (local) devices used by the plan are written (following the same order as
-  !>   set via ::hipfftXtSetGPUs if more than one local device is used).
+  !>   set via `hipfftXtSetGPUs` if more than one local device is used).
   interface hipfftGetSize
 #ifdef USE_CUDA_NAMES
     function hipfftGetSize_(plan,workSize) bind(c, name="cufftGetSize")
@@ -768,7 +768,7 @@ module hipfort_hipfft
   end interface
 
   !>  @brief Set the plan's work area.
-  !>   @note This function rejects multi-device plans. Use ::hipfftXtSetWorkArea instead.
+  !>   @note This function rejects multi-device plans. Use `hipfftXtSetWorkArea` instead.
   !>   @param[in] plan - Pointer to the FFT plan.
   !>   @param[in] workArea - Pointer to the work area (must be accessible by the device).
   interface hipfftSetWorkArea
@@ -786,12 +786,12 @@ module hipfort_hipfft
     end function
   end interface
 
-  !>  @brief Generalized version of ::hipfftSetWorkArea accepting multi-device plans.
+  !>  @brief Generalized version of `hipfftSetWorkArea` accepting multi-device plans.
   !>
   !>   @param[in] plan - Pointer to the (possibly multi-device) FFT plan.
   !>   @param[in] workArea - Array of pointer(s) to the plan's work area(s), which must
   !>   be accessible by the plan's used device(s) (in the same order as communicated
-  !>   via ::hipfftXtSetGPUs, if used prior).
+  !>   via `hipfftXtSetGPUs`, if used prior).
   interface hipfftXtSetWorkArea
 #ifdef USE_CUDA_NAMES
     function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="cufftXtSetWorkArea")
