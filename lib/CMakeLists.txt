@@ -344,16 +344,35 @@ if(HIP_PLATFORM STREQUAL "amd")
   # subdirectory matching the consumer's Fortran compiler. The version file is
   # compiler-independent and installed alongside so version checks still work.
   if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
+    # The shim is the one file that must NOT follow the toolchain layout: it is
+    # what find_package(hipfort) has to land on, so it belongs at the standard
+    # <libdir>/cmake/hipfort. That is the platform libdir, not the literal "lib"
+    # this used to write, which on a lib64 or multiarch prefix left the shim and
+    # the version file in a directory of their own, away from the config they
+    # point at -- and CMake looks for <pkg>-config-version.cmake beside the
+    # <pkg>-config.cmake it actually resolved, so the version check went with it.
+    set(HIPFORT_SHIM_DIR "${HIPFORT_PLATFORM_LIBDIR}/cmake/hipfort")
+    set(HIPFORT_FORTRAN_LIBBASE "${HIPFORT_PLATFORM_LIBDIR}/fortran")
+    # How far the installed shim has to climb to reach the install prefix,
+    # derived from the directory it installs into so the two cannot disagree.
+    file(RELATIVE_PATH HIPFORT_SHIM_TO_PREFIX "/${HIPFORT_SHIM_DIR}" "/")
+    string(REGEX REPLACE "/+$" "" HIPFORT_SHIM_TO_PREFIX "${HIPFORT_SHIM_TO_PREFIX}")
+    if(NOT HIPFORT_SHIM_TO_PREFIX)
+      set(HIPFORT_SHIM_TO_PREFIX ".")
+    endif()
+    configure_file(
+      ${CMAKE_CURRENT_SOURCE_DIR}/hipfort-config-shim.cmake.in
+      ${CMAKE_CURRENT_BINARY_DIR}/shim/hipfort-config.cmake
+      @ONLY)
     # Plain install() (not rocm_install) because rocm_install does not support
     # RENAME; the file is still packaged by CPACK.
     install(
-      FILES ${CMAKE_CURRENT_SOURCE_DIR}/hipfort-config-shim.cmake
-      RENAME hipfort-config.cmake
-      DESTINATION lib/cmake/hipfort
+      FILES ${CMAKE_CURRENT_BINARY_DIR}/shim/hipfort-config.cmake
+      DESTINATION ${HIPFORT_SHIM_DIR}
     )
     install(
       FILES ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
-      DESTINATION lib/cmake/hipfort
+      DESTINATION ${HIPFORT_SHIM_DIR}
     )
   endif()
 elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)

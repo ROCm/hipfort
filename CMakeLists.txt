@@ -37,17 +37,54 @@ PROJECT(hipfort VERSION 0.9.0 LANGUAGES Fortran C)
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
 
 # setup default install directories
+#
+# GNUInstallDirs FIRST. It fills CMAKE_INSTALL_LIBDIR and friends only when they
+# are not already in the cache, so setting them before including it put the
+# platform convention permanently out of reach: lib64 on Fedora, RHEL and SUSE,
+# lib/<triplet> on Debian multiarch, each silently flattened to a literal lib.
+include(GNUInstallDirs)
+
+# What the platform, or the packager's own -DCMAKE_INSTALL_LIBDIR, says. The
+# toolchain layout below takes CMAKE_INSTALL_LIBDIR over for its own purpose, so
+# the plain value has to be kept: it is where anything NOT specific to one
+# Fortran compiler belongs, the package shim above all. Without it that value is
+# gone by the time it is needed, and there is nothing left to write but a guess.
+#
+# Captured in the cache, and only once. Re-deriving on a re-configure would read
+# back the already-derived value and nest the toolchain subdirectory a second
+# time (lib/fortran/gfortran/fortran/gfortran). A packager changing
+# CMAKE_INSTALL_LIBDIR after the first configure therefore needs a fresh build
+# directory, which is the usual expectation for an install-layout variable.
+if(NOT DEFINED HIPFORT_PLATFORM_LIBDIR)
+  set(HIPFORT_PLATFORM_LIBDIR "${CMAKE_INSTALL_LIBDIR}" CACHE INTERNAL
+      "Install libdir before the toolchain subdirectory is applied")
+  set(HIPFORT_PLATFORM_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}" CACHE INTERNAL
+      "Install includedir before the toolchain subdirectory is applied")
+endif()
+
 option(HIPFORT_MULTITOOLCHAIN_LAYOUT "Install library files to toolchain-specific subdirectories" ON)
 if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
   set(FORTRAN_LIBRARY_SUBDIR "fortran/${FCNAME}" CACHE STRING "Compiler-specific library and module install subdirectory")
-  set(CMAKE_INSTALL_LIBDIR "lib/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Library install directory")
-  set(CMAKE_INSTALL_INCLUDEDIR "include/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Mod files install directory")
+  set(_hipfort_libdir     "${HIPFORT_PLATFORM_LIBDIR}/${FORTRAN_LIBRARY_SUBDIR}")
+  set(_hipfort_includedir "${HIPFORT_PLATFORM_INCLUDEDIR}/${FORTRAN_LIBRARY_SUBDIR}")
 else()
-  set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
-  set(CMAKE_INSTALL_INCLUDEDIR "include" CACHE STRING "Mod files install directory")
+  set(_hipfort_libdir     "${HIPFORT_PLATFORM_LIBDIR}")
+  set(_hipfort_includedir "${HIPFORT_PLATFORM_INCLUDEDIR}")
 endif()
 
-include(GNUInstallDirs)
+# Written to the cache, with FORCE, and it has to be both. FORCE because
+# GNUInstallDirs has already created the entries and a plain set would be
+# ignored. The cache rather than a plain variable because rocm-cmake's
+# ROCMInstallTargets does `set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING ...)` of
+# its own: when the entry exists that call changes nothing in the cache, but it
+# DOES drop any normal variable of that name in the current scope, so a shadow
+# set here would be silently discarded when rocm-cmake is included further down.
+# That is why the archive and the package files landed in a flat lib/ while the
+# .mod files, whose variable rocm-cmake never touches, kept the subdirectory.
+set(CMAKE_INSTALL_LIBDIR "${_hipfort_libdir}" CACHE STRING "Library install directory" FORCE)
+set(CMAKE_INSTALL_INCLUDEDIR "${_hipfort_includedir}" CACHE STRING "Mod files install directory" FORCE)
+unset(_hipfort_libdir)
+unset(_hipfort_includedir)
 
 # ROCm root, resolved once for every find_package/find_program below.
 # Precedence: -DROCM_PATH > $ROCM_PATH > hipcc on PATH > /opt/rocm.
