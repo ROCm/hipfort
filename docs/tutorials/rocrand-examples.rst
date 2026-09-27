@@ -103,6 +103,7 @@ mean.
 
 .. literalinclude:: ../../test/f2008/rocrand/xorwow_uniform.f08
    :language: fortran
+   :start-at: program rocrand_xorwow_uniform_test
 
 ``test/f2008/rocrand/xorwow_uniform_double.f08``, ``xorwow_normal.f08`` and
 ``xorwow_normal_double.f08`` cover the remaining distributions.
@@ -118,6 +119,7 @@ the wrong spread would otherwise pass.
 
 .. literalinclude:: ../../test/f2008/rocrand/philox_normal.f08
    :language: fortran
+   :start-at: program rocrand_philox_normal_test
 
 ``test/f2008/rocrand/philox_uniform.f08``,
 ``philox_uniform_double.f08`` and ``philox_normal_double.f08`` cover the
@@ -132,6 +134,7 @@ generator.
 
 .. literalinclude:: ../../test/f2008/rocrand/mrg32k3a_uniform.f08
    :language: fortran
+   :start-at: program rocrand_mrg32k3a_uniform_test
 
 ``test/f2008/rocrand/mrg32k3a_uniform_double.f08``, ``mrg32k3a_normal.f08``
 and ``mrg32k3a_normal_double.f08`` cover the remaining distributions.
@@ -144,6 +147,7 @@ processors. This example uses the normal distribution.
 
 .. literalinclude:: ../../test/f2008/rocrand/mtgp32_normal.f08
    :language: fortran
+   :start-at: program rocrand_mtgp32_normal_test
 
 ``test/f2008/rocrand/mtgp32_uniform.f08``, ``mtgp32_uniform_double.f08`` and
 ``mtgp32_normal_double.f08`` cover the remaining distributions.
@@ -162,6 +166,7 @@ with a dimension count instead of a seed, so
 
 .. literalinclude:: ../../test/f2008/rocrand/sobol32_uniform.f08
    :language: fortran
+   :start-at: program rocrand_sobol32_uniform_test
 
 ``test/f2008/rocrand/sobol32_uniform_double.f08``, ``sobol32_normal.f08`` and
 ``sobol32_normal_double.f08`` cover the remaining distributions.
@@ -183,6 +188,7 @@ distribution has mean ``lambda``, which is what the program checks.
 
 .. literalinclude:: ../../test/f2008/rocrand/philox_poisson.f08
    :language: fortran
+   :start-at: program rocrand_philox_poisson_test
 
 This is the only Poisson program in the test suite.
 
@@ -196,6 +202,7 @@ taking logs and checking the resulting mean and standard deviation.
 
 .. literalinclude:: ../../test/f2008/rocrand/philox_log_normal.f08
    :language: fortran
+   :start-at: program rocrand_philox_log_normal_test
 
 ``rocrand_generate_log_normal_double`` is the double-precision form; see
 ``test/f2008/rocrand/philox_log_normal_double.f08``.
