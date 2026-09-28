@@ -509,8 +509,13 @@ C-only site never has to acquire a Fortran compiler. Pass
      - ``BUILD_FORTRAN_TESTS`` (``OFF``), per library. hipFORT's single suite
        splits into each library's ``fortran/test/``
    * - ``HIPFORT_EXTENDED_TESTS``
-     - ``BUILD_FORTRAN_EXTENDED_TESTS`` (``OFF``), which adds the exhaustive
-       per-library symbol test on top of the runtime ones
+     - Gone, with both audits it gated. The shared-link check went with the
+       single archive it linked, and the exhaustive per-library symbol tests
+       with it: each referenced every ``bind(C)`` routine of a library, so any
+       entry point missing from the installed ROCm became a build error. Both
+       are link-time audits of the bindings themselves rather than tests of
+       your code, and belong beside each library after the split. What you
+       build is the runtime suite, under ``BUILD_FORTRAN_TESTS``
 
 Each switch also has a per-library override, so one library can differ from the
 rest of a monorepo build: ``<LIB>_BUILD_FORTRAN_BINDINGS`` and
@@ -606,11 +611,19 @@ Where the files install
 -----------------------
 
 Because the artifacts are compiler-specific, they install under a per-compiler
-subdirectory: the ``.mod`` files in ``include/fortran/<compiler>/`` (for
-example ``/opt/rocm/include/fortran/amdflang/``) and the ``.a`` files in
-``lib/fortran/<compiler>/``. A CMake ``find_package`` picks your compiler's
-subdirectory automatically, including when a prefix holds more than one
-compiler's artifacts; if you link with raw flags, point ``-I`` and ``-L`` at it.
+subdirectory: the ``.mod`` files in ``<includedir>/fortran/<compiler>/`` and the
+``.a`` files in ``<libdir>/fortran/<compiler>/``. A CMake ``find_package`` picks
+your compiler's subdirectory automatically, including when a prefix holds more
+than one compiler's artifacts; if you link with raw flags, point ``-I`` and
+``-L`` at it.
+
+``<libdir>`` and ``<includedir>`` are the platform's own, not a literal ``lib``
+and ``include``: ``lib64`` on Fedora, RHEL and SUSE, and ``lib/<triplet>`` on
+Debian multiarch. On a stock ROCm install they come out as ``lib`` and
+``include``, so the concrete paths are ``/opt/rocm/include/fortran/amdflang/``
+and ``/opt/rocm/lib/fortran/amdflang/``, and the examples below use those. If
+you install the bindings somewhere else, check which the packager's
+``CMAKE_INSTALL_LIBDIR`` gave you before writing the path by hand.
 
 If nothing is installed for your compiler, the package fails and names what is,
 so that you can tell a rebuild from a redirect:
@@ -690,10 +703,10 @@ and nothing to match up: the installed source was generated from the same
 headers as the installed library, so it cannot declare an entry point the
 ``.so`` does not export.
 
-It sits under ``share/`` rather than ``include/`` because the ``.F90`` is
+It sits under ``share/`` rather than the include tree because the ``.F90`` is
 compiler-independent, unlike the ``.mod``. Everything under
-``include/fortran/`` is partitioned by compiler, so a source file placed there
-would be read as if it named one.
+``<includedir>/fortran/`` is partitioned by compiler, so a source file placed
+there would be read as if it named one.
 
 .. note::
 
@@ -860,8 +873,8 @@ Yes. Nothing collides, so you can migrate one file at a time:
      - ``hip``, ``rocblas``, ...
      - No (prefixed versus bare)
    * - ``.mod`` files
-     - ``include/fortran/<compiler>/hipfort/<backend>/``
-     - ``include/fortran/<compiler>/``
+     - ``<includedir>/fortran/<compiler>/hipfort/<backend>/``
+     - ``<includedir>/fortran/<compiler>/``
      - No (different subpaths)
    * - Archives
      - ``libhipfort-amdgcn.a``
