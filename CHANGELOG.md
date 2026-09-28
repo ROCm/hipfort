@@ -110,6 +110,23 @@
   `libhipfort-amdgcn.a` drops `hipfort_cuda_errors` and `libhipfort-nvptx.a`
   drops the AMD-only `roc*` API modules.
 
+### Removed
+
+* **Breaking.** `hipfort_rocsolver` no longer binds the eight rocSOLVER
+  compatibility aliases: `rocsolver_create_handle`, `rocsolver_destroy_handle`,
+  `rocsolver_set_stream`, `rocsolver_get_stream`, `rocsolver_set_vector`,
+  `rocsolver_get_vector`, `rocsolver_set_matrix` and `rocsolver_get_matrix`.
+  Each is a redirection to the rocBLAS routine of the same name, carries an
+  upstream deprecation attribute, and lives in `rocsolver-aliases.h`, whose
+  banner reads "THESE ALIASES ARE NOT MAINTAINED ANYMORE ... USE ROCBLAS TYPES
+  AND FUNCTIONS DIRECTLY". Replace `rocsolver_` with `rocblas_` in the call: all
+  eight targets are already bound in `hipfort_rocblas`, so nothing else changes.
+  Note the aliases are still exported by `librocsolver.so`, so this is a
+  source-level change only.
+
+  Recorded after the fact. The binding disappeared in this release as a
+  side effect of regenerating rocSOLVER, and went out with no entry here.
+
 ### Fixed
 
 * Fixed several HIP derived types that had been emitted as opaque byte blobs
