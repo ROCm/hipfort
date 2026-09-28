@@ -49,6 +49,14 @@
 * `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
   `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
   this was harmless in practice; it is `integer(c_int64_t)` now.
+* The eight-byte integer overloads of the BLAS `SetVector`/`GetVector` and
+  `SetMatrix`/`GetMatrix` families, and their `Async` variants, declared their
+  array `integer(c_long)`, which is eight bytes only on LP64. They are
+  `integer(c_int64_t)` now, the width those overloads already promise by passing
+  an element size of `8` to the underlying C call. No change on Linux, where the
+  two kinds coincide; on an LLP64 target `c_long` is four bytes, so the overload
+  misstated its element size and also became indistinguishable from the
+  four-byte one, which makes a compiler reject the enclosing generic outright.
 * Fixed every failing test reporting success. 413 failure branches across 271 test
   programs ended in a bare `call exit`, which returns a zero exit status under
   gfortran, so a program could print `FAILED!` and still be recorded as passing by

@@ -64721,9 +64721,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -64819,9 +64819,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -64920,9 +64920,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -65025,9 +65025,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -65129,9 +65129,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -65234,9 +65234,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -65342,9 +65342,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -65454,9 +65454,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -65590,9 +65590,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -65604,9 +65604,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -65786,9 +65786,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -65800,9 +65800,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -66013,8 +66013,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -66026,9 +66026,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66041,9 +66041,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66314,8 +66314,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -66327,9 +66327,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66342,9 +66342,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66588,9 +66588,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -66603,9 +66603,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -66798,9 +66798,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -66813,9 +66813,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -67041,8 +67041,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -67055,9 +67055,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67071,9 +67071,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67363,8 +67363,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -67377,9 +67377,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67393,9 +67393,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
