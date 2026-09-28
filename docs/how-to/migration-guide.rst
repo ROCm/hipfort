@@ -366,8 +366,9 @@ C-only site never has to acquire a Fortran compiler. Pass
      - Gone. Use the plain ``CMAKE_*`` variables, as hipFORT already tells you
        to
    * - ``BUILD_TESTING``, ``HIPFORT_ROCM_LIB_DIR``, ``HIPFORT_CUDA_LIB_DIR``
-     - ``BUILD_FORTRAN_TESTS`` (``OFF``), per library. hipFORT's single suite
-       splits into each library's ``fortran/test/``
+     - ``BUILD_FORTRAN_CLIENTS`` (``ON``), per library. hipFORT's single suite
+       splits into each library's ``fortran/test/``, and rides on the same
+       switch as the Fortran clients rather than having one of its own
    * - ``HIPFORT_EXTENDED_TESTS``
      - Gone, with both audits it gated. The shared-link check went with the
        single archive it linked, and the exhaustive per-library symbol tests
@@ -375,11 +376,11 @@ C-only site never has to acquire a Fortran compiler. Pass
        entry point missing from the installed ROCm became a build error. Both
        are link-time audits of the bindings themselves rather than tests of
        your code, and belong beside each library after the split. What you
-       build is the runtime suite, under ``BUILD_FORTRAN_TESTS``
+       build is the runtime suite, under ``BUILD_FORTRAN_CLIENTS``
 
 Each switch also has a per-library override, so one library can differ from the
 rest of a monorepo build: ``<LIB>_BUILD_FORTRAN_BINDINGS`` and
-``<LIB>_BUILD_FORTRAN_TESTS`` (for example
+``<LIB>_BUILD_FORTRAN_CLIENTS`` (for example
 ``-DROCSPARSE_BUILD_FORTRAN_BINDINGS=OFF``) win over the global spelling when
 set. ``<LIB>_FORTRAN_COMPILER_DIR`` overrides the per-compiler subdirectory
 name described in `Where the files install`_. You do not need it merely because
@@ -403,14 +404,12 @@ hipFORT gives you today on any Fortran 2008 compiler. You only need the option
 in a from-source rebuild, either to opt into ``assumed-rank`` or to drop to
 ``none`` on a compiler whose Fortran 2008 support you do not trust.
 
-Building the bindings' own test suite is a separate switch,
-``BUILD_FORTRAN_TESTS``, ``OFF`` by default and guarded the same way: asking
-for the tests when the bindings were not built is a skip, not an error.
-
-``BUILD_FORTRAN_CLIENTS``, which rocBLAS, hipBLAS and rocSPARSE already have, is
-**not** that switch and is not renamed: it builds the Fortran part of each
-library's own ``clients/``, which is a concern of those libraries rather than of
-hipFORT. See :doc:`migration-guide-in-tree` if you build with it.
+The bindings' own test suite rides on ``BUILD_FORTRAN_CLIENTS``, ``ON`` by
+default and guarded the same way as the bindings: asking for it when they were
+not built is a skip, not an error. In rocBLAS, hipBLAS and rocSPARSE that name
+already existed, meaning "build the Fortran part of ``clients/``", and it now
+covers both. One switch rather than two neighbouring ones, at the cost of a
+name that spans two kinds of thing while the inherited tests last.
 
 To check from CMake whether a binding is actually available, use the per-package
 flag ``<pkg>_FORTRAN_FOUND`` (for example ``rocblas_FORTRAN_FOUND``), which the
