@@ -9,20 +9,21 @@ Migrating to the Fortran bindings shipped in ROCm
 Who this is for
 ===============
 
-You call ROCm from Fortran today, through either of the two paths that exist:
-
-*  **hipFORT** (``use hipfort_rocblas``, ``hipMalloc``, ``rocblas_dgemm``), the
-   separate repository you build yourself. This is the main audience, and
-   unqualified statements below are about it.
-*  **A library's own in-tree module** (``use rocblas`` against
-   ``rocblas_module.f90``, ``use rocsparse``, ``use rocrand_m``), which some
-   ROCm libraries have shipped alongside their C API for years. Your migration
-   is smaller and is called out separately wherever it differs, starting at
-   `If you use a library's in-tree module`_.
+You build **hipFORT** yourself and call ROCm through it: ``use hipfort_rocblas``,
+``hipMalloc``, ``rocblas_dgemm``.
 
 In one line: **the bindings move into ROCm itself (rocm-systems and
 rocm-libraries), you rename your** ``use`` **statements and link a per-library
 Fortran archive, and nothing else in your code changes.**
+
+.. note::
+
+   **Using a ROCm library's own Fortran module instead?** If you write
+   ``use rocblas`` against ``/opt/rocm/include/rocblas/rocblas_module.f90``, or
+   ``use rocsparse``, or ``use rocrand_m``, this page is not yours. Those
+   modules ship with the library rather than with hipFORT, and their migration
+   has a different deadline, different edits, and — unlike this one — call sites
+   that do change. See :doc:`migration-guide-in-tree`.
 
 The layout of the new bindings (one self-contained module per library, ROCm
 only) is previewed in `hipFORT pull request #540
@@ -41,9 +42,6 @@ unchanged. Two edits are required, and the CUDA backend is dropped.
    ``roc::rocblas_fortran``.
 *  **NVIDIA users.** The CUDA (``nvptx``) backend is not carried into the new
    bindings.
-*  **In-tree users.** Only the build edit applies to most of you, since the
-   generated module reuses the library's name, but it lands one release
-   earlier. See `Do I need to do anything now?`_.
 
 Everything at the call level (routine names, arguments, calling styles) is
 unchanged, so the two edits are find-and-replace, not a rewrite. The details
@@ -52,21 +50,10 @@ are in `What you change`_.
 Do I need to do anything now?
 =============================
 
-That depends on which of the two paths you are on, because they have different
-deadlines.
-
-**On hipFORT, no.** Today's hipFORT keeps working, unchanged, until it is
-removed at ROCm 11.0; keep building it yourself as you do today. Any time
-before 11.0, make the two changes in `What you change`_. Old and new share the
-same interfaces underneath, so you migrate on your own schedule.
-
-**On a library's in-tree module, yes, and sooner.** Your deadline is 10.2, not
-11.0: that is the release where the hand-written module is removed and the
-generated one takes its place. There is no window in which both exist, because
-for five of the seven libraries the two carry the same module name and cannot
-coexist (see the `FAQ`_). The upside is that the edit is correspondingly
-smaller — for those five the ``use`` line does not even move, and what you
-change is the link line. Start at `If you use a library's in-tree module`_.
+**No.** Today's hipFORT keeps working, unchanged, until it is removed at ROCm
+11.0; keep building it yourself as you do today. Any time before 11.0, make the
+two changes in `What you change`_. Old and new share the same interfaces
+underneath, so you migrate on your own schedule.
 
 That said, sooner is better than later. The edit itself is mechanical, so the
 value of doing it early is not the edit, it is the room it leaves you
@@ -81,29 +68,24 @@ Timeline
 
 .. list-table::
    :header-rows: 1
-   :widths: 12 44 44
+   :widths: 15 85
 
    * - ROCm
-     - If you use hipFORT
-     - If you use a library's in-tree module
+     - What happens
    * - **≤ 10.1**
      - Nothing changes. Keep using hipFORT as today.
-     - Nothing changes.
    * - **10.2**
      - The new bindings ship inside ROCm (packaged, modernized). You can
        migrate, and this is the release to aim for rather than the last one
        before 11.0.
-     - **Your deadline.** The hand-written module is removed and the generated
-       one replaces it. For five of the seven libraries the ``use`` line is
-       unchanged; the link line is not.
    * - **11.0**
      - The old hipFORT is removed. You must be on the new bindings by this
        release.
-     - Nothing further.
 
-The two deadlines differ because the two situations do. hipFORT is a separate
-repository that can go on existing beside ROCm for a release, whereas an
-in-tree module lives in the library being changed and is replaced in place.
+hipFORT gets this window because it is a separate repository and can go on
+existing beside ROCm for a release. A library's own in-tree module cannot: it
+lives in the library being changed, so it is replaced in place at 10.2, a
+release earlier. If that is your situation, see :doc:`migration-guide-in-tree`.
 
 What you change
 ===============
@@ -207,112 +189,6 @@ line.
 Different files in the same program can still migrate independently, because
 the clash is only within a single scope (see the `FAQ`_).
 
-If you use a library's in-tree module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Several ROCm libraries have shipped a hand-written Fortran module next to their
-C API for years. At 10.2 the generated binding supersedes them and they are
-removed. This is what you are coming from:
-
-.. list-table::
-   :header-rows: 1
-   :widths: 13 23 30 34
-
-   * - Library
-     - Modules
-     - How you got it
-     - Option that gated it
-   * - rocBLAS
-     - ``rocblas``, ``rocblas_enums``
-     - ``.f90`` source in ``include/rocblas/``, compiled by you
-     - ``BUILD_FORTRAN_CLIENTS`` (``ON``)
-   * - hipBLAS
-     - ``hipblas``, ``hipblas_enums``
-     - ``.f90`` source in ``include/hipblas/``, compiled by you
-     - ``BUILD_FORTRAN_CLIENTS`` (``ON``, ``OFF`` on Windows)
-   * - rocSPARSE
-     - ``rocsparse``, ``rocsparse_enums``
-     - ``.f90`` source in ``include/rocsparse/``, compiled by you
-     - ``BUILD_FORTRAN_CLIENTS`` (``ON``)
-   * - hipSPARSE
-     - ``hipsparse``, ``hipsparse_enums``
-     - ``.mod`` in ``include/hipsparse/``
-     - ``HIPSPARSE_ENABLE_FORTRAN`` (``ON``, but only declared under
-       ``HIPSPARSE_ENABLE_CLIENT``, itself ``OFF``)
-   * - hipSOLVER
-     - ``hipsolver``, ``hipsolver_enums``
-     - Nothing installed; only ``roc::hipsolver_fortran`` (a ``.so``). See
-       `Special cases`_
-     - ``BUILD_FORTRAN_BINDINGS`` (``${UNIX}``),
-       ``EXPORT_FORTRAN_BINDINGS`` (``ON``)
-   * - rocRAND
-     - ``rocrand_m``, ``hipfor``
-     - ``.f90`` sources in ``rocrand/src/fortran/``, compiled by you
-     - ``BUILD_FORTRAN_WRAPPER`` (``OFF``)
-   * - hipRAND
-     - ``hiprand_m``, ``hipfor``
-     - ``.f90`` sources in ``hiprand/src/fortran/``, compiled by you
-     - ``BUILD_FORTRAN_WRAPPER`` (``OFF``)
-   * - rocFFT, hipFFT, rocSOLVER
-     - *none*
-     - —
-     - —
-
-If your library is in the last row, there is no in-tree migration to make: those
-three never shipped a Fortran module, so the generated binding is new surface
-rather than a replacement.
-
-Note how little of that is uniform, which is much of the point of the move:
-five option names across seven libraries, as many different defaults, and four
-different ways of delivering the same kind of artifact. All of it collapses to
-one ``BUILD_FORTRAN_BINDINGS`` and one installed archive per library.
-
-Your migration is smaller than the hipFORT one, because five of these modules
-are already named after their library, so the generated module reuses the name
-and your ``use`` line does not move. Two source edits remain.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 50 50
-
-   * - Old
-     - New
-   * - ``use rocblas``, ``use hipblas``, ``use rocsparse``,
-       ``use hipsparse``, ``use hipsolver``
-     - Unchanged. Same module name, now coming from the generated binding
-   * - ``use rocblas_enums``, ``use hipblas_enums``, ``use rocsparse_enums``,
-       ``use hipsparse_enums``, ``use hipsolver_enums``
-     - Delete the line. The enumerators moved into the library module you
-       already ``use``
-   * - ``use rocrand_m``
-     - ``use rocrand``
-   * - ``use hiprand_m``
-     - ``use hiprand``
-   * - ``use hipfor`` (the small HIP module rocRAND and hipRAND shipped
-       alongside theirs)
-     - ``use hip``
-
-The build change is the one that catches people, precisely because the ``use``
-line often does not move. rocBLAS, hipBLAS and rocSPARSE installed their module
-as a **source** file (``/opt/rocm/include/rocblas/rocblas_module.f90``), so you
-almost certainly compile it as part of your own build today. Stop: the file is
-gone at 10.2, and a compiled module now ships with ROCm. Drop it from your
-source list and link the archive instead, as in
-`Link the per-library Fortran archive`_.
-
-rocRAND and hipRAND did the same thing one level further out, installing their
-sources under ``<lib>/src/fortran/`` and pointing at them from the config
-package with ``rocrand_FORTRAN_SRC_DIRS`` and ``hiprand_FORTRAN_SRC_DIRS``.
-Those variables are gone; ``find_package(rocrand-fortran)`` now hands you
-``roc::rocrand_fortran`` directly, with nothing of yours left to compile.
-
-hipSOLVER is the exception in both directions, and is covered in
-`Special cases`_.
-
-Whatever your path, check the call sites where a hand-written interface and a
-generated one can legitimately differ: keyword argument names, and overloads
-that used to resolve to a single specific.
-
 Doing the rename automatically
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -326,30 +202,20 @@ codebase by hand. On a Git tree, this rewrites every ``use`` line in place:
    sed -i -E \
      -e "/^[[:space:]]*use[[:space:]]+hipfort_($libs)_(enums|types)\b/Id" \
      -e "/^[[:space:]]*use[[:space:]]+hipfort_(check|handles|auxiliary|types|enums)\b/Id" \
-     -e "/^[[:space:]]*use[[:space:]]+($libs)_enums\b/Id" \
      -e "s/^([[:space:]]*use[[:space:]]+)hipfort_($libs)\b/\1\2/I" \
      -e "s/^([[:space:]]*use[[:space:]]+)hipfort_(hipmalloc|hipmemcpy|hiphostregister)\b/\1hip/I" \
      -e "s/^([[:space:]]*use[[:space:]]+)hipfort\b/\1hip/I" \
-     -e "s/^([[:space:]]*use[[:space:]]+)(rocrand|hiprand)_m\b/\1\2/I" \
-     -e "s/^([[:space:]]*use[[:space:]]+)hipfor\b/\1hip/I" \
      $(git ls-files '*.f90' '*.F90')
 
-The first three rules delete the modules that fold away, and the last four
-rename what is left. Rules 1 and 3 together cover both spellings of the enum
-modules, the ``hipfort_rocblas_enums`` a hipFORT user writes and the bare
-``rocblas_enums`` an in-tree user writes.
+The first two rules delete the modules that fold away, and the last three
+rename what is left.
 
 The rules cannot step on each other, because ``_`` is a word character:
 ``hipfort_rocblas_enums`` is deleted by rule 1 rather than renamed to
-``rocblas_enums`` by rule 4, ``hipfor`` is left alone by the ``hipfort`` rule,
-and ``rocrand_m`` is not touched by anything but its own rule. The ``I`` flag
-covers ``USE HIPFORT_ROCBLAS`` as well, and ``only:`` clauses survive the
-rename (``use hipfort_rocblas, only: rocblas_dgemm`` becomes
+``rocblas_enums`` by rule 3. The ``I`` flag covers ``USE HIPFORT_ROCBLAS`` as
+well, and ``only:`` clauses survive the rename
+(``use hipfort_rocblas, only: rocblas_dgemm`` becomes
 ``use rocblas, only: rocblas_dgemm``).
-
-In-tree users should note that the rules deliberately do **not** touch
-``use rocblas``, ``use rocsparse`` and the other three already-correct names:
-there is nothing to rename there, only an archive to link.
 
 Then read the diff, because a few things are deliberately left to you:
 
@@ -362,15 +228,9 @@ Then read the diff, because a few things are deliberately left to you:
    there.
 *  ``use hipfort_roctx`` and ``use hipfort_cuda_errors`` are left untouched on
    purpose; they have no packaged equivalent yet (see above).
-*  A file that used a bare ``<lib>_enums`` without ever using ``<lib>`` itself
-   loses those symbols, for the same reason: add ``use <lib>`` there.
-*  ``use rocrand_m`` and ``use hipfor`` frequently sat in the same file, so
-   that file may now have ``use rocrand`` next to ``use hip``. Both are
-   wanted; keep them.
 *  Fixed-form sources, continuation lines, and ``use`` lines behind
    preprocessor guards are not covered.
-   ``grep -rniE 'use[[:space:]]+(hipfort|hipfor|[a-z]+_enums|(roc|hip)rand_m)' .``
-   finds whatever the rules missed.
+   ``grep -rniE 'use[[:space:]]+hipfort' .`` finds whatever the rules missed.
 
 A supported migration tool is worth shipping if codebases turn out to need more
 than this; the recipe above is the whole of what it would do, so
@@ -548,14 +408,9 @@ Building the bindings' own test suite is a separate switch,
 for the tests when the bindings were not built is a skip, not an error.
 
 ``BUILD_FORTRAN_CLIENTS``, which rocBLAS, hipBLAS and rocSPARSE already have, is
-**not** that switch and is not renamed. It means "build the Fortran part of
-``clients/``" (rocSPARSE's Fortran samples, rocBLAS and hipBLAS's
-``*_fortran_client`` wrappers), it keeps its ``ON`` default, and that surface
-survives. What changes is where its module comes from: those samples used to
-compile the hand-written ``.f90`` in-tree and now link the generated
-``roc::<lib>_fortran``. The one new constraint is that it needs the bindings, so
-``-DBUILD_FORTRAN_CLIENTS=ON -DBUILD_FORTRAN_BINDINGS=OFF`` is refused with an
-error naming the flag to turn back on.
+**not** that switch and is not renamed: it builds the Fortran part of each
+library's own ``clients/``, which is a concern of those libraries rather than of
+hipFORT. See :doc:`migration-guide-in-tree` if you build with it.
 
 To check from CMake whether a binding is actually available, use the per-package
 flag ``<pkg>_FORTRAN_FOUND`` (for example ``rocblas_FORTRAN_FOUND``), which the
@@ -792,45 +647,9 @@ What does not change
 Special cases
 =============
 
-Most in-tree bindings migrate the way `If you use a library's in-tree module`_
-describes. Two libraries do not, because the new names collide with names they
-already used.
-
-**hipSOLVER reuses a target name that already meant something else.** hipSOLVER
-is the one library that already exported ``roc::hipsolver_fortran``, and it was
-a *shared* library built from the hand-written ``hipsolver_module.f90``. The
-generated binding takes the same public name, but it is a *static* archive with
-a different module inside. So a build that links ``roc::hipsolver_fortran``
-today keeps linking and quietly gets the other thing; re-check those call sites
-rather than assuming the upgrade was transparent. ``libhipsolver_fortran.so``
-also stops existing, which matters if you link it by filename or depend on its
-soversion.
-
-Few builds should actually be affected, because that module was never
-installable: the guard that installs ``hipsolver_module.f90`` is never defined
-anywhere, so no ``.f90`` and no ``.mod`` ever reached an install tree, and the
-backward-compatibility symlinks beside it point at a file that is not there.
-Only an in-tree hipSOLVER build could consume it.
-
-hipSOLVER also already had a ``BUILD_FORTRAN_BINDINGS`` option, meaning "build
-the hand-written module" and defaulting to ``${UNIX}`` rather than ``ON``. The
-name now means the generated bindings, as everywhere else. Its companions
-``EXPORT_FORTRAN_BINDINGS`` and ``BUILD_FORTRAN_MODULE`` retire with the module
-they gated, replaced by the optional config include described in
-`Building one library's binding from source`_.
-
-**hipRAND had two Fortran tracks, and refuses to build both.** hipRAND's
-deprecated hand-written wrapper (``hiprand_m.f90``, plus the small ``hipfor``
-module beside it) is gated by ``BUILD_FORTRAN_WRAPPER``, and both it and the
-generated binding want a target named ``hiprand_fortran``. Two ``add_library``
-calls with one name is a hard CMake error whose message names neither option,
-so the build stops earlier with one that does: turn off
-``BUILD_FORTRAN_WRAPPER`` to keep the generated bindings, or
-``HIPRAND_BUILD_FORTRAN_BINDINGS`` to keep the wrapper. Nothing picks a winner
-for you, because a site that set ``BUILD_FORTRAN_WRAPPER=ON`` asked for the
-wrapper. Once the wrapper is removed the question disappears, and
-``BUILD_FORTRAN_WRAPPER`` retires with it. rocRAND had the same option and the
-same wrapper, and has already been through this.
+The in-tree Fortran modules that rocBLAS, hipSOLVER, hipRAND and the others
+shipped themselves have collisions of their own at 10.2; those are covered in
+:doc:`migration-guide-in-tree`, not here.
 
 **If you build for NVIDIA (CUDA)**, the ``nvptx`` backend is dropped from the
 new bindings. It survives only in old hipFORT until 11.0.
@@ -840,14 +659,10 @@ FAQ
 
 **Do I have to change my code now?**
 
-On hipFORT, no. Old hipFORT stays available until ROCm 11.0, so you can migrate
-any time before then, but sooner is better than later: the edit is mechanical,
-and doing it early leaves room to hit and report anything it turns up, in your
-code or in the bindings, instead of racing the removal.
-
-On a library's in-tree module, yes: that one is replaced at 10.2, a release
-earlier, and there is no overlap window. See
-`Do I need to do anything now?`_.
+No. Old hipFORT stays available until ROCm 11.0, so you can migrate any time
+before then, but sooner is better than later: the edit is mechanical, and doing
+it early leaves room to hit and report anything it turns up, in your code or in
+the bindings, instead of racing the removal.
 
 **Will I be warned before old hipFORT is removed?**
 
@@ -900,17 +715,11 @@ migrating one file at a time works.
 
 .. note::
 
-   **This answer is about hipFORT.** It does not extend to a library's in-tree
-   module, and the first row of the table is exactly why: the old in-tree
-   module is already named ``rocblas``, not ``hipfort_rocblas``, so there is no
-   prefixed-versus-bare distinction to keep the two apart. They are the same
-   module name and cannot coexist.
-
-   That is why the in-tree modules are removed rather than deprecated in place:
-   at 10.2 there is exactly one ``rocblas`` module in the tree, the generated
-   one. There is no gradual, file-by-file window for that path — but there does
-   not need to be one, because the ``use`` line is unchanged and the migration
-   is the link line (see `If you use a library's in-tree module`_).
+   **This answer is about hipFORT**, and the first row of the table is why it
+   cannot extend to a library's own in-tree module: that one is already named
+   ``rocblas``, not ``hipfort_rocblas``, so there is no prefixed-versus-bare
+   distinction to keep the two apart. Same module name, no coexistence, no
+   file-by-file window. See :doc:`migration-guide-in-tree`.
 
 **My code is old fixed-form Fortran. Can I use these bindings?**
 

@@ -18,6 +18,8 @@ subtrees:
         title: Fortran interface variants
       - file: how-to/migration-guide.rst
         title: Migrate to the ROCm-packaged bindings
+      - file: how-to/migration-guide-in-tree.rst
+        title: Migrate from a library's own Fortran module
 
   - caption: Tutorials
     entries:
