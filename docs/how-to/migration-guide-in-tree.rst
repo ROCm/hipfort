@@ -21,13 +21,12 @@ this page is not yours: see :doc:`migration-guide`. The two migrations share a
 destination and almost nothing else — different deadlines, different edits, and
 a different answer to whether your call sites change.
 
-.. warning::
+.. note::
 
-   **Your call sites do change**, and this is the part that surprises people.
-   The hand-written modules declare scalar and string arguments differently from
-   the generated ones, so code that compiles today will not. This is not a
-   handful of edge cases; it is every routine taking an ``alpha`` or ``beta``.
-   See `Your call sites change`_ before you plan the work.
+   **Your call sites very nearly do not change.** Two one-line edits remain: a
+   ``use <lib>_enums`` to delete, and, if you print the library revision, a
+   ``c_loc()`` to add. Scalar arguments, which an early draft of the bindings did
+   break, no longer do. See `Two small source edits`_.
 
 Your deadline is 10.2
 =====================
@@ -165,80 +164,69 @@ repeated here. See :doc:`migration-guide`, sections
 **Link the per-library Fortran archive**, **Build options** and
 **Compiler support**.
 
-Your call sites change
+Two small source edits
 ======================
 
-This is the part with no counterpart in the hipFORT migration, where the claim
-"your calls do not change" holds. Here it does not.
-
-The hand-written modules pass scalars as opaque pointers; the generated bindings
-declare them with their actual type. Taking ``rocblas_daxpy``:
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 35 35
-
-   * - Argument
-     - Hand-written module
-     - Generated binding
-   * - ``alpha``
-     - ``type(c_ptr), value``
-     - ``real(c_double)``
-
-So a call written for the old module has nothing to resolve against:
+Scalar arguments used to be the worry here, and are not. The hand-written
+modules pass ``alpha`` and ``beta`` as ``type(c_ptr), value``, and an early
+draft of the generated bindings declared them with their actual type, which
+broke every call site passing ``c_loc(alpha)``. The generator now emits **both**
+forms as specifics of the same generic:
 
 .. code-block:: fortran
 
-   ! today, against rocblas_module.f90
-   call ROCBLAS_CHECK(rocblas_daxpy(handle, n, c_loc(alpha), dx, 1, dy, 1))
+   interface rocblas_daxpy
+     function rocblas_daxpy_(handle, n, alpha, ...)       ! real(c_double) :: alpha
+     function rocblas_daxpy_dptr(handle, n, alpha, ...)   ! type(c_ptr), value :: alpha
 
-   ! error against the generated binding:
-   !   There is no specific function for the generic 'rocblas_daxpy'
+so ``c_loc(alpha)`` resolves on the ``_dptr`` specific and your existing call
+sites compile untouched. Two differences remain, and both are one-line fixes.
 
-Character arguments differ the same way. ``rocsparse_get_git_rev`` takes
+Delete the ``<lib>_enums`` line
+-------------------------------
+
+The enumerators moved into the library module, so the separate module is gone:
+
+.. code-block:: fortran
+
+   use rocblas
+   use rocblas_enums   ! delete this line
+
+That is the whole of it for most files. Measured against the libraries' own
+samples in ``clients/samples/example_fortran_*.f90``, compiled unmodified: of
+rocBLAS's four, two build as they stand and two need only this deletion.
+
+Character output arguments
+--------------------------
+
+``rocsparse_get_git_rev`` and ``rocsparse_get_version`` take
 ``character(c_char) :: rev(*)`` in the hand-written module and
 ``type(c_ptr), value`` in the generated one, so passing a character variable
-fails with a type mismatch.
+fails:
 
-How much is affected
---------------------
+.. code-block:: none
 
-Every routine taking an ``alpha`` or ``beta`` scalar. Measured against the
-libraries' own sample programs — the ones shipped in
-``clients/samples/example_fortran_*.f90``, compiled unmodified — **all 18 fail
-to build**: four in rocBLAS, fourteen in rocSPARSE. The errors seen were on
-``rocblas_daxpy``, ``rocblas_sscal``, ``rocsparse_dcsrmv``, ``dcoomv``,
-``dellmv``, ``dhybmv`` and ``dbsrmv``, plus the character case above. They
-reduce to the two differences described here rather than to eighteen separate
-problems.
+   error: Actual argument type 'CHARACTER(KIND=1,LEN=12_8)' is not compatible
+   with dummy argument type 'c_ptr'
+
+Pass ``c_loc(rev)`` instead, with ``rev`` declared ``target``. This is the one
+difference that is not a deletion, and it is confined to the handful of
+version- and revision-query helpers: no computational routine is affected. It
+is also what makes all fourteen rocSPARSE samples fail at once, since each of
+them opens by printing the library revision.
 
 .. note::
 
-   **Why no build of yours caught this earlier.** The two forms are
-   *ABI-identical*: a non-``value`` Fortran dummy is passed by address, which is
-   exactly what ``c_loc(alpha)`` passed by value already is. Nothing is wrong at
-   the call boundary, and no symbol- or link-level check can see it. The break
-   is purely at the source level, which is why it only shows up when real client
-   code is compiled.
-
-What to do about it
--------------------
-
-Grep for the affected call sites before you start, so you size the work
-correctly:
-
-.. code-block:: shell
-
-   grep -rnE 'c_loc *\( *(alpha|beta)' --include='*.f90' --include='*.F90' .
-
-Each one loses its ``c_loc()`` and passes the scalar directly. That is
-mechanical, but it is an edit per call site rather than an edit per file, so
-plan for it.
+   Both differences are source-level only. The generated interfaces bind the
+   same C symbols with the same ABI, so nothing changes at the call boundary and
+   no symbol or link check can see them. They show up when real client code is
+   compiled, which is why the libraries' own samples are the useful test.
 
 If you hit a difference not described here, report it at
 `hipfort issues <https://github.com/ROCm/hipfort/issues>`_ rather than working
 around it locally: these are generator differences, and a fix there fixes it for
 everyone.
+
 
 Special cases
 =============
@@ -291,6 +279,6 @@ hipBLAS's ``*_fortran_client`` wrappers), it keeps its ``ON`` default, and that
 surface survives. What changes is where its module comes from: those samples
 used to compile the hand-written ``.f90`` in-tree and now link the generated
 ``roc::<lib>_fortran`` — which is exactly why they are affected by
-`Your call sites change`_. The one new constraint is that they need the
+`Two small source edits`_. The one new constraint is that they need the
 bindings, so ``-DBUILD_FORTRAN_CLIENTS=ON -DBUILD_FORTRAN_BINDINGS=OFF`` is
 refused with an error naming the flag to turn back on.
