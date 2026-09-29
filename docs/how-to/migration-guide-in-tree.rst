@@ -10,7 +10,7 @@ Who this is for
 ===============
 
 You call a ROCm math library from Fortran through the module **that library
-ships itself** — ``use rocblas`` compiled against
+ships itself**, ``use rocblas`` compiled against
 ``/opt/rocm/include/rocblas/rocblas_module.f90``, ``use rocsparse``,
 ``use rocrand_m``. Several ROCm libraries have shipped a hand-written Fortran
 module next to their C API for years. At ROCm 10.2 a generated binding
@@ -18,7 +18,7 @@ supersedes them and they are removed.
 
 If instead you build **hipFORT** yourself and write ``use hipfort_rocblas``,
 this page is not yours: see :doc:`migration-guide`. The two migrations share a
-destination and almost nothing else — different deadlines, different edits, and
+destination and almost nothing else. Different deadlines, different edits, and
 a different answer to whether your call sites change.
 
 .. note::
@@ -278,7 +278,7 @@ the Fortran part of ``clients/``" (rocSPARSE's Fortran samples, rocBLAS and
 hipBLAS's ``*_fortran_client`` wrappers), it keeps its ``ON`` default, and that
 surface survives. What changes is where its module comes from: those samples
 used to compile the hand-written ``.f90`` in-tree and now link the generated
-``roc::<lib>_fortran`` — which is exactly why they are affected by
+``roc::<lib>_fortran``, which is exactly why they are affected by
 `Two small source edits`_. The one new constraint is that they need the
 bindings, so ``-DBUILD_FORTRAN_CLIENTS=ON -DBUILD_FORTRAN_BINDINGS=OFF`` is
 refused with an error naming the flag to turn back on.
