@@ -50,18 +50,13 @@ are in `What you change`_.
 Do I need to do anything now?
 =============================
 
-**No.** Today's hipFORT keeps working, unchanged, until it is removed at ROCm
-11.0; keep building it yourself as you do today. Any time before 11.0, make the
-two changes in `What you change`_. Old and new share the same interfaces
-underneath, so you migrate on your own schedule.
+**No.** Today's hipFORT keeps working until it is removed at ROCm 11.0. Make
+the two changes in `What you change`_ any time before then; old and new share
+the same interfaces underneath, so you migrate on your own schedule.
 
-That said, sooner is better than later. The edit itself is mechanical, so the
-value of doing it early is not the edit, it is the room it leaves you
-afterwards: if anything behaves differently (a routine that was generated
-incorrectly, an overload that resolves differently, a build-system wrinkle),
-you want to hit it with releases to spare rather than while 11.0 is closing.
-Early reports also get fixed for everyone, so the sooner your code runs against
-the new bindings, the better they are when the rest of the ecosystem moves.
+Migrate early anyway. The edit is mechanical, but if something does behave
+differently you want releases to spare, and an early report gets fixed for
+everyone.
 
 Timeline
 ========
@@ -101,34 +96,47 @@ module named after the library.
 
 .. list-table::
    :header-rows: 1
-   :widths: 60 40
+   :widths: 40 20 40
 
-   * - Old (``hipfort_`` prefix, split modules)
-     - New (one module, no prefix)
+   * - Old ``use`` (``hipfort_`` prefix, split modules)
+     - New ``use``
+     - Link (CMake target)
    * - ``use hipfort`` (HIP runtime; plus ``hipfort_types``, ``hipfort_enums``)
      - ``use hip``
+     - ``hip::hip_fortran``
    * - ``use hipfort_rocblas`` (plus ``_enums``)
      - ``use rocblas``
+     - ``roc::rocblas_fortran``
    * - ``use hipfort_hipblas`` (plus ``_enums``)
      - ``use hipblas``
+     - ``roc::hipblas_fortran``
    * - ``use hipfort_rocsparse`` (plus ``_enums``)
      - ``use rocsparse``
+     - ``roc::rocsparse_fortran``
    * - ``use hipfort_hipsparse`` (plus ``_enums``)
      - ``use hipsparse``
+     - ``roc::hipsparse_fortran``
    * - ``use hipfort_rocfft`` (plus ``_enums``)
      - ``use rocfft``
+     - ``roc::rocfft_fortran``
    * - ``use hipfort_hipfft`` (plus ``_enums``)
      - ``use hipfft``
+     - ``hip::hipfft_fortran``
    * - ``use hipfort_hipfftw`` (plus ``_enums``, ``_types``)
      - ``use hipfftw``
+     - ``hip::hipfftw_fortran`` (packaged with hipFFT)
    * - ``use hipfort_rocsolver`` (plus ``_enums``)
      - ``use rocsolver``
+     - ``roc::rocsolver_fortran``
    * - ``use hipfort_hipsolver`` (plus ``_enums``)
      - ``use hipsolver``
+     - ``roc::hipsolver_fortran``
    * - ``use hipfort_rocrand`` (plus ``_enums``, ``_types``)
      - ``use rocrand``
+     - ``roc::rocrand_fortran``
    * - ``use hipfort_hiprand`` (plus ``_enums``)
      - ``use hiprand``
+     - ``hip::hiprand_fortran``
 
 The HIP memory helpers you might ``use`` directly (``hipfort_hipmalloc``,
 ``hipfort_hipmemcpy``, ``hipfort_hiphostregister``) fold into ``use hip`` as
@@ -151,13 +159,11 @@ now come from the library module you already ``use``:
    * - ``use hipfort_auxiliary``
      - In ``hip`` (``hipGetDeviceProperties``)
 
-Profiling (``hipfort_roctx``) is a special case, so it is not in the tables
-above: the new ``roctx`` binding is deferred rather than shipped in the initial
-packaged set, because ROCTx itself is moving into rocprofiler-sdk upstream and
-its home is not yet settled. If you annotate Fortran with ``hipfort_roctx``
-today, old hipFORT keeps working through the 10.x series; past that, until a
-packaged ``roctx`` binding lands, call the C ROCTx API directly through
-``iso_c_binding`` (it is a handful of ``bind(C)`` interfaces).
+``hipfort_roctx`` is not in the tables because the packaged ``roctx`` binding
+is deferred: ROCTx is moving into rocprofiler-sdk upstream and its home is not
+settled. Old hipFORT keeps working through the 10.x series. After that, until a
+packaged binding lands, call the C ROCTx API through ``iso_c_binding`` -- it is
+a handful of ``bind(C)`` interfaces.
 
 Only ``hipfort_cuda_errors`` (the CUDA-backend error enum) has no new
 equivalent: it is tied to the dropped CUDA backend and retires with hipFORT at
@@ -232,10 +238,8 @@ Then read the diff, because a few things are deliberately left to you:
    preprocessor guards are not covered.
    ``grep -rniE 'use[[:space:]]+hipfort' .`` finds whatever the rules missed.
 
-A supported migration tool is worth shipping if codebases turn out to need more
-than this; the recipe above is the whole of what it would do, so
-`open an issue <https://github.com/ROCm/hipfort/issues>`_ if you would rather
-have the tool.
+The recipe above is the whole of what a migration tool would do. If you would
+rather have the tool, `open an issue <https://github.com/ROCm/hipfort/issues>`_.
 
 Link the per-library Fortran archive
 ------------------------------------
@@ -258,70 +262,20 @@ you:
 
 .. note::
 
-   **The ``find_package`` line is temporary; the target name is not.** Yes, the
-   two are spelled differently, and deliberately: ``rocblas-fortran`` is a
-   *package* name, which ROCm hyphenates (``hipblas-common``, ``rocm-cmake``),
-   while ``rocblas_fortran`` is a *target* and an archive, which ROCm
-   underscores (``libhipsolver_fortran.so``). You only meet the hyphenated one
-   because of the gap below.
+   **The ``find_package`` line is temporary; the target name is not.** The two
+   spellings are deliberate: ROCm hyphenates *package* names
+   (``hipblas-common``) and underscores *targets* and archives
+   (``librocblas_fortran.a``).
 
-   ``find_package(rocblas)`` on its own does **not** define
-   ``roc::rocblas_fortran`` today. The Fortran config is installed beside the C
-   one precisely so that ``rocblas-config.cmake`` can pick it up with a bare
-   ``include(rocblas-fortran-config.cmake OPTIONAL)``, but that hook does not
-   exist yet and has to be added in rocm-cmake first.
-   (``rocm_export_targets``'s existing ``INCLUDE`` argument is not it: it emits
-   a non-optional ``include()``, and emits it *before* the targets file, so the
-   Fortran config would run before ``roc::rocblas`` exists.)
+   ``find_package(rocblas)`` alone does not define ``roc::rocblas_fortran``
+   yet. The Fortran config is installed beside the C one so that
+   ``rocblas-config.cmake`` can pick it up with
+   ``include(rocblas-fortran-config.cmake OPTIONAL)``, but that hook still has
+   to be added in rocm-cmake. Once it lands, ``find_package(rocblas)`` is
+   enough and ``target_link_libraries`` above is unchanged either way.
 
-   Once the hook lands, ``find_package(rocblas)`` alone is enough,
-   ``rocblas-fortran`` goes back to being an internal file name you never type,
-   and the ``target_link_libraries`` line above keeps working unchanged either
-   way.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 25 25 50
-
-   * - Library
-     - ``use``
-     - Link (CMake target)
-   * - HIP runtime
-     - ``use hip``
-     - ``hip::hip_fortran``
-   * - rocBLAS
-     - ``use rocblas``
-     - ``roc::rocblas_fortran``
-   * - hipBLAS
-     - ``use hipblas``
-     - ``roc::hipblas_fortran``
-   * - rocSPARSE
-     - ``use rocsparse``
-     - ``roc::rocsparse_fortran``
-   * - hipSPARSE
-     - ``use hipsparse``
-     - ``roc::hipsparse_fortran``
-   * - rocFFT
-     - ``use rocfft``
-     - ``roc::rocfft_fortran``
-   * - hipFFT
-     - ``use hipfft``
-     - ``hip::hipfft_fortran``
-   * - hipFFTW
-     - ``use hipfftw``
-     - ``hip::hipfftw_fortran`` (packaged with hipFFT)
-   * - rocSOLVER
-     - ``use rocsolver``
-     - ``roc::rocsolver_fortran``
-   * - hipSOLVER
-     - ``use hipsolver``
-     - ``roc::hipsolver_fortran``
-   * - rocRAND
-     - ``use rocrand``
-     - ``roc::rocrand_fortran``
-   * - hipRAND
-     - ``use hiprand``
-     - ``hip::hiprand_fortran``
+The target for each library is in the table under
+`Rename your use statements`_.
 
 The raw archive is ``lib<lib>_fortran.a`` (for example ``librocblas_fortran.a``)
 if you link without CMake.
@@ -329,19 +283,17 @@ if you link without CMake.
 Build options
 =============
 
-If you consume ROCm's shipped bindings, you pass none of these. hipFORT's
-``HIPFORT_*`` options were options for building *hipFORT*, and under the
-packaged track you no longer build it: the bindings arrive precompiled, with
-the array overloads on and assumed-rank off. The options below matter only
-when you rebuild a binding yourself, which is the non-``amdflang`` case in
-`Building one library's binding from source`_.
+**If you consume ROCm's shipped bindings, you pass none of these.** The
+``HIPFORT_*`` options built *hipFORT*, which you no longer build: the bindings
+arrive precompiled, array overloads on, assumed-rank off. They matter only when
+you rebuild a binding yourself (see
+`Building one library's binding from source`_).
 
-The switch that replaces "do I build hipFORT at all" is
-``BUILD_FORTRAN_BINDINGS``, which every ``rocm-systems`` and ``rocm-libraries``
-project exposes. It is ``ON`` by default but guarded: the bindings are built
-when a Fortran compiler is present, and silently skipped when one is not, so a
-C-only site never has to acquire a Fortran compiler. Pass
-``-DBUILD_FORTRAN_BINDINGS=OFF`` to opt out even when you have one.
+``BUILD_FORTRAN_BINDINGS`` replaces "do I build hipFORT at all". Every
+``rocm-systems`` and ``rocm-libraries`` project exposes it, ``ON`` by default
+but guarded: built when a Fortran compiler is present, silently skipped when
+one is not, so a C-only site never needs one. ``-DBUILD_FORTRAN_BINDINGS=OFF``
+opts out.
 
 .. list-table::
    :header-rows: 1
@@ -382,45 +334,34 @@ Each switch also has a per-library override, so one library can differ from the
 rest of a monorepo build: ``<LIB>_BUILD_FORTRAN_BINDINGS`` and
 ``<LIB>_BUILD_FORTRAN_CLIENTS`` (for example
 ``-DROCSPARSE_BUILD_FORTRAN_BINDINGS=OFF``) win over the global spelling when
-set. ``<LIB>_FORTRAN_COMPILER_DIR`` overrides the per-compiler subdirectory
-name described in `Where the files install`_. You do not need it merely because
-a prefix holds several compilers' artifacts, since that case resolves on its
-own; it is for naming a directory the compiler alone does not imply, such as a
-version-suffixed ``gfortran-13.3.0``, or for selecting one deliberately.
+set. ``<LIB>_FORTRAN_COMPILER_DIR`` overrides the per-compiler subdirectory name
+(`Where the files install`_). Several compilers on one prefix resolve on their
+own; this is for a directory the compiler name alone does not imply, such as a
+version-suffixed ``gfortran-13.3.0``.
 
-The interface tiers themselves do not change: the raw ``type(c_ptr)`` surface
-is Fortran 2003 and is always present, the ergonomic array overloads are
-Fortran 2008 and stay on, and the assumed-rank variants are Fortran 2018 and
-stay opt-in. What changes is that one option now selects between them instead
-of two. That follows the language: assumed-rank *replaces* the per-rank
-variants rather than adding to them, because an assumed-rank dummy is not
+The tiers themselves are unchanged: raw ``type(c_ptr)`` (Fortran 2003) always
+present, array overloads (2008) on, assumed-rank (2018) opt-in. One option now
+selects between them instead of two, because assumed-rank *replaces* the
+per-rank variants rather than adding to them -- an assumed-rank dummy is not
 distinguishable by rank from the per-rank specifics, so the two cannot legally
-coexist in one generic. Two booleans could express that illegal combination;
-three values cannot. For a side-by-side comparison of the call sites, see
-:doc:`fortran-interfaces`.
+coexist in one generic, and two booleans could express that illegal
+combination. See :doc:`fortran-interfaces` for the call sites side by side.
 
-The shipped bindings are built at the default, ``assumed-shape``, which is what
-hipFORT gives you today on any Fortran 2008 compiler. You only need the option
-in a from-source rebuild, either to opt into ``assumed-rank`` or to drop to
-``none`` on a compiler whose Fortran 2008 support you do not trust.
+The shipped bindings use the default, ``assumed-shape``, which is what hipFORT
+gives you today. You only need the option in a from-source rebuild.
 
-The bindings' own test suite rides on ``BUILD_FORTRAN_CLIENTS``, ``ON`` by
-default and guarded the same way as the bindings: asking for it when they were
-not built is a skip, not an error. In rocBLAS, hipBLAS and rocSPARSE that name
-already existed, meaning "build the Fortran part of ``clients/``", and it now
-covers both. One switch rather than two neighbouring ones, at the cost of a
-name that spans two kinds of thing while the inherited tests last.
+The bindings' test suite rides on ``BUILD_FORTRAN_CLIENTS``, ``ON`` by default
+and guarded the same way: asking for it when the bindings were not built is a
+skip, not an error. rocBLAS, hipBLAS and rocSPARSE already had that name for
+"build the Fortran part of ``clients/``"; it now covers both.
 
-To check from CMake whether a binding is actually available, use the per-package
-flag ``<pkg>_FORTRAN_FOUND`` (for example ``rocblas_FORTRAN_FOUND``), which the
-Fortran config package defines. Inside a ROCm build tree there are two more
-specific variables: ``ROCM_HAVE_FORTRAN`` reports only that a Fortran compiler
-exists, while ``<LIB>_HAVE_FORTRAN_BINDINGS`` (for example
-``ROCSPARSE_HAVE_FORTRAN_BINDINGS``) is true only when that library's bindings
-were really built. The two are deliberately distinct, because the compiler can
-be present while a given library has ``BUILD_FORTRAN_BINDINGS=OFF``.
-(``ROCM_LIBS_HAVE_FORTRAN`` is the older spelling of ``ROCM_HAVE_FORTRAN`` and
-is still honoured.)
+To test from CMake whether a binding is available, use ``<pkg>_FORTRAN_FOUND``
+(``rocblas_FORTRAN_FOUND``), defined by the Fortran config package. Inside a
+ROCm build tree, ``ROCM_HAVE_FORTRAN`` reports only that a Fortran compiler
+exists, while ``<LIB>_HAVE_FORTRAN_BINDINGS`` is true only when that library's
+bindings were built -- the compiler can be present with
+``BUILD_FORTRAN_BINDINGS=OFF``. (``ROCM_LIBS_HAVE_FORTRAN`` is the old spelling
+of the first and still works.)
 
 Compiler support
 ================
@@ -446,16 +387,12 @@ bindings precompiled for ``amdflang``:
 
 .. note::
 
-   **Mixing amdflang versions.** Strictly, a ``.mod`` is tied to the compiler
-   *version* too, so an ``amdflang`` other than the one that built the shipped
-   bindings would normally refuse to read them. ``amdflang`` relaxes that:
-   starting with ROCm 10.1, the opt-in ``-fmodule-mismatch-check=warn`` lets it
-   read a ``.mod`` written by a different ``amdflang`` version, reporting a
-   warning instead of an error. The default is unchanged, and the flag only
-   covers version skew inside ``amdflang``: nothing lets ``gfortran`` read an
-   ``amdflang`` ``.mod``, or the reverse. When you can rebuild the binding with
-   the compiler you are actually using, still do, because the warning is
-   telling you the two artifacts were not built together.
+   **Mixing amdflang versions.** A ``.mod`` is tied to the compiler *version*
+   too. From ROCm 10.1, the opt-in ``-fmodule-mismatch-check=warn`` lets
+   ``amdflang`` read a ``.mod`` written by another ``amdflang`` version,
+   warning instead of erroring. It covers version skew inside ``amdflang``
+   only: nothing lets ``gfortran`` read an ``amdflang`` ``.mod``. Rebuild when
+   you can -- the warning means the two artifacts were not built together.
 
 The C libraries you link (``libamdhip64.so``, ``librocblas.so``, and so on) are
 the stable, compiler-agnostic ABI; only the thin Fortran layer is
@@ -471,13 +408,11 @@ your compiler's subdirectory automatically, including when a prefix holds more
 than one compiler's artifacts; if you link with raw flags, point ``-I`` and
 ``-L`` at it.
 
-``<libdir>`` and ``<includedir>`` are the platform's own, not a literal ``lib``
-and ``include``: ``lib64`` on Fedora, RHEL and SUSE, and ``lib/<triplet>`` on
-Debian multiarch. On a stock ROCm install they come out as ``lib`` and
-``include``, so the concrete paths are ``/opt/rocm/include/fortran/amdflang/``
-and ``/opt/rocm/lib/fortran/amdflang/``, and the examples below use those. If
-you install the bindings somewhere else, check which the packager's
-``CMAKE_INSTALL_LIBDIR`` gave you before writing the path by hand.
+``<libdir>`` and ``<includedir>`` are the platform's own: ``lib64`` on Fedora,
+RHEL and SUSE, ``lib/<triplet>`` on Debian multiarch. A stock ROCm install
+gives ``/opt/rocm/include/fortran/amdflang/`` and
+``/opt/rocm/lib/fortran/amdflang/``, which the examples below use. Elsewhere,
+check the packager's ``CMAKE_INSTALL_LIBDIR`` before writing a path by hand.
 
 If nothing is installed for your compiler, the package fails and names what is,
 so that you can tell a rebuild from a redirect:
@@ -535,11 +470,10 @@ Link the Fortran archive (``-lrocblas_fortran``) before the C library
 Building one library's binding from source
 ------------------------------------------
 
-If you are on a non-``amdflang`` compiler, you build the binding yourself, but
-you do not have to rebuild the C library. The generated ``.F90`` is
-self-contained Fortran, so compiling it needs only a Fortran compiler: it does
-not rebuild rocBLAS, and it needs neither the C headers nor the ``.so`` at
-build time (the vendor symbols resolve when you link your application).
+On a non-``amdflang`` compiler you build the binding yourself, but not the C
+library. The generated ``.F90`` is self-contained Fortran: compiling it needs
+only a Fortran compiler, no C headers and no ``.so``, since the vendor symbols
+resolve when you link your application.
 
 Getting the sources
 ~~~~~~~~~~~~~~~~~~~
@@ -557,10 +491,9 @@ and nothing to match up: the installed source was generated from the same
 headers as the installed library, so it cannot declare an entry point the
 ``.so`` does not export.
 
-It sits under ``share/`` rather than the include tree because the ``.F90`` is
-compiler-independent, unlike the ``.mod``. Everything under
-``<includedir>/fortran/`` is partitioned by compiler, so a source file placed
-there would be read as if it named one.
+It sits under ``share/`` because the ``.F90`` is compiler-independent, unlike
+the ``.mod``: everything under ``<includedir>/fortran/`` is partitioned by
+compiler, so a source file there would be read as naming one.
 
 .. note::
 
@@ -605,12 +538,11 @@ it at an installed ROCm and build only the binding:
 Add ``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` here if you want the Fortran
 2018 variants; see `Build options`_ for the rest.
 
-``CMAKE_PREFIX_PATH`` lets the build find the installed C library (its version,
-and any dependency binding); ``CMAKE_INSTALL_PREFIX`` puts the ``.mod`` and
-``lib<lib>_fortran.a`` under your compiler's subdirectory. Building the C
-library with ``-DBUILD_FORTRAN_BINDINGS=ON`` does the same thing under the hood
-(it just invokes this ``fortran/`` build through ``add_subdirectory``), but it
-rebuilds the C library too, which is much heavier.
+``CMAKE_PREFIX_PATH`` finds the installed C library and any dependency binding;
+``CMAKE_INSTALL_PREFIX`` puts the ``.mod`` and ``lib<lib>_fortran.a`` under your
+compiler's subdirectory. Building the C library with
+``-DBUILD_FORTRAN_BINDINGS=ON`` invokes this same ``fortran/`` build, but
+rebuilds the C library too.
 
 A binding that ``use``\ s another (rocSOLVER ``use``\ s rocBLAS) needs the
 dependency's ``.mod``, compiled with the same compiler, so build in dependency
@@ -619,16 +551,12 @@ rocSOLVER's build finds rocBLAS's binding through
 ``find_package(rocblas-fortran)``, or reuses the ``roc::rocblas_fortran``
 target directly when both are configured in the same tree.
 
-Building the C library alone first and the Fortran binding standalone later is
-fine, because the Fortran target ships in its own config package rather than in
-the C library's export set. A binding installed afterwards is picked up by
-``find_package(rocblas-fortran)`` without the C library having to know about
-it, and its absence is simply a package that is not found.
-
-What does not work yet is reaching it through the C package:
-``find_package(rocblas)`` will not expose ``roc::rocblas_fortran`` until
-rocm-cmake grows the ``OPTIONAL`` include hook described above. Until then, ask
-for ``rocblas-fortran`` explicitly.
+Building the C library first and the binding standalone later is fine: the
+Fortran target ships in its own config package rather than in the C library's
+export set, so a binding installed afterwards is picked up by
+``find_package(rocblas-fortran)``, and its absence is just a package not found.
+Reaching it through ``find_package(rocblas)`` does not work until rocm-cmake
+grows the ``OPTIONAL`` hook described above.
 
 What does not change
 ====================
@@ -655,13 +583,6 @@ new bindings. It survives only in old hipFORT until 11.0.
 
 FAQ
 ===
-
-**Do I have to change my code now?**
-
-No. Old hipFORT stays available until ROCm 11.0, so you can migrate any time
-before then, but sooner is better than later: the edit is mechanical, and doing
-it early leaves room to hit and report anything it turns up, in your code or in
-the bindings, instead of racing the removal.
 
 **Will I be warned before old hipFORT is removed?**
 
@@ -703,14 +624,10 @@ Yes. Nothing collides, so you can migrate one file at a time:
      - ``find_package(rocblas-fortran)`` gives ``roc::rocblas_fortran``
      - No
 
-Two rules: build both with the same compiler as your application (a ``.mod`` is
-compiler-specific); and never ``use`` both bindings for the same library in one
-scope, because they export the same public names (``rocblas_dgemm``,
-``rocblas_handle``, the enums, and so on) and the reference becomes ambiguous.
-Note that this is a *source*-level clash only: at the object level the two
-archives coexist fine, because their symbols are mangled per module name
-(``__hipfort_rocblas_MOD_...`` versus ``__rocblas_MOD_...``), which is why
-migrating one file at a time works.
+Two rules: build both with the same compiler as your application, and never
+``use`` both bindings for the same library in one scope. The clash is
+*source*-level only -- the archives coexist fine, because symbols are mangled
+per module name -- which is why migrating one file at a time works.
 
 .. note::
 
@@ -722,20 +639,15 @@ migrating one file at a time works.
 
 **My code is old fixed-form Fortran. Can I use these bindings?**
 
-Yes, in all but one case. Fixed form is not the same thing as an old standard:
-a ``.f`` file with ``DO ... CONTINUE`` loops, implicit typing, and a 72-column
-layout compiles fine with a current compiler, and it can ``use hip`` like any
-other source. The requirement is only that the *compiler* handles Fortran
-2003's ``iso_c_binding``, which every compiler in service does, not that your
-code looks modern. The one thing that cannot work is a translation unit
-compiled as pre-Fortran 90: below that, the language has no modules, so there
-is no ``use`` statement to write and nothing to bind to. That is not a change
-either, because hipFORT never had a callable path for such code. If you are
-genuinely stuck there,
-`open an issue <https://github.com/ROCm/hipfort/issues>`_ rather than
-hand-writing glue: the answer in that case is a small C shim with F77 linkage
-(plus an ``INCLUDE`` file for the constants), and it is something that can be
-generated for the entry points you call.
+Yes. Fixed form is not an old *standard*: a ``.f`` file with ``DO ...
+CONTINUE``, implicit typing and a 72-column layout can ``use hip`` like any
+other source. The requirement is on the compiler, which must handle Fortran
+2003's ``iso_c_binding``, not on how your code looks.
+
+The exception is a unit compiled as pre-Fortran 90, which has no modules and so
+no ``use`` statement to write. hipFORT never had a path for that either. If you
+are stuck there, `open an issue <https://github.com/ROCm/hipfort/issues>`_
+rather than hand-writing glue -- a C shim with F77 linkage can be generated.
 
 **Will my calls break?**
 
