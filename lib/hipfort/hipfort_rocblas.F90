@@ -37720,31 +37720,6 @@ module hipfort_rocblas
     end function
   end interface
 
-  interface rocblas_set_optimal_device_memory_size_impl
-    function rocblas_set_optimal_device_memory_size_impl_(handle,count) &
-        bind(c, name="rocblas_set_optimal_device_memory_size_impl")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_set_optimal_device_memory_size_impl_
-      type(c_ptr),value :: handle
-      integer(c_size_t),value :: count
-    end function
-  end interface
-
-  interface rocblas_device_malloc_alloc
-    function rocblas_device_malloc_alloc_(handle,res,count) &
-        bind(c, name="rocblas_device_malloc_alloc")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_device_malloc_alloc_
-      type(c_ptr),value :: handle
-      type(c_ptr) :: res
-      integer(c_size_t),value :: count
-    end function
-  end interface
-
   interface rocblas_device_malloc_success
     function rocblas_device_malloc_success_(ptr) bind(c, name="rocblas_device_malloc_success")
       use iso_c_binding
