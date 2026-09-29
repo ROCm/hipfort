@@ -369,13 +369,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIsamax_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIsamax_rank_0,&
       hipblasIsamax_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIsamax_assumed_rank
 #endif
 #endif
   end interface
@@ -397,13 +397,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIdamax_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIdamax_rank_0,&
       hipblasIdamax_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIdamax_assumed_rank
 #endif
 #endif
   end interface
@@ -425,13 +425,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIcamax_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIcamax_rank_0,&
       hipblasIcamax_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIcamax_assumed_rank
 #endif
 #endif
   end interface
@@ -453,13 +453,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIzamax_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIzamax_rank_0,&
       hipblasIzamax_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIzamax_assumed_rank
 #endif
 #endif
   end interface
@@ -741,13 +741,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIsamaxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIsamaxStridedBatched_rank_0,&
       hipblasIsamaxStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIsamaxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -770,13 +770,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIdamaxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIdamaxStridedBatched_rank_0,&
       hipblasIdamaxStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIdamaxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -799,13 +799,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIcamaxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIcamaxStridedBatched_rank_0,&
       hipblasIcamaxStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIcamaxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -828,13 +828,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIzamaxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIzamaxStridedBatched_rank_0,&
       hipblasIzamaxStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIzamaxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -952,13 +952,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIsamin_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIsamin_rank_0,&
       hipblasIsamin_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIsamin_assumed_rank
 #endif
 #endif
   end interface
@@ -980,13 +980,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIdamin_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIdamin_rank_0,&
       hipblasIdamin_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIdamin_assumed_rank
 #endif
 #endif
   end interface
@@ -1008,13 +1008,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIcamin_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIcamin_rank_0,&
       hipblasIcamin_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIcamin_assumed_rank
 #endif
 #endif
   end interface
@@ -1036,13 +1036,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIzamin_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIzamin_rank_0,&
       hipblasIzamin_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIzamin_assumed_rank
 #endif
 #endif
   end interface
@@ -1324,13 +1324,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIsaminStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIsaminStridedBatched_rank_0,&
       hipblasIsaminStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIsaminStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -1353,13 +1353,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIdaminStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIdaminStridedBatched_rank_0,&
       hipblasIdaminStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIdaminStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -1382,13 +1382,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIcaminStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIcaminStridedBatched_rank_0,&
       hipblasIcaminStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIcaminStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -1411,13 +1411,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasIzaminStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIzaminStridedBatched_rank_0,&
       hipblasIzaminStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasIzaminStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -1536,13 +1536,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSasum_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSasum_rank_0,&
       hipblasSasum_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSasum_assumed_rank
 #endif
 #endif
   end interface
@@ -1564,13 +1564,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDasum_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDasum_rank_0,&
       hipblasDasum_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDasum_assumed_rank
 #endif
 #endif
   end interface
@@ -1592,13 +1592,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasScasum_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScasum_rank_0,&
       hipblasScasum_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasScasum_assumed_rank
 #endif
 #endif
   end interface
@@ -1620,13 +1620,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDzasum_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDzasum_rank_0,&
       hipblasDzasum_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDzasum_assumed_rank
 #endif
 #endif
   end interface
@@ -1918,13 +1918,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSasumStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSasumStridedBatched_rank_0,&
       hipblasSasumStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSasumStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -1947,13 +1947,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDasumStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDasumStridedBatched_rank_0,&
       hipblasDasumStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDasumStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -1976,13 +1976,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasScasumStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScasumStridedBatched_rank_0,&
       hipblasScasumStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasScasumStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -2005,13 +2005,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDzasumStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDzasumStridedBatched_rank_0,&
       hipblasDzasumStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDzasumStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -2152,13 +2152,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSaxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSaxpy_rank_0,&
       hipblasSaxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSaxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -2182,13 +2182,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDaxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDaxpy_rank_0,&
       hipblasDaxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDaxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -2212,13 +2212,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCaxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCaxpy_rank_0,&
       hipblasCaxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCaxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -2242,13 +2242,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZaxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZaxpy_rank_0,&
       hipblasZaxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZaxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -2641,13 +2641,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSaxpyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSaxpyStridedBatched_rank_0,&
       hipblasSaxpyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSaxpyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -2673,13 +2673,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDaxpyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDaxpyStridedBatched_rank_0,&
       hipblasDaxpyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDaxpyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -2705,13 +2705,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCaxpyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCaxpyStridedBatched_rank_0,&
       hipblasCaxpyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCaxpyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -2737,13 +2737,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZaxpyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZaxpyStridedBatched_rank_0,&
       hipblasZaxpyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZaxpyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -2902,13 +2902,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasScopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScopy_rank_0,&
       hipblasScopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasScopy_assumed_rank
 #endif
 #endif
   end interface
@@ -2931,13 +2931,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDcopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDcopy_rank_0,&
       hipblasDcopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDcopy_assumed_rank
 #endif
 #endif
   end interface
@@ -2960,13 +2960,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCcopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCcopy_rank_0,&
       hipblasCcopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCcopy_assumed_rank
 #endif
 #endif
   end interface
@@ -2989,13 +2989,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZcopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZcopy_rank_0,&
       hipblasZcopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZcopy_assumed_rank
 #endif
 #endif
   end interface
@@ -3309,13 +3309,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasScopyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScopyStridedBatched_rank_0,&
       hipblasScopyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasScopyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -3340,13 +3340,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDcopyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDcopyStridedBatched_rank_0,&
       hipblasDcopyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDcopyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -3371,13 +3371,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCcopyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCcopyStridedBatched_rank_0,&
       hipblasCcopyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCcopyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -3402,13 +3402,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZcopyStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZcopyStridedBatched_rank_0,&
       hipblasZcopyStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZcopyStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -3581,13 +3581,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSdot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdot_rank_0,&
       hipblasSdot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSdot_assumed_rank
 #endif
 #endif
   end interface
@@ -3611,13 +3611,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDdot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdot_rank_0,&
       hipblasDdot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDdot_assumed_rank
 #endif
 #endif
   end interface
@@ -3641,13 +3641,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCdotc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdotc_rank_0,&
       hipblasCdotc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCdotc_assumed_rank
 #endif
 #endif
   end interface
@@ -3671,13 +3671,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCdotu_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdotu_rank_0,&
       hipblasCdotu_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCdotu_assumed_rank
 #endif
 #endif
   end interface
@@ -3701,13 +3701,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdotc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdotc_rank_0,&
       hipblasZdotc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdotc_assumed_rank
 #endif
 #endif
   end interface
@@ -3731,13 +3731,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdotu_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdotu_rank_0,&
       hipblasZdotu_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdotu_assumed_rank
 #endif
 #endif
   end interface
@@ -4358,13 +4358,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSdotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdotStridedBatched_rank_0,&
       hipblasSdotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSdotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -4391,13 +4391,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDdotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdotStridedBatched_rank_0,&
       hipblasDdotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDdotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -4424,13 +4424,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCdotcStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdotcStridedBatched_rank_0,&
       hipblasCdotcStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCdotcStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -4457,13 +4457,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCdotuStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdotuStridedBatched_rank_0,&
       hipblasCdotuStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCdotuStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -4490,13 +4490,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdotcStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdotcStridedBatched_rank_0,&
       hipblasZdotcStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdotcStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -4523,13 +4523,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdotuStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdotuStridedBatched_rank_0,&
       hipblasZdotuStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdotuStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -4757,13 +4757,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSnrm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSnrm2_rank_0,&
       hipblasSnrm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSnrm2_assumed_rank
 #endif
 #endif
   end interface
@@ -4785,13 +4785,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDnrm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDnrm2_rank_0,&
       hipblasDnrm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDnrm2_assumed_rank
 #endif
 #endif
   end interface
@@ -4813,13 +4813,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasScnrm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScnrm2_rank_0,&
       hipblasScnrm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasScnrm2_assumed_rank
 #endif
 #endif
   end interface
@@ -4841,13 +4841,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDznrm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDznrm2_rank_0,&
       hipblasDznrm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDznrm2_assumed_rank
 #endif
 #endif
   end interface
@@ -5139,13 +5139,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSnrm2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSnrm2StridedBatched_rank_0,&
       hipblasSnrm2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSnrm2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -5168,13 +5168,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDnrm2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDnrm2StridedBatched_rank_0,&
       hipblasDnrm2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDnrm2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -5197,13 +5197,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasScnrm2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScnrm2StridedBatched_rank_0,&
       hipblasScnrm2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasScnrm2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -5226,13 +5226,13 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDznrm2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDznrm2StridedBatched_rank_0,&
       hipblasDznrm2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDznrm2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -5359,13 +5359,13 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSrot_rank_0,&
       hipblasSrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSrot_assumed_rank
 #endif
 #endif
   end interface
@@ -5390,13 +5390,13 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDrot_rank_0,&
       hipblasDrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDrot_assumed_rank
 #endif
 #endif
   end interface
@@ -5421,13 +5421,13 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCrot_rank_0,&
       hipblasCrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCrot_assumed_rank
 #endif
 #endif
   end interface
@@ -5452,13 +5452,13 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsrot_rank_0,&
       hipblasCsrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsrot_assumed_rank
 #endif
 #endif
   end interface
@@ -5483,13 +5483,13 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZrot_rank_0,&
       hipblasZrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZrot_assumed_rank
 #endif
 #endif
   end interface
@@ -5514,13 +5514,13 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdrot_rank_0,&
       hipblasZdrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdrot_assumed_rank
 #endif
 #endif
   end interface
@@ -5984,13 +5984,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSrotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSrotStridedBatched_rank_0,&
       hipblasSrotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSrotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -6017,13 +6017,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDrotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDrotStridedBatched_rank_0,&
       hipblasDrotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDrotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -6050,13 +6050,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCrotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCrotStridedBatched_rank_0,&
       hipblasCrotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCrotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -6083,13 +6083,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsrotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsrotStridedBatched_rank_0,&
       hipblasCsrotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsrotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -6116,13 +6116,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZrotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZrotStridedBatched_rank_0,&
       hipblasZrotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZrotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -6149,13 +6149,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdrotStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdrotStridedBatched_rank_0,&
       hipblasZdrotStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdrotStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -6896,13 +6896,13 @@ module hipfort_hipblas
       type(c_ptr),value :: param
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSrotm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSrotm_rank_0,&
       hipblasSrotm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSrotm_assumed_rank
 #endif
 #endif
   end interface
@@ -6926,13 +6926,13 @@ module hipfort_hipblas
       type(c_ptr),value :: param
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDrotm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDrotm_rank_0,&
       hipblasDrotm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDrotm_assumed_rank
 #endif
 #endif
   end interface
@@ -7154,13 +7154,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSrotmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSrotmStridedBatched_rank_0,&
       hipblasSrotmStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSrotmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -7188,13 +7188,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDrotmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDrotmStridedBatched_rank_0,&
       hipblasDrotmStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDrotmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -7656,13 +7656,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSscal_rank_0,&
       hipblasSscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSscal_assumed_rank
 #endif
 #endif
   end interface
@@ -7684,13 +7684,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDscal_rank_0,&
       hipblasDscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDscal_assumed_rank
 #endif
 #endif
   end interface
@@ -7712,13 +7712,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCscal_rank_0,&
       hipblasCscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCscal_assumed_rank
 #endif
 #endif
   end interface
@@ -7740,13 +7740,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsscal_rank_0,&
       hipblasCsscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsscal_assumed_rank
 #endif
 #endif
   end interface
@@ -7768,13 +7768,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZscal_rank_0,&
       hipblasZscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZscal_assumed_rank
 #endif
 #endif
   end interface
@@ -7796,13 +7796,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdscal_rank_0,&
       hipblasZdscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdscal_assumed_rank
 #endif
 #endif
   end interface
@@ -8197,13 +8197,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSscalStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSscalStridedBatched_rank_0,&
       hipblasSscalStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSscalStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8226,13 +8226,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDscalStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDscalStridedBatched_rank_0,&
       hipblasDscalStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDscalStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8255,13 +8255,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCscalStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCscalStridedBatched_rank_0,&
       hipblasCscalStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCscalStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8284,13 +8284,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZscalStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZscalStridedBatched_rank_0,&
       hipblasZscalStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZscalStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8313,13 +8313,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsscalStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsscalStridedBatched_rank_0,&
       hipblasCsscalStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsscalStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8342,13 +8342,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdscalStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdscalStridedBatched_rank_0,&
       hipblasZdscalStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdscalStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8506,13 +8506,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSswap_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSswap_rank_0,&
       hipblasSswap_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSswap_assumed_rank
 #endif
 #endif
   end interface
@@ -8535,13 +8535,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDswap_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDswap_rank_0,&
       hipblasDswap_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDswap_assumed_rank
 #endif
 #endif
   end interface
@@ -8564,13 +8564,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCswap_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCswap_rank_0,&
       hipblasCswap_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCswap_assumed_rank
 #endif
 #endif
   end interface
@@ -8593,13 +8593,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZswap_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZswap_rank_0,&
       hipblasZswap_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZswap_assumed_rank
 #endif
 #endif
   end interface
@@ -8907,13 +8907,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSswapStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSswapStridedBatched_rank_0,&
       hipblasSswapStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSswapStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8938,13 +8938,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDswapStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDswapStridedBatched_rank_0,&
       hipblasDswapStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDswapStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -8969,13 +8969,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCswapStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCswapStridedBatched_rank_0,&
       hipblasCswapStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCswapStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -9000,13 +9000,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZswapStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZswapStridedBatched_rank_0,&
       hipblasZswapStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZswapStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -9177,14 +9177,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgbmv_rank_0,&
       hipblasSgbmv_rank_1,&
       hipblasSgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -9217,14 +9217,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgbmv_rank_0,&
       hipblasDgbmv_rank_1,&
       hipblasDgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -9257,14 +9257,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgbmv_rank_0,&
       hipblasCgbmv_rank_1,&
       hipblasCgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -9297,14 +9297,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgbmv_rank_0,&
       hipblasZgbmv_rank_1,&
       hipblasZgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -9798,14 +9798,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgbmvStridedBatched_rank_0,&
       hipblasSgbmvStridedBatched_rank_1,&
       hipblasSgbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -9840,14 +9840,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgbmvStridedBatched_rank_0,&
       hipblasDgbmvStridedBatched_rank_1,&
       hipblasDgbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -9882,14 +9882,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgbmvStridedBatched_rank_0,&
       hipblasCgbmvStridedBatched_rank_1,&
       hipblasCgbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -9924,14 +9924,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgbmvStridedBatched_rank_0,&
       hipblasZgbmvStridedBatched_rank_1,&
       hipblasZgbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -10121,14 +10121,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemv_rank_0,&
       hipblasSgemv_rank_1,&
       hipblasSgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -10159,14 +10159,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemv_rank_0,&
       hipblasDgemv_rank_1,&
       hipblasDgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -10197,14 +10197,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemv_rank_0,&
       hipblasCgemv_rank_1,&
       hipblasCgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -10235,14 +10235,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemv_rank_0,&
       hipblasZgemv_rank_1,&
       hipblasZgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -10698,14 +10698,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgemvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemvStridedBatched_rank_0,&
       hipblasSgemvStridedBatched_rank_1,&
       hipblasSgemvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgemvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -10742,14 +10742,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgemvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemvStridedBatched_rank_0,&
       hipblasDgemvStridedBatched_rank_1,&
       hipblasDgemvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgemvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -10786,14 +10786,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgemvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemvStridedBatched_rank_0,&
       hipblasCgemvStridedBatched_rank_1,&
       hipblasCgemvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgemvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -10830,14 +10830,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgemvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemvStridedBatched_rank_0,&
       hipblasZgemvStridedBatched_rank_1,&
       hipblasZgemvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgemvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -11027,14 +11027,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSger_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSger_rank_0,&
       hipblasSger_rank_1,&
       hipblasSger_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSger_assumed_rank
 #endif
 #endif
   end interface
@@ -11061,14 +11061,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDger_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDger_rank_0,&
       hipblasDger_rank_1,&
       hipblasDger_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDger_assumed_rank
 #endif
 #endif
   end interface
@@ -11095,14 +11095,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgeru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeru_rank_0,&
       hipblasCgeru_rank_1,&
       hipblasCgeru_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgeru_assumed_rank
 #endif
 #endif
   end interface
@@ -11129,14 +11129,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgerc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgerc_rank_0,&
       hipblasCgerc_rank_1,&
       hipblasCgerc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgerc_assumed_rank
 #endif
 #endif
   end interface
@@ -11163,14 +11163,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgeru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeru_rank_0,&
       hipblasZgeru_rank_1,&
       hipblasZgeru_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgeru_assumed_rank
 #endif
 #endif
   end interface
@@ -11197,14 +11197,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgerc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgerc_rank_0,&
       hipblasZgerc_rank_1,&
       hipblasZgerc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgerc_assumed_rank
 #endif
 #endif
   end interface
@@ -11734,14 +11734,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgerStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgerStridedBatched_rank_0,&
       hipblasSgerStridedBatched_rank_1,&
       hipblasSgerStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgerStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -11772,14 +11772,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgerStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgerStridedBatched_rank_0,&
       hipblasDgerStridedBatched_rank_1,&
       hipblasDgerStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgerStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -11810,14 +11810,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgeruStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeruStridedBatched_rank_0,&
       hipblasCgeruStridedBatched_rank_1,&
       hipblasCgeruStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgeruStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -11848,14 +11848,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgercStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgercStridedBatched_rank_0,&
       hipblasCgercStridedBatched_rank_1,&
       hipblasCgercStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgercStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -11886,14 +11886,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgeruStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeruStridedBatched_rank_0,&
       hipblasZgeruStridedBatched_rank_1,&
       hipblasZgeruStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgeruStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -11924,14 +11924,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgercStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgercStridedBatched_rank_0,&
       hipblasZgercStridedBatched_rank_1,&
       hipblasZgercStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgercStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -12185,14 +12185,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChbmv_rank_0,&
       hipblasChbmv_rank_1,&
       hipblasChbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -12223,14 +12223,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhbmv_rank_0,&
       hipblasZhbmv_rank_1,&
       hipblasZhbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -12554,14 +12554,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChbmvStridedBatched_rank_0,&
       hipblasChbmvStridedBatched_rank_1,&
       hipblasChbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -12594,14 +12594,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhbmvStridedBatched_rank_0,&
       hipblasZhbmvStridedBatched_rank_1,&
       hipblasZhbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -12734,14 +12734,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemv_rank_0,&
       hipblasChemv_rank_1,&
       hipblasChemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChemv_assumed_rank
 #endif
 #endif
   end interface
@@ -12771,14 +12771,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemv_rank_0,&
       hipblasZhemv_rank_1,&
       hipblasZhemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhemv_assumed_rank
 #endif
 #endif
   end interface
@@ -13058,14 +13058,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChemvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemvStridedBatched_rank_0,&
       hipblasChemvStridedBatched_rank_1,&
       hipblasChemvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChemvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -13097,14 +13097,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhemvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemvStridedBatched_rank_0,&
       hipblasZhemvStridedBatched_rank_1,&
       hipblasZhemvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhemvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -13226,14 +13226,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCher_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher_rank_0,&
       hipblasCher_rank_1,&
       hipblasCher_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCher_assumed_rank
 #endif
 #endif
   end interface
@@ -13258,14 +13258,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZher_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher_rank_0,&
       hipblasZher_rank_1,&
       hipblasZher_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZher_assumed_rank
 #endif
 #endif
   end interface
@@ -13517,14 +13517,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCherStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherStridedBatched_rank_0,&
       hipblasCherStridedBatched_rank_1,&
       hipblasCherStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCherStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -13552,14 +13552,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZherStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherStridedBatched_rank_0,&
       hipblasZherStridedBatched_rank_1,&
       hipblasZherStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZherStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -13680,14 +13680,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCher2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2_rank_0,&
       hipblasCher2_rank_1,&
       hipblasCher2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCher2_assumed_rank
 #endif
 #endif
   end interface
@@ -13714,14 +13714,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZher2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2_rank_0,&
       hipblasZher2_rank_1,&
       hipblasZher2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZher2_assumed_rank
 #endif
 #endif
   end interface
@@ -13998,14 +13998,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCher2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2StridedBatched_rank_0,&
       hipblasCher2StridedBatched_rank_1,&
       hipblasCher2StridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCher2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -14036,14 +14036,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZher2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2StridedBatched_rank_0,&
       hipblasZher2StridedBatched_rank_1,&
       hipblasZher2StridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZher2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -14186,13 +14186,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChpmv_rank_0,&
       hipblasChpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14219,13 +14219,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhpmv_rank_0,&
       hipblasZhpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14533,13 +14533,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChpmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChpmvStridedBatched_rank_0,&
       hipblasChpmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChpmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -14570,13 +14570,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhpmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhpmvStridedBatched_rank_0,&
       hipblasZhpmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhpmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -14712,13 +14712,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChpr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChpr_rank_0,&
       hipblasChpr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChpr_assumed_rank
 #endif
 #endif
   end interface
@@ -14742,13 +14742,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhpr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhpr_rank_0,&
       hipblasZhpr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhpr_assumed_rank
 #endif
 #endif
   end interface
@@ -15022,13 +15022,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChprStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChprStridedBatched_rank_0,&
       hipblasChprStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChprStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -15054,13 +15054,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhprStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhprStridedBatched_rank_0,&
       hipblasZhprStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhprStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -15193,13 +15193,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChpr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChpr2_rank_0,&
       hipblasChpr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChpr2_assumed_rank
 #endif
 #endif
   end interface
@@ -15225,13 +15225,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhpr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhpr2_rank_0,&
       hipblasZhpr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhpr2_assumed_rank
 #endif
 #endif
   end interface
@@ -15531,13 +15531,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChpr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChpr2StridedBatched_rank_0,&
       hipblasChpr2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChpr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -15567,13 +15567,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhpr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhpr2StridedBatched_rank_0,&
       hipblasZhpr2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhpr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -15692,14 +15692,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsbmv_rank_0,&
       hipblasSsbmv_rank_1,&
       hipblasSsbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -15730,14 +15730,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsbmv_rank_0,&
       hipblasDsbmv_rank_1,&
       hipblasDsbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -16015,14 +16015,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsbmvStridedBatched_rank_0,&
       hipblasSsbmvStridedBatched_rank_1,&
       hipblasSsbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -16055,14 +16055,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsbmvStridedBatched_rank_0,&
       hipblasDsbmvStridedBatched_rank_1,&
       hipblasDsbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -16179,13 +16179,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSspmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSspmv_rank_0,&
       hipblasSspmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSspmv_assumed_rank
 #endif
 #endif
   end interface
@@ -16212,13 +16212,13 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDspmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDspmv_rank_0,&
       hipblasDspmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDspmv_assumed_rank
 #endif
 #endif
   end interface
@@ -16474,13 +16474,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSspmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSspmvStridedBatched_rank_0,&
       hipblasSspmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSspmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -16511,13 +16511,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDspmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDspmvStridedBatched_rank_0,&
       hipblasDspmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDspmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -16652,13 +16652,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSspr_rank_0,&
       hipblasSspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSspr_assumed_rank
 #endif
 #endif
   end interface
@@ -16682,13 +16682,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDspr_rank_0,&
       hipblasDspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDspr_assumed_rank
 #endif
 #endif
   end interface
@@ -16709,13 +16709,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCspr_rank_0,&
       hipblasCspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCspr_assumed_rank
 #endif
 #endif
   end interface
@@ -16737,13 +16737,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZspr_rank_0,&
       hipblasZspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZspr_assumed_rank
 #endif
 #endif
   end interface
@@ -17132,13 +17132,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsprStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsprStridedBatched_rank_0,&
       hipblasSsprStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsprStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -17164,13 +17164,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsprStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsprStridedBatched_rank_0,&
       hipblasDsprStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsprStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -17196,13 +17196,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsprStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsprStridedBatched_rank_0,&
       hipblasCsprStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsprStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -17228,13 +17228,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsprStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsprStridedBatched_rank_0,&
       hipblasZsprStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsprStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -17412,13 +17412,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSspr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSspr2_rank_0,&
       hipblasSspr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSspr2_assumed_rank
 #endif
 #endif
   end interface
@@ -17444,13 +17444,13 @@ module hipfort_hipblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDspr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDspr2_rank_0,&
       hipblasDspr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDspr2_assumed_rank
 #endif
 #endif
   end interface
@@ -17748,13 +17748,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSspr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSspr2StridedBatched_rank_0,&
       hipblasSspr2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSspr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -17784,13 +17784,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDspr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDspr2StridedBatched_rank_0,&
       hipblasDspr2StridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDspr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -17906,14 +17906,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymv_rank_0,&
       hipblasSsymv_rank_1,&
       hipblasSsymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsymv_assumed_rank
 #endif
 #endif
   end interface
@@ -17943,14 +17943,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymv_rank_0,&
       hipblasDsymv_rank_1,&
       hipblasDsymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsymv_assumed_rank
 #endif
 #endif
   end interface
@@ -17980,14 +17980,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymv_rank_0,&
       hipblasCsymv_rank_1,&
       hipblasCsymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsymv_assumed_rank
 #endif
 #endif
   end interface
@@ -18017,14 +18017,14 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymv_rank_0,&
       hipblasZsymv_rank_1,&
       hipblasZsymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsymv_assumed_rank
 #endif
 #endif
   end interface
@@ -18441,14 +18441,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsymvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymvStridedBatched_rank_0,&
       hipblasSsymvStridedBatched_rank_1,&
       hipblasSsymvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsymvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -18480,14 +18480,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsymvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymvStridedBatched_rank_0,&
       hipblasDsymvStridedBatched_rank_1,&
       hipblasDsymvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsymvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -18519,14 +18519,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsymvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymvStridedBatched_rank_0,&
       hipblasCsymvStridedBatched_rank_1,&
       hipblasCsymvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsymvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -18558,14 +18558,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsymvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymvStridedBatched_rank_0,&
       hipblasZsymvStridedBatched_rank_1,&
       hipblasZsymvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsymvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -18734,14 +18734,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr_rank_0,&
       hipblasSsyr_rank_1,&
       hipblasSsyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyr_assumed_rank
 #endif
 #endif
   end interface
@@ -18766,14 +18766,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr_rank_0,&
       hipblasDsyr_rank_1,&
       hipblasDsyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyr_assumed_rank
 #endif
 #endif
   end interface
@@ -18798,14 +18798,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr_rank_0,&
       hipblasCsyr_rank_1,&
       hipblasCsyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyr_assumed_rank
 #endif
 #endif
   end interface
@@ -18830,14 +18830,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr_rank_0,&
       hipblasZsyr_rank_1,&
       hipblasZsyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyr_assumed_rank
 #endif
 #endif
   end interface
@@ -19185,14 +19185,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyrStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrStridedBatched_rank_0,&
       hipblasSsyrStridedBatched_rank_1,&
       hipblasSsyrStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyrStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -19220,14 +19220,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyrStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrStridedBatched_rank_0,&
       hipblasDsyrStridedBatched_rank_1,&
       hipblasDsyrStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyrStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -19255,14 +19255,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyrStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrStridedBatched_rank_0,&
       hipblasCsyrStridedBatched_rank_1,&
       hipblasCsyrStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyrStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -19290,14 +19290,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyrStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrStridedBatched_rank_0,&
       hipblasZsyrStridedBatched_rank_1,&
       hipblasZsyrStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyrStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -19455,14 +19455,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2_rank_0,&
       hipblasSsyr2_rank_1,&
       hipblasSsyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -19489,14 +19489,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2_rank_0,&
       hipblasDsyr2_rank_1,&
       hipblasDsyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -19523,14 +19523,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2_rank_0,&
       hipblasCsyr2_rank_1,&
       hipblasCsyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -19557,14 +19557,14 @@ module hipfort_hipblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2_rank_0,&
       hipblasZsyr2_rank_1,&
       hipblasZsyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -19954,14 +19954,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2StridedBatched_rank_0,&
       hipblasSsyr2StridedBatched_rank_1,&
       hipblasSsyr2StridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -19992,14 +19992,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2StridedBatched_rank_0,&
       hipblasDsyr2StridedBatched_rank_1,&
       hipblasDsyr2StridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -20030,14 +20030,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2StridedBatched_rank_0,&
       hipblasCsyr2StridedBatched_rank_1,&
       hipblasCsyr2StridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -20068,14 +20068,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyr2StridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2StridedBatched_rank_0,&
       hipblasZsyr2StridedBatched_rank_1,&
       hipblasZsyr2StridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyr2StridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -20277,14 +20277,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbmv_rank_0,&
       hipblasStbmv_rank_1,&
       hipblasStbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20311,14 +20311,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbmv_rank_0,&
       hipblasDtbmv_rank_1,&
       hipblasDtbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20345,14 +20345,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbmv_rank_0,&
       hipblasCtbmv_rank_1,&
       hipblasCtbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20379,14 +20379,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbmv_rank_0,&
       hipblasZtbmv_rank_1,&
       hipblasZtbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20842,14 +20842,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbmvStridedBatched_rank_0,&
       hipblasStbmvStridedBatched_rank_1,&
       hipblasStbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -20879,14 +20879,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbmvStridedBatched_rank_0,&
       hipblasDtbmvStridedBatched_rank_1,&
       hipblasDtbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -20916,14 +20916,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbmvStridedBatched_rank_0,&
       hipblasCtbmvStridedBatched_rank_1,&
       hipblasCtbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -20953,14 +20953,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtbmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbmvStridedBatched_rank_0,&
       hipblasZtbmvStridedBatched_rank_1,&
       hipblasZtbmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtbmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -21142,14 +21142,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbsv_rank_0,&
       hipblasStbsv_rank_1,&
       hipblasStbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -21176,14 +21176,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbsv_rank_0,&
       hipblasDtbsv_rank_1,&
       hipblasDtbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -21210,14 +21210,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbsv_rank_0,&
       hipblasCtbsv_rank_1,&
       hipblasCtbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -21244,14 +21244,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbsv_rank_0,&
       hipblasZtbsv_rank_1,&
       hipblasZtbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -21679,14 +21679,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStbsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbsvStridedBatched_rank_0,&
       hipblasStbsvStridedBatched_rank_1,&
       hipblasStbsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStbsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -21716,14 +21716,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtbsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbsvStridedBatched_rank_0,&
       hipblasDtbsvStridedBatched_rank_1,&
       hipblasDtbsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtbsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -21753,14 +21753,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtbsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbsvStridedBatched_rank_0,&
       hipblasCtbsvStridedBatched_rank_1,&
       hipblasCtbsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtbsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -21790,14 +21790,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtbsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbsvStridedBatched_rank_0,&
       hipblasZtbsvStridedBatched_rank_1,&
       hipblasZtbsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtbsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -21975,13 +21975,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStpmv_rank_0,&
       hipblasStpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22006,13 +22006,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtpmv_rank_0,&
       hipblasDtpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22037,13 +22037,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtpmv_rank_0,&
       hipblasCtpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22068,13 +22068,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtpmv_rank_0,&
       hipblasZtpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22443,13 +22443,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStpmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStpmvStridedBatched_rank_0,&
       hipblasStpmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStpmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -22477,13 +22477,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtpmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtpmvStridedBatched_rank_0,&
       hipblasDtpmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtpmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -22511,13 +22511,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtpmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtpmvStridedBatched_rank_0,&
       hipblasCtpmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtpmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -22545,13 +22545,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtpmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtpmvStridedBatched_rank_0,&
       hipblasZtpmvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtpmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -22716,13 +22716,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStpsv_rank_0,&
       hipblasStpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -22747,13 +22747,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtpsv_rank_0,&
       hipblasDtpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -22778,13 +22778,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtpsv_rank_0,&
       hipblasCtpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -22809,13 +22809,13 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtpsv_rank_0,&
       hipblasZtpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -23194,13 +23194,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStpsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStpsvStridedBatched_rank_0,&
       hipblasStpsvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStpsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -23228,13 +23228,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtpsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtpsvStridedBatched_rank_0,&
       hipblasDtpsvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtpsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -23262,13 +23262,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtpsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtpsvStridedBatched_rank_0,&
       hipblasCtpsvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtpsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -23296,13 +23296,13 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtpsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtpsvStridedBatched_rank_0,&
       hipblasZtpsvStridedBatched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtpsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -23467,14 +23467,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmv_rank_0,&
       hipblasStrmv_rank_1,&
       hipblasStrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23500,14 +23500,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmv_rank_0,&
       hipblasDtrmv_rank_1,&
       hipblasDtrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23533,14 +23533,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmv_rank_0,&
       hipblasCtrmv_rank_1,&
       hipblasCtrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23566,14 +23566,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmv_rank_0,&
       hipblasZtrmv_rank_1,&
       hipblasZtrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23971,14 +23971,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmvStridedBatched_rank_0,&
       hipblasStrmvStridedBatched_rank_1,&
       hipblasStrmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24007,14 +24007,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmvStridedBatched_rank_0,&
       hipblasDtrmvStridedBatched_rank_1,&
       hipblasDtrmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24043,14 +24043,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmvStridedBatched_rank_0,&
       hipblasCtrmvStridedBatched_rank_1,&
       hipblasCtrmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24079,14 +24079,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrmvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmvStridedBatched_rank_0,&
       hipblasZtrmvStridedBatched_rank_1,&
       hipblasZtrmvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrmvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24254,14 +24254,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsv_rank_0,&
       hipblasStrsv_rank_1,&
       hipblasStrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -24287,14 +24287,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsv_rank_0,&
       hipblasDtrsv_rank_1,&
       hipblasDtrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -24320,14 +24320,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsv_rank_0,&
       hipblasCtrsv_rank_1,&
       hipblasCtrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -24353,14 +24353,14 @@ module hipfort_hipblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsv_rank_0,&
       hipblasZtrsv_rank_1,&
       hipblasZtrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -24757,14 +24757,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsvStridedBatched_rank_0,&
       hipblasStrsvStridedBatched_rank_1,&
       hipblasStrsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24793,14 +24793,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsvStridedBatched_rank_0,&
       hipblasDtrsvStridedBatched_rank_1,&
       hipblasDtrsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24829,14 +24829,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsvStridedBatched_rank_0,&
       hipblasCtrsvStridedBatched_rank_1,&
       hipblasCtrsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -24865,14 +24865,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrsvStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsvStridedBatched_rank_0,&
       hipblasZtrsvStridedBatched_rank_1,&
       hipblasZtrsvStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrsvStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -25078,14 +25078,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemm_rank_0,&
       hipblasSgemm_rank_1,&
       hipblasSgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -25118,14 +25118,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemm_rank_0,&
       hipblasDgemm_rank_1,&
       hipblasDgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -25158,14 +25158,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemm_rank_0,&
       hipblasCgemm_rank_1,&
       hipblasCgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -25198,14 +25198,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemm_rank_0,&
       hipblasZgemm_rank_1,&
       hipblasZgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -26042,14 +26042,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgemmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemmStridedBatched_rank_0,&
       hipblasSgemmStridedBatched_rank_1,&
       hipblasSgemmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgemmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -26088,14 +26088,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgemmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemmStridedBatched_rank_0,&
       hipblasDgemmStridedBatched_rank_1,&
       hipblasDgemmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgemmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -26134,14 +26134,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgemmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemmStridedBatched_rank_0,&
       hipblasCgemmStridedBatched_rank_1,&
       hipblasCgemmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgemmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -26180,14 +26180,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgemmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemmStridedBatched_rank_0,&
       hipblasZgemmStridedBatched_rank_1,&
       hipblasZgemmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgemmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -26451,14 +26451,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCherk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherk_rank_0,&
       hipblasCherk_rank_1,&
       hipblasCherk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCherk_assumed_rank
 #endif
 #endif
   end interface
@@ -26488,14 +26488,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZherk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherk_rank_0,&
       hipblasZherk_rank_1,&
       hipblasZherk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZherk_assumed_rank
 #endif
 #endif
   end interface
@@ -26801,14 +26801,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCherkStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherkStridedBatched_rank_0,&
       hipblasCherkStridedBatched_rank_1,&
       hipblasCherkStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCherkStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -26839,14 +26839,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZherkStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherkStridedBatched_rank_0,&
       hipblasZherkStridedBatched_rank_1,&
       hipblasZherkStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZherkStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -27002,14 +27002,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCherkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherkx_rank_0,&
       hipblasCherkx_rank_1,&
       hipblasCherkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCherkx_assumed_rank
 #endif
 #endif
   end interface
@@ -27041,14 +27041,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZherkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherkx_rank_0,&
       hipblasZherkx_rank_1,&
       hipblasZherkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZherkx_assumed_rank
 #endif
 #endif
   end interface
@@ -27402,14 +27402,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCherkxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherkxStridedBatched_rank_0,&
       hipblasCherkxStridedBatched_rank_1,&
       hipblasCherkxStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCherkxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -27443,14 +27443,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZherkxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherkxStridedBatched_rank_0,&
       hipblasZherkxStridedBatched_rank_1,&
       hipblasZherkxStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZherkxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -27610,14 +27610,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCher2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2k_rank_0,&
       hipblasCher2k_rank_1,&
       hipblasCher2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCher2k_assumed_rank
 #endif
 #endif
   end interface
@@ -27649,14 +27649,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZher2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2k_rank_0,&
       hipblasZher2k_rank_1,&
       hipblasZher2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZher2k_assumed_rank
 #endif
 #endif
   end interface
@@ -28003,14 +28003,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCher2kStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2kStridedBatched_rank_0,&
       hipblasCher2kStridedBatched_rank_1,&
       hipblasCher2kStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCher2kStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -28044,14 +28044,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZher2kStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2kStridedBatched_rank_0,&
       hipblasZher2kStridedBatched_rank_1,&
       hipblasZher2kStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZher2kStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -28205,14 +28205,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymm_rank_0,&
       hipblasSsymm_rank_1,&
       hipblasSsymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsymm_assumed_rank
 #endif
 #endif
   end interface
@@ -28244,14 +28244,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymm_rank_0,&
       hipblasDsymm_rank_1,&
       hipblasDsymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsymm_assumed_rank
 #endif
 #endif
   end interface
@@ -28283,14 +28283,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymm_rank_0,&
       hipblasCsymm_rank_1,&
       hipblasCsymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsymm_assumed_rank
 #endif
 #endif
   end interface
@@ -28322,14 +28322,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymm_rank_0,&
       hipblasZsymm_rank_1,&
       hipblasZsymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsymm_assumed_rank
 #endif
 #endif
   end interface
@@ -28822,14 +28822,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsymmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymmStridedBatched_rank_0,&
       hipblasSsymmStridedBatched_rank_1,&
       hipblasSsymmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsymmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -28863,14 +28863,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsymmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymmStridedBatched_rank_0,&
       hipblasDsymmStridedBatched_rank_1,&
       hipblasDsymmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsymmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -28904,14 +28904,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsymmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymmStridedBatched_rank_0,&
       hipblasCsymmStridedBatched_rank_1,&
       hipblasCsymmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsymmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -28945,14 +28945,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsymmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymmStridedBatched_rank_0,&
       hipblasZsymmStridedBatched_rank_1,&
       hipblasZsymmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsymmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -29163,14 +29163,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrk_rank_0,&
       hipblasSsyrk_rank_1,&
       hipblasSsyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -29200,14 +29200,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrk_rank_0,&
       hipblasDsyrk_rank_1,&
       hipblasDsyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -29237,14 +29237,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrk_rank_0,&
       hipblasCsyrk_rank_1,&
       hipblasCsyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -29274,14 +29274,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrk_rank_0,&
       hipblasZsyrk_rank_1,&
       hipblasZsyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -29737,14 +29737,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyrkStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrkStridedBatched_rank_0,&
       hipblasSsyrkStridedBatched_rank_1,&
       hipblasSsyrkStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyrkStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -29775,14 +29775,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyrkStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrkStridedBatched_rank_0,&
       hipblasDsyrkStridedBatched_rank_1,&
       hipblasDsyrkStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyrkStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -29813,14 +29813,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyrkStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrkStridedBatched_rank_0,&
       hipblasCsyrkStridedBatched_rank_1,&
       hipblasCsyrkStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyrkStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -29851,14 +29851,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyrkStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrkStridedBatched_rank_0,&
       hipblasZsyrkStridedBatched_rank_1,&
       hipblasZsyrkStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyrkStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -30064,14 +30064,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2k_rank_0,&
       hipblasSsyr2k_rank_1,&
       hipblasSsyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -30103,14 +30103,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2k_rank_0,&
       hipblasDsyr2k_rank_1,&
       hipblasDsyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -30142,14 +30142,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2k_rank_0,&
       hipblasCsyr2k_rank_1,&
       hipblasCsyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -30181,14 +30181,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2k_rank_0,&
       hipblasZsyr2k_rank_1,&
       hipblasZsyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -30694,14 +30694,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyr2kStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2kStridedBatched_rank_0,&
       hipblasSsyr2kStridedBatched_rank_1,&
       hipblasSsyr2kStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyr2kStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -30735,14 +30735,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyr2kStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2kStridedBatched_rank_0,&
       hipblasDsyr2kStridedBatched_rank_1,&
       hipblasDsyr2kStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyr2kStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -30776,14 +30776,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyr2kStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2kStridedBatched_rank_0,&
       hipblasCsyr2kStridedBatched_rank_1,&
       hipblasCsyr2kStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyr2kStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -30817,14 +30817,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyr2kStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2kStridedBatched_rank_0,&
       hipblasZsyr2kStridedBatched_rank_1,&
       hipblasZsyr2kStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyr2kStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -31046,14 +31046,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrkx_rank_0,&
       hipblasSsyrkx_rank_1,&
       hipblasSsyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -31085,14 +31085,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrkx_rank_0,&
       hipblasDsyrkx_rank_1,&
       hipblasDsyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -31124,14 +31124,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrkx_rank_0,&
       hipblasCsyrkx_rank_1,&
       hipblasCsyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -31163,14 +31163,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrkx_rank_0,&
       hipblasZsyrkx_rank_1,&
       hipblasZsyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -31684,14 +31684,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSsyrkxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrkxStridedBatched_rank_0,&
       hipblasSsyrkxStridedBatched_rank_1,&
       hipblasSsyrkxStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSsyrkxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -31725,14 +31725,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDsyrkxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrkxStridedBatched_rank_0,&
       hipblasDsyrkxStridedBatched_rank_1,&
       hipblasDsyrkxStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDsyrkxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -31766,14 +31766,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCsyrkxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrkxStridedBatched_rank_0,&
       hipblasCsyrkxStridedBatched_rank_1,&
       hipblasCsyrkxStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCsyrkxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -31807,14 +31807,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZsyrkxStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrkxStridedBatched_rank_0,&
       hipblasZsyrkxStridedBatched_rank_1,&
       hipblasZsyrkxStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZsyrkxStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -32008,14 +32008,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeam_rank_0,&
       hipblasSgeam_rank_1,&
       hipblasSgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -32047,14 +32047,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeam_rank_0,&
       hipblasDgeam_rank_1,&
       hipblasDgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -32086,14 +32086,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeam_rank_0,&
       hipblasCgeam_rank_1,&
       hipblasCgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -32125,14 +32125,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeam_rank_0,&
       hipblasZgeam_rank_1,&
       hipblasZgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -32611,14 +32611,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgeamStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeamStridedBatched_rank_0,&
       hipblasSgeamStridedBatched_rank_1,&
       hipblasSgeamStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgeamStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -32652,14 +32652,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgeamStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeamStridedBatched_rank_0,&
       hipblasDgeamStridedBatched_rank_1,&
       hipblasDgeamStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgeamStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -32693,14 +32693,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgeamStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeamStridedBatched_rank_0,&
       hipblasCgeamStridedBatched_rank_1,&
       hipblasCgeamStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgeamStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -32734,14 +32734,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgeamStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeamStridedBatched_rank_0,&
       hipblasZgeamStridedBatched_rank_1,&
       hipblasZgeamStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgeamStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -32956,14 +32956,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemm_rank_0,&
       hipblasChemm_rank_1,&
       hipblasChemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChemm_assumed_rank
 #endif
 #endif
   end interface
@@ -32995,14 +32995,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemm_rank_0,&
       hipblasZhemm_rank_1,&
       hipblasZhemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhemm_assumed_rank
 #endif
 #endif
   end interface
@@ -33338,14 +33338,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasChemmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemmStridedBatched_rank_0,&
       hipblasChemmStridedBatched_rank_1,&
       hipblasChemmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasChemmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -33379,14 +33379,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZhemmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemmStridedBatched_rank_0,&
       hipblasZhemmStridedBatched_rank_1,&
       hipblasZhemmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZhemmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -33565,14 +33565,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmm_rank_0,&
       hipblasStrmm_rank_1,&
       hipblasStrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -33605,14 +33605,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmm_rank_0,&
       hipblasDtrmm_rank_1,&
       hipblasDtrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -33645,14 +33645,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmm_rank_0,&
       hipblasCtrmm_rank_1,&
       hipblasCtrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -33685,14 +33685,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmm_rank_0,&
       hipblasZtrmm_rank_1,&
       hipblasZtrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -34258,14 +34258,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmmStridedBatched_rank_0,&
       hipblasStrmmStridedBatched_rank_1,&
       hipblasStrmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -34300,14 +34300,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmmStridedBatched_rank_0,&
       hipblasDtrmmStridedBatched_rank_1,&
       hipblasDtrmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -34342,14 +34342,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmmStridedBatched_rank_0,&
       hipblasCtrmmStridedBatched_rank_1,&
       hipblasCtrmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -34384,14 +34384,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmmStridedBatched_rank_0,&
       hipblasZtrmmStridedBatched_rank_1,&
       hipblasZtrmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -34619,14 +34619,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsm_rank_0,&
       hipblasStrsm_rank_1,&
       hipblasStrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -34657,14 +34657,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsm_rank_0,&
       hipblasDtrsm_rank_1,&
       hipblasDtrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -34695,14 +34695,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsm_rank_0,&
       hipblasCtrsm_rank_1,&
       hipblasCtrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -34733,14 +34733,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsm_rank_0,&
       hipblasZtrsm_rank_1,&
       hipblasZtrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -35238,14 +35238,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrsmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsmStridedBatched_rank_0,&
       hipblasStrsmStridedBatched_rank_1,&
       hipblasStrsmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrsmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35277,14 +35277,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrsmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsmStridedBatched_rank_0,&
       hipblasDtrsmStridedBatched_rank_1,&
       hipblasDtrsmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrsmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35316,14 +35316,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrsmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsmStridedBatched_rank_0,&
       hipblasCtrsmStridedBatched_rank_1,&
       hipblasCtrsmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrsmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35355,14 +35355,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrsmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsmStridedBatched_rank_0,&
       hipblasZtrsmStridedBatched_rank_1,&
       hipblasZtrsmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrsmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35527,14 +35527,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrtri_rank_0,&
       hipblasStrtri_rank_1,&
       hipblasStrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -35557,14 +35557,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrtri_rank_0,&
       hipblasDtrtri_rank_1,&
       hipblasDtrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -35587,14 +35587,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrtri_rank_0,&
       hipblasCtrtri_rank_1,&
       hipblasCtrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -35617,14 +35617,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrtri_rank_0,&
       hipblasZtrtri_rank_1,&
       hipblasZtrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -35810,14 +35810,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasStrtriStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrtriStridedBatched_rank_0,&
       hipblasStrtriStridedBatched_rank_1,&
       hipblasStrtriStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasStrtriStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35845,14 +35845,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDtrtriStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrtriStridedBatched_rank_0,&
       hipblasDtrtriStridedBatched_rank_1,&
       hipblasDtrtriStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDtrtriStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35880,14 +35880,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCtrtriStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrtriStridedBatched_rank_0,&
       hipblasCtrtriStridedBatched_rank_1,&
       hipblasCtrtriStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCtrtriStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35915,14 +35915,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZtrtriStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrtriStridedBatched_rank_0,&
       hipblasZtrtriStridedBatched_rank_1,&
       hipblasZtrtriStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZtrtriStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -35984,14 +35984,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdgmm_rank_0,&
       hipblasSdgmm_rank_1,&
       hipblasSdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -36018,14 +36018,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdgmm_rank_0,&
       hipblasDdgmm_rank_1,&
       hipblasDdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -36052,14 +36052,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdgmm_rank_0,&
       hipblasCdgmm_rank_1,&
       hipblasCdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -36086,14 +36086,14 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdgmm_rank_0,&
       hipblasZdgmm_rank_1,&
       hipblasZdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -36485,14 +36485,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSdgmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdgmmStridedBatched_rank_0,&
       hipblasSdgmmStridedBatched_rank_1,&
       hipblasSdgmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSdgmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -36523,14 +36523,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDdgmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdgmmStridedBatched_rank_0,&
       hipblasDdgmmStridedBatched_rank_1,&
       hipblasDdgmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDdgmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -36561,14 +36561,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCdgmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdgmmStridedBatched_rank_0,&
       hipblasCdgmmStridedBatched_rank_1,&
       hipblasCdgmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCdgmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -36599,14 +36599,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZdgmmStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdgmmStridedBatched_rank_0,&
       hipblasZdgmmStridedBatched_rank_1,&
       hipblasZdgmmStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZdgmmStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -36779,14 +36779,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgetrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgetrf_rank_0,&
       hipblasSgetrf_rank_1,&
       hipblasSgetrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -36807,14 +36807,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgetrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgetrf_rank_0,&
       hipblasDgetrf_rank_1,&
       hipblasDgetrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -36835,14 +36835,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgetrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgetrf_rank_0,&
       hipblasCgetrf_rank_1,&
       hipblasCgetrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -36863,14 +36863,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgetrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgetrf_rank_0,&
       hipblasZgetrf_rank_1,&
       hipblasZgetrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -37092,14 +37092,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgetrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgetrfStridedBatched_rank_0,&
       hipblasSgetrfStridedBatched_rank_1,&
       hipblasSgetrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgetrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37124,14 +37124,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgetrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgetrfStridedBatched_rank_0,&
       hipblasDgetrfStridedBatched_rank_1,&
       hipblasDgetrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgetrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37156,14 +37156,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgetrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgetrfStridedBatched_rank_0,&
       hipblasCgetrfStridedBatched_rank_1,&
       hipblasCgetrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgetrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37188,14 +37188,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgetrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgetrfStridedBatched_rank_0,&
       hipblasZgetrfStridedBatched_rank_1,&
       hipblasZgetrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgetrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37266,14 +37266,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgetrs_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgetrs_rank_0,&
       hipblasSgetrs_rank_1,&
       hipblasSgetrs_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -37299,14 +37299,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgetrs_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgetrs_rank_0,&
       hipblasDgetrs_rank_1,&
       hipblasDgetrs_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -37332,14 +37332,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgetrs_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgetrs_rank_0,&
       hipblasCgetrs_rank_1,&
       hipblasCgetrs_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -37365,14 +37365,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgetrs_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgetrs_rank_0,&
       hipblasZgetrs_rank_1,&
       hipblasZgetrs_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -37624,14 +37624,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgetrsStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgetrsStridedBatched_rank_0,&
       hipblasSgetrsStridedBatched_rank_1,&
       hipblasSgetrsStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgetrsStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37662,14 +37662,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgetrsStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgetrsStridedBatched_rank_0,&
       hipblasDgetrsStridedBatched_rank_1,&
       hipblasDgetrsStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgetrsStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37700,14 +37700,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgetrsStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgetrsStridedBatched_rank_0,&
       hipblasCgetrsStridedBatched_rank_1,&
       hipblasCgetrsStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgetrsStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -37738,14 +37738,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgetrsStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgetrsStridedBatched_rank_0,&
       hipblasZgetrsStridedBatched_rank_1,&
       hipblasZgetrsStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgetrsStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -38481,14 +38481,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgeqrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeqrf_rank_0,&
       hipblasSgeqrf_rank_1,&
       hipblasSgeqrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -38510,14 +38510,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgeqrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeqrf_rank_0,&
       hipblasDgeqrf_rank_1,&
       hipblasDgeqrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -38539,14 +38539,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgeqrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeqrf_rank_0,&
       hipblasCgeqrf_rank_1,&
       hipblasCgeqrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -38568,14 +38568,14 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgeqrf_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeqrf_rank_0,&
       hipblasZgeqrf_rank_1,&
       hipblasZgeqrf_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -38813,14 +38813,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSgeqrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeqrfStridedBatched_rank_0,&
       hipblasSgeqrfStridedBatched_rank_1,&
       hipblasSgeqrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSgeqrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -38846,14 +38846,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasDgeqrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeqrfStridedBatched_rank_0,&
       hipblasDgeqrfStridedBatched_rank_1,&
       hipblasDgeqrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasDgeqrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -38879,14 +38879,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasCgeqrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeqrfStridedBatched_rank_0,&
       hipblasCgeqrfStridedBatched_rank_1,&
       hipblasCgeqrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasCgeqrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -38912,14 +38912,14 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasZgeqrfStridedBatched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeqrfStridedBatched_rank_0,&
       hipblasZgeqrfStridedBatched_rank_1,&
       hipblasZgeqrfStridedBatched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasZgeqrfStridedBatched_assumed_rank
 #endif
 #endif
   end interface
@@ -42029,13 +42029,7 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetVector_l_assumed_rank,hipblasSetVector_i4_assumed_rank,&
-      hipblasSetVector_i8_assumed_rank,hipblasSetVector_r4_assumed_rank,&
-      hipblasSetVector_r8_assumed_rank,hipblasSetVector_c4_assumed_rank,&
-      hipblasSetVector_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasSetVector_l_rank_0,hipblasSetVector_l_full_rank,&
       hipblasSetVector_i4_rank_0,hipblasSetVector_i4_full_rank,&
       hipblasSetVector_i8_rank_0,hipblasSetVector_i8_full_rank,&
@@ -42043,6 +42037,12 @@ module hipfort_hipblas
       hipblasSetVector_r8_rank_0,hipblasSetVector_r8_full_rank,&
       hipblasSetVector_c4_rank_0,hipblasSetVector_c4_full_rank,&
       hipblasSetVector_c8_rank_0,hipblasSetVector_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSetVector_l_assumed_rank,hipblasSetVector_i4_assumed_rank,&
+      hipblasSetVector_i8_assumed_rank,hipblasSetVector_r4_assumed_rank,&
+      hipblasSetVector_r8_assumed_rank,hipblasSetVector_c4_assumed_rank,&
+      hipblasSetVector_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42067,13 +42067,7 @@ module hipfort_hipblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetVector_l_assumed_rank,hipblasGetVector_i4_assumed_rank,&
-      hipblasGetVector_i8_assumed_rank,hipblasGetVector_r4_assumed_rank,&
-      hipblasGetVector_r8_assumed_rank,hipblasGetVector_c4_assumed_rank,&
-      hipblasGetVector_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasGetVector_l_rank_0,hipblasGetVector_l_full_rank,&
       hipblasGetVector_i4_rank_0,hipblasGetVector_i4_full_rank,&
       hipblasGetVector_i8_rank_0,hipblasGetVector_i8_full_rank,&
@@ -42081,6 +42075,12 @@ module hipfort_hipblas
       hipblasGetVector_r8_rank_0,hipblasGetVector_r8_full_rank,&
       hipblasGetVector_c4_rank_0,hipblasGetVector_c4_full_rank,&
       hipblasGetVector_c8_rank_0,hipblasGetVector_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasGetVector_l_assumed_rank,hipblasGetVector_i4_assumed_rank,&
+      hipblasGetVector_i8_assumed_rank,hipblasGetVector_r4_assumed_rank,&
+      hipblasGetVector_r8_assumed_rank,hipblasGetVector_c4_assumed_rank,&
+      hipblasGetVector_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42106,13 +42106,7 @@ module hipfort_hipblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetMatrix_l_assumed_rank,hipblasSetMatrix_i4_assumed_rank,&
-      hipblasSetMatrix_i8_assumed_rank,hipblasSetMatrix_r4_assumed_rank,&
-      hipblasSetMatrix_r8_assumed_rank,hipblasSetMatrix_c4_assumed_rank,&
-      hipblasSetMatrix_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasSetMatrix_l_full_rank,hipblasSetMatrix_l_rank_0,hipblasSetMatrix_l_rank_1,&
       hipblasSetMatrix_i4_full_rank,hipblasSetMatrix_i4_rank_0,hipblasSetMatrix_i4_rank_1,&
       hipblasSetMatrix_i8_full_rank,hipblasSetMatrix_i8_rank_0,hipblasSetMatrix_i8_rank_1,&
@@ -42120,6 +42114,12 @@ module hipfort_hipblas
       hipblasSetMatrix_r8_full_rank,hipblasSetMatrix_r8_rank_0,hipblasSetMatrix_r8_rank_1,&
       hipblasSetMatrix_c4_full_rank,hipblasSetMatrix_c4_rank_0,hipblasSetMatrix_c4_rank_1,&
       hipblasSetMatrix_c8_full_rank,hipblasSetMatrix_c8_rank_0,hipblasSetMatrix_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSetMatrix_l_assumed_rank,hipblasSetMatrix_i4_assumed_rank,&
+      hipblasSetMatrix_i8_assumed_rank,hipblasSetMatrix_r4_assumed_rank,&
+      hipblasSetMatrix_r8_assumed_rank,hipblasSetMatrix_c4_assumed_rank,&
+      hipblasSetMatrix_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42145,13 +42145,7 @@ module hipfort_hipblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetMatrix_l_assumed_rank,hipblasGetMatrix_i4_assumed_rank,&
-      hipblasGetMatrix_i8_assumed_rank,hipblasGetMatrix_r4_assumed_rank,&
-      hipblasGetMatrix_r8_assumed_rank,hipblasGetMatrix_c4_assumed_rank,&
-      hipblasGetMatrix_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasGetMatrix_l_full_rank,hipblasGetMatrix_l_rank_0,hipblasGetMatrix_l_rank_1,&
       hipblasGetMatrix_i4_full_rank,hipblasGetMatrix_i4_rank_0,hipblasGetMatrix_i4_rank_1,&
       hipblasGetMatrix_i8_full_rank,hipblasGetMatrix_i8_rank_0,hipblasGetMatrix_i8_rank_1,&
@@ -42159,6 +42153,12 @@ module hipfort_hipblas
       hipblasGetMatrix_r8_full_rank,hipblasGetMatrix_r8_rank_0,hipblasGetMatrix_r8_rank_1,&
       hipblasGetMatrix_c4_full_rank,hipblasGetMatrix_c4_rank_0,hipblasGetMatrix_c4_rank_1,&
       hipblasGetMatrix_c8_full_rank,hipblasGetMatrix_c8_rank_0,hipblasGetMatrix_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasGetMatrix_l_assumed_rank,hipblasGetMatrix_i4_assumed_rank,&
+      hipblasGetMatrix_i8_assumed_rank,hipblasGetMatrix_r4_assumed_rank,&
+      hipblasGetMatrix_r8_assumed_rank,hipblasGetMatrix_c4_assumed_rank,&
+      hipblasGetMatrix_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42184,13 +42184,7 @@ module hipfort_hipblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetVectorAsync_l_assumed_rank,hipblasSetVectorAsync_i4_assumed_rank,&
-      hipblasSetVectorAsync_i8_assumed_rank,hipblasSetVectorAsync_r4_assumed_rank,&
-      hipblasSetVectorAsync_r8_assumed_rank,hipblasSetVectorAsync_c4_assumed_rank,&
-      hipblasSetVectorAsync_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasSetVectorAsync_l_rank_0,hipblasSetVectorAsync_l_full_rank,&
       hipblasSetVectorAsync_i4_rank_0,hipblasSetVectorAsync_i4_full_rank,&
       hipblasSetVectorAsync_i8_rank_0,hipblasSetVectorAsync_i8_full_rank,&
@@ -42198,6 +42192,12 @@ module hipfort_hipblas
       hipblasSetVectorAsync_r8_rank_0,hipblasSetVectorAsync_r8_full_rank,&
       hipblasSetVectorAsync_c4_rank_0,hipblasSetVectorAsync_c4_full_rank,&
       hipblasSetVectorAsync_c8_rank_0,hipblasSetVectorAsync_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSetVectorAsync_l_assumed_rank,hipblasSetVectorAsync_i4_assumed_rank,&
+      hipblasSetVectorAsync_i8_assumed_rank,hipblasSetVectorAsync_r4_assumed_rank,&
+      hipblasSetVectorAsync_r8_assumed_rank,hipblasSetVectorAsync_c4_assumed_rank,&
+      hipblasSetVectorAsync_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42223,13 +42223,7 @@ module hipfort_hipblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetVectorAsync_l_assumed_rank,hipblasGetVectorAsync_i4_assumed_rank,&
-      hipblasGetVectorAsync_i8_assumed_rank,hipblasGetVectorAsync_r4_assumed_rank,&
-      hipblasGetVectorAsync_r8_assumed_rank,hipblasGetVectorAsync_c4_assumed_rank,&
-      hipblasGetVectorAsync_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasGetVectorAsync_l_rank_0,hipblasGetVectorAsync_l_full_rank,&
       hipblasGetVectorAsync_i4_rank_0,hipblasGetVectorAsync_i4_full_rank,&
       hipblasGetVectorAsync_i8_rank_0,hipblasGetVectorAsync_i8_full_rank,&
@@ -42237,6 +42231,12 @@ module hipfort_hipblas
       hipblasGetVectorAsync_r8_rank_0,hipblasGetVectorAsync_r8_full_rank,&
       hipblasGetVectorAsync_c4_rank_0,hipblasGetVectorAsync_c4_full_rank,&
       hipblasGetVectorAsync_c8_rank_0,hipblasGetVectorAsync_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasGetVectorAsync_l_assumed_rank,hipblasGetVectorAsync_i4_assumed_rank,&
+      hipblasGetVectorAsync_i8_assumed_rank,hipblasGetVectorAsync_r4_assumed_rank,&
+      hipblasGetVectorAsync_r8_assumed_rank,hipblasGetVectorAsync_c4_assumed_rank,&
+      hipblasGetVectorAsync_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42263,13 +42263,7 @@ module hipfort_hipblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasSetMatrixAsync_l_assumed_rank,hipblasSetMatrixAsync_i4_assumed_rank,&
-      hipblasSetMatrixAsync_i8_assumed_rank,hipblasSetMatrixAsync_r4_assumed_rank,&
-      hipblasSetMatrixAsync_r8_assumed_rank,hipblasSetMatrixAsync_c4_assumed_rank,&
-      hipblasSetMatrixAsync_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasSetMatrixAsync_l_full_rank,hipblasSetMatrixAsync_l_rank_0,hipblasSetMatrixAsync_l_rank_1,&
       hipblasSetMatrixAsync_i4_full_rank,hipblasSetMatrixAsync_i4_rank_0,hipblasSetMatrixAsync_i4_rank_1,&
       hipblasSetMatrixAsync_i8_full_rank,hipblasSetMatrixAsync_i8_rank_0,hipblasSetMatrixAsync_i8_rank_1,&
@@ -42277,6 +42271,12 @@ module hipfort_hipblas
       hipblasSetMatrixAsync_r8_full_rank,hipblasSetMatrixAsync_r8_rank_0,hipblasSetMatrixAsync_r8_rank_1,&
       hipblasSetMatrixAsync_c4_full_rank,hipblasSetMatrixAsync_c4_rank_0,hipblasSetMatrixAsync_c4_rank_1,&
       hipblasSetMatrixAsync_c8_full_rank,hipblasSetMatrixAsync_c8_rank_0,hipblasSetMatrixAsync_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasSetMatrixAsync_l_assumed_rank,hipblasSetMatrixAsync_i4_assumed_rank,&
+      hipblasSetMatrixAsync_i8_assumed_rank,hipblasSetMatrixAsync_r4_assumed_rank,&
+      hipblasSetMatrixAsync_r8_assumed_rank,hipblasSetMatrixAsync_c4_assumed_rank,&
+      hipblasSetMatrixAsync_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -42303,13 +42303,7 @@ module hipfort_hipblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipblasGetMatrixAsync_l_assumed_rank,hipblasGetMatrixAsync_i4_assumed_rank,&
-      hipblasGetMatrixAsync_i8_assumed_rank,hipblasGetMatrixAsync_r4_assumed_rank,&
-      hipblasGetMatrixAsync_r8_assumed_rank,hipblasGetMatrixAsync_c4_assumed_rank,&
-      hipblasGetMatrixAsync_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipblasGetMatrixAsync_l_full_rank,hipblasGetMatrixAsync_l_rank_0,hipblasGetMatrixAsync_l_rank_1,&
       hipblasGetMatrixAsync_i4_full_rank,hipblasGetMatrixAsync_i4_rank_0,hipblasGetMatrixAsync_i4_rank_1,&
       hipblasGetMatrixAsync_i8_full_rank,hipblasGetMatrixAsync_i8_rank_0,hipblasGetMatrixAsync_i8_rank_1,&
@@ -42317,15 +42311,21 @@ module hipfort_hipblas
       hipblasGetMatrixAsync_r8_full_rank,hipblasGetMatrixAsync_r8_rank_0,hipblasGetMatrixAsync_r8_rank_1,&
       hipblasGetMatrixAsync_c4_full_rank,hipblasGetMatrixAsync_c4_rank_0,hipblasGetMatrixAsync_c4_rank_1,&
       hipblasGetMatrixAsync_c8_full_rank,hipblasGetMatrixAsync_c8_rank_0,hipblasGetMatrixAsync_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipblasGetMatrixAsync_l_assumed_rank,hipblasGetMatrixAsync_i4_assumed_rank,&
+      hipblasGetMatrixAsync_i8_assumed_rank,hipblasGetMatrixAsync_r4_assumed_rank,&
+      hipblasGetMatrixAsync_r8_assumed_rank,hipblasGetMatrixAsync_c4_assumed_rank,&
+      hipblasGetMatrixAsync_c8_assumed_rank
 #endif
 #endif
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIsamax_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42370,7 +42370,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIdamax_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42415,7 +42415,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIcamax_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42460,7 +42460,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIzamax_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42506,7 +42506,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIsamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42562,7 +42562,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIdamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42618,7 +42618,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIcamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42674,7 +42674,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIzamaxStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42729,7 +42729,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIsamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42774,7 +42774,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIdamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42819,7 +42819,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIcamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42864,7 +42864,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIzamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42910,7 +42910,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIsaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42966,7 +42966,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIdaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43022,7 +43022,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIcaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43078,7 +43078,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasIzaminStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43133,7 +43133,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43178,7 +43178,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43223,7 +43223,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasScasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43268,7 +43268,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDzasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43314,7 +43314,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43370,7 +43370,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43426,7 +43426,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasScasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43482,7 +43482,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDzasumStridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43537,7 +43537,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSaxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43588,7 +43588,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDaxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43639,7 +43639,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCaxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43690,7 +43690,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZaxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -43742,7 +43742,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -43810,7 +43810,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -43878,7 +43878,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -43946,7 +43946,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZaxpyStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -44013,7 +44013,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasScopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44061,7 +44061,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDcopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44109,7 +44109,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCcopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44157,7 +44157,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZcopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44206,7 +44206,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasScopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -44269,7 +44269,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDcopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -44332,7 +44332,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCcopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -44395,7 +44395,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZcopyStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -44457,7 +44457,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSdot_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44508,7 +44508,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDdot_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44559,7 +44559,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCdotc_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44610,7 +44610,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCdotu_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44661,7 +44661,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdotc_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44712,7 +44712,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdotu_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44764,7 +44764,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSdotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount,myResult)
       use iso_c_binding
@@ -44832,7 +44832,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDdotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount,myResult)
       use iso_c_binding
@@ -44900,7 +44900,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCdotcStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount,myResult)
       use iso_c_binding
@@ -44968,7 +44968,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCdotuStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount,myResult)
       use iso_c_binding
@@ -45036,7 +45036,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdotcStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount,myResult)
       use iso_c_binding
@@ -45104,7 +45104,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdotuStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount,myResult)
       use iso_c_binding
@@ -45171,7 +45171,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSnrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45216,7 +45216,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDnrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45261,7 +45261,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasScnrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45306,7 +45306,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDznrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45352,7 +45352,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSnrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45408,7 +45408,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDnrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45464,7 +45464,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasScnrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45520,7 +45520,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDznrm2StridedBatched_assumed_rank(handle,n,x,incx,stridex,batchCount,myResult)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45575,7 +45575,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45629,7 +45629,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45683,7 +45683,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45737,7 +45737,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45791,7 +45791,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45845,7 +45845,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -45900,7 +45900,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -45969,7 +45969,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -46038,7 +46038,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -46107,7 +46107,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -46178,7 +46178,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -46247,7 +46247,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdrotStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,c,s, &
         batchCount)
       use iso_c_binding
@@ -46317,7 +46317,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSrotm_assumed_rank(handle,n,x,incx,y,incy,param)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46368,7 +46368,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDrotm_assumed_rank(handle,n,x,incx,y,incy,param)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46420,7 +46420,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSrotmStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,param, &
         strideParam,batchCount)
       use iso_c_binding
@@ -46491,7 +46491,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDrotmStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey,param, &
         strideParam,batchCount)
       use iso_c_binding
@@ -46561,7 +46561,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46606,7 +46606,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46651,7 +46651,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46696,7 +46696,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46741,7 +46741,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46786,7 +46786,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46832,7 +46832,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46888,7 +46888,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -46944,7 +46944,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47000,7 +47000,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47056,7 +47056,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47112,7 +47112,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdscalStridedBatched_assumed_rank(handle,n,alpha,x,incx,stridex,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47167,7 +47167,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47215,7 +47215,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47263,7 +47263,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47311,7 +47311,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47360,7 +47360,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -47423,7 +47423,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -47486,7 +47486,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -47549,7 +47549,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZswapStridedBatched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batchCount)
       use iso_c_binding
@@ -47611,7 +47611,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47710,7 +47710,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47809,7 +47809,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -47908,7 +47908,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -48008,7 +48008,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -48129,7 +48129,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -48250,7 +48250,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -48371,7 +48371,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgbmvStridedBatched_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -48491,7 +48491,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgemv_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -48582,7 +48582,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgemv_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -48673,7 +48673,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgemv_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -48764,7 +48764,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgemv_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -48855,7 +48855,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgemvStridedBatched_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -48966,7 +48966,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgemvStridedBatched_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -49077,7 +49077,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgemvStridedBatched_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -49188,7 +49188,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgemvStridedBatched_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -49299,7 +49299,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSger_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49380,7 +49380,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDger_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49461,7 +49461,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgeru_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49544,7 +49544,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgerc_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49627,7 +49627,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgeru_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49710,7 +49710,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgerc_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -49794,7 +49794,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgerStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -49899,7 +49899,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgerStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -50004,7 +50004,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgeruStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -50109,7 +50109,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgercStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -50214,7 +50214,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgeruStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -50319,7 +50319,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgercStridedBatched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -50423,7 +50423,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChbmv_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -50514,7 +50514,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhbmv_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -50606,7 +50606,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -50719,7 +50719,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -50831,7 +50831,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChemv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -50918,7 +50918,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhemv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -51006,7 +51006,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChemvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -51115,7 +51115,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhemvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -51223,7 +51223,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCher_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -51294,7 +51294,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZher_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -51366,7 +51366,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCherStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
@@ -51459,7 +51459,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZherStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
@@ -51551,7 +51551,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCher2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -51634,7 +51634,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZher2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -51718,7 +51718,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCher2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -51823,7 +51823,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZher2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -51927,7 +51927,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChpmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -51990,7 +51990,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhpmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52054,7 +52054,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChpmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -52134,7 +52134,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhpmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -52213,7 +52213,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChpr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52264,7 +52264,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhpr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52316,7 +52316,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -52384,7 +52384,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -52451,7 +52451,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChpr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52509,7 +52509,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhpr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52568,7 +52568,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChpr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,strideA,batchCount)
       use iso_c_binding
@@ -52645,7 +52645,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhpr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,strideA,batchCount)
       use iso_c_binding
@@ -52721,7 +52721,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsbmv_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52812,7 +52812,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsbmv_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -52904,7 +52904,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -53017,7 +53017,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsbmvStridedBatched_assumed_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -53129,7 +53129,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSspmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53192,7 +53192,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDspmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53256,7 +53256,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSspmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -53336,7 +53336,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDspmvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -53415,7 +53415,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53466,7 +53466,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53518,7 +53518,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53571,7 +53571,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53624,7 +53624,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -53692,7 +53692,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -53760,7 +53760,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -53828,7 +53828,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsprStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,strideA, &
         batchCount)
       use iso_c_binding
@@ -53895,7 +53895,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSspr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -53953,7 +53953,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDspr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -54012,7 +54012,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSspr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,strideA,batchCount)
       use iso_c_binding
@@ -54089,7 +54089,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDspr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,strideA,batchCount)
       use iso_c_binding
@@ -54165,7 +54165,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsymv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -54252,7 +54252,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsymv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -54339,7 +54339,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsymv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -54426,7 +54426,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsymv_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -54514,7 +54514,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -54623,7 +54623,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -54732,7 +54732,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -54841,7 +54841,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsymvStridedBatched_assumed_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
@@ -54949,7 +54949,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyr_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55020,7 +55020,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyr_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55091,7 +55091,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyr_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55162,7 +55162,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyr_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55234,7 +55234,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
@@ -55327,7 +55327,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
@@ -55420,7 +55420,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
@@ -55513,7 +55513,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyrStridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
@@ -55605,7 +55605,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55688,7 +55688,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55771,7 +55771,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55854,7 +55854,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -55938,7 +55938,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -56043,7 +56043,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -56148,7 +56148,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -56253,7 +56253,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyr2StridedBatched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
@@ -56357,7 +56357,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStbmv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -56438,7 +56438,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtbmv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -56519,7 +56519,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtbmv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -56600,7 +56600,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtbmv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -56682,7 +56682,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -56783,7 +56783,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -56884,7 +56884,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -56985,7 +56985,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtbmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -57085,7 +57085,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStbsv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57166,7 +57166,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtbsv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57247,7 +57247,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtbsv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57328,7 +57328,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtbsv_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57410,7 +57410,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -57511,7 +57511,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -57612,7 +57612,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -57713,7 +57713,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtbsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -57813,7 +57813,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStpmv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57867,7 +57867,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtpmv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57921,7 +57921,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtpmv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57975,7 +57975,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtpmv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58030,7 +58030,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58101,7 +58101,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58172,7 +58172,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58243,7 +58243,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtpmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58313,7 +58313,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58367,7 +58367,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58421,7 +58421,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58475,7 +58475,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58530,7 +58530,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58601,7 +58601,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58672,7 +58672,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58743,7 +58743,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtpsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,strideA,x,incx, &
         stridex,batchCount)
       use iso_c_binding
@@ -58813,7 +58813,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrmv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58889,7 +58889,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrmv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -58965,7 +58965,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrmv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -59041,7 +59041,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrmv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -59118,7 +59118,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -59215,7 +59215,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -59312,7 +59312,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -59409,7 +59409,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrmvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -59505,7 +59505,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrsv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -59581,7 +59581,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrsv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -59657,7 +59657,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrsv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -59733,7 +59733,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrsv_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -59810,7 +59810,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -59907,7 +59907,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -60004,7 +60004,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -60101,7 +60101,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrsvStridedBatched_assumed_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
@@ -60197,7 +60197,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -60296,7 +60296,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -60395,7 +60395,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -60494,7 +60494,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -60593,7 +60593,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgemmStridedBatched_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -60713,7 +60713,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgemmStridedBatched_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -60833,7 +60833,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgemmStridedBatched_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -60953,7 +60953,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgemmStridedBatched_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -61073,7 +61073,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCherk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -61160,7 +61160,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZherk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -61248,7 +61248,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCherkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -61353,7 +61353,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZherkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -61457,7 +61457,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCherkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -61552,7 +61552,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZherkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -61648,7 +61648,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCherkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -61765,7 +61765,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZherkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -61881,7 +61881,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCher2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -61976,7 +61976,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZher2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -62072,7 +62072,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCher2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -62189,7 +62189,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZher2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -62305,7 +62305,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsymm_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -62400,7 +62400,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsymm_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -62495,7 +62495,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsymm_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -62590,7 +62590,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsymm_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -62686,7 +62686,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -62803,7 +62803,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -62920,7 +62920,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -63037,7 +63037,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsymmStridedBatched_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -63153,7 +63153,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -63240,7 +63240,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -63327,7 +63327,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -63414,7 +63414,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -63502,7 +63502,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -63607,7 +63607,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -63712,7 +63712,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -63817,7 +63817,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyrkStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -63921,7 +63921,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyr2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -64016,7 +64016,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyr2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -64111,7 +64111,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyr2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -64206,7 +64206,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyr2k_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -64302,7 +64302,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -64419,7 +64419,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -64536,7 +64536,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -64653,7 +64653,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyr2kStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -64769,7 +64769,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyrkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -64864,7 +64864,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyrkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -64959,7 +64959,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyrkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -65054,7 +65054,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyrkx_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -65150,7 +65150,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -65267,7 +65267,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -65384,7 +65384,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -65501,7 +65501,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZsyrkxStridedBatched_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -65617,7 +65617,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgeam_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -65712,7 +65712,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgeam_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -65807,7 +65807,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgeam_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -65902,7 +65902,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgeam_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -65998,7 +65998,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -66115,7 +66115,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -66232,7 +66232,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -66349,7 +66349,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgeamStridedBatched_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -66465,7 +66465,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChemm_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -66560,7 +66560,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhemm_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -66656,7 +66656,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasChemmStridedBatched_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -66773,7 +66773,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZhemmStridedBatched_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -66889,7 +66889,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -66988,7 +66988,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -67087,7 +67087,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -67186,7 +67186,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -67286,7 +67286,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -67408,7 +67408,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -67530,7 +67530,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -67652,7 +67652,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrmmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
@@ -67773,7 +67773,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -67864,7 +67864,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -67955,7 +67955,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -68046,7 +68046,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -68138,7 +68138,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -68247,7 +68247,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -68356,7 +68356,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -68465,7 +68465,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrsmStridedBatched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
@@ -68574,7 +68574,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -68648,7 +68648,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -68722,7 +68722,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -68796,7 +68796,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrtri_assumed_rank(handle,uplo,diag,n,AP,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -68870,7 +68870,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasStrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA, &
         ldinvA,stride_invA,batchCount)
       use iso_c_binding
@@ -68963,7 +68963,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDtrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA, &
         ldinvA,stride_invA,batchCount)
       use iso_c_binding
@@ -69056,7 +69056,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCtrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA, &
         ldinvA,stride_invA,batchCount)
       use iso_c_binding
@@ -69149,7 +69149,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZtrtriStridedBatched_assumed_rank(handle,uplo,diag,n,AP,lda,strideA,invA, &
         ldinvA,stride_invA,batchCount)
       use iso_c_binding
@@ -69241,7 +69241,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSdgmm_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -69322,7 +69322,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDdgmm_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -69403,7 +69403,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCdgmm_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -69484,7 +69484,7 @@ module hipfort_hipblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdgmm_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -69566,7 +69566,7 @@ module hipfort_hipblas
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -69671,7 +69671,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -69776,7 +69776,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -69881,7 +69881,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZdgmmStridedBatched_assumed_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
@@ -69986,7 +69986,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70051,7 +70051,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70116,7 +70116,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70181,7 +70181,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgetrf_assumed_rank(handle,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70246,7 +70246,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -70331,7 +70331,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -70416,7 +70416,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -70501,7 +70501,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgetrfStridedBatched_assumed_rank(handle,n,A,lda,strideA,ipiv,strideP,myInfo, &
         batchCount)
       use iso_c_binding
@@ -70586,7 +70586,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70671,7 +70671,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70756,7 +70756,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70841,7 +70841,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -70926,7 +70926,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
         strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -71031,7 +71031,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
         strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -71136,7 +71136,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
         strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -71241,7 +71241,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgetrsStridedBatched_assumed_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
         strideP,B,ldb,strideB,myInfo,batchCount)
       use iso_c_binding
@@ -71346,7 +71346,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -71415,7 +71415,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -71484,7 +71484,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -71553,7 +71553,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgeqrf_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -71622,7 +71622,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasSgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
         myInfo,batchCount)
       use iso_c_binding
@@ -71711,7 +71711,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasDgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
         myInfo,batchCount)
       use iso_c_binding
@@ -71800,7 +71800,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasCgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
         myInfo,batchCount)
       use iso_c_binding
@@ -71889,7 +71889,7 @@ module hipfort_hipblas
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipblasZgeqrfStridedBatched_assumed_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
         myInfo,batchCount)
       use iso_c_binding
@@ -71977,848 +71977,7 @@ module hipfort_hipblas
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    function hipblasSetVector_l_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetVector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetVector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetVector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetVector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetVector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetVector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasSetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_l_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasGetVector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = hipblasGetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function hipblasSetMatrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetMatrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetMatrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetMatrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetMatrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetMatrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetMatrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasGetMatrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function hipblasSetVectorAsync_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetVectorAsync_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetVectorAsync_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetVectorAsync_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetVectorAsync_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetVectorAsync_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetVectorAsync_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasGetVectorAsync_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function hipblasSetMatrixAsync_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasSetMatrixAsync_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasSetMatrixAsync_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasSetMatrixAsync_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasSetMatrixAsync_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasSetMatrixAsync_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasSetMatrixAsync_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasSetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function hipblasGetMatrixAsync_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-#else
+#ifdef USE_ASSUMED_SHAPE
     function hipblasSetVector_l_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -74877,6 +74036,849 @@ module hipfort_hipblas
       ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
+#else
+#ifdef USE_ASSUMED_RANK
+    function hipblasSetVector_l_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_l_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetMatrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetVectorAsync_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetMatrixAsync_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+#endif
 #endif
 #endif
 end module hipfort_hipblas

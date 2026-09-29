@@ -52,8 +52,8 @@ These interfaces take Fortran (array) variables and the number of elements, inst
 variables and the number of bytes. Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read.
 
-These additional interfaces are guarded by the ``USE_FPOINTER_INTERFACES`` preprocessor definition,
-which hipFORT enables automatically once it detects Fortran 2008 support in your compiler. The
+These additional interfaces are enabled automatically once hipFORT detects Fortran 2008
+support in your compiler. The
 ``hipMalloc`` and ``hipMemcpy`` array overloads are an exception: they are not guarded and are
 therefore available in every hipFORT build. By convention,
 application and test sources that rely on them use the ``.f08`` file extension (see the ``test/f2008``
