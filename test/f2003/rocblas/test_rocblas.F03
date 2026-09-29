@@ -1313,8 +1313,6 @@ program test_rocblas
     if (never) v1 = rocblas_start_device_memory_size_query_(v0)
     if (never) v1 = rocblas_stop_device_memory_size_query_(v0, v21)
     if (never) v22 = rocblas_is_device_memory_size_query_(v0)
-    if (never) v1 = rocblas_set_optimal_device_memory_size_impl_(v0, v21)
-    if (never) v1 = rocblas_device_malloc_alloc_(v0, v0, v21)
     if (never) v22 = rocblas_device_malloc_success_(v0)
     if (never) v1 = rocblas_device_malloc_ptr_(v0, v0)
     if (never) v1 = rocblas_device_malloc_get_(v0, v21, v0)
