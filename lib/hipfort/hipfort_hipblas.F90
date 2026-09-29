@@ -72012,9 +72012,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -72110,9 +72110,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -72211,9 +72211,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -72316,9 +72316,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -72420,9 +72420,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -72525,9 +72525,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -72633,9 +72633,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -72745,9 +72745,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -72881,9 +72881,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -72895,9 +72895,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -73077,9 +73077,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -73091,9 +73091,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -73304,8 +73304,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       !
       ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -73317,9 +73317,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -73332,9 +73332,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -73605,8 +73605,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       !
       ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -73618,9 +73618,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -73633,9 +73633,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -73879,9 +73879,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -73894,9 +73894,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -74089,9 +74089,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -74104,9 +74104,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -74332,8 +74332,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -74346,9 +74346,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -74362,9 +74362,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -74654,8 +74654,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -74668,9 +74668,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -74684,9 +74684,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
