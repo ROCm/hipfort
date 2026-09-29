@@ -171,7 +171,7 @@ ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 
 # Test for Fortran 2018 support using the assumed-rank construct the generated
 # bindings rely on: an assumed-rank (dimension(..)) dummy passed to c_loc(). This
-# is exactly what the USE_ASSUMED_RANK_INTERFACES wrappers do, so it is the right
+# is exactly what the assumed-rank wrappers do, so it is the right
 # discriminator for whether HIPFORT_ASSUMED_RANK can be enabled.
 IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
   MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2018")

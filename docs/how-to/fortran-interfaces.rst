@@ -23,8 +23,7 @@ The three variants
 * **Fortran 2008 array overloads.** Generated once per rank, they take a Fortran
   array pointer and a number of elements instead of a ``type(c_ptr)`` and a byte
   count. They reduce the chance of compile-time and runtime errors and make the
-  call site easier to read. They are guarded by the ``USE_FPOINTER_INTERFACES``
-  preprocessor definition, which hipFORT enables automatically once it detects
+  call site easier to read. hipFORT enables them automatically once it detects
   Fortran 2008 support in the compiler.
 * **Fortran 2018 assumed-rank overloads.** An experimental opt-in that replaces
   the per-rank overloads with a single ``dimension(..)`` overload. See
@@ -81,8 +80,8 @@ Use ``dsource`` instead of ``source`` when the source array already lives on the
 device.
 
 Unlike the array interfaces of the math libraries, these ``hipMalloc`` and
-``hipMemcpy`` overloads are not guarded by ``USE_FPOINTER_INTERFACES``, so they
-are available in every hipFORT build.
+``hipMemcpy`` overloads are unconditional, so they are available in every
+hipFORT build.
 
 Assumed-rank interfaces (Fortran 2018)
 ======================================

@@ -28,8 +28,8 @@ Conventions
   ``hipMemcpy(dx, c_loc(hx(1)), nbytes, hipMemcpyHostToDevice)``. The array
   overloads instead accept a Fortran array pointer and a shape, as in
   ``hipMalloc(dx, n)`` or ``hipMalloc(dx, source=hx)``. Unlike the math
-  libraries, these overloads are not guarded by ``USE_FPOINTER_INTERFACES``, so
-  they are available in every hipFORT build.
+  libraries, these overloads are unconditional, so they are available in every
+  hipFORT build.
 * **Every call returns a status code.** The programs wrap calls in ``hipCheck``
   from the ``hipfort_check`` module, which aborts on failure. A call whose
   non-success return is the thing being tested, such as ``hipStreamQuery``,

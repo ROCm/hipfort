@@ -120,7 +120,7 @@ program test_hip
     if (never) v3 = hipDeviceGetName_(v4, v0, v0)
 #endif
     if (never) v3 = hipDeviceGetUuid_(v5, v0)
-    if (never) v3 = hipDeviceGetP2PAttribute_(v4, v6, v0, v0)
+    if (never) v3 = hipDeviceGetP2PAttribute_(v0, v6, v0, v0)
     if (never) v3 = hipDeviceGetPCIBusId_(v4, v0, v0)
     if (never) v3 = hipDeviceGetByPCIBusId_(v0, v4)
 #ifndef USE_CUDA_NAMES
@@ -393,7 +393,7 @@ program test_hip
 #endif
     if (never) v3 = hipFuncGetAttributes_(v50, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipFuncGetAttribute_(v4, v51, v4)
+    if (never) v3 = hipFuncGetAttribute_(v0, v51, v4)
 #endif
     if (never) v3 = hipGetFuncBySymbol_(v4, v4)
     if (never) v3 = hipGetDriverEntryPoint_(v4, v4, v19, v4)

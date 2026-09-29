@@ -62,7 +62,7 @@ program module_kernel
   call hipCheck(hipModuleLoad(hmod, c_loc(cofile)))
   call hipCheck(hipModuleGetFunction(kfunc, hmod, c_loc(kname)))
 
-  call hipCheck(hipFuncGetAttribute(c_loc(maxthreads), HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK, kfunc))
+  call hipCheck(hipFuncGetAttribute(maxthreads, HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK, kfunc))
   if (maxthreads <= 0 .or. maxthreads > 1024) then
      write(*,*) "FAILED! max threads per block = ", maxthreads
      call exit(1)

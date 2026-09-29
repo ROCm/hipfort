@@ -14,6 +14,25 @@
 
 ### Changed
 
+* **Breaking, for anyone compiling the `.F90` by hand.** The preprocessor macros
+  that select the array interfaces are renamed, and each now selects its own
+  tier: `USE_ASSUMED_SHAPE` for the per-rank overloads (Fortran 2008) and
+  `USE_ASSUMED_RANK` for the single `dimension(..)` form (Fortran 2018). They
+  replace `USE_FPOINTER_INTERFACES` and `USE_ASSUMED_RANK_INTERFACES`.
+
+  The old pair was a trap. `USE_FPOINTER_INTERFACES` was a master switch whose
+  name said nothing about arrays, and `USE_ASSUMED_RANK_INTERFACES` was read
+  only inside it, so asking for assumed-rank alone -- the macro whose name is
+  exactly what you want -- produced no overloads at all. The generic kept only
+  its `type(c_ptr)` specific and the caller got "no specific function for the
+  generic" with nothing to explain it. The two are still mutually exclusive,
+  because an assumed-rank dummy is not distinguishable by rank from the per-rank
+  specifics, but that is now expressed as `#ifdef`/`#else` rather than nesting.
+
+  The CMake options are unchanged: `HIPFORT_USE_FPOINTER_INTERFACES` and
+  `HIPFORT_ASSUMED_RANK` still mean what they meant, and a build that goes
+  through CMake needs no change.
+
 * **Breaking.** `hipfort_roctx` is generated rather than hand-written, and its
   `const char*` arguments are now `type(c_ptr)` like every other `char*` argument
   in hipfort, instead of `character(kind=c_char) :: message(*)`. Code that passed
