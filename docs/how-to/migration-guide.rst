@@ -22,7 +22,7 @@ Fortran archive, and nothing else in your code changes.**
    ``use rocblas`` against ``/opt/rocm/include/rocblas/rocblas_module.f90``, or
    ``use rocsparse``, or ``use rocrand_m``, this page is not yours. Those
    modules ship with the library rather than with hipFORT, and their migration
-   has a different deadline, different edits, and — unlike this one — call sites
+   has a different deadline, different edits, and, unlike this one, call sites
    that do change. See :doc:`migration-guide-in-tree`.
 
 The layout of the new bindings (one self-contained module per library, ROCm
@@ -162,8 +162,8 @@ now come from the library module you already ``use``:
 ``hipfort_roctx`` is not in the tables because the packaged ``roctx`` binding
 is deferred: ROCTx is moving into rocprofiler-sdk upstream and its home is not
 settled. Old hipFORT keeps working through the 10.x series. After that, until a
-packaged binding lands, call the C ROCTx API through ``iso_c_binding`` -- it is
-a handful of ``bind(C)`` interfaces.
+packaged binding lands, call the C ROCTx API through ``iso_c_binding``, which
+is a handful of ``bind(C)`` interfaces.
 
 Only ``hipfort_cuda_errors`` (the CUDA-backend error enum) has no new
 equivalent: it is tied to the dropped CUDA backend and retires with hipFORT at
@@ -342,7 +342,7 @@ version-suffixed ``gfortran-13.3.0``.
 The tiers themselves are unchanged: raw ``type(c_ptr)`` (Fortran 2003) always
 present, array overloads (2008) on, assumed-rank (2018) opt-in. One option now
 selects between them instead of two, because assumed-rank *replaces* the
-per-rank variants rather than adding to them -- an assumed-rank dummy is not
+per-rank variants rather than adding to them. An assumed-rank dummy is not
 distinguishable by rank from the per-rank specifics, so the two cannot legally
 coexist in one generic, and two booleans could express that illegal
 combination. See :doc:`fortran-interfaces` for the call sites side by side.
@@ -359,7 +359,7 @@ To test from CMake whether a binding is available, use ``<pkg>_FORTRAN_FOUND``
 (``rocblas_FORTRAN_FOUND``), defined by the Fortran config package. Inside a
 ROCm build tree, ``ROCM_HAVE_FORTRAN`` reports only that a Fortran compiler
 exists, while ``<LIB>_HAVE_FORTRAN_BINDINGS`` is true only when that library's
-bindings were built -- the compiler can be present with
+bindings were built, since the compiler can be present with
 ``BUILD_FORTRAN_BINDINGS=OFF``. (``ROCM_LIBS_HAVE_FORTRAN`` is the old spelling
 of the first and still works.)
 
@@ -392,7 +392,8 @@ bindings precompiled for ``amdflang``:
    ``amdflang`` read a ``.mod`` written by another ``amdflang`` version,
    warning instead of erroring. It covers version skew inside ``amdflang``
    only: nothing lets ``gfortran`` read an ``amdflang`` ``.mod``. Rebuild when
-   you can -- the warning means the two artifacts were not built together.
+   you can, because the warning means the two artifacts were not built
+   together.
 
 The C libraries you link (``libamdhip64.so``, ``librocblas.so``, and so on) are
 the stable, compiler-agnostic ABI; only the thin Fortran layer is
@@ -626,8 +627,8 @@ Yes. Nothing collides, so you can migrate one file at a time:
 
 Two rules: build both with the same compiler as your application, and never
 ``use`` both bindings for the same library in one scope. The clash is
-*source*-level only -- the archives coexist fine, because symbols are mangled
-per module name -- which is why migrating one file at a time works.
+*source*-level only. The archives coexist fine, because symbols are mangled
+per module name, which is why migrating one file at a time works.
 
 .. note::
 
@@ -647,7 +648,8 @@ other source. The requirement is on the compiler, which must handle Fortran
 The exception is a unit compiled as pre-Fortran 90, which has no modules and so
 no ``use`` statement to write. hipFORT never had a path for that either. If you
 are stuck there, `open an issue <https://github.com/ROCm/hipfort/issues>`_
-rather than hand-writing glue -- a C shim with F77 linkage can be generated.
+rather than hand-writing glue, because a C shim with F77 linkage can be
+generated.
 
 **Will my calls break?**
 
