@@ -59,9 +59,8 @@ These directly take Fortran (array) variables and the number of
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
 Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read too.
-These additional interfaces are guarded by the `USE_FPOINTER_INTERFACES` preprocessor
-definition, which `hipfort` enables automatically once it detects Fortran 2008 support
-in your compiler. By convention, application and test sources that rely on them use the
+These additional interfaces are enabled automatically once `hipfort` detects
+Fortran 2008 support in your compiler. By convention, application and test sources that rely on them use the
 `.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
 
 You can override the automatic detection with the `HIPFORT_USE_FPOINTER_INTERFACES`

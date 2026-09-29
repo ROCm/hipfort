@@ -71,7 +71,7 @@ module hipfort_hipmemcpy
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: myKind
     end function hipMemcpy_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpy_i4_assumed_rank
     module procedure hipMemcpy_i4_assumed_rank_c_size_t
     module procedure hipMemcpy_i4_assumed_rank_c_int
@@ -308,7 +308,7 @@ module hipfort_hipmemcpy
       integer(c_int), value :: myKind
       type(c_ptr), value :: stream
     end function hipMemcpyAsync_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpyAsync_i4_assumed_rank
     module procedure hipMemcpyAsync_i4_assumed_rank_c_size_t
     module procedure hipMemcpyAsync_i4_assumed_rank_c_int
@@ -557,7 +557,7 @@ module hipfort_hipmemcpy
       integer(c_size_t), value :: height
       integer(c_int), value :: myKind
     end function hipMemcpy2D_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpy2D_i4_assumed_rank_c_size_t
     module procedure hipMemcpy2D_i4_assumed_rank_c_int
     module procedure hipMemcpy2D_i8_assumed_rank_c_size_t
@@ -750,7 +750,7 @@ module hipfort_hipmemcpy
       integer(c_int), value :: myKind
       type(c_ptr), value :: stream
     end function hipMemcpy2DAsync_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpy2DAsync_i4_assumed_rank_c_size_t
     module procedure hipMemcpy2DAsync_i4_assumed_rank_c_int
     module procedure hipMemcpy2DAsync_i8_assumed_rank_c_size_t
@@ -883,7 +883,7 @@ module hipfort_hipmemcpy
 
 contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
   function hipMemcpy_i4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
