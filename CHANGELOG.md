@@ -43,6 +43,22 @@
   which also documents the experimental Fortran 2018 assumed-rank mode. The
   tutorial section now holds only pages of complete programs for a specific
   library.
+* **Breaking, two routines.** `hipFuncGetAttribute` and
+  `hipDeviceGetP2PAttribute` take their `value` output as `integer(c_int)` by
+  reference, matching the C `int*` and every sibling getter
+  (`hipGetDeviceFlags`, `hipGraphNodeGetEnabled`, …). They were the only two
+  declaring it `type(c_ptr), value`. A caller passing `c_loc(x)` must now pass
+  `x` itself.
+
+### Removed
+
+* **Breaking, two routines.** `hipfort_rocblas` no longer declares
+  `rocblas_set_optimal_device_memory_size_impl` and
+  `rocblas_device_malloc_alloc`. Both are variadic in C, Fortran cannot express
+  `...`, and the interfaces dropped it — so the variable arguments could never
+  be passed, and calling a variadic function through a fixed-arity prototype is
+  undefined on the x86-64 SysV ABI regardless. They are internal helpers backing
+  the C++ `rocblas_device_malloc` wrapper and have no Fortran use.
 
 ### Fixed
 
